@@ -1,0 +1,117 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-noarg'
+apply plugin: 'kotlin-allopen'
+
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+
+}
+
+android {
+    compileSdkVersion compile_sdk_version
+    defaultConfig {
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+        versionCode version_code
+        versionName version_name
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+    }
+
+}
+
+
+noArg {
+    annotation("com.yzq.common.annotations.NoArgs")
+}
+
+allOpen {
+    annotation("com.yzq.common.annotations.AllOpen")
+
+}
+
+
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // kapt "groupId:artifactId:$kotlin_version"
+
+    api "com.android.support:appcompat-v7:$android_support"
+    api "com.android.support:design:$android_support"
+    api "com.android.support:support-vector-drawable:$android_support"
+
+    /*dagger2*/
+    api "com.google.dagger:dagger:$dagger2"
+
+    kapt "com.google.dagger:dagger-compiler:$dagger2"
+
+    /*rx*/
+    api "io.reactivex.rxjava2:rxkotlin:$rx_kotlin"
+    api "io.reactivex.rxjava2:rxandroid:$rx_android"
+    api "com.uber.autodispose:autodispose-kotlin:$autodispose_version"
+    api "com.uber.autodispose:autodispose-android-archcomponents-kotlin:$autodispose_version"
+    api "com.uber.autodispose:autodispose-android-kotlin:$autodispose_version"
+
+    /*eventbus*/
+    api "org.greenrobot:eventbus:$eventbus"
+
+    /*permission*/
+    api "com.yanzhenjie:permission:$permission"
+    /*Gson*/
+    api "com.google.code.gson:gson:$gson"
+
+    /*dialog*/
+    api("com.afollestad.material-dialogs:core:$material_dialogs") {
+        exclude group: 'com.android.support'
+    }
+    /*EasyPhotos*/
+    api "com.github.HuanTanSheng:EasyPhotos:$easyPhotos"
+
+    /*retrofit*/
+    api "com.squareup.okhttp3:okhttp:$ok_http"
+    api "com.squareup.retrofit2:retrofit:$retrofit"
+    api "com.squareup.okhttp3:logging-interceptor:$ok_http"
+    api "com.squareup.retrofit2:converter-gson:$retrofit"
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+
+    /*glide*/
+    api("com.github.bumptech.glide:glide:$glide") {
+        exclude group: 'com.android.support'
+    }
+    kapt "com.github.bumptech.glide:compiler:$glide"
+
+    api "com.github.chrisbanes:PhotoView:$photoview"
+    api "com.blankj:utilcode:$utilcode"
+
+    /*ARouter*/
+    api "com.alibaba:arouter-api:$arouter_api"
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler"
+
+    api "com.ashokvarma.android:bottom-navigation-bar:$bottom_navigation_bar"
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$baseRecyclerViewAdapterHelper"
+
+
+
+    api "cn.bingoogolapple:bga-badgeview-api:$bga_badgeview"
+    kapt "cn.bingoogolapple:bga-badgeview-compiler:$bga_badgeview"
+
+    api "me.jessyan:progressmanager:$progressmanager_version"
+}

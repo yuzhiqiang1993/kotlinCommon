@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Common</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="deleteLocalImg">同时删除已上传的本地图片</string>
+    <string name="hint">提示</string>
+
+</resources>

@@ -1,0 +1,86 @@
+package com.yzq.common.permission
+
+import android.text.TextUtils
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.ToastUtils
+import com.yanzhenjie.permission.Action
+import com.yanzhenjie.permission.AndPermission
+import com.yanzhenjie.permission.Permission
+import com.yanzhenjie.permission.Setting
+import com.yzq.common.BaseApp
+import com.yzq.common.widget.Dialog
+import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
+
+
+/**
+ * @description: 封装的权限请求
+ * @author : yzq
+ * @date   : 2018/7/9
+ * @time   : 17:32
+ *
+ */
+
+object PermissionRequester {
+
+    /*申请权限*/
+    fun request(vararg permissions: String): Observable<Boolean> {
+
+        return Observable.create<Boolean> {
+
+            emitter: ObservableEmitter<Boolean> ->
+            AndPermission.with(BaseApp.instance)
+                    .runtime()
+                    .permission(permissions)
+                    .onGranted(Action {
+                        emitter.onNext(true)
+                        emitter.onComplete()
+
+                    })
+                    .onDenied(Action {
+                        permissionDenied(it)
+                    }).start()
+        }
+
+
+    }
+
+    /*权限被拒绝*/
+    private fun permissionDenied(permissions: List<String>) {
+
+        if (AndPermission.hasAlwaysDeniedPermission(BaseApp.instance, permissions)) {
+            showPermissionDailog(permissions)
+        } else {
+            ToastUtils.showShort("权限被拒绝")
+        }
+
+
+    }
+
+    /*当用户点击拒绝且不再提示时显示提示框*/
+    private fun showPermissionDailog(permissions: List<String>) {
+
+        val permissionNames = Permission.transformText(BaseApp.instance, permissions)
+        val message = "我们需要的 " + TextUtils.join("、", permissionNames) + " 权限被拒绝,这将导致部分功能不可用，请手动开启!"
+
+
+        Dialog.getNewBuilder()
+                .title("开启权限")
+                .content(message)
+                .positiveText("去开启")
+                .negativeText("不开启")
+                .onPositive { dialog, which ->
+                    AndPermission.with(BaseApp.instance)
+                            .runtime()
+                            .setting()
+                            .onComeback(Setting.Action {
+                                // 用户从设置回来了。
+                                LogUtils.i("从设置回来了")
+                            }).start()
+                }.show()
+
+
+    }
+
+}
+
