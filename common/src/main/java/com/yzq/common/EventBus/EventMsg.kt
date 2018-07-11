@@ -1,7 +1,5 @@
 package com.yzq.common.EventBus
 
-import com.yzq.common.annotations.NoArgs
-
 
 /**
  * @description: EventMsg数据类，用于EventBus数据传递
@@ -11,5 +9,4 @@ import com.yzq.common.annotations.NoArgs
  *
  */
 
-@NoArgs
 data class EventMsg(var tag: String, var obj: Any)

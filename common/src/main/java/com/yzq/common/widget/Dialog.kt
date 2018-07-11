@@ -22,7 +22,6 @@ class Dialog {
     companion object {
 
         private lateinit var context: Context
-        private lateinit var dialog: MaterialDialog
 
         fun initDialog(context: Context) {
             this.context = context

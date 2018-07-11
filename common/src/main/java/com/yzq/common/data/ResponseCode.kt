@@ -7,7 +7,6 @@ package com.yzq.common.data
 
 class ResponseCode {
 
-
     companion object {
         /*成功*/
         val SUCCESS = 1
