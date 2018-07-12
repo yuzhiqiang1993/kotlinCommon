@@ -80,7 +80,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     protected open fun initWidget() {
 
         LogUtils.i("initWidget")
-        EventBusUtil.register(this)
+
 
     }
 
@@ -160,7 +160,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     override fun onResume() {
         super.onResume()
-
         Dialog.initDialog(this)
 
     }

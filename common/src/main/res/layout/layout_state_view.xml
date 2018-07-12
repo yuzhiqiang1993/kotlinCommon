@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/loaddingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ProgressBar
+            android:layout_width="@dimen/len_24"
+            android:layout_height="@dimen/len_24" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"
+            android:text="@string/loadding" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+
+    <!--异常布局  无数据或无网络或连接超时-->
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/abnormalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/hintImg"
+            android:layout_width="@dimen/len_128"
+            android:layout_height="@dimen/len_96" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/hintTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/len_16"
+            android:gravity="center"
+
+            android:textColor="@color/gray_400"
+            android:textSize="@dimen/font_18" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/retryBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/len_10"
+            android:text="@string/retry"
+            android:textColor="@color/white" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+
+</RelativeLayout>

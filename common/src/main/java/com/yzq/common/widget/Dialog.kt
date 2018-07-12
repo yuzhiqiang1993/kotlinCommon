@@ -4,7 +4,6 @@ import android.content.Context
 import com.afollestad.materialdialogs.MaterialDialog
 import com.yzq.common.EventBus.EventBusUtil
 import com.yzq.common.EventBus.EventMsg
-import com.yzq.common.R
 import com.yzq.common.constants.BaseContstants
 
 
@@ -17,7 +16,6 @@ import com.yzq.common.constants.BaseContstants
  */
 
 class Dialog {
-
 
     companion object {
 
@@ -112,7 +110,7 @@ class Dialog {
 
         }
 
-        fun showInputDialog(title: String = BaseContstants.HINT, content: String, inputHint: String,prefill:String="", allowEmptyInput:Boolean=false,callback: MaterialDialog.InputCallback) {
+        fun showInputDialog(title: String = BaseContstants.HINT, content: String, inputHint: String, prefill: String = "", allowEmptyInput: Boolean = false, callback: MaterialDialog.InputCallback) {
 
             getNewBuilder()
                     .title(title)

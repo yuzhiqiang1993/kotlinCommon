@@ -1,4 +1,27 @@
 <resources>
-    <string name="app_name">Common</string>
 
+    <string name="loadding">正在加载中....</string>
+    <string name="timeout">请求超时，请稍后再试</string>
+    <string name="noData">暂无数据</string>
+    <string name="retry">重试</string>
+    <string name="noNet">网络无链接，请检查</string>
+    <string name="add">添加</string>
+    <string name="upload">上传</string>
+    <string name="login">登录</string>
+    <string name="changePwd">修改密码</string>
+    <string name="userHint">请输入用户名</string>
+    <string name="pwdHint">请输入密码</string>
+    <string name="oldPwdHint">请输入原密码</string>
+    <string name="newPwdHint">请输入新密码</string>
+    <string name="sureNewPwdHint">请再次输入新密码</string>
+    <string name="userNameCanNotNull">用户名不能为空</string>
+    <string name="pwdCanNotNull">密码不能为空</string>
+    <string name="versionUpdade">版本更新</string>
+    <string name="logout">退出登录</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="hint">提示</string>
+    <string name="hasNewVersion">有新版本</string>
+    <string name="sureUpdate">确定升级</string>
+    <string name="withHoldUpdate">暂不升级</string>
 </resources>

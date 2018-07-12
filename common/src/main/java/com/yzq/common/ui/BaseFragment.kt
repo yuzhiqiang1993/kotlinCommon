@@ -7,7 +7,6 @@ import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.yzq.common.EventBus.EventBusUtil
 import com.yzq.common.EventBus.EventMsg
-import com.yzq.common.dagger.component.DaggerFragmentComponent
 import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.widget.Dialog
 import org.greenrobot.eventbus.Subscribe
@@ -35,7 +34,6 @@ abstract class BaseFragment : Fragment(), BaseView {
         initPresenter()
 
     }
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
