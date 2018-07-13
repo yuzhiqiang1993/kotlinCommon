@@ -13,7 +13,6 @@ class EventBusUtil() {
         fun register(subscriber: Any) {
             if (!EventBus.getDefault().isRegistered(subscriber)) {
                 EventBus.getDefault().register(subscriber)
-
             }
         }
 

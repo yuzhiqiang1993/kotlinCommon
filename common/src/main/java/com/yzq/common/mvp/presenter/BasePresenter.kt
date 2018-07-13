@@ -19,12 +19,9 @@ abstract class BasePresenter< V : BaseView> {
 
     lateinit var owner: LifecycleOwner
 
-
     fun initPresenter( view: V , owner: LifecycleOwner) {
         this.view = view
         this.owner = owner
-
     }
-
 
 }

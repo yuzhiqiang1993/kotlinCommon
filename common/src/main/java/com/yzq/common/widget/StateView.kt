@@ -10,6 +10,15 @@ import com.yzq.common.R
 import kotlinx.android.synthetic.main.layout_state_view.view.*
 
 
+
+ /**
+ * @description: 自定义的状态布局
+ * @author : yzq
+ * @date   : 2018/7/13
+ * @time   : 13:43
+ *
+ */
+
 class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
 
 

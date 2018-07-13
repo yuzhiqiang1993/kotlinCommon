@@ -38,7 +38,6 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
         /*初始化ARouter*/
         initARouter()
 
-
         registerActivityLifecycleCallbacks(this)
 
 

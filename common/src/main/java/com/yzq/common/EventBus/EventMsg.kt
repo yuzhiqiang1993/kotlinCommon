@@ -9,4 +9,5 @@ package com.yzq.common.EventBus
  *
  */
 
+
 data class EventMsg(var tag: String, var obj: Any)

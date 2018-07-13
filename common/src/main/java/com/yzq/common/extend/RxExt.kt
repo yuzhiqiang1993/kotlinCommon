@@ -22,14 +22,12 @@ import io.reactivex.functions.Function
 
 
 /*
-* 对Observable进行线程调度和声明周期绑定
+* 对Observable进行线程调度和生命周期绑定
 *
 * */
 fun <T> Observable<T>.transform(owner: LifecycleOwner): ObservableSubscribeProxy<T> {
-    return this.compose(RxSchedulers.io2main())
-            .autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY))
+    return this.compose(RxSchedulers.io2main()).autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY))
 }
-
 
 /*
 * 数据转换
