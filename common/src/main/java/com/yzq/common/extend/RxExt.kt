@@ -38,10 +38,10 @@ fun <T> Observable<BaseResp<T>>.dataConvert(): Observable<T> {
     return this.flatMap(object : Function<BaseResp<T>, Observable<T>> {
         override fun apply(t: BaseResp<T>): Observable<T> {
 
-            if (t.fig == ResponseCode.SUCCESS) {
-                return Observable.just(t.data)
+            if (t.errorCode == ResponseCode.SUCCESS) {
+                return Observable.just(t.result)
             }
-            return Observable.error(Throwable(message = t.message))
+            return Observable.error(Throwable(message = t.reason))
         }
 
     })

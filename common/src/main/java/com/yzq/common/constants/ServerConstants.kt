@@ -12,9 +12,9 @@ package com.yzq.common.constants
 class ServerConstants {
 
     companion object {
-        val SERVER_URL = "http://192.168.1.201:8003/"
+        val SERVER_URL = "http://v.juhe.cn/"
         /*接口地址*/
-        val BASE_URL = SERVER_URL + "api/"
+        val BASE_URL = SERVER_URL + "toutiao/"
         val DEVICE_ID = "DeviceId"
     }
 }

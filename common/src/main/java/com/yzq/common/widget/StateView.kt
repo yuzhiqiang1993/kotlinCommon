@@ -91,7 +91,7 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : Li
         retryBtn.setVisibility(View.GONE)
     }
 
-    private fun hide() {
+     fun hide() {
         view.visibility = View.GONE
     }
 

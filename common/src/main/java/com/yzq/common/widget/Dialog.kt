@@ -48,7 +48,7 @@ class Dialog {
                     .content(content)
                     .positiveText(positiveText)
                     .negativeText(negativeText)
-                    .onPositive(MaterialDialog.SingleButtonCallback { dialog, which ->
+                    .onPositive(MaterialDialog.SingleButtonCallback { _, _ ->
 
                         var eventMsg: EventMsg = EventMsg::class.java.newInstance()
                         eventMsg.tag = sureTag
@@ -66,13 +66,13 @@ class Dialog {
                     .content(content)
                     .positiveText(positiveText)
                     .negativeText(negativeText)
-                    .onPositive(MaterialDialog.SingleButtonCallback { dialog, which ->
+                    .onPositive(MaterialDialog.SingleButtonCallback { _, _ ->
 
                         var eventMsg: EventMsg = EventMsg::class.java.newInstance()
                         eventMsg.tag = sureTag
                         EventBusUtil.post(eventMsg)
 
-                    }).onNegative(MaterialDialog.SingleButtonCallback { dialog, which ->
+                    }).onNegative(MaterialDialog.SingleButtonCallback { _, _ ->
 
                         var eventMsg: EventMsg = EventMsg::class.java.newInstance()
                         eventMsg.tag = cancleTag
@@ -88,7 +88,7 @@ class Dialog {
                     .content(content)
                     .positiveText(positiveText)
                     .negativeText(negativeText)
-                    .onPositive(MaterialDialog.SingleButtonCallback { dialog, which ->
+                    .onPositive(MaterialDialog.SingleButtonCallback { _, _ ->
 
                         var eventMsg: EventMsg = EventMsg::class.java.newInstance()
                         eventMsg.tag = backTag

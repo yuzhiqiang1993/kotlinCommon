@@ -69,7 +69,7 @@ object PermissionRequester {
                 .content(message)
                 .positiveText("去开启")
                 .negativeText("不开启")
-                .onPositive { dialog, which ->
+                .onPositive { _, _ ->
                     AndPermission.with(BaseApp.instance)
                             .runtime()
                             .setting()

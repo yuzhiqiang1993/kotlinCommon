@@ -9,7 +9,7 @@ class ResponseCode {
 
     companion object {
         /*成功*/
-        val SUCCESS = 1
+        val SUCCESS = 0
     }
 
 }
