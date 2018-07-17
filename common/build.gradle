@@ -68,7 +68,6 @@ dependencies {
     api "io.reactivex.rxjava2:rxandroid:$rx_android"
     api "com.uber.autodispose:autodispose-kotlin:$autodispose_version"
     api "com.uber.autodispose:autodispose-android-archcomponents-kotlin:$autodispose_version"
-    api "com.uber.autodispose:autodispose-android-kotlin:$autodispose_version"
 
     /*eventbus*/
     api "org.greenrobot:eventbus:$eventbus"

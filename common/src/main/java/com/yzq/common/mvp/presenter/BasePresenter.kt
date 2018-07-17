@@ -1,8 +1,8 @@
 package com.yzq.common.mvp.presenter
 
+import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.LifecycleOwner
 import com.yzq.common.mvp.view.BaseView
-import com.yzq.common.ui.BaseMvpActivity
 
 
 /**
@@ -13,15 +13,16 @@ import com.yzq.common.ui.BaseMvpActivity
  *
  */
 
-abstract class BasePresenter< V : BaseView> {
+abstract class BasePresenter<V : BaseView> : LifecycleObserver {
 
     lateinit var view: V
 
-    lateinit var owner: LifecycleOwner
+    lateinit var lifecycleOwner: LifecycleOwner
 
-    fun initPresenter( view: V , owner: LifecycleOwner) {
+    fun initPresenter(view: V, owner: LifecycleOwner) {
         this.view = view
-        this.owner = owner
+        this.lifecycleOwner = owner
     }
+
 
 }

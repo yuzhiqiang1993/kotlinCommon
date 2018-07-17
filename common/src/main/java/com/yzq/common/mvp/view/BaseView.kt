@@ -10,28 +10,16 @@ package com.yzq.common.mvp.view
  */
 
 interface BaseView {
-
-     fun showLoadingDialog(content: String="请求中...")
-
-     fun dismissLoadingDialog()
-
-     fun showProgressDialog(title: String, content: String)
-
-     fun dismissProgressDialog()
-
-     fun changeProgress(percent: Int)
-
-
-     fun showErrorDialog(msg: String)
-
-     fun showLoadding()
-
-     fun showContent()
-
-     fun showNoData()
-
-     fun showNoNet()
-
-     fun showError(msg: String)
+    fun showLoadingDialog(content: String = "请求中...")
+    fun dismissLoadingDialog()
+    fun showProgressDialog(title: String, content: String)
+    fun dismissProgressDialog()
+    fun changeProgress(percent: Int)
+    fun showErrorDialog(msg: String)
+    fun showLoadding()
+    fun showContent()
+    fun showNoData()
+    fun showNoNet()
+    fun showError(msg: String)
 
 }
