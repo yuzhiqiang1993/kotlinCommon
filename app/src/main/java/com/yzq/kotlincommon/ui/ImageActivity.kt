@@ -4,12 +4,15 @@ import android.content.ContentResolver
 import android.content.Context
 import android.net.Uri
 import android.provider.MediaStore
+import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.LogUtils
 import com.qingmei2.rximagepicker.core.RxImagePicker
 import com.qingmei2.rximagepicker.ui.DefaultImagePicker
 import com.yzq.common.img.ImageLoader
 import com.yzq.common.ui.BaseActivity
+import com.yzq.common.widget.Dialog
 import com.yzq.kotlincommon.R
+import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_image.*
 
@@ -24,30 +27,31 @@ class ImageActivity : BaseActivity() {
         return R.layout.activity_image
     }
 
+
+    override fun initInject() {
+        super.initInject()
+
+        DaggerMainComponent.builder().build().inject(this)
+
+    }
+
     private lateinit var imgPicker: DefaultImagePicker
 
 
     override fun initWidget() {
         super.initWidget()
 
+
+        initCompressImgPresenter()
+
         imgPicker = RxImagePicker.Builder().with(this)
                 .build().create()
 
-
         imgFab.setOnClickListener {
             imgPicker.openGallery().subscribe(Consumer {
-
                 LogUtils.i("图片路径：" + getRealFilePath(this, it.uri))
-
-
-
-
-              //  ImageLoader.loadCenterCrop(it.uri, imgIv, 20)
-
                 imgPath = getRealFilePath(this, it.uri)!!
-
-
-
+                compressImgPresenter.compressImg(imgPath)
             })
 
         }
@@ -60,6 +64,11 @@ class ImageActivity : BaseActivity() {
 
     }
 
+    override fun compressImgSuccess(path: String) {
+        super.compressImgSuccess(path)
+
+        ImageLoader.loadCenterCrop(imgPath, imgIv)
+    }
 
     fun getRealFilePath(context: Context, uri: Uri): String? {
 
@@ -82,5 +91,15 @@ class ImageActivity : BaseActivity() {
             }
         }
         return data
+    }
+
+
+    override fun onBackPressed() {
+        Dialog.showBackHintDialog(positiveCallback = MaterialDialog.SingleButtonCallback { dialog, which ->
+
+            finish()
+        })
+
+
     }
 }

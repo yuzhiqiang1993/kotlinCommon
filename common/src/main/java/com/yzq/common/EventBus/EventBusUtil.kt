@@ -5,8 +5,6 @@ import org.greenrobot.eventbus.EventBus
 class EventBusUtil() {
 
     companion object {
-
-
         /*
         * 注册
         * */
@@ -28,14 +26,10 @@ class EventBusUtil() {
 
         }
 
-
         /*发送消息*/
         fun post(eventMsg: EventMsg) {
-
             EventBus.getDefault().post(eventMsg)
-
         }
-
 
         /**
          * 发布粘性订阅事件

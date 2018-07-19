@@ -22,17 +22,15 @@ class CompressImgPresenter @Inject constructor() : BasePresenter<CompressImgView
 
 
     /*压缩图片,默认不添加水印*/
-    fun compressImg(path: String, addWatermark: Boolean=false) {
+    fun compressImg(path: String, addWatermark: Boolean = false) {
         model.compressImg(path, addWatermark).transform(lifecycleOwner).subscribe {
             view.compressImgSuccess(it)
-
         }
-
     }
 
     /*压缩图片并添加水印*/
-    fun compressImgWithWatermark(path: String,watermark:String="") {
-        model.compressImgWithWatermark(path,watermark).transform(lifecycleOwner)
+    fun compressImgWithWatermark(path: String, watermark: String = "") {
+        model.compressImgWithWatermark(path, watermark).transform(lifecycleOwner)
                 .subscribe { view.compressImgSuccess(it) }
     }
 

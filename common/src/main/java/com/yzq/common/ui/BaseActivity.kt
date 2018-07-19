@@ -26,7 +26,7 @@ import javax.inject.Inject
  *
  */
 
-abstract class BaseActivity : AppCompatActivity(), BaseView {
+abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
 
 
     private var lastClickTime: Long = 0
@@ -36,6 +36,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     private var loaddingDialog: MaterialDialog? = null
     private var progressDialog: MaterialDialog? = null
 
+    @Inject
+    lateinit var compressImgPresenter: CompressImgPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,6 +119,18 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     protected open fun setAllowFastClick(allowFastClick: Boolean) {
         this.allowFastClick = allowFastClick
     }
+
+
+
+    protected fun initCompressImgPresenter(){
+        compressImgPresenter.initPresenter(this,this)
+    }
+
+
+    override fun compressImgSuccess(path: String) {
+        LogUtils.i("压缩后图片路径：" + path)
+    }
+
 
     protected fun preViewImg(name: String, path: String) {
 

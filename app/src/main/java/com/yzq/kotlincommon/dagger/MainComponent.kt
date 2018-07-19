@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.dagger
 
+import com.yzq.kotlincommon.ui.ImageActivity
 import com.yzq.kotlincommon.ui.MainActivity
 import dagger.Component
 
@@ -8,4 +9,6 @@ import dagger.Component
 interface MainComponent {
 
     fun inject(mainActivity: MainActivity)
+
+    fun inject(imageActivity: ImageActivity)
 }

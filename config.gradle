@@ -41,5 +41,6 @@ ext{
     arouter_annotation = "1.0.4"
     walleVersion = "1.1.6"
     andResGuardVersion="1.2.13"
+    rx_imgpicker="2.1.1"
 
 }

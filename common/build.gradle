@@ -87,7 +87,7 @@ dependencies {
     }
 
     /*rximagepicker*/
-    api 'com.github.qingmei2:rximagepicker:2.1.1'
+    api "com.github.qingmei2:rximagepicker:$rx_imgpicker"
 
     /*retrofit*/
     api "com.squareup.okhttp3:okhttp:$ok_http"

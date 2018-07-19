@@ -8,6 +8,4 @@ package com.yzq.common.EventBus
  * @time   : 14:23
  *
  */
-
-
 data class EventMsg(var tag: String, var obj: Any)

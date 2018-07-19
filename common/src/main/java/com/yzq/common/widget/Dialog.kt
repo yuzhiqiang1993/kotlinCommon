@@ -12,7 +12,6 @@ import com.yzq.common.constants.BaseContstants
  * @author : yzq
  * @date   : 2018/7/9
  * @time   : 13:30
- *
  */
 
 class Dialog {
@@ -59,6 +58,17 @@ class Dialog {
 
         }
 
+        fun showPositiveCallbackDialog(title: String = BaseContstants.HINT, content: String, positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE, singleButtonCallback: MaterialDialog.SingleButtonCallback) {
+            getNewBuilder()
+                    .title(title)
+                    .content(content)
+                    .positiveText(positiveText)
+                    .negativeText(negativeText)
+                    .onPositive(singleButtonCallback)
+                    .show()
+
+        }
+
 
         fun showCallbackDialog(sureTag: String, cancleTag: String, title: String = BaseContstants.HINT, content: String, positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE) {
             getNewBuilder()
@@ -82,6 +92,19 @@ class Dialog {
         }
 
 
+        fun showCallbackDialog(title: String = BaseContstants.HINT, content: String, positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE, positiveCallback: MaterialDialog.SingleButtonCallback, negativeCallback: MaterialDialog.SingleButtonCallback) {
+            getNewBuilder()
+                    .title(title)
+                    .content(content)
+                    .positiveText(positiveText)
+                    .negativeText(negativeText)
+                    .onPositive(positiveCallback)
+                    .onNegative(negativeCallback)
+                    .show()
+
+        }
+
+
         fun showBackHintDialog(backTag: String, title: String = BaseContstants.HINT, content: String = BaseContstants.BACK_HINT, positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE) {
             getNewBuilder()
                     .title(title)
@@ -96,6 +119,18 @@ class Dialog {
 
 
                     }).show()
+
+        }
+
+
+        fun showBackHintDialog(title: String = BaseContstants.HINT, content: String = BaseContstants.BACK_HINT, positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE, positiveCallback: MaterialDialog.SingleButtonCallback) {
+            getNewBuilder()
+                    .title(title)
+                    .content(content)
+                    .positiveText(positiveText)
+                    .negativeText(negativeText)
+                    .onPositive(positiveCallback)
+                    .show()
 
         }
 
@@ -133,8 +168,6 @@ class Dialog {
                     .progress(false, 100, true)
                     .build();
         }
-
-
     }
 }
 

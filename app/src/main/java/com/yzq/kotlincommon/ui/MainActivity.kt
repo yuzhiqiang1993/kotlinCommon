@@ -2,13 +2,13 @@ package com.yzq.kotlincommon.ui
 
 import android.content.ContentResolver
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.qingmei2.rximagepicker.core.RxImagePicker
 import com.qingmei2.rximagepicker.ui.DefaultImagePicker
 import com.yzq.common.net.GsonConvert
 import com.yzq.common.ui.BaseMvpActivity
@@ -103,26 +103,13 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
     private fun selectImg() {
 
-//        var intent = Intent()
-//        intent.setClass(this, ImageActivity::class.java)
-//        startActivity(intent)
-
-
-        imagePicker = RxImagePicker.Builder().with(this)
-                .build().create()
-
-        imagePicker.openCamera().subscribe({
-
-            compressImgPresenter.compressImg(getRealFilePath(this@MainActivity, it.uri)!!)
-        })
-    }
-
-
-    override fun compressImgSuccess(path: String) {
-        super.compressImgSuccess(path)
+        var intent = Intent()
+        intent.setClass(this, ImageActivity::class.java)
+        startActivity(intent)
 
 
     }
+
 
     fun getRealFilePath(context: Context, uri: Uri): String? {
 

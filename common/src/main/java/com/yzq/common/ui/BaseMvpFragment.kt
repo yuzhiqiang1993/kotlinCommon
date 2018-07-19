@@ -1,7 +1,6 @@
 package com.yzq.common.ui
 
 import com.yzq.common.mvp.presenter.BasePresenter
-import com.yzq.common.mvp.presenter.CompressImgPresenter
 import com.yzq.common.mvp.view.BaseView
 import javax.inject.Inject
 
@@ -21,8 +20,6 @@ abstract class BaseMvpFragment<V : BaseView, P : BasePresenter<V>> : BaseFragmen
     lateinit var presenter: P
 
 
-    @Inject
-    lateinit var compressImgPresenter: CompressImgPresenter
     override fun initPresenter() {
         presenter.initPresenter(this as V, this)
     }
