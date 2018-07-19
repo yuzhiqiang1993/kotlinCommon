@@ -9,10 +9,13 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.EventBus.EventBusUtil
 import com.yzq.common.EventBus.EventMsg
+import com.yzq.common.mvp.presenter.CompressImgPresenter
 import com.yzq.common.mvp.view.BaseView
+import com.yzq.common.mvp.view.CompressImgView
 import com.yzq.common.widget.Dialog
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import javax.inject.Inject
 
 
 /**
@@ -32,6 +35,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     private var loaddingDialog: MaterialDialog? = null
     private var progressDialog: MaterialDialog? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,8 +85,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
         LogUtils.i("initWidget")
 
-
     }
+
+
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)

@@ -5,12 +5,16 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.EventBus.EventBusUtil
 import com.yzq.common.EventBus.EventMsg
+import com.yzq.common.mvp.presenter.CompressImgPresenter
 import com.yzq.common.mvp.view.BaseView
+import com.yzq.common.mvp.view.CompressImgView
 import com.yzq.common.widget.Dialog
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import javax.inject.Inject
 
 
 /**
@@ -66,6 +70,7 @@ abstract class BaseFragment : Fragment(), BaseView {
 
 
     }
+
 
 
     /*初始化数据*/

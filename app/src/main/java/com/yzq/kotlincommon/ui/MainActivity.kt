@@ -1,6 +1,9 @@
 package com.yzq.kotlincommon.ui
 
-import android.content.Intent
+import android.content.ContentResolver
+import android.content.Context
+import android.net.Uri
+import android.provider.MediaStore
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.blankj.utilcode.util.LogUtils
@@ -23,9 +26,11 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
     private lateinit var adapter: NewsAdapter
 
+
     override fun initInject() {
 
         DaggerMainComponent.builder().build().inject(this)
+
     }
 
     override fun getContentLayoutId(): Int {
@@ -39,9 +44,11 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         initToolbar(toolbar, "新闻")
         recy.layoutManager = LinearLayoutManager(this)
 
-
-
         fab.setOnClickListener(this)
+
+
+        initCompressImgPresenter()
+
     }
 
 
@@ -96,11 +103,49 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
     private fun selectImg() {
 
-        var intent = Intent()
-        intent.setClass(this, ImageActivity::class.java)
-        startActivity(intent)
+//        var intent = Intent()
+//        intent.setClass(this, ImageActivity::class.java)
+//        startActivity(intent)
+
+
+        imagePicker = RxImagePicker.Builder().with(this)
+                .build().create()
+
+        imagePicker.openCamera().subscribe({
+
+            compressImgPresenter.compressImg(getRealFilePath(this@MainActivity, it.uri)!!)
+        })
     }
 
+
+    override fun compressImgSuccess(path: String) {
+        super.compressImgSuccess(path)
+
+
+    }
+
+    fun getRealFilePath(context: Context, uri: Uri): String? {
+
+        val scheme = uri!!.getScheme()
+        var data: String? = null
+        if (scheme == null)
+            data = uri!!.getPath()
+        else if (ContentResolver.SCHEME_FILE == scheme) {
+            data = uri!!.getPath()
+        } else if (ContentResolver.SCHEME_CONTENT == scheme) {
+            val cursor = context.getContentResolver().query(uri, arrayOf(MediaStore.Images.ImageColumns.DATA), null, null, null)
+            if (null != cursor) {
+                if (cursor!!.moveToFirst()) {
+                    val index = cursor!!.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
+                    if (index > -1) {
+                        data = cursor!!.getString(index)
+                    }
+                }
+                cursor!!.close()
+            }
+        }
+        return data
+    }
 
     override fun showContent() {
 

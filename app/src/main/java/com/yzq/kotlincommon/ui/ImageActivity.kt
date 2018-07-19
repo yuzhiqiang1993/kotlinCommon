@@ -35,13 +35,18 @@ class ImageActivity : BaseActivity() {
 
 
         imgFab.setOnClickListener {
-            imgPicker.openCamera().subscribe(Consumer {
+            imgPicker.openGallery().subscribe(Consumer {
 
                 LogUtils.i("图片路径：" + getRealFilePath(this, it.uri))
 
-                ImageLoader.loadCenterCrop(it.uri, imgIv, 20)
+
+
+
+              //  ImageLoader.loadCenterCrop(it.uri, imgIv, 20)
 
                 imgPath = getRealFilePath(this, it.uri)!!
+
+
 
             })
 
