@@ -1,9 +1,12 @@
 package com.yzq.kotlincommon.ui
 
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.qingmei2.rximagepicker.core.RxImagePicker
+import com.qingmei2.rximagepicker.ui.DefaultImagePicker
 import com.yzq.common.net.GsonConvert
 import com.yzq.common.ui.BaseMvpActivity
 import com.yzq.kotlincommon.R
@@ -15,7 +18,7 @@ import com.yzq.kotlincommon.mvp.view.MainView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQuickAdapter.OnItemClickListener {
+class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQuickAdapter.OnItemClickListener, View.OnClickListener {
 
 
     private lateinit var adapter: NewsAdapter
@@ -25,19 +28,20 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         DaggerMainComponent.builder().build().inject(this)
     }
 
-
     override fun getContentLayoutId(): Int {
-
         return R.layout.activity_main
     }
 
+    private lateinit var imagePicker: DefaultImagePicker
 
     override fun initWidget() {
         super.initWidget()
         initToolbar(toolbar, "新闻")
-
         recy.layoutManager = LinearLayoutManager(this)
 
+
+
+        fab.setOnClickListener(this)
     }
 
 
@@ -78,6 +82,23 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
         var data = GsonConvert.toJson(adapter.data.get(position))
         LogUtils.i(data)
+    }
+
+
+    override fun onClick(v: View) {
+
+        when (v.id) {
+            R.id.fab -> selectImg()
+        }
+
+
+    }
+
+    private fun selectImg() {
+
+        var intent = Intent()
+        intent.setClass(this, ImageActivity::class.java)
+        startActivity(intent)
     }
 
 

@@ -30,9 +30,11 @@ android {
         release {
             consumerProguardFiles 'proguard-rules.pro'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
         }
 
     }
+
 
 }
 
@@ -47,13 +49,14 @@ allOpen {
 }
 
 
+kapt {
+    generateStubs = true
+}
 
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    // kapt "groupId:artifactId:$kotlin_version"
-
     api "com.android.support:appcompat-v7:$android_support"
     api "com.android.support:design:$android_support"
     api "com.android.support:support-vector-drawable:$android_support"
@@ -61,6 +64,7 @@ dependencies {
     /*dagger2*/
     api "com.google.dagger:dagger:$dagger2"
 
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     kapt "com.google.dagger:dagger-compiler:$dagger2"
 
     /*rx*/
@@ -81,8 +85,9 @@ dependencies {
     api("com.afollestad.material-dialogs:core:$material_dialogs") {
         exclude group: 'com.android.support'
     }
-    /*EasyPhotos*/
-    api "com.github.HuanTanSheng:EasyPhotos:$easyPhotos"
+
+    /*rximagepicker*/
+    api 'com.github.qingmei2:rximagepicker:2.1.1'
 
     /*retrofit*/
     api "com.squareup.okhttp3:okhttp:$ok_http"

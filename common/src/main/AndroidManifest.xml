@@ -3,25 +3,21 @@
     package="com.yzq.common">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
-    <application
-        android:theme="@style/AppTheme">
+    <application android:theme="@style/AppTheme">
 
+        <!--<provider-->
+            <!--android:name="android.support.v4.content.FileProvider"-->
+            <!--android:authorities="${provider}"-->
+            <!--android:exported="false"-->
+            <!--android:grantUriPermissions="true">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+                <!--android:resource="@xml/file_provider_path" />-->
+        <!--</provider>-->
 
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.esp.patrol.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_provider_path" />
-        </provider>
-
-
-
-
+        <activity android:name=".ui.ImgPreviewActivity"></activity>
     </application>
 
 </manifest>

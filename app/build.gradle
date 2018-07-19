@@ -14,7 +14,7 @@ android {
         targetSdkVersion target_sdk_version
         versionCode version_code
         versionName version_name
-
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -24,9 +24,16 @@ android {
     }
 }
 
+
+kapt {
+    generateStubs = true
+}
+
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     kapt "com.google.dagger:dagger-compiler:$dagger2"
     implementation project(':common')
 }

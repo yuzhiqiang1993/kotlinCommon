@@ -113,6 +113,17 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         this.allowFastClick = allowFastClick
     }
 
+    protected fun preViewImg(name: String, path: String) {
+
+        val intent = Intent(this, ImgPreviewActivity::class.java)
+        intent.putExtra(ImgPreviewActivity.IMG_NAME, name)
+        intent.putExtra(ImgPreviewActivity.IMG_PATH, path)
+
+        startActivity(intent)
+
+    }
+
+
     /*防止双击*/
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
         if (!allowFastClick) {

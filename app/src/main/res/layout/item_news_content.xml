@@ -1,17 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/len_1"
-    android:background="@drawable/list_item_selector">
+    android:background="@drawable/list_item_selector"
+    android:orientation="horizontal"
+    android:padding="@dimen/len_10">
 
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/imgIv"
+        android:layout_width="@dimen/len_76"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_placeholder_img" />
 
     <TextView
-        android:textColor="@color/black"
         android:id="@+id/titleTv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:padding="@dimen/len_10" />
+        android:padding="@dimen/len_10"
+        android:textColor="@color/black" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
