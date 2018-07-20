@@ -13,7 +13,7 @@ import com.yzq.common.mvp.view.BaseView
  *
  */
 
-abstract class BasePresenter<V : BaseView> : LifecycleObserver {
+abstract class BasePresenter<V : BaseView>  {
 
     lateinit var view: V
 
@@ -23,6 +23,7 @@ abstract class BasePresenter<V : BaseView> : LifecycleObserver {
         this.view = view
         this.lifecycleOwner = owner
     }
+
 
 
 }
