@@ -23,7 +23,6 @@ abstract class BaseMvpActivity<V : BaseView, P : BasePresenter<V>> : BaseActivit
     abstract override fun initInject()
 
     override fun initPresenter() {
-
         presenter.initPresenter(this as V, this)
 
     }
