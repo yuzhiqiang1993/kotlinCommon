@@ -2,7 +2,7 @@ package com.yzq.common.EventBus
 
 import org.greenrobot.eventbus.EventBus
 
-class EventBusUtil() {
+class EventBusUtil private constructor() {
 
     companion object {
         /*
