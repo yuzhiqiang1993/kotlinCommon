@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.mvp.presenter
 
+import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.extend.transform
 import com.yzq.common.mvp.presenter.BasePresenter
 import com.yzq.common.rx.BaseObserver
@@ -15,8 +16,15 @@ class MainPresenter @Inject constructor() : BasePresenter<MainView>() {
 
     fun requestData() {
         model.getData().transform(lifecycleOwner).subscribe(object : BaseObserver<NewsBean>(view) {
-            override fun onNext(t: NewsBean) {
-                view.requestSuccess(t.data)
+            override fun onNext(newsBean: NewsBean) {
+
+                if (newsBean.data != null) {
+                    view.requestSuccess(newsBean.data)
+                } else {
+                    ToastUtils.showLong("数据请求错误")
+                }
+
+
             }
 
         })

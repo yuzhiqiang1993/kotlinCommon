@@ -16,8 +16,6 @@ import kotlinx.android.synthetic.main.activity_image.*
 class ImageActivity : BaseActivity() {
 
 
-
-
     override fun getContentLayoutId(): Int {
 
         return R.layout.activity_image
@@ -42,13 +40,7 @@ class ImageActivity : BaseActivity() {
 
 
         imgFab.setOnClickListener {
-
-
-            ImagePicker.openGallery(this)
-                    .subscribe({
-
-
-                    })
+            
 
             ImagePicker.openCamera(this).subscribe({
                 var file = UriUtils.uri2File(it.uri, MediaStore.Images.Media.DATA)
@@ -74,14 +66,13 @@ class ImageActivity : BaseActivity() {
     override fun compressImgSuccess(path: String) {
         super.compressImgSuccess(path)
 
-        imgPath=path
+        imgPath = path
         ImageLoader.loadCenterCrop(imgPath, imgIv)
     }
 
 
     override fun onBackPressed() {
         Dialog.showBackHintDialog(positiveCallback = MaterialDialog.SingleButtonCallback { dialog, which ->
-
             finish()
         })
 

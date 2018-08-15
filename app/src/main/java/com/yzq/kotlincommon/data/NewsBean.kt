@@ -4,10 +4,8 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 
-data class NewsBean(
-        var stat: String = "", // 1
-        var data: List<Data> = listOf()
-) {
+data class NewsBean(var stat: String = "", // 1
+                    var data: List<Data> = listOf()) {
     data class Data(
 
             @Expose

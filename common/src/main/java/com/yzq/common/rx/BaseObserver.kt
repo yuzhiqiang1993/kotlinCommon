@@ -29,12 +29,10 @@ abstract class BaseObserver<T>(private val view: BaseView) : Observer<T> {
             this.onError(kotlin.Throwable(BaseContstants.NO_NET))
             d.dispose()
         }
-
     }
 
 
     override fun onError(e: Throwable) {
-
 
         if (e is JSONException || e is JsonParseException) {
             view.showError(BaseContstants.PARSE_DATA_ERROE)

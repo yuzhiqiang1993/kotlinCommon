@@ -1,3 +1,4 @@
+
 ext{
     kotlin_version='1.2.51'
 
@@ -26,7 +27,7 @@ ext{
     bottom_navigation_bar = "2.0.4"
     gson = "2.8.4"
     material_dialogs = "0.9.6.0"
-    baseRecyclerViewAdapterHelper = "2.9.40"
+    baseRecyclerViewAdapterHelper = "2.9.41"
     bottom_navigation_bar = "2.0.4"
     jpush = "3.1.1"
     jcore = "1.1.9"

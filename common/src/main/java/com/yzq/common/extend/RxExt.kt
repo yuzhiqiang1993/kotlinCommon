@@ -20,7 +20,6 @@ import io.reactivex.functions.Function
  *
  */
 
-
 /*
 * 对Observable进行线程调度和生命周期绑定
 *
@@ -39,6 +38,7 @@ fun <T> Observable<BaseResp<T>>.dataConvert(): Observable<T> {
         override fun apply(t: BaseResp<T>): Observable<T> {
 
             if (t.errorCode == ResponseCode.SUCCESS) {
+
                 return Observable.just(t.result)
             }
             return Observable.error(Throwable(message = t.reason))
