@@ -23,6 +23,8 @@ object ImageLoader {
     /*CenterCrop*/
     fun loadCenterCrop(path: String, imgView: ImageView, radius: Int = 1, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img, @DrawableRes errorImg: Int = R.drawable.ic_error_img) {
         GlideApp.with(BaseApp.instance).load(path).placeholder(placeHolderImg).error(errorImg).centerCrop().transform(RoundedCorners(radius)).transition(withCrossFade()).into(imgView)
+
+
     }
 
 
@@ -44,12 +46,10 @@ object ImageLoader {
     }
 
 
-
     /*fitCenter*/
     fun loadFitCenter(path: String, imgView: ImageView, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img, @DrawableRes errorImg: Int = R.drawable.ic_error_img) {
         GlideApp.with(BaseApp.instance).load(path).fitCenter().placeholder(placeHolderImg).error(errorImg).transition(withCrossFade()).into(imgView)
     }
-
 
 
 }

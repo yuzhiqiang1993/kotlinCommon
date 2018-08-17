@@ -4,8 +4,8 @@ import android.provider.MediaStore
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.UriUtils
+import com.qingmei2.rximagepicker.core.RxImagePicker
 import com.yzq.common.img.ImageLoader
-import com.yzq.common.img.ImagePicker
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.widget.Dialog
 import com.yzq.kotlincommon.R
@@ -40,9 +40,8 @@ class ImageActivity : BaseActivity() {
 
 
         imgFab.setOnClickListener {
-            
 
-            ImagePicker.openCamera(this).subscribe({
+            RxImagePicker.create().openCamera(this).subscribe({
                 var file = UriUtils.uri2File(it.uri, MediaStore.Images.Media.DATA)
 
                 LogUtils.i("file.path=${file.path}")

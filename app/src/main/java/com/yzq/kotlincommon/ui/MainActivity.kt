@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.qingmei2.rximagepicker.ui.DefaultImagePicker
 import com.yzq.common.net.GsonConvert
 import com.yzq.common.ui.BaseMvpActivity
 import com.yzq.kotlincommon.R
@@ -21,11 +20,11 @@ import com.yzq.kotlincommon.mvp.view.MainView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQuickAdapter.OnItemClickListener, View.OnClickListener {
+class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQuickAdapter.OnItemClickListener, View.OnClickListener, BaseQuickAdapter.OnItemChildClickListener {
 
 
-    private lateinit var adapter: NewsAdapter
-
+    private lateinit var newsAdapter: NewsAdapter
+    private lateinit var operationItem: NewsBean.Data
 
     override fun initInject() {
 
@@ -37,7 +36,6 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         return R.layout.activity_main
     }
 
-    private lateinit var imagePicker: DefaultImagePicker
 
     override fun initWidget() {
         super.initWidget()
@@ -75,9 +73,10 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
     private fun showData(data: List<NewsBean.Data>) {
 
-        adapter = NewsAdapter(R.layout.item_news_content, data)
-        recy.adapter = adapter
-        adapter.setOnItemClickListener(this)
+        newsAdapter = NewsAdapter(R.layout.item_news_content, data)
+        recy.adapter = newsAdapter
+        newsAdapter.setOnItemClickListener(this)
+        newsAdapter.setOnItemChildClickListener(this)
 
 
         showContent()
@@ -89,6 +88,19 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
         var data = GsonConvert.toJson(adapter.data.get(position))
         LogUtils.i(data)
+    }
+
+
+
+    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+
+
+       operationItem= newsAdapter.data.get(position)
+        when(view!!.id){
+            R.id.imgIv->
+                preViewImg(operationItem.title,operationItem.thumbnailPicS)
+        }
+
     }
 
 
@@ -110,29 +122,6 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
     }
 
-
-    fun getRealFilePath(context: Context, uri: Uri): String? {
-
-        val scheme = uri!!.getScheme()
-        var data: String? = null
-        if (scheme == null)
-            data = uri!!.getPath()
-        else if (ContentResolver.SCHEME_FILE == scheme) {
-            data = uri!!.getPath()
-        } else if (ContentResolver.SCHEME_CONTENT == scheme) {
-            val cursor = context.getContentResolver().query(uri, arrayOf(MediaStore.Images.ImageColumns.DATA), null, null, null)
-            if (null != cursor) {
-                if (cursor!!.moveToFirst()) {
-                    val index = cursor!!.getColumnIndex(MediaStore.Images.ImageColumns.DATA)
-                    if (index > -1) {
-                        data = cursor!!.getString(index)
-                    }
-                }
-                cursor!!.close()
-            }
-        }
-        return data
-    }
 
     override fun showContent() {
 
