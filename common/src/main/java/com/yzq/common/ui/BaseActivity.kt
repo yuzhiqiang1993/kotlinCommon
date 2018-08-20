@@ -1,5 +1,6 @@
 package com.yzq.common.ui
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -137,6 +138,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
         val intent = Intent(this, ImgPreviewActivity::class.java)
         intent.putExtra(ImgPreviewActivity.IMG_NAME, name)
         intent.putExtra(ImgPreviewActivity.IMG_PATH, path)
+
 
         startActivity(intent)
 

@@ -1,16 +1,13 @@
 package com.yzq.kotlincommon.ui
 
-import android.content.ContentResolver
-import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import android.provider.MediaStore
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.net.GsonConvert
 import com.yzq.common.ui.BaseMvpActivity
+import com.yzq.common.widget.ItemDecoration
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.NewsAdapter
 import com.yzq.kotlincommon.dagger.DaggerMainComponent
@@ -43,8 +40,6 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         recy.layoutManager = LinearLayoutManager(this)
 
         fab.setOnClickListener(this)
-
-
         initCompressImgPresenter()
 
     }
@@ -74,6 +69,7 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
     private fun showData(data: List<NewsBean.Data>) {
 
         newsAdapter = NewsAdapter(R.layout.item_news_content, data)
+        recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
         recy.adapter = newsAdapter
         newsAdapter.setOnItemClickListener(this)
         newsAdapter.setOnItemChildClickListener(this)
@@ -91,14 +87,13 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
     }
 
 
-
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
 
 
-       operationItem= newsAdapter.data.get(position)
-        when(view!!.id){
-            R.id.imgIv->
-                preViewImg(operationItem.title,operationItem.thumbnailPicS)
+        operationItem = newsAdapter.data.get(position)
+        when (view!!.id) {
+            R.id.imgIv ->
+                preViewImg(operationItem.title, operationItem.thumbnailPicS)
         }
 
     }

@@ -35,9 +35,7 @@ class ImageActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-
         initCompressImgPresenter()
-
 
         imgFab.setOnClickListener {
 

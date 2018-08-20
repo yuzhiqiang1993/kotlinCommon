@@ -10,6 +10,26 @@
 
 </style>
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="titleTextColor">@color/white</item>
+        <item name="colorControlHighlight">@color/wave_color</item>
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:textColor">@color/darkGray</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowBackground">@color/bg_gray</item>
+        <item name="android:windowContentTransitions">true</item>
+
+
+    </style>
 
 
 </resources>
