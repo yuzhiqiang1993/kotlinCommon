@@ -16,6 +16,11 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
+
+        <com.yzq.common.widget.ProgressButton
+            android:layout_width="@dimen/len_100"
+            android:layout_height="@dimen/len_56" />
+
         <com.yzq.common.widget.HorizontalProgressBar
             android:id="@+id/progressBar"
             android:layout_width="match_parent"

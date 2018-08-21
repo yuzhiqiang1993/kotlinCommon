@@ -2,10 +2,11 @@ package com.yzq.common.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
+
+import com.blankj.utilcode.util.LogUtils;
 
 
 /**
@@ -43,7 +44,30 @@ public class ProgressButton extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
-        MeasureSpec.getSize(widthMeasureSpec);
+        /*获取宽度*/
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+        /*获取宽度测量模式*/
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        /*获取高度*/
+        int height = MeasureSpec.getSize(heightMeasureSpec);
+        /*高度的测量模式*/
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        LogUtils.i("宽度：" + width + "模式：" + widthMode);
+        LogUtils.i("高度：" + height + "模式：" + heightMode);
+
+        setMeasuredDimension(width, height);
+    }
+
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+
+        LogUtils.i("onSizeChanged宽度：" + w);
+        LogUtils.i("onSizeChanged高度：" + h);
+
+
     }
 
     @Override
@@ -53,10 +77,13 @@ public class ProgressButton extends View {
         int width = getWidth();
         int height = getHeight();
 
+        LogUtils.i("onSizeChanged宽度：" + width);
+        LogUtils.i("onSizeChanged高度：" + height);
+
 
         /*   先画圆角矩形*/
 
-     //   RectF rectF=new RectF(getLeft(),);
+        //  RectF rectF=new RectF(getLeft(),);
 
 
 
@@ -69,5 +96,29 @@ public class ProgressButton extends View {
 
     }
 
+    /**
+     * dp 2 px
+     *
+     * @param dpVal
+     */
+    protected int dp2px(int dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, getResources().getDisplayMetrics());
+    }
 
+    /**
+     * sp 2 px
+     *
+     * @param spVal
+     * @return
+     */
+    protected int sp2px(int spVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+                spVal, getResources().getDisplayMetrics());
+
+    }
+
+    public static int format2Int(double i) {
+        return (int) i;
+    }
 }

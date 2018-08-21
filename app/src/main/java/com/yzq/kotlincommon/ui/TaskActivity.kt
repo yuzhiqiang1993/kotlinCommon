@@ -38,18 +38,18 @@ class TaskActivity : BaseActivity() {
 
        // progressBar.setProgressWithAnimation(30.toFloat())
 
-        Observable.interval(1,TimeUnit.SECONDS)
-                .compose(RxSchedulers.io2main())
-                .subscribe {
-
-                    progressNum+=10
-                    progressBar.setProgressWithAnimation(progressNum.toFloat())
-
-
-
-                  //  progressBar.startProgressAnimation()
-
-                }
+//        Observable.interval(1,TimeUnit.SECONDS)
+//                .compose(RxSchedulers.io2main())
+//                .subscribe {
+//
+//                    progressNum+=10
+//                    progressBar.setProgressWithAnimation(progressNum.toFloat())
+//
+//
+//
+//                  //  progressBar.startProgressAnimation()
+//
+//                }
 
         //
         //  initToolbar(toolbar, "任务列表")
