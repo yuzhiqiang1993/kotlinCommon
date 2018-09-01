@@ -49,7 +49,6 @@ class HorizontalItemView(context: Context, attrs: AttributeSet?) : ConstraintLay
 
         titleTv.text = title
 
-
     }
 
 }

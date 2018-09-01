@@ -3,7 +3,12 @@ package com.yzq.common.mvp.model
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.text.TextUtils
-import com.blankj.utilcode.util.*
+import android.util.TypedValue
+import com.blankj.utilcode.util.FileUtils
+import com.blankj.utilcode.util.ImageUtils
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.TimeUtils
+import com.yzq.common.BaseApp
 import com.yzq.common.constants.ProjectPath
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -26,15 +31,15 @@ class CompressImgModel @Inject constructor() {
     /*压缩质量*/
     private val quality = 85
 
-    private val textSizeDp = 10f
+    private val textSizeDp = 10
     /*文字大小*/
-    private val textSize = SizeUtils.dp2px(textSizeDp)
+    private val textSize = dp2px(textSizeDp)
     /*颜色*/
     private val textColor = Color.BLACK
     /*x轴偏移量*/
-    private val offsetX = SizeUtils.dp2px(5f).toFloat()
+    private val offsetX = dp2px(5).toFloat()
     /*y轴偏移量*/
-    private val offsetY = SizeUtils.dp2px(textSizeDp + 5).toFloat()
+    private val offsetY = dp2px(textSizeDp + 5).toFloat()
     /*默认水印*/
     private var defaultWaterMark = "ESP:" + TimeUtils.getNowString()
     private val rootImgName = "_"
@@ -125,6 +130,13 @@ class CompressImgModel @Inject constructor() {
         }
 
 
+    }
+
+
+    protected fun dp2px(dpVal: Int): Int {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal.toFloat(),
+                BaseApp.instance.resources.displayMetrics).toInt()
     }
 
 
