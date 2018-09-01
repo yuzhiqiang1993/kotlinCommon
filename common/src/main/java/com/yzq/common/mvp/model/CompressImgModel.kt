@@ -3,10 +3,7 @@ package com.yzq.common.mvp.model
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.text.TextUtils
-import com.blankj.utilcode.util.FileUtils
-import com.blankj.utilcode.util.ImageUtils
-import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.TimeUtils
+import com.blankj.utilcode.util.*
 import com.yzq.common.constants.ProjectPath
 import io.reactivex.Observable
 import javax.inject.Inject
@@ -22,25 +19,41 @@ import javax.inject.Inject
 
 class CompressImgModel @Inject constructor() {
 
+    /*最大宽度*/
     private val maxWidth = 600
+    /*最大高度*/
     private val maxHeight = 800
+    /*压缩质量*/
     private val quality = 85
-    private val textSize = 25
+
+    private val textSizeDp = 10f
+    /*文字大小*/
+    private val textSize = SizeUtils.dp2px(textSizeDp)
+    /*颜色*/
     private val textColor = Color.BLACK
-    private val offsetX = 20
-    private val offsetY = 40
-    private val defaultWaterMark = "ESP:" + TimeUtils.getNowString()
+    /*x轴偏移量*/
+    private val offsetX = SizeUtils.dp2px(5f).toFloat()
+    /*y轴偏移量*/
+    private val offsetY = SizeUtils.dp2px(textSizeDp + 5).toFloat()
+    /*默认水印*/
+    private var defaultWaterMark = "ESP:" + TimeUtils.getNowString()
     private val rootImgName = "_"
 
 
     /*压缩图片保存路径*/
-    fun compressImgWithWatermark(path: String,  waterMark: String=defaultWaterMark): Observable<String> {
+    fun compressImgWithWatermark(path: String, waterMark: String): Observable<String> {
+
+
         return Observable.create { e ->
             LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
             val selectBitMap = ImageUtils.getBitmap(path, maxWidth, maxHeight)
 
+            if (!TextUtils.isEmpty(waterMark)) {
+                defaultWaterMark = waterMark
+            }
+
             /*添加水印*/
-            val watermarkImg = ImageUtils.addTextWatermark(selectBitMap, waterMark, textSize, textColor, offsetX.toFloat(), (selectBitMap.height - offsetY).toFloat())
+            val watermarkImg = ImageUtils.addTextWatermark(selectBitMap, defaultWaterMark, textSize, textColor, offsetX, selectBitMap.height - offsetY)
             /*压缩*/
             val compressedImg = ImageUtils.compressByQuality(watermarkImg, quality, true)
             /*保存的文件名称*/
@@ -54,7 +67,7 @@ class CompressImgModel @Inject constructor() {
                 /*返回原路径*/
                 e.onNext(path)
             }
-            e.onComplete()
+
         }
     }
 
@@ -66,7 +79,7 @@ class CompressImgModel @Inject constructor() {
 
             /*添加水印*/
             if (addWaterMark) {
-                selectBitMap = ImageUtils.addTextWatermark(selectBitMap, defaultWaterMark, textSize, textColor, offsetX.toFloat(), (selectBitMap.height - offsetY).toFloat())
+                selectBitMap = ImageUtils.addTextWatermark(selectBitMap, defaultWaterMark, textSize, textColor, offsetX, selectBitMap.height - offsetY)
             }
 
             /*压缩*/
@@ -83,7 +96,7 @@ class CompressImgModel @Inject constructor() {
                 e.onNext(path)
                 LogUtils.i("压缩失败，返回原图")
             }
-            e.onComplete()
+
         }
 
     }
@@ -96,7 +109,7 @@ class CompressImgModel @Inject constructor() {
             val selectBitMap = ImageUtils.getBitmap(path, maxWidth, maxHeight)
 
             /*添加时间水印*/
-            val watermarkImg = ImageUtils.addTextWatermark(selectBitMap, waterMark, textSize, textColor, offsetX.toFloat(), (selectBitMap.height - offsetY).toFloat())
+            val watermarkImg = ImageUtils.addTextWatermark(selectBitMap, waterMark, textSize, textColor, offsetX, selectBitMap.height - offsetY)
             /*保存的文件名称*/
             val savedImgPath = "${ProjectPath.PICTURE_PATH}${rootImgName}${System.currentTimeMillis()}.jpg"
             /*保存并返回图片路径*/
@@ -108,7 +121,7 @@ class CompressImgModel @Inject constructor() {
                 /*返回原路径*/
                 e.onNext(path)
             }
-            e.onComplete()
+
         }
 
 

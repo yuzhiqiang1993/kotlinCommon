@@ -90,9 +90,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
 
     }
 
-
-
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEventMainThread(eventMsg: EventMsg) {
 

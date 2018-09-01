@@ -37,7 +37,7 @@ abstract class BaseFragment : Fragment(), BaseView, CompressImgView {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
 
-        initArgs(arguments)
+        initArgs(arguments!!)
         initInject()
         initPresenter()
 
@@ -59,7 +59,7 @@ abstract class BaseFragment : Fragment(), BaseView, CompressImgView {
     }
 
 
-    private fun initArgs(arguments: Bundle?) {
+    private fun initArgs(arguments: Bundle) {
 
 
     }
