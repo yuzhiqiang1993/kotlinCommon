@@ -2,7 +2,10 @@ package com.yzq.kotlincommon.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import com.yzq.common.BaseApp
+import com.yzq.common.img.GlideApp
 import com.yzq.common.img.ImageLoader
+import com.yzq.kotlincommon.App
 import com.yzq.kotlincommon.data.NewsBean
 import kotlinx.android.synthetic.main.item_news_content.view.*
 

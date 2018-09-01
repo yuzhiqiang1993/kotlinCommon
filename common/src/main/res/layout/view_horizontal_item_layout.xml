@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_selector"
+    android:minHeight="@dimen/len_48"
+    android:orientation="horizontal"
+    android:padding="@dimen/len_10">
+
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/iconIv"
+        android:layout_width="@dimen/len_16"
+        android:layout_height="@dimen/len_16"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:srcCompat="@drawable/ic_placeholder_img" />
+
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/len_10"
+        android:gravity="center_vertical"
+        android:text="标题"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/arrowIv"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/iconIv"
+        app:layout_constraintTop_toTopOf="parent"
+
+        app:layout_goneMarginStart="@dimen/len_0" />
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/arrowIv"
+        android:layout_width="@dimen/len_16"
+        android:layout_height="@dimen/len_16"
+        android:layout_gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_right" />
+
+
+</android.support.constraint.ConstraintLayout>

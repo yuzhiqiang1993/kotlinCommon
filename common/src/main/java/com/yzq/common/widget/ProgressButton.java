@@ -2,9 +2,11 @@ package com.yzq.common.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.view.View;
 
 import com.blankj.utilcode.util.LogUtils;
 
@@ -16,7 +18,7 @@ import com.blankj.utilcode.util.LogUtils;
  * @time : 17:22
  */
 
-public class ProgressButton extends View {
+public class ProgressButton extends android.support.v7.widget.AppCompatButton {
 
     /*当前进度*/
     private int currentProgress = 0;
@@ -81,9 +83,34 @@ public class ProgressButton extends View {
         LogUtils.i("onSizeChanged高度：" + height);
 
 
+        Paint paint = new Paint();
+        paint.setColor(Color.BLUE);
+        paint.setStyle(Paint.Style.FILL_AND_STROKE);
+        paint.setStrokeWidth(dp2px(1));
+
+
         /*   先画圆角矩形*/
 
-        //  RectF rectF=new RectF(getLeft(),);
+
+        int left = getLeft();
+        int top = getTop();
+        int right = getRight();
+        int bottom = getBottom();
+
+        LogUtils.i("left:" + left);
+        LogUtils.i("top:" + top);
+        LogUtils.i("right:" + right);
+        LogUtils.i("bottom:" + bottom);
+
+
+        RectF rectF = new RectF();
+        rectF.left = left;
+        rectF.top = top;
+        rectF.bottom = getHeight();
+        rectF.right = getRight();
+
+
+        canvas.drawRoundRect(rectF, dp2px(6), dp2px(6), paint);
 
 
 

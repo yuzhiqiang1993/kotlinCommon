@@ -2,18 +2,15 @@ package com.yzq.kotlincommon.ui
 
 
 import android.support.v7.widget.LinearLayoutManager
-import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.rx.RxSchedulers
+import android.view.View
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.widget.HoverItemDecoration
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TaskAdapter
 import com.yzq.kotlincommon.data.TaskBean
-import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_task.*
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 class TaskActivity : BaseActivity() {
 
@@ -22,7 +19,6 @@ class TaskActivity : BaseActivity() {
     private var type: Int = 0
     private lateinit var taskAdapter: TaskAdapter
 
-    private var progressNum=0
 
     override fun getContentLayoutId(): Int {
         return R.layout.activity_task
@@ -32,27 +28,11 @@ class TaskActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
+
         recy.layoutManager = LinearLayoutManager(this)
         recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
 
 
-       // progressBar.setProgressWithAnimation(30.toFloat())
-
-//        Observable.interval(1,TimeUnit.SECONDS)
-//                .compose(RxSchedulers.io2main())
-//                .subscribe {
-//
-//                    progressNum+=10
-//                    progressBar.setProgressWithAnimation(progressNum.toFloat())
-//
-//
-//
-//                  //  progressBar.startProgressAnimation()
-//
-//                }
-
-        //
-        //  initToolbar(toolbar, "任务列表")
     }
 
 
@@ -86,7 +66,6 @@ class TaskActivity : BaseActivity() {
 
         taskAdapter = TaskAdapter(R.layout.item_task_layout, tasks)
         recy.addItemDecoration(HoverItemDecoration(this, HoverItemDecoration.BindItemTextCallback {
-
             var taskBean = tasks[it]
             var title: String
             if (taskBean.type == 0) {
@@ -104,6 +83,9 @@ class TaskActivity : BaseActivity() {
         recy.adapter = taskAdapter
 
 
+        showContent()
+
+
     }
 
     private fun filterData() {
@@ -112,5 +94,16 @@ class TaskActivity : BaseActivity() {
 
         })
 
+    }
+
+
+    override fun showLoadding() {
+        stateView.showLoading()
+        recy.visibility = View.GONE
+    }
+
+    override fun showContent() {
+        recy.visibility = View.VISIBLE
+        stateView.hide()
     }
 }

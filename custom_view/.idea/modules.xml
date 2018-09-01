@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Maintain.iml" filepath="$PROJECT_DIR$/../Maintain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../app/app.iml" filepath="$PROJECT_DIR$/../app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../common/common.iml" filepath="$PROJECT_DIR$/../common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dropdown_menu.iml" filepath="$PROJECT_DIR$/dropdown_menu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../gaodemaplib/gaodemaplib.iml" filepath="$PROJECT_DIR$/../gaodemaplib/gaodemaplib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../messagemodule/messagemodule.iml" filepath="$PROJECT_DIR$/../messagemodule/messagemodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../taskmodule/taskmodule.iml" filepath="$PROJECT_DIR$/../taskmodule/taskmodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../usermodule/usermodule.iml" filepath="$PROJECT_DIR$/../usermodule/usermodule.iml" />
+    </modules>
+  </component>
+</project>

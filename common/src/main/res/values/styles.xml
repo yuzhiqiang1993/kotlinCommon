@@ -19,7 +19,6 @@
         <item name="android:windowBackground">@color/bg_gray</item>
 
 
-
     </style>
 
 
@@ -33,8 +32,6 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-
-
     <!--tablayout样式-->
     <style name="tabLayout">
         <item name="android:background">@color/white</item>
@@ -45,5 +42,13 @@
 
     </style>
 
+    <!--HorizontalItemView 自定义属性-->
+    <declare-styleable name="HorizontalItemView">
+
+        <attr name="icon" format="reference"></attr>
+        <attr name="showIcon" format="boolean"></attr>
+        <attr name="title" format="string"></attr>
+
+    </declare-styleable>
 
 </resources>

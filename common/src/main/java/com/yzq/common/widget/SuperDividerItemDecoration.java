@@ -10,15 +10,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 
-/**
- * <pre>
- *      @author : Allen
- *      e-mail  : lygttpod@163.com
- *      date    : 2018/04/15
- *      desc    : 万能分割线
- *      version : 1.0
- * </pre>
+
+
+ /**
+ * @description: 列表分割线
+ * @author : yzq
+ * @date   : 2018/9/1
+ * @time   : 10:34
+ *
  */
+
 public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
 
 

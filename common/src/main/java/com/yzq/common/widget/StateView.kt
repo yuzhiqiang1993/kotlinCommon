@@ -10,8 +10,7 @@ import com.yzq.common.R
 import kotlinx.android.synthetic.main.layout_state_view.view.*
 
 
-
- /**
+/**
  * @description: 自定义的状态布局
  * @author : yzq
  * @date   : 2018/7/13
@@ -31,7 +30,6 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : Li
 
     init {
 
-
         LogUtils.i("StateView init")
 
         view = LayoutInflater.from(context).inflate(R.layout.layout_state_view, this)
@@ -40,7 +38,7 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : Li
             showLoading()
             if (retryListener == null) {
                 showNoData()
-            }else{
+            } else {
                 retryListener?.retry()
             }
 
@@ -50,7 +48,7 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : Li
     }
 
 
-     fun showLoading() {
+    fun showLoading() {
 
         view.visibility = View.VISIBLE
         loaddingLayout.visibility = View.VISIBLE
@@ -59,7 +57,7 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : Li
     }
 
 
-     fun showNoData() {
+    fun showNoData() {
 
         view.visibility = View.VISIBLE
         loaddingLayout.visibility = View.GONE
@@ -91,7 +89,7 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : Li
         retryBtn.setVisibility(View.GONE)
     }
 
-     fun hide() {
+    fun hide() {
         view.visibility = View.GONE
     }
 

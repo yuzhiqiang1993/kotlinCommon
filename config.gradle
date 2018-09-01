@@ -1,12 +1,11 @@
-
-ext{
-    kotlin_version='1.2.60'
+ext {
+    kotlin_version = '1.2.60'
 
     /*defaultConfig*/
     compile_sdk_version = 27
     min_sdk_version = 16
     target_sdk_version = 27
-    version_code = 1
+    version_code = 1  //eg:1->0.0.1  10->0.1.0  100->1.0.0
     version_name = "0.0.1"
     multiDexEnabled = true
     constraint_version = "1.1.2"
@@ -17,12 +16,12 @@ ext{
     glide = "4.7.1"
     permission = "2.0.0-rc11"
     retrofit = "2.4.0"
-    progressmanager_version="1.5.0"
+    progressmanager_version = "1.5.0"
     ok_http = "3.10.0"
     rx_android = "2.0.2"
     rx_java = "2.1.16"
     autodispose_version = "0.8.0"
-    rx_kotlin="2.2.0"
+    rx_kotlin = "2.2.0"
     dagger2 = "2.16"
     bottom_navigation_bar = "2.0.4"
     gson = "2.8.5"
@@ -41,7 +40,7 @@ ext{
     arouter_register = "1.0.2"
     arouter_annotation = "1.0.4"
     walleVersion = "1.1.6"
-    andResGuardVersion="1.2.13"
-    rx_imgpicker="2.2.0-alpha"
+    andResGuardVersion = "1.2.13"
+    rx_imgpicker = "2.2.0-alpha"
 
 }

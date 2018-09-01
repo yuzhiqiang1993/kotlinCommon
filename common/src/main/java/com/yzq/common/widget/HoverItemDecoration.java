@@ -68,7 +68,7 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
     private BindItemTextCallback bindItemTextCallback;
 
 
-    public HoverItemDecoration(Context content, BindItemTextCallback bindItemTextCallback) {
+    public HoverItemDecoration(Context content, int itemHeight,BindItemTextCallback bindItemTextCallback) {
         this.context = content;
         this.bindItemTextCallback = bindItemTextCallback;
 

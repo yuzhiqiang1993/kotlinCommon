@@ -15,27 +15,25 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-
-
-        <com.yzq.common.widget.ProgressButton
-            android:layout_width="@dimen/len_100"
-            android:layout_height="@dimen/len_56" />
-
-        <com.yzq.common.widget.HorizontalProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recy"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
         </android.support.v7.widget.RecyclerView>
+
+
+        <com.yzq.common.widget.StateView
+            android:id="@+id/stateView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        </com.yzq.common.widget.StateView>
+
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

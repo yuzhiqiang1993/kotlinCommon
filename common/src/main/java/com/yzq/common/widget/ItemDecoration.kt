@@ -6,7 +6,7 @@ import com.yzq.common.R
 
 
 /**
- * @description: 统一的列表分割线
+ * @description: 灰色高度为1dp的常用分割线
  * @author : yzq
  * @date   : 2018/8/20
  * @time   : 10:44

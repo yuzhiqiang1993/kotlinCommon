@@ -1,7 +1,6 @@
 package com.yzq.common.net
 
 import android.util.Log
-import com.blankj.utilcode.util.DeviceUtils
 import com.yzq.common.constants.ServerConstants
 import me.jessyan.progressmanager.ProgressManager
 import okhttp3.Interceptor
