@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatDelegate
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.CrashUtils
 import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.Utils
 import java.util.*
 
 open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
@@ -31,9 +31,11 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
         super.onCreate()
         instance = this
 
-
         /*初始化Utils*/
         initUtils()
+
+        /*初始化Crash*/
+        initCrash()
 
         /*初始化ARouter*/
         initARouter()
@@ -41,6 +43,18 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
         registerActivityLifecycleCallbacks(this)
 
 
+    }
+
+    private fun initCrash() {
+
+        CrashUtils.OnCrashListener { crashInfo, e ->
+
+            LogUtils.e("Crash！！！${crashInfo}")
+
+            LogUtils.i("重新启动app")
+            AppUtils.relaunchApp()
+
+        }
     }
 
 
@@ -57,7 +71,6 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
     }
 
     private fun initUtils() {
-        Utils.init(this)
 
         val config = LogUtils.getConfig()
                 .setLogSwitch(BuildConfig.DEBUG)

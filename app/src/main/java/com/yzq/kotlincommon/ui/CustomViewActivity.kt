@@ -9,4 +9,8 @@ class CustomViewActivity : BaseActivity() {
     }
 
 
+    override fun initWidget() {
+        super.initWidget()
+    }
+
 }

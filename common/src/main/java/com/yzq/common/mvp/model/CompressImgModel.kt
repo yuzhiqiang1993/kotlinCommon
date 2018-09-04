@@ -48,17 +48,20 @@ class CompressImgModel @Inject constructor() {
     /*压缩图片保存路径*/
     fun compressImgWithWatermark(path: String, waterMark: String): Observable<String> {
 
+        var currentWaterMark: String
+        if (TextUtils.isEmpty(waterMark)) {
+            currentWaterMark = defaultWaterMark
+        } else {
+            currentWaterMark = waterMark
+        }
 
         return Observable.create { e ->
             LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
             val selectBitMap = ImageUtils.getBitmap(path, maxWidth, maxHeight)
 
-            if (!TextUtils.isEmpty(waterMark)) {
-                defaultWaterMark = waterMark
-            }
 
             /*添加水印*/
-            val watermarkImg = ImageUtils.addTextWatermark(selectBitMap, defaultWaterMark, textSize, textColor, offsetX, selectBitMap.height - offsetY)
+            val watermarkImg = ImageUtils.addTextWatermark(selectBitMap, currentWaterMark, textSize, textColor, offsetX, selectBitMap.height - offsetY)
             /*压缩*/
             val compressedImg = ImageUtils.compressByQuality(watermarkImg, quality, true)
             /*保存的文件名称*/

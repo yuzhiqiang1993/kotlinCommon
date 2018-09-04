@@ -13,7 +13,6 @@
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +24,11 @@
 
 
         </activity>
-        <activity android:name=".ui.CustomViewActivity"></activity>
+        <activity android:name=".ui.CustomViewActivity">
+
+
+
+        </activity>
 
     </application>
 

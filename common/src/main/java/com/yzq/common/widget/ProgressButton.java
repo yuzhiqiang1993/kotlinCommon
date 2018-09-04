@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.View;
 
 import com.blankj.utilcode.util.LogUtils;
 
@@ -18,7 +19,7 @@ import com.blankj.utilcode.util.LogUtils;
  * @time : 17:22
  */
 
-public class ProgressButton extends android.support.v7.widget.AppCompatButton {
+public class ProgressButton extends View {
 
     /*当前进度*/
     private int currentProgress = 0;
@@ -65,11 +66,8 @@ public class ProgressButton extends android.support.v7.widget.AppCompatButton {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-
         LogUtils.i("onSizeChanged宽度：" + w);
         LogUtils.i("onSizeChanged高度：" + h);
-
-
     }
 
     @Override
@@ -79,8 +77,8 @@ public class ProgressButton extends android.support.v7.widget.AppCompatButton {
         int width = getWidth();
         int height = getHeight();
 
-        LogUtils.i("onSizeChanged宽度：" + width);
-        LogUtils.i("onSizeChanged高度：" + height);
+        LogUtils.i("onDraw 宽度：" + width);
+        LogUtils.i("onDraw 高度：" + height);
 
 
         Paint paint = new Paint();
@@ -89,7 +87,7 @@ public class ProgressButton extends android.support.v7.widget.AppCompatButton {
         paint.setStrokeWidth(dp2px(1));
 
 
-        /*   先画圆角矩形*/
+        /*先画圆角矩形*/
 
 
         int left = getLeft();
