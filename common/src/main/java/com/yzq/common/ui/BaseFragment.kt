@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.EventBus.EventBusUtil
@@ -44,6 +46,13 @@ abstract class BaseFragment : Fragment(), BaseView, CompressImgView {
     }
 
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        var view = inflater.inflate(getContentLayoutId(), container, false)
+
+        Dialog.initDialog(activity!!)
+        return view
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -53,13 +62,7 @@ abstract class BaseFragment : Fragment(), BaseView, CompressImgView {
     }
 
 
-    override fun onResume() {
-        super.onResume()
-        Dialog.initDialog(activity!!)
-    }
-
-
-    private fun initArgs(arguments: Bundle) {
+    protected  open fun initArgs(arguments: Bundle) {
 
 
     }
