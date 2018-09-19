@@ -1,6 +1,5 @@
 package com.yzq.common.ui
 
-import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -57,6 +56,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
         initInject()
         initPresenter()
 
+        Dialog.initDialog(this)
+        EventBusUtil.register(this)
+
         initArgs(intent.extras)
         setContentView(getContentLayoutId())
 
@@ -86,7 +88,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
 
     protected open fun initWidget() {
 
-        LogUtils.i("initWidget")
 
     }
 
@@ -119,9 +120,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
     }
 
 
-
-    protected fun initCompressImgPresenter(){
-        compressImgPresenter.initPresenter(this,this)
+    protected fun initCompressImgPresenter() {
+        compressImgPresenter.initPresenter(this, this)
     }
 
 
@@ -176,30 +176,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
 //    }
 
 
-    override fun onStart() {
-        super.onStart()
-
-        EventBusUtil.register(this)
-    }
-
-    override fun onRestart() {
-        super.onRestart()
-    }
-
-
     override fun onResume() {
         super.onResume()
         Dialog.initDialog(this)
 
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-
-    override fun onStop() {
-        super.onStop()
     }
 
 

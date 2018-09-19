@@ -49,7 +49,8 @@ abstract class BaseFragment : Fragment(), BaseView, CompressImgView {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var view = inflater.inflate(getContentLayoutId(), container, false)
 
-        Dialog.initDialog(activity!!)
+        //Dialog.initDialog(activity!!)
+        EventBusUtil.register(this)
         return view
     }
 
@@ -80,7 +81,9 @@ abstract class BaseFragment : Fragment(), BaseView, CompressImgView {
 
 
     /*初始化数据*/
-    protected abstract fun initData()
+    protected  fun initData(){
+
+    }
 
 
     /*返回布局id*/
@@ -90,7 +93,7 @@ abstract class BaseFragment : Fragment(), BaseView, CompressImgView {
     /*初始化View*/
     protected fun initWidget() {
 
-        EventBusUtil.register(this)
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

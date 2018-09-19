@@ -2,8 +2,6 @@ package com.yzq.common.widget
 
 import android.content.Context
 import com.afollestad.materialdialogs.MaterialDialog
-import com.yzq.common.EventBus.EventBusUtil
-import com.yzq.common.EventBus.EventMsg
 import com.yzq.common.constants.BaseContstants
 
 
@@ -41,53 +39,24 @@ class Dialog {
         }
 
 
-        fun showPositiveCallbackDialog(sureTag: String, title: String = BaseContstants.HINT, content: String, positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE) {
+        fun showOnlyPostiveCallBackDialog(title: String = BaseContstants.HINT, content: String, positiveText: String = BaseContstants.SURE, positiveCallback: MaterialDialog.SingleButtonCallback) {
             getNewBuilder()
                     .title(title)
                     .content(content)
                     .positiveText(positiveText)
-                    .negativeText(negativeText)
-                    .onPositive(MaterialDialog.SingleButtonCallback { _, _ ->
-
-                        var eventMsg: EventMsg = EventMsg::class.java.newInstance()
-                        eventMsg.tag = sureTag
-                        EventBusUtil.post(eventMsg)
-
-
-                    }).show()
-
-        }
-
-        fun showPositiveCallbackDialog(title: String = BaseContstants.HINT, content: String, positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE, singleButtonCallback: MaterialDialog.SingleButtonCallback) {
-            getNewBuilder()
-                    .title(title)
-                    .content(content)
-                    .positiveText(positiveText)
-                    .negativeText(negativeText)
-                    .onPositive(singleButtonCallback)
+                    .onPositive(positiveCallback)
                     .show()
 
         }
 
-
-        fun showCallbackDialog(sureTag: String, cancleTag: String, title: String = BaseContstants.HINT, content: String, positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE) {
+        fun showPositiveCallbackDialog(title: String = BaseContstants.HINT, content: String, positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE, positiveCallback: MaterialDialog.SingleButtonCallback) {
             getNewBuilder()
                     .title(title)
                     .content(content)
                     .positiveText(positiveText)
                     .negativeText(negativeText)
-                    .onPositive(MaterialDialog.SingleButtonCallback { _, _ ->
-
-                        var eventMsg: EventMsg = EventMsg::class.java.newInstance()
-                        eventMsg.tag = sureTag
-                        EventBusUtil.post(eventMsg)
-
-                    }).onNegative(MaterialDialog.SingleButtonCallback { _, _ ->
-
-                        var eventMsg: EventMsg = EventMsg::class.java.newInstance()
-                        eventMsg.tag = cancleTag
-                        EventBusUtil.post(eventMsg)
-                    }).show()
+                    .onPositive(positiveCallback)
+                    .show()
 
         }
 
@@ -101,24 +70,6 @@ class Dialog {
                     .onPositive(positiveCallback)
                     .onNegative(negativeCallback)
                     .show()
-
-        }
-
-
-        fun showBackHintDialog(backTag: String, title: String = BaseContstants.HINT, content: String = BaseContstants.BACK_HINT, positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE) {
-            getNewBuilder()
-                    .title(title)
-                    .content(content)
-                    .positiveText(positiveText)
-                    .negativeText(negativeText)
-                    .onPositive(MaterialDialog.SingleButtonCallback { _, _ ->
-
-                        var eventMsg: EventMsg = EventMsg::class.java.newInstance()
-                        eventMsg.tag = backTag
-                        EventBusUtil.post(eventMsg)
-
-
-                    }).show()
 
         }
 
