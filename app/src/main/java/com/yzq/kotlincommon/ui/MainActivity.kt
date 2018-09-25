@@ -81,7 +81,6 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View?, position: Int) {
 
-
         var data = GsonConvert.toJson(adapter.data.get(position))
         LogUtils.i(data)
     }
@@ -89,8 +88,8 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
 
-
         operationItem = newsAdapter.data.get(position)
+
         when (view!!.id) {
             R.id.imgIv ->
                 preViewImg(operationItem.title, operationItem.thumbnailPicS)

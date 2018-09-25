@@ -23,13 +23,8 @@ class MainPresenter @Inject constructor() : BasePresenter<MainView>() {
                 } else {
                     ToastUtils.showLong("数据请求错误")
                 }
-
-
             }
-
         })
-
-
     }
 
 
