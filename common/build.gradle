@@ -57,7 +57,6 @@ dependencies {
     api "com.android.support:support-vector-drawable:$android_support"
     api "com.android.support.constraint:constraint-layout:$constraint_version"
 
-
     /*dagger2*/
     api "com.google.dagger:dagger:$dagger2"
     kapt "com.google.dagger:dagger-compiler:$dagger2"
@@ -95,9 +94,7 @@ dependencies {
 
     /*glide*/
 
-    api("com.github.bumptech.glide:glide:$glide") {
-        exclude group: "com.android.support"
-    }
+    api "com.github.bumptech.glide:glide:$glide"
     kapt "com.github.bumptech.glide:compiler:$glide"
 
 
@@ -117,4 +114,16 @@ dependencies {
     kapt "cn.bingoogolapple:bga-badgeview-compiler:$bga_badgeview"
 
     api "me.jessyan:progressmanager:$progressmanager_version"
+}
+
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion "$android_support"
+            }
+        }
+    }
 }
