@@ -17,7 +17,10 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/bg_gray</item>
-
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:configChanges">screenSize|keyboardHidden|orientation</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowSoftInputMode">adjustPan|stateHidden</item>
 
     </style>
 

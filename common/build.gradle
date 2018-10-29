@@ -78,9 +78,7 @@ dependencies {
     api "com.google.code.gson:gson:$gson"
 
     /*dialog*/
-    api("com.afollestad.material-dialogs:core:$material_dialogs") {
-        exclude group: 'com.android.support'
-    }
+    api "com.afollestad.material-dialogs:core:$material_dialogs"
 
     /*RxImagepicker*/
     api "com.github.qingmei2:rximagepicker:$rx_imgpicker"
@@ -118,12 +116,13 @@ dependencies {
 
 
 configurations.all {
-    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-        def requested = details.requested
-        if (requested.group == 'com.android.support') {
-            if (!requested.name.startsWith("multidex")) {
-                details.useVersion "$android_support"
+    resolutionStrategy.eachDependency {
+        DependencyResolveDetails details ->
+            def requested = details.requested
+            if (requested.group == 'com.android.support') {
+                if (!requested.name.startsWith("multidex")) {
+                    details.useVersion "$android_support"
+                }
             }
-        }
     }
 }

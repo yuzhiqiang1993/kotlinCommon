@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
@@ -124,6 +122,7 @@ public class DropDownMenu extends LinearLayout {
         }
 
         popupMenuViews = new FrameLayout(getContext());
+
         popupMenuViews.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (DeviceUtils.getScreenSize(getContext()).y * menuHeighPercent)));
         // popupMenuViews.setLayoutParams(new FrameLayout.LayoutParams(DeviceUtils.getScreenSize(getContext()).x / 3, (int) (DeviceUtils.getScreenSize(getContext()).y * menuHeighPercent)));
 
@@ -243,8 +242,5 @@ public class DropDownMenu extends LinearLayout {
 
     }
 
-    public int dpTpPx(float value) {
-        DisplayMetrics dm = getResources().getDisplayMetrics();
-        return (int) (TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, dm) + 0.5);
-    }
+
 }

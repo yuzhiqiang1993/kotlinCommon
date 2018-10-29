@@ -1,71 +1,79 @@
-package com.yzq.common.mvp.model
+package com.yzq.common.base.mvp.model
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.text.TextUtils
-import android.util.TypedValue
-import com.blankj.utilcode.util.FileUtils
-import com.blankj.utilcode.util.ImageUtils
-import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.TimeUtils
-import com.yzq.common.BaseApp
+import com.blankj.utilcode.util.*
+import com.yzq.common.R
 import com.yzq.common.constants.ProjectPath
 import io.reactivex.Observable
 import javax.inject.Inject
 
 
 /**
- * @description: 图片压缩model
- * @author : yzq
- * @date   : 2018/7/19
- * @time   : 15:37
- *
+ * Created by yzq on 2018/1/25.
+ * 图片压缩model
  */
 
 class CompressImgModel @Inject constructor() {
 
-    /*最大宽度*/
-    private val maxWidth = 600
-    /*最大高度*/
-    private val maxHeight = 800
-    /*压缩质量*/
     private val quality = 85
-
-    private val textSizeDp = 10
-    /*文字大小*/
-    private val textSize = dp2px(textSizeDp)
-    /*颜色*/
-    private val textColor = Color.BLACK
-    /*x轴偏移量*/
-    private val offsetX = dp2px(5).toFloat()
-    /*y轴偏移量*/
-    private val offsetY = dp2px(textSizeDp + 5).toFloat()
-    /*默认水印*/
-    private var defaultWaterMark = "ESP:" + TimeUtils.getNowString()
-    private val rootImgName = "_"
+    private val textColor = Color.GRAY
+    private val waterMark = "ESP:" + TimeUtils.getNowString()
+    internal val rootImgName = AppUtils.getAppPackageName() + "_"
 
 
     /*压缩图片保存路径*/
-    fun compressImgWithWatermark(path: String, waterMark: String): Observable<String> {
-
-        var currentWaterMark: String
-        if (TextUtils.isEmpty(waterMark)) {
-            currentWaterMark = defaultWaterMark
-        } else {
-            currentWaterMark = waterMark
-        }
-
+    fun compressImgWithWatermark(path: String): Observable<String> {
         return Observable.create { e ->
             LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
-            val selectBitMap = ImageUtils.getBitmap(path, maxWidth, maxHeight)
+
+            var selectBitMap = ImageUtils.getBitmap(path)
+
+            LogUtils.i("密度：" + selectBitMap.density)
+
+            val defaultW = selectBitMap.width
+            val defaultH = selectBitMap.height
+
+            LogUtils.i("原图分辨率：$defaultW:$defaultH")
+
+            val textSize = defaultW / selectBitMap.density * 14
+
+            /*添加图片水印*/
+            val watermarkLogo = ImageUtils.getBitmap(R.drawable.water_logo)
+
+            val logoW = watermarkLogo.getWidth()
+            val logoH = watermarkLogo.getHeight()
+            var logoRatio = 1.0
+            if (logoW > defaultW * 0.6) {
+                logoRatio = logoW / (defaultW * 0.6)
+                LogUtils.i("logoRatio$logoRatio")
+            }
+
+            val logo = ImageUtils.compressByScale(watermarkLogo, (logoW / logoRatio).toInt(), (logoH / logoRatio).toInt(), true)
 
 
-            /*添加水印*/
-            val watermarkImg = ImageUtils.addTextWatermark(selectBitMap, currentWaterMark, textSize, textColor, offsetX, selectBitMap.height - offsetY)
-            /*压缩*/
-            val compressedImg = ImageUtils.compressByQuality(watermarkImg, quality, true)
+            val offsetX = defaultW / 2 - logo.getWidth() / 2
+            val offsetY = defaultH / 2 - logo.getHeight() / 2
+
+
+            /*添加时间文字水印*/
+            selectBitMap = ImageUtils.addTextWatermark(selectBitMap, waterMark, textSize, textColor, offsetX.toFloat(), (defaultH - textSize - offsetY).toFloat())
+
+            val watermarkBitmap = ImageUtils.addImageWatermark(selectBitMap, logo, offsetX, offsetY - textSize, 100, true)
+
+            val ratio = getRatioSize(defaultW, defaultH)
+            LogUtils.i("缩放比例$ratio")
+            /*先按比例压缩*/
+            val scaleBitmap = ImageUtils.compressByScale(watermarkBitmap, (defaultW / ratio).toInt(), (defaultH / ratio).toInt(), true)
+            LogUtils.i("比例压缩后：" + scaleBitmap.width + ":" + scaleBitmap.height)
+
+            /*再按质量压缩*/
+            val compressedImg = ImageUtils.compressByQuality(scaleBitmap, quality)
+
+            LogUtils.i("压缩后的" + compressedImg.width + ":" + compressedImg.height)
+
             /*保存的文件名称*/
-            val savedImgPath = "${ProjectPath.PICTURE_PATH}${rootImgName}${System.currentTimeMillis()}.jpg"
+            val savedImgPath = ProjectPath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
             /*保存并返回图片路径*/
             if (ImageUtils.save(compressedImg, savedImgPath, Bitmap.CompressFormat.JPEG)) {
                 /*返回保存后的路径*/
@@ -75,25 +83,34 @@ class CompressImgModel @Inject constructor() {
                 /*返回原路径*/
                 e.onNext(path)
             }
-
+            e.onComplete()
         }
     }
 
-    /*压缩图片*/
-    fun compressImg(path: String, addWaterMark: Boolean): Observable<String> {
+
+    /*只压缩图片*/
+    fun compressImg(path: String): Observable<String> {
 
         return Observable.create { e ->
-            var selectBitMap = ImageUtils.getBitmap(path, maxWidth, maxHeight)
+            LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
+            val selectBitMap = ImageUtils.getBitmap(path)
 
-            /*添加水印*/
-            if (addWaterMark) {
-                selectBitMap = ImageUtils.addTextWatermark(selectBitMap, defaultWaterMark, textSize, textColor, offsetX, selectBitMap.height - offsetY)
-            }
+            val defaultW = selectBitMap.width
+            val defaultH = selectBitMap.height
+            LogUtils.i("原图分辨率：$defaultW:$defaultH")
+            val ratio = getRatioSize(defaultW, defaultH)
+            LogUtils.i("缩放比例$ratio")
+            /*先按比例压缩*/
+            val scaleBitmap = ImageUtils.compressByScale(selectBitMap, (defaultW / ratio).toInt(), (defaultH / ratio).toInt(), true)
+            LogUtils.i("比例压缩后：" + scaleBitmap.width + ":" + scaleBitmap.height)
 
-            /*压缩*/
-            val compressedImg = ImageUtils.compressByQuality(selectBitMap, quality, true)
+            /*再按质量压缩*/
+            val compressedImg = ImageUtils.compressByQuality(scaleBitmap, quality)
+
+            LogUtils.i("质量压缩后的" + compressedImg.width + ":" + compressedImg.height)
+
             /*保存的文件名称*/
-            val savedImgPath = "${ProjectPath.PICTURE_PATH}${rootImgName}${System.currentTimeMillis()}.jpg"
+            val savedImgPath = ProjectPath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
             /*保存并返回图片路径*/
             if (ImageUtils.save(compressedImg, savedImgPath, Bitmap.CompressFormat.JPEG)) {
                 /*返回保存后的路径*/
@@ -104,42 +121,27 @@ class CompressImgModel @Inject constructor() {
                 e.onNext(path)
                 LogUtils.i("压缩失败，返回原图")
             }
-
+            e.onComplete()
         }
 
     }
 
 
-    /*只添加水印*/
-    fun addWaterMark(path: String, waterMark: String = defaultWaterMark): Observable<String> {
+    /*计算缩放比例*/
+    private fun getRatioSize(bitWidth: Int, bitHeight: Int): Double {
 
-        return Observable.create { e ->
-            val selectBitMap = ImageUtils.getBitmap(path, maxWidth, maxHeight)
+        val maxSize = 1024.0
 
-            /*添加时间水印*/
-            val watermarkImg = ImageUtils.addTextWatermark(selectBitMap, waterMark, textSize, textColor, offsetX, selectBitMap.height - offsetY)
-            /*保存的文件名称*/
-            val savedImgPath = "${ProjectPath.PICTURE_PATH}${rootImgName}${System.currentTimeMillis()}.jpg"
-            /*保存并返回图片路径*/
-            if (ImageUtils.save(watermarkImg, savedImgPath, Bitmap.CompressFormat.JPEG)) {
-                /*返回保存后的路径*/
-                e.onNext(savedImgPath)
-
-            } else {
-                /*返回原路径*/
-                e.onNext(path)
-            }
-
+        var ratio = 1.0
+        if (bitWidth > bitHeight && bitWidth > maxSize) {
+            ratio = bitWidth / maxSize
+        } else if (bitWidth < bitHeight && bitHeight > maxSize) {
+            ratio = bitHeight / maxSize
         }
-
-
-    }
-
-
-    protected fun dp2px(dpVal: Int): Int {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                dpVal.toFloat(),
-                BaseApp.instance.resources.displayMetrics).toInt()
+        if (ratio <= 0) {
+            ratio = 1.0
+        }
+        return ratio
     }
 
 

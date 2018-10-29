@@ -46,7 +46,8 @@ class ImageActivity : BaseActivity() {
                 LogUtils.i("file.name=${file.name}")
                 LogUtils.i("file.length=${file.length()}")
 
-                compressImgPresenter.compressImg(file.path, true)
+                //  compressImgPresenter.compressImg(file.path)
+                compressImgPresenter.compressImgWithWatermark(file.path)
             })
 
 
