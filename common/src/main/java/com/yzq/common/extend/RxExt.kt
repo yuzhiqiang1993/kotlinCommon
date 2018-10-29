@@ -28,6 +28,7 @@ fun <T> Observable<T>.transform(owner: LifecycleOwner): ObservableSubscribeProxy
     return this.compose(RxSchedulers.io2main()).autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY))
 }
 
+
 /*
 * 数据转换
 *
