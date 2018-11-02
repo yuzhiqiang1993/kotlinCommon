@@ -1,4 +1,4 @@
-package com.yzq.common.EventBus
+package com.yzq.common.eventBus
 
 import org.greenrobot.eventbus.EventBus
 

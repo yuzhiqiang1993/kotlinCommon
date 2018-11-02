@@ -7,8 +7,8 @@ import android.support.v7.widget.Toolbar
 import android.view.MotionEvent
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.EventBus.EventBusUtil
-import com.yzq.common.EventBus.EventMsg
+import com.yzq.common.eventBus.EventBusUtil
+import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.mvp.presenter.CompressImgPresenter
 import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.mvp.view.CompressImgView
