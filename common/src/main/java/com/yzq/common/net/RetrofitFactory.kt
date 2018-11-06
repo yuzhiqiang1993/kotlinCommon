@@ -44,7 +44,7 @@ class RetrofitFactory private constructor() {
         }
 
         retrofit = Retrofit.Builder()
-                .baseUrl(ServerConstants.BASE_URL)
+                .baseUrl(ServerConstants.getApiUrl())
                 .client(initOkhttpClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

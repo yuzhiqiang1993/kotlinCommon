@@ -1,5 +1,7 @@
 package com.yzq.common.constants
 
+import com.yzq.common.BuildConfig
+
 
 /**
  * @description: 服务器相关常量
@@ -12,9 +14,32 @@ package com.yzq.common.constants
 class ServerConstants {
 
     companion object {
-        val SERVER_URL = "http://v.juhe.cn/"
+        private val SERVER_URL_RELEASE = "http://v.juhe.cn/"
+        private val SERVER_URL_DEBUG = "http://v.juhe.cn/"
+        private val API = "toutiao/"
         /*接口地址*/
-        val BASE_URL = SERVER_URL + "toutiao/"
         val DEVICE_ID = "DeviceId"
+
+
+        /*获取服务器地址*/
+        fun getServerUrl(): String {
+            if (BuildConfig.DEBUG) {
+                return SERVER_URL_DEBUG
+            }
+
+            return SERVER_URL_RELEASE
+
+        }
+
+        /*获取接口地址*/
+        fun getApiUrl(): String {
+            if (BuildConfig.DEBUG) {
+                return SERVER_URL_DEBUG + API
+            }
+            return SERVER_URL_RELEASE + API
+
+        }
     }
+
+
 }
