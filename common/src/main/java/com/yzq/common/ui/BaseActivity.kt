@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.MotionEvent
+import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.eventBus.EventBusUtil
@@ -13,6 +14,7 @@ import com.yzq.common.mvp.presenter.CompressImgPresenter
 import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.mvp.view.CompressImgView
 import com.yzq.common.widget.Dialog
+import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
@@ -35,6 +37,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
 
     private var loaddingDialog: MaterialDialog? = null
     private var progressDialog: MaterialDialog? = null
+
+    private var stateView: StateView? = null
+    private var contentLayout: View? = null
+
 
     @Inject
     lateinit var compressImgPresenter: CompressImgPresenter
@@ -232,24 +238,39 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
     }
 
     override fun showLoadding() {
-
+        stateView?.showLoading()
+        contentLayout?.visibility = View.GONE
 
     }
 
     override fun showContent() {
+        stateView?.hide()
+        contentLayout?.visibility = View.VISIBLE
 
     }
 
     override fun showNoData() {
+        stateView?.showNoData()
+        contentLayout?.visibility = View.GONE
 
     }
 
     override fun showNoNet() {
+        stateView?.showNoNet()
+        contentLayout?.visibility = View.GONE
 
     }
 
     override fun showError(msg: String) {
-
+        stateView?.showError(msg)
+        contentLayout?.visibility = View.GONE
     }
+
+
+    protected fun initStateView(stateView: StateView, contentLayout: View) {
+        this.stateView = stateView
+        this.contentLayout = contentLayout
+    }
+
 }
 

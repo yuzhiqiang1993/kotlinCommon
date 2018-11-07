@@ -42,6 +42,8 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         fab.setOnClickListener(this)
         initCompressImgPresenter()
 
+        initStateView(stateView,recy)
+
     }
 
 
@@ -117,22 +119,6 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
     }
 
 
-    override fun showContent() {
-
-        stateView.hide()
-        recy.visibility = View.VISIBLE
-    }
-
-    override fun showLoadding() {
-
-        stateView.showLoading()
-        recy.visibility = View.GONE
-    }
-
-    override fun showError(msg: String) {
-        stateView.showError(msg)
-        recy.visibility = View.GONE
-    }
 
 
 }
