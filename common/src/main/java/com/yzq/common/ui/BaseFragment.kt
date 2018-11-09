@@ -9,11 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.common.base.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
-import com.yzq.common.mvp.presenter.CompressImgPresenter
 import com.yzq.common.mvp.view.BaseView
-import com.yzq.common.mvp.view.CompressImgView
 import com.yzq.common.widget.Dialog
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
@@ -28,7 +27,7 @@ import javax.inject.Inject
  * @time   : 9:49
  *
  */
-abstract class BaseFragment : Fragment(), BaseView, CompressImgView {
+abstract class BaseFragment : Fragment(), BaseView {
 
     private var loaddingDialog: MaterialDialog? = null
     private var progressDialog: MaterialDialog? = null
@@ -36,7 +35,7 @@ abstract class BaseFragment : Fragment(), BaseView, CompressImgView {
     private var stateView: StateView? = null
     private var contentLayout: View? = null
     @Inject
-    lateinit var compressImgPresenter: CompressImgPresenter
+    lateinit var compressImgModel: CompressImgModel
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -102,20 +101,6 @@ abstract class BaseFragment : Fragment(), BaseView, CompressImgView {
     fun onEventMainThread(msg: EventMsg) {
     }
 
-
-//    fun onBackPressed(): Boolean {
-//        return false
-//    }
-
-
-    protected fun initCompressImgPresenter() {
-        compressImgPresenter.initPresenter(this, this)
-    }
-
-
-    override fun compressImgSuccess(path: String) {
-        LogUtils.i("压缩后图片路径：" + path)
-    }
 
     protected fun preViewImg(name: String, path: String) {
 

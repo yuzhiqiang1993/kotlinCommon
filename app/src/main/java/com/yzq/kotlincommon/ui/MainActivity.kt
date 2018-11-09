@@ -40,7 +40,7 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         recy.layoutManager = LinearLayoutManager(this)
 
         fab.setOnClickListener(this)
-        initCompressImgPresenter()
+
 
         initStateView(stateView,recy)
 

@@ -5,6 +5,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.UriUtils
 import com.qingmei2.rximagepicker.core.RxImagePicker
+import com.yzq.common.extend.transform
 import com.yzq.common.img.ImageLoader
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.widget.Dialog
@@ -35,7 +36,6 @@ class ImageActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-        initCompressImgPresenter()
 
         imgFab.setOnClickListener {
 
@@ -47,7 +47,12 @@ class ImageActivity : BaseActivity() {
                 LogUtils.i("file.length=${file.length()}")
 
                 //  compressImgPresenter.compressImg(file.path)
-                compressImgPresenter.compressImgWithWatermark(file.path)
+                compressImgModel.compressImgWithWatermark(file.path)
+                        .transform(this)
+                        .subscribe {
+                            imgPath=it
+                            ImageLoader.loadCenterCrop(imgPath, imgIv)
+                        }
             })
 
 
@@ -59,13 +64,6 @@ class ImageActivity : BaseActivity() {
         }
 
 
-    }
-
-    override fun compressImgSuccess(path: String) {
-        super.compressImgSuccess(path)
-
-        imgPath = path
-        ImageLoader.loadCenterCrop(imgPath, imgIv)
     }
 
 

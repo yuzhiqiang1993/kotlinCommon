@@ -8,11 +8,10 @@ import android.view.MotionEvent
 import android.view.View
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.common.base.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
-import com.yzq.common.mvp.presenter.CompressImgPresenter
 import com.yzq.common.mvp.view.BaseView
-import com.yzq.common.mvp.view.CompressImgView
 import com.yzq.common.widget.Dialog
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
@@ -28,7 +27,7 @@ import javax.inject.Inject
  *
  */
 
-abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
+abstract class BaseActivity : AppCompatActivity(), BaseView {
 
 
     private var lastClickTime: Long = 0
@@ -43,7 +42,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
 
 
     @Inject
-    lateinit var compressImgPresenter: CompressImgPresenter
+    lateinit var compressImgModel: CompressImgModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -123,16 +122,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, CompressImgView {
 
     protected open fun setAllowFastClick(allowFastClick: Boolean) {
         this.allowFastClick = allowFastClick
-    }
-
-
-    protected fun initCompressImgPresenter() {
-        compressImgPresenter.initPresenter(this, this)
-    }
-
-
-    override fun compressImgSuccess(path: String) {
-        LogUtils.i("压缩后图片路径：" + path)
     }
 
 

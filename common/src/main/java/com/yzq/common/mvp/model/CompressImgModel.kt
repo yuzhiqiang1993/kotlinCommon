@@ -39,7 +39,7 @@ class CompressImgModel @Inject constructor() {
             val textSize = defaultW / selectBitMap.density * 14
 
             /*添加图片水印*/
-            val watermarkLogo = ImageUtils.getBitmap(R.drawable.water_logo)
+            var watermarkLogo = ImageUtils.getBitmap(R.drawable.water_logo)
 
             val logoW = watermarkLogo.getWidth()
             val logoH = watermarkLogo.getHeight()
@@ -49,33 +49,49 @@ class CompressImgModel @Inject constructor() {
                 LogUtils.i("logoRatio$logoRatio")
             }
 
-            val logo = ImageUtils.compressByScale(watermarkLogo, (logoW / logoRatio).toInt(), (logoH / logoRatio).toInt(), true)
+            watermarkLogo = ImageUtils.compressByScale(
+                    watermarkLogo,
+                    (logoW / logoRatio).toInt(),
+                    (logoH / logoRatio).toInt()
+            )
 
 
-            val offsetX = defaultW / 2 - logo.getWidth() / 2
-            val offsetY = defaultH / 2 - logo.getHeight() / 2
+            val offsetX = defaultW / 2 - watermarkLogo.getWidth() / 2
+            val offsetY = defaultH / 2 - watermarkLogo.getHeight() / 2
 
 
             /*添加时间文字水印*/
-            selectBitMap = ImageUtils.addTextWatermark(selectBitMap, waterMark, textSize, textColor, offsetX.toFloat(), (defaultH - textSize - offsetY).toFloat())
+            selectBitMap = ImageUtils.addTextWatermark(
+                    selectBitMap,
+                    waterMark,
+                    textSize,
+                    textColor,
+                    offsetX.toFloat(),
+                    (defaultH - textSize - offsetY).toFloat()
+            )
 
-            val watermarkBitmap = ImageUtils.addImageWatermark(selectBitMap, logo, offsetX, offsetY - textSize, 100, true)
+            selectBitMap =
+                    ImageUtils.addImageWatermark(selectBitMap, watermarkLogo, offsetX, offsetY - textSize, 100)
 
             val ratio = getRatioSize(defaultW, defaultH)
             LogUtils.i("缩放比例$ratio")
             /*先按比例压缩*/
-            val scaleBitmap = ImageUtils.compressByScale(watermarkBitmap, (defaultW / ratio).toInt(), (defaultH / ratio).toInt(), true)
-            LogUtils.i("比例压缩后：" + scaleBitmap.width + ":" + scaleBitmap.height)
+            selectBitMap = ImageUtils.compressByScale(
+                    selectBitMap,
+                    (defaultW / ratio).toInt(),
+                    (defaultH / ratio).toInt()
+            )
+            LogUtils.i("比例压缩后：" + selectBitMap.width + ":" + selectBitMap.height)
 
             /*再按质量压缩*/
-            val compressedImg = ImageUtils.compressByQuality(scaleBitmap, quality)
+            selectBitMap = ImageUtils.compressByQuality(selectBitMap, quality)
 
-            LogUtils.i("压缩后的" + compressedImg.width + ":" + compressedImg.height)
+            LogUtils.i("压缩后的" + selectBitMap.width + ":" + selectBitMap.height)
 
             /*保存的文件名称*/
             val savedImgPath = ProjectPath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
             /*保存并返回图片路径*/
-            if (ImageUtils.save(compressedImg, savedImgPath, Bitmap.CompressFormat.JPEG)) {
+            if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
                 /*返回保存后的路径*/
                 e.onNext(savedImgPath)
                 LogUtils.i("压缩后图片大小：" + FileUtils.getFileSize(savedImgPath))
@@ -93,7 +109,7 @@ class CompressImgModel @Inject constructor() {
 
         return Observable.create { e ->
             LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
-            val selectBitMap = ImageUtils.getBitmap(path)
+            var selectBitMap = ImageUtils.getBitmap(path)
 
             val defaultW = selectBitMap.width
             val defaultH = selectBitMap.height
@@ -101,18 +117,19 @@ class CompressImgModel @Inject constructor() {
             val ratio = getRatioSize(defaultW, defaultH)
             LogUtils.i("缩放比例$ratio")
             /*先按比例压缩*/
-            val scaleBitmap = ImageUtils.compressByScale(selectBitMap, (defaultW / ratio).toInt(), (defaultH / ratio).toInt(), true)
-            LogUtils.i("比例压缩后：" + scaleBitmap.width + ":" + scaleBitmap.height)
+            selectBitMap =
+                    ImageUtils.compressByScale(selectBitMap, (defaultW / ratio).toInt(), (defaultH / ratio).toInt())
+            LogUtils.i("比例压缩后：" + selectBitMap.width + ":" + selectBitMap.height)
 
             /*再按质量压缩*/
-            val compressedImg = ImageUtils.compressByQuality(scaleBitmap, quality)
+            selectBitMap = ImageUtils.compressByQuality(selectBitMap, quality)
 
-            LogUtils.i("质量压缩后的" + compressedImg.width + ":" + compressedImg.height)
+            LogUtils.i("质量压缩后的" + selectBitMap.width + ":" + selectBitMap.height)
 
             /*保存的文件名称*/
             val savedImgPath = ProjectPath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
             /*保存并返回图片路径*/
-            if (ImageUtils.save(compressedImg, savedImgPath, Bitmap.CompressFormat.JPEG)) {
+            if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
                 /*返回保存后的路径*/
                 e.onNext(savedImgPath)
                 LogUtils.i("压缩后图片大小：" + FileUtils.getFileSize(savedImgPath))
@@ -123,7 +140,6 @@ class CompressImgModel @Inject constructor() {
             }
             e.onComplete()
         }
-
     }
 
 
