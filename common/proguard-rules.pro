@@ -1,71 +1,122 @@
 
-##Gson混淆
--keepattributes Signature
+
+-dontwarn com.yzq.common.data**
+#对含有反射类的处理
+-keep class com.yzq.common.data.** { *; }
+
+
+#
+# ----------------------------- 第三方 -----------------------------
+#
+
+#（可选）避免Log打印输出
+
+-assumenosideeffects class com.blankj.utilcode.util.LogUtils {
+       public static *** d(...);
+       public static *** e(...);
+       public static *** i(...);
+       public static *** v(...);
+       public static *** w(...);
+}
+
+
+#gson
+-dontwarn com.google.gson.**
+-keep class com.google.gson.**{*;}
+-keep interface com.google.gson.**{*;}
+
+
+# EventBus
 -keepattributes *Annotation*
--dontwarn sun.misc.**
-#-keep class com.google.gson.stream.** { *; }
--keep class com.google.gson.examples.android.model.** { *; }
--keep class * implements com.google.gson.TypeAdapterFactory
--keep class * implements com.google.gson.JsonSerializer
--keep class * implements com.google.gson.JsonDeserializer
-
-
-
-#eventbus3混淆
--keepattributes *Annotation*
--keepclassmembers class * {
+-keepclassmembers class ** {
     @org.greenrobot.eventbus.Subscribe <methods>;
 }
 -keep enum org.greenrobot.eventbus.ThreadMode { *; }
+
+# Only required if you use AsyncExecutor
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
 }
 
-#okhttp3 混淆
--dontwarn javax.annotation.**
--keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
--dontwarn org.codehaus.mojo.animal_sniffer.*
--dontwarn okhttp3.internal.platform.ConscryptPlatform
-
-
-#retrofit2 混淆
--dontnote retrofit2.Platform
--dontwarn retrofit2.Platform$Java8
+# OkHttp3
 -keepattributes Signature
--keepattributes Exceptions
+-keepattributes *Annotation*
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-dontwarn okhttp3.**
+
+# Retrofit
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepattributes Signature -keepattributes Exceptions
+
+# 使用 proguard-android-optimize 后要添加
+-keepclasseswithmembers class * {
+    @retrofit2.http.* <methods>;
+}
+-keepclasseswithmembers interface * {
+    @retrofit2.* <methods>;
+}
+
+# Platform calls Class.forName on types which do not exist on Android to determine platform.
+-dontnote retrofit2.Platform
+# Platform used when running on RoboVM on iOS. Will not be used at runtime.
+-dontnote retrofit2.Platform$IOS$MainThreadExecutor
+# Platform used when running on Java 8 VMs. Will not be used at runtime.
+-dontwarn retrofit2.Platform$Java8
 
 
-#okio 混淆
--dontwarn okio.**
 
-#permission 混淆
+
+# RxJava RxAndroid
+-dontwarn sun.misc.**
+-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
+    long producerIndex;
+    long consumerIndex;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode producerNode;
+}
+-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
+    rx.internal.util.atomic.LinkedQueueNode consumerNode;
+}
+-dontnote rx.internal.util.PlatformDependent
+
+
+
+
+#permission
 -dontwarn com.yanzhenjie.permission.**
 
+#ARouter
+-keep public class com.alibaba.android.arouter.routes.**{*;}
+-keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
+# 如果使用了 byType 的方式获取 Service，需添加下面规则，保护接口
+-keep interface * implements com.alibaba.android.arouter.facade.template.IProvider
+# 如果使用了 单类注入，即不定义接口实现 IProvider，需添加下面规则，保护实现
+-keep class * implements com.alibaba.android.arouter.facade.template.IProvider
 
-#glide 混淆
+
+#dagger
+-keep class dagger.* { *; }
+-keep class javax.inject.* { *; }
+-keep class * extends dagger.internal.Binding
+-keep class * extends dagger.internal.ModuleAdapter
+-keep class * extends dagger.internal.StaticInjection
+
+
+#glide
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule
 -keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
   **[] $VALUES;
   public *;
 }
--dontwarn com.bumptech.glide.load.resource.bitmap.VideoDecoder
+# for DexGuard only
+#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 
-
-#ARouter 混淆
--keep public class com.alibaba.android.arouter.routes.**{*;}
--keep public class com.alibaba.android.arouter.facade.**{*;}
--keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
-
-# 如果使用了 byType 的方式获取 Service，需添加下面规则，保护接口
--keep interface * implements com.alibaba.android.arouter.facade.template.IProvider
-
-# 如果使用了 单类注入，即不定义接口实现 IProvider，需添加下面规则，保护实现
-# -keep class * implements com.alibaba.android.arouter.facade.template.IProvider
-
-
-#BaseRecyclerViewAdapterHelper 混淆
+#adapter
 -keep class com.chad.library.adapter.** {
 *;
 }
@@ -74,3 +125,9 @@
 -keepclassmembers  class **$** extends com.chad.library.adapter.base.BaseViewHolder {
      <init>(...);
 }
+
+
+#badgeview
+#-dontwarn cn.bingoogolapple.badgeview.**
+#-keep class cn.bingoogolapple.badgeview.** { *; }
+

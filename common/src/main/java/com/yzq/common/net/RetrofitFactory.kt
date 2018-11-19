@@ -2,6 +2,7 @@ package com.yzq.common.net
 
 import android.util.Log
 import com.yzq.common.constants.ServerConstants
+import me.jessyan.progressmanager.BuildConfig
 import me.jessyan.progressmanager.ProgressManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -73,7 +74,10 @@ class RetrofitFactory private constructor() {
 
         val interceptor = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger {
 
-            Log.i("Retrofit", it)
+            if (BuildConfig.DEBUG) {
+                Log.i("Retrofit", it)
+            }
+
         })
 
         interceptor.level = HttpLoggingInterceptor.Level.BODY
