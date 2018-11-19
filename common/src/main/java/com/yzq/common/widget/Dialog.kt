@@ -4,10 +4,14 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.text.InputType
+import android.view.LayoutInflater
 import android.widget.DatePicker
 import android.widget.TimePicker
+import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.LogUtils
+import com.ycuwq.datepicker.date.YearPicker
+import com.yzq.common.R
 import com.yzq.common.constants.BaseContstants
 import io.reactivex.Observable
 import java.util.*
@@ -36,6 +40,7 @@ class Dialog {
         }
 
 
+        /*简单的提示框  没有回调*/
         fun showBase(title: String = BaseContstants.HINT, content: String, positiveText: String = BaseContstants.SURE) {
             getNewBuilder()
                     .title(title)
@@ -47,83 +52,146 @@ class Dialog {
         }
 
 
+        /*只有确定按钮且只有确定回调*/
         fun showOnlyPostiveCallBackDialog(
                 title: String = BaseContstants.HINT,
                 content: String,
-                positiveText: String = BaseContstants.SURE,
-                positiveCallback: MaterialDialog.SingleButtonCallback
-        ) {
-            getNewBuilder()
-                    .title(title)
-                    .content(content)
-                    .positiveText(positiveText)
-                    .onPositive(positiveCallback)
-                    .show()
+                positiveText: String = BaseContstants.SURE
+        ): Observable<Boolean> {
+
+            return Observable.create<Boolean> {
+
+                getNewBuilder()
+                        .title(title)
+                        .content(content)
+                        .positiveText(positiveText)
+                        .onPositive(object : MaterialDialog.SingleButtonCallback {
+                            override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+
+                                it.onNext(true)
+                                it.onComplete()
+
+                            }
+
+                        })
+                        .show()
+
+            }
+
 
         }
 
+
+        /*有取消和确定按钮的弹窗 确定按钮有回调*/
         fun showPositiveCallbackDialog(
                 title: String = BaseContstants.HINT,
                 content: String,
                 positiveText: String = BaseContstants.SURE,
-                negativeText: String = BaseContstants.CANCLE,
-                positiveCallback: MaterialDialog.SingleButtonCallback
-        ) {
-            getNewBuilder()
-                    .title(title)
-                    .content(content)
-                    .positiveText(positiveText)
-                    .negativeText(negativeText)
-                    .onPositive(positiveCallback)
-                    .show()
+                negativeText: String = BaseContstants.CANCLE
+        ): Observable<Boolean> {
+
+            return Observable.create<Boolean> {
+
+                getNewBuilder()
+                        .title(title)
+                        .content(content)
+                        .positiveText(positiveText)
+                        .negativeText(negativeText)
+                        .onPositive(object : MaterialDialog.SingleButtonCallback {
+                            override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+
+                                it.onNext(true)
+                                it.onComplete()
+
+                            }
+
+                        })
+                        .show()
+
+            }
+
 
         }
 
 
+        /*带有确定和取消回调的弹窗*/
         fun showCallbackDialog(
                 title: String = BaseContstants.HINT,
                 content: String,
                 positiveText: String = BaseContstants.SURE,
-                negativeText: String = BaseContstants.CANCLE,
-                positiveCallback: MaterialDialog.SingleButtonCallback,
-                negativeCallback: MaterialDialog.SingleButtonCallback
-        ) {
-            getNewBuilder()
-                    .title(title)
-                    .content(content)
-                    .positiveText(positiveText)
-                    .negativeText(negativeText)
-                    .onPositive(positiveCallback)
-                    .onNegative(negativeCallback)
-                    .show()
+                negativeText: String = BaseContstants.CANCLE
+        ): Observable<Boolean> {
+            return Observable.create<Boolean> {
+
+                getNewBuilder()
+                        .title(title)
+                        .content(content)
+                        .positiveText(positiveText)
+                        .negativeText(negativeText)
+                        .onPositive(object : MaterialDialog.SingleButtonCallback {
+                            override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+
+                                it.onNext(true)
+                                it.onComplete()
+
+                            }
+
+                        })
+                        .onNegative(object : MaterialDialog.SingleButtonCallback {
+                            override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+
+                                it.onNext(false)
+                                it.onComplete()
+
+                            }
+
+                        }).show()
+
+            }
+
 
         }
 
 
+        /*返回页面提示弹窗*/
         fun showBackHintDialog(
                 title: String = BaseContstants.HINT,
                 content: String = BaseContstants.BACK_HINT,
                 positiveText: String = BaseContstants.SURE,
-                negativeText: String = BaseContstants.CANCLE,
-                positiveCallback: MaterialDialog.SingleButtonCallback
-        ) {
-            getNewBuilder()
-                    .title(title)
-                    .content(content)
-                    .positiveText(positiveText)
-                    .negativeText(negativeText)
-                    .onPositive(positiveCallback)
-                    .show()
+                negativeText: String = BaseContstants.CANCLE
+        ): Observable<Boolean> {
+
+            return Observable.create {
+
+                getNewBuilder()
+                        .title(title)
+                        .content(content)
+                        .positiveText(positiveText)
+                        .negativeText(negativeText)
+                        .onPositive(object : MaterialDialog.SingleButtonCallback {
+                            override fun onClick(dialog: MaterialDialog, which: DialogAction) {
+
+                                it.onNext(true)
+                                it.onComplete()
+
+                            }
+
+                        })
+                        .show()
+            }
+
 
         }
 
 
+        /*列表弹窗*/
         fun showListDialog(
                 title: String = BaseContstants.HINT,
                 content: String,
                 items: List<*>,
                 callback: MaterialDialog.ListCallback
         ) {
+
             getNewBuilder()
                     .title(title)
                     .content(content)
@@ -133,6 +201,8 @@ class Dialog {
 
         }
 
+
+        /*带输入框的弹窗*/
         fun showInputDialog(
                 title: String = BaseContstants.HINT,
                 positiveText: String = BaseContstants.SURE,
@@ -155,14 +225,14 @@ class Dialog {
                     .show()
         }
 
-        fun getLoaddingDialog(): MaterialDialog? {
+        fun getLoaddingDialog(): MaterialDialog {
             return getNewBuilder()
                     .progress(true, 0)
                     .progressIndeterminateStyle(false)
                     .build()
         }
 
-        fun getProgressDialog(title: String, content: String): MaterialDialog? {
+        fun getProgressDialog(title: String, content: String): MaterialDialog {
             return getNewBuilder()
                     .title(title)
                     .content(content)
@@ -215,7 +285,6 @@ class Dialog {
                         var hour: String
                         var minute: String
 
-
                         hour = hourOfDay.toString()
                         if (hourOfDay < 10) {
                             hour = "0${hourOfDay}"
@@ -240,6 +309,130 @@ class Dialog {
 
         }
 
+
+        /*选择年份*/
+        fun selectYear(
+                title: String = "选择年份",
+                positiveText: String = BaseContstants.SURE,
+                negativeText: String = BaseContstants.CANCLE
+        ): Observable<String> {
+
+            return Observable.create<String> {
+
+                var yearView = LayoutInflater.from(context).inflate(R.layout.layout_year_picker, null, false)
+                var yearPicker = yearView.findViewById<YearPicker>(R.id.yearPicker)
+
+                getNewBuilder()
+                        .title(title)
+                        .positiveText(positiveText)
+                        .negativeText(negativeText)
+                        .customView(yearView, false)
+                        .onPositive { dialog, which ->
+                            it.onNext(yearPicker.selectedYear.toString())
+                        }
+                        .show()
+
+
+            }
+
+
+        }
+
+
+        /*选择年与日*/
+        fun selectDate(
+                title: String = "选择日期",
+                positiveText: String = BaseContstants.SURE,
+                negativeText: String = BaseContstants.CANCLE
+        ): Observable<String> {
+
+
+            return Observable.create<String> {
+
+                var dateView = LayoutInflater.from(context).inflate(R.layout.layout_date_picker, null, false)
+                var datePicker = dateView.findViewById<com.ycuwq.datepicker.date.DatePicker>(R.id.datePicker)
+
+                getNewBuilder()
+                        .title(title)
+                        .positiveText(positiveText)
+                        .negativeText(negativeText)
+                        .customView(dateView, false)
+                        .onPositive { dialog, which ->
+
+                            var selectedMonth = datePicker.month.toString()
+                            var selectedDay = datePicker.day.toString()
+
+                            if (datePicker.month < 10) {
+                                selectedMonth = "0${datePicker.month}"
+                            }
+
+
+                            if (datePicker.day < 10) {
+                                selectedDay = "0${datePicker.day}"
+                            }
+
+                            var selectedDate = "${datePicker.year}-${selectedMonth}-${selectedDay}"
+                            LogUtils.i("选择的年与日：${selectedDate}")
+
+                            it.onNext(selectedDate)
+                            it.onComplete()
+
+                        }
+                        .show()
+
+
+            }
+
+
+        }
+
+
+        /*选择小时和分钟*/
+        fun selectHourAndMinute(
+                title: String = "选择时间",
+                positiveText: String = BaseContstants.SURE,
+                negativeText: String = BaseContstants.CANCLE
+        ): Observable<String> {
+
+
+            return Observable.create<String> {
+
+                var dateView = LayoutInflater.from(context).inflate(R.layout.layout_hour_minute_picker, null, false)
+                var hourAndMinutePicker =
+                        dateView.findViewById<com.ycuwq.datepicker.time.HourAndMinutePicker>(R.id.hourMinutePicker)
+
+                getNewBuilder()
+                        .title(title)
+                        .positiveText(positiveText)
+                        .negativeText(negativeText)
+                        .customView(dateView, false)
+                        .onPositive { dialog, which ->
+
+                            var selectedHour = hourAndMinutePicker.hour.toString()
+                            var selectedMinute = hourAndMinutePicker.minute.toString()
+                            if (hourAndMinutePicker.hour < 10) {
+                                selectedHour = "0${hourAndMinutePicker.hour}"
+                            }
+
+                            if (hourAndMinutePicker.minute < 10) {
+                                selectedMinute = "0${hourAndMinutePicker.minute}"
+                            }
+
+
+                            var selectedTime = "${selectedHour}:${selectedMinute}"
+                            LogUtils.i("选择时间：${selectedTime}}")
+
+                            it.onNext(selectedTime)
+                            it.onComplete()
+
+                        }
+                        .show()
+
+
+            }
+
+
+        }
     }
 }
 

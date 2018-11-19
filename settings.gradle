@@ -1,1 +1,1 @@
-include ':app',':common', ':custom_view'
+include ':app', ':common', ':custom_view', ':datepicker'

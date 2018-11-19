@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ycuwq.datepicker.date.YearPicker
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/yearPicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:startYear="1980"
+        android:background="@color/white"
+        app:wheelCurtainBorderColor="@color/gray_300"
+        app:selectedTextColor="@color/colorAccent"
+        app:itemTextColor="@color/gray_600"
+        app:wheelCurtainColor="#FAFAFB"
+        app:endYear="2018"/>

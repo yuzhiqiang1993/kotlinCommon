@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.ycuwq.datepicker.time.HourAndMinutePicker
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/hourMinutePicker"
+        android:layout_height="wrap_content"
+        app:wheelCurtainBorderColor="@color/gray_300"
+        app:selectedTextColor="@color/colorAccent"
+        app:itemTextColor="@color/gray_600"
+        app:wheelCurtainColor="#FAFAFB"
+        android:background="@color/white"
+        android:layout_width="match_parent"/>
+
