@@ -2,12 +2,14 @@ package com.yzq.common.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.AppCompatImageView
 import android.support.v7.widget.Toolbar
 import android.view.MotionEvent
 import android.view.View
+import android.widget.TextView
 import com.afollestad.materialdialogs.MaterialDialog
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.base.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
@@ -39,7 +41,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     private var stateView: StateView? = null
     private var contentLayout: View? = null
-
+    private var isRefreshLayout: Boolean = false
 
     @Inject
     lateinit var compressImgModel: CompressImgModel
@@ -92,8 +94,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
 
     protected open fun initWidget() {
-
-
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -111,6 +111,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
     }
 
+
+    protected fun initHeader(backIv: AppCompatImageView, titleTv: TextView, title: String) {
+
+        backIv.setOnClickListener { finish() }
+        titleTv.text = title
+
+    }
 
     override fun onSupportNavigateUp(): Boolean {
 
@@ -236,11 +243,17 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         stateView?.hide()
         contentLayout?.visibility = View.VISIBLE
 
+        if (isRefreshLayout and (contentLayout != null)) {
+            (contentLayout as SwipeRefreshLayout).isRefreshing = false
+        }
+
+
     }
 
     override fun showNoData() {
         stateView?.showNoData()
         contentLayout?.visibility = View.GONE
+
 
     }
 
@@ -248,17 +261,20 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         stateView?.showNoNet()
         contentLayout?.visibility = View.GONE
 
+
     }
 
     override fun showError(msg: String) {
         stateView?.showError(msg)
         contentLayout?.visibility = View.GONE
+
     }
 
 
-    protected fun initStateView(stateView: StateView, contentLayout: View) {
+    protected fun initStateView(stateView: StateView, contentLayout: View, isRefreshLayout: Boolean = false) {
         this.stateView = stateView
         this.contentLayout = contentLayout
+        this.isRefreshLayout = isRefreshLayout
     }
 
 }

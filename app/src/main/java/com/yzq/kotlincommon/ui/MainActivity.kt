@@ -41,8 +41,7 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
         fab.setOnClickListener(this)
 
-
-        initStateView(stateView,recy)
+        initStateView(stateView, recy)
 
     }
 
@@ -117,8 +116,6 @@ class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
 
     }
-
-
 
 
 }
