@@ -1,7 +1,6 @@
 package com.yzq.kotlincommon.ui
 
 import android.provider.MediaStore
-import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.UriUtils
 import com.qingmei2.rximagepicker.core.RxImagePicker
@@ -50,7 +49,7 @@ class ImageActivity : BaseActivity() {
                 compressImgModel.compressImgWithWatermark(file.path)
                         .transform(this)
                         .subscribe {
-                            imgPath=it
+                            imgPath = it
                             ImageLoader.loadCenterCrop(imgPath, imgIv)
                         }
             })
@@ -68,9 +67,11 @@ class ImageActivity : BaseActivity() {
 
 
     override fun onBackPressed() {
-        Dialog.showBackHintDialog(positiveCallback = MaterialDialog.SingleButtonCallback { dialog, which ->
-            finish()
-        })
+
+        Dialog.showBackHintDialog()
+                .subscribe {
+                    finish()
+                }
 
 
     }

@@ -44,13 +44,5 @@
 
     </style>
 
-    <!--HorizontalItemView 自定义属性-->
-    <declare-styleable name="HorizontalItemView">
-
-        <attr name="icon" format="reference"></attr>
-        <attr name="showIcon" format="boolean"></attr>
-        <attr name="title" format="string"></attr>
-
-    </declare-styleable>
 
 </resources>

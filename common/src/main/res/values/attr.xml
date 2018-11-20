@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--HorizontalItemView 自定义属性-->
+    <declare-styleable name="HorizontalItemView">
+
+        <attr name="HI_icon" format="reference"></attr>
+        <attr name="HI_showIcon" format="boolean"></attr>
+        <attr name="HI_title" format="string"></attr>
+        <attr name="HI_content" format="string"></attr>
+
+    </declare-styleable>
+
+
+</resources>

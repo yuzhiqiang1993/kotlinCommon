@@ -17,25 +17,31 @@ import kotlinx.android.synthetic.main.view_horizontal_item_layout.view.*
  *
  */
 
-class HorizontalItemView(context: Context, attrs: AttributeSet?) : ConstraintLayout(context, attrs) {
+class HorizontalItemView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+        ConstraintLayout(context, attrs, defStyleAttr) {
 
 
-    private var mRootView: View
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
+    constructor(context: Context) : this(context, null)
 
     private var iconRes: Int
-    private var title: String
+    private var title: String? = ""
+    private var content: String? = ""
     private var showIcon: Boolean
 
     init {
-        mRootView = LayoutInflater.from(context).inflate(R.layout.view_horizontal_item_layout, this);
+
+        LayoutInflater.from(context).inflate(R.layout.view_horizontal_item_layout, this);
+
 
         var typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalItemView)
 
         try {
-            iconRes = typeArr.getResourceId(R.styleable.HorizontalItemView_icon, R.drawable.ic_placeholder_img)
-            showIcon = typeArr.getBoolean(R.styleable.HorizontalItemView_showIcon, true)
+            iconRes = typeArr.getResourceId(R.styleable.HorizontalItemView_HI_icon, R.drawable.ic_placeholder_img)
+            showIcon = typeArr.getBoolean(R.styleable.HorizontalItemView_HI_showIcon, true)
 
-            title = typeArr.getString(R.styleable.HorizontalItemView_title)
+            title = typeArr.getString(R.styleable.HorizontalItemView_HI_title)
+            content = typeArr.getString(R.styleable.HorizontalItemView_HI_content)
 
         } finally {
             typeArr.recycle()
@@ -48,7 +54,13 @@ class HorizontalItemView(context: Context, attrs: AttributeSet?) : ConstraintLay
         }
 
         titleTv.text = title
+        contentTv.text = content
 
+    }
+
+
+    fun setContent(content: String) {
+        contentTv.text = content
     }
 
 }

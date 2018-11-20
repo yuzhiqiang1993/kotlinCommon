@@ -1,36 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.CustomViewActivity">
 
 
-
-
-
     <com.yzq.common.widget.HorizontalItemView
         android:layout_width="match_parent"
-        app:icon="@drawable/ic_error"
-        app:title="sadsadsa"
-        android:layout_height="wrap_content"/>
-
-
-
-
-    <com.yzq.common.widget.HorizontalItemView
-        android:layout_width="match_parent"
-        app:icon="@drawable/ic_camera"
-        app:title="相机"
-        android:layout_marginTop="@dimen/len_1"
-        android:layout_height="wrap_content"/>
-
-
-    <com.yzq.common.widget.ProgressButton
-        android:layout_width="@dimen/len_100"
-        android:layout_height="@dimen/len_60" />
+        android:layout_height="wrap_content"
+        app:HI_icon="@drawable/ic_camera"
+        app:HI_title="测试" />
 
 
 </android.support.v7.widget.LinearLayoutCompat>
