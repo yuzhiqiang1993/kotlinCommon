@@ -112,10 +112,17 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
 
-    protected fun initHeader(backIv: AppCompatImageView, titleTv: TextView, title: String) {
-
-        backIv.setOnClickListener { finish() }
+    protected fun initHeader(backIv: AppCompatImageView, titleTv: TextView, title: String, showBackHint: Boolean = false) {
         titleTv.text = title
+
+        backIv.setOnClickListener {
+            if (showBackHint) {
+                Dialog.showBackHintDialog().subscribe { finish() }
+            } else {
+                finish()
+            }
+
+        }
 
     }
 
