@@ -1,9 +1,12 @@
 package com.yzq.kotlincommon.ui
 
 import android.provider.MediaStore
+import android.support.v7.widget.Toolbar
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.UriUtils
 import com.qingmei2.rximagepicker.core.RxImagePicker
+import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.transform
 import com.yzq.common.img.ImageLoader
 import com.yzq.common.ui.BaseActivity
@@ -12,7 +15,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import kotlinx.android.synthetic.main.activity_image.*
 
-
+@Route(path = RoutePath.Main.IMG)
 class ImageActivity : BaseActivity() {
 
 
@@ -35,7 +38,8 @@ class ImageActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-
+        var toolbar = this.findViewById<Toolbar>(R.id.toolbar)
+        initToolbar(toolbar, "图片")
         imgFab.setOnClickListener {
 
             RxImagePicker.create().openCamera(this).subscribe({

@@ -63,4 +63,8 @@ class HorizontalItemView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         contentTv.text = content
     }
 
+    fun setTitle(title: String) {
+        titleTv.text = title
+    }
+
 }

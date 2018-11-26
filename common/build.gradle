@@ -101,12 +101,18 @@ dependencies {
     /*ARouter*/
     api "com.alibaba:arouter-api:$arouter_api"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
+    /*bottom_navigation_bar*/
     api "com.ashokvarma.android:bottom-navigation-bar:$bottom_navigation_bar"
+    /*baseRecyclerViewAdapterHelper*/
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$baseRecyclerViewAdapterHelper"
+    /*bga_badgeview*/
     api "cn.bingoogolapple:bga-badgeview-api:$bga_badgeview"
     kapt "cn.bingoogolapple:bga-badgeview-compiler:$bga_badgeview"
+    /*progressmanager*/
     api "me.jessyan:progressmanager:$progressmanager_version"
-    implementation project(':datepicker')
+    /*Datepicker*/
+    implementation 'com.ycuwq.widgets:datepicker:1.2.2'
+
 }
 
 

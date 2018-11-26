@@ -1,121 +1,72 @@
 package com.yzq.kotlincommon.ui
 
-import android.content.Intent
-import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.Toolbar
 import android.view.View
-import com.blankj.utilcode.util.LogUtils
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.yzq.common.net.GsonConvert
-import com.yzq.common.ui.BaseMvpActivity
-import com.yzq.common.widget.ItemDecoration
+import com.yzq.common.constants.RoutePath
+import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.adapter.NewsAdapter
-import com.yzq.kotlincommon.dagger.DaggerMainComponent
-import com.yzq.kotlincommon.data.NewsBean
-import com.yzq.kotlincommon.mvp.presenter.MainPresenter
-import com.yzq.kotlincommon.mvp.view.MainView
+import com.yzq.kotlincommon.adapter.MainAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
 
-class MainActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQuickAdapter.OnItemClickListener, View.OnClickListener, BaseQuickAdapter.OnItemChildClickListener {
+/**
+ * @description: 导航页面
+ * @author : yzq
+ * @date   : 2018/11/26
+ * @time   : 10:48
+ *
+ */
+
+class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
 
 
-    private lateinit var newsAdapter: NewsAdapter
-    private lateinit var operationItem: NewsBean.Data
+    private var items = arrayListOf<String>()
 
-    override fun initInject() {
 
-        DaggerMainComponent.builder().build().inject(this)
-
-    }
-
+    private lateinit var mainAdapter: MainAdapter
     override fun getContentLayoutId(): Int {
+
         return R.layout.activity_main
-    }
-
-
-    override fun initWidget() {
-        super.initWidget()
-        initToolbar(toolbar, "新闻")
-        recy.layoutManager = LinearLayoutManager(this)
-
-        fab.setOnClickListener(this)
-
-        initStateView(stateView, recy)
-
     }
 
 
     override fun initData() {
         super.initData()
-        showLoadding()
 
-        presenter.requestData()
+        items.add("新闻页面（Retrofit）")
+        items.add("任务页面（悬浮吸顶）")
+        items.add("图片页面（选择压缩）")
+        items.add("日期选择")
 
 
     }
 
+    override fun initWidget() {
+        super.initWidget()
 
-    override fun requestSuccess(data: List<NewsBean.Data>) {
+        var toolbar = this.findViewById<Toolbar>(R.id.toolbar)
+        initToolbar(toolbar, "导航")
 
-        if (data.size > 0) {
-            showData(data)
-        } else {
-            showContent()
+        mainAdapter = MainAdapter(R.layout.item_main_ayout, items)
+        mainAdapter.setOnItemClickListener(this)
+        recy.adapter=mainAdapter
+    }
+
+    override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
+
+        when (position) {
+            0 -> skip(RoutePath.Main.NEWS)
+            1 -> skip(RoutePath.Main.TASK)
+            2 -> skip(RoutePath.Main.IMG)
+            3 -> skip(RoutePath.Main.DATE_TIME)
+
         }
-
-
     }
 
-    private fun showData(data: List<NewsBean.Data>) {
+    private fun skip(path: String) {
 
-        newsAdapter = NewsAdapter(R.layout.item_news_content, data)
-        recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
-        recy.adapter = newsAdapter
-        newsAdapter.setOnItemClickListener(this)
-        newsAdapter.setOnItemChildClickListener(this)
-
-
-        showContent()
+        ARouter.getInstance().build(path).navigation()
     }
-
-
-    override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View?, position: Int) {
-
-        var data = GsonConvert.toJson(adapter.data.get(position))
-        LogUtils.i(data)
-    }
-
-
-    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-
-        operationItem = newsAdapter.data.get(position)
-
-        when (view!!.id) {
-            R.id.imgIv ->
-                preViewImg(operationItem.title, operationItem.thumbnailPicS)
-        }
-
-    }
-
-
-    override fun onClick(v: View) {
-
-        when (v.id) {
-            R.id.fab -> selectImg()
-        }
-
-
-    }
-
-    private fun selectImg() {
-
-        var intent = Intent()
-        intent.setClass(this, ImageActivity::class.java)
-        startActivity(intent)
-
-
-    }
-
 
 }

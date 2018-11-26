@@ -2,7 +2,10 @@ package com.yzq.kotlincommon.ui
 
 
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.Toolbar
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.yzq.common.constants.RoutePath
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.widget.HoverItemDecoration
 import com.yzq.common.widget.ItemDecoration
@@ -12,6 +15,7 @@ import com.yzq.kotlincommon.data.TaskBean
 import kotlinx.android.synthetic.main.activity_task.*
 import java.util.*
 
+@Route(path = RoutePath.Main.TASK)
 class TaskActivity : BaseActivity() {
 
 
@@ -28,7 +32,8 @@ class TaskActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-
+        var toolbar = this.findViewById<Toolbar>(R.id.toolbar)
+        initToolbar(toolbar, "任务")
         recy.layoutManager = LinearLayoutManager(this)
         recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
 

@@ -7,6 +7,9 @@
     tools:context=".ui.ImageActivity">
 
 
+    <include layout="@layout/toolbar"/>
+
+
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/imgIv"
         android:layout_width="match_parent"
@@ -21,6 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/len_16"
+        android:tint="@color/white"
         app:srcCompat="@drawable/ic_camera" />
 
 

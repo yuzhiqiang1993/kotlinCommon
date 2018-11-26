@@ -7,7 +7,7 @@ import com.yzq.common.img.GlideApp
 import com.yzq.common.img.ImageLoader
 import com.yzq.kotlincommon.App
 import com.yzq.kotlincommon.data.NewsBean
-import kotlinx.android.synthetic.main.item_news_content.view.*
+import kotlinx.android.synthetic.main.item_news_layout.view.*
 
 
 class NewsAdapter(layoutResId: Int, data: List<NewsBean.Data>) : BaseQuickAdapter<NewsBean.Data, BaseViewHolder>(layoutResId, data) {

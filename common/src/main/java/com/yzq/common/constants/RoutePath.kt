@@ -11,6 +11,17 @@ package com.yzq.common.constants
 
 class RoutePath {
 
+    class Main() {
+        companion object {
+            const val TASK = "/main/task"
+            const val NEWS = "/main/news"
+            const val IMG = "/main/img"
+            const val DATE_TIME = "/main/dateTime"
+
+
+        }
+    }
+
     /*用户模块*/
     class User {
         companion object {
