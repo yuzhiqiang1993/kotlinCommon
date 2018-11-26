@@ -38,6 +38,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         items.add("任务页面（悬浮吸顶）")
         items.add("图片页面（选择压缩）")
         items.add("日期选择")
+        items.add("Zxing")
 
 
     }
@@ -60,6 +61,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
             1 -> skip(RoutePath.Main.TASK)
             2 -> skip(RoutePath.Main.IMG)
             3 -> skip(RoutePath.Main.DATE_TIME)
+            4 -> skip(RoutePath.Main.ZXING)
 
         }
     }

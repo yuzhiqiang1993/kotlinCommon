@@ -40,5 +40,6 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger2"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
     implementation project(':common')
+    implementation 'com.github.yuzhiqiang1993:zxing:2.2.2'
 
 }

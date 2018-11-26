@@ -17,6 +17,7 @@ class RoutePath {
             const val NEWS = "/main/news"
             const val IMG = "/main/img"
             const val DATE_TIME = "/main/dateTime"
+            const val ZXING = "/main/zxing"
 
 
         }
