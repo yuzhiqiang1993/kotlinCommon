@@ -19,7 +19,7 @@ ext {
     progressmanager_version = "1.5.0"
     ok_http = "3.11.0"
     rx_android = "2.1.0"
-    rx_java = "2.2.3"
+    rx_java = "2.2.4"
     autodispose_version = "0.8.0"
     rx_kotlin = "2.3.0"
     dagger2 = "2.17"
