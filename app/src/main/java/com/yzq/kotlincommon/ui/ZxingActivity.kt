@@ -8,8 +8,18 @@ import com.yzq.common.permission.PermissionRequester
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
 import com.yzq.zxinglibrary.android.CaptureActivity
+import com.yzq.zxinglibrary.bean.ZxingConfig
 import com.yzq.zxinglibrary.common.Constant
 import kotlinx.android.synthetic.main.activity_zxing.*
+
+
+/**
+ * @description: 二维码扫描
+ * @author : yzq
+ * @date   : 2018/12/5
+ * @time   : 10:05
+ *
+ */
 
 @Route(path = RoutePath.Main.ZXING)
 class ZxingActivity : BaseActivity() {
@@ -22,10 +32,7 @@ class ZxingActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-        scanBtn.setOnClickListener {
-
-            excuteZxing()
-        }
+        scanBtn.setOnClickListener { excuteZxing() }
     }
 
     val REQUEST_CODE_SCAN = 555
@@ -35,6 +42,9 @@ class ZxingActivity : BaseActivity() {
                 .subscribe {
 
                     val intent = Intent(this, CaptureActivity::class.java)
+                    var zxingConfig = ZxingConfig()
+                    zxingConfig.isFullScreenScan = false
+                    intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig);
                     startActivityForResult(intent, REQUEST_CODE_SCAN)
                 }
 

@@ -39,7 +39,7 @@ class ImageActivity : BaseActivity() {
         super.initWidget()
 
         var toolbar = this.findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "图片")
+        initToolbar(toolbar, "图片",true)
         imgFab.setOnClickListener {
 
             RxImagePicker.create().openCamera(this).subscribe({
@@ -69,14 +69,4 @@ class ImageActivity : BaseActivity() {
 
     }
 
-
-    override fun onBackPressed() {
-
-        Dialog.showBackHintDialog()
-                .subscribe {
-                    finish()
-                }
-
-
-    }
 }

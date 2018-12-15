@@ -42,6 +42,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     private var stateView: StateView? = null
     private var contentLayout: View? = null
     private var isRefreshLayout: Boolean = false
+    private var showBackHint = false
 
     @Inject
     lateinit var compressImgModel: CompressImgModel
@@ -105,10 +106,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     protected open fun initData() {}
 
 
-    protected open fun initToolbar(toolbar: Toolbar, title: String) {
+    protected open fun initToolbar(toolbar: Toolbar, title: String, showBackHint: Boolean = false) {
         toolbar.title = title
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        this.showBackHint = showBackHint
     }
 
 
@@ -128,8 +130,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     override fun onSupportNavigateUp(): Boolean {
 
-        finish()
-
+        onBackPressed()
         return super.onSupportNavigateUp()
     }
 
@@ -168,21 +169,16 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         return super.dispatchTouchEvent(ev)
     }
 
-//
-//    override fun onBackPressed() {
-//        var fragments = supportFragmentManager.fragments
-//        if (fragments != null && fragments.size > 0) {
-//            for (fragment in fragments) {
-//                if (fragment is BaseFragment) {
-//                    if (fragment.onBackPressed()) {
-//                        return
-//                    }
-//                }
-//            }
-//        }
-//
-//        super.onBackPressed()
-//    }
+
+    override fun onBackPressed() {
+
+        if (showBackHint) {
+            Dialog.showBackHintDialog().subscribe { finish() }
+        } else {
+          finish()
+        }
+
+    }
 
 
     override fun onResume() {

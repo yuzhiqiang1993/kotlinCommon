@@ -118,6 +118,12 @@ abstract class BaseFragment : Fragment(), BaseView {
         EventBusUtil.unregister(this)
     }
 
+   fun onBackPressed(): Boolean {
+
+       return false
+
+    }
+
     override fun showLoadingDialog(content: String) {
 
         if (loaddingDialog == null) {
