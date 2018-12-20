@@ -39,6 +39,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         items.add("图片页面（选择压缩）")
         items.add("日期选择")
         items.add("Zxing")
+        items.add("登录页面（Preference）")
 
 
     }
@@ -62,6 +63,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
             2 -> skip(RoutePath.Main.IMG)
             3 -> skip(RoutePath.Main.DATE_TIME)
             4 -> skip(RoutePath.Main.ZXING)
+            5->skip(RoutePath.Main.LOGIN)
 
         }
     }

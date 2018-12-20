@@ -34,7 +34,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.DateTimeActivity" />
-        <activity android:name=".ui.ZxingActivity"></activity>
+        <activity android:name=".ui.ZxingActivity" />
+        <activity android:name=".ui.LoginActivity"></activity>
     </application>
 
 </manifest>

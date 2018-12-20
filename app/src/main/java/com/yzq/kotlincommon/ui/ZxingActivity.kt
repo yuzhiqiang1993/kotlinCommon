@@ -2,6 +2,7 @@ package com.yzq.kotlincommon.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.support.v7.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.permission.PermissionRequester
@@ -31,6 +32,9 @@ class ZxingActivity : BaseActivity() {
 
     override fun initWidget() {
         super.initWidget()
+
+        var toolbar = this.findViewById<Toolbar>(R.id.toolbar)
+        initToolbar(toolbar, "Zxing", true)
 
         scanBtn.setOnClickListener { excuteZxing() }
     }

@@ -7,6 +7,7 @@ import com.yanzhenjie.permission.Action
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.Permission
 import com.yanzhenjie.permission.Setting
+import com.yzq.common.AppContext
 import com.yzq.common.BaseApp
 import com.yzq.common.widget.Dialog
 import io.reactivex.Observable
@@ -29,7 +30,7 @@ object PermissionRequester {
         return Observable.create<Boolean> {
 
             emitter: ObservableEmitter<Boolean> ->
-            AndPermission.with(BaseApp.instance)
+            AndPermission.with(AppContext)
                     .runtime()
                     .permission(permissions)
                     .onGranted(Action {
@@ -48,7 +49,7 @@ object PermissionRequester {
     /*权限被拒绝*/
     private fun permissionDenied(permissions: List<String>) {
 
-        if (AndPermission.hasAlwaysDeniedPermission(BaseApp.instance, permissions)) {
+        if (AndPermission.hasAlwaysDeniedPermission(AppContext, permissions)) {
             showPermissionDailog(permissions)
         } else {
             ToastUtils.showShort("权限被拒绝")
@@ -60,7 +61,7 @@ object PermissionRequester {
     /*当用户点击拒绝且不再提示时显示提示框*/
     private fun showPermissionDailog(permissions: List<String>) {
 
-        val permissionNames = Permission.transformText(BaseApp.instance, permissions)
+        val permissionNames = Permission.transformText(AppContext, permissions)
         val message = "我们需要的 " + TextUtils.join("、", permissionNames) + " 权限被拒绝,这将导致部分功能不可用，请手动开启!"
 
 
@@ -70,7 +71,7 @@ object PermissionRequester {
                 .positiveText("去开启")
                 .negativeText("不开启")
                 .onPositive { _, _ ->
-                    AndPermission.with(BaseApp.instance)
+                    AndPermission.with(AppContext)
                             .runtime()
                             .setting()
                             .onComeback(Setting.Action {

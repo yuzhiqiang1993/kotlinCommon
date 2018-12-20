@@ -6,6 +6,7 @@ import com.amap.api.location.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
 import com.yanzhenjie.permission.Permission
+import com.yzq.common.AppContext
 import com.yzq.common.BaseApp
 import com.yzq.common.permission.PermissionRequester
 import com.yzq.common.utils.LocationUtils
@@ -35,7 +36,7 @@ class LocationModel @Inject constructor() : AMapLocationListener {
         if (locationClient == null) {
             synchronized(AMapLocationClient::class.java) {
                 if (locationClient == null) {
-                    locationClient = AMapLocationClient(BaseApp.instance)
+                    locationClient = AMapLocationClient(AppContext)
                 }
             }
         }
@@ -81,7 +82,7 @@ class LocationModel @Inject constructor() : AMapLocationListener {
 
                 view?.startLocation()
             } else {
-                Toast.makeText(BaseApp.instance, "该功能需要获取当前位置信息，请打开GPS", Toast.LENGTH_LONG).show()
+                Toast.makeText(AppContext, "该功能需要获取当前位置信息，请打开GPS", Toast.LENGTH_LONG).show()
                 LocationUtils.openGpsSettings()
             }
 

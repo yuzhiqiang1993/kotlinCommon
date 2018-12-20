@@ -1,7 +1,7 @@
 package com.yzq.common.utils
 
-import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.SPUtils
+import com.yzq.common.AppContext
+import com.yzq.common.extend.Preference
 
 
 /**
@@ -12,39 +12,9 @@ import com.blankj.utilcode.util.SPUtils
  *
  */
 
-class LocalSpUtils {
-
-
-    companion object {
-
-        private val SP_NAME = AppUtils.getAppPackageName()
-        /*用户名*/
-        private val ACCOUNT = "account"
-        /*密码*/
-        private val PWD = "pwd"
-
-
-        fun putAccount(account: String) {
-            SPUtils.getInstance(SP_NAME).put(ACCOUNT, account)
-
-        }
-
-        fun getAccount(): String? {
-            return SPUtils.getInstance(SP_NAME).getString(ACCOUNT)
-
-        }
-
-        fun putPwd(pwd: String) {
-            SPUtils.getInstance(SP_NAME).put(ACCOUNT, pwd)
-
-        }
-
-        fun getPwd(): String? {
-            return SPUtils.getInstance(SP_NAME).getString(PWD)
-
-        }
-
-    }
+object LocalSpUtils {
+    var account: String by Preference(AppContext, "account", "")
+    var pwd: String by Preference(AppContext, "pwd", "")
 
 
 }

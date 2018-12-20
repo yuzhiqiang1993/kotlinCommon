@@ -2,6 +2,7 @@ package com.yzq.common
 
 import android.app.Activity
 import android.app.Application
+import android.content.ContextWrapper
 import android.os.Bundle
 import android.support.v7.app.AppCompatDelegate
 import com.alibaba.android.arouter.launcher.ARouter
@@ -10,27 +11,24 @@ import com.blankj.utilcode.util.CrashUtils
 import com.blankj.utilcode.util.LogUtils
 import java.util.*
 
+private lateinit var INSTANCE:Application
+
+object AppContext:ContextWrapper(INSTANCE)
+
 open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
 
     private val activityStack: Stack<Activity> = Stack()
-
-
-    /*全局伴生对象*/
-    companion object {
-        lateinit var instance: BaseApp
-    }
 
     init {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
 
     }
 
-
     override fun onCreate() {
         super.onCreate()
-        instance = this
 
+        INSTANCE=this
         /*初始化Utils*/
         initUtils()
 
