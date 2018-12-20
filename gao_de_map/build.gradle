@@ -44,6 +44,7 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger2"
     implementation project(':common')
 
-    api 'com.amap.api:location:4.3.0'
+    api 'com.amap.api:location:4.4.0'
+    api 'com.amap.api:3dmap:6.5.0'
 
 }

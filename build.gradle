@@ -26,6 +26,7 @@ allprojects {
 
     group "yuzhiqiang"
     repositories {
+
         google()
         jcenter()
         maven {

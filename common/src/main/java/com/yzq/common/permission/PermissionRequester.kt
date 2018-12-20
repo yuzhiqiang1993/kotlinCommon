@@ -3,12 +3,10 @@ package com.yzq.common.permission
 import android.text.TextUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.yanzhenjie.permission.Action
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.Permission
 import com.yanzhenjie.permission.Setting
 import com.yzq.common.AppContext
-import com.yzq.common.BaseApp
 import com.yzq.common.widget.Dialog
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
@@ -27,20 +25,17 @@ object PermissionRequester {
     /*申请权限*/
     fun request(vararg permissions: String): Observable<Boolean> {
 
-        return Observable.create<Boolean> {
-
-            emitter: ObservableEmitter<Boolean> ->
+        return Observable.create<Boolean> { emitter: ObservableEmitter<Boolean> ->
             AndPermission.with(AppContext)
                     .runtime()
                     .permission(permissions)
-                    .onGranted(Action {
+                    .onGranted {
                         emitter.onNext(true)
                         emitter.onComplete()
-
-                    })
-                    .onDenied(Action {
+                    }
+                    .onDenied {
                         permissionDenied(it)
-                    }).start()
+                    }.start()
         }
 
 
