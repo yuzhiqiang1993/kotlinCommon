@@ -7,6 +7,7 @@ import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.Permission
 import com.yanzhenjie.permission.Setting
 import com.yzq.common.AppContext
+import com.yzq.common.BaseApp
 import com.yzq.common.widget.Dialog
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
@@ -60,20 +61,17 @@ object PermissionRequester {
         val message = "我们需要的 " + TextUtils.join("、", permissionNames) + " 权限被拒绝,这将导致部分功能不可用，请手动开启!"
 
 
-        Dialog.getNewBuilder()
-                .title("开启权限")
-                .content(message)
-                .positiveText("去开启")
-                .negativeText("不开启")
-                .onPositive { _, _ ->
+        Dialog.showPositiveCallbackDialog(title = "开启权限", content = message, positiveText = "去开启", negativeText = "不开启")
+                .subscribe {
                     AndPermission.with(AppContext)
                             .runtime()
                             .setting()
-                            .onComeback(Setting.Action {
-                                // 用户从设置回来了。
+                            .onComeback {
+
                                 LogUtils.i("从设置回来了")
-                            }).start()
-                }.show()
+                            }.start()
+
+                }
 
 
     }
