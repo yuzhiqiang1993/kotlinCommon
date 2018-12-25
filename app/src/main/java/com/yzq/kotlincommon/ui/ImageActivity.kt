@@ -1,16 +1,12 @@
 package com.yzq.kotlincommon.ui
 
-import android.provider.MediaStore
 import android.support.v7.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.UriUtils
-import com.qingmei2.rximagepicker.core.RxImagePicker
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.transform
 import com.yzq.common.img.ImageLoader
+import com.yzq.common.img.ImagePicker
 import com.yzq.common.ui.BaseActivity
-import com.yzq.common.widget.Dialog
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import kotlinx.android.synthetic.main.activity_image.*
@@ -39,24 +35,18 @@ class ImageActivity : BaseActivity() {
         super.initWidget()
 
         var toolbar = this.findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "图片",true)
+        initToolbar(toolbar, "图片", true)
         imgFab.setOnClickListener {
 
-            RxImagePicker.create().openCamera(this).subscribe({
-                var file = UriUtils.uri2File(it.uri, MediaStore.Images.Media.DATA)
-
-                LogUtils.i("file.path=${file.path}")
-                LogUtils.i("file.name=${file.name}")
-                LogUtils.i("file.length=${file.length()}")
-
-                //  compressImgPresenter.compressImg(file.path)
-                compressImgModel.compressImgWithWatermark(file.path)
-                        .transform(this)
-                        .subscribe {
-                            imgPath = it
-                            ImageLoader.loadCenterCrop(imgPath, imgIv)
-                        }
-            })
+            ImagePicker.openCamera(this)
+                    .subscribe { file ->
+                        compressImgModel.compressImgWithWatermark(file.path)
+                                .transform(this)
+                                .subscribe {
+                                    imgPath = it
+                                    ImageLoader.loadCenterCrop(imgPath, imgIv)
+                                }
+                    }
 
 
         }
