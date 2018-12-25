@@ -2,8 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-noarg'
-apply plugin: 'kotlin-allopen'
 
 kapt {
     arguments {
@@ -34,16 +32,6 @@ android {
 
     }
 
-
-}
-
-
-noArg {
-    annotation("com.yzq.common.annotations.NoArgs")
-}
-
-allOpen {
-    annotation("com.yzq.common.annotations.AllOpen")
 
 }
 
