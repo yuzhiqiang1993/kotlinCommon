@@ -30,7 +30,7 @@ object ImagePicker {
                     .subscribe {
                         RxImagePicker.create().openCamera(context)
                                 .subscribe {
-                                    val file = UriUtils.uri2File(it.uri, MediaStore.Images.Media.DATA)
+                                    val file = UriUtils.uri2File(it.uri)
                                     emitter.onNext(file)
                                     emitter.onComplete()
                                 }
@@ -51,7 +51,7 @@ object ImagePicker {
                     .subscribe {
                         RxImagePicker.create().openGallery(context)
                                 .subscribe {
-                                    val file = UriUtils.uri2File(it.uri, MediaStore.Images.Media.DATA)
+                                    val file = UriUtils.uri2File(it.uri)
                                     emitter.onNext(file)
                                     emitter.onComplete()
                                 }
