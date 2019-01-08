@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.yzq.gao_de_map">
+    package="com.yzq.gao_de_map">
 
 
     <application>
@@ -7,10 +7,10 @@
 
         <!-- 设置key -->
         <meta-data
-                android:name="com.amap.api.v2.apikey"
-                android:value="b0635a318e7d234ffff52af98c1a8b1e"/>
+            android:name="com.amap.api.v2.apikey"
+            android:value="b0635a318e7d234ffff52af98c1a8b1e" />
         <!-- 定位需要的服务 -->
-        <service android:name="com.amap.api.location.APSService"/>
+        <service android:name="com.amap.api.location.APSService" />
 
 
     </application>
