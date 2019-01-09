@@ -37,7 +37,7 @@ ext {
     baseRecyclerViewAdapterHelper = "2.9.44"
     jpush = "3.1.1"
     jcore = "1.1.9"
-    photoview = "2.2.0"
+    photoview = "2.3.0"
     objectboxVersion = "2.2.0"
     utilcode = "1.22.7"
     arouter_api = "1.4.1"

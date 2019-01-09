@@ -94,6 +94,7 @@ dependencies {
     /*ARouter*/
     api "com.alibaba:arouter-api:$arouter_api"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
+
     /*bottom_navigation_bar*/
     api "com.ashokvarma.android:bottom-navigation-bar:$bottom_navigation_bar"
     /*baseRecyclerViewAdapterHelper*/
@@ -104,15 +105,3 @@ dependencies {
     implementation "com.ycuwq.widgets:datepicker:$datepickerVersion"
 
 }
-
-//configurations.all {
-//    resolutionStrategy.eachDependency {
-//        DependencyResolveDetails details ->
-//            def requested = details.requested
-//            if (requested.group == 'com.android.support') {
-//                if (!requested.name.startsWith("multidex")) {
-//                    details.useVersion "$android_support"
-//                }
-//            }
-//    }
-//}
