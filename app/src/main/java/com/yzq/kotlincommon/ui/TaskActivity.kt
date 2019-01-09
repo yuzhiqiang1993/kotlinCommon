@@ -1,8 +1,8 @@
 package com.yzq.kotlincommon.ui
 
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.widget.Toolbar
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
@@ -34,7 +34,7 @@ class TaskActivity : BaseActivity() {
 
         var toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "任务")
-        recy.layoutManager = LinearLayoutManager(this)
+        recy.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
 
 

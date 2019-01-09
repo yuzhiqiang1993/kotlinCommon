@@ -4,7 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.ContextWrapper
 import android.os.Bundle
-import android.support.v7.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.CrashUtils

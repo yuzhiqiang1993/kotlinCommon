@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -9,7 +9,7 @@
         android:padding="@dimen/len_10">
 
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iconIv"
             app:srcCompat="@drawable/ic_no_data"
             android:layout_width="@dimen/len_20"
@@ -48,7 +48,7 @@
             app:layout_constraintEnd_toStartOf="@id/arrowIv"
             android:layout_height="match_parent"/>
 
-    <android.support.v7.widget.AppCompatImageView
+    <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/arrowIv"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="@dimen/len_16"
@@ -59,4 +59,4 @@
             app:srcCompat="@drawable/ic_arrow_right"/>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

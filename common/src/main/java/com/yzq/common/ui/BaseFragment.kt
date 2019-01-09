@@ -3,11 +3,10 @@ package com.yzq.common.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.afollestad.materialdialogs.MaterialDialog
 import com.yzq.common.base.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
@@ -39,7 +38,8 @@ abstract class BaseFragment : Fragment(), BaseView {
     @Inject
     lateinit var compressImgModel: CompressImgModel
 
-    override fun onAttach(context: Context?) {
+
+    override fun onAttach(context: Context) {
         super.onAttach(context)
 
         initArgs(arguments!!)
@@ -118,9 +118,9 @@ abstract class BaseFragment : Fragment(), BaseView {
         EventBusUtil.unregister(this)
     }
 
-   fun onBackPressed(): Boolean {
+    fun onBackPressed(): Boolean {
 
-       return false
+        return false
 
     }
 
@@ -175,7 +175,7 @@ abstract class BaseFragment : Fragment(), BaseView {
         contentLayout?.visibility = View.VISIBLE
 
         if (isRefreshLayout and (contentLayout != null)) {
-            (contentLayout as SwipeRefreshLayout).isRefreshing = false
+            (contentLayout as androidx.swiperefreshlayout.widget.SwipeRefreshLayout).isRefreshing = false
         }
 
 

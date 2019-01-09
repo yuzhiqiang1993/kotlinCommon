@@ -1,7 +1,7 @@
 package com.yzq.common.widget
 
 import android.content.Context
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.yzq.common.R
 
 

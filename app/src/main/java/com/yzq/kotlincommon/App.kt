@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon
 
 import android.content.Context
-import android.support.multidex.MultiDex
+import androidx.multidex.MultiDex
 import com.yzq.common.BaseApp
 
 class App : BaseApp() {

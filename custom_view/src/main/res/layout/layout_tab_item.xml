@@ -20,7 +20,7 @@
             android:textColor="#000000" />
 
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/tabIconIv"
             android:layout_width="14dp"
             android:layout_height="14dp"

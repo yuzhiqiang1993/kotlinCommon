@@ -39,13 +39,13 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api "com.android.support:appcompat-v7:$android_support"
-    api "com.android.support:support-v4:$android_support"
-    api "com.android.support:design:$android_support"
-    api "com.android.support:support-vector-drawable:$android_support"
-    api "com.android.support.constraint:constraint-layout:$constraint_version"
-    api "com.android.support:support-v4:$android_support"
-    api "com.android.support:support-annotations:$android_support"
+    api 'androidx.appcompat:appcompat:1.1.0-alpha01'
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    api 'com.google.android.material:material:1.1.0-alpha02'
+    api 'androidx.vectordrawable:vectordrawable:1.1.0-alpha01'
+    api 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    api 'androidx.annotation:annotation:1.0.1'
 
     /*dagger2*/
     api "com.google.dagger:dagger:$dagger2"
@@ -105,14 +105,14 @@ dependencies {
 }
 
 
-configurations.all {
-    resolutionStrategy.eachDependency {
-        DependencyResolveDetails details ->
-            def requested = details.requested
-            if (requested.group == 'com.android.support') {
-                if (!requested.name.startsWith("multidex")) {
-                    details.useVersion "$android_support"
-                }
-            }
-    }
-}
+//configurations.all {
+//    resolutionStrategy.eachDependency {
+//        DependencyResolveDetails details ->
+//            def requested = details.requested
+//            if (requested.group == 'com.android.support') {
+//                if (!requested.name.startsWith("multidex")) {
+//                    details.useVersion "$android_support"
+//                }
+//            }
+//    }
+//}

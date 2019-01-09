@@ -4,6 +4,8 @@ buildscript {
 
     apply from: file("config.gradle")
     repositories {
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
         google()
         jcenter()
     }
@@ -24,7 +26,8 @@ allprojects {
 
     group "yuzhiqiang"
     repositories {
-
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
         google()
         jcenter()
         maven {

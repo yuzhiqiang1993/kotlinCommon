@@ -1,6 +1,6 @@
 package com.yzq.kotlincommon.ui
 
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.transform

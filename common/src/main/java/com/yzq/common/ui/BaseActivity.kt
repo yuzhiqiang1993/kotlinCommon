@@ -2,10 +2,10 @@ package com.yzq.common.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.AppCompatImageView
-import android.support.v7.widget.Toolbar
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.Toolbar
 import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView
@@ -247,7 +247,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         contentLayout?.visibility = View.VISIBLE
 
         if (isRefreshLayout and (contentLayout != null)) {
-            (contentLayout as SwipeRefreshLayout).isRefreshing = false
+            (contentLayout as androidx.swiperefreshlayout.widget.SwipeRefreshLayout).isRefreshing = false
         }
 
 

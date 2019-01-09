@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
 
-    <android.support.v7.widget.LinearLayoutCompat
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/loaddingLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,18 +16,18 @@
             android:layout_width="@dimen/len_24"
             android:layout_height="@dimen/len_24" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:gravity="center"
             android:text="@string/loadding" />
 
-    </android.support.v7.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     <!--异常布局  无数据或无网络或连接超时-->
-    <android.support.v7.widget.LinearLayoutCompat
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/abnormalLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,12 +35,12 @@
         android:orientation="vertical"
         android:visibility="visible">
 
-        <android.support.v7.widget.AppCompatImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/hintImg"
             android:layout_width="@dimen/len_128"
             android:layout_height="@dimen/len_96" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/hintTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,7 +50,7 @@
             android:textColor="@color/gray_400"
             android:textSize="@dimen/font_18" />
 
-        <android.support.v7.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/retryBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
             android:text="@string/retry"
             android:textColor="@color/white" />
 
-    </android.support.v7.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 </RelativeLayout>
