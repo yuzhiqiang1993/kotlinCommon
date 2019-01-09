@@ -1,5 +1,6 @@
 package com.yzq.common.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
@@ -13,7 +14,6 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.yzq.common.base.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
-import com.yzq.common.extend.transform
 import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.widget.Dialog
 import com.yzq.common.widget.StateView
@@ -115,12 +115,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
 
+    @SuppressLint("AutoDispose")
     protected fun initHeader(backIv: AppCompatImageView, titleTv: TextView, title: String, showBackHint: Boolean = false) {
         titleTv.text = title
 
         backIv.setOnClickListener {
             if (showBackHint) {
-                Dialog.showBackHintDialog().transform(this).subscribe { finish() }
+                Dialog.showBackHintDialog().subscribe { finish() }
             } else {
                 finish()
             }
@@ -171,10 +172,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
 
+    @SuppressLint("AutoDispose")
     override fun onBackPressed() {
 
         if (showBackHint) {
-            Dialog.showBackHintDialog().transform(this).subscribe { finish() }
+            Dialog.showBackHintDialog().subscribe { finish() }
         } else {
             finish()
         }
