@@ -39,12 +39,19 @@ ext {
     jcore = "1.1.9"
     photoview = "2.3.0"
     objectboxVersion = "2.2.0"
-    utilcode = "1.22.7"
+    utilcode = "1.22.10"
     arouter_api = "1.4.1"
     arouter_compiler = "1.2.2"
     walleVersion = "1.1.6"
     andResGuardVersion = "1.2.15"
     rx_imgpicker = "2.2.0"
     datepickerVersion="1.2.2"
+
+    signConfigs = [
+            storeFilePath: "kotlinCommon.jks",
+            storePwd     : "123456",
+            keyAlias     : "kotlinCommon",
+            keypwd       : "123456"
+    ]
 
 }

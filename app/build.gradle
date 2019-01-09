@@ -3,7 +3,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-
+apply plugin: 'walle'
+apply plugin: 'AndResGuard'
 
 android {
     compileSdkVersion compile_sdk_version
@@ -16,16 +17,32 @@ android {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    signingConfigs {
+
+        debug {}
+        release {
+            storePassword rootProject.ext.signConfigs.storePwd
+            keyAlias rootProject.ext.signConfigs.keyAlias
+            keyPassword rootProject.ext.signConfigs.keypwd
+            storeFile file(rootProject.ext.signConfigs.storeFilePath)
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
 }
 
@@ -48,4 +65,51 @@ dependencies {
     implementation 'com.github.yuzhiqiang1993:zxing:2.2.5'
 
 
+}
+
+
+
+walle {
+    apkOutputFolder = new File("${project.buildDir}/outputs/channels");
+    apkFileNameFormat = '${projectName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk';
+    channelFile = new File("${project.getProjectDir()}/channel")
+}
+
+
+andResGuard {
+    // mappingFile = file("./resource_mapping.txt")
+    mappingFile = null
+    use7zip = true
+    useSign = true
+    // 打开这个开关，会keep住所有资源的原始路径，只混淆资源的名字
+    keepRoot = false
+    whiteList = [
+            // for your icon
+            "R.drawable.icon",
+            // for fabric
+            "R.string.com.crashlytics.*",
+            // for google-services
+            "R.string.google_app_id",
+            "R.string.gcm_defaultSenderId",
+            "R.string.default_web_client_id",
+            "R.string.ga_trackingId",
+            "R.string.firebase_database_url",
+            "R.string.google_api_key",
+            "R.string.google_crash_reporting_api_key"
+    ]
+    compressFilePattern = [
+            "*.png",
+            "*.jpg",
+            "*.jpeg",
+            "*.gif",
+    ]
+    sevenzip {
+        artifact = "com.tencent.mm:SevenZip:$andResGuardVersion"
+    }
+}
+
+afterEvaluate {
+    tasks.getByName('assembleReleaseChannels') {
+        dependsOn(resguardRelease)
+    }
 }

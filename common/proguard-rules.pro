@@ -125,7 +125,7 @@
 -keepclassmembers  class **$** extends com.chad.library.adapter.base.BaseViewHolder {
      <init>(...);
 }
-
+-keep class com.qingmei2.rximagepicker.** {*;}
 
 #badgeview
 #-dontwarn cn.bingoogolapple.badgeview.**

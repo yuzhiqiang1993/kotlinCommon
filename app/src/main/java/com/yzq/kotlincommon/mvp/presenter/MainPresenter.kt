@@ -1,6 +1,8 @@
 package com.yzq.kotlincommon.mvp.presenter
 
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.google.gson.Gson
 import com.yzq.common.extend.transform
 import com.yzq.common.mvp.presenter.BasePresenter
 import com.yzq.common.rx.BaseObserver
@@ -18,15 +20,17 @@ class MainPresenter @Inject constructor() : BasePresenter<MainView>() {
         model.getData()
                 .transform(lifecycleOwner)
                 .subscribe(object : BaseObserver<NewsBean>(view) {
-            override fun onNext(newsBean: NewsBean) {
+                    override fun onNext(newsBean: NewsBean) {
 
-                if (newsBean.data != null) {
-                    view.requestSuccess(newsBean.data)
-                } else {
-                    ToastUtils.showLong("数据请求错误")
-                }
-            }
-        })
+                        LogUtils.i(Gson().toJson(newsBean))
+
+                        if (newsBean.stat.equals("1")) {
+                            view.requestSuccess(newsBean.data)
+                        } else {
+                            ToastUtils.showLong("数据请求错误")
+                        }
+                    }
+                })
     }
 
 

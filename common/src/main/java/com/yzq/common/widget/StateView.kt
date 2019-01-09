@@ -30,7 +30,7 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : Li
 
     init {
 
-        LogUtils.i("StateView init")
+
 
         view = LayoutInflater.from(context).inflate(R.layout.layout_state_view, this)
 
