@@ -2,17 +2,18 @@ package com.yzq.common.ui
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.Toolbar
 import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.Toolbar
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.yzq.common.base.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
+import com.yzq.common.extend.transform
 import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.widget.Dialog
 import com.yzq.common.widget.StateView
@@ -119,7 +120,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
         backIv.setOnClickListener {
             if (showBackHint) {
-                Dialog.showBackHintDialog().subscribe { finish() }
+                Dialog.showBackHintDialog().transform(this).subscribe { finish() }
             } else {
                 finish()
             }
@@ -173,9 +174,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     override fun onBackPressed() {
 
         if (showBackHint) {
-            Dialog.showBackHintDialog().subscribe { finish() }
+            Dialog.showBackHintDialog().transform(this).subscribe { finish() }
         } else {
-          finish()
+            finish()
         }
 
     }
@@ -247,7 +248,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         contentLayout?.visibility = View.VISIBLE
 
         if (isRefreshLayout and (contentLayout != null)) {
-            (contentLayout as androidx.swiperefreshlayout.widget.SwipeRefreshLayout).isRefreshing = false
+            (contentLayout as SwipeRefreshLayout).isRefreshing = false
         }
 
 

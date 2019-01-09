@@ -1,11 +1,12 @@
 package com.yzq.kotlincommon.ui
 
-import androidx.appcompat.widget.Toolbar
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.ui.BaseActivity
+import com.yzq.common.widget.ItemDecoration
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,6 +41,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         items.add("日期选择")
         items.add("Zxing")
         items.add("登录页面（Preference）")
+        items.add("AutoDispose")
 
 
     }
@@ -52,7 +54,8 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
 
         mainAdapter = MainAdapter(R.layout.item_main_ayout, items)
         mainAdapter.setOnItemClickListener(this)
-        recy.adapter=mainAdapter
+        recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
+        recy.adapter = mainAdapter
     }
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
@@ -63,7 +66,8 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
             2 -> skip(RoutePath.Main.IMG)
             3 -> skip(RoutePath.Main.DATE_TIME)
             4 -> skip(RoutePath.Main.ZXING)
-            5->skip(RoutePath.Main.LOGIN)
+            5 -> skip(RoutePath.Main.LOGIN)
+            6 -> skip(RoutePath.Main.AUTODISPOSE)
 
         }
     }

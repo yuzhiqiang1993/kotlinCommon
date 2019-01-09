@@ -4,7 +4,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.uber.autodispose.ObservableSubscribeProxy
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
-import com.uber.autodispose.kotlin.autoDisposable
+import com.uber.autodispose.autoDisposable
+
 import com.yzq.common.data.BaseResp
 import com.yzq.common.data.ResponseCode
 import com.yzq.common.rx.RxSchedulers

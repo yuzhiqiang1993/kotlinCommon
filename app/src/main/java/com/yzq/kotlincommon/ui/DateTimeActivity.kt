@@ -3,6 +3,7 @@ package com.yzq.kotlincommon.ui
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.extend.transform
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.widget.Dialog
 import com.yzq.kotlincommon.R
@@ -26,8 +27,8 @@ class DateTimeActivity : BaseActivity() {
         initToolbar(toolbar, "日期时间")
 
 
-        selectYearBtn.setOnClickListener { Dialog.selectYear().subscribe { yearTv.text = it } }
-        selectDateBtn.setOnClickListener { Dialog.selectDate().subscribe { dateTv.text = it } }
-        selectTimeBtn.setOnClickListener { Dialog.selectHourAndMinute().subscribe { timeTv.text = it } }
+        selectYearBtn.setOnClickListener { Dialog.selectYear().transform(this).subscribe { yearTv.text = it } }
+        selectDateBtn.setOnClickListener { Dialog.selectDate().transform(this).subscribe { dateTv.text = it } }
+        selectTimeBtn.setOnClickListener { Dialog.selectHourAndMinute().transform(this).subscribe { timeTv.text = it } }
     }
 }

@@ -23,6 +23,11 @@ android {
         abortOnError false
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             consumerProguardFiles 'proguard-rules.pro'
@@ -39,13 +44,12 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api 'androidx.appcompat:appcompat:1.1.0-alpha01'
-    api 'androidx.legacy:legacy-support-v4:1.0.0'
-    api 'com.google.android.material:material:1.1.0-alpha02'
-    api 'androidx.vectordrawable:vectordrawable:1.1.0-alpha01'
-    api 'androidx.constraintlayout:constraintlayout:2.0.0-alpha3'
-    api 'androidx.legacy:legacy-support-v4:1.0.0'
-    api 'androidx.annotation:annotation:1.0.1'
+    api "androidx.appcompat:appcompat:$appcompat"
+    api "androidx.legacy:legacy-support-v4:$legacy_support_v4"
+    api "com.google.android.material:material:$material"
+    api "androidx.vectordrawable:vectordrawable:$vectordrawable"
+    api "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    api "androidx.annotation:annotation:$annotation"
 
     /*dagger2*/
     api "com.google.dagger:dagger:$dagger2"
@@ -56,8 +60,8 @@ dependencies {
     api "io.reactivex.rxjava2:rxandroid:$rx_android"
 
     /*AutoDispose*/
-    api "com.uber.autodispose:autodispose-kotlin:$autodispose_version"
-    api "com.uber.autodispose:autodispose-android-archcomponents-kotlin:$autodispose_version"
+    api "com.uber.autodispose:autodispose-ktx:$autodispose_version"
+    api "com.uber.autodispose:autodispose-android-archcomponents-ktx:$autodispose_version"
 
     /*eventbus*/
     api "org.greenrobot:eventbus:$eventbus"
@@ -94,16 +98,12 @@ dependencies {
     api "com.ashokvarma.android:bottom-navigation-bar:$bottom_navigation_bar"
     /*baseRecyclerViewAdapterHelper*/
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$baseRecyclerViewAdapterHelper"
-    /*bga_badgeview*/
-    api "cn.bingoogolapple:bga-badgeview-api:$bga_badgeview"
-    kapt "cn.bingoogolapple:bga-badgeview-compiler:$bga_badgeview"
     /*progressmanager*/
     api "me.jessyan:progressmanager:$progressmanager_version"
     /*Datepicker*/
-    implementation 'com.ycuwq.widgets:datepicker:1.2.2'
+    implementation "com.ycuwq.widgets:datepicker:$datepickerVersion"
 
 }
-
 
 //configurations.all {
 //    resolutionStrategy.eachDependency {

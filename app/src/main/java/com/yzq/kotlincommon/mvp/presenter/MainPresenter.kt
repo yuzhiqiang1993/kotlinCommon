@@ -15,7 +15,9 @@ class MainPresenter @Inject constructor() : BasePresenter<MainView>() {
     lateinit var model: MainModel
 
     fun requestData() {
-        model.getData().transform(lifecycleOwner).subscribe(object : BaseObserver<NewsBean>(view) {
+        model.getData()
+                .transform(lifecycleOwner)
+                .subscribe(object : BaseObserver<NewsBean>(view) {
             override fun onNext(newsBean: NewsBean) {
 
                 if (newsBean.data != null) {

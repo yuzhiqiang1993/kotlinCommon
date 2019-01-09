@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.AutodisposeActivity">
+
+    <include layout="@layout/toolbar" />
+
+
+    <TextView
+        android:id="@+id/countTv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_48"
+        android:gravity="center"
+        android:hint="0"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_18" />
+
+
+    <Button
+        android:id="@+id/countBtn"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开始计数" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

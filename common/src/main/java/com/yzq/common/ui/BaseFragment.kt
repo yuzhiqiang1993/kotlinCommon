@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.yzq.common.base.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
@@ -175,7 +176,7 @@ abstract class BaseFragment : Fragment(), BaseView {
         contentLayout?.visibility = View.VISIBLE
 
         if (isRefreshLayout and (contentLayout != null)) {
-            (contentLayout as androidx.swiperefreshlayout.widget.SwipeRefreshLayout).isRefreshing = false
+            (contentLayout as SwipeRefreshLayout).isRefreshing = false
         }
 
 
