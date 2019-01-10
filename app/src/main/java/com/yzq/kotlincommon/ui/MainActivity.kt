@@ -49,7 +49,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
     override fun initWidget() {
         super.initWidget()
 
-        var toolbar = this.findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "导航")
 
         mainAdapter = MainAdapter(R.layout.item_main_ayout, items)

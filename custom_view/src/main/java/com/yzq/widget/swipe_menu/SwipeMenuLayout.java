@@ -38,7 +38,7 @@ public class SwipeMenuLayout extends ViewGroup {
     //上一次的xy
     private PointF mLastP = new PointF();
 
-    //在Intercept函数的up时，判断这个变量，如果仍为true 说明是点击事件，则关闭菜单。 
+    //在Intercept函数的up时，判断这个变量，如果仍为true 说明是点击事件，则关闭菜单。
     private boolean isUnMoved = true;
 
     //2016 11 03 add,判断手指起始落点，如果距离属于滑动了，就屏蔽一切点击事件。

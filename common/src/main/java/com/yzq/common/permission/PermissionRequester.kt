@@ -1,5 +1,6 @@
 package com.yzq.common.permission
 
+import android.annotation.SuppressLint
 import android.text.TextUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
@@ -55,6 +56,7 @@ object PermissionRequester {
     }
 
     /*当用户点击拒绝且不再提示时显示提示框*/
+    @SuppressLint("CheckResult")
     private fun showPermissionDailog(permissions: List<String>) {
 
         val permissionNames = Permission.transformText(AppContext, permissions)

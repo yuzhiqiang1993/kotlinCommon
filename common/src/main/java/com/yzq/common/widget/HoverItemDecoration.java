@@ -4,9 +4,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 /**
@@ -41,14 +43,6 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
      * 分组item的画笔
      */
     private Paint itemPaint;
-    /**
-     * 分组item的颜色
-     */
-    private int itemHoverPaintColor = 0xFFf4f4f4;
-    /**
-     * 分组文字的颜色
-     */
-    private int textPaintColor = 0xFF999999;
 
     /**
      * 悬停item的画笔
@@ -75,6 +69,10 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
         width = content.getResources().getDisplayMetrics().widthPixels;
 
         itemPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        /**
+         * 分组item的颜色
+         */
+        int itemHoverPaintColor = 0xFFf4f4f4;
         itemPaint.setColor(itemHoverPaintColor);
 
         itemHoverPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -85,6 +83,10 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
         itemDivideHeight = dp2px(1);
 
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        /**
+         * 分组文字的颜色
+         */
+        int textPaintColor = 0xFF999999;
         textPaint.setColor(textPaintColor);
         textPaint.setTextSize(sp2px(15));
 
@@ -92,7 +94,7 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.onDraw(c, parent, state);
         int count = parent.getChildCount();
         for (int i = 0; i < count; i++) {
@@ -119,7 +121,7 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDrawOver(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.onDrawOver(c, parent, state);
         //绘制悬停的view
 
@@ -146,7 +148,7 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         int position = parent.getChildAdapterPosition(view);
         //如果是分组第一个就留出绘制item的高度
@@ -185,11 +187,7 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
             String prevItemText = bindItemTextCallback.getItemText(position - 1);
             String currentItemText = bindItemTextCallback.getItemText(position);
             //上一个和当前位置的值一样说明是同一个组的否则就是新的一组
-            if (prevItemText.equals(currentItemText)) {
-                return false;
-            } else {
-                return true;
-            }
+            return !prevItemText.equals(currentItemText);
 
         }
     }
@@ -198,23 +196,14 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
         String getItemText(int position);
     }
 
-    /**
-     * dp 2 px
-     *
-     * @param dpVal
-     */
-    protected int dp2px(int dpVal) {
+
+    private int dp2px(int dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 dpVal, context.getResources().getDisplayMetrics());
     }
 
-    /**
-     * sp 2 px
-     *
-     * @param spVal
-     * @return
-     */
-    protected int sp2px(int spVal) {
+
+    private int sp2px(int spVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
                 spVal, context.getResources().getDisplayMetrics());
 

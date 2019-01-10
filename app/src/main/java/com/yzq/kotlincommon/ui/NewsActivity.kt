@@ -83,7 +83,7 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View?, position: Int) {
 
-        var data = GsonConvert.toJson(adapter.data.get(position))
+        val data = GsonConvert.toJson(adapter.data.get(position))
         LogUtils.i(data)
     }
 

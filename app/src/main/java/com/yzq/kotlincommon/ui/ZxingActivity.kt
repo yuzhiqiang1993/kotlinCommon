@@ -33,7 +33,7 @@ class ZxingActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-        var toolbar = this.findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "Zxing", true)
 
         scanBtn.setOnClickListener { excuteZxing() }
@@ -46,7 +46,7 @@ class ZxingActivity : BaseActivity() {
                 .subscribe {
 
                     val intent = Intent(this, CaptureActivity::class.java)
-                    var zxingConfig = ZxingConfig()
+                    val zxingConfig = ZxingConfig()
                     zxingConfig.isFullScreenScan = false
                     intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig);
                     startActivityForResult(intent, REQUEST_CODE_SCAN)

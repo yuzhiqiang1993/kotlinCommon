@@ -4,29 +4,28 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 
-
- /**
- * @description: 列表分割线
+/**
  * @author : yzq
- * @date   : 2018/9/1
- * @time   : 10:34
- *
+ * @description: 列表分割线
+ * @date : 2018/9/1
+ * @time : 10:34
  */
 
 public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
 
 
-    public static final int HORIZONTAL = LinearLayout.HORIZONTAL;
-    public static final int VERTICAL = LinearLayout.VERTICAL;
+    private static final int HORIZONTAL = LinearLayout.HORIZONTAL;
+    private static final int VERTICAL = LinearLayout.VERTICAL;
 
-    private static Context context;
+    private Context context;
 
 
     /**
@@ -86,7 +85,7 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
     private int orientation;
 
 
-    public SuperDividerItemDecoration(Builder builder) {
+    private SuperDividerItemDecoration(Builder builder) {
 
         context = builder.context;
 
@@ -183,7 +182,7 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.onDraw(c, parent, state);
 
         if (orientation == VERTICAL) {
@@ -234,7 +233,7 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
 
 
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         if (orientation == VERTICAL) {
             outRect.bottom = dividerWidth;
@@ -243,12 +242,7 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    /**
-     * dp 2 px
-     *
-     * @param dpVal
-     */
-    public static int dp2px(float dpVal) {
+    private int dp2px(float dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 dpVal, context.getResources().getDisplayMetrics());
     }

@@ -1,5 +1,6 @@
 package com.yzq.common.widget
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
@@ -28,6 +29,7 @@ class Dialog {
 
     companion object {
 
+        @SuppressLint("StaticFieldLeak")
         private lateinit var context: Context
 
         fun initDialog(context: Context) {
@@ -246,11 +248,11 @@ class Dialog {
         /*选择日期*/
         fun showDatePickerDialog(): Observable<String> {
             return Observable.create<String> {
-                var c = Calendar.getInstance()
+                val c = Calendar.getInstance()
                 DatePickerDialog(context, object : DatePickerDialog.OnDateSetListener {
                     override fun onDateSet(view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int) {
-                        var month: String
-                        var day: String
+                        val month: String
+                        val day: String
                         val monthNum = monthOfYear + 1
                         if (monthNum < 10) {
                             month = "0$monthNum"
@@ -278,7 +280,7 @@ class Dialog {
         fun showTimePickerDialog(): Observable<String> {
 
             return Observable.create<String> {
-                var c = Calendar.getInstance()
+                val c = Calendar.getInstance()
                 TimePickerDialog(context, object : TimePickerDialog.OnTimeSetListener {
                     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minuteOfHour: Int) {
 
@@ -295,7 +297,7 @@ class Dialog {
                             minute = "0${minuteOfHour}"
                         }
 
-                        var selectTime = "${hour}:${minute}"
+                        val selectTime = "${hour}:${minute}"
                         LogUtils.i("选择的日期$selectTime")
                         it.onNext(selectTime)
                         it.onComplete()
@@ -319,8 +321,8 @@ class Dialog {
 
             return Observable.create<String> {
 
-                var yearView = LayoutInflater.from(context).inflate(R.layout.layout_year_picker, null, false)
-                var yearPicker = yearView.findViewById<YearPicker>(R.id.yearPicker)
+                val yearView = LayoutInflater.from(context).inflate(R.layout.layout_year_picker, null, false)
+                val yearPicker = yearView.findViewById<YearPicker>(R.id.yearPicker)
 
                 getNewBuilder()
                         .title(title)
@@ -349,8 +351,8 @@ class Dialog {
 
             return Observable.create<String> {
 
-                var dateView = LayoutInflater.from(context).inflate(R.layout.layout_date_picker, null, false)
-                var datePicker = dateView.findViewById<com.ycuwq.datepicker.date.DatePicker>(R.id.datePicker)
+                val dateView = LayoutInflater.from(context).inflate(R.layout.layout_date_picker, null, false)
+                val datePicker = dateView.findViewById<com.ycuwq.datepicker.date.DatePicker>(R.id.datePicker)
 
                 getNewBuilder()
                         .title(title)
@@ -371,7 +373,7 @@ class Dialog {
                                 selectedDay = "0${datePicker.day}"
                             }
 
-                            var selectedDate = "${datePicker.year}-${selectedMonth}-${selectedDay}"
+                            val selectedDate = "${datePicker.year}-${selectedMonth}-${selectedDay}"
                             LogUtils.i("选择的年与日：${selectedDate}")
 
                             it.onNext(selectedDate)
@@ -397,8 +399,8 @@ class Dialog {
 
             return Observable.create<String> {
 
-                var dateView = LayoutInflater.from(context).inflate(R.layout.layout_hour_minute_picker, null, false)
-                var hourAndMinutePicker =
+                val dateView = LayoutInflater.from(context).inflate(R.layout.layout_hour_minute_picker, null, false)
+                val hourAndMinutePicker =
                         dateView.findViewById<com.ycuwq.datepicker.time.HourAndMinutePicker>(R.id.hourMinutePicker)
 
                 getNewBuilder()
@@ -419,7 +421,7 @@ class Dialog {
                             }
 
 
-                            var selectedTime = "${selectedHour}:${selectedMinute}"
+                            val selectedTime = "${selectedHour}:${selectedMinute}"
                             LogUtils.i("选择时间：${selectedTime}}")
 
                             it.onNext(selectedTime)

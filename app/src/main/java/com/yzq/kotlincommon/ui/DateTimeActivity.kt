@@ -24,7 +24,7 @@ class DateTimeActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-        var toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "日期时间")
 
 

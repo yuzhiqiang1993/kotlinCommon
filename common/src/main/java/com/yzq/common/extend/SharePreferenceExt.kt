@@ -1,5 +1,6 @@
 package com.yzq.common.extend
 
+import android.annotation.SuppressLint
 import android.content.Context
 import com.blankj.utilcode.util.AppUtils
 import kotlin.properties.ReadWriteProperty
@@ -27,6 +28,7 @@ class Preference<T>(val context: Context, val name: String, val defaultVal: T) :
     }
 
 
+    @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY")
     private fun getPreference(key: String): T {
         return with(prfs) {
             when (defaultVal) {
@@ -49,6 +51,7 @@ class Preference<T>(val context: Context, val name: String, val defaultVal: T) :
     }
 
 
+    @SuppressLint("CommitPrefEdits")
     private fun putPreference(key: String, value: T) {
 
         with(prfs.edit()) {

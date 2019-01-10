@@ -34,7 +34,7 @@ class HorizontalItemView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         LayoutInflater.from(context).inflate(R.layout.view_horizontal_item_layout, this);
 
 
-        var typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalItemView)
+        val typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalItemView)
 
         try {
             iconRes = typeArr.getResourceId(R.styleable.HorizontalItemView_HI_icon, R.drawable.ic_placeholder_img)

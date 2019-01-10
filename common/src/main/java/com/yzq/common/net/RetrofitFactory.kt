@@ -37,7 +37,7 @@ class RetrofitFactory private constructor() {
     init {
         interceptor = Interceptor {
 
-            var request = it.request().newBuilder()
+            val request = it.request().newBuilder()
                     //.addHeader(ServerConstants.DEVICE_ID, DeviceUtils.getAndroidID())
                     .build()
 
@@ -57,7 +57,7 @@ class RetrofitFactory private constructor() {
 
     private fun initOkhttpClient(): OkHttpClient {
 
-        var okHttpBuilder = OkHttpClient.Builder()
+        val okHttpBuilder = OkHttpClient.Builder()
                 .connectTimeout(5, TimeUnit.SECONDS)
                 .readTimeout(5, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)

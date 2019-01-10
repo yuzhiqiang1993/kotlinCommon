@@ -1,9 +1,9 @@
 package com.yzq.kotlincommon.ui
 
 
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.appcompat.widget.Toolbar
 import android.view.View
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.ui.BaseActivity
@@ -32,9 +32,9 @@ class TaskActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-        var toolbar = this.findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "任务")
-        recy.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        recy.layoutManager = LinearLayoutManager(this)
         recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
 
 
@@ -50,7 +50,7 @@ class TaskActivity : BaseActivity() {
             } else {
                 type = 0
             }
-            var taskBean = TaskBean("任务${i}", type)
+            val taskBean = TaskBean("任务${i}", type)
             tasks.add(taskBean)
         }
 

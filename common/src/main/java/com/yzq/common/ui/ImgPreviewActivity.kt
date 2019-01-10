@@ -35,8 +35,10 @@ class ImgPreviewActivity : BaseActivity() {
     }
 
     override fun initArgs(extras: Bundle?) {
-        imagePath = extras!!.getString(IMG_PATH)
-        imageName = extras!!.getString(IMG_NAME)
+        if (extras != null) {
+            imagePath = extras.getString(IMG_PATH)!!
+            imageName = extras.getString(IMG_NAME)!!
+        }
 
 
     }

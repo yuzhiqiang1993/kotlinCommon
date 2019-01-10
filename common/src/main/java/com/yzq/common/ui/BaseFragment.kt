@@ -51,7 +51,7 @@ abstract class BaseFragment : Fragment(), BaseView {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        var view = inflater.inflate(getContentLayoutId(), container, false)
+        val view = inflater.inflate(getContentLayoutId(), container, false)
 
         EventBusUtil.register(this)
         return view

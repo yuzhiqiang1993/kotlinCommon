@@ -18,7 +18,7 @@ class LoginActivity : BaseActivity() {
 
     override fun initWidget() {
         super.initWidget()
-        var toolbar = findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
 
         accountEt.setText(LocalSpUtils.account)
         pwdEt.setText(LocalSpUtils.pwd)

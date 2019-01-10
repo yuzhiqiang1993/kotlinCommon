@@ -172,7 +172,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
 
-    @SuppressLint("AutoDispose")
+    @SuppressLint("AutoDispose", "CheckResult")
     override fun onBackPressed() {
 
         if (showBackHint) {

@@ -9,7 +9,7 @@ class MainAdapter(layoutResId: Int, data: List<String>) : BaseQuickAdapter<Strin
 
     override fun convert(helper: BaseViewHolder, item: String) {
 
-        var itemView = helper.itemView as HorizontalItemView
+        val itemView = helper.itemView as HorizontalItemView
 
         itemView.setTitle(item)
 

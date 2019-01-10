@@ -34,7 +34,7 @@ class ImageActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-        var toolbar = this.findViewById<Toolbar>(R.id.toolbar)
+        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "图片", true)
         imgFab.setOnClickListener {
 
