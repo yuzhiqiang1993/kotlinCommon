@@ -5,6 +5,8 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.ToastUtils
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.widget.HoverItemDecoration
@@ -16,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_task.*
 import java.util.*
 
 @Route(path = RoutePath.Main.TASK)
-class TaskActivity : BaseActivity() {
+class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
 
 
     var tasks = arrayListOf<TaskBean>()
@@ -69,20 +71,21 @@ class TaskActivity : BaseActivity() {
     private fun showData() {
 
 
-        taskAdapter = TaskAdapter(R.layout.item_task_layout, tasks)
-        recy.addItemDecoration(HoverItemDecoration(this, HoverItemDecoration.BindItemTextCallback {
+        taskAdapter = TaskAdapter(R.layout.item_task_swipe_layout, tasks)
+        taskAdapter.onItemChildClickListener = this
+
+        val hoverItemDecoration = HoverItemDecoration(this, HoverItemDecoration.BindItemTextCallback {
             var taskBean = tasks[it]
-            var title: String
-            if (taskBean.type == 0) {
-                title = "巡查"
+            var title = if (taskBean.type == 0) {
+                "巡查"
             } else {
-                title = "急查"
+                "急查"
             }
 
             return@BindItemTextCallback title
 
-
-        }))
+        })
+        recy.addItemDecoration(hoverItemDecoration)
 
 
         recy.adapter = taskAdapter
@@ -92,6 +95,29 @@ class TaskActivity : BaseActivity() {
 
 
     }
+
+
+    private lateinit var operationItem: TaskBean
+
+    private var operationPosition: Int = 0
+
+    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
+
+        operationItem = adapter.data[position] as TaskBean
+        operationPosition = position
+        when (view.id) {
+            R.id.nameTv -> {
+                ToastUtils.showShort(operationItem.name)
+            }
+            R.id.deleteMenu -> {
+
+                tasks.remove(operationItem)
+                taskAdapter.notifyDataSetChanged()
+
+            }
+        }
+    }
+
 
     private fun filterData() {
         Collections.sort(tasks, kotlin.Comparator { o1, o2 ->

@@ -36,7 +36,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         super.initData()
 
         items.add("新闻页面（Retrofit）")
-        items.add("任务页面（悬浮吸顶）")
+        items.add("任务页面（悬浮吸顶、侧滑菜单）")
         items.add("图片页面（选择压缩）")
         items.add("日期选择")
         items.add("Zxing")
@@ -53,7 +53,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         initToolbar(toolbar, "导航")
 
         mainAdapter = MainAdapter(R.layout.item_main_ayout, items)
-        mainAdapter.setOnItemClickListener(this)
+        mainAdapter.onItemClickListener = this
         recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
         recy.adapter = mainAdapter
     }
