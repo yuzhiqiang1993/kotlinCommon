@@ -53,7 +53,9 @@ public class TabItem extends LinearLayout {
     }
 
 
-    public void setIcon(int menuSelectedIcon){
+    public void setIcon(int menuSelectedIcon, int color){
         tabIcon.setImageResource(menuSelectedIcon);
+        tabIcon.setColorFilter(color);
+
     }
 }

@@ -22,10 +22,10 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/tabIconIv"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="4dp"
+            android:layout_marginLeft="2dp"
             app:srcCompat="@drawable/ic_arrow_down"
 
             />

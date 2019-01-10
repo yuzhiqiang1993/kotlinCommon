@@ -51,6 +51,7 @@
             android:name=".ui.AutodisposeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.DropDownMenuActivity"></activity>
     </application>
 
 </manifest>

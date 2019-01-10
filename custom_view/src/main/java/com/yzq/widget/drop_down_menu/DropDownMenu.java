@@ -2,7 +2,6 @@ package com.yzq.widget.drop_down_menu;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,8 @@ import android.widget.LinearLayout;
 import com.yzq.widget.R;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 
 public class DropDownMenu extends LinearLayout {
@@ -180,7 +181,7 @@ public class DropDownMenu extends LinearLayout {
 
             TabItem tabItem = (TabItem) tabMenuView.getChildAt(current_tab_position);
             tabItem.setTitleColor(textUnselectedColor);
-            tabItem.setIcon(menuUnselectedIcon);
+            tabItem.setIcon(menuUnselectedIcon,textUnselectedColor);
 
             popupMenuViews.setVisibility(View.GONE);
             popupMenuViews.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.dd_menu_out));
@@ -228,7 +229,7 @@ public class DropDownMenu extends LinearLayout {
                     popupMenuViews.getChildAt(i).setVisibility(View.VISIBLE);
 
                     currentTabItem.setTitleColor(textSelectedColor);
-                    currentTabItem.setIcon(menuSelectedIcon);
+                    currentTabItem.setIcon(menuSelectedIcon, textSelectedColor);
 
                     current_tab_position = i;
                 }
@@ -236,7 +237,7 @@ public class DropDownMenu extends LinearLayout {
                 /*隐藏其他的popupMenuViews*/
                 popupMenuViews.getChildAt(i).setVisibility(View.GONE);
                 currentTabItem.setTitleColor(textUnselectedColor);
-                currentTabItem.setIcon(menuUnselectedIcon);
+                currentTabItem.setIcon(menuUnselectedIcon, textUnselectedColor);
             }
         }
 

@@ -42,6 +42,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         items.add("Zxing")
         items.add("登录页面（Preference）")
         items.add("AutoDispose")
+        items.add("下拉菜单")
 
 
     }
@@ -68,6 +69,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
             4 -> skip(RoutePath.Main.ZXING)
             5 -> skip(RoutePath.Main.LOGIN)
             6 -> skip(RoutePath.Main.AUTODISPOSE)
+            7 -> skip(RoutePath.Main.DROP_DOWN_MENU)
 
         }
     }
