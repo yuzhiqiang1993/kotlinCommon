@@ -12,12 +12,12 @@ ext {
     /*dependencies*/
 
     /*AndroidX*/
-    appcompat="1.1.0-alpha01"
-    legacy_support_v4="1.0.0"
-    material="1.1.0-alpha02"
-    vectordrawable="1.1.0-alpha01"
-    constraintlayout="2.0.0-alpha3"
-    annotation="1.0.1"
+    appcompat = "1.1.0-alpha01"
+    legacy_support_v4 = "1.0.0"
+    material = "1.1.0-alpha02"
+    vectordrawable = "1.1.0-alpha01"
+    constraintlayout = "2.0.0-alpha3"
+    annotation = "1.0.1"
 
     /*third party*/
     eventbus = "3.1.1"
@@ -34,7 +34,7 @@ ext {
     bottom_navigation_bar = "2.0.5"
     gson = "2.8.5"
     material_dialogs = "0.9.6.0"
-    baseRecyclerViewAdapterHelper = "2.9.44"
+    baseRecyclerViewAdapterHelper = "2.9.45-androidx"
     jpush = "3.1.1"
     jcore = "1.1.9"
     photoview = "2.3.0"
@@ -45,7 +45,7 @@ ext {
     walleVersion = "1.1.6"
     andResGuardVersion = "1.2.15"
     rx_imgpicker = "2.2.0"
-    datepickerVersion="1.2.2"
+    datepickerVersion = "1.2.2"
 
     signConfigs = [
             storeFilePath: "kotlinCommon.jks",
