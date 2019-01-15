@@ -57,8 +57,6 @@ kapt {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     kapt "com.google.dagger:dagger-compiler:$dagger2"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
     implementation project(':common')
@@ -69,8 +67,8 @@ dependencies {
 
 
 walle {
-    apkOutputFolder = new File("${project.buildDir}/outputs/channels");
-    apkFileNameFormat = '${projectName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk';
+    apkOutputFolder = new File("${project.buildDir}/outputs/channels")
+    apkFileNameFormat = '${projectName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk'
     channelFile = new File("${project.getProjectDir()}/channel")
 }
 
