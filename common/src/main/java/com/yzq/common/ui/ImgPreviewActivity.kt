@@ -4,7 +4,7 @@ import android.graphics.Color
 import android.os.Bundle
 import com.blankj.utilcode.util.BarUtils
 import com.yzq.common.R
-import com.yzq.common.img.GlideApp
+import com.yzq.common.img.ImageLoader
 import kotlinx.android.synthetic.main.activity_img_preview.*
 
 
@@ -51,8 +51,7 @@ class ImgPreviewActivity : BaseActivity() {
         setAllowFastClick(true)
         initToolbar(toolbar, imageName)
 
-        GlideApp.with(this).load(imagePath).fitCenter().into(photoView)
-
+        ImageLoader.loadFitCenter(imagePath,photoView)
 
         photoView.setOnClickListener { finish() }
     }

@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.ui
 
+import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
@@ -31,6 +32,7 @@ class ImageActivity : BaseActivity() {
 
     private lateinit var imgPath: String
 
+    @SuppressLint("AutoDispose")
     override fun initWidget() {
         super.initWidget()
 
@@ -41,7 +43,6 @@ class ImageActivity : BaseActivity() {
             ImagePicker.openCamera(this)
                     .subscribe { file ->
                         compressImgModel.compressImgWithWatermark(file.path)
-                                .transform(this)
                                 .subscribe {
                                     imgPath = it
                                     ImageLoader.loadCenterCrop(imgPath, imgIv)
