@@ -31,7 +31,7 @@ import javax.inject.Inject
  *
  */
 
-abstract class BaseActivity : AppCompatActivity(), BaseView,LifecycleOwner {
+abstract class BaseActivity : AppCompatActivity(), BaseView {
 
 
     private var lastClickTime: Long = 0

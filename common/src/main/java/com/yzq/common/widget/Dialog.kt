@@ -329,7 +329,7 @@ class Dialog {
                         .positiveText(positiveText)
                         .negativeText(negativeText)
                         .customView(yearView, false)
-                        .onPositive { dialog, which ->
+                        .onPositive { _, _ ->
                             it.onNext(yearPicker.selectedYear.toString())
                         }
                         .show()
@@ -359,7 +359,7 @@ class Dialog {
                         .positiveText(positiveText)
                         .negativeText(negativeText)
                         .customView(dateView, false)
-                        .onPositive { dialog, which ->
+                        .onPositive { _, _ ->
 
                             var selectedMonth = datePicker.month.toString()
                             var selectedDay = datePicker.day.toString()
@@ -408,7 +408,7 @@ class Dialog {
                         .positiveText(positiveText)
                         .negativeText(negativeText)
                         .customView(dateView, false)
-                        .onPositive { dialog, which ->
+                        .onPositive { _, _ ->
 
                             var selectedHour = hourAndMinutePicker.hour.toString()
                             var selectedMinute = hourAndMinutePicker.minute.toString()

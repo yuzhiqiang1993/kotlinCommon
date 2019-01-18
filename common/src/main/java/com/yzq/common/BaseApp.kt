@@ -45,7 +45,7 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
     private fun initCrash() {
 
-        CrashUtils.OnCrashListener { crashInfo, e ->
+        CrashUtils.OnCrashListener { crashInfo, _ ->
 
             LogUtils.e("Crash！！！${crashInfo}")
 
