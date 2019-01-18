@@ -3,6 +3,7 @@ package com.yzq.kotlincommon.ui
 import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.yzq.common.AppContext
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.transform
 import com.yzq.common.img.ImageLoader
@@ -40,7 +41,7 @@ class ImageActivity : BaseActivity() {
         initToolbar(toolbar, "图片", true)
         imgFab.setOnClickListener {
 
-            ImagePicker.openCamera(this)
+            ImagePicker.openCamera(this@ImageActivity)
                     .subscribe { file ->
                         compressImgModel.compressImgWithWatermark(file.path)
                                 .subscribe {

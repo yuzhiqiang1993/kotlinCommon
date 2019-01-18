@@ -12,11 +12,11 @@ ext {
     /*dependencies*/
 
     /*AndroidX*/
-    appcompat = "1.1.0-alpha01"
+    appcompat = "1.0.2"
     legacy_support_v4 = "1.0.0"
-    material = "1.1.0-alpha02"
-    vectordrawable = "1.1.0-alpha01"
-    constraintlayout = "2.0.0-alpha3"
+    material = "1.0.0"
+    vectordrawable = "1.0.0"
+    constraintlayout = "1.1.2"
     annotation = "1.0.1"
 
     /*third party*/
@@ -44,7 +44,7 @@ ext {
     arouter_compiler = "1.2.2"
     walleVersion = "1.1.6"
     andResGuardVersion = "1.2.15"
-    rx_imgpicker = "2.2.0"
+    rx_imgpicker = "2.4.1"
     datepickerVersion = "1.2.2"
 
     signConfigs = [

@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.LifecycleOwner
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.yzq.common.base.mvp.model.CompressImgModel
@@ -30,7 +31,7 @@ import javax.inject.Inject
  *
  */
 
-abstract class BaseActivity : AppCompatActivity(), BaseView {
+abstract class BaseActivity : AppCompatActivity(), BaseView,LifecycleOwner {
 
 
     private var lastClickTime: Long = 0
@@ -47,6 +48,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     @Inject
     lateinit var compressImgModel: CompressImgModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

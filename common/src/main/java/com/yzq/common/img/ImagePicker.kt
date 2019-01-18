@@ -1,7 +1,6 @@
 package com.yzq.common.img
 
 import android.content.Context
-import android.provider.MediaStore
 import com.blankj.utilcode.util.UriUtils
 import com.qingmei2.rximagepicker.core.RxImagePicker
 import com.yanzhenjie.permission.Permission
