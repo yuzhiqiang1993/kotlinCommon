@@ -126,8 +126,3 @@
      <init>(...);
 }
 -keep class com.qingmei2.rximagepicker.** {*;}
-
-#badgeview
-#-dontwarn cn.bingoogolapple.badgeview.**
-#-keep class cn.bingoogolapple.badgeview.** { *; }
-

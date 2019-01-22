@@ -6,6 +6,7 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.text.InputType
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.DatePicker
 import android.widget.TimePicker
 import com.afollestad.materialdialogs.DialogAction
@@ -186,20 +187,29 @@ class Dialog {
         }
 
 
-        /*列表弹窗*/
-        fun showListDialog(
+        /*单选列表弹窗*/
+        fun showSingleSelectList(
                 title: String = BaseContstants.HINT,
                 content: String,
-                items: List<*>,
-                callback: MaterialDialog.ListCallback
-        ) {
+                items: List<*>
 
-            getNewBuilder()
-                    .title(title)
-                    .content(content)
-                    .items(items)
-                    .itemsCallback(callback)
-                    .show()
+        ): Observable<String> {
+
+            return Observable.create<String> {
+                getNewBuilder()
+                        .title(title)
+                        .content(content)
+                        .items(items)
+                        .itemsCallback(object : MaterialDialog.ListCallback {
+                            override fun onSelection(dialog: MaterialDialog?, itemView: View?, position: Int, text: CharSequence) {
+                                it.onNext(text.toString().trim())
+                                it.onComplete()
+                            }
+
+                        }).show()
+
+            }
+
 
         }
 
@@ -213,18 +223,28 @@ class Dialog {
                 inputHint: String = "",
                 prefill: String = "",
                 inputType: Int = InputType.TYPE_CLASS_TEXT,
-                allowEmptyInput: Boolean = false,
-                callback: MaterialDialog.InputCallback
-        ) {
+                allowEmptyInput: Boolean = false
+        ): Observable<String> {
+            return Observable.create<String> {
 
-            getNewBuilder()
-                    .title(title)
-                    .content(content)
-                    .positiveText(positiveText)
-                    .negativeText(negativeText)
-                    .inputType(inputType)
-                    .input(inputHint, prefill, allowEmptyInput, callback)
-                    .show()
+                getNewBuilder()
+                        .title(title)
+                        .content(content)
+                        .positiveText(positiveText)
+                        .negativeText(negativeText)
+                        .inputType(inputType)
+                        .input(inputHint, prefill, allowEmptyInput, object : MaterialDialog.InputCallback {
+                            override fun onInput(dialog: MaterialDialog, input: CharSequence) {
+
+                                it.onNext(input.toString().trim())
+                                it.onComplete()
+                            }
+
+                        })
+                        .show()
+
+            }
+
         }
 
         fun getLoaddingDialog(): MaterialDialog {
