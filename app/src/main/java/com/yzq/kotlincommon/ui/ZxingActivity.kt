@@ -40,7 +40,7 @@ class ZxingActivity : BaseActivity() {
     }
 
     val REQUEST_CODE_SCAN = 555
-    @SuppressLint("CheckResult")
+    @SuppressLint("CheckResult", "AutoDispose")
     private fun excuteZxing() {
         PermissionRequester.request(com.yanzhenjie.permission.Permission.CAMERA, com.yanzhenjie.permission.Permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe {

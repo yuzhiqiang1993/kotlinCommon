@@ -1,8 +1,8 @@
 package com.yzq.common.net
 
 import android.util.Log
+import com.yzq.common.BuildConfig
 import com.yzq.common.constants.ServerConstants
-import me.jessyan.progressmanager.BuildConfig
 import me.jessyan.progressmanager.ProgressManager
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
