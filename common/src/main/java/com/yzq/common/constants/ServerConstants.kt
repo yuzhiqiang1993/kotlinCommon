@@ -17,7 +17,9 @@ class ServerConstants {
         private val SERVER_URL_RELEASE = "http://v.juhe.cn/"
         private val SERVER_URL_DEBUG = "http://v.juhe.cn/"
         private val API = "toutiao/"
-        /*接口地址*/
+
+
+
         val DEVICE_ID = "DeviceId"
 
 

@@ -11,9 +11,9 @@ import com.blankj.utilcode.util.CrashUtils
 import com.blankj.utilcode.util.LogUtils
 import java.util.*
 
-private lateinit var INSTANCE:Application
+private lateinit var INSTANCE: Application
 
-object AppContext:ContextWrapper(INSTANCE)
+object AppContext : ContextWrapper(INSTANCE)
 
 open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
@@ -28,7 +28,7 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
     override fun onCreate() {
         super.onCreate()
 
-        INSTANCE=this
+        INSTANCE = this
         /*初始化Utils*/
         initUtils()
 
