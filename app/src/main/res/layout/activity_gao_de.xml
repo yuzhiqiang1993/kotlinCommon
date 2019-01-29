@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.GaoDeActivity">
+
+
+    <include layout="@layout/toolbar" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/locationBtn"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取当前位置" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/locationTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:minHeight="@dimen/len_48" />
+
+</LinearLayout>

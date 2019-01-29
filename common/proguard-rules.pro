@@ -126,3 +126,9 @@
      <init>(...);
 }
 -keep class com.qingmei2.rximagepicker.** {*;}
+
+
+#Bugly
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+-keep class android.support.**{*;}

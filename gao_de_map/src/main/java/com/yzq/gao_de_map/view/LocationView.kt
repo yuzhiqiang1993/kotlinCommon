@@ -12,7 +12,7 @@ import com.yzq.gao_de_map.data.LocationBean
  */
 
 interface LocationView {
-    fun startLocation()
+    //fun startLocation()
     fun locationSuccess(location: LocationBean)
     fun locationFailed(locationDetail: String)
 }

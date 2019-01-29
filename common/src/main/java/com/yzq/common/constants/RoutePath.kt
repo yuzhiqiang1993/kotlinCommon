@@ -21,6 +21,7 @@ class RoutePath {
             const val LOGIN = "/main/login"
             const val AUTODISPOSE = "/main/autodispose"
             const val DROP_DOWN_MENU = "/main/dropDownMenu"
+            const val GAO_DE = "/main/gaoDeMap"
 
 
         }
