@@ -27,11 +27,10 @@ class AutodisposeActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "Autodispose")
+        initToolbar(toolbar, "AutoDispose")
 
         countBtn.setOnClickListener {
             startCount()
-
         }
     }
 

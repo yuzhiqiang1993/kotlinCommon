@@ -103,5 +103,8 @@ dependencies {
     api "me.jessyan:progressmanager:$progressmanager_version"
     /*Datepicker*/
     implementation "com.ycuwq.widgets:datepicker:$datepickerVersion"
+    /*Bugly*/
+    api "com.tencent.bugly:crashreport_upgrade:$bugly_crashreport_upgrade"
+    api "com.tencent.bugly:nativecrashreport:$bugly_nativecrashreport"
 
 }

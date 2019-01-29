@@ -3,13 +3,18 @@ package com.yzq.kotlincommon.ui
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.extend.transform
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.concurrent.TimeUnit
 
 /**
  * @description: 导航页面
@@ -32,6 +37,28 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
     }
 
 
+    override fun initWidget() {
+        super.initWidget()
+
+        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
+        initToolbar(toolbar, "导航")
+
+        mainAdapter = MainAdapter(R.layout.item_main_ayout, items)
+        mainAdapter.onItemClickListener = this
+        recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
+        recy.adapter = mainAdapter
+
+
+        Observable.timer(3, TimeUnit.SECONDS)
+                .transform(this)
+                .subscribe {
+                    LogUtils.i("检查更新")
+                    Beta.checkUpgrade()
+                }
+
+    }
+
+
     override fun initData() {
         super.initData()
 
@@ -45,18 +72,6 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         items.add("下拉菜单")
 
 
-    }
-
-    override fun initWidget() {
-        super.initWidget()
-
-        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "导航")
-
-        mainAdapter = MainAdapter(R.layout.item_main_ayout, items)
-        mainAdapter.onItemClickListener = this
-        recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
-        recy.adapter = mainAdapter
     }
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
