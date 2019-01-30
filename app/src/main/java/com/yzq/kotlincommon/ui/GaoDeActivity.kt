@@ -13,6 +13,7 @@ import com.yzq.gao_de_map.view.LocationView
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import kotlinx.android.synthetic.main.activity_gao_de.*
+import java.util.prefs.PreferenceChangeEvent
 import javax.inject.Inject
 
 @Route(path = RoutePath.Main.GAO_DE)
@@ -23,7 +24,6 @@ class GaoDeActivity : BaseActivity(), LocationView {
     lateinit var locationSignModel: LocationSignModel
 
     override fun getContentLayoutId(): Int {
-
 
         return R.layout.activity_gao_de
     }

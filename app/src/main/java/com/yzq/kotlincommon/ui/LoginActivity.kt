@@ -22,6 +22,7 @@ class LoginActivity : BaseActivity() {
 
         accountEt.setText(LocalSpUtils.account)
         pwdEt.setText(LocalSpUtils.pwd)
+
         initToolbar(toolbar, "登录")
 
         loginBtn.setOnClickListener {

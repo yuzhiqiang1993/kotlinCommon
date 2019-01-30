@@ -1,7 +1,6 @@
 package com.yzq.common.utils
 
-import com.yzq.common.AppContext
-import com.yzq.common.extend.Preference
+import com.yzq.common.extend.SharedPreference
 
 
 /**
@@ -13,8 +12,6 @@ import com.yzq.common.extend.Preference
  */
 
 object LocalSpUtils {
-    var account: String by Preference(AppContext, "account", "")
-    var pwd: String by Preference(AppContext, "pwd", "")
-
-
+    var account: String by SharedPreference("account", "")
+    var pwd: String by SharedPreference("pwd", "")
 }

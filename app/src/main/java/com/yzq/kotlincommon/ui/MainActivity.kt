@@ -67,7 +67,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         items.add("图片页面（选择压缩）")
         items.add("日期选择")
         items.add("Zxing")
-        items.add("登录页面（Preference）")
+        items.add("登录页面（SharedPreference）")
         items.add("AutoDispose")
         items.add("下拉菜单")
         items.add("高德定位")

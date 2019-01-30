@@ -2,6 +2,7 @@ package com.yzq.common.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
@@ -74,6 +75,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
         initWidget()
         initData()
+
 
     }
 
@@ -191,6 +193,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     }
 
+
+    /*Activity被异常回收时会执行该方法*/
+    override fun onSaveInstanceState(outState: Bundle?) {
+        super.onSaveInstanceState(outState)
+    }
 
     override fun onDestroy() {
         super.onDestroy()
