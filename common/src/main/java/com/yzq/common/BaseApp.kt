@@ -42,7 +42,7 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
         registerActivityLifecycleCallbacks(this)
         /*打印路径信息*/
-        StoragePath.getPathInfo()
+        //StoragePath.getPathInfo()
     }
 
     private fun initCrash() {
