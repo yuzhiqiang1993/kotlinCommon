@@ -10,7 +10,6 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.CrashUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
-import com.yzq.common.constants.StoragePath
 import java.util.*
 
 private lateinit var INSTANCE: Application
@@ -85,8 +84,8 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
 
     fun exitApp() {
-        for (activity in activityStack) {
-            activity.finish()
+        activityStack.forEach {
+            it.finish()
         }
     }
 
