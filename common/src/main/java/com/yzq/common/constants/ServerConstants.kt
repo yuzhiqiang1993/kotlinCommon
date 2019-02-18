@@ -19,26 +19,18 @@ class ServerConstants {
         private val API = "toutiao/"
 
 
-
         val DEVICE_ID = "DeviceId"
 
 
         /*获取服务器地址*/
         fun getServerUrl(): String {
-            if (BuildConfig.DEBUG) {
-                return SERVER_URL_DEBUG
-            }
-
-            return SERVER_URL_RELEASE
+            return if (BuildConfig.DEBUG) SERVER_URL_DEBUG else SERVER_URL_RELEASE
 
         }
 
         /*获取接口地址*/
         fun getApiUrl(): String {
-            if (BuildConfig.DEBUG) {
-                return SERVER_URL_DEBUG + API
-            }
-            return SERVER_URL_RELEASE + API
+            return if (BuildConfig.DEBUG) SERVER_URL_DEBUG + API else SERVER_URL_RELEASE + API
 
         }
     }

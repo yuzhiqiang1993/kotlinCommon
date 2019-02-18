@@ -1,10 +1,10 @@
-package com.yzq.common.base.mvp.model
+package com.yzq.common.mvp.model
 
 import android.graphics.Bitmap
 import android.graphics.Color
 import com.blankj.utilcode.util.*
 import com.yzq.common.R
-import com.yzq.common.constants.ProjectPath
+import com.yzq.common.constants.StoragePath
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -18,18 +18,18 @@ class CompressImgModel @Inject constructor() {
 
     private val quality = 85
     private val textColor = Color.GRAY
-    private val waterMark = "ESP:" + TimeUtils.getNowString()
-    internal val rootImgName = AppUtils.getAppPackageName() + "_"
+    private val waterMark = "ESP:${TimeUtils.getNowString()}"
+    internal val rootImgName = "${AppUtils.getAppPackageName()}_"
 
 
     /*压缩图片保存路径*/
     fun compressImgWithWatermark(path: String): Observable<String> {
         return Observable.create { e ->
-            LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
+            LogUtils.i("压缩前图片大小：${FileUtils.getFileSize(path)}")
 
             var selectBitMap = ImageUtils.getBitmap(path)
 
-            LogUtils.i("密度：" + selectBitMap.density)
+            //LogUtils.i("密度：${selectBitMap.density}")
 
             val defaultW = selectBitMap.width
             val defaultH = selectBitMap.height
@@ -81,20 +81,20 @@ class CompressImgModel @Inject constructor() {
                     (defaultW / ratio).toInt(),
                     (defaultH / ratio).toInt()
             )
-            LogUtils.i("比例压缩后：" + selectBitMap.width + ":" + selectBitMap.height)
+            LogUtils.i("比例压缩后：${selectBitMap.width}:${selectBitMap.height}")
 
             /*再按质量压缩*/
             selectBitMap = ImageUtils.compressByQuality(selectBitMap, quality)
 
-            LogUtils.i("压缩后的" + selectBitMap.width + ":" + selectBitMap.height)
+            LogUtils.i("质量压缩后:${selectBitMap.width}:${selectBitMap.height}")
 
             /*保存的文件名称*/
-            val savedImgPath = ProjectPath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
+            val savedImgPath = "${StoragePath.PICTURE_PATH}rootImgName${System.currentTimeMillis()}.jpg"
             /*保存并返回图片路径*/
             if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
                 /*返回保存后的路径*/
                 e.onNext(savedImgPath)
-                LogUtils.i("压缩后图片大小：" + FileUtils.getFileSize(savedImgPath))
+                LogUtils.i("压缩后图片大小${FileUtils.getFileSize(savedImgPath)}")
             } else {
                 /*返回原路径*/
                 e.onNext(path)
@@ -108,7 +108,7 @@ class CompressImgModel @Inject constructor() {
     fun compressImg(path: String): Observable<String> {
 
         return Observable.create { e ->
-            LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
+            LogUtils.i("压缩前图片大小：${FileUtils.getFileSize(path)}")
             var selectBitMap = ImageUtils.getBitmap(path)
 
             val defaultW = selectBitMap.width
@@ -119,20 +119,20 @@ class CompressImgModel @Inject constructor() {
             /*先按比例压缩*/
             selectBitMap =
                     ImageUtils.compressByScale(selectBitMap, (defaultW / ratio).toInt(), (defaultH / ratio).toInt())
-            LogUtils.i("比例压缩后：" + selectBitMap.width + ":" + selectBitMap.height)
+            LogUtils.i("比例压缩后：${selectBitMap.width}:${selectBitMap.height}")
 
             /*再按质量压缩*/
             selectBitMap = ImageUtils.compressByQuality(selectBitMap, quality)
 
-            LogUtils.i("质量压缩后的" + selectBitMap.width + ":" + selectBitMap.height)
+            LogUtils.i("质量压缩后:${selectBitMap.width}:${selectBitMap.height}")
 
             /*保存的文件名称*/
-            val savedImgPath = ProjectPath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
+            val savedImgPath = StoragePath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
             /*保存并返回图片路径*/
             if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
                 /*返回保存后的路径*/
                 e.onNext(savedImgPath)
-                LogUtils.i("压缩后图片大小：" + FileUtils.getFileSize(savedImgPath))
+                LogUtils.i("压缩后图片大小${FileUtils.getFileSize(savedImgPath)}")
             } else {
                 /*返回原路径*/
                 e.onNext(path)

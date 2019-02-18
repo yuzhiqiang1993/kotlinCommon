@@ -5,7 +5,6 @@ import com.blankj.utilcode.util.DeviceUtils
 import com.yzq.common.BuildConfig
 import com.yzq.common.constants.ServerConstants
 import me.jessyan.progressmanager.ProgressManager
-import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,7 +39,7 @@ class RetrofitFactory private constructor() {
         interceptor = Interceptor {
 
             val request = it.request().newBuilder()
-                    .header("Cache-Control","no-store")//不读取缓存
+                    .header("Cache-Control", "no-store")//不读取缓存
                     .addHeader(ServerConstants.DEVICE_ID, DeviceUtils.getAndroidID())
                     .build()
 

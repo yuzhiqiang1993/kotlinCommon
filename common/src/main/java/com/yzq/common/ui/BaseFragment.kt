@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
-import com.yzq.common.base.mvp.model.CompressImgModel
+import com.yzq.common.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.mvp.view.BaseView

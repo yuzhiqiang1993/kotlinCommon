@@ -2,7 +2,6 @@ package com.yzq.common.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
@@ -12,7 +11,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
-import com.yzq.common.base.mvp.model.CompressImgModel
+import com.yzq.common.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.mvp.view.BaseView
