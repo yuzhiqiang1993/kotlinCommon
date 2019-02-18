@@ -106,5 +106,7 @@ dependencies {
     /*Bugly*/
     api "com.tencent.bugly:crashreport_upgrade:$bugly_crashreport_upgrade"
     api "com.tencent.bugly:nativecrashreport:$bugly_nativecrashreport"
+    /*flexbox*/
+    api 'com.google.android:flexbox:1.1.0'
 
 }

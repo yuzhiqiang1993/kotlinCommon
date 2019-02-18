@@ -3,10 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yzq.kotlincommon">
 
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
 
     <application
         android:name=".App"
@@ -18,6 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.FlexBoxActivity"></activity>
         <activity
             android:name=".ui.GaoDeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

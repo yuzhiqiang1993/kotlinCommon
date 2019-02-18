@@ -46,7 +46,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "导航")
 
-        mainAdapter = MainAdapter(R.layout.item_main_ayout, items)
+        mainAdapter = MainAdapter(R.layout.item_main_layout, items)
         mainAdapter.onItemClickListener = this
         recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
         recy.adapter = mainAdapter
@@ -74,6 +74,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         items.add("AutoDispose")
         items.add("下拉菜单")
         items.add("高德定位")
+        items.add("FlexBoxLayout")
 
 
     }
@@ -90,6 +91,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
             6 -> skip(RoutePath.Main.AUTODISPOSE)
             7 -> skip(RoutePath.Main.DROP_DOWN_MENU)
             8 -> skip(RoutePath.Main.GAO_DE)
+            9 -> skip(RoutePath.Main.FLEX_BOX)
 
         }
     }
