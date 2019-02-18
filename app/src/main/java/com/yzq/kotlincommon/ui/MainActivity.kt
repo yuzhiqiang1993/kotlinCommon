@@ -1,11 +1,14 @@
 package com.yzq.kotlincommon.ui
 
+import android.view.KeyEvent
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.tencent.bugly.beta.Beta
+import com.yzq.common.BaseApp
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.transform
 import com.yzq.common.ui.BaseActivity
@@ -94,6 +97,22 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
     private fun skip(path: String) {
 
         ARouter.getInstance().build(path).navigation()
+    }
+
+    private var exitTime: Long = 0
+    /*退出程序*/
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (KeyEvent.KEYCODE_BACK == keyCode) {
+            LogUtils.i("返回键")
+            if (System.currentTimeMillis() - exitTime > 2000) {
+                exitTime = System.currentTimeMillis()
+                ToastUtils.showShort("再按一次退出程序")
+            } else {
+                BaseApp.INSTANCE.exitApp()
+            }
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
 }

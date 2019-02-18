@@ -2,7 +2,6 @@ package com.yzq.common
 
 import android.app.Activity
 import android.app.Application
-import android.content.ContextWrapper
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import com.alibaba.android.arouter.launcher.ARouter
@@ -12,9 +11,6 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
 import java.util.*
 
-private lateinit var INSTANCE: Application
-
-object AppContext : ContextWrapper(INSTANCE)
 
 open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
@@ -23,6 +19,12 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
     init {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+
+    }
+
+    companion object {
+
+        lateinit var INSTANCE: BaseApp
 
     }
 

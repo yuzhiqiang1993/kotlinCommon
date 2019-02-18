@@ -1,12 +1,11 @@
 package com.yzq.common.img
 
 import android.net.Uri
-import androidx.annotation.DrawableRes
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.yzq.common.AppContext
-import com.yzq.common.BaseApp
 import com.yzq.common.R
 
 
