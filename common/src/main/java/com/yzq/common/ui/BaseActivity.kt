@@ -11,9 +11,9 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
-import com.yzq.common.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
+import com.yzq.common.mvp.model.CompressImgModel
 import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.widget.Dialog
 import com.yzq.common.widget.StateView
@@ -233,7 +233,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
     override fun dismissProgressDialog() {
-
         progressDialog!!.dismiss()
     }
 

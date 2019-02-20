@@ -20,7 +20,7 @@ import java.net.SocketTimeoutException
  * @time   : 16:23
  *
  */
-abstract class BaseProgressDialogObserver<T>(private val view: BaseView, private val title: String,private val content: String,private val url: String) : Observer<T>, ProgressListener {
+abstract class BaseProgressDialogObserver<T>(private val view: BaseView, private val title: String,private val content: String="",private val url: String) : Observer<T>, ProgressListener {
 
     override fun onSubscribe(d: Disposable) {
 

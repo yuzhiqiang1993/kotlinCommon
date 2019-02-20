@@ -3,6 +3,7 @@ package com.yzq.common.rx
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
 import com.yzq.common.constants.BaseContstants
+import com.yzq.common.data.BaseResp
 import com.yzq.common.mvp.view.BaseView
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable

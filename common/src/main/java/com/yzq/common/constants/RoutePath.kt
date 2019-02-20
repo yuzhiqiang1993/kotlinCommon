@@ -16,7 +16,7 @@ class RoutePath {
             const val TASK = "/main/task"
             const val NEWS = "/main/news"
             const val IMG = "/main/img"
-            const val DATE_TIME = "/main/dateTime"
+            const val DIALOG = "/main/dialog"
             const val ZXING = "/main/zxing"
             const val LOGIN = "/main/login"
             const val AUTODISPOSE = "/main/autodispose"

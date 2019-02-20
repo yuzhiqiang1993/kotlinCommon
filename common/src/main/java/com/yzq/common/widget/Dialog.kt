@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.text.InputType
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.DatePicker
@@ -190,23 +191,26 @@ class Dialog {
         /*单选列表弹窗*/
         fun showSingleSelectList(
                 title: String = BaseContstants.HINT,
-                content: String,
+                content: String = "",
                 items: List<*>
 
         ): Observable<String> {
 
             return Observable.create<String> {
-                getNewBuilder()
-                        .title(title)
-                        .content(content)
+                val dialog = getNewBuilder()
+                dialog.title(title)
                         .items(items)
-                        .itemsCallback(object : MaterialDialog.ListCallback {
-                            override fun onSelection(dialog: MaterialDialog?, itemView: View?, position: Int, text: CharSequence) {
-                                it.onNext(text.toString().trim())
-                                it.onComplete()
-                            }
+                if (!TextUtils.isEmpty(content)) {
+                    dialog.content(content)
+                }
+                dialog.itemsCallback(object : MaterialDialog.ListCallback {
+                    override fun onSelection(dialog: MaterialDialog?, itemView: View?, position: Int, text: CharSequence) {
+                        it.onNext(text.toString().trim())
+                        it.onComplete()
+                    }
 
-                        }).show()
+                }).show()
+
 
             }
 
@@ -219,29 +223,30 @@ class Dialog {
                 title: String = BaseContstants.HINT,
                 positiveText: String = BaseContstants.SURE,
                 negativeText: String = BaseContstants.CANCLE,
-                content: String,
+                content: String = "",
                 inputHint: String = "",
                 prefill: String = "",
                 inputType: Int = InputType.TYPE_CLASS_TEXT,
                 allowEmptyInput: Boolean = false
         ): Observable<String> {
             return Observable.create<String> {
-
-                getNewBuilder()
-                        .title(title)
-                        .content(content)
+                val dialog = getNewBuilder()
+                dialog.title(title)
                         .positiveText(positiveText)
                         .negativeText(negativeText)
                         .inputType(inputType)
-                        .input(inputHint, prefill, allowEmptyInput, object : MaterialDialog.InputCallback {
-                            override fun onInput(dialog: MaterialDialog, input: CharSequence) {
 
-                                it.onNext(input.toString().trim())
-                                it.onComplete()
-                            }
+                if (!TextUtils.isEmpty(content)) {
+                    dialog.content(content)
+                }
+                dialog.input(inputHint, prefill, allowEmptyInput, object : MaterialDialog.InputCallback {
+                    override fun onInput(dialog: MaterialDialog, input: CharSequence) {
 
-                        })
-                        .show()
+                        it.onNext(input.toString().trim())
+                        it.onComplete()
+                    }
+
+                }).show()
 
             }
 
@@ -254,11 +259,15 @@ class Dialog {
                     .build()
         }
 
-        fun getProgressDialog(title: String, content: String): MaterialDialog {
-            return getNewBuilder()
-                    .title(title)
-                    .content(content)
-                    .progress(false, 100, true)
+        fun getProgressDialog(title: String, content: String = ""): MaterialDialog {
+
+            val dialog = getNewBuilder()
+
+            dialog.title(title)
+            if (!TextUtils.isEmpty(content)) {
+                dialog.content(content)
+            }
+            return dialog.progress(false, 100, true)
                     .build()
 
 

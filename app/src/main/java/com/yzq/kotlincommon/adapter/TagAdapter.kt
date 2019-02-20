@@ -8,7 +8,7 @@ class TagAdapter(layoutResId: Int, data: ArrayList<String>) : BaseQuickAdapter<S
     override fun convert(helper: BaseViewHolder, item: String) {
 
         helper.setText(R.id.tagNameTv, item)
-        
+
 
     }
 }

@@ -21,7 +21,6 @@ class MainPresenter @Inject constructor() : BasePresenter<MainView>() {
                 .transform(lifecycleOwner)
                 .subscribe(object : BaseObserver<NewsBean>(view) {
                     override fun onNext(newsBean: NewsBean) {
-
                         LogUtils.i(Gson().toJson(newsBean))
 
                         if (newsBean.stat.equals("1")) {

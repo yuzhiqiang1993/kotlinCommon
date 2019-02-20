@@ -10,6 +10,7 @@
     android:orientation="vertical"
     android:paddingLeft="@dimen/len_8"
     android:paddingTop="@dimen/len_2"
+    android:textColor="@color/colorPrimary"
     android:paddingRight="@dimen/len_8"
     android:paddingBottom="@dimen/len_2"
     android:text="测试" />

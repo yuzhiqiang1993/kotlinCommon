@@ -10,7 +10,7 @@ package com.yzq.common.mvp.view
  */
 
 interface BaseView {
-    fun showLoadingDialog(content: String = "请求中...")
+    fun showLoadingDialog(content: String)
     fun dismissLoadingDialog()
     fun showProgressDialog(title: String, content: String)
     fun dismissProgressDialog()
