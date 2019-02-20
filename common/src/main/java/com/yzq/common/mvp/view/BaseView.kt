@@ -12,7 +12,7 @@ package com.yzq.common.mvp.view
 interface BaseView {
     fun showLoadingDialog(content: String)
     fun dismissLoadingDialog()
-    fun showProgressDialog(title: String, content: String)
+    fun showProgressDialog(title: String, content: String="")
     fun dismissProgressDialog()
     fun changeProgress(percent: Int)
     fun showErrorDialog(msg: String)
