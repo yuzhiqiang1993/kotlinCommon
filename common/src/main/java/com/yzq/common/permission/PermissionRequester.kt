@@ -61,7 +61,7 @@ object PermissionRequester {
         val message = "我们需要的 ${TextUtils.join("、", permissionNames)} 权限被拒绝,这将导致部分功能不可用，请手动开启! "
 
 
-        Dialog.showPositiveCallbackDialog(title = "开启权限", content = message, positiveText = "去开启", negativeText = "不开启")
+        Dialog.showPositiveCallbackDialog(title = "开启权限", message = message, positiveText = "去开启", negativeText = "不开启")
                 .subscribe {
                     AndPermission.with(AppContext)
                             .runtime()

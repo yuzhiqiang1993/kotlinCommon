@@ -33,18 +33,18 @@ class DialogActivity : BaseActivity() {
         initToolbar(toolbar, "弹窗", true)
 
         baseDialogBtn.setOnClickListener {
-            Dialog.showBase(content = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
+            Dialog.showBase(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
         }
 
         onlyPositiveCallbackBtn.setOnClickListener {
 
-            Dialog.showOnlyPostiveCallBackDialog(content = "只有确定选项和回调的弹窗，一般用于强制性的操作").subscribe {
+            Dialog.showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作").subscribe {
 
                 ToastUtils.showShort("点击了确定")
             }
         }
         positiveCallbackBtn.setOnClickListener {
-            Dialog.showPositiveCallbackDialog(content = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作").subscribe {
+            Dialog.showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作").subscribe {
 
                 ToastUtils.showShort("点击了确定")
             }
@@ -52,7 +52,7 @@ class DialogActivity : BaseActivity() {
         }
 
         callbackBtn.setOnClickListener {
-            Dialog.showCallbackDialog(content = "双选项双回调").subscribe {
+            Dialog.showCallbackDialog(message = "双选项双回调").subscribe {
                 if (it) {
                     ToastUtils.showShort("点击了确定")
                 } else {
@@ -113,7 +113,6 @@ class DialogActivity : BaseActivity() {
                             } else {
                                 dismissProgressDialog()
                                 d.dispose()
-
                             }
 
                         }

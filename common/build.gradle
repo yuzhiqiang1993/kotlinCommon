@@ -73,8 +73,9 @@ dependencies {
     api "com.google.code.gson:gson:$gson"
 
     /*dialog*/
-    api "com.afollestad.material-dialogs:core:$material_dialogs"
-
+  //  api "com.afollestad.material-dialogs:core:$material_dialogs"
+    implementation 'com.afollestad.material-dialogs:core:2.0.0'
+    implementation 'com.afollestad.material-dialogs:input:2.0.0'
     /*RxImagepicker*/
     api "com.github.qingmei2:rximagepicker:$rx_imgpicker"
 

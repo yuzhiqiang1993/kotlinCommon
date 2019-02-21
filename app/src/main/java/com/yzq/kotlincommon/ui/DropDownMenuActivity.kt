@@ -54,8 +54,8 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
     override fun initWidget() {
 
 
-        val toolbar=findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar,"下拉菜单")
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        initToolbar(toolbar, "下拉菜单")
 
 
         val contentLayout = layoutInflater.inflate(R.layout.drop_down_menu_content, null)
@@ -92,6 +92,7 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
         when (adapter) {

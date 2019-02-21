@@ -127,12 +127,12 @@ abstract class BaseFragment : Fragment(), BaseView {
 
     override fun showLoadingDialog(content: String) {
 
-        if (loaddingDialog == null) {
-            loaddingDialog = Dialog.getLoaddingDialog()
-        }
-
-        loaddingDialog!!.setContent(content)
-        loaddingDialog!!.show()
+//        if (loaddingDialog == null) {
+//            loaddingDialog = Dialog.getLoaddingDialog()
+//        }
+//
+//        loaddingDialog!!.setContent(content)
+//        loaddingDialog!!.show()
 
     }
 
@@ -157,12 +157,12 @@ abstract class BaseFragment : Fragment(), BaseView {
     }
 
     override fun changeProgress(percent: Int) {
-        progressDialog!!.setProgress(percent)
+      //  progressDialog!!.setProgress(percent)
 
     }
 
     override fun showErrorDialog(msg: String) {
-        Dialog.showBase(content = msg)
+        Dialog.showBase(message = msg)
     }
 
     override fun showLoadding() {
