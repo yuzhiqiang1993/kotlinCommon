@@ -26,7 +26,8 @@ object ImageLoader {
             imgView: ImageView,
             radius: Int = 1, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img, @DrawableRes errorImg: Int = R.drawable.ic_error_img
     ) {
-        GlideApp.with(AppContext).load(path.trim()).placeholder(placeHolderImg).error(errorImg).centerCrop()
+        GlideApp.with(AppContext).load(path.trim()).centerCrop()
+                //.placeholder(placeHolderImg).error(errorImg)
                 .transform(RoundedCorners(radius)).transition(withCrossFade()).into(imgView)
 
 
@@ -39,7 +40,9 @@ object ImageLoader {
             imgView: ImageView,
             radius: Int = 1, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img, @DrawableRes errorImg: Int = R.drawable.ic_error_img
     ) {
-        GlideApp.with(AppContext).load(uri).placeholder(placeHolderImg).error(errorImg).centerCrop()
+        GlideApp.with(AppContext).load(uri)
+                //.placeholder(placeHolderImg).error(errorImg)
+                .centerCrop()
                 .transform(RoundedCorners(radius)).transition(withCrossFade()).into(imgView)
     }
 
@@ -50,7 +53,8 @@ object ImageLoader {
             imgView: ImageView,
             radius: Int = 1, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img, @DrawableRes errorImg: Int = R.drawable.ic_error_img
     ) {
-        GlideApp.with(AppContext).load(drawableRes).placeholder(placeHolderImg).error(errorImg).centerCrop()
+        GlideApp.with(AppContext).load(drawableRes).centerCrop()
+                //.placeholder(placeHolderImg).error(errorImg)
                 .transform(RoundedCorners(radius)).transition(withCrossFade()).into(imgView)
     }
 
@@ -61,7 +65,7 @@ object ImageLoader {
             imgView: ImageView, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img, @DrawableRes errorImg: Int = R.drawable.ic_error_img
     ) {
         GlideApp.with(AppContext).load(path.trim()).circleCrop()
-//            .placeholder(placeHolderImg).error(errorImg)
+                //.placeholder(placeHolderImg).error(errorImg)
                 .transition(withCrossFade()).into(imgView)
     }
 
@@ -70,7 +74,8 @@ object ImageLoader {
             @DrawableRes res: DrawableRes,
             imgView: ImageView, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img, @DrawableRes errorImg: Int = R.drawable.ic_error_img
     ) {
-        GlideApp.with(AppContext).load(res).circleCrop().placeholder(placeHolderImg).error(errorImg)
+        GlideApp.with(AppContext).load(res).circleCrop()
+                //.placeholder(placeHolderImg).error(errorImg)
                 .transition(withCrossFade()).into(imgView)
     }
 
@@ -80,7 +85,8 @@ object ImageLoader {
             path: String,
             imgView: ImageView, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img, @DrawableRes errorImg: Int = R.drawable.ic_error_img
     ) {
-        GlideApp.with(AppContext).load(path.trim()).fitCenter().placeholder(placeHolderImg).error(errorImg)
+        GlideApp.with(AppContext).load(path.trim()).fitCenter()
+                //.placeholder(placeHolderImg).error(errorImg)
                 .transition(withCrossFade()).into(imgView)
     }
 

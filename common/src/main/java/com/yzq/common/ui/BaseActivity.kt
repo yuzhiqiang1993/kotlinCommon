@@ -213,14 +213,14 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
             loaddingDialog = Dialog.getLoadingDialog()
         }
 
-        loaddingDialog!!.setLoadingMessage(message)
-        loaddingDialog!!.show()
+        loaddingDialog?.setLoadingMessage(message)
+        loaddingDialog?.show()
 
 
     }
 
     override fun dismissLoadingDialog() {
-        loaddingDialog!!.dismiss()
+        loaddingDialog?.dismiss()
     }
 
     override fun showProgressDialog(title: String) {
@@ -228,17 +228,17 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         if (progressDialog == null) {
             progressDialog = Dialog.getProgressDialog(title)
         }
-        progressDialog!!.show()
+        progressDialog?.show()
 
 
     }
 
     override fun dismissProgressDialog() {
-        progressDialog!!.dismiss()
+        progressDialog?.dismiss()
     }
 
     override fun changeProgress(percent: Int) {
-        progressDialog!!.changeProgress(percent)
+        progressDialog?.changeProgress(percent)
 
     }
 

@@ -9,11 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
-import com.yzq.common.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.extend.changeProgress
 import com.yzq.common.extend.setLoadingMessage
+import com.yzq.common.mvp.model.CompressImgModel
 import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.widget.Dialog
 import com.yzq.common.widget.StateView
@@ -133,13 +133,13 @@ abstract class BaseFragment : Fragment(), BaseView {
             loaddingDialog = Dialog.getLoadingDialog()
         }
 
-        loaddingDialog!!.setLoadingMessage(message)
-        loaddingDialog!!.show()
+        loaddingDialog?.setLoadingMessage(message)
+        loaddingDialog?.show()
 
     }
 
     override fun dismissLoadingDialog() {
-        loaddingDialog!!.dismiss()
+        loaddingDialog?.dismiss()
     }
 
     override fun showProgressDialog(title: String) {
@@ -148,18 +148,18 @@ abstract class BaseFragment : Fragment(), BaseView {
             progressDialog = Dialog.getProgressDialog(title)
         }
 
-        progressDialog!!.show()
+        progressDialog?.show()
 
 
     }
 
     override fun dismissProgressDialog() {
 
-        progressDialog!!.dismiss()
+        progressDialog?.dismiss()
     }
 
     override fun changeProgress(percent: Int) {
-        progressDialog!!.changeProgress(percent)
+        progressDialog?.changeProgress(percent)
 
     }
 
