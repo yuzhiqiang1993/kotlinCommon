@@ -22,6 +22,9 @@ import java.util.concurrent.TimeUnit
 class DialogActivity : BaseActivity() {
 
 
+
+
+
     override fun getContentLayoutId(): Int {
 
         return R.layout.activity_dialog

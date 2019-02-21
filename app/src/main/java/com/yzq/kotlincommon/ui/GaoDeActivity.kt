@@ -43,7 +43,7 @@ class GaoDeActivity : BaseActivity(), LocationView {
     override fun initWidget() {
         super.initWidget()
         var toolbar = findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "高德", false)
+        initToolbar(toolbar, "高德")
         locationBtn.setOnClickListener {
 
             MapPermissionUtils.checkLocationPermission()

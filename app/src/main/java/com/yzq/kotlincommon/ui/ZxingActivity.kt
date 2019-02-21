@@ -34,7 +34,7 @@ class ZxingActivity : BaseActivity() {
         super.initWidget()
 
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "Zxing", true)
+        initToolbar(toolbar, "Zxing")
 
         scanBtn.setOnClickListener { excuteZxing() }
     }

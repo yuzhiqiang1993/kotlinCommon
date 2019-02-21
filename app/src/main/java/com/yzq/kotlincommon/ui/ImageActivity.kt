@@ -36,7 +36,7 @@ class ImageActivity : BaseActivity() {
         super.initWidget()
 
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "图片", true)
+        initToolbar(toolbar, "图片")
         imgFab.setOnClickListener {
 
             ImagePicker.openCamera(this@ImageActivity)

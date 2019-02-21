@@ -30,6 +30,7 @@ class RetrofitFactory private constructor() {
         val instance: RetrofitFactory by lazy {
             RetrofitFactory()
         }
+
     }
 
     private var interceptor: Interceptor

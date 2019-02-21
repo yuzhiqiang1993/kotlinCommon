@@ -22,7 +22,6 @@ fun MaterialDialog.changeProgress(percent: Int): MaterialDialog {
     progressBar.progress = percent
     currentProgress.text = "$percent"
 
-
     return this
 
 
