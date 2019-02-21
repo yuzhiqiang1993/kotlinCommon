@@ -15,6 +15,8 @@ import com.ycuwq.datepicker.date.YearPicker
 import com.ycuwq.datepicker.time.HourAndMinutePicker
 import com.yzq.common.R
 import com.yzq.common.constants.BaseContstants
+import com.yzq.common.extend.loading
+import com.yzq.common.extend.progress
 import io.reactivex.Observable
 
 
@@ -232,30 +234,15 @@ class Dialog {
 
         }
 
-        fun getLoaddingDialog(): MaterialDialog {
+        fun getLoadingDialog(): MaterialDialog {
+            return getNewDialog().loading()
 
-            var dialog = getNewDialog()
 
-            // dialog.customView(viewRes = R.layout.loadd)
-
-            return getNewDialog()
-//                    .progress(true, 0)
-////                    .progressIndeterminateStyle(false)
-////                    .build()
         }
 
-        fun getProgressDialog(title: String, content: String = ""): MaterialDialog {
+        fun getProgressDialog(title: String): MaterialDialog {
 
-            val dialog = getNewDialog()
-
-//            dialog.title(title)
-//            if (!TextUtils.isEmpty(content)) {
-//                dialog.content(content)
-//            }
-            return dialog
-//                    .progress(false, 100, true)
-//                    .build()
-
+            return getNewDialog().progress().title(text = title)
 
         }
 

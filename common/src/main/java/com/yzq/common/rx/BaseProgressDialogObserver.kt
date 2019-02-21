@@ -20,13 +20,13 @@ import java.net.SocketTimeoutException
  * @time   : 16:23
  *
  */
-abstract class BaseProgressDialogObserver<T>(private val view: BaseView, private val title: String,private val content: String="",private val url: String) : Observer<T>, ProgressListener {
+abstract class BaseProgressDialogObserver<T>(private val view: BaseView, private val title: String,private val url: String) : Observer<T>, ProgressListener {
 
     override fun onSubscribe(d: Disposable) {
 
         if (NetworkUtils.isConnected()) {
             ProgressManager.getInstance().addRequestListener(url, this)
-            view.showProgressDialog(title, content)
+            view.showProgressDialog(title)
         } else {
             onError(Exception(BaseContstants.NO_NET))
             d.dispose()

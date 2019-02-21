@@ -5,6 +5,9 @@ import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.extend.transform
+import com.yzq.common.rx.BaseProgressDialogObserver
+import com.yzq.common.rx.RxSchedulers
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.widget.Dialog
 import com.yzq.kotlincommon.R
@@ -93,8 +96,9 @@ class DialogActivity : BaseActivity() {
 
         progressBtn.setOnClickListener {
             var count = 0
-            showProgressDialog("下载中")
+            showProgressDialog("模拟进度")
             Observable.interval(200, TimeUnit.MILLISECONDS)
+                    .transform(this)
                     .subscribe(object : Observer<Long> {
 
                         lateinit var d: Disposable
@@ -107,7 +111,7 @@ class DialogActivity : BaseActivity() {
 
                         override fun onNext(t: Long) {
 
-                            count += 10
+                            count += 5
                             if (count <= 100) {
                                 changeProgress(count)
                             } else {

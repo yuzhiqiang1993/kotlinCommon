@@ -12,6 +12,8 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.yzq.common.mvp.model.CompressImgModel
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
+import com.yzq.common.extend.changeProgress
+import com.yzq.common.extend.setLoadingMessage
 import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.widget.Dialog
 import com.yzq.common.widget.StateView
@@ -125,14 +127,14 @@ abstract class BaseFragment : Fragment(), BaseView {
 
     }
 
-    override fun showLoadingDialog(content: String) {
+    override fun showLoadingDialog(message: String) {
 
-//        if (loaddingDialog == null) {
-//            loaddingDialog = Dialog.getLoaddingDialog()
-//        }
-//
-//        loaddingDialog!!.setContent(content)
-//        loaddingDialog!!.show()
+        if (loaddingDialog == null) {
+            loaddingDialog = Dialog.getLoadingDialog()
+        }
+
+        loaddingDialog!!.setLoadingMessage(message)
+        loaddingDialog!!.show()
 
     }
 
@@ -140,10 +142,10 @@ abstract class BaseFragment : Fragment(), BaseView {
         loaddingDialog!!.dismiss()
     }
 
-    override fun showProgressDialog(title: String, content: String) {
+    override fun showProgressDialog(title: String) {
 
         if (progressDialog == null) {
-            progressDialog = Dialog.getProgressDialog(title, content)
+            progressDialog = Dialog.getProgressDialog(title)
         }
 
         progressDialog!!.show()
@@ -157,7 +159,7 @@ abstract class BaseFragment : Fragment(), BaseView {
     }
 
     override fun changeProgress(percent: Int) {
-      //  progressDialog!!.setProgress(percent)
+        progressDialog!!.changeProgress(percent)
 
     }
 

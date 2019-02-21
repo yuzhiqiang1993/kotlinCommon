@@ -9,8 +9,9 @@ import retrofit2.http.POST
 
 interface ApiService {
 
-
     @POST(ServerContants.Url.index)
     @FormUrlEncoded
     fun getIndex(@Field(ServerContants.parameter.type) type: String, @Field(ServerContants.parameter.key) key: String): Observable<BaseResp<NewsBean>>
+
+
 }
