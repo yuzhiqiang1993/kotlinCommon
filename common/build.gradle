@@ -73,9 +73,8 @@ dependencies {
     api "com.google.code.gson:gson:$gson"
 
     /*dialog*/
-  //  api "com.afollestad.material-dialogs:core:$material_dialogs"
-    implementation 'com.afollestad.material-dialogs:core:2.0.0'
-    implementation 'com.afollestad.material-dialogs:input:2.0.0'
+    api "com.afollestad.material-dialogs:core:$material_dialogs"
+    api "com.afollestad.material-dialogs:input:$material_dialogs"
     /*RxImagepicker*/
     api "com.github.qingmei2:rximagepicker:$rx_imgpicker"
 
@@ -108,6 +107,6 @@ dependencies {
     api "com.tencent.bugly:crashreport_upgrade:$bugly_crashreport_upgrade"
     api "com.tencent.bugly:nativecrashreport:$bugly_nativecrashreport"
     /*flexbox*/
-    api 'com.google.android:flexbox:1.1.0'
+    api "com.google.android:flexbox:$flexbox"
 
 }

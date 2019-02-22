@@ -73,8 +73,8 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         newsAdapter = NewsAdapter(R.layout.item_news_layout, data)
         recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
         recy.adapter = newsAdapter
-        newsAdapter.setOnItemClickListener(this)
-        newsAdapter.setOnItemChildClickListener(this)
+        newsAdapter.onItemClickListener = this
+        newsAdapter.onItemChildClickListener = this
 
 
         showContent()
