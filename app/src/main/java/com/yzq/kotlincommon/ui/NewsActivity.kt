@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui
 
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
@@ -98,8 +97,6 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         }
 
     }
-
-
 
 
 }

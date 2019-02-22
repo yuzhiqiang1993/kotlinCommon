@@ -98,7 +98,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
 
     private fun skip(path: String) {
 
-        ARouter.getInstance().build(path).navigation()
+        ARouter.getInstance().build(path).navigation(this)
     }
 
     private var exitTime: Long = 0
