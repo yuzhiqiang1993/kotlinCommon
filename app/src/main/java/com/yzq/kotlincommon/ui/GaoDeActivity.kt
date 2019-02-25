@@ -1,10 +1,12 @@
 package com.yzq.kotlincommon.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.gson.Gson
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.permission.PermissionRequester
 import com.yzq.common.ui.BaseActivity
 import com.yzq.gao_de_map.data.LocationBean
 import com.yzq.gao_de_map.model.LocationSignModel
@@ -13,7 +15,6 @@ import com.yzq.gao_de_map.view.LocationView
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import kotlinx.android.synthetic.main.activity_gao_de.*
-import java.util.prefs.PreferenceChangeEvent
 import javax.inject.Inject
 
 @Route(path = RoutePath.Main.GAO_DE)
@@ -46,7 +47,7 @@ class GaoDeActivity : BaseActivity(), LocationView {
         initToolbar(toolbar, "高德")
         locationBtn.setOnClickListener {
 
-            MapPermissionUtils.checkLocationPermission()
+            MapPermissionUtils.checkLocationPermission(activity = this)
                     .subscribe {
                         locationTv.text = "开始定位"
                         locationSignModel.startLocation()
@@ -72,5 +73,6 @@ class GaoDeActivity : BaseActivity(), LocationView {
 
         locationSignModel.destroyLocation()
     }
+
 
 }

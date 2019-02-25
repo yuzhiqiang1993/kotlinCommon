@@ -1,10 +1,10 @@
 package com.yzq.common.img
 
-import android.content.Context
 import com.blankj.utilcode.util.UriUtils
 import com.qingmei2.rximagepicker.core.RxImagePicker
-import com.yanzhenjie.permission.Permission
+import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.permission.PermissionRequester
+import com.yzq.common.ui.BaseActivity
 import io.reactivex.Observable
 import java.io.File
 
@@ -21,13 +21,13 @@ object ImagePicker {
 
 
     /*拍照*/
-    fun openCamera(context: Context): Observable<File> {
+    fun openCamera(activity: BaseActivity): Observable<File> {
 
         return Observable.create<File> { emitter ->
 
-            PermissionRequester.request(Permission.CAMERA)
+            PermissionRequester.request(Permission.CAMERA, activity = activity)
                     .subscribe {
-                        RxImagePicker.create().openCamera(context)
+                        RxImagePicker.create().openCamera(activity)
                                 .subscribe {
                                     val file = UriUtils.uri2File(it.uri)
                                     emitter.onNext(file)
@@ -42,13 +42,13 @@ object ImagePicker {
 
 
     /*选择照片*/
-    fun openGallery(context: Context): Observable<File> {
+    fun openGallery(activity: BaseActivity): Observable<File> {
 
         return Observable.create<File> { emitter ->
 
-            PermissionRequester.request(*Permission.Group.STORAGE)
+            PermissionRequester.request(*Permission.Group.STORAGE, activity = activity)
                     .subscribe {
-                        RxImagePicker.create().openGallery(context)
+                        RxImagePicker.create().openGallery(activity)
                                 .subscribe {
                                     val file = UriUtils.uri2File(it.uri)
                                     emitter.onNext(file)

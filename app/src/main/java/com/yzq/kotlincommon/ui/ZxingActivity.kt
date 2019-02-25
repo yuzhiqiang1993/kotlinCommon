@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.permission.PermissionRequester
 import com.yzq.common.ui.BaseActivity
@@ -42,7 +43,7 @@ class ZxingActivity : BaseActivity() {
     val REQUEST_CODE_SCAN = 555
     @SuppressLint("CheckResult", "AutoDispose")
     private fun excuteZxing() {
-        PermissionRequester.request(com.yanzhenjie.permission.Permission.CAMERA, com.yanzhenjie.permission.Permission.WRITE_EXTERNAL_STORAGE)
+        PermissionRequester.request(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE, activity = this)
                 .subscribe {
 
                     val intent = Intent(this, CaptureActivity::class.java)

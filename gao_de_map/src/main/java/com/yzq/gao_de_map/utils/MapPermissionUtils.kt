@@ -2,9 +2,10 @@ package com.yzq.gao_de_map.utils
 
 import android.annotation.SuppressLint
 import android.widget.Toast
-import com.yanzhenjie.permission.Permission
+import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.AppContext
 import com.yzq.common.permission.PermissionRequester
+import com.yzq.common.ui.BaseActivity
 import com.yzq.common.utils.LocationUtils
 import io.reactivex.Observable
 
@@ -23,7 +24,7 @@ class MapPermissionUtils {
 
         /*检查定位相关权限*/
         @SuppressLint("CheckResult")
-        fun checkLocationPermission(needGps: Boolean = false): Observable<Boolean> {
+        fun checkLocationPermission(needGps: Boolean = false, activity: BaseActivity): Observable<Boolean> {
 
             return Observable.create<Boolean> { emitter ->
                 PermissionRequester.request(
@@ -32,7 +33,7 @@ class MapPermissionUtils {
                         , Permission.WRITE_EXTERNAL_STORAGE
                         , Permission.READ_EXTERNAL_STORAGE
                         , Permission.READ_PHONE_STATE
-                ).subscribe {
+                        , activity = activity).subscribe {
 
                     if (needGps) {
 
