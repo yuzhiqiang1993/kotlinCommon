@@ -67,8 +67,7 @@ dependencies {
     api "org.greenrobot:eventbus:$eventbus"
 
     /*permission*/
-    api "com.yanzhenjie:permission:$permission"
-
+    api "com.yanzhenjie.permission:x:$permission"
     /*Gson*/
     api "com.google.code.gson:gson:$gson"
 
