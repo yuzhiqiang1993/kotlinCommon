@@ -39,7 +39,7 @@ ext {
     jcore = "1.1.9"
     photoview = "2.3.0"
     objectboxVersion = "2.2.0"
-    utilcode = "1.23.4"
+    utilcode = "1.23.6"
     arouter_api = "1.4.1"
     arouter_compiler = "1.2.2"
     walleVersion = "1.1.6"
