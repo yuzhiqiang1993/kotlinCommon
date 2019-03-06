@@ -5,12 +5,10 @@ import androidx.lifecycle.LifecycleOwner
 import com.uber.autodispose.ObservableSubscribeProxy
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 import com.uber.autodispose.autoDisposable
-
 import com.yzq.common.data.BaseResp
 import com.yzq.common.data.ResponseCode
 import com.yzq.common.rx.RxSchedulers
 import io.reactivex.Observable
-import io.reactivex.functions.Function
 
 
 /**
@@ -35,20 +33,9 @@ fun <T> Observable<T>.transform(owner: LifecycleOwner): ObservableSubscribeProxy
 *
 * */
 fun <T> Observable<BaseResp<T>>.dataConvert(): Observable<T> {
-
-    return this.flatMap(object : Function<BaseResp<T>, Observable<T>> {
-        override fun apply(t: BaseResp<T>): Observable<T> {
-
-            if (t.errorCode == ResponseCode.SUCCESS) {
-
-                return Observable.just(t.result)
-            }
-            return Observable.error(Throwable(message = t.reason))
-        }
-
-    })
-
-
+    return flatMap {
+        if (it.errorCode == ResponseCode.SUCCESS) Observable.just(it.result) else Observable.error(Throwable(message = it.reason))
+    }
 }
 
 

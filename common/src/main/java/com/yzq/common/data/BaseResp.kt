@@ -10,12 +10,9 @@ import com.google.gson.annotations.SerializedName
  * @time   : 14:11
  *
  */
-
-
 data class BaseResp<T>(
         var reason: String = "", // 成功的返回
         var result: T,
         @SerializedName("error_code")
         var errorCode: Int = 0 // 0
-) {
-}
+)

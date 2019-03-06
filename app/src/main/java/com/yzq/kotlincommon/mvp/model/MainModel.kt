@@ -10,6 +10,7 @@ import javax.inject.Inject
 class MainModel @Inject constructor() {
 
     fun getData(type: String = "top", key: String = "4c52313fc9247e5b4176aed5ddd56ad7"): Observable<NewsBean> {
+
         return RetrofitFactory.instance.getService(ApiService::class.java).getIndex(type, key).dataConvert()
     }
 }
