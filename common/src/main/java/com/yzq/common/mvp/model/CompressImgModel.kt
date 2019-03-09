@@ -2,10 +2,13 @@ package com.yzq.common.mvp.model
 
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Matrix
+import android.media.ExifInterface
 import com.blankj.utilcode.util.*
 import com.yzq.common.R
 import com.yzq.common.constants.StoragePath
 import io.reactivex.Observable
+import java.io.IOException
 import javax.inject.Inject
 
 
@@ -27,7 +30,21 @@ class CompressImgModel @Inject constructor() {
         return Observable.create { e ->
             LogUtils.i("压缩前图片大小：${FileUtils.getFileSize(path)}")
 
+
+            /*获取图片旋转的角度*/
+            val degree = readPictureDegree(path)
+
             var selectBitMap = ImageUtils.getBitmap(path)
+
+
+            if (degree != 0) {
+                LogUtils.i("图片旋转了，进行调整")
+                val matrix = Matrix()
+                matrix.postRotate(degree.toFloat())
+                selectBitMap = Bitmap.createBitmap(selectBitMap, 0, 0, selectBitMap.width, selectBitMap.height, matrix, true)
+
+            }
+
 
             //LogUtils.i("密度：${selectBitMap.density}")
 
@@ -160,5 +177,33 @@ class CompressImgModel @Inject constructor() {
         return ratio
     }
 
+    /*图片的旋转角度*/
+    private fun readPictureDegree(path: String): Int {
+        var degree = 0
+        try {
+            var exifInterface = ExifInterface(path);
+            var orientation = exifInterface.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_NORMAL);
+            when (orientation) {
+                ExifInterface.ORIENTATION_ROTATE_90 ->
+                    degree = 90
+
+                ExifInterface.ORIENTATION_ROTATE_180 ->
+                    degree = 180
+
+                ExifInterface.ORIENTATION_ROTATE_270 ->
+                    degree = 270
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        //LogUtils.i("图片旋转了：${degree}度")
+
+        return degree
+
+
+    }
 
 }
