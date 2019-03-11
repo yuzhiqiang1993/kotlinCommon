@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Matrix
 import android.media.ExifInterface
+
 import com.blankj.utilcode.util.*
 import com.yzq.common.R
 import com.yzq.common.constants.StoragePath
@@ -181,8 +182,8 @@ class CompressImgModel @Inject constructor() {
     private fun readPictureDegree(path: String): Int {
         var degree = 0
         try {
-            var exifInterface = ExifInterface(path);
-            var orientation = exifInterface.getAttributeInt(
+            val exifInterface = ExifInterface(path);
+            val orientation = exifInterface.getAttributeInt(
                     ExifInterface.TAG_ORIENTATION,
                     ExifInterface.ORIENTATION_NORMAL);
             when (orientation) {
