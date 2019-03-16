@@ -20,6 +20,7 @@ class ServerConstants {
 
 
         val DEVICE_ID = "DeviceId"
+        val AES_KEY = "aesKey"
 
 
         /*获取服务器地址*/
