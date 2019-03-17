@@ -11,7 +11,6 @@ import okhttp3.RequestBody
 import okhttp3.Response
 import okio.Buffer
 import java.nio.charset.Charset
-import kotlin.random.Random
 
 
 /**
@@ -35,7 +34,7 @@ class RequestEncryptInterceptor : Interceptor {
         if (requestBody != null) {
 
             /*先产生一个随机数*/
-            val randomKey = "${Random.nextInt(999999)}"
+            val randomKey = AESUtils.getRandomKey(16)
             /*获取请求的数据*/
             val buffer = Buffer()
             var charset = Charset.forName("UTF-8")
@@ -51,7 +50,7 @@ class RequestEncryptInterceptor : Interceptor {
             LogUtils.i("生成的随机数：${randomKey}")
 
             /*使用产生的随机数对请求的数据进行加密*/
-            val aesEncryptData = AESUtils.aesEncrypt(requestData, randomKey)
+            val aesEncryptData = AESUtils.encrypt(requestData, randomKey)
 
             LogUtils.i("加密后的请求数据为：${aesEncryptData}")
 
@@ -69,7 +68,6 @@ class RequestEncryptInterceptor : Interceptor {
                     .addHeader(ServerConstants.AES_KEY, Base64.encode(encryptAesKeyBytes))
                     .post(newRequestBody)
                     .build()
-
 
         }
 

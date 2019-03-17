@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 
@@ -39,8 +40,8 @@ class RetrofitFactory private constructor() {
         retrofit = Retrofit.Builder()
                 .baseUrl(ServerConstants.getApiUrl())
                 .client(initOkhttpClient())
-                // .addConverterFactory(GsonConverterFactory.create())
-                .addConverterFactory(CustomerConverterFactory.create())
+                 .addConverterFactory(GsonConverterFactory.create())
+                //.addConverterFactory(CustomerConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
 
@@ -53,7 +54,7 @@ class RetrofitFactory private constructor() {
                 .connectTimeout(5, TimeUnit.SECONDS)
                 .readTimeout(5, TimeUnit.SECONDS)
                 .addInterceptor(RequestHeadersInterceptor())
-                .addInterceptor(RequestEncryptInterceptor())
+                //.addInterceptor(RequestEncryptInterceptor())
                 .addInterceptor(initLogInterceptor())
 
         return ProgressManager.getInstance().with(okHttpBuilder).build()

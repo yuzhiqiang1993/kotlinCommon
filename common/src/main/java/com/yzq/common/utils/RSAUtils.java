@@ -1,9 +1,14 @@
 package com.yzq.common.utils;
 
 
-import javax.crypto.Cipher;
 import java.io.ByteArrayOutputStream;
-import java.security.*;
+import java.security.Key;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.Signature;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
@@ -11,53 +16,41 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- */
+import javax.crypto.Cipher;
 
-/**
- * <p>
- * RSA公钥/私钥/签名工具包
- * </p>
- * <p>
- * 罗纳德·李维斯特（Ron [R]ivest）、阿迪·萨莫尔（Adi [S]hamir）和伦纳德·阿德曼（Leonard [A]dleman）
- * </p>
- * <p>
- * 字符串格式的密钥在未在特殊说明情况下都为BASE64编码格式<br/>
- * 由于非对称加密速度极其缓慢，一般文件不使用它来加密而是使用对称加密，<br/>
- * 非对称加密算法可以用来对对称加密的密钥加密，这样保证密钥的安全也就保证了数据的安全
- * </p>
- *
- * @author IceWee
- * @date 2012-4-26
- * @version 1.0
- */
+
 public class RSAUtils {
 
-    /** */
     /**
      * 加密算法RSA
      */
-    public static final String KEY_ALGORITHM = "RSA";
+    private static final String KEY_ALGORITHM = "RSA";
 
-    /** */
+
+    /*加密算法*/
+    private static final String cipherMode = "RSA/ECB/PKCS1Padding";
+
+
+    /*生成key的长度*/
+    private static final int keySize=1024;
+
     /**
      * 签名算法
      */
     // public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
-    public static final String SIGNATURE_ALGORITHM = "SHA256withRSA";
+    private static final String SIGNATURE_ALGORITHM = "SHA256withRSA";
 
     /** */
     /**
      * 获取公钥的key
      */
-    public static final String PUBLIC_KEY = "RSAPublicKey";
+    private static final String PUBLIC_KEY = "RSAPublicKey";
 
     /** */
     /**
      * 获取私钥的key
      */
-    public static final String PRIVATE_KEY = "RSAPrivateKey";
+    private static final String PRIVATE_KEY = "RSAPrivateKey";
 
     /** */
     /**
@@ -125,17 +118,13 @@ public class RSAUtils {
      */
     public static Map<String, Object> genKeyPair() throws Exception {
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
-        keyPairGen.initialize(1024);
+        keyPairGen.initialize(keySize);
         KeyPair keyPair = keyPairGen.generateKeyPair();
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
         RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
         Map<String, Object> keyMap = new HashMap<String, Object>(2);
         keyMap.put(PUBLIC_KEY, publicKey);
         keyMap.put(PRIVATE_KEY, privateKey);
-
-//
-//        System.out.println("publicKey："+ Base64.encode(publicKey.getEncoded()));
-//        System.out.println("privateKey："+ Base64.encode(privateKey.getEncoded()));
 
         return keyMap;
     }
@@ -146,11 +135,8 @@ public class RSAUtils {
      * 用私钥对信息生成数字签名
      * </p>
      *
-     * @param data
-     *            已加密数据
-     * @param privateKey
-     *            私钥(BASE64编码)
-     *
+     * @param data       已加密数据
+     * @param privateKey 私钥(BASE64编码)
      * @return
      * @throws Exception
      */
@@ -171,16 +157,11 @@ public class RSAUtils {
      * 校验数字签名
      * </p>
      *
-     * @param data
-     *            已加密数据
-     * @param publicKey
-     *            公钥(BASE64编码)
-     * @param sign
-     *            数字签名
-     *
+     * @param data      已加密数据
+     * @param publicKey 公钥(BASE64编码)
+     * @param sign      数字签名
      * @return
      * @throws Exception
-     *
      */
     public static boolean verify(byte[] data, String publicKey, String sign) throws Exception {
         byte[] keyBytes = Base64.decode(publicKey);
@@ -199,10 +180,8 @@ public class RSAUtils {
      * 私钥解密
      * </p>
      *
-     * @param encryptedData
-     *            已加密数据
-     * @param privateKey
-     *            私钥(BASE64编码)
+     * @param encryptedData 已加密数据
+     * @param privateKey    私钥(BASE64编码)
      * @return
      * @throws Exception
      */
@@ -211,8 +190,7 @@ public class RSAUtils {
         PKCS8EncodedKeySpec pkcs8KeySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
         Key privateK = keyFactory.generatePrivate(pkcs8KeySpec);
-        //Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
-        Cipher cipher = Cipher.getInstance(KEY_ALGORITHM);
+        Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.DECRYPT_MODE, privateK);
 
         int inputLen = encryptedData.length;
@@ -244,10 +222,8 @@ public class RSAUtils {
      * 公钥解密
      * </p>
      *
-     * @param encryptedData
-     *            已加密数据
-     * @param publicKey
-     *            公钥(BASE64编码)
+     * @param encryptedData 已加密数据
+     * @param publicKey     公钥(BASE64编码)
      * @return
      * @throws Exception
      */
@@ -285,10 +261,8 @@ public class RSAUtils {
      * 公钥加密
      * </p>
      *
-     * @param data
-     *            源数据
-     * @param publicKey
-     *            公钥(BASE64编码)
+     * @param data      源数据
+     * @param publicKey 公钥(BASE64编码)
      * @return
      * @throws Exception
      */
@@ -298,7 +272,9 @@ public class RSAUtils {
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_ALGORITHM);
         Key publicK = keyFactory.generatePublic(x509KeySpec);
         // 对数据加密
-        Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
+        // Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
+        Cipher cipher = Cipher.getInstance(cipherMode);
+
         cipher.init(Cipher.ENCRYPT_MODE, publicK);
         int inputLen = data.length;
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -327,10 +303,8 @@ public class RSAUtils {
      * 私钥加密
      * </p>
      *
-     * @param data
-     *            源数据
-     * @param privateKey
-     *            私钥(BASE64编码)
+     * @param data       源数据
+     * @param privateKey 私钥(BASE64编码)
      * @return
      * @throws Exception
      */
@@ -362,64 +336,5 @@ public class RSAUtils {
         return encryptedData;
     }
 
-    /** */
-    /**
-     * <p>
-     * 获取私钥
-     * </p>
-     *
-     * @param keyMap
-     *            密钥对
-     * @return
-     * @throws Exception
-     */
-    public static String getPrivateKey(Map<String, Object> keyMap) throws Exception {
-        Key key = (Key) keyMap.get(PRIVATE_KEY);
-        return Base64.encode(key.getEncoded());
-    }
-
-    /** */
-    /**
-     * <p>
-     * 获取公钥
-     * </p>
-     *
-     * @param keyMap
-     *            密钥对
-     * @return
-     * @throws Exception
-     */
-    public static String getPublicKey(Map<String, Object> keyMap) throws Exception {
-        Key key = (Key) keyMap.get(PUBLIC_KEY);
-        return Base64.encode(key.getEncoded());
-    }
-
-    /**
-     * java端公钥加密
-     */
-    public static String encryptedDataOnJava(String data, String PUBLICKEY) {
-        try {
-            data = Base64.encode(encryptByPublicKey(data.getBytes(), PUBLICKEY));
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return data;
-    }
-
-    /**
-     * java端私钥解密
-     */
-    public static String decryptDataOnJava(String data, String PRIVATEKEY) {
-        String temp = "";
-        try {
-            byte[] rs = Base64.decode(data);
-            temp = new String(RSAUtils.decryptByPrivateKey(rs, PRIVATEKEY), "UTF-8");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return temp;
-    }
 
 }
