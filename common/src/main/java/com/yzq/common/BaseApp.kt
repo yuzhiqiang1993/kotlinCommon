@@ -12,6 +12,14 @@ import com.blankj.utilcode.util.Utils
 import java.util.*
 
 
+/**
+ * @description: Application入口
+ * @author : yzq
+ * @date   : 2019/3/18
+ * @time   : 11:29
+ *
+ */
+
 open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
 
@@ -71,6 +79,11 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
     }
 
+    /**
+     * 初始化util工具类
+     *
+     */
+
     private fun initUtils() {
 
 
@@ -85,6 +98,10 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
     }
 
 
+    /**
+     * 退出App
+     *
+     */
     fun exitApp() {
         activityStack.forEach {
             it.finish()

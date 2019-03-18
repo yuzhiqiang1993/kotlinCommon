@@ -7,6 +7,15 @@ import com.tencent.bugly.beta.Beta
 import com.yzq.common.BaseApp
 import com.yzq.kotlincommon.ui.MainActivity
 
+
+ /**
+ * @description: Application基类
+ * @author : yzq
+ * @date   : 2019/3/18
+ * @time   : 11:28
+ *
+ */
+
 class App : BaseApp() {
 
 
@@ -15,6 +24,10 @@ class App : BaseApp() {
         initBugly()
     }
 
+     /**
+      * 初始化bugly
+      *
+      */
     fun initBugly() {
         /*初始化Bugly*/
         Beta.showInterruptedStrategy = true

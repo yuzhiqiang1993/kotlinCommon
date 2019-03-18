@@ -26,7 +26,6 @@ import io.reactivex.Observable
  * @date   : 2018/7/9
  * @time   : 13:30
  */
-
 class Dialog {
 
     companion object {
@@ -34,17 +33,33 @@ class Dialog {
         @SuppressLint("StaticFieldLeak")
         private lateinit var context: Context
 
+        /**
+         * 初始化弹窗
+         *
+         * @param context  上下文环境
+         */
         fun initDialog(context: Context) {
             this.context = context
         }
 
 
+        /**
+         * 创建一个Dialog实例
+         *
+         */
         fun getNewDialog(): MaterialDialog {
             return MaterialDialog(context).cancelOnTouchOutside(false).cancelable(false)
         }
 
 
-        /*简单的提示框  没有回调*/
+        /**
+         * 基础弹窗  没有任何回调  只有确定按钮
+         *
+         * @param title  标题
+         * @param message  信息
+         * @param positiveText  确定按钮的文本
+         */
+
         fun showBase(title: String = BaseContstants.HINT, message: String, positiveText: String = BaseContstants.SURE) {
 
             getNewDialog().show {
@@ -57,7 +72,13 @@ class Dialog {
         }
 
 
-        /*只有确定按钮且只有确定回调*/
+        /**
+         * 显示一个只有确定按钮的弹窗
+         *
+         * @param title  标题
+         * @param message  提示信息
+         * @param positiveText  确定按钮的文字
+         */
         fun showOnlyPostiveCallBackDialog(
                 title: String = BaseContstants.HINT,
                 message: String,
@@ -83,7 +104,14 @@ class Dialog {
         }
 
 
-        /*有取消和确定按钮的弹窗 确定按钮有回调*/
+        /**
+         * 有取消和确定按钮的弹窗 确定按钮有回调
+         *
+         * @param title  标题
+         * @param message  信息
+         * @param positiveText 确定按钮文本
+         * @param negativeText  取消按钮文本
+         */
         fun showPositiveCallbackDialog(
                 title: String = BaseContstants.HINT,
                 message: String,
@@ -111,7 +139,14 @@ class Dialog {
         }
 
 
-        /*带有确定和取消回调的弹窗*/
+        /**
+         * 带有确定和取消回调的弹窗
+         *
+         * @param title  标题
+         * @param message  信息
+         * @param positiveText  确定按钮文本
+         * @param negativeText  取消按钮文本
+         */
         fun showCallbackDialog(
                 title: String = BaseContstants.HINT,
                 message: String,
@@ -142,7 +177,14 @@ class Dialog {
         }
 
 
-        /*返回页面提示弹窗*/
+        /**
+         * 返回页面提示弹窗
+         *
+         * @param title  标题
+         * @param message  消息
+         * @param positiveText  确定按钮文本
+         * @param negativeText  取消按钮文本
+         */
         fun showBackHintDialog(
                 title: String = BaseContstants.HINT,
                 message: String = BaseContstants.BACK_HINT,
@@ -170,7 +212,13 @@ class Dialog {
         }
 
 
-        /*单选列表弹窗*/
+        /**
+         * 单选列表弹窗
+         *
+         * @param title  标题
+         * @param message  消息
+         * @param items  选项
+         */
         fun showSingleSelectList(
                 title: String = BaseContstants.HINT,
                 message: String = "",
@@ -199,7 +247,18 @@ class Dialog {
         }
 
 
-        /*带输入框的弹窗*/
+        /**
+         * 带输入框的弹窗
+         *
+         * @param title  标题
+         * @param positiveText  确定按钮文字
+         * @param negativeText  取消按钮文字
+         * @param message  提示信息
+         * @param inputHint  输入提示文本
+         * @param prefill  预填充的文本
+         * @param inputType  输入类型
+         * @param allowEmptyInput  是否允许输入空
+         */
         fun showInputDialog(
                 title: String = BaseContstants.HINT,
                 positiveText: String = BaseContstants.SURE,
@@ -234,12 +293,21 @@ class Dialog {
 
         }
 
+        /**
+         * 加载框
+         *
+         */
         fun getLoadingDialog(): MaterialDialog {
             return getNewDialog().loading()
 
 
         }
 
+        /**
+         * 进度框
+         *
+         * @param title  标题
+         */
         fun getProgressDialog(title: String): MaterialDialog {
 
             return getNewDialog().progress().title(text = title)
@@ -276,7 +344,13 @@ class Dialog {
         }
 
 
-        /*选择年月日*/
+        /**
+         * 选择年月日
+         *
+         * @param title  标题
+         * @param positiveText  确定文本
+         * @param negativeText  取消文本
+         */
         fun selectDate(
                 title: String = "选择日期",
                 positiveText: String = BaseContstants.SURE,
@@ -321,7 +395,13 @@ class Dialog {
         }
 
 
-        /*选择小时和分钟*/
+        /**
+         * 选择小时和分钟
+         *
+         * @param title  标题
+         * @param positiveText 确定按钮文本
+         * @param negativeText  取消按钮文本
+         */
         fun selectHourAndMinute(
                 title: String = "选择时间",
                 positiveText: String = BaseContstants.SURE,

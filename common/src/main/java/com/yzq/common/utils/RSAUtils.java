@@ -32,11 +32,10 @@ public class RSAUtils {
 
 
     /*生成key的长度*/
-    private static final int keySize=1024;
+    private static final int keySize = 1024;
 
-    /**
-     * 签名算法
-     */
+
+    /*签名算法*/
     // public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
     private static final String SIGNATURE_ALGORITHM = "SHA256withRSA";
 
@@ -46,19 +45,14 @@ public class RSAUtils {
      */
     private static final String PUBLIC_KEY = "RSAPublicKey";
 
-    /** */
-    /**
-     * 获取私钥的key
-     */
+    /*私钥*/
     private static final String PRIVATE_KEY = "RSAPrivateKey";
 
-    /** */
     /**
      * RSA最大加密明文大小
      */
     private static final int MAX_ENCRYPT_BLOCK = 117;
 
-    /** */
     /**
      * RSA最大解密密文大小
      */

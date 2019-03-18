@@ -33,8 +33,6 @@ class RequestEncryptInterceptor : Interceptor {
         /*判断请求体是否为空  不为空则执行以下操作*/
         if (requestBody != null) {
 
-            /*先产生一个随机数*/
-            val randomKey = AESUtils.getRandomKey(16)
             /*获取请求的数据*/
             val buffer = Buffer()
             var charset = Charset.forName("UTF-8")
@@ -47,6 +45,9 @@ class RequestEncryptInterceptor : Interceptor {
             val requestData = buffer.readString(charset)
 
             LogUtils.i("请求的数据为：${requestData}")
+
+            /*产生一个随机数*/
+            val randomKey = AESUtils.getRandomKey(16)
             LogUtils.i("生成的随机数：${randomKey}")
 
             /*使用产生的随机数对请求的数据进行加密*/
