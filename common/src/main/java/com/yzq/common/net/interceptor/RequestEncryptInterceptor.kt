@@ -51,7 +51,7 @@ class RequestEncryptInterceptor : Interceptor {
             LogUtils.i("生成的随机数：${randomKey}")
 
             /*使用产生的随机数对请求的数据进行加密*/
-            val aesEncryptData = AESUtils.encrypt(requestData, randomKey)
+            val aesEncryptData = AESUtils.encrypt(requestData, randomKey!!)
 
             LogUtils.i("加密后的请求数据为：${aesEncryptData}")
 
