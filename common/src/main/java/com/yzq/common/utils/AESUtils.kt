@@ -7,12 +7,6 @@ import javax.crypto.spec.SecretKeySpec
 object AESUtils {
 
 
-    /*测试函数*/
-    @JvmStatic
-    fun main(args: Array<String>) {
-
-    }
-
     private val cipherMode = "AES/ECB/PKCS5Padding"//算法/模式/补码方式
 
     /*
@@ -26,11 +20,11 @@ object AESUtils {
      * @param length 需要生成的字符串长度
      * @return 随机生成的字符串
      */
-    fun getRandomKey(length: Int): String? {
+    fun getRandomKey(length: Int): String {
 
         if (length != 16 && length != 24 && length != 32) {
             println("长度必须为16/24/32")
-            return null
+            return ""
         }
 
         val str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -51,12 +45,12 @@ object AESUtils {
      * @throws Exception
      */
     @Throws(Exception::class)
-    fun encrypt(data: String, key: String): String? {
+    fun encrypt(data: String, key: String): String {
 
         val length = key.length
         if (length != 16 && length != 24 && length != 32) {
             println("长度必须为16/24/32")
-            return null
+            return ""
         }
 
         val raw = key.toByteArray(charset("utf-8"))
@@ -99,6 +93,30 @@ object AESUtils {
         } catch (ex: Exception) {
             println(ex.toString())
             return null
+        }
+
+    }
+
+
+    @JvmStatic
+    fun main(args: Array<String>) {
+
+        /*构建一个随机密码*/
+        val key = getRandomKey(keyLength)
+        println("随机生成的key：$key")
+
+        val data = "{'fig':1,'message':'登录成功'}"
+
+        try {
+            val encriptData = AESUtils.encrypt(data, key)
+            println("加密后的数据：$encriptData")
+
+            val decryptData = decrypt(encriptData, key)
+
+            println("解密后的数据：$decryptData")
+
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
     }
