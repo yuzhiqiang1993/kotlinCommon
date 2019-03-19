@@ -38,11 +38,6 @@ class CustomerConverterFactory(var gson: Gson) : Converter.Factory() {
     }
 
 
-    override fun stringConverter(type: Type, annotations: Array<Annotation>, retrofit: Retrofit): Converter<*, String>? {
-
-        val adapter = gson.getAdapter(TypeToken.get(type))
-        return RequestStringConverterFactory(gson, adapter)
-    }
 
 
 }
