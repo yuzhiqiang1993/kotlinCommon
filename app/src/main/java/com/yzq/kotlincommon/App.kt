@@ -1,14 +1,13 @@
 package com.yzq.kotlincommon
 
-import android.content.Context
-import androidx.multidex.MultiDex
+import com.taobao.sophix.SophixManager
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.BaseApp
 import com.yzq.kotlincommon.ui.MainActivity
 
 
- /**
+/**
  * @description: Application基类
  * @author : yzq
  * @date   : 2019/3/18
@@ -21,13 +20,14 @@ class App : BaseApp() {
 
     override fun onCreate() {
         super.onCreate()
+        SophixManager.getInstance().queryAndLoadNewPatch();
         initBugly()
     }
 
-     /**
-      * 初始化bugly
-      *
-      */
+    /**
+     * 初始化bugly
+     *
+     */
     fun initBugly() {
         /*初始化Bugly*/
         Beta.showInterruptedStrategy = true
@@ -36,9 +36,10 @@ class App : BaseApp() {
 
     }
 
-    override fun attachBaseContext(base: Context?) {
-        super.attachBaseContext(base)
-        MultiDex.install(this)
-    }
+//    override fun attachBaseContext(base: Context?) {
+//        super.attachBaseContext(base)
+//        MultiDex.install(this)
+//
+//    }
 
 }
