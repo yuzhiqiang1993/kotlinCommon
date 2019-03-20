@@ -70,30 +70,21 @@ object AESUtils {
      */
     @Throws(Exception::class)
     fun decrypt(data: String, key: String): String? {
-        try {
-            val length = key.length
-            if (length != 16 && length != 24 && length != 32) {
-                println("长度必须为16/24/32")
-                return null
-            }
 
-            val raw = key.toByteArray(charset("utf-8"))
-            val skeySpec = SecretKeySpec(raw, "AES")
-            val cipher = Cipher.getInstance(cipherMode)
-            cipher.init(Cipher.DECRYPT_MODE, skeySpec)
-            val encrypted = Base64.decode(data)//先用base64解密
-            try {
-                val original = cipher.doFinal(encrypted)
-                return String(original, charset("utf-8"))
-            } catch (e: Exception) {
-                println(e.toString())
-                return null
-            }
-
-        } catch (ex: Exception) {
-            println(ex.toString())
+        val length = key.length
+        if (length != 16 && length != 24 && length != 32) {
+            println("长度必须为16/24/32")
             return null
         }
+        val raw = key.toByteArray(charset("utf-8"))
+        val skeySpec = SecretKeySpec(raw, "AES")
+        val cipher = Cipher.getInstance(cipherMode)
+        cipher.init(Cipher.DECRYPT_MODE, skeySpec)
+        val encrypted = Base64.decode(data)//先用base64解密
+
+        val original = cipher.doFinal(encrypted)
+        return String(original, charset("utf-8"))
+
 
     }
 

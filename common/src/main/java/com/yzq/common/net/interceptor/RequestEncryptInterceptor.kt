@@ -24,11 +24,12 @@ import java.nio.charset.Charset
 class RequestEncryptInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIarYvrIMZGHKa8f2E6ubg0//28R1zJ4ArD+XELXYvDrM8UBR42PqJCpjPN3hC91YAnnk2Y9U+X5o/rGxH5ZTZzYy+rkAmZFJa1fK2mWDxPYJoxH+DGHQc+h8t83BMB4pKqVPhcJVF6Ie+qpD5RFUU/e5iEz8ZZFDroVE3ubKaKwIDAQAB"
 
         var request = chain.request()
 
         val requestBody = request.body()
+
+        val mediaType = MediaType.parse("text/plain; charset=utf-8")
 
         /*判断请求体是否为空  不为空则执行以下操作*/
         if (requestBody != null) {
@@ -56,7 +57,7 @@ class RequestEncryptInterceptor : Interceptor {
             LogUtils.i("加密后的请求数据为：${aesEncryptData}")
 
             /*再使用公钥对随机的key进行加密 得到加密后的key*/
-            val encryptAesKeyBytes = RSAUtils.encryptByPublicKey(randomKey.toByteArray(), publicKey)
+            val encryptAesKeyBytes = RSAUtils.encryptByPublicKey(randomKey.toByteArray(), ServerConstants.RSA_PUB_KEY)
 
             /*将加密后的key放到header里*/
             val encryptAesKeyStr = Base64.encode(encryptAesKeyBytes)
@@ -64,7 +65,7 @@ class RequestEncryptInterceptor : Interceptor {
 
 
             /*然后将使用Aes加密过后的数据放到request里*/
-            val newRequestBody = RequestBody.create(MediaType.parse("text/plain; charset=utf-8"), aesEncryptData)
+            val newRequestBody = RequestBody.create(mediaType, aesEncryptData)
             request = request.newBuilder()
                     .addHeader(ServerConstants.AES_KEY, Base64.encode(encryptAesKeyBytes))
                     .post(newRequestBody)

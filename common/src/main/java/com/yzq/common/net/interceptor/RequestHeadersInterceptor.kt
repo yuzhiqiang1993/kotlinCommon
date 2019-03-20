@@ -1,6 +1,7 @@
 package com.yzq.common.net.interceptor
 
 import com.blankj.utilcode.util.DeviceUtils
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.ServerConstants
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -18,6 +19,8 @@ class RequestHeadersInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 
 
+
+        LogUtils.i("RequestHeadersInterceptor")
         var request = chain.request()
 
 
