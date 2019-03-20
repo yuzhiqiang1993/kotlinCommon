@@ -108,7 +108,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     }
 
-    protected open fun initData() {}
+    protected open fun initData() {
+
+
+    }
 
 
     protected open fun initToolbar(toolbar: Toolbar, title: String, showBackHint: Boolean = false) {

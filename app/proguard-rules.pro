@@ -243,7 +243,7 @@
 
 
 
-#阿里 Sophix
+#阿里 热修复
 
 #基线包使用，生成mapping.txt
 -printmapping mapping.txt
@@ -263,4 +263,3 @@
 # 如果不使用android.support.annotation.Keep则需加上此行
 # -keep class com.my.pkg.SophixStubApplication$RealApplicationStub
 
--keep class android.support.multidex.**{*;}

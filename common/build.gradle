@@ -108,4 +108,9 @@ dependencies {
     /*flexbox*/
     api "com.google.android:flexbox:$flexbox"
 
+
+
+    /*阿里热修复*/
+    api 'com.aliyun.ams:alicloud-android-hotfix:3.2.8'
+
 }
