@@ -51,6 +51,7 @@ ext {
     datepickerVersion = "1.2.2"
     flexbox = "1.1.0"
     hotfix="3.2.8"
+    dokka_version="0.9.18"
     signConfigs = [
             storeFilePath: "kotlinCommon.jks",
             storePwd     : "123456",

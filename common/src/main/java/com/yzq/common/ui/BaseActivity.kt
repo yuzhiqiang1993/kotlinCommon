@@ -225,6 +225,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      */
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
 
+
         if (!allowFastClick) {
             if (ev?.action == MotionEvent.ACTION_DOWN) {
                 if (System.currentTimeMillis() - lastClickTime < intervalTime) {
