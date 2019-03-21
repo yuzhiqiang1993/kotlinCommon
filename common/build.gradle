@@ -16,6 +16,7 @@ android {
         targetSdkVersion target_sdk_version
         versionCode version_code
         versionName version_name
+        multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -50,6 +51,7 @@ dependencies {
     api "androidx.vectordrawable:vectordrawable:$vectordrawable"
     api "androidx.constraintlayout:constraintlayout:$constraintlayout"
     api "androidx.annotation:annotation:$annotation"
+    api "androidx.multidex:multidex:$multiDexVersion"
 
     /*dagger2*/
     api "com.google.dagger:dagger:$dagger2"
@@ -108,9 +110,7 @@ dependencies {
     /*flexbox*/
     api "com.google.android:flexbox:$flexbox"
 
-
-
     /*阿里热修复*/
-    api 'com.aliyun.ams:alicloud-android-hotfix:3.2.8'
+    api "com.aliyun.ams:alicloud-android-hotfix:$hotfix"
 
 }

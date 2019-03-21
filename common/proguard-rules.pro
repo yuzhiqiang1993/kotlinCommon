@@ -85,7 +85,7 @@
 
 
 
-#permission
+#AndPermission
 -dontwarn com.yanzhenjie.permission.**
 
 #ARouter
@@ -134,7 +134,6 @@
 -keep class android.support.**{*;}
 
 
-
 #阿里 热修复
 
 #基线包使用，生成mapping.txt
@@ -149,9 +148,11 @@
 #防止inline
 -dontoptimize
 
+
 -keepclassmembers class com.yzq.kotlincommon.App {
     public <init>();
 }
 # 如果不使用android.support.annotation.Keep则需加上此行
-# -keep class com.my.pkg.SophixStubApplication$RealApplicationStub
+ -keep class com.yzq.kotlincommon.SophixStubApplication$App
+
 

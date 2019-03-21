@@ -35,6 +35,15 @@ android {
     }
 
     buildTypes {
+
+
+        debug{
+
+//            minifyEnabled true
+//            zipAlignEnabled true
+//            shrinkResources true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
         release {
             signingConfig signingConfigs.release
             minifyEnabled true
@@ -58,6 +67,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     kapt "com.google.dagger:dagger-compiler:$dagger2"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
+
 
 
     implementation project(':common')
