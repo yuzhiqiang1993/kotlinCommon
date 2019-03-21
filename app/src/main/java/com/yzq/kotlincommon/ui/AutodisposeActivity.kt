@@ -37,6 +37,7 @@ class AutodisposeActivity : BaseActivity() {
 
     private fun startCount() {
 
+
         Observable.interval(1, TimeUnit.SECONDS)
                 .compose(RxSchedulers.io2main())
                 .transform(this)

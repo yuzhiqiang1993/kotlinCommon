@@ -2,6 +2,16 @@ package com.yzq.common.eventBus
 
 import org.greenrobot.eventbus.EventBus
 
+
+
+ /**
+ * @description: EventBus封装
+ * @author : yzq
+ * @date   : 2018/7/9
+ * @time   : 11:20
+ *
+ */
+
 class EventBusUtil private constructor() {
 
     companion object {

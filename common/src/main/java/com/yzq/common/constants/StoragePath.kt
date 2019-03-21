@@ -7,9 +7,12 @@ import com.blankj.utilcode.util.LogUtils
 
 import java.io.File
 
-/**
- * Created by yzq on 2018/3/9.
- * 项目路径
+ /**
+ * @description:App相关路径常量
+ * @author : yzq
+ * @date   : 2018/3/9
+ * @time   : 11:19
+ *
  */
 
 class StoragePath {

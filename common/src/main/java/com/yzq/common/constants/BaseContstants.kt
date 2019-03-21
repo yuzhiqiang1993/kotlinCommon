@@ -1,5 +1,15 @@
 package com.yzq.common.constants
 
+
+
+ /**
+ * @description: 常量类
+ * @author : yzq
+ * @date   : 2019/3/21
+ * @time   : 11:18
+ *
+ */
+
 class BaseContstants {
 
 

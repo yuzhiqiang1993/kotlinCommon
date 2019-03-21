@@ -35,20 +35,21 @@ import javax.inject.Inject
 abstract class BaseActivity : AppCompatActivity(), BaseView {
 
 
-    private var lastClickTime: Long = 0
-    private val intervalTime = 300
-    private var allowFastClick = false
+    private var lastClickTime: Long = 0//最后一次点击的时间
 
-    private var loaddingDialog: MaterialDialog? = null
-    private var progressDialog: MaterialDialog? = null
+    private val intervalTime = 300//两次点击之间的间隔
+    private var allowFastClick = false//是否允许快速点击
 
-    private var stateView: StateView? = null
-    private var contentLayout: View? = null
-    private var isRefreshLayout: Boolean = false
-    private var showBackHint = false
+    private var loaddingDialog: MaterialDialog? = null//加载框
+    private var progressDialog: MaterialDialog? = null//进度框
+
+    private var stateView: StateView? = null //状态布局
+    private var contentLayout: View? = null//内容布局
+    private var isRefreshLayout: Boolean = false//是否有下拉刷新
+    private var showBackHint = false //是否显示返回提示框
 
     @Inject
-    lateinit var compressImgModel: CompressImgModel
+    lateinit var compressImgModel: CompressImgModel  //图片压缩model
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,39 +82,73 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
 
+    /**
+     * 初始化参数
+     *
+     * @param extras  传递的参数对象
+     */
     protected open fun initArgs(extras: Bundle?) {
 
     }
 
 
+    /**
+     * 获取要加载的布局文件ID
+     *
+     */
     protected abstract fun getContentLayoutId(): Int
 
 
+    /**
+     * 执行一些依赖注入操作
+     *
+     */
     protected open fun initInject() {
 
     }
 
+    /**
+     * 初始化Presenter
+     *
+     */
     protected open fun initPresenter() {
-
 
     }
 
-
+    /**
+     * 初始化控件
+     *
+     */
     protected open fun initWidget() {
     }
 
+    /**
+     * 处理Eventbus
+     *
+     * @param eventMsg  传递的消息
+     */
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEventMainThread(eventMsg: EventMsg) {
 
 
     }
 
+    /**
+     * 初始化控件
+     *
+     */
     protected open fun initData() {
 
 
     }
 
-
+    /**
+     * 初始化Toolbar
+     *
+     * @param toolbar toolbar
+     * @param title  要显示的标题
+     * @param showBackHint  返回时是否弹出返回提示框 默认不弹出
+     */
     protected open fun initToolbar(toolbar: Toolbar, title: String, showBackHint: Boolean = false) {
         toolbar.title = title
         setSupportActionBar(toolbar)
@@ -122,6 +157,25 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
 
+    /**
+     * Toolbar的返回按钮
+     *
+     */
+    override fun onSupportNavigateUp(): Boolean {
+
+        onBackPressed()
+        return super.onSupportNavigateUp()
+    }
+
+
+    /**
+     * 初始化Header
+     *
+     * @param backIv  返回图片控件
+     * @param titleTv  标题控件
+     * @param title  要显示的标题文本
+     * @param showBackHint  点击返回时是否显示返回提示框，默认不显示
+     */
     @SuppressLint("AutoDispose")
     protected fun initHeader(backIv: AppCompatImageView, titleTv: TextView, title: String, showBackHint: Boolean = false) {
         titleTv.text = title
@@ -137,18 +191,22 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-
-        onBackPressed()
-        return super.onSupportNavigateUp()
-    }
-
-
+    /**
+     * 是否允许快速点击
+     *
+     * @param allowFastClick 默认值为false
+     */
     protected open fun setAllowFastClick(allowFastClick: Boolean) {
         this.allowFastClick = allowFastClick
     }
 
 
+    /**
+     * 跳转到图片预览界面
+     *
+     * @param name  图片的名称
+     * @param path  图片路径
+     */
     protected fun preViewImg(name: String, path: String) {
 
         val intent = Intent(this, ImgPreviewActivity::class.java)
@@ -161,11 +219,14 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
 
-    /*防止双击*/
+    /**
+     * 事件分发
+     * @param ev
+     */
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
+
         if (!allowFastClick) {
             if (ev?.action == MotionEvent.ACTION_DOWN) {
-
                 if (System.currentTimeMillis() - lastClickTime < intervalTime) {
                     return true
                 } else {
@@ -198,18 +259,16 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
 
-    /*Activity被异常回收时会执行该方法*/
     override fun onSaveInstanceState(outState: Bundle?) {
         super.onSaveInstanceState(outState)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
 
-        EventBusUtil.unregister(this)
-    }
-
-
+    /**
+     * 显示加载框
+     *
+     * @param message  加载框文本信息
+     */
     override fun showLoadingDialog(message: String) {
 
         if (loaddingDialog == null) {
@@ -222,10 +281,19 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     }
 
+    /**
+     *
+     *解除加载框
+     */
     override fun dismissLoadingDialog() {
         loaddingDialog?.dismiss()
     }
 
+    /**
+     * 显示进度框
+     *
+     * @param title  提示文本
+     */
     override fun showProgressDialog(title: String) {
 
         if (progressDialog == null) {
@@ -236,10 +304,19 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     }
 
+    /**
+     * 解除进度框
+     *
+     */
     override fun dismissProgressDialog() {
         progressDialog?.dismiss()
     }
 
+    /**
+     * 修改进度框进度
+     *
+     * @param percent  当前进度
+     */
     override fun changeProgress(percent: Int) {
         progressDialog?.changeProgress(percent)
 
@@ -249,12 +326,20 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         Dialog.showBase(message = msg)
     }
 
+    /**
+     * 显示加载中
+     *
+     */
     override fun showLoadding() {
         stateView?.showLoading()
         contentLayout?.visibility = View.GONE
 
     }
 
+    /**
+     * 显示内容布局
+     *
+     */
     override fun showContent() {
         stateView?.hide()
         contentLayout?.visibility = View.VISIBLE
@@ -266,6 +351,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     }
 
+    /**
+     * 显示无数据
+     *
+     */
     override fun showNoData() {
         stateView?.showNoData()
         contentLayout?.visibility = View.GONE
@@ -273,6 +362,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     }
 
+    /**
+     * 显示无网络
+     *
+     */
     override fun showNoNet() {
         stateView?.showNoNet()
         contentLayout?.visibility = View.GONE
@@ -280,18 +373,37 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     }
 
+    /**
+     * 显示错误信息
+     *
+     * @param msg  错误信息
+     */
     override fun showError(msg: String) {
         stateView?.showError(msg)
         contentLayout?.visibility = View.GONE
 
     }
 
-
+    /**
+     * 初始化状态布局
+     *
+     * @param stateView  状态控件
+     * @param contentLayout  内容布局
+     * @param isRefreshLayout  是否是下拉刷新
+     */
     protected fun initStateView(stateView: StateView, contentLayout: View, isRefreshLayout: Boolean = false) {
         this.stateView = stateView
         this.contentLayout = contentLayout
         this.isRefreshLayout = isRefreshLayout
     }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        EventBusUtil.unregister(this)
+    }
+
 
 }
 

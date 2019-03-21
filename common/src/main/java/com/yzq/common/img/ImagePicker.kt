@@ -20,7 +20,11 @@ import java.io.File
 object ImagePicker {
 
 
-    /*拍照*/
+    /**
+     * 掉相机拍照
+     *
+     * @param activity
+     */
     fun openCamera(activity: BaseActivity): Observable<File> {
 
         return Observable.create<File> { emitter ->
@@ -41,7 +45,11 @@ object ImagePicker {
     }
 
 
-    /*选择照片*/
+    /**
+     * 从图库选择
+     *
+     * @param activity
+     */
     fun openGallery(activity: BaseActivity): Observable<File> {
 
         return Observable.create<File> { emitter ->

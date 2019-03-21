@@ -25,7 +25,12 @@ object PermissionRequester {
     val REQUEST_CODE_SETTING = 1
 
 
-    /*申请权限*/
+    /**
+     * 申请权限
+     *
+     * @param permissions 要申请的权限
+     * @param activity  Activity
+     */
     fun request(vararg permissions: String, activity: BaseActivity): Observable<Boolean> {
 
         return Observable.create<Boolean> { emitter: ObservableEmitter<Boolean> ->
@@ -44,7 +49,12 @@ object PermissionRequester {
 
     }
 
-    /*权限被拒绝*/
+    /**
+     * 权限被拒绝
+     *
+     * @param permissions  要申请的全新
+     * @param activity  activity
+     */
     private fun permissionDenied(permissions: List<String>, activity: BaseActivity) {
 
         if (AndPermission.hasAlwaysDeniedPermission(AppContext, permissions)) {
@@ -56,7 +66,12 @@ object PermissionRequester {
 
     }
 
-    /*当用户点击拒绝且不再提示时显示提示框*/
+    /**
+     * 用户拒绝权限后的提示框
+     *
+     * @param permissions  用户拒绝的权限
+     * @param activity  activity
+     */
     @SuppressLint("CheckResult")
     private fun showPermissionDailog(permissions: List<String>, activity: BaseActivity) {
 

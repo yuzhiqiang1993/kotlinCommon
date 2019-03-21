@@ -1,8 +1,12 @@
 package com.yzq.common.data
 
-/**
- * Created by yzq on 2018/1/18.
- * 网络响应码
+
+ /**
+ * @description: 请求响应码
+ * @author : yzq
+ * @date   : 2019/3/21
+ * @time   : 11:19
+ *
  */
 
 class ResponseCode {

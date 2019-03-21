@@ -13,20 +13,18 @@ import io.reactivex.schedulers.Schedulers
  *
  */
 
-class RxSchedulers {
+object RxSchedulers {
 
-    companion object {
 
-        fun <T> io2main(): ObservableTransformer<T, T> {
+    fun <T> io2main(): ObservableTransformer<T, T> {
 
-            return ObservableTransformer { upstream ->
-                upstream.subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-
-            }
+        return ObservableTransformer { upstream ->
+            upstream.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
 
         }
 
     }
 
+    
 }

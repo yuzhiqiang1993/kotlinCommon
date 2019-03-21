@@ -14,8 +14,11 @@ import javax.inject.Inject
 
 
 /**
- * Created by yzq on 2018/1/25.
- * 图片压缩model
+ * @description: 图片压缩model
+ * @author : yzq
+ * @date   : 2018/1/25
+ * @time   : 12:36
+ *
  */
 
 class CompressImgModel @Inject constructor() {
@@ -26,7 +29,11 @@ class CompressImgModel @Inject constructor() {
     internal val rootImgName = "${AppUtils.getAppPackageName()}_"
 
 
-    /*压缩图片保存路径*/
+    /**
+     * 压缩图片并打上水印
+     *
+     * @param path  要压缩的图片路径
+     */
     fun compressImgWithWatermark(path: String): Observable<String> {
         return Observable.create { e ->
             LogUtils.i("压缩前图片大小：${FileUtils.getFileSize(path)}")
@@ -122,7 +129,11 @@ class CompressImgModel @Inject constructor() {
     }
 
 
-    /*只压缩图片*/
+    /**
+     * 压缩图片
+     *
+     * @param path  图片路径
+     */
     fun compressImg(path: String): Observable<String> {
 
         return Observable.create { e ->
@@ -161,7 +172,12 @@ class CompressImgModel @Inject constructor() {
     }
 
 
-    /*计算缩放比例*/
+    /**
+     * 计算缩放比例
+     *
+     * @param bitWidth  位图的宽度
+     * @param bitHeight  位图的高度
+     */
     private fun getRatioSize(bitWidth: Int, bitHeight: Int): Double {
 
         val maxSize = 1024.0
@@ -178,7 +194,11 @@ class CompressImgModel @Inject constructor() {
         return ratio
     }
 
-    /*图片的旋转角度*/
+    /**
+     * 图片的旋转角度
+     *
+     * @param path  图片路径
+     */
     private fun readPictureDegree(path: String): Int {
         var degree = 0
         try {

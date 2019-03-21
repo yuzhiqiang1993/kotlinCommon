@@ -4,6 +4,16 @@ import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
 
+
+/**
+ * @description: AES加密工具类
+ * 优化版，除去了使用密码生成器生成密码，修改为自己生成秘钥，以达到兼容所有Android版本的目的
+ * @author : yzq
+ * @date   : 2019/3/21
+ * @time   : 11:15
+ *
+ */
+
 object AESUtils {
 
 

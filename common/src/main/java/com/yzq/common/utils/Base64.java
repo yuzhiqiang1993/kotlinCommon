@@ -1,5 +1,15 @@
 package com.yzq.common.utils;
 
+
+
+ /**
+ * @description: BASE64工具类
+ * @author : yzq
+ * @date   : 2019/3/21
+ * @time   : 11:14
+ *
+ */
+
 public final class Base64 {
 
     private static final int BASELENGTH = 128;
