@@ -7,19 +7,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
 
-
-
     <application
         android:name=".SophixStubApplication"
         android:allowBackup="false"
-        tools:replace="android:allowBackup"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:allowBackup">
 
         <!--阿里热修复相关配置-->
         <meta-data
@@ -32,7 +30,10 @@
             android:name="com.taobao.android.hotfix.RSASECRET"
             android:value="MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCYel+AKCuLyGIo6SbrJrmRq0HjOQrSlPm+ZNjDnw+1B5WA8eLd8TeRDkB6I4NCwIXfFLZJU1qogbOa3KxOzr+dss8a2MpnMxlJT/2erLkBlfANeHtKkDGOzTDptbbhVZm8H70p7aGl3PUZxihKKRwlYzXwdloOdiC9cdc2W0SbvVWl6ly2W4jZgUBGNzsqnO2Zji9+bcoH5B1exSK9RViqSg5pHO/SVQfDQSa3CPCZqd5oQMvKCkoRCVHJVkE9cWLnykeVYb+a9wPs7tZiH3Uq6rZMuluFr9GgeQYWh7FRCCHE7UjyUvM0xRU2iLzTPDFVHk4ddPKhwME452YQt8ixAgMBAAECggEAMKm9mPU5EJ+fVFc06I+vYeI6YP5vic2p9y3QUH6PUMNe34xTT2oQxea6hUCYP9GZ6ByAIN7NbEIYxC/xfiVV2kqa9oKB9nXEeDVjSCTv1qW3u1TcZGuopV6vYadw+nGLYxLuGFeS45ClWNh5O1HrfbMwH9Jl43+n605N1TdDqkA+WdRDNyUxfuaAu8OagKlagp4cGfYC0hd0BONK+cb8tBQTYqzNIFsIQkixhC5apH2LT/OBGBR8Nj31DzG4e4LfRdbUnqTm9qSg1Cwc40abZEdvXTDQDBUXyT0XsR3NZh96eqi+cVOcPLx5jYAZrN9QuLF6V5LV1qNUV/+fvxcrkQKBgQDxJPJbMyw2RVMlxNfcvAdSBPvM08qvDgIPbsgd0cih4taKZCrF7E5OtKOwP1v+vBm4iRiupyZpS1/W/RzbptXL7Cgwoo+deviTE7uBlLrrQowEdNEnfjLh8qPT7Sqpt5ktV1eXtVyVsmHdJiNj8PiFKuVvCQPgQnqK9S3g/nUZkwKBgQCh3xUfe1i7pBdkQcW2Nb8JPvxxjICUooO8ayyoIcHcY9yV53iaolDWXd2yoDbS/L8y4EwVv6600tqkTMDRYM+lkErElWQOf50FeW165h9gsuwjUdzNQYm3QE2375+6cWAQdGY9Ik3h74365EPFtHoLiNSeJiZk2REa9FDNZcuvKwKBgCJJJIQ/BFw7AxVtpVtnCItq1fpLapf1H+nd0Goc96+8ttA6abJ2ZLPgDx3yBDx1thp8s5uxfE6gPuIsXrwEPoWd8CDqHA1B/LG8rn5ADUuBzLKdgVdiJA3oF877+4Lh7c96iaOyT5WhJTTyRTniexNEBBcDax+plA7JyVoiE7gtAoGAYwOqUA+LP3woMtNotQQ7TtSQZoSjQkgGfQKx1kaP5tfO3oMwaqZO/FF+gv0ti/G+oshAwiz2GPXBeC7a4zhsy8FvesBG6/dzfR3BsiOBngzUFObGQWeNbeKPp6uT8N/Y+ze4Mj0BluqJ1qY6Ln0vCk8wf2ymn5mHtQ0tP/a8mPECgYAxqsAdo9s55TMpwN35VfZRUBEUXrsJ48W5VkX4plCPiAa8BzaItM0eq6swqHsqmgwCiONCRlw/u5ZBJ4lDkSSSJ40dje5EQtriBkx7rSE3DVBuiJ3RAlkF4ZyzgVGrk0rccrHFaDAa9ZMZ511VoT/XDp5JW6mrfqYqO58JEFDKwg==" />
 
-        <activity android:name=".ui.FlexBoxActivity"></activity>
+        <activity
+            android:name=".ui.FlexBoxActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.GaoDeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

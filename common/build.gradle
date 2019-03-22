@@ -77,6 +77,8 @@ dependencies {
     /*dialog*/
     api "com.afollestad.material-dialogs:core:$material_dialogs"
     api "com.afollestad.material-dialogs:input:$material_dialogs"
+    api "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
+
     /*RxImagepicker*/
     api "com.github.qingmei2:rximagepicker:$rx_imgpicker"
 

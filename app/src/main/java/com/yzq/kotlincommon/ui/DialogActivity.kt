@@ -5,15 +5,10 @@ import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.extend.dataConvert
 import com.yzq.common.extend.transform
-import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.widget.Dialog
 import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.net.ApiService
-import com.yzq.kotlincommon.net.ServerContants.parameter.Companion.key
-import com.yzq.kotlincommon.net.ServerContants.parameter.Companion.type
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable

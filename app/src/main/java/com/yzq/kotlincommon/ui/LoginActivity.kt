@@ -11,10 +11,12 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 @Route(path = RoutePath.Main.LOGIN)
 class LoginActivity : BaseActivity() {
-    override fun getContentLayoutId(): Int {
-        return R.layout.activity_login
 
+    override fun getContentLayoutId(): Int {
+
+        return R.layout.activity_login
     }
+
 
     override fun initWidget() {
         super.initWidget()

@@ -34,7 +34,7 @@ ext {
     dagger2 = "2.20"
     bottom_navigation_bar = "2.1.0"
     gson = "2.8.5"
-    material_dialogs = "2.0.3"
+    material_dialogs = "2.4.0"
     baseRecyclerViewAdapterHelper = "2.9.46"
     jpush = "3.1.1"
     jcore = "1.1.9"

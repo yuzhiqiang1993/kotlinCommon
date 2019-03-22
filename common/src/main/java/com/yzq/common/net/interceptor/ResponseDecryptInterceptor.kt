@@ -33,7 +33,7 @@ class ResponseDecryptInterceptor : Interceptor {
         val mediaType = MediaType.parse("text/plain; charset=utf-8")
         val response = chain.proceed(request)
 
-        LogUtils.i("响应是否成功:${response.isSuccessful}")
+        //LogUtils.i("响应是否成功:${response.isSuccessful}")
         if (response.isSuccessful) {
 
 

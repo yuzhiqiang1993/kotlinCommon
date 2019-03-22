@@ -73,6 +73,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         EventBusUtil.register(this)
 
         initArgs(intent.extras)
+
         setContentView(getContentLayoutId())
 
         initWidget()
