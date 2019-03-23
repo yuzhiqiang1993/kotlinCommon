@@ -2,17 +2,26 @@ package com.yzq.kotlincommon.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.text.TextUtils
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.RegexUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.extend.transform
 import com.yzq.common.permission.PermissionRequester
 import com.yzq.common.ui.BaseActivity
+import com.yzq.common.widget.Dialog
 import com.yzq.kotlincommon.R
 import com.yzq.zxinglibrary.android.CaptureActivity
 import com.yzq.zxinglibrary.bean.ZxingConfig
 import com.yzq.zxinglibrary.common.Constant
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_zxing.*
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
 
 
 /**
@@ -38,6 +47,21 @@ class ZxingActivity : BaseActivity() {
         initToolbar(toolbar, "Zxing")
 
         scanBtn.setOnClickListener { excuteZxing() }
+
+        jsoupBtn.setOnClickListener {
+            getLicenseInfo()
+        }
+
+    }
+
+    val REQUEST_LICENSE_CODE = 666
+    @SuppressLint("AutoDispose")
+    private fun getLicenseInfo() {
+        PermissionRequester.request(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE, activity = this)
+                .subscribe {
+                    val intent = Intent(this, CaptureActivity::class.java)
+                    startActivityForResult(intent, REQUEST_LICENSE_CODE)
+                }
     }
 
     val REQUEST_CODE_SCAN = 555
@@ -59,13 +83,80 @@ class ZxingActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        // 扫描二维码/条码回传
-        if (requestCode == REQUEST_CODE_SCAN) {
-            if (data != null) {
+        when (requestCode) {
+            REQUEST_CODE_SCAN -> {
+                if (data != null) {
+                    val content = data.getStringExtra(Constant.CODED_CONTENT)
+                    resultTv.setText(content)
+                }
 
-                val content = data.getStringExtra(Constant.CODED_CONTENT)
-                resultTv.setText(content)
+
+            }
+
+            REQUEST_LICENSE_CODE -> {
+
+                if (data != null) {
+                    val content = data.getStringExtra(Constant.CODED_CONTENT)
+
+                    if (RegexUtils.isURL(content)) {
+                        LogUtils.i("扫描的是营业执照")
+
+                        /*开始提取数据*/
+                        parseData(content)
+
+                    } else {
+                        ToastUtils.showShort("请扫描营业执照上的二维码！")
+                    }
+                }
+
+
             }
         }
+    }
+
+    /*开始提取数据*/
+    private fun parseData(url: String) {
+
+        showLoadingDialog("正在解析....")
+
+        Observable.create<Document> {
+
+            try {
+                it.onNext(Jsoup.connect(url).get())
+            } catch (e: Exception) {
+
+                it.onNext(Document("aaa"))
+            }
+        }.transform(this).subscribe {
+
+            LogUtils.i("网页标题：" + it.title())
+
+            //var node=it.select(".tableYyzz tbody tr:first-child td:first-child i")
+            val code = it.select(".tableYyzz tbody tr:first-child td:first-child i").text()
+            val name = it.select(".tableYyzz tbody tr:first-child td:nth-child(2) i").text()
+            val people = it.select(".tableYyzz tbody tr:nth-child(2) td:nth-child(2) i").text()
+
+            LogUtils.i("统一社会信用代码：" + code)
+            LogUtils.i("企业名称：" + name)
+            LogUtils.i("法定代表人：" + people)
+
+            if (TextUtils.isEmpty(code) || TextUtils.isEmpty(name) || TextUtils.isEmpty(people)) {
+                dismissLoadingDialog()
+                Dialog.showBase(message = "请扫描营业执照上的二维码！")
+                return@subscribe
+            } else {
+                resultTv.setText("""
+                统一社会信用代码:${code}
+                企业名称:${name}
+                法定代表人:${people}
+            """.trimIndent())
+                dismissLoadingDialog()
+
+            }
+
+
+        }
+
+
     }
 }

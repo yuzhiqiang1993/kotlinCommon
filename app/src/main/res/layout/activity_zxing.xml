@@ -16,10 +16,18 @@
         android:gravity="center" />
 
     <Button
-        style="@style/button"
         android:id="@+id/scanBtn"
+        style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="扫描" />
+        android:text="扫描二维码" />
+
+
+    <Button
+        android:id="@+id/jsoupBtn"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="扫描提取营业执照信息" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

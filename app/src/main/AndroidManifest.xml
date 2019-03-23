@@ -8,7 +8,7 @@
 
 
     <application
-        android:name=".SophixStubApplication"
+        android:name=".App"
         android:allowBackup="false"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"

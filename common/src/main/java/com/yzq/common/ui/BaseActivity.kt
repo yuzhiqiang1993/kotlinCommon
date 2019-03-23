@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.extend.changeProgress
@@ -150,10 +151,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * @param title  要显示的标题
      * @param showBackHint  返回时是否弹出返回提示框 默认不弹出
      */
-    protected open fun initToolbar(toolbar: Toolbar, title: String, displayHome:Boolean=true,showBackHint: Boolean = false) {
+    protected open fun initToolbar(toolbar: Toolbar, title: String, displayHome: Boolean = true, showBackHint: Boolean = false) {
+
         toolbar.title = title
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(displayHome)
+        supportActionBar?.setDisplayHomeAsUpEnabled(displayHome)
         this.showBackHint = showBackHint
     }
 

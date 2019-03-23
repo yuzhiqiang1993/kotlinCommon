@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon
 
-import com.taobao.sophix.SophixManager
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.BaseApp
@@ -20,7 +19,7 @@ class App : BaseApp() {
 
     override fun onCreate() {
         super.onCreate()
-        SophixManager.getInstance().queryAndLoadNewPatch();
+        // SophixManager.getInstance().queryAndLoadNewPatch();
         initBugly()
     }
 
