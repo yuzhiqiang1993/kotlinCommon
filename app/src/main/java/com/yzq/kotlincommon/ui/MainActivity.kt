@@ -44,7 +44,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         super.initWidget()
 
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "导航")
+        initToolbar(toolbar, "导航",displayHome = false)
 
         mainAdapter = MainAdapter(R.layout.item_main_layout, items)
         mainAdapter.onItemClickListener = this

@@ -150,10 +150,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * @param title  要显示的标题
      * @param showBackHint  返回时是否弹出返回提示框 默认不弹出
      */
-    protected open fun initToolbar(toolbar: Toolbar, title: String, showBackHint: Boolean = false) {
+    protected open fun initToolbar(toolbar: Toolbar, title: String, displayHome:Boolean=true,showBackHint: Boolean = false) {
         toolbar.title = title
         setSupportActionBar(toolbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(displayHome)
         this.showBackHint = showBackHint
     }
 

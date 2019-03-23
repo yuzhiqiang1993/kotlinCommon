@@ -13,15 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-/**
- * <pre>
- *      @author : Allen
- *      e-mail  : lygttpod@163.com
- *      date    : 2018/04/15
- *      desc    : 悬停吸顶效果的ItemDecoration
- *      version : 1.0
- * </pre>
+
+ /**
+ * @description: 分组悬停item
+ * @author : yzq
+ * @date   : 2019/3/22
+ * @time   : 17:49
+ *
  */
+
 public class HoverItemDecoration extends RecyclerView.ItemDecoration {
 
     private Context context;
@@ -64,17 +64,17 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
     private BindItemTextCallback bindItemTextCallback;
 
 
-    public HoverItemDecoration(Context content, BindItemTextCallback bindItemTextCallback) {
-        this.context = content;
+    public HoverItemDecoration(Context context, BindItemTextCallback bindItemTextCallback) {
+        this.context = context;
         this.bindItemTextCallback = bindItemTextCallback;
 
-        width = content.getResources().getDisplayMetrics().widthPixels;
+        width = context.getResources().getDisplayMetrics().widthPixels;
 
         itemPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         /**
          * 分组item的颜色
          */
-        int itemHoverPaintColor = context.getResources().getColor(R.color.gray_300);
+        int itemHoverPaintColor = this.context.getResources().getColor(R.color.gray_300);
         itemPaint.setColor(itemHoverPaintColor);
 
         itemHoverPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -88,7 +88,7 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
         /**
          * 分组文字的颜色
          */
-        int textPaintColor = context.getResources().getColor(R.color.black);
+        int textPaintColor = this.context.getResources().getColor(R.color.black);
         textPaint.setColor(textPaintColor);
         textPaint.setTextSize(sp2px(15));
 

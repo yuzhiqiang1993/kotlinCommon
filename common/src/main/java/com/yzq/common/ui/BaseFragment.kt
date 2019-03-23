@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
@@ -100,6 +101,22 @@ abstract class BaseFragment : Fragment(), BaseView {
 
 
     }
+
+
+    /**
+     * 初始化Fragment中的Toolbar
+     *
+     * @param toolbar  toolbar
+     * @param title  要显示的标题
+     * @param displayHome  是否显示左侧的图标（默认不显示）
+     */
+    protected open fun initToolbar(toolbar: Toolbar, title: String, displayHome: Boolean = false) {
+        toolbar.title = title
+        (activity as BaseActivity).setSupportActionBar(toolbar)
+        (activity as BaseActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(displayHome)
+
+    }
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEventMainThread(msg: EventMsg) {

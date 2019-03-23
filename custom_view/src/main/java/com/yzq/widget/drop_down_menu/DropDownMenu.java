@@ -181,7 +181,7 @@ public class DropDownMenu extends LinearLayout {
 
             TabItem tabItem = (TabItem) tabMenuView.getChildAt(current_tab_position);
             tabItem.setTitleColor(textUnselectedColor);
-            tabItem.setIcon(menuUnselectedIcon,textUnselectedColor);
+            tabItem.setIcon(menuUnselectedIcon, textUnselectedColor);
 
             popupMenuViews.setVisibility(View.GONE);
             popupMenuViews.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.dd_menu_out));
