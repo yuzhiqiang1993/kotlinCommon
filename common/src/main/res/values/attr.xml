@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--HorizontalItemView 自定义属性-->
-    <declare-styleable name="HorizontalItemView">
+    <!--HorizontalEditView 自定义属性-->
+    <declare-styleable name="HorizontalEditView">
 
-        <attr name="HI_icon" format="reference"></attr>
-        <attr name="HI_showIcon" format="boolean"></attr>
-        <attr name="HI_title" format="string"></attr>
-        <attr name="HI_content" format="string"></attr>
+        <attr name="horz_edit_icon" format="reference"/>
+        <attr name="horz_edit_title" format="string"/>
+        <attr name="horz_edit_content" format="string"/>
+        <attr name="horz_edit_endIcon" format="reference"/>
+        <attr name="horz_edit_editEnable" format="boolean"/>
 
     </declare-styleable>
 
+    <!--HorizontalTextView 自定义属性-->
+    <declare-styleable name="HorizontalTextView">
+
+        <attr name="horz_tv_icon" format="reference"/>
+        <attr name="horz_tv_title" format="string"/>
+        <attr name="horz_tv_content" format="string"/>
+        <attr name="horz_tv_endIcon" format="reference"/>
+        <attr name="horz_tv_content_left" format="boolean"/>
+
+    </declare-styleable>
 
 </resources>

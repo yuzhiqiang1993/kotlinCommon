@@ -71,7 +71,7 @@ dependencies {
 
 
     implementation project(':common')
-    implementation 'com.github.yuzhiqiang1993:zxing:2.2.6'
+    implementation 'com.github.yuzhiqiang1993:zxing:2.2.7'
     implementation 'org.jsoup:jsoup:1.11.3'
     implementation project(':custom_view')
     implementation project(':gao_de_map')

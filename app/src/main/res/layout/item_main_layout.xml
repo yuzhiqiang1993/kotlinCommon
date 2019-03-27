@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.yzq.common.widget.HorizontalItemView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.yzq.common.widget.HorizontalTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainItem"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/len_48"
-    app:HI_showIcon="false" />
+    android:layout_height="@dimen/len_48" />

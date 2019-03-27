@@ -6,14 +6,13 @@
         android:layout_height="wrap_content"
         android:background="@drawable/list_item_selector"
         android:minHeight="@dimen/len_48"
-        android:padding="@dimen/len_10">
-
+        android:padding="@dimen/len_10"
+>
 
     <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iconIv"
-            app:srcCompat="@drawable/ic_no_data"
-            android:layout_width="@dimen/len_20"
-            android:scaleType="centerCrop"
+            android:id="@+id/startIconIv"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
             app:tint="@color/colorAccent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -21,9 +20,10 @@
 
 
     <TextView
-            app:layout_constraintStart_toEndOf="@id/iconIv"
+            app:layout_constraintStart_toEndOf="@id/startIconIv"
             android:id="@+id/titleTv"
             android:layout_width="wrap_content"
+            android:minWidth="@dimen/len_100"
             android:layout_height="match_parent"
             android:text="标题"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,32 +31,32 @@
             android:layout_marginLeft="@dimen/len_10"
             app:layout_goneMarginLeft="@dimen/len_0"
             android:textColor="@color/black"
-            android:layout_weight="1"/>
+    />
 
 
-    <TextView
-
+    <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/contentTv"
-            android:text=""
+            android:text="内容"
             android:textColor="@color/gray_700"
             app:layout_constraintStart_toEndOf="@id/titleTv"
             android:layout_width="0dp"
             android:gravity="right"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:paddingRight="@dimen/len_10"
-            app:layout_constraintEnd_toStartOf="@id/arrowIv"
+            android:paddingLeft="@dimen/len_10"
+            app:layout_constraintEnd_toStartOf="@id/endIconIv"
             android:layout_height="match_parent"/>
 
     <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/arrowIv"
+            android:id="@+id/endIconIv"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="@dimen/len_16"
-            android:layout_height="@dimen/len_16"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/len_20"
+            android:paddingLeft="@dimen/len_10"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginLeft="@dimen/len_10"
-            app:srcCompat="@drawable/ic_arrow_right"/>
+            app:tint="@color/gray_500"
+    />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
