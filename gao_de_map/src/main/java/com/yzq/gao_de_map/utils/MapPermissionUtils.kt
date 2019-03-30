@@ -18,40 +18,36 @@ import io.reactivex.Observable
  *
  */
 
-class MapPermissionUtils {
+object MapPermissionUtils {
 
-    companion object {
 
-        /*检查定位相关权限*/
-        @SuppressLint("CheckResult")
-        fun checkLocationPermission(needGps: Boolean = false, activity: BaseActivity): Observable<Boolean> {
+    /*检查定位相关权限*/
+    @SuppressLint("CheckResult")
+    fun checkLocationPermission(needGps: Boolean = false, activity: BaseActivity): Observable<Boolean> {
 
-            return Observable.create<Boolean> { emitter ->
-                PermissionRequester.request(
-                        Permission.ACCESS_FINE_LOCATION
-                        , Permission.ACCESS_COARSE_LOCATION
-                        , Permission.WRITE_EXTERNAL_STORAGE
-                        , Permission.READ_EXTERNAL_STORAGE
-                        , Permission.READ_PHONE_STATE
-                        , activity = activity).subscribe {
+        return Observable.create<Boolean> { emitter ->
+            PermissionRequester.request(
+                    Permission.ACCESS_FINE_LOCATION
+                    , Permission.ACCESS_COARSE_LOCATION
+                    , Permission.WRITE_EXTERNAL_STORAGE
+                    , Permission.READ_EXTERNAL_STORAGE
+                    , Permission.READ_PHONE_STATE
+                    , activity = activity).subscribe {
 
-                    if (needGps) {
+                if (needGps) {
 
-                        if (LocationUtils.isGpsEnabled()) {
-                            emitter.onNext(true)
-                        } else {
-                            Toast.makeText(AppContext, "该功能需要获取当前位置信息，请打开GPS", Toast.LENGTH_LONG).show()
-                            LocationUtils.openGpsSettings()
-                        }
-
-                    } else {
+                    if (LocationUtils.isGpsEnabled()) {
                         emitter.onNext(true)
+                    } else {
+                        Toast.makeText(AppContext, "该功能需要获取当前位置信息，请打开GPS", Toast.LENGTH_LONG).show()
+                        LocationUtils.openGpsSettings()
                     }
 
-                    emitter.onComplete()
-
-
+                } else {
+                    emitter.onNext(true)
                 }
+
+                emitter.onComplete()
 
 
             }

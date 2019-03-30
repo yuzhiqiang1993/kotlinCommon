@@ -26,7 +26,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
     private var iconRes: Int = -1
     private var titleStr: String?
-    var contentStr: String?
+    private var contentStr: String?
     private var endIconRes: Int = -1
     private var editEnable = false
 
@@ -40,7 +40,6 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
         try {
             iconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_icon, -1)
-
             editEnable = typeArr.getBoolean(R.styleable.HorizontalEditView_horz_edit_editEnable, false)
             endIconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_endIcon, -1)
             titleStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_title)
@@ -77,9 +76,17 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      */
     fun setContent(content: String) {
         this.contentStr = content
-
         contentEt.setText(contentStr)
     }
+
+    /**
+     * 获取输入框的文本
+     * @return String
+     */
+    fun getContent(): String {
+        return contentEt.text.toString().trim()
+    }
+
     /**
      * 更改标题
      * @param title String
@@ -89,6 +96,10 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         titleTv.setText(titleStr)
     }
 
+    /**
+     * 给尾部图标加点击事件
+     * @param listener OnClickListener
+     */
     fun setEndIconOnClick(listener: OnClickListener) {
         endIconIv.setOnClickListener(listener)
     }

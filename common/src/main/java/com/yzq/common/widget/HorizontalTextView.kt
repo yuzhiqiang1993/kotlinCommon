@@ -27,7 +27,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
     private var startIconRes: Int = -1
     private var titleStr: String?
-    var contentStr: String?
+    private var contentStr: String?
     private var endIconRes: Int = -1
     private var contentLeft = false
 
@@ -79,8 +79,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      * @param content String
      */
     fun setContent(content: String) {
-        this.contentStr = content
-
+        this.contentStr=content
         contentTv.setText(contentStr)
     }
 

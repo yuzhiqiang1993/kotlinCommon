@@ -9,45 +9,23 @@ package com.yzq.common.constants
  *
  */
 
-class RoutePath {
+object RoutePath {
 
-    class Main() {
-        companion object {
-            const val TASK = "/main/task"
-            const val NEWS = "/main/news"
-            const val IMG = "/main/img"
-            const val DIALOG = "/main/dialog"
-            const val ZXING = "/main/zxing"
-            const val LOGIN = "/main/login"
-            const val AUTODISPOSE = "/main/autodispose"
-            const val DROP_DOWN_MENU = "/main/dropDownMenu"
-            const val GAO_DE = "/main/gaoDeMap"
-            const val FLEX_BOX = "/main/flexBox"
+    object Main {
+        const val TASK = "/main/task"
+        const val NEWS = "/main/news"
+        const val IMG = "/main/img"
+        const val DIALOG = "/main/dialog"
+        const val ZXING = "/main/zxing"
+        const val LOGIN = "/main/login"
+        const val AUTODISPOSE = "/main/autodispose"
+        const val DROP_DOWN_MENU = "/main/dropDownMenu"
+        const val GAO_DE = "/main/gaoDeMap"
+        const val FLEX_BOX = "/main/flexBox"
 
 
-        }
     }
 
-    /*用户模块*/
-    class User {
-        companion object {
-            const val LOGIN = "/user/login"
-            const val USER = "/user/user"
 
-        }
-    }
 
-    /*任务模块*/
-    class Task {
-        companion object {
-            const val PROJECT = "/task/project"
-            const val TASK = "/task/task"
-            const val ASSESS_TASK = "/task/assessTask"
-            const val ASSESS_TASK_ITEM = "/task/assessTaskItem"
-            const val SINGLE_SELECT = "/task/singleSelect"
-            const val MULTI_SELECT = "/task/multiSelect"
-            const val ASSESS_TITLE = "/task/assessTitle"
-
-        }
-    }
 }
