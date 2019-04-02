@@ -123,6 +123,12 @@
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
+
+#kotlin反射需要用到BuiltInsLoader，不能混淆，另外用到反射的类的属性要加@JVMField，否则会报无法访问私有属性的错误
+-keep interface kotlin.reflect.jvm.internal.impl.builtins.BuiltInsLoader
+-keep class kotlin.reflect.jvm.internal.impl.serialization.deserialization.builtins.BuiltInsLoaderImpl
+
+
 # 保留R下面的资源
 -keep class **.R$* {
  *;
