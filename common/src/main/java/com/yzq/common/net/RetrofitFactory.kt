@@ -1,6 +1,7 @@
 package com.yzq.common.net
 
 import android.util.Log
+import com.google.gson.Gson
 import com.yzq.common.BuildConfig
 import com.yzq.common.constants.ServerConstants
 import com.yzq.common.net.interceptor.RequestHeadersInterceptor
@@ -36,10 +37,12 @@ class RetrofitFactory private constructor() {
 
     init {
 
+        val gson = Gson().newBuilder().serializeNulls().create()
+
         retrofit = Retrofit.Builder()
                 .baseUrl(ServerConstants.getApiUrl())
                 .client(initOkhttpClient())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
 

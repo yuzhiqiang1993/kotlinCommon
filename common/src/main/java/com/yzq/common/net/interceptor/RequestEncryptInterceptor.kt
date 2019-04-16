@@ -43,7 +43,7 @@ class RequestEncryptInterceptor : Interceptor {
             if (contentType != null) {
                 charset = contentType.charset(charset)
             }
-            val requestData = buffer.readString(charset)
+            val requestData = buffer.readString(charset).trim()
 
             LogUtils.i("请求的数据为：${requestData}")
 
