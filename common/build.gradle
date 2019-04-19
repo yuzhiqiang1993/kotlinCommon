@@ -117,6 +117,7 @@ dependencies {
 
     /*阿里热修复*/
     api "com.aliyun.ams:alicloud-android-hotfix:$hotfix"
-
+    /*列表浮动按钮*/
+    api 'com.github.clans:fab:1.6.4'
 }
 

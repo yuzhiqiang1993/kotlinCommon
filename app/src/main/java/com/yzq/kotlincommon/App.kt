@@ -21,6 +21,7 @@ class App : BaseApp() {
         super.onCreate()
         // SophixManager.getInstance().queryAndLoadNewPatch();
         initBugly()
+
     }
 
     /**
