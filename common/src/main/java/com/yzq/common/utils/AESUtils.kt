@@ -2,28 +2,23 @@ package com.yzq.common.utils
 
 import java.util.*
 import javax.crypto.Cipher
+import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
-
-
-/**
- * @description: AES加密工具类
- * 优化版，除去了使用密码生成器生成密码，修改为自己生成秘钥，以达到兼容所有Android版本的目的
- * @author : yzq
- * @date   : 2019/3/21
- * @time   : 11:15
- *
- */
 
 object AESUtils {
 
 
-    private val cipherMode = "AES/ECB/PKCS5Padding"//算法/模式/补码方式
+    private val cipherMode = "AES/CBC/PKCS5Padding"//算法/模式/补码方式
 
     /*
     *  AES秘钥支持128bit/192bit/256bit三种长度的秘钥，一个字节等于8bit，
     *  因此支持生成的字符串的长度应该是 16/24/32
     * */
-    private val keyLength = 24
+    private val keyLength = 16
+
+
+    /*当加密模式为CBC时  需要偏移量*/
+    private val offset = "1234567890000000"
 
 
     /**
@@ -37,11 +32,12 @@ object AESUtils {
             return ""
         }
 
+
         val str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         val random = Random()
         val stringBuilder = StringBuilder()
         for (i in 0 until length) {
-            val number = random.nextInt(62)
+            val number = random.nextInt(str.length)
             stringBuilder.append(str[number])
         }
         return stringBuilder.toString()
@@ -63,11 +59,12 @@ object AESUtils {
             return ""
         }
 
-        val raw = key.toByteArray(charset("utf-8"))
+        val raw = key.toByteArray()
         val skeySpec = SecretKeySpec(raw, "AES")
         val cipher = Cipher.getInstance(cipherMode)
-        cipher.init(Cipher.ENCRYPT_MODE, skeySpec)
-        val encrypted = cipher.doFinal(data.toByteArray(charset("utf-8")))
+        val iv = IvParameterSpec(offset.toByteArray())
+        cipher.init(Cipher.ENCRYPT_MODE, skeySpec, iv)
+        val encrypted = cipher.doFinal(data.toByteArray())
 
         return Base64.encode(encrypted)
     }
@@ -86,14 +83,16 @@ object AESUtils {
             println("长度必须为16/24/32")
             return null
         }
-        val raw = key.toByteArray(charset("utf-8"))
+
+        val raw = key.toByteArray()
         val skeySpec = SecretKeySpec(raw, "AES")
         val cipher = Cipher.getInstance(cipherMode)
-        cipher.init(Cipher.DECRYPT_MODE, skeySpec)
+        val iv = IvParameterSpec(offset.toByteArray())
+        cipher.init(Cipher.DECRYPT_MODE, skeySpec, iv)
         val encrypted = Base64.decode(data)//先用base64解密
 
         val original = cipher.doFinal(encrypted)
-        return String(original, charset("utf-8"))
+        return String(original)
 
 
     }
@@ -109,8 +108,9 @@ object AESUtils {
         val data = "{'fig':1,'message':'登录成功'}"
 
         try {
-            val encriptData = AESUtils.encrypt(data, key)
+            val encriptData = encrypt(data, key)
             println("加密后的数据：$encriptData")
+
 
             val decryptData = decrypt(encriptData, key)
 
