@@ -11,7 +11,6 @@
 </style>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
 
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -26,8 +25,9 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowDisablePreview">true</item>
         <item name="android:windowBackground">@color/bg_gray</item>
-        <item name="android:windowContentTransitions">true</item>
-
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:configChanges">screenSize|keyboardHidden|orientation</item>
+        <item name="android:windowSoftInputMode">adjustPan|stateHidden</item>
 
     </style>
 
