@@ -8,6 +8,7 @@ import okhttp3.Interceptor
 import okhttp3.RequestBody
 import okhttp3.Response
 import okio.Buffer
+import java.net.URLDecoder
 import java.nio.charset.Charset
 
 
@@ -62,14 +63,15 @@ class RequestEncryptInterceptor : Interceptor {
 
                 val requestData = buffer.readString(charset)
 
-                LogUtils.i("请求的数据为：${requestData}")
+                val urlDecodeData = URLDecoder.decode(requestData, "utf-8")
+                LogUtils.i("请求的数据为：${urlDecodeData}")
 
                 /*产生一个随机数*/
                 val randomKey = AESUtil.getRandomKey(16)
                 LogUtils.i("生成的随机数：${randomKey}")
 
                 /*使用产生的随机数对请求的数据进行加密*/
-                val aesEncryptData = AESUtil.encrypt(requestData, randomKey)
+                val aesEncryptData = AESUtil.encrypt(urlDecodeData, randomKey)
 
                 LogUtils.i("加密后的请求数据为：${aesEncryptData}")
 
