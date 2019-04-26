@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.gson.Gson
 import com.yzq.common.BuildConfig
 import com.yzq.common.constants.ServerConstants
+import com.yzq.common.net.interceptor.RequestEncryptInterceptor
 import com.yzq.common.net.interceptor.RequestHeadersInterceptor
 import com.yzq.common.net.interceptor.ResponseDecryptInterceptor
 import me.jessyan.progressmanager.ProgressManager
@@ -55,9 +56,9 @@ class RetrofitFactory private constructor() {
                 .connectTimeout(5, TimeUnit.SECONDS)
                 .readTimeout(5, TimeUnit.SECONDS)
                 .addInterceptor(RequestHeadersInterceptor())
-                // .addInterceptor(RequestEncryptInterceptor())
-                .addInterceptor(ResponseDecryptInterceptor())
+                //.addInterceptor(RequestEncryptInterceptor())
                 .addInterceptor(initLogInterceptor())
+                //.addInterceptor(ResponseDecryptInterceptor())
 
         return ProgressManager.getInstance().with(okHttpBuilder).build()
     }

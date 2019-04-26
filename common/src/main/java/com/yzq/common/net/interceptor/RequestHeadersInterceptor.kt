@@ -1,8 +1,9 @@
 package com.yzq.common.net.interceptor
 
+import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.DeviceUtils
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.ServerConstants
+import com.yzq.common.utils.LocalSpUtils
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -19,21 +20,18 @@ class RequestHeadersInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
 
 
+        val request = chain.request()
 
-        LogUtils.i("RequestHeadersInterceptor")
-        var request = chain.request()
+        val builder = request.newBuilder()
 
-
-        request = request.newBuilder()
-                .addHeader(ServerConstants.DEVICE_ID, DeviceUtils.getAndroidID())
-                //   .header("Content-Type", "text/plain; charset=utf-8")
-                .header("Accept", "*/*")
-                .header("Accept-Encoding", "gzip")
-                .header("Cache-Control", "no-cache")
-                .build()
+        builder.addHeader(ServerConstants.DEVICE_ID, DeviceUtils.getAndroidID())
+            .header("Accept", "*/*")
+            .header("Accept-Encoding", "gzip")
+            .header("Cache-Control", "no-cache")
+            .build()
 
 
-        return chain.proceed(request)
+        return chain.proceed(builder.build())
 
     }
 
