@@ -28,75 +28,122 @@ class RequestEncryptInterceptor : Interceptor {
 
         var request = chain.request()
 
-        val requestBody = request.body()
-
         var charset = Charset.forName("UTF-8")
 
-        // multitype/form-data
+        val method = request.method().toLowerCase().trim()
 
-        /*判断请求体是否为空  不为空则执行以下操作*/
-        if (requestBody != null) {
+        LogUtils.i("请求方式：${method}")
 
-            val contentType = requestBody.contentType()
+        if (method.equals("get") || method.equals("delete")) {
+
+            val url = request.url()
+
+            val apiPath = url.scheme() + ":" + url.host() + ":" + url.port() + url.encodedPath()
+            LogUtils.i("接口地址:$apiPath")
+
+            if (url.encodedQuery() != null) {
+                try {
+                    val queryparamNames = request.url().encodedQuery()
+
+                    LogUtils.i("queryparamNames:" + queryparamNames!!)
 
 
-            if (contentType != null) {
-                charset = contentType.charset(charset)
+                    /*先获取随机Key*/
+                    val randomKey = AESUtil.getRandomKey(16)
+                    LogUtils.i("radomKey：$randomKey")
 
-                LogUtils.i("contentType===>${contentType}")
-//                LogUtils.i("contentType===> type:${contentType.type()},subType:${contentType.subtype()}")
+                    /*AES加密后的请求数据*/
+                    val encryptqueryparamNames = AESUtil.encrypt(queryparamNames, randomKey)
+                    LogUtils.i("加密后的参数：$encryptqueryparamNames")
 
-                /*如果是二进制上传  则不进行加密*/
-                if (contentType.type().toLowerCase().equals("multitype")) {
+                    /*用RSA公钥对随机key进行加密*/
+                    val encryptRandomKey = RSAUtil.encryptByPublic(randomKey, ServerConstants.RSA_PUB_KEY)
 
-                    LogUtils.i("上传文件，不加密")
+                    LogUtils.i("RSA公钥加密后的随机key：$encryptRandomKey")
+
+
+                    val newGet = "$apiPath?param=$encryptqueryparamNames"
+
+                    request = request.newBuilder().url(newGet)
+                            .addHeader(ServerConstants.AES_KEY, encryptRandomKey)
+                            .build()
+
+                } catch (e: Exception) {
+                    e.printStackTrace()
+
+                    LogUtils.i("Get加密异常")
+
                     return chain.proceed(request)
                 }
 
             }
 
+        } else {
 
-            /*获取请求的数据*/
-            try {
-                val buffer = Buffer()
-                requestBody.writeTo(buffer)
+            val requestBody = request.body()
 
-                val requestData = buffer.readString(charset)
+            /*判断请求体是否为空  不为空则执行以下操作*/
+            if (requestBody != null) {
 
-                val urlDecodeData = URLDecoder.decode(requestData, "utf-8")
-                LogUtils.i("请求的数据为：${urlDecodeData}")
-
-                /*产生一个随机数*/
-                val randomKey = AESUtil.getRandomKey(16)
-                LogUtils.i("生成的随机数：${randomKey}")
-
-                /*使用产生的随机数对请求的数据进行加密*/
-                val aesEncryptData = AESUtil.encrypt(urlDecodeData, randomKey)
-
-                LogUtils.i("加密后的请求数据为：${aesEncryptData}")
-
-                /*再使用公钥对随机的key进行加密 得到加密后的key*/
-                val encryptAesKeyStr = RSAUtil.encryptByPublic(randomKey, ServerConstants.RSA_PUB_KEY)
-
-                /*将加密后的key放到header里*/
-                LogUtils.i("加密后的key：${encryptAesKeyStr}")
+                val contentType = requestBody.contentType()
 
 
-                /*然后将使用Aes加密过后的数据放到request里*/
-                val newRequestBody = RequestBody.create(contentType, aesEncryptData)
+                if (contentType != null) {
+                    charset = contentType.charset(charset)
 
-                /*将加密过后的AES随机key放到请求头中并构建新的request*/
-                request = request.newBuilder()
-                    .addHeader(ServerConstants.AES_KEY, encryptAesKeyStr)
-                    .post(newRequestBody)
-                    .build()
+                    LogUtils.i("contentType===>${contentType}")
+                    LogUtils.i("contentType===> type:${contentType.type()},subType:${contentType.subtype()}")
 
-            } catch (e: Exception) {
-                LogUtils.e("加密异常====》${e}")
-                return chain.proceed(request)
+                    /*如果是二进制上传  则不进行加密*/
+                    if (contentType.type().toLowerCase().equals("multipart")) {
+
+
+                        LogUtils.i("上传文件，不加密")
+                        return chain.proceed(request)
+                    }
+
+                }
+
+
+                /*获取请求的数据*/
+                try {
+                    val buffer = Buffer()
+                    requestBody.writeTo(buffer)
+
+                    val requestData = URLDecoder.decode(buffer.readString(charset).trim(), "utf-8")
+
+                    LogUtils.i("请求的数据为：${requestData}")
+
+                    /*产生一个随机数*/
+                    val randomKey = AESUtil.getRandomKey(16)
+                    LogUtils.i("生成的随机数：${randomKey}")
+
+                    /*使用产生的随机数对请求的数据进行加密*/
+                    val aesEncryptData = AESUtil.encrypt(requestData, randomKey)
+
+                    LogUtils.i("加密后的请求数据为：${aesEncryptData}")
+
+                    /*再使用公钥对随机的key进行加密 得到加密后的key*/
+                    val encryptAesKeyStr = RSAUtil.encryptByPublic(randomKey, ServerConstants.RSA_PUB_KEY)
+
+                    /*将加密后的key放到header里*/
+                    LogUtils.i("加密后的key：${encryptAesKeyStr}")
+
+
+                    /*然后将使用Aes加密过后的数据放到request里*/
+                    val newRequestBody = RequestBody.create(contentType, aesEncryptData)
+
+                    /*将加密过后的AES随机key放到请求头中并构建新的request*/
+                    request = request.newBuilder()
+                            .addHeader(ServerConstants.AES_KEY, encryptAesKeyStr)
+                            .post(newRequestBody)
+                            .build()
+
+                } catch (e: Exception) {
+                    LogUtils.e("加密异常====》${e}")
+                    return chain.proceed(request)
+                }
             }
-
-
         }
 
         return chain.proceed(request)
