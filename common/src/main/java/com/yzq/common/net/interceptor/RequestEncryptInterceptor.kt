@@ -34,12 +34,20 @@ class RequestEncryptInterceptor : Interceptor {
 
         LogUtils.i("请求方式：${method}")
 
+
+        val url = request.url()
+
+        val apiPath = "${url.scheme()}://${url.host()}:${url.port()}${url.encodedPath()}".trim()
+        LogUtils.i("接口地址:$apiPath")
+        LogUtils.i("ServerConstants:${ServerConstants.getServerUrl()}")
+
+
+        if (!apiPath.startsWith(ServerConstants.getApiUrl().trim())) {
+            return chain.proceed(request)
+        }
+
+
         if (method.equals("get") || method.equals("delete")) {
-
-            val url = request.url()
-
-            val apiPath = url.scheme() + ":" + url.host() + ":" + url.port() + url.encodedPath()
-            LogUtils.i("接口地址:$apiPath")
 
             if (url.encodedQuery() != null) {
                 try {
