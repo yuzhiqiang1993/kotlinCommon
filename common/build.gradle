@@ -67,7 +67,7 @@ dependencies {
     api "com.uber.autodispose:autodispose-android-archcomponents-ktx:$autodispose_version"
 
     /*eventbus*/
-    api "org.greenrobot:eventbus:$eventbus"
+    implementation "org.greenrobot:eventbus:$eventbus"
 
     /*permission*/
     api "com.yanzhenjie.permission:x:$permission"
@@ -85,9 +85,9 @@ dependencies {
     /*retrofit*/
     api "com.squareup.okhttp3:okhttp:$ok_http"
     api "com.squareup.retrofit2:retrofit:$retrofit"
-    api "com.squareup.okhttp3:logging-interceptor:$ok_http"
-    api "com.squareup.retrofit2:converter-gson:$retrofit"
-    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$ok_http"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
 
     /*glide*/
     api "com.github.bumptech.glide:glide:$glide"
@@ -106,7 +106,7 @@ dependencies {
     /*baseRecyclerViewAdapterHelper*/
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$baseRecyclerViewAdapterHelper"
     /*progressmanager*/
-    api "me.jessyan:progressmanager:$progressmanager_version"
+    implementation "me.jessyan:progressmanager:$progressmanager_version"
     /*Datepicker*/
     implementation "com.ycuwq.widgets:datepicker:$datepickerVersion"
     /*Bugly*/

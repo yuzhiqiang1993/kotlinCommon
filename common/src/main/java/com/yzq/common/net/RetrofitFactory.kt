@@ -58,7 +58,7 @@ class RetrofitFactory private constructor() {
                 .addInterceptor(RequestHeadersInterceptor())
                 //.addInterceptor(RequestEncryptInterceptor())
                 .addInterceptor(initLogInterceptor())
-                //.addInterceptor(ResponseDecryptInterceptor())
+              //  .addInterceptor(ResponseDecryptInterceptor())
 
         return ProgressManager.getInstance().with(okHttpBuilder).build()
     }
