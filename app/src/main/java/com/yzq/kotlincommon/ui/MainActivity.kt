@@ -101,20 +101,29 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         ARouter.getInstance().build(path).navigation(this)
     }
 
-    private var exitTime: Long = 0
-    /*退出程序*/
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (KeyEvent.KEYCODE_BACK == keyCode) {
-            LogUtils.i("返回键")
-            if (System.currentTimeMillis() - exitTime > 2000) {
-                exitTime = System.currentTimeMillis()
-                ToastUtils.showShort("再按一次退出程序")
-            } else {
-                BaseApp.INSTANCE.exitApp()
-            }
-            return true
-        }
-        return super.onKeyDown(keyCode, event)
+//    private var exitTime: Long = 0
+//    /*退出程序*/
+//    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+//        if (KeyEvent.KEYCODE_BACK == keyCode) {
+//            LogUtils.i("返回键")
+//            if (System.currentTimeMillis() - exitTime > 2000) {
+//                exitTime = System.currentTimeMillis()
+//                ToastUtils.showShort("再按一次退出程序")
+//            } else {
+//                BaseApp.INSTANCE.exitApp()
+//            }
+//            return true
+//        }
+//        return super.onKeyDown(keyCode, event)
+//    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+
+        /*进入到后台*/
+
+        moveTaskToBack(false)
     }
+
 
 }
