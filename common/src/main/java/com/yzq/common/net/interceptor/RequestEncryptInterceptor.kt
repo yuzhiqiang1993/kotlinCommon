@@ -142,10 +142,15 @@ class RequestEncryptInterceptor : Interceptor {
                     val newRequestBody = RequestBody.create(contentType, aesEncryptData)
 
                     /*将加密过后的AES随机key放到请求头中并构建新的request*/
-                    request = request.newBuilder()
-                            .addHeader(ServerConstants.AES_KEY, encryptAesKeyStr)
-                            .post(newRequestBody)
-                            .build()
+                    val newRequestBuilder = request.newBuilder()
+                    newRequestBuilder.addHeader(ServerConstants.AES_KEY, encryptAesKeyStr)
+
+                    when (method) {
+                        "post" -> newRequestBuilder.post(newRequestBody)
+                        "put" -> newRequestBuilder.put(newRequestBody)
+                    }
+
+                    request = newRequestBuilder.build()
 
                 } catch (e: Exception) {
                     LogUtils.e("加密异常====》${e}")
