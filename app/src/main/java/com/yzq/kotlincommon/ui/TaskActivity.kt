@@ -17,6 +17,16 @@ import com.yzq.kotlincommon.data.TaskBean
 import kotlinx.android.synthetic.main.activity_task.*
 import java.util.*
 
+
+
+ /**
+ * @description: 任务页面，主要演示粘性头部
+ * @author : yzq
+ * @date   : 2019/4/30
+ * @time   : 13:41
+ *
+ */
+
 @Route(path = RoutePath.Main.TASK)
 class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
 

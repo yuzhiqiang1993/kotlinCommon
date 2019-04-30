@@ -20,10 +20,10 @@ object GaoDeNavUtil {
 
 
     /**
-     *
+     * 调高德地图并导航
      * @param context Context
-     * @param dlat Double
-     * @param dlon Double
+     * @param dlat String
+     * @param dlon String
      * @param dname String
      */
     fun openGaoDeNavi(
@@ -50,8 +50,8 @@ object GaoDeNavUtil {
 
 
     /**
-     * 直接打开高德
-     * @param activity BaseActivity
+     * 直接调起高德地图
+     * @param context Context
      */
     fun openGaoDeMap(context: Context) {
         val intent = Intent()

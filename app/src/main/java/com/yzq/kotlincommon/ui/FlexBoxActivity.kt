@@ -14,6 +14,15 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TagAdapter
 import kotlinx.android.synthetic.main.activity_flex_box.*
 
+
+ /**
+ * @description: 弹性布局
+ * @author : yzq
+ * @date   : 2019/4/30
+ * @time   : 13:38
+ *
+ */
+
 @Route(path = RoutePath.Main.FLEX_BOX)
 class FlexBoxActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
 

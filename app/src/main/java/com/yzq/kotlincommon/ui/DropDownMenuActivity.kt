@@ -16,11 +16,14 @@ import com.yzq.kotlincommon.adapter.DropDownMenuFoodTypeAdapter
 import kotlinx.android.synthetic.main.activity_drop_down_menu.*
 
 
-/*
-*
-* 下拉菜单选择
-*
-* */
+
+ /**
+ * @description: 下拉菜单
+ * @author : yzq
+ * @date   : 2019/4/30
+ * @time   : 13:38
+ *
+ */
 
 @Route(path = RoutePath.Main.DROP_DOWN_MENU)
 class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {

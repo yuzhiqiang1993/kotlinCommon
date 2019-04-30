@@ -17,6 +17,15 @@ import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import kotlinx.android.synthetic.main.activity_gao_de.*
 import javax.inject.Inject
 
+
+ /**
+ * @description: 高德地图
+ * @author : yzq
+ * @date   : 2019/4/30
+ * @time   : 13:38
+ *
+ */
+
 @Route(path = RoutePath.Main.GAO_DE)
 class GaoDeActivity : BaseActivity(), LocationView {
 

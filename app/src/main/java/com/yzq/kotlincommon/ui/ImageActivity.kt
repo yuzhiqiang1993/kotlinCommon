@@ -11,6 +11,15 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import kotlinx.android.synthetic.main.activity_image.*
 
+
+ /**
+ * @description: 图片相关
+ * @author : yzq
+ * @date   : 2019/4/30
+ * @time   : 13:38
+ *
+ */
+
 @Route(path = RoutePath.Main.IMG)
 class ImageActivity : BaseActivity() {
 

@@ -9,6 +9,15 @@ import com.yzq.kotlincommon.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 
+ 
+ /**
+ * @description: SharedPreference相关
+ * @author : yzq
+ * @date   : 2019/4/30
+ * @time   : 13:39
+ * 
+ */
+ 
 @Route(path = RoutePath.Main.LOGIN)
 class LoginActivity : BaseActivity() {
 

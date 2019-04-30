@@ -12,11 +12,17 @@ import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_autodispose.*
 import java.util.concurrent.TimeUnit
 
-/*
-* Autodispose示例
-*
-*
-* */
+
+
+
+ /**
+ * @description: AutoDispose
+ * @author : yzq
+ * @date   : 2019/4/30
+ * @time   : 13:37
+ *
+ */
+
 @Route(path = RoutePath.Main.AUTODISPOSE)
 class AutodisposeActivity : BaseActivity() {
     override fun getContentLayoutId(): Int {

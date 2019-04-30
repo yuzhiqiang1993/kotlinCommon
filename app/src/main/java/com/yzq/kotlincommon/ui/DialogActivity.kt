@@ -16,6 +16,15 @@ import kotlinx.android.synthetic.main.dialog_scroll_layout.*
 import java.util.concurrent.TimeUnit
 
 
+
+ /**
+ * @description: 弹窗
+ * @author : yzq
+ * @date   : 2019/4/30
+ * @time   : 13:38
+ *
+ */
+
 @Route(path = RoutePath.Main.DIALOG)
 class DialogActivity : BaseActivity() {
 

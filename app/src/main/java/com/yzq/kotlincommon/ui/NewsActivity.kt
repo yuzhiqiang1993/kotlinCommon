@@ -18,6 +18,15 @@ import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.content_news.*
 
 
+ 
+ /**
+ * @description: 新闻页面
+ * @author : yzq
+ * @date   : 2019/4/30
+ * @time   : 13:40
+ * 
+ */
+ 
 @Route(path = RoutePath.Main.NEWS)
 class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
 
