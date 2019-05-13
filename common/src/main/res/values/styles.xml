@@ -53,7 +53,6 @@
     </style>
 
 
-
     <!--tablayout样式-->
     <style name="tabLayout">
         <item name="android:background">@color/white</item>

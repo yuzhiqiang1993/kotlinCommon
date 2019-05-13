@@ -28,13 +28,6 @@ class RetrofitFactory private constructor() {
 
     private val retrofit: Retrofit
 
-    companion object {
-        val instance: RetrofitFactory by lazy {
-            RetrofitFactory()
-        }
-
-    }
-
 
     init {
 
@@ -46,6 +39,15 @@ class RetrofitFactory private constructor() {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
+
+    }
+
+
+    /*线程安全的懒汉式单例*/
+    companion object {
+        val instance: RetrofitFactory by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            RetrofitFactory()
+        }
 
     }
 
