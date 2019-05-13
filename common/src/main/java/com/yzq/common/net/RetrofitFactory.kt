@@ -2,11 +2,10 @@ package com.yzq.common.net
 
 import android.util.Log
 import com.google.gson.Gson
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.yzq.common.BuildConfig
 import com.yzq.common.constants.ServerConstants
-import com.yzq.common.net.interceptor.RequestEncryptInterceptor
 import com.yzq.common.net.interceptor.RequestHeadersInterceptor
-import com.yzq.common.net.interceptor.ResponseDecryptInterceptor
 import me.jessyan.progressmanager.ProgressManager
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -38,6 +37,7 @@ class RetrofitFactory private constructor() {
                 .client(initOkhttpClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()
 
     }
@@ -58,9 +58,9 @@ class RetrofitFactory private constructor() {
                 .connectTimeout(5, TimeUnit.SECONDS)
                 .readTimeout(5, TimeUnit.SECONDS)
                 .addInterceptor(RequestHeadersInterceptor())
-                .addInterceptor(RequestEncryptInterceptor())
+                // .addInterceptor(RequestEncryptInterceptor())
                 .addInterceptor(initLogInterceptor())
-                .addInterceptor(ResponseDecryptInterceptor())
+        //.addInterceptor(ResponseDecryptInterceptor())
 
         return ProgressManager.getInstance().with(okHttpBuilder).build()
     }

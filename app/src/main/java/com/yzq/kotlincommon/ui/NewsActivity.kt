@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui
 
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -16,17 +17,19 @@ import com.yzq.kotlincommon.mvp.presenter.MainPresenter
 import com.yzq.kotlincommon.mvp.view.MainView
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.content_news.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
- 
- /**
+/**
  * @description: 新闻页面
  * @author : yzq
  * @date   : 2019/4/30
  * @time   : 13:40
- * 
+ *
  */
- 
+
 @Route(path = RoutePath.Main.NEWS)
 class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
 
@@ -48,7 +51,7 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
     override fun initWidget() {
         super.initWidget()
         initToolbar(toolbar, "新闻")
-        recy.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+        recy.layoutManager = LinearLayoutManager(this)
 
         initStateView(stateView, recy)
 
@@ -59,8 +62,25 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         super.initData()
         showLoadding()
 
-        presenter.requestData()
+        //presenter.requestData()
 
+
+        GlobalScope.launch(Dispatchers.Main) {
+
+            try {
+                LogUtils.i("开始请求数据")
+
+                val data = presenter.getNews().await()
+
+                LogUtils.i("数据请求完成：${data.result.data}")
+                requestSuccess(data.result.data)
+                LogUtils.i("请求结束")
+            } catch (e: Exception) {
+                showError(e.localizedMessage)
+            }
+
+
+        }
 
     }
 
@@ -70,7 +90,7 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         if (data.size > 0) {
             showData(data)
         } else {
-            showContent()
+            showNoData()
         }
 
 

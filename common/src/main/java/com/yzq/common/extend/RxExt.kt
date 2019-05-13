@@ -9,6 +9,7 @@ import com.yzq.common.data.BaseResp
 import com.yzq.common.data.ResponseCode
 import com.yzq.common.rx.RxSchedulers
 import io.reactivex.Observable
+import kotlinx.coroutines.Deferred
 
 
 /**
@@ -37,5 +38,4 @@ fun <T> Observable<BaseResp<T>>.dataConvert(): Observable<T> {
         if (it.errorCode == ResponseCode.SUCCESS) Observable.just(it.result) else Observable.error(Throwable(message = it.reason))
     }
 }
-
 

@@ -1,6 +1,5 @@
 package com.yzq.common.ui
 
-import android.os.Bundle
 import com.yzq.common.mvp.presenter.BasePresenter
 import com.yzq.common.mvp.view.BaseView
 import javax.inject.Inject
