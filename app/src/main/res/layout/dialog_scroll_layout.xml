@@ -1,56 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/len_10"
+    android:orientation="vertical">
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/baseDialogBtn"
         style="@style/button"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_width="match_parent"
         android:text="基础弹窗" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/onlyPositiveCallbackBtn"
-        style="@style/button"
+        style="@style/outline_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="只有确定按钮和回调" />
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/positiveCallbackBtn"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="双选项但只有确定按钮有回调" />
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/callbackBtn"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="双选项双回调" />
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/singleSelectBtn"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="单选" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/inputBtn"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="输入" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/loaddingBtn"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="加载框" />
-    <Button
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/progressBtn"
         style="@style/button"
         android:layout_width="match_parent"
@@ -58,7 +63,7 @@
         android:text="进度框" />
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/selectYearBtn"
         style="@style/button"
         android:layout_width="match_parent"
@@ -66,8 +71,7 @@
         android:text="选择年份" />
 
 
-
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/selectDateBtn"
         style="@style/button"
         android:layout_width="match_parent"
@@ -75,7 +79,7 @@
         android:text="选择年月日" />
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/selectTimeBtn"
         style="@style/button"
         android:layout_width="match_parent"
@@ -83,4 +87,4 @@
         android:text="选择时分" />
 
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

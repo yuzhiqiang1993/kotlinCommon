@@ -20,7 +20,7 @@
             android:layout_height="@dimen/len_20"/>
 
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
             app:layout_constraintStart_toEndOf="@id/startIconIv"
             android:id="@+id/titleTv"
             android:layout_width="wrap_content"
