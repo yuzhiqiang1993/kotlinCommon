@@ -7,10 +7,10 @@
     app:swipeEnable="true">
 
 
-    <include layout="@layout/item_task_content"/>
+    <include layout="@layout/item_task_content" />
 
 
-    <include layout="@layout/item_delete_menu"/>
+    <include layout="@layout/item_delete_menu" />
 
 
 </com.yzq.widget.swipe_menu.SwipeMenuLayout>

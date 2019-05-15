@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui
 
 
+import android.view.Menu
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -48,6 +49,7 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
         recy.layoutManager = LinearLayoutManager(this)
         recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
 
+
     }
 
 
@@ -67,7 +69,7 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
 
         /*将数据根据类型分组*/
 
-        //filterData()
+        filterData()
 
 
         showData()
@@ -96,9 +98,6 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
 
 
         recy.adapter = taskAdapter
-
-
-        showContent()
 
 
     }
@@ -134,4 +133,10 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
 
     }
 
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_task, menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
 }

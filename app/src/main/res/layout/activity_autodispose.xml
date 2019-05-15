@@ -24,6 +24,7 @@
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/len_10"
         android:text="@string/start_count" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
