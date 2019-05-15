@@ -38,11 +38,13 @@ class RequestEncryptInterceptor : Interceptor {
         val url = request.url()
 
         val apiPath = "${url.scheme()}://${url.host()}:${url.port()}${url.encodedPath()}".trim()
-        LogUtils.i("接口地址:$apiPath")
+
+        val serverPath = "${url.scheme()}://${url.host()}".trim()
+        LogUtils.i("接口地址:$serverPath")
         LogUtils.i("ServerConstants:${ServerConstants.getServerUrl()}")
 
 
-        if (!apiPath.startsWith(ServerConstants.getApiUrl().trim())) {
+        if (!ServerConstants.getServerUrl().startsWith(serverPath)) {
             return chain.proceed(request)
         }
 
