@@ -18,8 +18,7 @@ import kotlinx.android.synthetic.main.activity_task.*
 import java.util.*
 
 
-
- /**
+/**
  * @description: 任务页面，主要演示粘性头部
  * @author : yzq
  * @date   : 2019/4/30
@@ -49,7 +48,6 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
         recy.layoutManager = LinearLayoutManager(this)
         recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
 
-
     }
 
 
@@ -69,8 +67,7 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
 
         /*将数据根据类型分组*/
 
-        filterData()
-
+        //filterData()
 
 
         showData()
@@ -85,8 +82,8 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
         taskAdapter.onItemChildClickListener = this
 
         val hoverItemDecoration = HoverItemDecoration(this, HoverItemDecoration.BindItemTextCallback {
-            var taskBean = tasks[it]
-            var title = if (taskBean.type == 0) {
+            val taskBean = tasks[it]
+            val title = if (taskBean.type == 0) {
                 "巡查"
             } else {
                 "急查"
@@ -116,10 +113,10 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
         operationItem = adapter.data[position] as TaskBean
         operationPosition = position
         when (view.id) {
-            R.id.nameTv -> {
+            R.id.tv_name -> {
                 ToastUtils.showShort(operationItem.name)
             }
-            R.id.deleteMenu -> {
+            R.id.tv_delete -> {
 
                 tasks.remove(operationItem)
                 taskAdapter.notifyDataSetChanged()
@@ -137,14 +134,4 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
 
     }
 
-
-    override fun showLoadding() {
-        stateView.showLoading()
-        recy.visibility = View.GONE
-    }
-
-    override fun showContent() {
-        recy.visibility = View.VISIBLE
-        stateView.hide()
-    }
 }

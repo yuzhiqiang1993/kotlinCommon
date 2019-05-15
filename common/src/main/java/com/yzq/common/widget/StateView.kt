@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.R
 import kotlinx.android.synthetic.main.layout_state_view.view.*
 
@@ -31,10 +30,9 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : Li
     init {
 
 
-
         view = LayoutInflater.from(context).inflate(R.layout.layout_state_view, this)
 
-        retryBtn.setOnClickListener({
+        btn_retry.setOnClickListener({
             showLoading()
             if (retryListener == null) {
                 showNoData()
@@ -51,42 +49,42 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : Li
     fun showLoading() {
 
         view.visibility = View.VISIBLE
-        loaddingLayout.visibility = View.VISIBLE
+        loadding_layout.visibility = View.VISIBLE
 
-        abnormalLayout.visibility = View.GONE
+        abnorma_layout.visibility = View.GONE
     }
 
 
     fun showNoData() {
 
         view.visibility = View.VISIBLE
-        loaddingLayout.visibility = View.GONE
-        abnormalLayout.visibility = View.VISIBLE
-        hintImg.setImageResource(R.drawable.ic_no_data)
-        hintTv.text = resources.getString(R.string.noData)
+        loadding_layout.visibility = View.GONE
+        abnorma_layout.visibility = View.VISIBLE
+        iv_hint.setImageResource(R.drawable.ic_no_data)
+        tv_hint.text = resources.getString(R.string.noData)
     }
 
     fun showNoNet() {
         view.visibility = View.VISIBLE
-        loaddingLayout.visibility = View.GONE
-        abnormalLayout.visibility = View.VISIBLE
-        hintImg.setImageResource(R.drawable.ic_no_net)
+        loadding_layout.visibility = View.GONE
+        abnorma_layout.visibility = View.VISIBLE
+        iv_hint.setImageResource(R.drawable.ic_no_net)
         // ImageLoader.getInstance().load(context, R.drawable.ic_no_net, hintImg);
-        hintTv.text = resources.getString(R.string.noNet)
+        tv_hint.text = resources.getString(R.string.noNet)
     }
 
     fun showError(errorMsg: String) {
         view.visibility = View.VISIBLE
-        loaddingLayout.visibility = View.GONE
-        abnormalLayout.visibility = View.VISIBLE
+        loadding_layout.visibility = View.GONE
+        abnorma_layout.visibility = View.VISIBLE
 
-        hintImg.setImageResource(R.drawable.ic_error)
+        iv_hint.setImageResource(R.drawable.ic_error)
 
-        hintTv.text = errorMsg
+        tv_hint.text = errorMsg
     }
 
     fun hideRetryBtn() {
-        retryBtn.setVisibility(View.GONE)
+        btn_retry.setVisibility(View.GONE)
     }
 
     fun hide() {

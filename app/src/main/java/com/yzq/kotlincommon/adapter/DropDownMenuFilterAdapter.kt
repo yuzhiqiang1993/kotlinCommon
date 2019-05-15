@@ -8,7 +8,7 @@ class DropDownMenuFilterAdapter(layoutResId: Int, data: MutableList<String>) : B
     override fun convert(helper: BaseViewHolder, item: String) {
 
 
-        helper.itemView.contentTv.text = item
+        helper.itemView.tv_content.text = item
 
     }
 }

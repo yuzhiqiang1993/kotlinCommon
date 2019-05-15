@@ -9,22 +9,22 @@
     <include layout="@layout/toolbar" />
 
 
-    <TextView
-        android:id="@+id/resultTv"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center" />
 
-    <Button
-        android:id="@+id/scanBtn"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_scan"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="扫描二维码" />
 
 
-    <Button
-        android:id="@+id/jsoupBtn"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_jsoup"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

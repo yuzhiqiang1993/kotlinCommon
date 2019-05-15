@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/list_item_selector"
     android:orientation="horizontal"
     android:padding="@dimen/len_10">
 
-    <TextView
-        android:id="@+id/contentTv"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
         android:padding="@dimen/len_10"
         android:text="测试"
-        android:textColor="@color/black" />
+        android:textColor="@color/primary_text" />
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

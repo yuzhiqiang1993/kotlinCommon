@@ -13,9 +13,7 @@ import kotlinx.android.synthetic.main.activity_autodispose.*
 import java.util.concurrent.TimeUnit
 
 
-
-
- /**
+/**
  * @description: AutoDispose
  * @author : yzq
  * @date   : 2019/4/30
@@ -35,7 +33,7 @@ class AutodisposeActivity : BaseActivity() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "AutoDispose")
 
-        countBtn.setOnClickListener {
+        btn_count.setOnClickListener {
             startCount()
         }
     }
@@ -48,7 +46,7 @@ class AutodisposeActivity : BaseActivity() {
                 .compose(RxSchedulers.io2main())
                 .transform(this)
                 .subscribe {
-                    countTv.setText("$it")
+                    tv_count.setText("$it")
                     LogUtils.i("startCount-->$it")
                 }
 

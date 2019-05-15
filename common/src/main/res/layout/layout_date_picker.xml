@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.ycuwq.datepicker.date.DatePicker
-        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/datePicker"
-        android:layout_height="wrap_content"
-        app:wheelCurtainBorderColor="@color/gray_300"
-        app:selectedTextColor="@color/colorAccent"
-        app:itemTextColor="@color/gray_600"
-        app:wheelCurtainColor="#FAFAFB"
-        android:background="@color/white"
-        android:layout_width="match_parent"/>
+<com.ycuwq.datepicker.date.DatePicker xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/date_picker"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    app:itemTextColor="@color/primary_text"
+    app:selectedTextColor="@color/colorAccent"
+    app:wheelCurtainBorderColor="@color/secondary_text"
+    app:wheelCurtainColor="#FAFAFB" />
 

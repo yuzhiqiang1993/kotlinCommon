@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.ui
 
 import android.annotation.SuppressLint
 import android.view.View
-import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,8 +16,7 @@ import com.yzq.kotlincommon.adapter.DropDownMenuFoodTypeAdapter
 import kotlinx.android.synthetic.main.activity_drop_down_menu.*
 
 
-
- /**
+/**
  * @description: 下拉菜单
  * @author : yzq
  * @date   : 2019/4/30
@@ -34,7 +33,7 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
         return R.layout.activity_drop_down_menu
     }
 
-    private lateinit var filterTv: TextView
+    private lateinit var tv_filter: AppCompatTextView
 
     private lateinit var dropDownMenuFoodTypeAdapter: DropDownMenuFoodTypeAdapter
     private lateinit var dropDownMenuFiltersAdapter: DropDownMenuFilterAdapter
@@ -62,7 +61,7 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
 
 
         val contentLayout = layoutInflater.inflate(R.layout.drop_down_menu_content, null)
-        filterTv = contentLayout.findViewById(R.id.filterTv)
+        tv_filter = contentLayout.findViewById(R.id.tv_filter)
 
 
         foodTypeRecy = RecyclerView(this)
@@ -74,9 +73,9 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
         popupViews.add(foodTypeRecy)
         popupViews.add(filtersRecy)
 
-        dropdownMenu.setDropDownMenu(tabs, popupViews, contentLayout)
+        dropdown_menu.setDropDownMenu(tabs, popupViews, contentLayout)
 
-        filterTv.text = "$foodType--$filter"
+        tv_filter.text = "$foodType--$filter"
         setData()
     }
 
@@ -103,19 +102,19 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
 
                 foodType = dropDownMenuFoodTypeAdapter.data[position]
 
-                dropdownMenu.setTabText(foodType)
-                filterTv.text = "$foodType--$filter"
+                dropdown_menu.setTabText(foodType)
+                tv_filter.text = "$foodType--$filter"
 
-                dropdownMenu.closeMenu()
+                dropdown_menu.closeMenu()
 
             }
 
             is DropDownMenuFilterAdapter -> {
                 filter = dropDownMenuFiltersAdapter.data[position]
 
-                dropdownMenu.setTabText(filter)
-                filterTv.text = "$foodType--$filter"
-                dropdownMenu.closeMenu()
+                dropdown_menu.setTabText(filter)
+                tv_filter.text = "$foodType--$filter"
+                dropdown_menu.closeMenu()
             }
         }
 

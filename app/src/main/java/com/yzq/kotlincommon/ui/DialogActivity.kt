@@ -16,8 +16,7 @@ import kotlinx.android.synthetic.main.dialog_scroll_layout.*
 import java.util.concurrent.TimeUnit
 
 
-
- /**
+/**
  * @description: 弹窗
  * @author : yzq
  * @date   : 2019/4/30
@@ -44,18 +43,18 @@ class DialogActivity : BaseActivity() {
 
 
 
-        baseDialogBtn.setOnClickListener {
+        btn_base.setOnClickListener {
             Dialog.showBase(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
         }
 
-        onlyPositiveCallbackBtn.setOnClickListener {
+        btn_only_positive_callback.setOnClickListener {
 
             Dialog.showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作").subscribe {
 
                 ToastUtils.showShort("点击了确定")
             }
         }
-        positiveCallbackBtn.setOnClickListener {
+        btn_positive_callback.setOnClickListener {
             Dialog.showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作").subscribe {
 
                 ToastUtils.showShort("点击了确定")
@@ -63,7 +62,7 @@ class DialogActivity : BaseActivity() {
 
         }
 
-        callbackBtn.setOnClickListener {
+        btn_callback.setOnClickListener {
             Dialog.showCallbackDialog(message = "双选项双回调").subscribe {
                 if (it) {
                     ToastUtils.showShort("点击了确定")
@@ -75,7 +74,7 @@ class DialogActivity : BaseActivity() {
 
         }
 
-        singleSelectBtn.setOnClickListener {
+        btn_single_select.setOnClickListener {
 
             val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
 
@@ -85,14 +84,14 @@ class DialogActivity : BaseActivity() {
             }
         }
 
-        inputBtn.setOnClickListener {
+        btn_input.setOnClickListener {
             Dialog.showInputDialog().subscribe {
                 ToastUtils.showShort(it)
             }
 
         }
 
-        loaddingBtn.setOnClickListener {
+        btn_loadding.setOnClickListener {
 
             showLoadingDialog("登录中...")
 
@@ -103,7 +102,7 @@ class DialogActivity : BaseActivity() {
         }
 
 
-        progressBtn.setOnClickListener {
+        btn_progress.setOnClickListener {
             var count = 0
             showProgressDialog("模拟进度")
             Observable.interval(200, TimeUnit.MILLISECONDS)
@@ -138,9 +137,9 @@ class DialogActivity : BaseActivity() {
 
         }
 
-        selectYearBtn.setOnClickListener { Dialog.selectYear().subscribe { ToastUtils.showShort(it) } }
-        selectDateBtn.setOnClickListener { Dialog.selectDate().subscribe { ToastUtils.showShort(it) } }
-        selectTimeBtn.setOnClickListener { Dialog.selectHourAndMinute().subscribe { ToastUtils.showShort(it) } }
+        btn_select_year.setOnClickListener { Dialog.selectYear().subscribe { ToastUtils.showShort(it) } }
+        btn_select_date.setOnClickListener { Dialog.selectDate().subscribe { ToastUtils.showShort(it) } }
+        btn_select_time.setOnClickListener { Dialog.selectHourAndMinute().subscribe { ToastUtils.showShort(it) } }
 
 
     }

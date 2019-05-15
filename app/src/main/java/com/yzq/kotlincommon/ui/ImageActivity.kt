@@ -12,7 +12,7 @@ import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import kotlinx.android.synthetic.main.activity_image.*
 
 
- /**
+/**
  * @description: 图片相关
  * @author : yzq
  * @date   : 2019/4/30
@@ -46,7 +46,7 @@ class ImageActivity : BaseActivity() {
 
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "图片")
-        imgFab.setOnClickListener {
+        fab_camera.setOnClickListener {
 
             ImagePicker.openCamera(this@ImageActivity)
                     .subscribe { file ->
@@ -54,7 +54,7 @@ class ImageActivity : BaseActivity() {
                         compressImgModel.compressImgWithWatermark(file.path)
                                 .subscribe {
                                     imgPath = it
-                                    ImageLoader.loadCenterCrop(imgPath, imgIv)
+                                    ImageLoader.loadCenterCrop(imgPath, iv_img)
                                 }
                     }
 
@@ -62,7 +62,7 @@ class ImageActivity : BaseActivity() {
         }
 
 
-        imgIv.setOnClickListener {
+        iv_img.setOnClickListener {
             preViewImg("拍照", imgPath)
         }
 

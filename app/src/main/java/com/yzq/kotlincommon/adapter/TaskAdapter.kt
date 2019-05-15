@@ -10,9 +10,9 @@ class TaskAdapter(layoutResId: Int, data: MutableList<TaskBean>?) : BaseQuickAda
     override fun convert(helper: BaseViewHolder, item: TaskBean) {
 
 
-        helper.itemView.nameTv.text = item.name
+        helper.itemView.tv_name.text = item.name
 
-        helper.addOnClickListener(R.id.nameTv)
-        helper.addOnClickListener(R.id.deleteMenu)
+        helper.addOnClickListener(R.id.tv_name)
+        helper.addOnClickListener(R.id.tv_delete)
     }
 }

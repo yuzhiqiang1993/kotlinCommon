@@ -9,8 +9,8 @@
 
     <include layout="@layout/toolbar" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/locationBtn"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_location"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
 
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/locationTv"
+        android:id="@+id/tv_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

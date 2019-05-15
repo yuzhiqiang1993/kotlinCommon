@@ -1,62 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/len_10"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/len_10">
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/baseDialogBtn"
-        style="@style/button"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="基础弹窗" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/onlyPositiveCallbackBtn"
-        style="@style/outline_button"
+        android:id="@+id/btn_base"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="只有确定按钮和回调" />
+        android:text="基础弹窗"
+        app:icon="@drawable/ic_pwd"
+        app:iconGravity="textStart" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/positiveCallbackBtn"
-        style="@style/button"
+        android:id="@+id/btn_only_positive_callback"
+        style="@style/outlineButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="双选项但只有确定按钮有回调" />
+        android:text="只有确定按钮和回调"
+        app:icon="@drawable/ic_arrow_down"
+        app:iconGravity="textStart" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/callbackBtn"
-        style="@style/button"
+        android:id="@+id/btn_positive_callback"
+        style="@style/textButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="双选项但只有确定按钮有回调"
+        app:icon="@drawable/ic_map"
+        app:iconGravity="textStart" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_callback"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="双选项双回调" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/singleSelectBtn"
+        android:id="@+id/btn_single_select"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="单选" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/inputBtn"
+        android:id="@+id/btn_input"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="输入" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/loaddingBtn"
+        android:id="@+id/btn_loadding"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="加载框" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/progressBtn"
+        android:id="@+id/btn_progress"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +70,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/selectYearBtn"
+        android:id="@+id/btn_select_year"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -72,7 +78,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/selectDateBtn"
+        android:id="@+id/btn_select_date"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -80,7 +86,7 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/selectTimeBtn"
+        android:id="@+id/btn_select_time"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

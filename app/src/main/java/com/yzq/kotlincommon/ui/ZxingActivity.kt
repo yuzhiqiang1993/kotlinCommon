@@ -46,9 +46,9 @@ class ZxingActivity : BaseActivity() {
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "Zxing")
 
-        scanBtn.setOnClickListener { excuteZxing() }
+        btn_scan.setOnClickListener { excuteZxing() }
 
-        jsoupBtn.setOnClickListener {
+        btn_jsoup.setOnClickListener {
             getLicenseInfo()
         }
 
@@ -87,7 +87,7 @@ class ZxingActivity : BaseActivity() {
             REQUEST_CODE_SCAN -> {
                 if (data != null) {
                     val content = data.getStringExtra(Constant.CODED_CONTENT)
-                    resultTv.setText(content)
+                    tv_result.setText(content)
                 }
 
 
@@ -145,7 +145,7 @@ class ZxingActivity : BaseActivity() {
                 Dialog.showBase(message = "请扫描营业执照上的二维码！")
                 return@subscribe
             } else {
-                resultTv.setText("""
+                tv_result.setText("""
                 统一社会信用代码:${code}
                 企业名称:${name}
                 法定代表人:${people}

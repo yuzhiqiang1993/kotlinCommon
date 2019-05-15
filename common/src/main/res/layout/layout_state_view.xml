@@ -5,7 +5,7 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/loaddingLayout"
+        android:id="@+id/loadding_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
@@ -28,7 +28,7 @@
 
     <!--异常布局  无数据或无网络或连接超时-->
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/abnormalLayout"
+        android:id="@+id/abnorma_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -36,22 +36,22 @@
         android:visibility="visible">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/hintImg"
+            android:id="@+id/iv_hint"
             android:layout_width="@dimen/len_128"
             android:layout_height="@dimen/len_96" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/hintTv"
+            android:id="@+id/tv_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/len_16"
             android:gravity="center"
-
-            android:textColor="@color/gray_400"
+            android:textColor="@color/primary_text"
             android:textSize="@dimen/font_18" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/retryBtn"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_retry"
+            style="@style/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/len_10"

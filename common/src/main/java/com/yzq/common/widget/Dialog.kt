@@ -332,7 +332,7 @@ object Dialog {
                 negativeButton(text = negativeText)
                 customView(viewRes = R.layout.layout_year_picker, scrollable = false)
                 positiveButton {
-                    val yearPicker = it.getCustomView().findViewById<YearPicker>(R.id.yearPicker)
+                    val yearPicker = it.getCustomView().findViewById<YearPicker>(R.id.year_picker)
 
                     emitter.onNext(yearPicker.selectedYear.toString())
                 }
@@ -368,7 +368,7 @@ object Dialog {
                 negativeButton(text = negativeText)
                 customView(viewRes = R.layout.layout_date_picker, scrollable = false)
                 positiveButton {
-                    val datePicker = it.findViewById<DatePicker>(R.id.datePicker)
+                    val datePicker = it.findViewById<DatePicker>(R.id.date_picker)
                     var selectedMonth = datePicker.month.toString()
                     var selectedDay = datePicker.day.toString()
 
@@ -419,7 +419,7 @@ object Dialog {
                 positiveButton {
 
                     val hourAndMinutePicker =
-                            it.findViewById<HourAndMinutePicker>(R.id.hourMinutePicker)
+                            it.findViewById<HourAndMinutePicker>(R.id.hour_minute_picker)
                     var selectedHour = hourAndMinutePicker.hour.toString()
                     var selectedMinute = hourAndMinutePicker.minute.toString()
                     if (hourAndMinutePicker.hour < 10) {

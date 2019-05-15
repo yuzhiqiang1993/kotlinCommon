@@ -10,21 +10,20 @@
     <include layout="@layout/toolbar" />
 
 
-    <TextView
-        android:id="@+id/countTv"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_count"
         android:layout_width="match_parent"
         android:layout_height="@dimen/len_48"
         android:gravity="center"
-        android:hint="0"
         android:textColor="@color/black"
         android:textSize="@dimen/font_18" />
 
 
-    <Button
-        android:id="@+id/countBtn"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_count"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="开始计数" />
+        android:text="@string/start_count" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

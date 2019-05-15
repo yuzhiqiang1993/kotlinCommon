@@ -10,25 +10,27 @@
 
     <include layout="@layout/toolbar" />
 
-    
 
-    <EditText
-        android:id="@+id/accountEt"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/input_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/len_10"
         android:hint="请输入账号" />
 
 
-    <EditText
-        android:id="@+id/pwdEt"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/input_pwd"
         android:layout_width="match_parent"
+        android:layout_margin="@dimen/len_10"
         android:layout_height="wrap_content"
         android:hint="请输入密码" />
 
 
-    <Button
-        android:id="@+id/loginBtn"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login"
         style="@style/button"
+        android:layout_margin="@dimen/len_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="登录" />

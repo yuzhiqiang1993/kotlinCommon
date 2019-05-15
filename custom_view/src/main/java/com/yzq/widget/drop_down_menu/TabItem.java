@@ -3,6 +3,8 @@ package com.yzq.widget.drop_down_menu;
 import android.content.Context;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +18,7 @@ import com.yzq.widget.R;
 * */
 public class TabItem extends LinearLayout {
 
-    private TextView titleTv;
+    private AppCompatTextView titleTv;
     private View view;
     private AppCompatImageView tabIcon;
 
@@ -38,8 +40,8 @@ public class TabItem extends LinearLayout {
 
     private void initView(Context context) {
         view = LayoutInflater.from(context).inflate(R.layout.layout_tab_item, this);
-        titleTv = view.findViewById(R.id.tabTitleTv);
-        tabIcon=view.findViewById(R.id.tabIconIv);
+        titleTv = view.findViewById(R.id.tv_tab_title);
+        tabIcon=view.findViewById(R.id.iv_tab_icon);
     }
 
 

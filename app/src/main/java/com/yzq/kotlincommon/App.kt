@@ -1,5 +1,7 @@
 package com.yzq.kotlincommon
 
+import android.content.Context
+import androidx.multidex.MultiDex
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.BaseApp
@@ -36,10 +38,10 @@ class App : BaseApp() {
 
     }
 
-//    override fun attachBaseContext(base: Context?) {
-//        super.attachBaseContext(base)
-//        MultiDex.install(this)
-//
-//    }
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+        MultiDex.install(this)
+
+    }
 
 }

@@ -51,9 +51,9 @@ class ImgPreviewActivity : BaseActivity() {
         setAllowFastClick(true)
         initToolbar(toolbar, imageName)
 
-        ImageLoader.loadFitCenter(imagePath,photoView)
+        ImageLoader.loadFitCenter(imagePath,photo_view)
 
-        photoView.setOnClickListener { finish() }
+        photo_view.setOnClickListener { finish() }
     }
 
 }

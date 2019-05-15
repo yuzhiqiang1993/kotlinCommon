@@ -10,12 +10,12 @@
 
 
     <com.github.chrisbanes.photoview.PhotoView
-        android:id="@+id/photoView"
+        android:id="@+id/photo_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbarLayout"
+        android:id="@+id/appbar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black_alpha_160"

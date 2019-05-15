@@ -50,22 +50,22 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         }
 
 
-        startIconIv.visibility = View.GONE
-        endIconIv.visibility = View.GONE
+        icon_start.visibility = View.GONE
+        icon_end.visibility = View.GONE
 
 
         if (iconRes != -1) {
-            startIconIv.visibility = View.VISIBLE
-            startIconIv.setImageResource(iconRes)
+            icon_start.visibility = View.VISIBLE
+            icon_start.setImageResource(iconRes)
         }
 
         if (endIconRes != -1) {
-            endIconIv.visibility = View.VISIBLE
-            endIconIv.setImageResource(endIconRes)
+            icon_end.visibility = View.VISIBLE
+            icon_end.setImageResource(endIconRes)
         }
-        titleTv.text = titleStr
-        contentEt.setText(contentStr)
-        contentEt.isEnabled = editEnable
+        tv_title.text = titleStr
+        input_content.setText(contentStr)
+        input_content.isEnabled = editEnable
 
     }
 
@@ -76,7 +76,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      */
     fun setContent(content: String) {
         this.contentStr = content
-        contentEt.setText(contentStr)
+        input_content.setText(contentStr)
     }
 
     /**
@@ -84,7 +84,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      * @return String
      */
     fun getContent(): String {
-        return contentEt.text.toString().trim()
+        return input_content.text.toString().trim()
     }
 
     /**
@@ -93,7 +93,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      */
     fun setTitle(title: String) {
         this.titleStr = title
-        titleTv.setText(titleStr)
+        tv_title.setText(titleStr)
     }
 
     /**
@@ -101,7 +101,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      * @param listener OnClickListener
      */
     fun setEndIconOnClick(listener: OnClickListener) {
-        endIconIv.setOnClickListener(listener)
+        icon_end.setOnClickListener(listener)
     }
 
 }

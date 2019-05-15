@@ -9,32 +9,21 @@
     <include layout="@layout/toolbar" />
 
 
-    <LinearLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:visibility="gone">
 
 
         </androidx.recyclerview.widget.RecyclerView>
 
-
-        <com.yzq.common.widget.StateView
-            android:id="@+id/stateView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-        </com.yzq.common.widget.StateView>
-
-
-    </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

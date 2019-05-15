@@ -54,11 +54,11 @@ class GaoDeActivity : BaseActivity(), LocationView {
         super.initWidget()
         var toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "高德")
-        locationBtn.setOnClickListener {
+        btn_location.setOnClickListener {
 
             MapPermissionUtils.checkLocationPermission(activity = this)
                     .subscribe {
-                        locationTv.text = "开始定位"
+                        tv_location.text = "开始定位"
                         locationSignModel.startLocation()
                     }
 
@@ -69,11 +69,11 @@ class GaoDeActivity : BaseActivity(), LocationView {
 
 
     override fun locationSuccess(location: LocationBean) {
-        locationTv.text = Gson().toJson(location)
+        tv_location.text = Gson().toJson(location)
     }
 
     override fun locationFailed(locationDetail: String) {
-        locationTv.text = "定位失败"
+        tv_location.text = "定位失败"
     }
 
 

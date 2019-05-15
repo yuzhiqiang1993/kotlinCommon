@@ -51,24 +51,24 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         }
 
 
-        startIconIv.visibility = View.GONE
-        endIconIv.visibility = View.GONE
+        icon_start.visibility = View.GONE
+        icon_end.visibility = View.GONE
 
         if (startIconRes != -1) {
-            startIconIv.visibility = View.VISIBLE
-            startIconIv.setImageResource(startIconRes)
+            icon_start.visibility = View.VISIBLE
+            icon_start.setImageResource(startIconRes)
         }
         if (endIconRes != -1) {
-            endIconIv.visibility = View.VISIBLE
-            endIconIv.setImageResource(endIconRes)
+            icon_end.visibility = View.VISIBLE
+            icon_end.setImageResource(endIconRes)
         }
 
-        titleTv.text = titleStr
+        tv_title.text = titleStr
 
         if (contentLeft) {
-            contentTv.gravity = Gravity.LEFT
+            tv_content.gravity = Gravity.LEFT
         }
-        contentTv.setText(contentStr)
+        tv_content.setText(contentStr)
 
 
     }
@@ -79,8 +79,8 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      * @param content String
      */
     fun setContent(content: String) {
-        this.contentStr=content
-        contentTv.setText(contentStr)
+        this.contentStr = content
+        tv_content.setText(contentStr)
     }
 
 
@@ -90,7 +90,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      */
     fun setTitle(title: String) {
         this.titleStr = title
-        titleTv.setText(titleStr)
+        tv_title.setText(titleStr)
     }
 
     /**
@@ -98,7 +98,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      * @param listener OnClickListener
      */
     fun setEndIconOnClick(listener: OnClickListener) {
-        contentTv.setOnClickListener(listener)
+        tv_content.setOnClickListener(listener)
     }
 
 }

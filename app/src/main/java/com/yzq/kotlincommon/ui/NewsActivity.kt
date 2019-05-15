@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui
 
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
@@ -16,7 +17,6 @@ import com.yzq.kotlincommon.data.NewsBean
 import com.yzq.kotlincommon.mvp.presenter.MainPresenter
 import com.yzq.kotlincommon.mvp.view.MainView
 import kotlinx.android.synthetic.main.activity_news.*
-import kotlinx.android.synthetic.main.content_news.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -50,10 +50,11 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
     override fun initWidget() {
         super.initWidget()
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "新闻")
         recy.layoutManager = LinearLayoutManager(this)
 
-        initStateView(stateView, recy)
+        initStateView(state_view, recy)
 
     }
 
@@ -121,7 +122,7 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         operationItem = newsAdapter.data.get(position)
 
         when (view!!.id) {
-            R.id.imgIv ->
+            R.id.iv_img ->
                 preViewImg(operationItem.title, operationItem.thumbnailPicS)
         }
 

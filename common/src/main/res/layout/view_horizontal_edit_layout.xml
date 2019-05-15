@@ -1,63 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/list_item_selector"
-        android:minHeight="@dimen/len_48"
-        android:padding="@dimen/len_10"
->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_selector"
+    android:minHeight="@dimen/len_48"
+    android:padding="@dimen/len_10">
 
 
     <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/startIconIv"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="wrap_content"
-            app:tint="@color/colorAccent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_height="@dimen/len_20"/>
+        android:id="@+id/icon_start"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/len_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/colorAccent" />
 
 
     <androidx.appcompat.widget.AppCompatTextView
-            app:layout_constraintStart_toEndOf="@id/startIconIv"
-            android:id="@+id/titleTv"
-            android:layout_width="wrap_content"
-            android:minWidth="@dimen/len_100"
-            android:layout_height="match_parent"
-            android:text="标题"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginLeft="@dimen/len_10"
-            app:layout_goneMarginLeft="@dimen/len_0"
-            android:textColor="@color/black"
-    />
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/len_10"
+        android:minWidth="@dimen/len_100"
+        android:text="标题"
+        android:textColor="@color/primary_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/icon_start"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginLeft="@dimen/len_0" />
 
 
-    <androidx.appcompat.widget.AppCompatEditText
-            android:background="@null"
-            android:id="@+id/contentEt"
-            android:text="内容"
-            android:textColor="@color/gray_700"
-            app:layout_constraintStart_toEndOf="@id/titleTv"
-            android:layout_width="0dp"
-            android:paddingLeft="@dimen/len_10"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/endIconIv"
-            android:layout_height="match_parent"/>
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/input_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:paddingLeft="@dimen/len_10"
+        android:text="内容"
+        android:textColor="@color/secondary_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/icon_end"
+        app:layout_constraintStart_toEndOf="@id/tv_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/endIconIv"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/len_20"
-            android:paddingLeft="@dimen/len_10"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:tint="@color/gray_500"
-    />
+        android:id="@+id/icon_end"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/len_20"
+        android:paddingLeft="@dimen/len_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/gray_500" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

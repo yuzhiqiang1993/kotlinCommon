@@ -15,7 +15,7 @@ import com.yzq.kotlincommon.adapter.TagAdapter
 import kotlinx.android.synthetic.main.activity_flex_box.*
 
 
- /**
+/**
  * @description: 弹性布局
  * @author : yzq
  * @date   : 2019/4/30

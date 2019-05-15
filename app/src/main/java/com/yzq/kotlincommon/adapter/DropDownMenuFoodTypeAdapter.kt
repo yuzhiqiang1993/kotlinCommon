@@ -8,7 +8,7 @@ class DropDownMenuFoodTypeAdapter(layoutResId: Int, data: MutableList<String>) :
     override fun convert(helper: BaseViewHolder, item: String) {
 
 
-        helper.itemView.contentTv.text = item
+        helper.itemView.tv_content.text = item
 
     }
 }
