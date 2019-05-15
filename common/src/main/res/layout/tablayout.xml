@@ -10,8 +10,7 @@
         android:id="@+id/tab_layout"
         style="@style/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" />
 
-    </com.google.android.material.tabs.TabLayout>
 
 </com.google.android.material.appbar.AppBarLayout>
