@@ -1,10 +1,18 @@
 package com.yzq.kotlincommon.ui
 
+import android.graphics.Color
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.google.android.material.navigation.NavigationView
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.transform
@@ -13,7 +21,6 @@ import com.yzq.common.widget.ItemDecoration
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -24,7 +31,7 @@ import java.util.concurrent.TimeUnit
  *
  */
 
-class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
+class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, NavigationView.OnNavigationItemSelectedListener {
 
 
     private var items = arrayListOf<String>()
@@ -38,15 +45,24 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
 
 
     override fun initWidget() {
-        super.initWidget()
 
-        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "导航", displayHome = false)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
 
-        mainAdapter = MainAdapter(R.layout.item_main_layout, items)
-        mainAdapter.onItemClickListener = this
-        recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
-        recy.adapter = mainAdapter
+        BarUtils.setStatusBarColor(this, Color.argb(0, 0, 0, 0))
+        BarUtils.addMarginTopEqualStatusBarHeight(toolbar)
+
+        initToolbar(toolbar, "kotlin common", displayHome = false)
+
+
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        val navView: NavigationView = findViewById(R.id.nav_view)
+        val toggle = ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        )
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        navView.setNavigationItemSelectedListener(this)
 
 
         Observable.timer(3, TimeUnit.SECONDS)
@@ -60,7 +76,6 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
 
 
     override fun initData() {
-        super.initData()
 
         items.add("新闻页面（Retrofit）")
         items.add("任务页面（悬浮吸顶、侧滑菜单）")
@@ -72,9 +87,19 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         items.add("下拉菜单")
         items.add("高德定位")
         items.add("FlexBoxLayout")
+        setdata()
+    }
+
+    private fun setdata() {
+        val recy = findViewById<RecyclerView>(R.id.recy)
+        mainAdapter = MainAdapter(R.layout.item_main_layout, items)
+        mainAdapter.onItemClickListener = this
+        recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
+        recy.adapter = mainAdapter
 
 
     }
+
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
@@ -98,28 +123,39 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         ARouter.getInstance().build(path).navigation(this)
     }
 
-//    private var exitTime: Long = 0
-//    /*退出程序*/
-//    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-//        if (KeyEvent.KEYCODE_BACK == keyCode) {
-//            LogUtils.i("返回键")
-//            if (System.currentTimeMillis() - exitTime > 2000) {
-//                exitTime = System.currentTimeMillis()
-//                ToastUtils.showShort("再按一次退出程序")
-//            } else {
-//                BaseApp.INSTANCE.exitApp()
-//            }
-//            return true
-//        }
-//        return super.onKeyDown(keyCode, event)
-//    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        // Handle navigation view item clicks here.
+        when (item.itemId) {
+            R.id.nav_map -> {
+
+            }
+            R.id.nav_gallery -> {
+
+            }
+            R.id.nav_slideshow -> {
+
+            }
+            R.id.nav_tools -> {
+
+            }
+            R.id.nav_share -> {
+
+            }
+
+        }
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
 
     override fun onBackPressed() {
-        //super.onBackPressed()
-
-        /*进入到后台*/
-
-        moveTaskToBack(false)
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            moveTaskToBack(false)
+        }
     }
 
 

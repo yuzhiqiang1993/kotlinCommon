@@ -55,7 +55,7 @@ class ZxingActivity : BaseActivity() {
     }
 
     val REQUEST_LICENSE_CODE = 666
-    @SuppressLint("AutoDispose")
+    @SuppressLint("AutoDispose", "CheckResult")
     private fun getLicenseInfo() {
         PermissionRequester.request(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE, activity = this)
                 .subscribe {
@@ -115,6 +115,7 @@ class ZxingActivity : BaseActivity() {
     }
 
     /*开始提取数据*/
+    @SuppressLint("SetTextI18n")
     private fun parseData(url: String) {
 
         showLoadingDialog("正在解析....")

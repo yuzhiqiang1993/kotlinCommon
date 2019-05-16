@@ -70,7 +70,7 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : Li
         abnorma_layout.visibility = View.VISIBLE
         iv_hint.setImageResource(R.drawable.ic_no_net)
         // ImageLoader.getInstance().load(context, R.drawable.ic_no_net, hintImg);
-        tv_hint.text = resources.getString(R.string.noNet)
+        tv_hint.text = resources.getString(R.string.no_net)
     }
 
     fun showError(errorMsg: String) {

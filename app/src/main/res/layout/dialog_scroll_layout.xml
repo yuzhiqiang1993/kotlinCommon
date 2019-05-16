@@ -17,7 +17,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_only_positive_callback"
-        style="@style/outlineButton"
+        style="@style/OutlineButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="只有确定按钮和回调"
@@ -26,7 +26,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_positive_callback"
-        style="@style/textButton"
+        style="@style/TextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="双选项但只有确定按钮有回调"
@@ -42,28 +42,28 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_single_select"
-        style="@style/button"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="单选" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_input"
-        style="@style/button"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="输入" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_loadding"
-        style="@style/button"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="加载框" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_progress"
-        style="@style/button"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="进度框" />
@@ -71,7 +71,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_select_year"
-        style="@style/button"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="选择年份" />
@@ -79,7 +79,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_select_date"
-        style="@style/button"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="选择年月日" />
@@ -87,7 +87,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_select_time"
-        style="@style/button"
+        style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="选择时分" />

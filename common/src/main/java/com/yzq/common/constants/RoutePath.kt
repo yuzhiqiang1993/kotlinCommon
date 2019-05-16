@@ -22,6 +22,7 @@ object RoutePath {
         const val DROP_DOWN_MENU = "/main/dropDownMenu"
         const val GAO_DE = "/main/gaoDeMap"
         const val FLEX_BOX = "/main/flexBox"
+        const val MATERIAL = "/main/material_design"
 
 
     }

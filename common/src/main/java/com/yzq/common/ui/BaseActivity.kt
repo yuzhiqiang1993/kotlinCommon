@@ -2,16 +2,19 @@ package com.yzq.common.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
-import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.BarUtils
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.extend.changeProgress
@@ -136,7 +139,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
     /**
-     * 初始化控件
+     * 初始化数据
      *
      */
     protected open fun initData() {
@@ -146,19 +149,44 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     /**
      * 初始化Toolbar
-     *
-     * @param toolbar toolbar
-     * @param title  要显示的标题
-     * @param showBackHint  返回时是否弹出返回提示框 默认不弹出
+     * @param toolbar Toolbar
+     * @param title String  标题
+     * @param displayHome Boolean  是否显示左边图标，默认显示
+     * @param showBackHint Boolean  点击返回键时是否弹窗提示
+     * @param transparentStatusBar Boolean 是否沉浸式状态栏，默认状态栏透明
      */
-    protected open fun initToolbar(toolbar: Toolbar, title: String, displayHome: Boolean = true, showBackHint: Boolean = false) {
+    protected open fun initToolbar(toolbar: Toolbar, title: String, displayHome: Boolean = true, showBackHint: Boolean = false, transparentStatusBar: Boolean = true) {
 
         toolbar.title = title
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(displayHome)
         this.showBackHint = showBackHint
+
+        if (transparentStatusBar) {
+            transparentStatusBar()
+            BarUtils.addMarginTopEqualStatusBarHeight(toolbar)
+        }
     }
 
+
+    /*设置状态栏透明*/
+    protected open fun transparentStatusBar() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return
+        val window = getWindow()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            val option = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                val vis = window.getDecorView().getSystemUiVisibility() and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.getDecorView().setSystemUiVisibility(option or vis)
+            } else {
+                window.getDecorView().setSystemUiVisibility(option)
+            }
+            window.setStatusBarColor(Color.TRANSPARENT)
+        } else {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
+    }
 
     /**
      * Toolbar的返回按钮
@@ -182,14 +210,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     @SuppressLint("AutoDispose")
     protected fun initHeader(backIv: AppCompatImageView, titleTv: TextView, title: String, showBackHint: Boolean = false) {
         titleTv.text = title
+        this.showBackHint = showBackHint
 
         backIv.setOnClickListener {
-            if (showBackHint) {
-                Dialog.showBackHintDialog().subscribe { finish() }
-            } else {
-                finish()
-            }
-
+            onBackPressed()
         }
 
     }

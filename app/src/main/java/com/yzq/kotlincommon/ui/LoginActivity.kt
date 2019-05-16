@@ -28,12 +28,13 @@ class LoginActivity : BaseActivity() {
 
     override fun initWidget() {
         super.initWidget()
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+       // val toolbar = findViewById<Toolbar>(R.id.toolbar)
 
+        transparentStatusBar()
         input_account.setText(LocalSpUtils.account)
         input_pwd.setText(LocalSpUtils.pwd)
 
-        initToolbar(toolbar, "登录")
+       // initToolbar(toolbar, "登录")
 
         btn_login.setOnClickListener {
 

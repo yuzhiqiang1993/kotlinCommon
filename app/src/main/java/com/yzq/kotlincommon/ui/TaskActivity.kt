@@ -1,11 +1,13 @@
 package com.yzq.kotlincommon.ui
 
 
+import android.graphics.Color
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
@@ -45,6 +47,7 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
         super.initWidget()
 
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
+
         initToolbar(toolbar, "任务")
         recy.layoutManager = LinearLayoutManager(this)
         recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
@@ -135,7 +138,7 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_task, menu)
+        menuInflater.inflate(R.menu.activity_task, menu)
 
         return super.onCreateOptionsMenu(menu)
     }

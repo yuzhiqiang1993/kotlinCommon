@@ -17,7 +17,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_scan"
-        style="@style/button"
+        style="@style/Button"
         android:layout_margin="@dimen/len_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_jsoup"
-        style="@style/button"
+        style="@style/Button"
         android:layout_margin="@dimen/len_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
