@@ -234,10 +234,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * @param name  图片的名称
      * @param path  图片路径
      */
-    protected fun preViewImg(name: String, path: String) {
+    protected fun preViewImg(path: String) {
 
         val intent = Intent(this, ImgPreviewActivity::class.java)
-        intent.putExtra(ImgPreviewActivity.IMG_NAME, name)
         intent.putExtra(ImgPreviewActivity.IMG_PATH, path)
 
 

@@ -63,7 +63,7 @@ class ImageActivity : BaseActivity() {
 
 
         iv_img.setOnClickListener {
-            preViewImg("拍照", imgPath)
+            preViewImg(imgPath)
         }
 
 

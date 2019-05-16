@@ -123,10 +123,9 @@ abstract class BaseFragment : Fragment(), BaseView {
     }
 
 
-    protected fun preViewImg(name: String, path: String) {
+    protected fun preViewImg(path: String) {
 
         val intent = Intent(activity, ImgPreviewActivity::class.java)
-        intent.putExtra(ImgPreviewActivity.IMG_NAME, name)
         intent.putExtra(ImgPreviewActivity.IMG_PATH, path)
 
         startActivity(intent)

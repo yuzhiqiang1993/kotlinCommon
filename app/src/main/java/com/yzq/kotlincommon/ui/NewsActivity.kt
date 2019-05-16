@@ -5,9 +5,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.net.GsonConvert
 import com.yzq.common.ui.BaseMvpActivity
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.kotlincommon.R
@@ -111,9 +111,9 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View?, position: Int) {
+        operationItem = newsAdapter.data.get(position)
 
-        val data = GsonConvert.toJson(adapter.data.get(position))
-        //LogUtils.i(data)
+        ToastUtils.showShort(operationItem.title)
     }
 
 
@@ -123,7 +123,7 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
 
         when (view!!.id) {
             R.id.iv_img ->
-                preViewImg(operationItem.title, operationItem.thumbnailPicS)
+                preViewImg(operationItem.thumbnailPicS)
         }
 
     }

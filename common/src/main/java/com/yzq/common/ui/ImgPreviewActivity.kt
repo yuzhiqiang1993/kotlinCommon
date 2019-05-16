@@ -20,12 +20,11 @@ class ImgPreviewActivity : BaseActivity() {
 
 
     lateinit var imagePath: String
-    lateinit var imageName: String
 
 
     companion object {
         val IMG_PATH = "imgPath"
-        val IMG_NAME = "imgName"
+
     }
 
 
@@ -37,7 +36,7 @@ class ImgPreviewActivity : BaseActivity() {
     override fun initArgs(extras: Bundle?) {
         if (extras != null) {
             imagePath = extras.getString(IMG_PATH)!!
-            imageName = extras.getString(IMG_NAME)!!
+
         }
 
 
@@ -49,9 +48,9 @@ class ImgPreviewActivity : BaseActivity() {
 
         BarUtils.setStatusBarColor(this, Color.BLACK)
         setAllowFastClick(true)
-        initToolbar(toolbar, imageName)
 
-        ImageLoader.loadFitCenter(imagePath,photo_view)
+
+        ImageLoader.loadFitCenter(imagePath, photo_view)
 
         photo_view.setOnClickListener { finish() }
     }

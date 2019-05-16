@@ -53,12 +53,6 @@
     </style>
 
 
-    <!--appbar-->
-    <style name="AppBar">
-        <item name="android:background">@drawable/side_nav_bar</item>
-
-    </style>
-
     <!--tablayout样式-->
     <style name="TabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="android:background">@color/white</item>
