@@ -50,7 +50,7 @@ class ImgPreviewActivity : BaseActivity() {
         setAllowFastClick(true)
 
 
-        ImageLoader.loadFitCenter(imagePath, photo_view)
+        ImageLoader.loadFitCenter(this,imagePath, photo_view)
 
         photo_view.setOnClickListener { finish() }
     }

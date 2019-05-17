@@ -12,6 +12,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
@@ -22,6 +24,7 @@ import com.yzq.common.extend.setLoadingMessage
 import com.yzq.common.mvp.model.CompressImgModel
 import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.widget.Dialog
+import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -168,6 +171,21 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         }
     }
 
+
+    /**
+     * 初始化RecycleView，适用于线性布局，自动添加
+     * @param recy RecyclerView
+     * @param hasImg Boolean
+     */
+    protected open fun initLinearRecycleView(recy: RecyclerView, needItemDecoration: Boolean = true, hasImg: Boolean = false) {
+
+        recy.layoutManager = LinearLayoutManager(this)
+        if (needItemDecoration) {
+            recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
+        }
+
+
+    }
 
     /*设置状态栏透明*/
     protected open fun transparentStatusBar() {

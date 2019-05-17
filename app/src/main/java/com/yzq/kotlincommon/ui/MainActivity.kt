@@ -17,10 +17,10 @@ import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.transform
 import com.yzq.common.ui.BaseActivity
-import com.yzq.common.widget.ItemDecoration
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
 import io.reactivex.Observable
+import kotlinx.android.synthetic.main.appbar_main.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -53,6 +53,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
 
         initToolbar(toolbar, "kotlin common", displayHome = false)
 
+        initLinearRecycleView(recy)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -94,7 +95,6 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
         val recy = findViewById<RecyclerView>(R.id.recy)
         mainAdapter = MainAdapter(R.layout.item_main_layout, items)
         mainAdapter.onItemClickListener = this
-        recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
         recy.adapter = mainAdapter
 
 

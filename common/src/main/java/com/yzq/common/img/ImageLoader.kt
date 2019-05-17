@@ -1,11 +1,14 @@
 package com.yzq.common.img
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
-import com.yzq.common.AppContext
+import com.bumptech.glide.request.RequestOptions
 import com.yzq.common.R
 
 
@@ -19,6 +22,12 @@ import com.yzq.common.R
 
 object ImageLoader {
 
+
+    val options = RequestOptions()
+            .placeholder(R.color.gray_100)
+            .error(R.color.gray_100)
+
+
     /**
      * 以CenterCrop的方式加载图片
      *
@@ -28,16 +37,15 @@ object ImageLoader {
      * @param placeHolderImg   占位图
      * @param errorImg  错误图片
      */
-    fun loadCenterCrop(
-            path: String,
-            imgView: ImageView,
-            radius: Int = 1,
-            @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img,
-            @DrawableRes errorImg: Int = R.drawable.ic_error_img
-    ) {
-        GlideApp.with(AppContext).load(path.trim()).centerCrop()
-                //.placeholder(placeHolderImg).error(errorImg)
-                .transform(RoundedCorners(radius)).transition(withCrossFade()).into(imgView)
+    fun loadCenterCrop(context: Context, path: String, imgView: ImageView, radius: Int = 1) {
+
+        Glide.with(context)
+                .load(path.trim())
+                .apply(options)
+                .centerCrop()
+                .transform(RoundedCorners(radius))
+                .transition(withCrossFade())
+                .into(imgView)
 
 
     }
@@ -52,16 +60,14 @@ object ImageLoader {
      * @param placeHolderImg  占位图片
      * @param errorImg  错误图片
      */
-    fun loadCenterCrop(
-            uri: Uri,
-            imgView: ImageView,
-            radius: Int = 1, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img,
-            @DrawableRes errorImg: Int = R.drawable.ic_error_img
-    ) {
-        GlideApp.with(AppContext).load(uri)
-                //.placeholder(placeHolderImg).error(errorImg)
+    fun loadCenterCrop(context: Context, uri: Uri, imgView: ImageView, radius: Int = 1) {
+        Glide.with(context)
+                .load(uri)
+                .apply(options)
                 .centerCrop()
-                .transform(RoundedCorners(radius)).transition(withCrossFade()).into(imgView)
+                .transform(RoundedCorners(radius))
+                .transition(withCrossFade())
+                .into(imgView)
     }
 
 
@@ -74,15 +80,14 @@ object ImageLoader {
      * @param placeHolderImg 占位图
      * @param errorImg  错误图显示
      */
-    fun loadCenterCrop(
-            drawableRes: DrawableRes,
-            imgView: ImageView,
-            radius: Int = 1, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img,
-            @DrawableRes errorImg: Int = R.drawable.ic_error_img
-    ) {
-        GlideApp.with(AppContext).load(drawableRes).centerCrop()
-                //.placeholder(placeHolderImg).error(errorImg)
-                .transform(RoundedCorners(radius)).transition(withCrossFade()).into(imgView)
+    fun loadCenterCrop(context: Context, drawableRes: Int, imgView: ImageView, radius: Int = 1) {
+        Glide.with(context)
+                .load(drawableRes)
+                .apply(options)
+                .centerCrop()
+                .transform(RoundedCorners(radius))
+                .transition(withCrossFade())
+                .into(imgView)
     }
 
 
@@ -94,14 +99,13 @@ object ImageLoader {
      * @param placeHolderImg  占位图
      * @param errorImg  加载错误时显示的图片
      */
-    fun loadCircleCrop(
-            path: String, imgView: ImageView,
-            @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img,
-            @DrawableRes errorImg: Int = R.drawable.ic_error_img
-    ) {
-        GlideApp.with(AppContext).load(path.trim()).circleCrop()
-                //.placeholder(placeHolderImg).error(errorImg)
-                .transition(withCrossFade()).into(imgView)
+    fun loadCircleCrop(context: Context, path: String, imgView: ImageView) {
+        Glide.with(context)
+                .load(path.trim())
+                .apply(options)
+                .circleCrop()
+                .transition(withCrossFade())
+                .into(imgView)
     }
 
 
@@ -113,14 +117,13 @@ object ImageLoader {
      * @param placeHolderImg 占位图
      * @param errorImg  加载错误时显示的图片
      */
-    fun loadCircleCrop(
-            @DrawableRes res: DrawableRes,
-            imgView: ImageView, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img,
-            @DrawableRes errorImg: Int = R.drawable.ic_error_img
-    ) {
-        GlideApp.with(AppContext).load(res).circleCrop()
-                //.placeholder(placeHolderImg).error(errorImg)
-                .transition(withCrossFade()).into(imgView)
+    fun loadCircleCrop(context: Context, res: DrawableRes, imgView: ImageView) {
+        Glide.with(context)
+                .load(res)
+                .apply(options)
+                .circleCrop()
+                .transition(withCrossFade())
+                .into(imgView)
     }
 
 
@@ -132,13 +135,13 @@ object ImageLoader {
      * @param placeHolderImg  占位图
      * @param errorImg  加载错误时要显示的图片
      */
-    fun loadFitCenter(
-            path: String,
-            imgView: ImageView, @DrawableRes placeHolderImg: Int = R.drawable.ic_placeholder_img, @DrawableRes errorImg: Int = R.drawable.ic_error_img
-    ) {
-        GlideApp.with(AppContext).load(path.trim()).fitCenter()
-                //.placeholder(placeHolderImg).error(errorImg)
-                .transition(withCrossFade()).into(imgView)
+    fun loadFitCenter(context: Context, path: String, imgView: ImageView) {
+        Glide.with(context)
+                .load(path.trim())
+                .apply(options)
+                .fitCenter()
+                .transition(withCrossFade())
+                .into(imgView)
     }
 
 
