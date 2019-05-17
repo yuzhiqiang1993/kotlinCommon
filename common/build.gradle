@@ -120,6 +120,8 @@ dependencies {
 
     /*阿里热修复*/
     api "com.aliyun.ams:alicloud-android-hotfix:$hotfix"
+    /*leak canary*/
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-1'
 
 
 }

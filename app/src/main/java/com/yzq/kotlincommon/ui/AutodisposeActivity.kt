@@ -5,7 +5,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.transform
-import com.yzq.common.rx.RxSchedulers
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
 import io.reactivex.Observable
@@ -43,7 +42,6 @@ class AutodisposeActivity : BaseActivity() {
 
 
         Observable.interval(1, TimeUnit.SECONDS)
-                .compose(RxSchedulers.io2main())
                 .transform(this)
                 .subscribe {
                     tv_count.setText("$it")
