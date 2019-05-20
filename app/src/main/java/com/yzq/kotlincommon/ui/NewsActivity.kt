@@ -2,10 +2,8 @@ package com.yzq.kotlincommon.ui
 
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
-import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.ui.BaseMvpActivity
@@ -49,7 +47,7 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "新闻")
 
-        initLinearRecycleView(recy)
+        initLinearRecycleView(recy, true)
 
         initStateView(state_view, recy)
 
@@ -102,21 +100,6 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         newsAdapter.onItemClickListener = this
         newsAdapter.onItemChildClickListener = this
 
-        recy.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-
-                if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
-                    /*当列表处于自动滚动的状态下,此时不加载图片*/
-
-                    Glide.with(this@NewsActivity).pauseRequests()
-                } else {
-                    Glide.with(this@NewsActivity).resumeRequests()
-
-                }
-            }
-        })
 
 
 

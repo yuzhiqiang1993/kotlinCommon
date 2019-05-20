@@ -1,7 +1,5 @@
 package com.yzq.common.img
 
-import android.content.Context
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
@@ -10,6 +8,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
 import com.yzq.common.R
+import com.yzq.common.ui.BaseActivity
 
 
 /**
@@ -37,15 +36,17 @@ object ImageLoader {
      * @param placeHolderImg   占位图
      * @param errorImg  错误图片
      */
-    fun loadCenterCrop(context: Context, path: String, imgView: ImageView, radius: Int = 1) {
+    fun loadCenterCrop(activity: BaseActivity, path: String, imgView: ImageView, radius: Int = 1) {
 
-        Glide.with(context)
-                .load(path.trim())
-                .apply(options)
-                .centerCrop()
-                .transform(RoundedCorners(radius))
-                .transition(withCrossFade())
-                .into(imgView)
+        if (!activity.isDestroyed) {
+            Glide.with(activity)
+                    .load(path.trim())
+                    .apply(options)
+                    .centerCrop()
+                    .transform(RoundedCorners(radius))
+                    .transition(withCrossFade())
+                    .into(imgView)
+        }
 
 
     }
@@ -60,14 +61,16 @@ object ImageLoader {
      * @param placeHolderImg  占位图片
      * @param errorImg  错误图片
      */
-    fun loadCenterCrop(context: Context, uri: Uri, imgView: ImageView, radius: Int = 1) {
-        Glide.with(context)
-                .load(uri)
-                .apply(options)
-                .centerCrop()
-                .transform(RoundedCorners(radius))
-                .transition(withCrossFade())
-                .into(imgView)
+    fun loadCenterCrop(activity: BaseActivity, uri: Uri, imgView: ImageView, radius: Int = 1) {
+        if (!activity.isDestroyed) {
+            Glide.with(activity)
+                    .load(uri)
+                    .apply(options)
+                    .centerCrop()
+                    .transform(RoundedCorners(radius))
+                    .transition(withCrossFade())
+                    .into(imgView)
+        }
     }
 
 
@@ -80,14 +83,16 @@ object ImageLoader {
      * @param placeHolderImg 占位图
      * @param errorImg  错误图显示
      */
-    fun loadCenterCrop(context: Context, drawableRes: Int, imgView: ImageView, radius: Int = 1) {
-        Glide.with(context)
-                .load(drawableRes)
-                .apply(options)
-                .centerCrop()
-                .transform(RoundedCorners(radius))
-                .transition(withCrossFade())
-                .into(imgView)
+    fun loadCenterCrop(activity: BaseActivity, drawableRes: Int, imgView: ImageView, radius: Int = 1) {
+        if (!activity.isDestroyed) {
+            Glide.with(activity)
+                    .load(drawableRes)
+                    .apply(options)
+                    .centerCrop()
+                    .transform(RoundedCorners(radius))
+                    .transition(withCrossFade())
+                    .into(imgView)
+        }
     }
 
 
@@ -99,13 +104,15 @@ object ImageLoader {
      * @param placeHolderImg  占位图
      * @param errorImg  加载错误时显示的图片
      */
-    fun loadCircleCrop(context: Context, path: String, imgView: ImageView) {
-        Glide.with(context)
-                .load(path.trim())
-                .apply(options)
-                .circleCrop()
-                .transition(withCrossFade())
-                .into(imgView)
+    fun loadCircleCrop(activity: BaseActivity, path: String, imgView: ImageView) {
+        if (!activity.isDestroyed) {
+            Glide.with(activity)
+                    .load(path.trim())
+                    .apply(options)
+                    .circleCrop()
+                    .transition(withCrossFade())
+                    .into(imgView)
+        }
     }
 
 
@@ -117,13 +124,16 @@ object ImageLoader {
      * @param placeHolderImg 占位图
      * @param errorImg  加载错误时显示的图片
      */
-    fun loadCircleCrop(context: Context, res: DrawableRes, imgView: ImageView) {
-        Glide.with(context)
-                .load(res)
-                .apply(options)
-                .circleCrop()
-                .transition(withCrossFade())
-                .into(imgView)
+    fun loadCircleCrop(activity: BaseActivity, res: DrawableRes, imgView: ImageView) {
+        if (!activity.isDestroyed) {
+            Glide.with(activity)
+                    .load(res)
+                    .apply(options)
+                    .circleCrop()
+                    .transition(withCrossFade())
+                    .into(imgView)
+        }
+
     }
 
 
@@ -135,13 +145,16 @@ object ImageLoader {
      * @param placeHolderImg  占位图
      * @param errorImg  加载错误时要显示的图片
      */
-    fun loadFitCenter(context: Context, path: String, imgView: ImageView) {
-        Glide.with(context)
-                .load(path.trim())
-                .apply(options)
-                .fitCenter()
-                .transition(withCrossFade())
-                .into(imgView)
+    fun loadFitCenter(activity: BaseActivity, path: String, imgView: ImageView) {
+        if (!activity.isDestroyed) {
+            Glide.with(activity)
+                    .load(path.trim())
+                    .apply(options)
+                    .fitCenter()
+                    .transition(withCrossFade())
+                    .into(imgView)
+        }
+
     }
 
 

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
+import com.bumptech.glide.Glide
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.extend.changeProgress
@@ -177,11 +178,34 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * @param recy RecyclerView
      * @param hasImg Boolean
      */
-    protected open fun initLinearRecycleView(recy: RecyclerView, needItemDecoration: Boolean = true, hasImg: Boolean = false) {
+    protected open fun initLinearRecycleView(recy: RecyclerView, hasImg: Boolean = false, needItemDecoration: Boolean = true) {
 
         recy.layoutManager = LinearLayoutManager(this)
         if (needItemDecoration) {
             recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
+        }
+
+
+        if (hasImg) {
+            recy.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+
+                    if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
+                        /*当列表处于自动滚动的状态下,此时不加载图片*/
+                        if (!this@BaseActivity.isDestroyed) {
+                            Glide.with(this@BaseActivity).pauseRequests()
+                        }
+
+
+                    } else {
+                        if (!this@BaseActivity.isDestroyed) {
+                            Glide.with(this@BaseActivity).resumeRequests()
+                        }
+                    }
+                }
+            })
         }
 
 
@@ -445,7 +469,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     override fun onDestroy() {
         super.onDestroy()
-
         EventBusUtil.unregister(this)
     }
 

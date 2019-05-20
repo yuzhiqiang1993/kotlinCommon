@@ -104,4 +104,5 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         icon_end.setOnClickListener(listener)
     }
 
+
 }
