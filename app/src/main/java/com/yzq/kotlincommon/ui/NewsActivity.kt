@@ -100,9 +100,6 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         newsAdapter.onItemClickListener = this
         newsAdapter.onItemChildClickListener = this
 
-
-
-
         showContent()
     }
 

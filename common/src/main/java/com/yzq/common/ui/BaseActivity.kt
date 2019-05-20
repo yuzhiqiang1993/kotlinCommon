@@ -198,7 +198,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
                             Glide.with(this@BaseActivity).pauseRequests()
                         }
 
-
                     } else {
                         if (!this@BaseActivity.isDestroyed) {
                             Glide.with(this@BaseActivity).resumeRequests()

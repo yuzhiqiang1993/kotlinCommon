@@ -16,6 +16,7 @@ import com.google.android.material.navigation.NavigationView
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.transform
+import com.yzq.common.img.ImageLoader
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
@@ -64,6 +65,9 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
         toggle.syncState()
 
         navView.setNavigationItemSelectedListener(this)
+
+
+
 
 
         Observable.timer(3, TimeUnit.SECONDS)

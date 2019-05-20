@@ -29,7 +29,7 @@ data class NewsBean(var stat: String = "", // 1
             var thumbnailPicS02: String = "", // http://05.imgmini.eastday.com/mobile/20180713/20180713141718_bebdf00d5070a17241f48e305bc76f75_4_mwpm_03200403.jpg
             @SerializedName("thumbnail_pic_s03")
             @Expose
-            var thumbnailPicS03: String = "" // http://05.imgmini.eastday.com/mobile/20180713/20180713141718_bebdf00d5070a17241f48e305bc76f75_5_mwpm_03200403.jpg
-
+            var thumbnailPicS03: String = "", // http://05.imgmini.eastday.com/mobile/20180713/20180713141718_bebdf00d5070a17241f48e305bc76f75_5_mwpm_03200403.jpg
+            var imgLoaded: Boolean = false
     )
 }
