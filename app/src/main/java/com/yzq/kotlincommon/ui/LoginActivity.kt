@@ -1,9 +1,10 @@
 package com.yzq.kotlincommon.ui
 
-import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.BarUtils
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.extend.navFinish
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.utils.LocalSpUtils
 import com.yzq.kotlincommon.R
@@ -30,7 +31,7 @@ class LoginActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-        BarUtils.setStatusBarVisibility(this,false)
+        BarUtils.setStatusBarVisibility(this, false)
 
         input_account.setText(LocalSpUtils.account)
         input_pwd.setText(LocalSpUtils.pwd)
@@ -40,6 +41,11 @@ class LoginActivity : BaseActivity() {
 
             LocalSpUtils.account = input_account.text.toString()
             LocalSpUtils.pwd = input_pwd.text.toString()
+
+
+            ARouter.getInstance()
+                    .build(RoutePath.Main.MAIN)
+                    .navFinish(this)
 
         }
     }

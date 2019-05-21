@@ -21,7 +21,7 @@ object ImagePicker {
 
 
     /**
-     * 掉相机拍照
+     * 调相机拍照
      *
      * @param activity
      */

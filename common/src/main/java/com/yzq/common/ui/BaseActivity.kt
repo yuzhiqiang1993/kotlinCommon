@@ -192,16 +192,18 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
 
-                    if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
-                        /*当列表处于自动滚动的状态下,此时不加载图片*/
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        /*当列表停止滚动时,恢复加载*/
+                        if (!this@BaseActivity.isDestroyed) {
+                            Glide.with(this@BaseActivity).resumeRequests()
+                        }
+
+                    } else {
+                        /*列表处于滚动状态时，暂停加载图片*/
                         if (!this@BaseActivity.isDestroyed) {
                             Glide.with(this@BaseActivity).pauseRequests()
                         }
 
-                    } else {
-                        if (!this@BaseActivity.isDestroyed) {
-                            Glide.with(this@BaseActivity).resumeRequests()
-                        }
                     }
                 }
             })

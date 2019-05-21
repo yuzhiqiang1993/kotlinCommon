@@ -19,6 +19,7 @@ import java.lang.reflect.Type
 
 object GsonConvert {
 
+
     private var gson: Gson
 
     init {

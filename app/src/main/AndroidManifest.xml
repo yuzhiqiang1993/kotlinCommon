@@ -17,11 +17,9 @@
         android:supportsRtl="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
-        <activity android:name=".ui.material_components.BottomSheetActivity"></activity>
-        <activity
-            android:name=".ui.MaterialComponentsActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" /> <!-- 阿里热修复相关配置 -->
+
+
+        <!-- 阿里热修复相关配置 -->
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
             android:value="25877406-1" />
@@ -55,13 +53,9 @@
         <activity
             android:name=".ui.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:screenOrientation="portrait" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
         <activity
             android:name=".ui.DialogActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -73,7 +67,14 @@
         <activity
             android:name=".ui.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.AutodisposeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.LogUtils
@@ -32,6 +33,7 @@ import java.util.concurrent.TimeUnit
  *
  */
 
+@Route(path = RoutePath.Main.MAIN)
 class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, NavigationView.OnNavigationItemSelectedListener {
 
 

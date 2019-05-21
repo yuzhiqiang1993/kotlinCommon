@@ -13,6 +13,7 @@ object RoutePath {
 
     object Main {
         const val TASK = "/main/task"
+        const val MAIN = "/main/main"
         const val NEWS = "/main/news"
         const val IMG = "/main/img"
         const val DIALOG = "/main/dialog"
@@ -22,11 +23,9 @@ object RoutePath {
         const val DROP_DOWN_MENU = "/main/dropDownMenu"
         const val GAO_DE = "/main/gaoDeMap"
         const val FLEX_BOX = "/main/flexBox"
-        const val MATERIAL = "/main/material_design"
 
 
     }
-
 
 
 }

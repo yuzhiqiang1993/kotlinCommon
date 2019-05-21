@@ -21,12 +21,17 @@ class NewsAdapter(layoutResId: Int, data: List<NewsBean.Data>, val activity: Bas
     override fun convert(helper: BaseViewHolder, item: NewsBean.Data) {
 
         helper.itemView.tv_title.text = item.title
-
-        if (item.imgLoaded && !activity.isDestroyed) {
-
-            Glide.with(activity).resumeRequests()
-
+        /*如果Glide是暂停加载状态，此时说明处于滚动中*/
+        if (Glide.with(activity).isPaused) {
+            if (item.imgLoaded) {
+                /*如果加载过，则加载图片*/
+                Glide.with(activity).resumeRequests()
+            } else {
+                /*否则不加载*/
+                Glide.with(activity).pauseRequests()
+            }
         }
+
 
         ImageLoader.loadCenterCropWithListener(activity, item.thumbnailPicS, helper.itemView.iv_img, radius = 15, listener = object : ImgRequestListener {
             /*加载成功后标记该Item为已加载状态*/

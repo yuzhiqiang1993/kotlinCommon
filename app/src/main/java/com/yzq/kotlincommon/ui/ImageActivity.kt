@@ -54,7 +54,7 @@ class ImageActivity : BaseActivity() {
                         compressImgModel.compressImgWithWatermark(file.path)
                                 .subscribe {
                                     imgPath = it
-                                    ImageLoader.loadCenterCrop(this,imgPath, iv_img)
+                                    ImageLoader.loadCenterCrop(this, imgPath, iv_img)
                                 }
                     }
 
