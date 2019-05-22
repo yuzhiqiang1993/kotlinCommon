@@ -1,4 +1,4 @@
-package com.yzq.common.constants
+package com.yzq.kotlincommon.net
 
 import com.yzq.common.BuildConfig
 
@@ -15,9 +15,7 @@ object ServerConstants {
 
 
     private val SERVER_URL_RELEASE = "http://v.juhe.cn/"
-
     private val SERVER_URL_DEBUG = "http://v.juhe.cn/"
-
     private val API = "toutiao/"
 
 
@@ -35,7 +33,7 @@ object ServerConstants {
 
     /*获取接口地址*/
     fun getApiUrl(): String {
-        return if (BuildConfig.DEBUG) "$SERVER_URL_DEBUG$API" else "$SERVER_URL_RELEASE$API"
+        return if (BuildConfig.DEBUG) SERVER_URL_DEBUG + API else SERVER_URL_RELEASE + API
 
     }
 }

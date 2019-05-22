@@ -1,14 +1,8 @@
 package com.yzq.kotlincommon.adapter
 
-import android.graphics.drawable.Drawable
-import com.blankj.utilcode.util.LogUtils
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.request.target.Target
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.yzq.common.img.ImageLoader
-import com.yzq.common.img.ImgRequestListener
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.data.NewsBean
@@ -21,27 +15,9 @@ class NewsAdapter(layoutResId: Int, data: List<NewsBean.Data>, val activity: Bas
     override fun convert(helper: BaseViewHolder, item: NewsBean.Data) {
 
         helper.itemView.tv_title.text = item.title
-        /*如果Glide是暂停加载状态，此时说明处于滚动中*/
-        if (Glide.with(activity).isPaused) {
-            if (item.imgLoaded) {
-                /*如果加载过，则加载图片*/
-                Glide.with(activity).resumeRequests()
-            } else {
-                /*否则不加载*/
-                Glide.with(activity).pauseRequests()
-            }
-        }
 
 
-        ImageLoader.loadCenterCropWithListener(activity, item.thumbnailPicS, helper.itemView.iv_img, radius = 15, listener = object : ImgRequestListener {
-            /*加载成功后标记该Item为已加载状态*/
-            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-
-                LogUtils.i("当前图片已加载：${helper.adapterPosition}")
-                item.imgLoaded = true
-                return false
-            }
-        })
+        ImageLoader.loadCenterCrop(activity, item.thumbnailPicS, helper.itemView.iv_img)
 
         helper.addOnClickListener(R.id.iv_img)
 

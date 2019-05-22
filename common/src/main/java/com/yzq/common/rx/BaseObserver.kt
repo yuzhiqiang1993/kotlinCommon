@@ -1,5 +1,6 @@
 package com.yzq.common.rx
 
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
 import com.yzq.common.constants.BaseContstants
@@ -35,6 +36,7 @@ abstract class BaseObserver<T>(private val view: BaseView) : Observer<T> {
 
     override fun onError(e: Throwable) {
 
+        e.printStackTrace()
         if (e is JSONException || e is JsonParseException) {
             view.showError(BaseContstants.PARSE_DATA_ERROE)
         } else if (e is SocketTimeoutException) {

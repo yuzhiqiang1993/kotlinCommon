@@ -30,7 +30,10 @@ class RetrofitFactory private constructor() {
 
     init {
 
-        val gson = Gson().newBuilder().serializeNulls().create()
+        val gson = Gson().newBuilder()
+                .setLenient()
+                .serializeNulls()
+                .create()
 
         retrofit = Retrofit.Builder()
                 .baseUrl(ServerConstants.getApiUrl())

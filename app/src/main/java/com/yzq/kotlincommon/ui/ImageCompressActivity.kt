@@ -9,7 +9,7 @@ import com.yzq.common.img.ImagePicker
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.dagger.DaggerMainComponent
-import kotlinx.android.synthetic.main.activity_image.*
+import kotlinx.android.synthetic.main.activity_image_compress.*
 
 
 /**
@@ -20,13 +20,13 @@ import kotlinx.android.synthetic.main.activity_image.*
  *
  */
 
-@Route(path = RoutePath.Main.IMG)
-class ImageActivity : BaseActivity() {
+@Route(path = RoutePath.Main.IMG_COMPRESS)
+class ImageCompressActivity : BaseActivity() {
 
 
     override fun getContentLayoutId(): Int {
 
-        return R.layout.activity_image
+        return R.layout.activity_image_compress
     }
 
 
@@ -48,7 +48,7 @@ class ImageActivity : BaseActivity() {
         initToolbar(toolbar, "图片")
         fab_camera.setOnClickListener {
 
-            ImagePicker.openCamera(this@ImageActivity)
+            ImagePicker.openCamera(this@ImageCompressActivity)
                     .subscribe { file ->
 
                         compressImgModel.compressImgWithWatermark(file.path)
@@ -57,8 +57,6 @@ class ImageActivity : BaseActivity() {
                                     ImageLoader.loadCenterCrop(this, imgPath, iv_img)
                                 }
                     }
-
-
         }
 
 

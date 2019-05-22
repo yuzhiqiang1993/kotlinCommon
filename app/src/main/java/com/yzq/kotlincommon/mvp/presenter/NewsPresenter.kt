@@ -6,15 +6,15 @@ import com.yzq.common.extend.transform
 import com.yzq.common.mvp.presenter.BasePresenter
 import com.yzq.common.rx.BaseObserver
 import com.yzq.kotlincommon.data.NewsBean
-import com.yzq.kotlincommon.mvp.model.MainModel
-import com.yzq.kotlincommon.mvp.view.MainView
+import com.yzq.kotlincommon.mvp.model.NewsModel
+import com.yzq.kotlincommon.mvp.view.NewsView
 import kotlinx.coroutines.Deferred
 import javax.inject.Inject
 
-class MainPresenter @Inject constructor() : BasePresenter<MainView>() {
+class NewsPresenter @Inject constructor() : BasePresenter<NewsView>() {
 
     @Inject
-    lateinit var model: MainModel
+    lateinit var model: NewsModel
 
     fun requestData() {
         model.getData()

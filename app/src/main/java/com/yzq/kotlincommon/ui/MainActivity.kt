@@ -17,7 +17,6 @@ import com.google.android.material.navigation.NavigationView
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.transform
-import com.yzq.common.img.ImageLoader
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
@@ -56,7 +55,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
 
         initToolbar(toolbar, "kotlin common", displayHome = false)
 
-        initLinearRecycleView(recy)
+        initRecycleView(recy)
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -94,6 +93,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
         items.add("下拉菜单")
         items.add("高德定位")
         items.add("FlexBoxLayout")
+        items.add("瀑布流图片")
         setdata()
     }
 
@@ -112,7 +112,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
         when (position) {
             0 -> skip(RoutePath.Main.NEWS)
             1 -> skip(RoutePath.Main.TASK)
-            2 -> skip(RoutePath.Main.IMG)
+            2 -> skip(RoutePath.Main.IMG_COMPRESS)
             3 -> skip(RoutePath.Main.DIALOG)
             4 -> skip(RoutePath.Main.ZXING)
             5 -> skip(RoutePath.Main.LOGIN)
@@ -120,6 +120,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
             7 -> skip(RoutePath.Main.DROP_DOWN_MENU)
             8 -> skip(RoutePath.Main.GAO_DE)
             9 -> skip(RoutePath.Main.FLEX_BOX)
+            10 -> skip(RoutePath.Main.IMG_LIST)
 
         }
     }

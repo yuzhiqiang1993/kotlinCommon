@@ -17,8 +17,9 @@
         android:supportsRtl="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
-
-
+        <activity
+            android:name=".ui.ImageListActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <!-- 阿里热修复相关配置 -->
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
@@ -43,7 +44,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.ImageActivity"
+            android:name=".ui.ImageCompressActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
@@ -54,8 +55,6 @@
             android:name=".ui.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
-
-
         <activity
             android:name=".ui.DialogActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -68,7 +67,6 @@
             android:name=".ui.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

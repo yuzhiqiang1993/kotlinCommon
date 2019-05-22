@@ -174,15 +174,18 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
 
     /**
-     * 初始化RecycleView，适用于线性布局，自动添加
-     * @param recy RecyclerView
-     * @param hasImg Boolean
+     *
+     * @param recy RecyclerView  列表
+     * @param layoutManager RecyclerView.LayoutManager  布局，默认是线性布局
+     * @param hasImg Boolean  是否有图片  默认没有
+     * @param needItemDecoration Boolean 是否需要分割线  默认需要
      */
-    protected open fun initLinearRecycleView(recy: RecyclerView, hasImg: Boolean = false, needItemDecoration: Boolean = true) {
+    protected open fun initRecycleView(recy: RecyclerView, layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this), hasImg: Boolean = false, needItemDecoration: Boolean = true) {
 
-        recy.layoutManager = LinearLayoutManager(this)
+        recy.layoutManager = layoutManager
         if (needItemDecoration) {
             recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
+
         }
 
 
@@ -192,17 +195,19 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
                 override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
 
-                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
+
+                        /*列表处于滚动状态时，暂停加载图片*/
+                        if (!this@BaseActivity.isDestroyed) {
+                            Glide.with(this@BaseActivity).pauseRequests()
+                        }
+                    } else {
+
                         /*当列表停止滚动时,恢复加载*/
                         if (!this@BaseActivity.isDestroyed) {
                             Glide.with(this@BaseActivity).resumeRequests()
                         }
 
-                    } else {
-                        /*列表处于滚动状态时，暂停加载图片*/
-                        if (!this@BaseActivity.isDestroyed) {
-                            Glide.with(this@BaseActivity).pauseRequests()
-                        }
 
                     }
                 }

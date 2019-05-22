@@ -35,6 +35,7 @@ abstract class BaseProgressDialogObserver<T>(private val view: BaseView, private
 
     override fun onError(e: Throwable) {
 
+        e.printStackTrace()
         view.dismissProgressDialog()
 
         if (e is JSONException || e is JsonParseException) {

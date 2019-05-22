@@ -4,7 +4,6 @@ import android.net.Uri
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.bumptech.glide.request.RequestOptions
 import com.yzq.common.R
@@ -23,6 +22,8 @@ object ImageLoader {
 
 
     val options = RequestOptions()
+//            .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+//            .override(400, 400)
             .placeholder(R.color.gray_100)
             .error(R.color.gray_100)
 
@@ -32,18 +33,14 @@ object ImageLoader {
      *
      * @param path  图片路径
      * @param imgView  图片控件
-     * @param radius 圆角
-     * @param placeHolderImg   占位图
-     * @param errorImg  错误图片
      */
-    fun loadCenterCrop(activity: BaseActivity, path: String, imgView: ImageView, radius: Int = 1) {
+    fun loadCenterCrop(activity: BaseActivity, path: String, imgView: ImageView) {
 
         if (!activity.isDestroyed) {
             Glide.with(activity)
                     .load(path.trim())
                     .apply(options)
                     .centerCrop()
-                    .transform(RoundedCorners(radius))
                     .transition(withCrossFade())
                     .into(imgView)
         }
@@ -57,18 +54,15 @@ object ImageLoader {
      *
      * @param path  图片路径
      * @param imgView  图片控件
-     * @param radius 圆角
-     * @param placeHolderImg   占位图
-     * @param errorImg  错误图片
+     * @param listener 监听器
      */
-    fun loadCenterCropWithListener(activity: BaseActivity, path: String, imgView: ImageView, radius: Int = 1, listener: ImgRequestListener) {
+    fun loadCenterCropWithListener(activity: BaseActivity, path: String, imgView: ImageView, listener: ImgRequestListener) {
 
         if (!activity.isDestroyed) {
             Glide.with(activity)
                     .load(path.trim())
                     .apply(options)
                     .centerCrop()
-                    .transform(RoundedCorners(radius))
                     .transition(withCrossFade())
                     .listener(listener)
                     .into(imgView)
@@ -87,13 +81,12 @@ object ImageLoader {
      * @param placeHolderImg  占位图片
      * @param errorImg  错误图片
      */
-    fun loadCenterCrop(activity: BaseActivity, uri: Uri, imgView: ImageView, radius: Int = 1) {
+    fun loadCenterCrop(activity: BaseActivity, uri: Uri, imgView: ImageView) {
         if (!activity.isDestroyed) {
             Glide.with(activity)
                     .load(uri)
                     .apply(options)
                     .centerCrop()
-                    .transform(RoundedCorners(radius))
                     .transition(withCrossFade())
                     .into(imgView)
         }
@@ -109,13 +102,12 @@ object ImageLoader {
      * @param placeHolderImg 占位图
      * @param errorImg  错误图显示
      */
-    fun loadCenterCrop(activity: BaseActivity, drawableRes: Int, imgView: ImageView, radius: Int = 1) {
+    fun loadCenterCrop(activity: BaseActivity, drawableRes: Int, imgView: ImageView) {
         if (!activity.isDestroyed) {
             Glide.with(activity)
                     .load(drawableRes)
                     .apply(options)
                     .centerCrop()
-                    .transform(RoundedCorners(radius))
                     .transition(withCrossFade())
                     .into(imgView)
         }

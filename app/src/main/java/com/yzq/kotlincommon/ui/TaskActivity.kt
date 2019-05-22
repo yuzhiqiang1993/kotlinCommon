@@ -45,7 +45,7 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
 
         initToolbar(toolbar, "任务")
-        initLinearRecycleView(recy)
+        initRecycleView(recy)
 
 
     }

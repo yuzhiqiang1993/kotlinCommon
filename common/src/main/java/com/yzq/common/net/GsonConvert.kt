@@ -23,7 +23,7 @@ object GsonConvert {
     private var gson: Gson
 
     init {
-        gson = GsonBuilder().excludeFieldsWithoutExposeAnnotation()
+        gson = GsonBuilder()
                 .serializeNulls()
                 .create()
     }

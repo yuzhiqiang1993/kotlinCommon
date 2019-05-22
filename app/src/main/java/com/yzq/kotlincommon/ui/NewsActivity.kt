@@ -11,8 +11,8 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.NewsAdapter
 import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import com.yzq.kotlincommon.data.NewsBean
-import com.yzq.kotlincommon.mvp.presenter.MainPresenter
-import com.yzq.kotlincommon.mvp.view.MainView
+import com.yzq.kotlincommon.mvp.presenter.NewsPresenter
+import com.yzq.kotlincommon.mvp.view.NewsView
 import kotlinx.android.synthetic.main.activity_news.*
 
 
@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.activity_news.*
  */
 
 @Route(path = RoutePath.Main.NEWS)
-class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
+class NewsActivity : BaseMvpActivity<NewsView, NewsPresenter>(), NewsView, BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
 
 
     private lateinit var newsAdapter: NewsAdapter
@@ -47,7 +47,7 @@ class NewsActivity : BaseMvpActivity<MainView, MainPresenter>(), MainView, BaseQ
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "新闻")
 
-        initLinearRecycleView(recy, true)
+        initRecycleView(recy)
 
         initStateView(state_view, recy)
 

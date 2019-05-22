@@ -1,5 +1,6 @@
 package com.yzq.common.rx
 
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
 import com.yzq.common.constants.BaseContstants
@@ -33,7 +34,7 @@ abstract class BaseDialogObserver<T>(private val view: BaseView, private val con
 
 
     override fun onError(e: Throwable) {
-
+        e.printStackTrace()
         view.dismissLoadingDialog()
 
 
