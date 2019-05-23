@@ -13,14 +13,18 @@ class ImgListPresenter @Inject constructor() : BasePresenter<ImgListView>() {
     @Inject
     lateinit var model: ImgListModel
 
-    fun getImgs() {
 
 
-        model.getImgs()
+    fun getImgs(currentPage: Int, pageSize: Int) {
+
+
+        model.getImgs(currentPage, pageSize)
                 .transform(lifecycleOwner)
                 .subscribe(object : BaseObserver<BaiDuImgBean>(view) {
                     override fun onNext(baiDuImgBean: BaiDuImgBean) {
-                        view.requestSuccess(baiDuImgBean.data as ArrayList<BaiDuImgBean.Data>)
+
+
+                        view.requestSuccess(baiDuImgBean)
                     }
 
                     override fun onError(e: Throwable) {

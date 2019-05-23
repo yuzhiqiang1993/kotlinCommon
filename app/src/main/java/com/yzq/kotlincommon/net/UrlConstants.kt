@@ -10,5 +10,5 @@ package com.yzq.kotlincommon.net
  */
 
 object UrlConstants {
-    val BAIDU_IMG = "http://image.baidu.com/channel/listjson?pn=0&rn=300&tag1=美女&tag2=全部&ie=utf8"
+    val BAIDU_IMG = "http://image.baidu.com/channel/listjson"
 }

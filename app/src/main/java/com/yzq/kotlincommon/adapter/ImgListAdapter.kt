@@ -48,7 +48,7 @@ class ImgListAdapter(layoutResId: Int, data: List<BaiDuImgBean.Data>, val activi
             /*加载成功后标记该Item为已加载状态*/
             override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
 
-                LogUtils.i("当前图片已加载：${helper.adapterPosition}")
+                //LogUtils.i("当前图片已加载：${helper.adapterPosition}")
                 item.imgLoaded = true
 
                 return false

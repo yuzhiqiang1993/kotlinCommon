@@ -4,10 +4,12 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.HttpRequestType
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.ui.BaseMvpActivity
+import com.yzq.common.widget.AdapterLoadMoreView
 import com.yzq.common.widget.StateView
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ImgListAdapter
@@ -18,13 +20,30 @@ import com.yzq.kotlincommon.mvp.view.ImgListView
 import kotlinx.android.synthetic.main.activity_image_list.*
 
 
+ /**
+ * @description: 图片瀑布流
+ * @author : yzq
+ * @date   : 2019/5/23
+ * @time   : 13:35
+ *
+ */
+
 @Route(path = RoutePath.Main.IMG_LIST)
-class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgListView, BaseQuickAdapter.OnItemClickListener {
+class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgListView, BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
 
+    private val baiDuImgList = arrayListOf<BaiDuImgBean.Data>()
 
-    private var imgListAdapter: ImgListAdapter? = null
+    private var imgListAdapter: ImgListAdapter = ImgListAdapter(R.layout.item_img_list, baiDuImgList, this)
 
     var httpRequestType = HttpRequestType.FIRST
+
+
+    /*当前页码*/
+    private var currentPage = 0
+    /*总页码*/
+    private var totalPage = 0
+    /*每页请求多少条数据*/
+    private val pageSize = 100
 
     override fun getContentLayoutId(): Int {
 
@@ -43,8 +62,6 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
         initRecy()
 
 
-
-
         initStateView(state_view, layout_swipe_refresh, true)
 
         state_view.setRetryListener(object : StateView.RetryListener {
@@ -56,6 +73,8 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
 
 
         layout_swipe_refresh.setOnRefreshListener {
+
+            httpRequestType = HttpRequestType.REFRESH
             initData()
         }
     }
@@ -69,29 +88,48 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
         initRecycleView(recy, layoutManager, hasImg = true, needItemDecoration = false)
 
 
+
+        imgListAdapter.setOnItemClickListener(this)
+
+        imgListAdapter.setEnableLoadMore(true)
+        // imgListAdapter.setPreLoadNumber(6)
+        imgListAdapter.setOnLoadMoreListener(this, recy)
+        imgListAdapter.setLoadMoreView(AdapterLoadMoreView)
+        recy.adapter = imgListAdapter
+
     }
 
 
     override fun initData() {
 
+        baiDuImgList.clear()
+
         if (httpRequestType == HttpRequestType.FIRST) {
             showLoadding()
         }
 
-        presenter.getImgs()
+        presenter.getImgs(currentPage, pageSize)
+
 
     }
 
-    override fun requestSuccess(data: ArrayList<BaiDuImgBean.Data>) {
+    override fun requestSuccess(baiDuImgBean: BaiDuImgBean) {
 
-        data.remove(data.last())
+        val totalPageSize: Double = baiDuImgBean.totalNum / pageSize.toDouble()
 
-        if (imgListAdapter == null) {
-            imgListAdapter = ImgListAdapter(R.layout.item_img_list, data, this)
-            recy.adapter = imgListAdapter
-            imgListAdapter!!.setOnItemClickListener(this)
+        LogUtils.i("算出来的总页数：${totalPageSize}")
+
+        totalPage = Math.ceil(totalPageSize).toInt()
+
+        baiDuImgBean.data.remove(baiDuImgBean.data.last())
+        //    baiDuImgList.addAll(baiDuImgBean.data)
+
+
+        if (httpRequestType == HttpRequestType.LOAD_MORE) {
+            imgListAdapter.addData(baiDuImgBean.data)
+            imgListAdapter.loadMoreComplete()
         } else {
-            imgListAdapter!!.setNewData(data)
+            imgListAdapter.setNewData(baiDuImgBean.data)
         }
 
 
@@ -102,7 +140,21 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
 
-        preViewImg(imgListAdapter!!.data[position].imageUrl)
+        preViewImg(imgListAdapter.data[position].imageUrl)
+
+    }
+
+
+    override fun onLoadMoreRequested() {
+
+        if (currentPage < totalPage) {
+            httpRequestType = HttpRequestType.LOAD_MORE
+
+            presenter.getImgs(currentPage, pageSize)
+        } else {
+            imgListAdapter.loadMoreEnd()
+        }
+
 
     }
 

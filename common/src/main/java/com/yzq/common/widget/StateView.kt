@@ -61,7 +61,7 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : Li
         loadding_layout.visibility = View.GONE
         abnorma_layout.visibility = View.VISIBLE
         iv_hint.setImageResource(R.drawable.ic_no_data)
-        tv_hint.text = resources.getString(R.string.noData)
+        tv_hint.text = resources.getString(R.string.no_data)
     }
 
     fun showNoNet() {

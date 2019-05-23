@@ -10,12 +10,17 @@ import java.io.IOException
 import javax.inject.Inject
 
 class ImgListModel @Inject constructor() {
-    fun getImgs(): Observable<BaiDuImgBean> {
+    fun getImgs(currentPage: Int, pageSize: Int): Observable<BaiDuImgBean> {
 
 
         return Observable.create {
             val httpClient = OkHttpClient()
-            val httpUrl = HttpUrl.parse(UrlConstants.BAIDU_IMG)!!.newBuilder().build()
+            val httpUrl = HttpUrl.parse(UrlConstants.BAIDU_IMG)!!
+                    .newBuilder()
+                    .addQueryParameter("pn",currentPage.toString())
+                    .addQueryParameter("rn",pageSize.toString())
+                    .addQueryParameter("tag1","宠物")
+                    .build()
             val request = Request.Builder().url(httpUrl).build()
 
             httpClient.newCall(request).enqueue(object : Callback {

@@ -4,7 +4,7 @@ package com.yzq.kotlincommon.data
 import com.google.gson.annotations.SerializedName
 
 data class BaiDuImgBean(
-        var `data`: List<Data> = listOf(),
+        var `data`: MutableList<Data> = mutableListOf(),
         @SerializedName("return_number")
         var returnNumber: Int = 0, // 2
         @SerializedName("start_index")
