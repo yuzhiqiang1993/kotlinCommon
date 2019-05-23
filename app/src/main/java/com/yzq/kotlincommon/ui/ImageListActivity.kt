@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.HttpRequestType
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.extend.init
 import com.yzq.common.ui.BaseMvpActivity
 import com.yzq.common.widget.AdapterLoadMoreView
 import com.yzq.common.widget.StateView
@@ -20,7 +21,7 @@ import com.yzq.kotlincommon.mvp.view.ImgListView
 import kotlinx.android.synthetic.main.activity_image_list.*
 
 
- /**
+/**
  * @description: 图片瀑布流
  * @author : yzq
  * @date   : 2019/5/23
@@ -33,7 +34,7 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
 
     private val baiDuImgList = arrayListOf<BaiDuImgBean.Data>()
 
-    private var imgListAdapter: ImgListAdapter = ImgListAdapter(R.layout.item_img_list, baiDuImgList, this)
+    private var imgListAdapter: ImgListAdapter = ImgListAdapter(R.layout.item_img_list, baiDuImgList)
 
     var httpRequestType = HttpRequestType.FIRST
 
@@ -85,8 +86,8 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
         //  val layoutManager = GridLayoutManager(this, 3)
         /*防止回到顶部时重新布局可能导致item跳跃*/
         //layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
-        initRecycleView(recy, layoutManager, hasImg = true, needItemDecoration = false)
 
+        recy.init(layoutManager, hasImg = true, needItemDecoration = false)
 
 
         imgListAdapter.setOnItemClickListener(this)
@@ -122,7 +123,6 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
         totalPage = Math.ceil(totalPageSize).toInt()
 
         baiDuImgBean.data.remove(baiDuImgBean.data.last())
-        //    baiDuImgList.addAll(baiDuImgBean.data)
 
 
         if (httpRequestType == HttpRequestType.LOAD_MORE) {

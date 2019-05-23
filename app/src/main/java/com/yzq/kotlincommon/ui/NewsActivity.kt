@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.extend.init
 import com.yzq.common.ui.BaseMvpActivity
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.NewsAdapter
@@ -47,7 +48,7 @@ class NewsActivity : BaseMvpActivity<NewsView, NewsPresenter>(), NewsView, BaseQ
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "新闻")
 
-        initRecycleView(recy)
+        recy.init()
 
         initStateView(state_view, recy)
 

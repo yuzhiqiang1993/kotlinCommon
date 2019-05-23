@@ -16,6 +16,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.google.android.material.navigation.NavigationView
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.extend.init
 import com.yzq.common.extend.transform
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
@@ -55,7 +56,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
 
         initToolbar(toolbar, "kotlin common", displayHome = false)
 
-        initRecycleView(recy)
+        recy.init()
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)

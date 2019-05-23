@@ -120,7 +120,7 @@ data class BaiDuImgBean(
             @SerializedName("thumbnail_width")
             var thumbnailWidth: Int = 0, // 230
             @SerializedName("user_id")
-            var userId: String = "", // 862713943
-            var imgLoaded: Boolean = false
+            var userId: String = "" // 862713943
+
     )
 }

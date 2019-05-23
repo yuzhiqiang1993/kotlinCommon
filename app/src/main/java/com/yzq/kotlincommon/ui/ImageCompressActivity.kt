@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.img.ImageLoader
+import com.yzq.common.extend.loadCenterCrop
 import com.yzq.common.img.ImagePicker
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
@@ -54,7 +54,8 @@ class ImageCompressActivity : BaseActivity() {
                         compressImgModel.compressImgWithWatermark(file.path)
                                 .subscribe {
                                     imgPath = it
-                                    ImageLoader.loadCenterCrop(this, imgPath, iv_img)
+
+                                    iv_img.loadCenterCrop(imgPath)
                                 }
                     }
         }

@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.yzq.common.img.ImageLoader
+import com.yzq.common.extend.loadCenterCrop
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.data.NewsBean
@@ -16,9 +16,7 @@ class NewsAdapter(layoutResId: Int, data: List<NewsBean.Data>, val activity: Bas
 
         helper.itemView.tv_title.text = item.title
 
-
-        ImageLoader.loadCenterCrop(activity, item.thumbnailPicS, helper.itemView.iv_img)
-
+        helper.itemView.iv_img.loadCenterCrop(item.thumbnailPicS)
         helper.addOnClickListener(R.id.iv_img)
 
     }
