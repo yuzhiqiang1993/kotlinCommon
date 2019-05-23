@@ -33,6 +33,7 @@ object PermissionRequester {
      */
     fun request(vararg permissions: String, activity: BaseActivity): Observable<Boolean> {
 
+
         return Observable.create<Boolean> { emitter: ObservableEmitter<Boolean> ->
             AndPermission.with(activity)
                     .runtime()

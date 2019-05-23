@@ -35,6 +35,7 @@ class ImageCompressActivity : BaseActivity() {
 
         DaggerMainComponent.builder().build().inject(this)
 
+
     }
 
 
@@ -48,16 +49,15 @@ class ImageCompressActivity : BaseActivity() {
         initToolbar(toolbar, "图片")
         fab_camera.setOnClickListener {
 
-            ImagePicker.openCamera(this@ImageCompressActivity)
-                    .subscribe { file ->
 
-                        compressImgModel.compressImgWithWatermark(file.path)
-                                .subscribe {
-                                    imgPath = it
+            ImagePicker.openCamera(this).subscribe { file ->
+                compressImgModel.compressImgWithWatermark(file.path)
+                        .subscribe {
+                            imgPath = it
 
-                                    iv_img.loadCenterCrop(imgPath)
-                                }
-                    }
+                            iv_img.loadCenterCrop(imgPath)
+                        }
+            }
         }
 
 
