@@ -8,7 +8,6 @@ import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.HttpRequestType
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.extend.init
 import com.yzq.common.ui.BaseMvpActivity
 import com.yzq.common.widget.AdapterLoadMoreView
 import com.yzq.common.widget.StateView
@@ -87,8 +86,7 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
         /*防止回到顶部时重新布局可能导致item跳跃*/
         //layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
 
-        recy.init(layoutManager, hasImg = true, needItemDecoration = false)
-
+        initRecycleView(recy, hasImg = true, layoutManager = layoutManager, needItemDecoration = false)
 
         imgListAdapter.setOnItemClickListener(this)
 

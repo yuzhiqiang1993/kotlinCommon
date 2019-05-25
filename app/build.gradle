@@ -118,6 +118,8 @@ andResGuard {
     }
 }
 
+
+
 afterEvaluate {
     tasks.getByName('assembleReleaseChannels') {
         dependsOn(resguardRelease)

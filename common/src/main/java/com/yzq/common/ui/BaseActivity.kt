@@ -12,9 +12,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
+import com.bumptech.glide.Glide
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.extend.changeProgress
@@ -22,6 +25,7 @@ import com.yzq.common.extend.setLoadingMessage
 import com.yzq.common.mvp.model.CompressImgModel
 import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.widget.Dialog
+import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -166,6 +170,51 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
             transparentStatusBar()
             BarUtils.addMarginTopEqualStatusBarHeight(toolbar)
         }
+    }
+
+
+    /**
+     *
+     * @param recy RecyclerView  列表
+     * @param layoutManager RecyclerView.LayoutManager  布局，默认是线性布局
+     * @param hasImg Boolean  是否有图片  默认没有
+     * @param needItemDecoration Boolean 是否需要分割线  默认需要
+     */
+    protected open fun initRecycleView(recy: RecyclerView, layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this), hasImg: Boolean = false, needItemDecoration: Boolean = true) {
+
+        recy.layoutManager = layoutManager
+        if (needItemDecoration) {
+            recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
+
+        }
+
+
+        if (hasImg) {
+            recy.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                    super.onScrollStateChanged(recyclerView, newState)
+
+                    if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
+
+                        /*列表处于滚动状态时，暂停加载图片*/
+                        if (!this@BaseActivity.isDestroyed) {
+                            Glide.with(this@BaseActivity).pauseRequests()
+                        }
+                    } else {
+
+                        /*当列表停止滚动时,恢复加载*/
+                        if (!this@BaseActivity.isDestroyed) {
+                            Glide.with(this@BaseActivity).resumeRequests()
+                        }
+
+
+                    }
+                }
+            })
+        }
+
+
     }
 
 
