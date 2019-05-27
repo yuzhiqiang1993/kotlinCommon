@@ -82,15 +82,17 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
     private fun initRecy() {
 
         val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-        //  val layoutManager = GridLayoutManager(this, 3)
+        //   val layoutManager = GridLayoutManager(this, 2)
         /*防止回到顶部时重新布局可能导致item跳跃*/
         //layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
 
-        initRecycleView(recy, hasImg = true, layoutManager = layoutManager, needItemDecoration = false)
+        initRecycleView(recy, layoutManager = layoutManager, needItemDecoration = false)
 
         imgListAdapter.setOnItemClickListener(this)
 
         imgListAdapter.setEnableLoadMore(true)
+//        imgListAdapter.openLoadAnimation()
+//        imgListAdapter.isFirstOnly(false)
         // imgListAdapter.setPreLoadNumber(6)
         imgListAdapter.setOnLoadMoreListener(this, recy)
         imgListAdapter.setLoadMoreView(AdapterLoadMoreView)

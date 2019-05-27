@@ -180,7 +180,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * @param hasImg Boolean  是否有图片  默认没有
      * @param needItemDecoration Boolean 是否需要分割线  默认需要
      */
-    protected open fun initRecycleView(recy: RecyclerView, layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this), hasImg: Boolean = false, needItemDecoration: Boolean = true) {
+    protected open fun initRecycleView(recy: RecyclerView, layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this), needItemDecoration: Boolean = true,hasImg: Boolean = false)
+    {
 
         recy.layoutManager = layoutManager
         if (needItemDecoration) {
