@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
-import com.bumptech.glide.Glide
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.extend.changeProgress
@@ -180,41 +179,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * @param hasImg Boolean  是否有图片  默认没有
      * @param needItemDecoration Boolean 是否需要分割线  默认需要
      */
-    protected open fun initRecycleView(recy: RecyclerView, layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this), needItemDecoration: Boolean = true,hasImg: Boolean = false)
-    {
+    protected open fun initRecycleView(recy: RecyclerView, layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this), needItemDecoration: Boolean = true) {
 
         recy.layoutManager = layoutManager
         if (needItemDecoration) {
             recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
 
         }
-
-
-        if (hasImg) {
-            recy.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-
-                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                    super.onScrollStateChanged(recyclerView, newState)
-
-                    if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
-
-                        /*列表处于滚动状态时，暂停加载图片*/
-                        if (!this@BaseActivity.isDestroyed) {
-                            Glide.with(this@BaseActivity).pauseRequests()
-                        }
-                    } else {
-
-                        /*当列表停止滚动时,恢复加载*/
-                        if (!this@BaseActivity.isDestroyed) {
-                            Glide.with(this@BaseActivity).resumeRequests()
-                        }
-
-
-                    }
-                }
-            })
-        }
-
 
     }
 

@@ -16,6 +16,12 @@ import java.io.File
 
 
 val REQUEST_CODE_SETTING = 1
+/**
+ * 申请权限
+ * @receiver BaseActivity
+ * @param permissions Array<out String>
+ * @return Observable<Boolean>
+ */
 fun BaseActivity.requestPermission(vararg permissions: String): Observable<Boolean> {
 
 
@@ -67,6 +73,11 @@ private fun BaseActivity.showPermissionDailog(permissions: List<String>) {
 }
 
 
+/**
+ *打开相机
+ * @receiver BaseActivity
+ * @return Observable<File>
+ */
 fun BaseActivity.openCamera(): Observable<File> {
     return Observable.create<File> { emitter ->
 
@@ -84,3 +95,9 @@ fun BaseActivity.openCamera(): Observable<File> {
     }
 
 }
+
+
+
+
+
+

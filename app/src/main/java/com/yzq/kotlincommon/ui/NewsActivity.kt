@@ -95,7 +95,7 @@ class NewsActivity : BaseMvpActivity<NewsView, NewsPresenter>(), NewsView, BaseQ
     private fun showData(data: List<NewsBean.Data>) {
 
 
-        newsAdapter = NewsAdapter(R.layout.item_news_layout, data, this)
+        newsAdapter = NewsAdapter(R.layout.item_news_layout, data)
         recy.adapter = newsAdapter
         newsAdapter.onItemClickListener = this
         newsAdapter.onItemChildClickListener = this
