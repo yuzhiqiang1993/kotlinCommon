@@ -121,9 +121,10 @@ dependencies {
 
     /*阿里热修复*/
     api "com.aliyun.ams:alicloud-android-hotfix:$hotfix"
-    /*leak canary*/
+
+    /*内存泄漏检测 leakcanary*/
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-1'
-
-
+    /*ui帧率检测  tinydancer*/
+    debugImplementation "com.github.brianPlummer:tinydancer:0.1.2"
 }
 
