@@ -1,6 +1,6 @@
-if (isModule.toBoolean()){
+if (isModule.toBoolean()) {
     apply plugin: 'com.android.library'
-}else {
+} else {
     apply plugin: 'com.android.application'
 }
 
@@ -45,9 +45,10 @@ android {
         main {
             jniLibs.srcDirs = ['libs']
             if (isModule.toBoolean()) {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            } else {
                 manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+
             }
 
         }
