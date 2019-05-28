@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'org.jetbrains.dokka-android'
-
+apply plugin: "com.github.ben-manes.versions"
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
@@ -123,7 +123,7 @@ dependencies {
     api "com.aliyun.ams:alicloud-android-hotfix:$hotfix"
 
     /*内存泄漏检测 leakcanary*/
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'
     /*ui帧率检测  tinydancer*/
     debugImplementation "com.github.brianPlummer:tinydancer:0.1.2"
 }
