@@ -1,4 +1,4 @@
-package com.yzq.gao_de_map.view
+package com.yzq.gao_de_map.mvp.view
 
 import com.yzq.gao_de_map.data.LocationBean
 

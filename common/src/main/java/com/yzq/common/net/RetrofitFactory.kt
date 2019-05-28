@@ -61,9 +61,9 @@ class RetrofitFactory private constructor() {
                 .connectTimeout(5, TimeUnit.SECONDS)
                 .readTimeout(5, TimeUnit.SECONDS)
                 .addInterceptor(RequestHeadersInterceptor())
-                // .addInterceptor(RequestEncryptInterceptor())
+                //   .addInterceptor(RequestEncryptInterceptor())
                 .addInterceptor(initLogInterceptor())
-        //.addInterceptor(ResponseDecryptInterceptor())
+        // .addInterceptor(ResponseDecryptInterceptor())
 
         return ProgressManager.getInstance().with(okHttpBuilder).build()
     }

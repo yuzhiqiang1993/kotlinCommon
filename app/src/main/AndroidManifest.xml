@@ -35,10 +35,7 @@
             android:name=".ui.FlexBoxActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.GaoDeActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.NewsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

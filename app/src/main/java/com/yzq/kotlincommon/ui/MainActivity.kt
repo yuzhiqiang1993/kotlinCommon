@@ -118,7 +118,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
             5 -> skip(RoutePath.Main.LOGIN)
             6 -> skip(RoutePath.Main.AUTODISPOSE)
             7 -> skip(RoutePath.Main.DROP_DOWN_MENU)
-            8 -> skip(RoutePath.Main.GAO_DE)
+            8 -> skip(RoutePath.GaoDe.GAO_DE)
             9 -> skip(RoutePath.Main.FLEX_BOX)
             10 -> skip(RoutePath.Main.IMG_LIST)
 

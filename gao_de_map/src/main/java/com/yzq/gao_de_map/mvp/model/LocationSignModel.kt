@@ -1,11 +1,11 @@
-package com.yzq.gao_de_map.model
+package com.yzq.gao_de_map.mvp.model
 
 import com.amap.api.location.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
 import com.yzq.common.AppContext
 import com.yzq.gao_de_map.data.LocationBean
-import com.yzq.gao_de_map.view.LocationView
+import com.yzq.gao_de_map.mvp.view.LocationView
 import javax.inject.Inject
 
 
@@ -53,6 +53,7 @@ class LocationSignModel @Inject constructor() : AMapLocationListener {
     /*开始定位*/
 
     fun startLocation() {
+
 
         locationClient?.startLocation()
 

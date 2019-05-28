@@ -1,4 +1,9 @@
-apply plugin: 'com.android.library'
+if (isModule.toBoolean()){
+    apply plugin: 'com.android.library'
+}else {
+    apply plugin: 'com.android.application'
+}
+
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -20,6 +25,13 @@ android {
         abortOnError false
     }
 
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
     buildTypes {
         release {
             consumerProguardFiles 'proguard-rules.pro'
@@ -32,15 +44,32 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
+            if (isModule.toBoolean()) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+            }
+
         }
     }
 
 }
 
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     kapt "com.google.dagger:dagger-compiler:$dagger2"
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler"
+
+
     implementation project(':common')
 
     api 'com.amap.api:location:4.4.0'

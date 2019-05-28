@@ -56,7 +56,6 @@ class SharedPreference<T>(val name: String, val defaultVal: T) : ReadWriteProper
     private fun putPreference(key: String, value: T) {
 
         with(prfs.edit()) {
-
             when (value) {
                 is String -> putString(key, value)
                 is Int -> putInt(key, value)

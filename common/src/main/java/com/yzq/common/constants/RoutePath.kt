@@ -21,12 +21,15 @@ object RoutePath {
         const val LOGIN = "/main/login"
         const val AUTODISPOSE = "/main/autodispose"
         const val DROP_DOWN_MENU = "/main/dropDownMenu"
-        const val GAO_DE = "/main/gaoDeMap"
+
         const val FLEX_BOX = "/main/flexBox"
         const val IMG_LIST = "/main/imgList"
 
-
     }
 
+
+    object GaoDe {
+        const val GAO_DE = "/gaoDe/gaoDeMap"
+    }
 
 }
