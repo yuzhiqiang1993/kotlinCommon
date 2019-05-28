@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'walle'
 apply plugin: 'AndResGuard'
-
+apply plugin: "com.github.ben-manes.versions"
 android {
     compileSdkVersion compile_sdk_version
     defaultConfig {
