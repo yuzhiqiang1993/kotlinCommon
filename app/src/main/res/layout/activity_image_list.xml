@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".ui.ImageListActivity">
 
 
@@ -19,11 +19,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recy"
             android:layout_width="match_parent"
-            android:scrollbars="vertical"
-            android:layout_height="match_parent">
-
-
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="match_parent"
+            android:scrollbars="vertical" />
 
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
