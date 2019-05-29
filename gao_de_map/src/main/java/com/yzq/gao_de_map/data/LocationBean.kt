@@ -12,6 +12,7 @@ import android.os.Parcelable
  *
  */
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 data class LocationBean(
     var address: String = "", // 上海市闵行区梅强路228号靠近春申创意园A座
     var city: String = "", // 上海市

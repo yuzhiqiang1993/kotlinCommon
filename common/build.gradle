@@ -89,9 +89,9 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
     /*kotlin协程*/
-    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+
     /*协程Android库，提供了ui调度*/
-    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1'
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${kotlinx_coroutines_android}"
 
     /*glide*/
     api "com.github.bumptech.glide:glide:$glide"
@@ -123,8 +123,8 @@ dependencies {
     api "com.aliyun.ams:alicloud-android-hotfix:$hotfix"
 
     /*内存泄漏检测 leakcanary*/
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-alpha-2'
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_android}"
     /*ui帧率检测  tinydancer*/
-    debugImplementation "com.github.brianPlummer:tinydancer:0.1.2"
+    debugImplementation "com.github.brianPlummer:tinydancer:${tinydancer_version}"
 }
 

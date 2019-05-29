@@ -1,5 +1,6 @@
 ext {
     kotlin_version = '1.3.31'
+    gradle_version='3.4.1'
 
     /*defaultConfig*/
     compile_sdk_version = 28
@@ -50,6 +51,13 @@ ext {
     flexbox = "1.1.0"
     hotfix = "3.2.8"
     dokka_version = "0.9.18"
+    gradle_versions_plugin="0.21.0"
+    zxing_version="2.2.8"
+    jsoup_version="1.12.1"
+    kotlinx_coroutines_android="1.2.1"
+    leakcanary_android="2.0-alpha-2"
+    tinydancer_version="0.1.2"
+
     signConfigs = [
             storeFilePath: "kotlinCommon.jks",
             storePwd     : "123456",

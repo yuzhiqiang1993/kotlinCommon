@@ -70,8 +70,8 @@ dependencies {
 
 
     implementation project(':common')
-    implementation 'com.github.yuzhiqiang1993:zxing:2.2.8'
-    implementation 'org.jsoup:jsoup:1.12.1'
+    implementation "com.github.yuzhiqiang1993:zxing:${zxing_version}"
+    implementation "org.jsoup:jsoup:${jsoup_version}"
     implementation project(':custom_view')
 
 

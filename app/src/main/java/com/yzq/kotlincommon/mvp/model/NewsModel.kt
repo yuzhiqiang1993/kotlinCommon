@@ -19,7 +19,5 @@ class NewsModel @Inject constructor() {
         return RetrofitFactory.instance.getService(ApiService::class.java).getIndex(type, key).dataConvert()
     }
 
-    fun getNews(type: String = "top", key: String = "4c52313fc9247e5b4176aed5ddd56ad7"): Deferred<BaseResp<NewsBean>> {
-        return RetrofitFactory.instance.getService(ApiService::class.java).getIndexDeferred(type, key)
-    }
+
 }

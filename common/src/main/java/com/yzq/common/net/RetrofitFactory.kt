@@ -2,7 +2,6 @@ package com.yzq.common.net
 
 import android.util.Log
 import com.google.gson.Gson
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.yzq.common.BuildConfig
 import com.yzq.common.constants.ServerConstants
 import com.yzq.common.net.interceptor.RequestHeadersInterceptor
@@ -40,7 +39,6 @@ class RetrofitFactory private constructor() {
                 .client(initOkhttpClient())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .build()
 
     }

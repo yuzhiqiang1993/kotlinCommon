@@ -31,11 +31,5 @@ class NewsPresenter @Inject constructor() : BasePresenter<NewsView>() {
                 })
     }
 
-    fun getNews(): Deferred<BaseResp<NewsBean>> {
-
-        return model.getNews()
-
-    }
-
 
 }

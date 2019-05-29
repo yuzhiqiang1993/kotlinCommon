@@ -9,18 +9,22 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath "com.android.tools.build:gradle:${gradle_version}"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "com.meituan.android.walle:plugin:$walleVersion"
+
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
+        /*多渠道打包*/
+        classpath "com.meituan.android.walle:plugin:$walleVersion"
+        /*用于混淆资源文件*/
         classpath "com.tencent.mm:AndResGuard-gradle-plugin:$andResGuardVersion"
+        /*用于生成api文档*/
         classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:${dokka_version}"
-        classpath "com.github.ben-manes:gradle-versions-plugin:0.21.0"
+        /*用于检测依赖库是否有最新版本*/
+        classpath "com.github.ben-manes:gradle-versions-plugin:${gradle_versions_plugin}"
     }
 
 
 }
-
 
 
 allprojects {
