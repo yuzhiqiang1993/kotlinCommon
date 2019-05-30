@@ -32,7 +32,7 @@ ext {
 //    rx_java = "2.2.8"
     rx_kotlin = "2.3.0"
     autodispose_version = "1.2.0"
-    dagger2 = "2.22.1"
+    dagger2 = "2.23"
     bottom_navigation_bar = "2.1.0"
     gson = "2.8.5"
     material_dialogs = "2.8.1"

@@ -51,7 +51,7 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
         initARouter()
 
 
-        initTinyDancer()
+        // initTinyDancer()
 
 
         registerActivityLifecycleCallbacks(this)
