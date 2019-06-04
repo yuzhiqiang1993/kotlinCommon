@@ -124,7 +124,6 @@ dependencies {
 
     /*内存泄漏检测 leakcanary*/
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_android}"
-    /*ui帧率检测  tinydancer*/
-    debugImplementation "com.github.brianPlummer:tinydancer:${tinydancer_version}"
+
 }
 

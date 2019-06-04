@@ -12,9 +12,7 @@ class ImgListPresenter @Inject constructor() : BasePresenter<ImgListView>() {
 
     @Inject
     lateinit var model: ImgListModel
-
-
-
+    
     fun getImgs(currentPage: Int, pageSize: Int) {
 
 

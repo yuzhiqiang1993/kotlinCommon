@@ -9,7 +9,6 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.CrashUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
-import com.codemonkeylabs.fpslibrary.TinyDancer
 import java.util.*
 
 
@@ -51,24 +50,11 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
         initARouter()
 
 
-        // initTinyDancer()
-
-
         registerActivityLifecycleCallbacks(this)
         /*打印路径信息*/
         //StoragePath.getPathInfo()
     }
 
-    private fun initTinyDancer() {
-
-        TinyDancer.create().show(this)
-
-        TinyDancer.create()
-                .redFlagPercentage(.1f) // set red indicator for 10%....different from default
-                .startingXPosition(200)
-                .startingYPosition(600)
-                .show(this)
-    }
 
     private fun initCrash() {
 

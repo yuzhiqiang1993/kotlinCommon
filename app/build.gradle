@@ -69,6 +69,7 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
     implementation "com.github.yuzhiqiang1993:zxing:${zxing_version}"
     implementation "org.jsoup:jsoup:${jsoup_version}"
+    implementation "com.meituan.android.walle:library:${walleVersion}"
 
     implementation project(':common')
 
@@ -123,7 +124,7 @@ andResGuard {
 
 
 afterEvaluate {
-    tasks.getByName('assembleReleaseChannels') {
-        dependsOn(resguardRelease)
-    }
+    tasks.getByName("assembleReleaseChannels")
+            .dependsOn(resguardRelease)
+
 }
