@@ -28,6 +28,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     private var iconRes: Int
     private var titleStr: String?
     private var contentStr: String?
+    private var hint: String?
     private var endIconRes: Int
     private var editEnable = false
     private var inputType: Int
@@ -47,34 +48,37 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
             endIconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_endIcon, -1)
             titleStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_title)
             contentStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_content)
+            hint = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_hint)
 
         } finally {
             typeArr.recycle()
         }
 
-
+        /*默认隐藏图标*/
         icon_start.visibility = View.GONE
         icon_end.visibility = View.GONE
 
-
+        /*显示前面的图标*/
         if (iconRes != -1) {
             icon_start.visibility = View.VISIBLE
             icon_start.setImageResource(iconRes)
         }
 
+        /*显示后面的图标*/
         if (endIconRes != -1) {
             icon_end.visibility = View.VISIBLE
             icon_end.setImageResource(endIconRes)
         }
 
+        /*设置inputType*/
         when (inputType) {
             0 -> input_content.inputType = InputType.TYPE_CLASS_PHONE
             1 -> input_content.inputType = InputType.TYPE_CLASS_NUMBER
             2 -> input_content.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
-
         }
 
         tv_title.text = titleStr
+        input_content.setHint(hint)
         input_content.setText(contentStr)
         input_content.isEnabled = editEnable
 
