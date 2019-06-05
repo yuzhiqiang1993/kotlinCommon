@@ -1,6 +1,7 @@
 package com.yzq.common.widget
 
 import android.content.Context
+import android.text.InputType
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -24,11 +25,12 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context) : this(context, null)
 
-    private var iconRes: Int = -1
+    private var iconRes: Int
     private var titleStr: String?
     private var contentStr: String?
-    private var endIconRes: Int = -1
+    private var endIconRes: Int
     private var editEnable = false
+    private var inputType: Int
 
 
     init {
@@ -40,6 +42,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
         try {
             iconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_icon, -1)
+            inputType = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_inputType, -1)
             editEnable = typeArr.getBoolean(R.styleable.HorizontalEditView_horz_edit_editEnable, false)
             endIconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_endIcon, -1)
             titleStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_title)
@@ -63,6 +66,14 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
             icon_end.visibility = View.VISIBLE
             icon_end.setImageResource(endIconRes)
         }
+
+        when (inputType) {
+            0 -> input_content.inputType = InputType.TYPE_CLASS_PHONE
+            1 -> input_content.inputType = InputType.TYPE_CLASS_NUMBER
+            2 -> input_content.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+
+        }
+
         tv_title.text = titleStr
         input_content.setText(contentStr)
         input_content.isEnabled = editEnable

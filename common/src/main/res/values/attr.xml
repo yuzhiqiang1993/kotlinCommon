@@ -4,22 +4,27 @@
     <!--HorizontalEditView 自定义属性-->
     <declare-styleable name="HorizontalEditView">
 
-        <attr name="horz_edit_icon" format="reference"/>
-        <attr name="horz_edit_title" format="string"/>
-        <attr name="horz_edit_content" format="string"/>
-        <attr name="horz_edit_endIcon" format="reference"/>
-        <attr name="horz_edit_editEnable" format="boolean"/>
+        <attr name="horz_edit_icon" format="reference" />
+        <attr name="horz_edit_title" format="string" />
+        <attr name="horz_edit_content" format="string" />
+        <attr name="horz_edit_endIcon" format="reference" />
+        <attr name="horz_edit_editEnable" format="boolean" />
+        <attr name="horz_edit_inputType" format="enum">
+            <enum name="phone" value="0" />
+            <enum name="number" value="1" />
+            <enum name="textPassword" value="2" />
+        </attr>
 
     </declare-styleable>
 
     <!--HorizontalTextView 自定义属性-->
     <declare-styleable name="HorizontalTextView">
 
-        <attr name="horz_tv_icon" format="reference"/>
-        <attr name="horz_tv_title" format="string"/>
-        <attr name="horz_tv_content" format="string"/>
-        <attr name="horz_tv_endIcon" format="reference"/>
-        <attr name="horz_tv_content_left" format="boolean"/>
+        <attr name="horz_tv_icon" format="reference" />
+        <attr name="horz_tv_title" format="string" />
+        <attr name="horz_tv_content" format="string" />
+        <attr name="horz_tv_endIcon" format="reference" />
+        <attr name="horz_tv_content_left" format="boolean" />
 
     </declare-styleable>
 
