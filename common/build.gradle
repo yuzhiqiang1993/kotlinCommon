@@ -87,6 +87,9 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$ok_http"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+
+
+
     /*kotlin协程*/
 
     /*协程Android库，提供了ui调度*/

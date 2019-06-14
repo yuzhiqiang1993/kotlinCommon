@@ -53,7 +53,7 @@ class ResponseDecryptInterceptor : Interceptor {
 
                     val source = responseBody.source()
                     source.request(java.lang.Long.MAX_VALUE) // Buffer the entire body.
-                    val buffer = source.buffer()
+                    val buffer = source.buffer
                     var charset = Charset.forName("UTF-8")
 
                     val contentType = responseBody.contentType()
