@@ -17,8 +17,6 @@ buildscript {
         classpath "com.meituan.android.walle:plugin:$walleVersion"
         /*用于混淆资源文件*/
         classpath "com.tencent.mm:AndResGuard-gradle-plugin:$andResGuardVersion"
-        /*用于生成api文档*/
-        classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:${dokka_version}"
         /*用于检测依赖库是否有最新版本*/
         classpath "com.github.ben-manes:gradle-versions-plugin:${gradle_versions_plugin}"
     }
