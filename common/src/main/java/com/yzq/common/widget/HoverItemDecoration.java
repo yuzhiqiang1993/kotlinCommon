@@ -7,19 +7,17 @@ import android.graphics.Rect;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.yzq.common.R;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yzq.common.R;
 
 
- /**
- * @description: 分组悬停item
+/**
  * @author : yzq
- * @date   : 2019/3/22
- * @time   : 17:49
- *
+ * @description: 分组悬停item
+ * @date : 2019/3/22
+ * @time : 17:49
  */
 
 public class HoverItemDecoration extends RecyclerView.ItemDecoration {
