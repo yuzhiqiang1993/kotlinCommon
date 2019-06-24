@@ -45,7 +45,7 @@ ext {
     walleVersion = "1.1.6"
     andResGuardVersion = "1.2.16"
     rx_imgpicker = "2.5.0"
-    bugly_crashreport_upgrade = '1.4.0'
+    bugly_crashreport_upgrade = '1.4.1'
     bugly_nativecrashreport = '3.7.1'
     datepickerVersion = "1.2.2"
     flexbox = "1.1.0"
