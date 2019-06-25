@@ -76,6 +76,7 @@ dependencies {
     /*dialog*/
     api "com.afollestad.material-dialogs:core:$material_dialogs"
     api "com.afollestad.material-dialogs:input:$material_dialogs"
+    api "com.afollestad.material-dialogs:bottomsheets:$material_dialogs"
     api "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
 
     /*RxImagepicker*/
@@ -87,7 +88,6 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:$ok_http"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
-
 
 
     /*kotlin协程*/

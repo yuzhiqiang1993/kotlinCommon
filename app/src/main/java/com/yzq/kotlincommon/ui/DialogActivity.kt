@@ -2,6 +2,9 @@ package com.yzq.kotlincommon.ui
 
 import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
+import com.afollestad.materialdialogs.LayoutMode
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
@@ -140,6 +143,21 @@ class DialogActivity : BaseActivity() {
         btn_select_year.setOnClickListener { Dialog.selectYear().subscribe { ToastUtils.showShort(it) } }
         btn_select_date.setOnClickListener { Dialog.selectDate().subscribe { ToastUtils.showShort(it) } }
         btn_select_time.setOnClickListener { Dialog.selectHourAndMinute().subscribe { ToastUtils.showShort(it) } }
+
+
+
+        btn_bottom_dialog.setOnClickListener {
+
+
+            MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT))
+                    .show {
+                title(R.string.hint)
+                message(text = "bottom sheet")
+                positiveButton(text = "确定")
+                negativeButton(text = "取消")
+
+            }
+        }
 
 
     }

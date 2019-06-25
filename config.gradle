@@ -35,7 +35,7 @@ ext {
     dagger2 = "2.23.2"
     bottom_navigation_bar = "2.1.0"
     gson = "2.8.5"
-    material_dialogs = "2.8.1"
+    material_dialogs = "3.0.0"
     baseRecyclerViewAdapterHelper = "2.9.46"
     photoview = "2.3.0"
     objectboxVersion = "2.3.4"

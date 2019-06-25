@@ -301,8 +301,6 @@ object Dialog {
      */
     fun getLoadingDialog(): MaterialDialog {
         return getNewDialog().loading()
-
-
     }
 
     /**
@@ -353,14 +351,9 @@ object Dialog {
      * @param positiveText  确定文本
      * @param negativeText  取消文本
      */
-    fun selectDate(
-            title: String = "选择日期",
-            positiveText: String = BaseContstants.SURE,
-            negativeText: String = BaseContstants.CANCLE
-    ): Observable<String> {
+    fun selectDate(title: String = "选择日期", positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE): Observable<String> {
 
-
-        return Observable.create<String> { emitter ->
+        return Observable.create { emitter ->
 
             getNewDialog().show {
                 title(text = title)

@@ -307,11 +307,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-    }
-
-
     /**
      * 显示加载框
      *

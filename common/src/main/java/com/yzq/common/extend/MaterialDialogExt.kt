@@ -17,7 +17,7 @@ import com.yzq.common.R
  *
  */
 fun MaterialDialog.loading(): MaterialDialog {
-    customView(viewRes = R.layout.loading_dialog_layout, scrollable = false)
+    customView(R.layout.loading_dialog_layout, scrollable = false)
     return this
 
 }

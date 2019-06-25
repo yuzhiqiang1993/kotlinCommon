@@ -93,4 +93,11 @@
         android:text="选择时分" />
 
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_bottom_dialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="底部弹窗" />
+
+
 </androidx.appcompat.widget.LinearLayoutCompat>
