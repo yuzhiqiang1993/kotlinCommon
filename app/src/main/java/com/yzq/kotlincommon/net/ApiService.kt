@@ -4,10 +4,9 @@ import com.yzq.common.data.BaseResp
 import com.yzq.kotlincommon.data.NewsBean
 import com.yzq.kotlincommon.data.request.GetNews
 import io.reactivex.Observable
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -18,5 +17,6 @@ interface ApiService {
 
     @POST(ApiConstants.index)
     fun getIndex(@Body getNews: GetNews): Observable<BaseResp<NewsBean>>
+
 
 }

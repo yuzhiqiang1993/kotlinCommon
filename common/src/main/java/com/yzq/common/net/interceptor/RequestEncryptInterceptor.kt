@@ -30,17 +30,17 @@ class RequestEncryptInterceptor : Interceptor {
 
         var charset = Charset.forName("UTF-8")
 
-        val method = request.method().toLowerCase().trim()
+        val method =  request.method.toLowerCase().trim()
 
         LogUtils.i("请求方式：${method}")
 
 
-        val url = request.url()
+        val url = request.url
 
 
-        val apiPath = "${url.scheme()}://${url.host()}:${url.port()}${url.encodedPath()}".trim()
+        val apiPath = "${url.scheme}://${url.host}:${url.port}${url.encodedPath}".trim()
 
-        val hostPath = "${url.scheme()}://${url.host()}".trim()
+        val hostPath = "${url.scheme}://${url.host}".trim()
         LogUtils.i("本次请求的主机地址:$hostPath")
         LogUtils.i("ServerConstants:${ServerConstants.serverUrl}")
 
@@ -52,9 +52,9 @@ class RequestEncryptInterceptor : Interceptor {
 
         if (method.equals("get") || method.equals("delete")) {
 
-            if (url.encodedQuery() != null) {
+            if (url.encodedQuery != null) {
                 try {
-                    val queryparamNames = request.url().encodedQuery()
+                    val queryparamNames = request.url.encodedQuery
 
                     LogUtils.i("queryparamNames:" + queryparamNames!!)
 
@@ -91,7 +91,7 @@ class RequestEncryptInterceptor : Interceptor {
 
         } else {
 
-            val requestBody = request.body()
+            val requestBody = request.body
 
             /*判断请求体是否为空  不为空则执行以下操作*/
             if (requestBody != null) {
@@ -103,10 +103,10 @@ class RequestEncryptInterceptor : Interceptor {
                     charset = contentType.charset(charset)
 
                     LogUtils.i("contentType===>${contentType}")
-                    LogUtils.i("contentType===> type:${contentType.type()},subType:${contentType.subtype()}")
+                    LogUtils.i("contentType===> type:${contentType.type},subType:${contentType.subtype}")
 
                     /*如果是二进制上传  则不进行加密*/
-                    if (contentType.type().toLowerCase().equals("multipart")) {
+                    if (contentType.type.toLowerCase().equals("multipart")) {
                         LogUtils.i("上传文件，不加密")
                         return chain.proceed(request)
                     }

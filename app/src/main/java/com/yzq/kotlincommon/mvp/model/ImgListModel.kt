@@ -6,6 +6,7 @@ import com.yzq.kotlincommon.data.BaiDuImgBean
 import com.yzq.kotlincommon.net.UrlConstants
 import io.reactivex.Observable
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.io.IOException
 import javax.inject.Inject
 
@@ -15,11 +16,14 @@ class ImgListModel @Inject constructor() {
 
         return Observable.create {
             val httpClient = OkHttpClient()
-            val httpUrl = HttpUrl.parse(UrlConstants.BAIDU_IMG)!!
+
+
+            val httpUrl = UrlConstants.BAIDU_IMG.toHttpUrl()
                     .newBuilder()
-                    .addQueryParameter("pn",currentPage.toString())
-                    .addQueryParameter("rn",pageSize.toString())
-                    .addQueryParameter("tag1","宠物")
+                    .addQueryParameter("pn", currentPage.toString())
+                    .addQueryParameter("rn", pageSize.toString())
+                    .addQueryParameter("tn", "baiduimage")
+                    .addQueryParameter("word", "宠物")
                     .build()
             val request = Request.Builder().url(httpUrl).build()
 
@@ -28,11 +32,19 @@ class ImgListModel @Inject constructor() {
 
                     if (response.isSuccessful) {
 
-                        val data = response.body()!!.string()
+                        val data = response.body!!.string()
                         LogUtils.i("请求的数据：${data}")
-                        val baiDuImgBean = GsonConvert.fromJson(data, BaiDuImgBean::class.java)
-                        it.onNext(baiDuImgBean)
-                        it.onComplete()
+
+
+                        try {
+                            val baiDuImgBean = GsonConvert.fromJson(data, BaiDuImgBean::class.java)
+                            it.onNext(baiDuImgBean)
+                        } catch (e: Exception) {
+                            it.onError(Exception("数据解析错误"))
+                        } finally {
+                            it.onComplete()
+                        }
+
                     }
 
                 }

@@ -34,7 +34,7 @@ class ResponseDecryptInterceptor : Interceptor {
 
         if (response.isSuccessful) {
 
-            val responseBody = response.body()
+            val responseBody = response.body
 
             /*获取请求头中的key*/
             val aesKey = response.header(ServerConstants.AES_KEY)
