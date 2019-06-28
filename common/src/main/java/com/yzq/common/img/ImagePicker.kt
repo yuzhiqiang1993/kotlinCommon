@@ -1,6 +1,9 @@
 package com.yzq.common.img
 
+import android.net.Uri
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.UriUtils
+import com.google.gson.Gson
 import com.qingmei2.rximagepicker.core.RxImagePicker
 import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.permission.PermissionRequester
@@ -27,7 +30,7 @@ object ImagePicker {
      */
     fun openCamera(activity: BaseActivity): Observable<File> {
 
-        return Observable.create<File> { emitter ->
+        return Observable.create { emitter ->
 
             PermissionRequester.request(Permission.CAMERA, activity = activity)
                     .subscribe {

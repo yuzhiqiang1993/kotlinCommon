@@ -4,9 +4,10 @@ import com.yzq.common.data.BaseResp
 import com.yzq.kotlincommon.data.NewsBean
 import com.yzq.kotlincommon.data.request.GetNews
 import io.reactivex.Observable
-import okhttp3.ResponseBody
-import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
 
 interface ApiService {
 

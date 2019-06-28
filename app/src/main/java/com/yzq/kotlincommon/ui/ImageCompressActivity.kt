@@ -52,6 +52,7 @@ class ImageCompressActivity : BaseActivity() {
 
 
             ImagePicker.openCamera(this).subscribe { file ->
+
                 compressImgModel.compressImgWithWatermark(file.path)
                         .subscribe {
                             imgPath = it

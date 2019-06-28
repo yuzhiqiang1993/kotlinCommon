@@ -30,7 +30,7 @@ class RequestEncryptInterceptor : Interceptor {
 
         var charset = Charset.forName("UTF-8")
 
-        val method =  request.method.toLowerCase().trim()
+        val method = request.method.toLowerCase().trim()
 
         LogUtils.i("请求方式：${method}")
 
