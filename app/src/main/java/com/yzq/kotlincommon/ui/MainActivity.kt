@@ -67,10 +67,6 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
 
         navView.setNavigationItemSelectedListener(this)
 
-
-
-
-
         Observable.timer(3, TimeUnit.SECONDS)
                 .transform(this)
                 .subscribe {
