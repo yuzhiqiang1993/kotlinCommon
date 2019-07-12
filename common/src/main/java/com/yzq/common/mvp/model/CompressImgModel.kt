@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.*
 import com.yzq.common.R
 import com.yzq.common.constants.StoragePath
 import io.reactivex.Observable
+import io.reactivex.Single
 import java.io.IOException
 import javax.inject.Inject
 
@@ -29,8 +30,8 @@ class CompressImgModel @Inject constructor() {
     fun compressImgWithWatermark(
             path: String,
             waterMarkArr: ArrayList<String> = arrayListOf(timeWaterMark)
-    ): Observable<String> {
-        return Observable.create { e ->
+    ): Single<String> {
+        return Single.create { e ->
             LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
 
 
@@ -124,13 +125,13 @@ class CompressImgModel @Inject constructor() {
             /*保存并返回图片路径*/
             if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
                 /*返回保存后的路径*/
-                e.onNext(savedImgPath)
+                e.onSuccess(savedImgPath)
                 LogUtils.i("压缩后图片大小：" + FileUtils.getFileSize(savedImgPath))
             } else {
                 /*返回原路径*/
-                e.onNext(path)
+                e.onSuccess(path)
             }
-            e.onComplete()
+
         }
     }
 

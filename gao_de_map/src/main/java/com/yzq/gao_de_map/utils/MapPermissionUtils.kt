@@ -32,7 +32,7 @@ object MapPermissionUtils {
                     , Permission.WRITE_EXTERNAL_STORAGE
                     , Permission.READ_EXTERNAL_STORAGE
                     , Permission.READ_PHONE_STATE
-                    , activity = activity).subscribe {
+                    , activity = activity).subscribe { hasPermission ->
 
                 if (needGps) {
 

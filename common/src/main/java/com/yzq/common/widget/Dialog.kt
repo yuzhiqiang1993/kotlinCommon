@@ -92,6 +92,7 @@ object Dialog {
                 title(text = title)
                 message(text = message)
                 positiveButton(text = positiveText)
+
                 positiveButton {
                     emitter.onNext(true)
                     emitter.onComplete()

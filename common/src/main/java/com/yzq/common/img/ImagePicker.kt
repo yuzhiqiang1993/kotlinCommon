@@ -1,14 +1,11 @@
 package com.yzq.common.img
 
-import android.net.Uri
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.UriUtils
-import com.google.gson.Gson
 import com.qingmei2.rximagepicker.core.RxImagePicker
 import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.permission.PermissionRequester
 import com.yzq.common.ui.BaseActivity
-import io.reactivex.Observable
+import io.reactivex.Single
 import java.io.File
 
 
@@ -28,17 +25,16 @@ object ImagePicker {
      *
      * @param activity
      */
-    fun openCamera(activity: BaseActivity): Observable<File> {
+    fun openCamera(activity: BaseActivity): Single<File> {
 
-        return Observable.create { emitter ->
+        return Single.create { emitter ->
 
             PermissionRequester.request(Permission.CAMERA, activity = activity)
-                    .subscribe {
+                    .subscribe { hasPermission ->
                         RxImagePicker.create().openCamera(activity)
                                 .subscribe {
                                     val file = UriUtils.uri2File(it.uri)
-                                    emitter.onNext(file)
-                                    emitter.onComplete()
+                                    emitter.onSuccess(file)
                                 }
 
                     }
@@ -53,17 +49,17 @@ object ImagePicker {
      *
      * @param activity
      */
-    fun openGallery(activity: BaseActivity): Observable<File> {
+    fun openGallery(activity: BaseActivity): Single<File> {
 
-        return Observable.create<File> { emitter ->
+        return Single.create { emitter ->
 
             PermissionRequester.request(*Permission.Group.STORAGE, activity = activity)
-                    .subscribe {
+                    .subscribe { hasPermission ->
                         RxImagePicker.create().openGallery(activity)
                                 .subscribe {
                                     val file = UriUtils.uri2File(it.uri)
-                                    emitter.onNext(file)
-                                    emitter.onComplete()
+                                    emitter.onSuccess(file)
+
                                 }
 
                     }

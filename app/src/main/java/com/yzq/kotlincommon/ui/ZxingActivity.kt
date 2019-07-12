@@ -58,7 +58,7 @@ class ZxingActivity : BaseActivity() {
     @SuppressLint("AutoDispose", "CheckResult")
     private fun getLicenseInfo() {
         PermissionRequester.request(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE, activity = this)
-                .subscribe {
+                .subscribe { hasPermission ->
                     val intent = Intent(this, CaptureActivity::class.java)
                     startActivityForResult(intent, REQUEST_LICENSE_CODE)
                 }
@@ -68,7 +68,7 @@ class ZxingActivity : BaseActivity() {
     @SuppressLint("CheckResult", "AutoDispose")
     private fun excuteZxing() {
         PermissionRequester.request(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE, activity = this)
-                .subscribe {
+                .subscribe { hasPermission ->
 
                     val intent = Intent(this, CaptureActivity::class.java)
                     val zxingConfig = ZxingConfig()

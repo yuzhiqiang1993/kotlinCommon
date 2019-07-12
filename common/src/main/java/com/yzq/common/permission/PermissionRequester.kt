@@ -10,6 +10,7 @@ import com.yzq.common.ui.BaseActivity
 import com.yzq.common.widget.Dialog
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
+import io.reactivex.Single
 
 
 /**
@@ -31,16 +32,14 @@ object PermissionRequester {
      * @param permissions 要申请的权限
      * @param activity  Activity
      */
-    fun request(vararg permissions: String, activity: BaseActivity): Observable<Boolean> {
+    fun request(vararg permissions: String, activity: BaseActivity): Single<Boolean> {
 
-
-        return Observable.create<Boolean> { emitter: ObservableEmitter<Boolean> ->
+        return Single.create { emitter ->
             AndPermission.with(activity)
                     .runtime()
                     .permission(permissions)
                     .onGranted {
-                        emitter.onNext(true)
-                        emitter.onComplete()
+                        emitter.onSuccess(true)
                     }
                     .onDenied {
                         permissionDenied(it, activity)

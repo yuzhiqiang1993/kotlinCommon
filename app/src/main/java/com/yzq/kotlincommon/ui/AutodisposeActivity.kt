@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.ui
 
+import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
@@ -38,9 +39,8 @@ class AutodisposeActivity : BaseActivity() {
     }
 
 
+    @SuppressLint("AutoDispose")
     private fun startCount() {
-
-
         Observable.interval(1, TimeUnit.SECONDS)
                 .transform(this)
                 .subscribe {
