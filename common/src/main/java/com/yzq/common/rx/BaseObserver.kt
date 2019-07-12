@@ -1,10 +1,8 @@
 package com.yzq.common.rx
 
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
 import com.yzq.common.constants.BaseContstants
-import com.yzq.common.data.BaseResp
 import com.yzq.common.mvp.view.BaseView
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -28,7 +26,7 @@ abstract class BaseObserver<T>(private val view: BaseView) : Observer<T> {
         /*没有网络给出提示并取消发送*/
         if (!NetworkUtils.isConnected()) {
             view.showNoNet()
-            this.onError(kotlin.Throwable(BaseContstants.NO_NET))
+            this.onError(Throwable(BaseContstants.NO_NET))
         }
     }
 
