@@ -28,6 +28,7 @@ import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.util.*
 import javax.inject.Inject
 
 
@@ -291,8 +292,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     @SuppressLint("AutoDispose", "CheckResult")
     override fun onBackPressed() {
 
+        
         if (showBackHint) {
-            Dialog.showBackHintDialog().subscribe { finish() }
+            Dialog.showBackHintDialog().subscribe { clickPositive -> finish() }
         } else {
             finish()
         }

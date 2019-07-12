@@ -52,13 +52,13 @@ class DialogActivity : BaseActivity() {
 
         btn_only_positive_callback.setOnClickListener {
 
-            Dialog.showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作").subscribe {
+            Dialog.showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作").subscribe { clickPositive ->
 
                 ToastUtils.showShort("点击了确定")
             }
         }
         btn_positive_callback.setOnClickListener {
-            Dialog.showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作").subscribe {
+            Dialog.showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作").subscribe { clickPositive ->
 
                 ToastUtils.showShort("点击了确定")
             }
@@ -66,8 +66,8 @@ class DialogActivity : BaseActivity() {
         }
 
         btn_callback.setOnClickListener {
-            Dialog.showCallbackDialog(message = "双选项双回调").subscribe {
-                if (it) {
+            Dialog.showCallbackDialog(message = "双选项双回调").subscribe { clickPositive ->
+                if (clickPositive) {
                     ToastUtils.showShort("点击了确定")
                 } else {
                     ToastUtils.showShort("点击了取消")
@@ -81,15 +81,15 @@ class DialogActivity : BaseActivity() {
 
             val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
 
-            Dialog.showSingleSelectList(title = "语言", items = datas).subscribe {
-                ToastUtils.showShort(it)
+            Dialog.showSingleSelectList(title = "语言", items = datas).subscribe { selectedData ->
+                ToastUtils.showShort(selectedData)
 
             }
         }
 
         btn_input.setOnClickListener {
-            Dialog.showInputDialog().subscribe {
-                ToastUtils.showShort(it)
+            Dialog.showInputDialog().subscribe { inputData ->
+                ToastUtils.showShort(inputData)
             }
 
         }
@@ -140,9 +140,9 @@ class DialogActivity : BaseActivity() {
 
         }
 
-        btn_select_year.setOnClickListener { Dialog.selectYear().subscribe { ToastUtils.showShort(it) } }
-        btn_select_date.setOnClickListener { Dialog.selectDate().subscribe { ToastUtils.showShort(it) } }
-        btn_select_time.setOnClickListener { Dialog.selectHourAndMinute().subscribe { ToastUtils.showShort(it) } }
+        btn_select_year.setOnClickListener { Dialog.selectYear().subscribe { selectedYear -> ToastUtils.showShort(selectedYear) } }
+        btn_select_date.setOnClickListener { Dialog.selectDate().subscribe { selectedDate -> ToastUtils.showShort(selectedDate) } }
+        btn_select_time.setOnClickListener { Dialog.selectHourAndMinute().subscribe { selectedHourAndMinute -> ToastUtils.showShort(selectedHourAndMinute) } }
 
 
 
@@ -151,12 +151,12 @@ class DialogActivity : BaseActivity() {
 
             MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT))
                     .show {
-                title(R.string.hint)
-                message(text = "bottom sheet")
-                positiveButton(text = "确定")
-                negativeButton(text = "取消")
+                        title(R.string.hint)
+                        message(text = "bottom sheet")
+                        positiveButton(text = "确定")
+                        negativeButton(text = "取消")
 
-            }
+                    }
         }
 
 

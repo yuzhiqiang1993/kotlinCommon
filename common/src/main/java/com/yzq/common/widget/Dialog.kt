@@ -19,6 +19,7 @@ import com.yzq.common.extend.loading
 import com.yzq.common.extend.progress
 import com.yzq.common.ui.BaseActivity
 import io.reactivex.Observable
+import io.reactivex.Single
 
 
 /**
@@ -84,9 +85,9 @@ object Dialog {
             title: String = BaseContstants.HINT,
             message: String,
             positiveText: String = BaseContstants.SURE
-    ): Observable<Boolean> {
+    ): Single<Boolean> {
 
-        return Observable.create<Boolean> { emitter ->
+        return Single.create { emitter ->
 
             getNewDialog().show {
                 title(text = title)
@@ -94,8 +95,7 @@ object Dialog {
                 positiveButton(text = positiveText)
 
                 positiveButton {
-                    emitter.onNext(true)
-                    emitter.onComplete()
+                    emitter.onSuccess(true)
                 }
 
             }
@@ -120,9 +120,9 @@ object Dialog {
             message: String,
             positiveText: String = BaseContstants.SURE,
             negativeText: String = BaseContstants.CANCLE
-    ): Observable<Boolean> {
+    ): Single<Boolean> {
 
-        return Observable.create<Boolean> { emitter ->
+        return Single.create { emitter ->
 
             getNewDialog().show {
                 title(text = title)
@@ -130,8 +130,7 @@ object Dialog {
                 positiveButton(text = positiveText)
                 negativeButton(text = negativeText)
                 positiveButton {
-                    emitter.onNext(true)
-                    emitter.onComplete()
+                    emitter.onSuccess(true)
                 }
             }
 
@@ -155,8 +154,8 @@ object Dialog {
             message: String,
             positiveText: String = BaseContstants.SURE,
             negativeText: String = BaseContstants.CANCLE
-    ): Observable<Boolean> {
-        return Observable.create<Boolean> { emitter ->
+    ): Single<Boolean> {
+        return Single.create { emitter ->
 
             getNewDialog().show {
                 title(text = title)
@@ -164,12 +163,11 @@ object Dialog {
                 positiveButton(text = positiveText)
                 negativeButton(text = negativeText)
                 positiveButton {
-                    emitter.onNext(true)
-                    emitter.onComplete()
+                    emitter.onSuccess(true)
                 }
                 negativeButton {
-                    emitter.onNext(false)
-                    emitter.onComplete()
+                    emitter.onSuccess(false)
+
                 }
             }
 
@@ -193,9 +191,9 @@ object Dialog {
             message: String = BaseContstants.BACK_HINT,
             positiveText: String = BaseContstants.SURE,
             negativeText: String = BaseContstants.CANCLE
-    ): Observable<Boolean> {
+    ): Single<Boolean> {
 
-        return Observable.create { emitter ->
+        return Single.create { emitter ->
 
             getNewDialog().show {
 
@@ -204,8 +202,7 @@ object Dialog {
                 positiveButton(text = positiveText)
                 negativeButton(text = negativeText)
                 positiveButton {
-                    emitter.onNext(true)
-                    emitter.onComplete()
+                    emitter.onSuccess(true)
                 }
             }
 
@@ -227,9 +224,9 @@ object Dialog {
             message: String = "",
             items: List<String>
 
-    ): Observable<String> {
+    ): Single<String> {
 
-        return Observable.create<String> {
+        return Single.create {
 
             getNewDialog().show {
                 title(text = title)
@@ -237,8 +234,7 @@ object Dialog {
                     message(text = message)
                 }
                 listItems(items = items) { dialog, index, text ->
-                    it.onNext(text)
-                    it.onComplete()
+                    it.onSuccess(text)
                 }
 
             }
@@ -271,8 +267,8 @@ object Dialog {
             prefill: String = "",
             inputType: Int = InputType.TYPE_CLASS_TEXT,
             allowEmptyInput: Boolean = false
-    ): Observable<String> {
-        return Observable.create<String> {
+    ): Single<String> {
+        return Single.create<String> {
 
             getNewDialog().show {
 
@@ -284,8 +280,7 @@ object Dialog {
                 negativeButton(text = negativeText)
 
                 input(inputHint, prefill = prefill, allowEmpty = allowEmptyInput, inputType = inputType) { materialDialog, charSequence ->
-                    it.onNext(charSequence.toString().trim())
-                    it.onComplete()
+                    it.onSuccess(charSequence.toString().trim())
 
                 }
 
@@ -321,9 +316,9 @@ object Dialog {
             title: String = "选择年份",
             positiveText: String = BaseContstants.SURE,
             negativeText: String = BaseContstants.CANCLE
-    ): Observable<String> {
+    ): Single<String> {
 
-        return Observable.create<String> { emitter ->
+        return Single.create { emitter ->
 
             getNewDialog().show {
                 title(text = title)
@@ -333,7 +328,7 @@ object Dialog {
                 positiveButton {
                     val yearPicker = it.getCustomView().findViewById<YearPicker>(R.id.year_picker)
 
-                    emitter.onNext(yearPicker.selectedYear.toString())
+                    emitter.onSuccess(yearPicker.selectedYear.toString())
                 }
 
             }
@@ -352,9 +347,9 @@ object Dialog {
      * @param positiveText  确定文本
      * @param negativeText  取消文本
      */
-    fun selectDate(title: String = "选择日期", positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE): Observable<String> {
+    fun selectDate(title: String = "选择日期", positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE): Single<String> {
 
-        return Observable.create { emitter ->
+        return Single.create { emitter ->
 
             getNewDialog().show {
                 title(text = title)
@@ -377,8 +372,8 @@ object Dialog {
                     val selectedDate = "${datePicker.year}-${selectedMonth}-${selectedDay}"
                     LogUtils.i("选择的年与日：${selectedDate}")
 
-                    emitter.onNext(selectedDate)
-                    emitter.onComplete()
+                    emitter.onSuccess(selectedDate)
+
 
                 }
 
@@ -402,8 +397,8 @@ object Dialog {
             title: String = "选择时间",
             positiveText: String = BaseContstants.SURE,
             negativeText: String = BaseContstants.CANCLE
-    ): Observable<String> {
-        return Observable.create<String> { emitter ->
+    ): Single<String> {
+        return Single.create{ emitter ->
 
             getNewDialog().show {
                 title(text = title)
@@ -428,8 +423,7 @@ object Dialog {
                     val selectedTime = "${selectedHour}:${selectedMinute}"
                     LogUtils.i("选择时间：${selectedTime}}")
 
-                    emitter.onNext(selectedTime)
-                    emitter.onComplete()
+                    emitter.onSuccess(selectedTime)
                 }
             }
 
