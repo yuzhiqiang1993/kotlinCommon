@@ -6,6 +6,7 @@ import com.yzq.common.utils.AESUtil
 import com.yzq.common.utils.RSAUtil
 import okhttp3.Interceptor
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import okio.Buffer
 import java.net.URLDecoder
@@ -140,7 +141,7 @@ class RequestEncryptInterceptor : Interceptor {
 
 
                     /*然后将使用Aes加密过后的数据放到request里*/
-                    val newRequestBody = RequestBody.create(contentType, aesEncryptData)
+                    val newRequestBody = aesEncryptData.toRequestBody(contentType)
 
                     /*将加密过后的AES随机key放到请求头中并构建新的request*/
                     val newRequestBuilder = request.newBuilder()

@@ -8,6 +8,7 @@ import com.yzq.common.utils.RSAUtil
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody
+import okhttp3.ResponseBody.Companion.toResponseBody
 import java.nio.charset.Charset
 
 
@@ -69,7 +70,7 @@ class ResponseDecryptInterceptor : Interceptor {
                     LogUtils.i("解密后的明文：${responseData}")
 
                     /*将解密后的明文返回*/
-                    val newResponseBody = ResponseBody.create(contentType, responseData.trim())
+                    val newResponseBody = responseData.trim().toResponseBody(contentType)
                     response = response.newBuilder().body(newResponseBody).build()
 
                 } catch (e: Exception) {

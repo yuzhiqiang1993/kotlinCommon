@@ -93,7 +93,7 @@ object RSAUtil {
      * 获取Base64编码的公钥字符串
      */
     fun getPublicKey(map: Map<String, Any>): String {
-        var str = ""
+        val str: String
         val key = map[KEY_RSA_PUBLICKEY] as PublicKey
         str = base64Encode2Str(key.encoded)
         return str
@@ -103,7 +103,7 @@ object RSAUtil {
      * 获取Base64编码的私钥字符串
      */
     fun getPrivateKey(map: Map<String, Any>): String {
-        var str = ""
+        val str: String
         val key = map[KEY_RSA_PRIVATEKEY] as PrivateKey
         str = base64Encode2Str(key.encoded)
         return str
