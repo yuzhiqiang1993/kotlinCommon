@@ -29,7 +29,6 @@ abstract class BaseObserver<T>(private val view: BaseView) : Observer<T> {
         if (!NetworkUtils.isConnected()) {
             view.showNoNet()
             this.onError(kotlin.Throwable(BaseContstants.NO_NET))
-            d.dispose()
         }
     }
 

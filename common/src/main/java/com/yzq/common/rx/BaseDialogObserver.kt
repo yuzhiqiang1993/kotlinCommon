@@ -26,9 +26,7 @@ abstract class BaseDialogObserver<T>(private val view: BaseView, private val con
             view.showLoadingDialog(content)
 
         } else {
-            d.dispose()
             onError(Exception(BaseContstants.NO_NET))
-
         }
     }
 

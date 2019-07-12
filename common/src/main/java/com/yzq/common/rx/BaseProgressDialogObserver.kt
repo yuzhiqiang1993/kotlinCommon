@@ -29,7 +29,7 @@ abstract class BaseProgressDialogObserver<T>(private val view: BaseView, private
             view.showProgressDialog(title)
         } else {
             onError(Exception(BaseContstants.NO_NET))
-            d.dispose()
+        
         }
     }
 
