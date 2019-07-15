@@ -7,6 +7,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.ui.BaseMvpActivity
+import com.yzq.common.widget.StateView
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.NewsAdapter
 import com.yzq.kotlincommon.dagger.DaggerMainComponent
@@ -50,6 +51,13 @@ class NewsActivity : BaseMvpActivity<NewsView, NewsPresenter>(), NewsView, BaseQ
         initRecycleView(recy)
 
         initStateView(state_view, recy)
+        state_view.setRetryListener(object : StateView.RetryListener {
+            override fun retry() {
+
+                initData()
+            }
+
+        })
 
     }
 

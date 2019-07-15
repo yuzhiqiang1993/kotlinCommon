@@ -25,7 +25,8 @@ abstract class BaseDialogObserver<T>(private val view: BaseView, private val con
             view.showLoadingDialog(content)
 
         } else {
-            onError(Exception(BaseContstants.NO_NET))
+            view.showNoNet()
+            d.dispose()
         }
     }
 
@@ -33,7 +34,6 @@ abstract class BaseDialogObserver<T>(private val view: BaseView, private val con
     override fun onError(e: Throwable) {
         e.printStackTrace()
         view.dismissLoadingDialog()
-
 
         if (e is JSONException || e is JsonParseException) {
             view.showErrorDialog(BaseContstants.PARSE_DATA_ERROE)

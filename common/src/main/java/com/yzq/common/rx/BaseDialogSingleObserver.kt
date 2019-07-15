@@ -5,26 +5,27 @@ import com.google.gson.JsonParseException
 import com.yzq.common.constants.BaseContstants
 import com.yzq.common.mvp.view.BaseView
 import io.reactivex.Observer
+import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import org.json.JSONException
 import java.net.SocketTimeoutException
 
 
 /**
- * @description: 封装的observer基类
+ * @description: 带弹窗的Singleobserver
  * @author : yzq
  * @date   : 2018/7/9
- * @time   : 15:42
+ * @time   : 16:00
  *
  */
-
-abstract class BaseObserver<T>(private val view: BaseView) : Observer<T> {
+abstract class BaseDialogSingleObserver<T>(private val view: BaseView, private val content: String = BaseContstants.LOADING, private val hideDialog: Boolean = true) : SingleObserver<T> {
 
 
     override fun onSubscribe(d: Disposable) {
+        if (NetworkUtils.isConnected()) {
+            view.showLoadingDialog(content)
 
-        /*没有网络给出提示并取消订阅 */
-        if (!NetworkUtils.isConnected()) {
+        } else {
             view.showNoNet()
             d.dispose()
         }
@@ -32,20 +33,21 @@ abstract class BaseObserver<T>(private val view: BaseView) : Observer<T> {
 
 
     override fun onError(e: Throwable) {
+        view.dismissLoadingDialog()
         e.printStackTrace()
+
         if (e is JSONException || e is JsonParseException) {
-            view.showError(BaseContstants.PARSE_DATA_ERROE)
+            view.showErrorDialog(BaseContstants.PARSE_DATA_ERROE)
         } else if (e is SocketTimeoutException) {
-            view.showError(BaseContstants.SERVER_TIMEOUT)
+            view.showErrorDialog(BaseContstants.SERVER_TIMEOUT)
         } else {
-            view.showError(e.localizedMessage)
+            view.showErrorDialog(e.localizedMessage)
         }
+
     }
 
-
-    override fun onComplete() {
-
-
+    override fun onSuccess(t: T) {
+        view.dismissLoadingDialog()
     }
 
 

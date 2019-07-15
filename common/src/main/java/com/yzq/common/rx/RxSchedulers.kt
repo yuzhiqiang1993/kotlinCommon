@@ -1,6 +1,7 @@
 package com.yzq.common.rx
 
 import io.reactivex.ObservableTransformer
+import io.reactivex.SingleTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -26,5 +27,12 @@ object RxSchedulers {
 
     }
 
-    
+    fun <T> io2mainForSingle(): SingleTransformer<T, T> {
+        return SingleTransformer { upstream ->
+            upstream.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+        }
+    }
+
+
 }

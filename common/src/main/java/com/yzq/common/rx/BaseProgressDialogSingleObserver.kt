@@ -5,6 +5,7 @@ import com.google.gson.JsonParseException
 import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.constants.BaseContstants
 import io.reactivex.Observer
+import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import me.jessyan.progressmanager.ProgressListener
 import me.jessyan.progressmanager.ProgressManager
@@ -20,7 +21,7 @@ import java.net.SocketTimeoutException
  * @time   : 16:23
  *
  */
-abstract class BaseProgressDialogObserver<T>(private val view: BaseView, private val title: String,private val url: String) : Observer<T>, ProgressListener {
+abstract class BaseProgressDialogSingleObserver<T>(private val view: BaseView, private val title: String, private val url: String) : SingleObserver<T>, ProgressListener {
 
     override fun onSubscribe(d: Disposable) {
 
@@ -28,7 +29,7 @@ abstract class BaseProgressDialogObserver<T>(private val view: BaseView, private
             ProgressManager.getInstance().addRequestListener(url, this)
             view.showProgressDialog(title)
         } else {
-           view.showNoNet()
+            view.showNoNet()
             d.dispose()
         
         }
@@ -50,10 +51,10 @@ abstract class BaseProgressDialogObserver<T>(private val view: BaseView, private
     }
 
 
-    override fun onComplete() {
+    override fun onSuccess(t: T) {
         view.dismissProgressDialog()
-    }
 
+    }
 
     override fun onProgress(progressInfo: ProgressInfo?) {
 

@@ -3,13 +3,14 @@ package com.yzq.common.extend
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.uber.autodispose.ObservableSubscribeProxy
+import com.uber.autodispose.SingleSubscribeProxy
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 import com.uber.autodispose.autoDisposable
 import com.yzq.common.data.BaseResp
 import com.yzq.common.data.ResponseCode
 import com.yzq.common.rx.RxSchedulers
 import io.reactivex.Observable
-import kotlinx.coroutines.Deferred
+import io.reactivex.Single
 
 
 /**
@@ -29,13 +30,23 @@ fun <T> Observable<T>.transform(owner: LifecycleOwner): ObservableSubscribeProxy
 }
 
 
+fun <T> Single<T>.tranform(owner: LifecycleOwner): SingleSubscribeProxy<T> {
+
+    return this.compose(RxSchedulers.io2mainForSingle()).autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY))
+}
+
 /*
 * 数据转换
 *
 * */
 fun <T> Observable<BaseResp<T>>.dataConvert(): Observable<T> {
-    return flatMap {
-        if (it.errorCode == ResponseCode.SUCCESS) Observable.just(it.result) else Observable.error(Throwable(message = it.reason))
+    return flatMap { baseResp ->
+        if (baseResp.errorCode == ResponseCode.SUCCESS) Observable.just(baseResp.result) else Observable.error(Throwable(message = baseResp.reason))
     }
 }
 
+fun <T> Single<BaseResp<T>>.dataConvert(): Single<T> {
+    return flatMap { baseResp ->
+        if (baseResp.errorCode == ResponseCode.SUCCESS) Single.just(baseResp.result) else Single.error(Throwable(message = baseResp.reason))
+    }
+}

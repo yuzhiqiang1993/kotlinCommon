@@ -7,12 +7,13 @@ import com.yzq.kotlincommon.data.NewsBean
 import com.yzq.kotlincommon.data.request.GetNews
 import com.yzq.kotlincommon.net.ApiService
 import io.reactivex.Observable
+import io.reactivex.Single
 import kotlinx.coroutines.Deferred
 import javax.inject.Inject
 
 class NewsModel @Inject constructor() {
 
-    fun getData(type: String = "top", key: String = "4c52313fc9247e5b4176aed5ddd56ad7"): Observable<NewsBean> {
+    fun getData(type: String = "top", key: String = "4c52313fc9247e5b4176aed5ddd56ad7"): Single<NewsBean> {
 
         val getNews = GetNews(type = type, key = key)
 
