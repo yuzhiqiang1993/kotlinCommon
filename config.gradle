@@ -39,7 +39,7 @@ ext {
     baseRecyclerViewAdapterHelper = "2.9.46"
     photoview = "2.3.0"
     objectboxVersion = "2.3.4"
-    utilcode = "1.23.7"
+    utilcode = "1.25.0"
     arouter_api = "1.5.0"
     arouter_compiler = "1.2.2"
     walleVersion = "1.1.6"

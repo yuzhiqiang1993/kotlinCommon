@@ -80,7 +80,7 @@ object PermissionRequester {
 
 
         Dialog.showPositiveCallbackDialog(title = "开启权限", message = message, positiveText = "去开启", negativeText = "不开启")
-                .subscribe {click->
+                .subscribe { click ->
 
                     AndPermission.with(activity)
                             .runtime()
