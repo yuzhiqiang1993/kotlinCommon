@@ -27,7 +27,7 @@ ext {
     permission = "2.0.1"
     retrofit = "2.6.0"
     progressmanager_version = "1.5.0"
-    ok_http = "4.0.0"
+    ok_http = "4.0.1"
     rx_android = "2.1.1"
 //    rx_java = "2.2.8"
     rx_kotlin = "2.3.0"
