@@ -5,7 +5,7 @@ import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.load
-import com.yzq.common.img.ImagePicker
+import com.yzq.common.extend.openCamera
 
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
@@ -50,7 +50,7 @@ class ImageCompressActivity : BaseActivity() {
         initToolbar(toolbar, "图片")
         fab_camera.setOnClickListener {
 
-            ImagePicker.openCamera(this).subscribe { file ->
+            openCamera().subscribe { file ->
                 compressImgModel.compressImgWithWatermark(file.path)
                         .subscribe { path ->
                             imgPath = path

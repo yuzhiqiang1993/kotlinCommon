@@ -10,9 +10,9 @@ import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.extend.requestPermission
 import com.yzq.common.extend.showBaseDialog
 import com.yzq.common.extend.transform
-import com.yzq.common.permission.PermissionRequester
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
 import com.yzq.zxinglibrary.android.CaptureActivity
@@ -57,7 +57,7 @@ class ZxingActivity : BaseActivity() {
     val REQUEST_LICENSE_CODE = 666
     @SuppressLint("AutoDispose", "CheckResult")
     private fun getLicenseInfo() {
-        PermissionRequester.request(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE, activity = this)
+        requestPermission(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe { hasPermission ->
                     val intent = Intent(this, CaptureActivity::class.java)
                     startActivityForResult(intent, REQUEST_LICENSE_CODE)
@@ -67,7 +67,7 @@ class ZxingActivity : BaseActivity() {
     val REQUEST_CODE_SCAN = 555
     @SuppressLint("CheckResult", "AutoDispose")
     private fun excuteZxing() {
-        PermissionRequester.request(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE, activity = this)
+        requestPermission(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe { hasPermission ->
 
                     val intent = Intent(this, CaptureActivity::class.java)

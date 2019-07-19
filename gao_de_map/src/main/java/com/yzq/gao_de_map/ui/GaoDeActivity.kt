@@ -45,8 +45,7 @@ class GaoDeActivity : BaseActivity(), LocationView {
         btn_location.setOnClickListener {
 
             MapPermissionUtils.checkLocationPermission(true, this)
-                    .subscribe {
-
+                    .subscribe { hasPermission ->
                         locationSignModel.startLocation()
 
                     }

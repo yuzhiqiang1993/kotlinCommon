@@ -4,10 +4,10 @@ import android.annotation.SuppressLint
 import android.widget.Toast
 import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.AppContext
-import com.yzq.common.permission.PermissionRequester
+import com.yzq.common.extend.requestPermission
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.utils.LocationUtils
-import io.reactivex.Observable
+import io.reactivex.Single
 
 
 /**
@@ -23,31 +23,28 @@ object MapPermissionUtils {
 
     /*检查定位相关权限*/
     @SuppressLint("CheckResult")
-    fun checkLocationPermission(needGps: Boolean = false, activity: BaseActivity): Observable<Boolean> {
+    fun checkLocationPermission(needGps: Boolean = false, activity: BaseActivity): Single<Boolean> {
 
-        return Observable.create<Boolean> { emitter ->
-            PermissionRequester.request(
+        return Single.create { emitter ->
+            activity.requestPermission(
                     Permission.ACCESS_FINE_LOCATION
                     , Permission.ACCESS_COARSE_LOCATION
                     , Permission.WRITE_EXTERNAL_STORAGE
                     , Permission.READ_EXTERNAL_STORAGE
-                    , Permission.READ_PHONE_STATE
-                    , activity = activity).subscribe { hasPermission ->
+                    , Permission.READ_PHONE_STATE).subscribe { hasPermission ->
 
                 if (needGps) {
 
                     if (LocationUtils.isGpsEnabled()) {
-                        emitter.onNext(true)
+                        emitter.onSuccess(true)
                     } else {
                         Toast.makeText(AppContext, "该功能需要获取当前位置信息，请打开GPS", Toast.LENGTH_LONG).show()
                         LocationUtils.openGpsSettings()
                     }
 
                 } else {
-                    emitter.onNext(true)
+                    emitter.onSuccess(true)
                 }
-
-                emitter.onComplete()
 
 
             }
