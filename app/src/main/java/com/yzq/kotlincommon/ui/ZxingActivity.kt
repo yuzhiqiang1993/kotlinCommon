@@ -10,10 +10,10 @@ import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.extend.showBaseDialog
 import com.yzq.common.extend.transform
 import com.yzq.common.permission.PermissionRequester
 import com.yzq.common.ui.BaseActivity
-import com.yzq.common.widget.Dialog
 import com.yzq.kotlincommon.R
 import com.yzq.zxinglibrary.android.CaptureActivity
 import com.yzq.zxinglibrary.bean.ZxingConfig
@@ -143,7 +143,7 @@ class ZxingActivity : BaseActivity() {
 
             if (TextUtils.isEmpty(code) || TextUtils.isEmpty(name) || TextUtils.isEmpty(people)) {
                 dismissLoadingDialog()
-                Dialog.showBase(message = "请扫描营业执照上的二维码！")
+                showBaseDialog(message = "请扫描营业执照上的二维码！")
                 return@subscribe
             } else {
                 tv_result.setText("""

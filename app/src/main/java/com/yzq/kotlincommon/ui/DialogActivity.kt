@@ -8,9 +8,8 @@ import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.extend.transform
+import com.yzq.common.extend.*
 import com.yzq.common.ui.BaseActivity
-import com.yzq.common.widget.Dialog
 import com.yzq.kotlincommon.R
 import io.reactivex.Observable
 import io.reactivex.Observer
@@ -47,18 +46,18 @@ class DialogActivity : BaseActivity() {
 
 
         btn_base.setOnClickListener {
-            Dialog.showBase(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
+            showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
         }
 
         btn_only_positive_callback.setOnClickListener {
 
-            Dialog.showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作").subscribe { clickPositive ->
+            showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作").subscribe { clickPositive ->
 
                 ToastUtils.showShort("点击了确定")
             }
         }
         btn_positive_callback.setOnClickListener {
-            Dialog.showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作").subscribe { clickPositive ->
+            showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作").subscribe { clickPositive ->
 
                 ToastUtils.showShort("点击了确定")
             }
@@ -66,7 +65,7 @@ class DialogActivity : BaseActivity() {
         }
 
         btn_callback.setOnClickListener {
-            Dialog.showCallbackDialog(message = "双选项双回调").subscribe { clickPositive ->
+            showCallbackDialog(message = "双选项双回调").subscribe { clickPositive ->
                 if (clickPositive) {
                     ToastUtils.showShort("点击了确定")
                 } else {
@@ -81,20 +80,21 @@ class DialogActivity : BaseActivity() {
 
             val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
 
-            Dialog.showSingleSelectList(title = "语言", items = datas).subscribe { selectedData ->
+            showSingleSelectList(title = "语言", items = datas).subscribe { selectedData ->
                 ToastUtils.showShort(selectedData)
 
             }
         }
 
         btn_input.setOnClickListener {
-            Dialog.showInputDialog().subscribe { inputData ->
+            showInputDialog().subscribe { inputData ->
                 ToastUtils.showShort(inputData)
             }
 
         }
 
         btn_loadding.setOnClickListener {
+
 
             showLoadingDialog("登录中...")
 
@@ -140,9 +140,9 @@ class DialogActivity : BaseActivity() {
 
         }
 
-        btn_select_year.setOnClickListener { Dialog.selectYear().subscribe { selectedYear -> ToastUtils.showShort(selectedYear) } }
-        btn_select_date.setOnClickListener { Dialog.selectDate().subscribe { selectedDate -> ToastUtils.showShort(selectedDate) } }
-        btn_select_time.setOnClickListener { Dialog.selectHourAndMinute().subscribe { selectedHourAndMinute -> ToastUtils.showShort(selectedHourAndMinute) } }
+        btn_select_year.setOnClickListener { selectYear().subscribe { selectedYear -> ToastUtils.showShort(selectedYear) } }
+        btn_select_date.setOnClickListener { selectDate().subscribe { selectedDate -> ToastUtils.showShort(selectedDate) } }
+        btn_select_time.setOnClickListener { selectHourAndMinute().subscribe { selectedHourAndMinute -> ToastUtils.showShort(selectedHourAndMinute) } }
 
 
 

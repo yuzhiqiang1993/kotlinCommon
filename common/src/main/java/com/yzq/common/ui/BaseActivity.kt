@@ -19,16 +19,13 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
-import com.yzq.common.extend.changeProgress
-import com.yzq.common.extend.setLoadingMessage
+import com.yzq.common.extend.*
 import com.yzq.common.mvp.model.CompressImgModel
 import com.yzq.common.mvp.view.BaseView
-import com.yzq.common.widget.Dialog
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import java.util.*
 import javax.inject.Inject
 
 
@@ -56,6 +53,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     private var isRefreshLayout: Boolean = false//是否有下拉刷新
     private var showBackHint = false //是否显示返回提示框
 
+
     @Inject
     lateinit var compressImgModel: CompressImgModel  //图片压缩model
 
@@ -77,7 +75,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         initInject()
         initPresenter()
 
-        Dialog.initDialog(this)
+
         EventBusUtil.register(this)
 
         initArgs(intent.extras)
@@ -292,9 +290,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     @SuppressLint("AutoDispose", "CheckResult")
     override fun onBackPressed() {
 
-        
+
         if (showBackHint) {
-            Dialog.showBackHintDialog().subscribe { clickPositive -> finish() }
+            showBackHintDialog().subscribe { clickPositive -> finish() }
         } else {
             finish()
         }
@@ -304,8 +302,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     override fun onResume() {
         super.onResume()
-        Dialog.initDialog(this)
-
     }
 
 
@@ -317,7 +313,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     override fun showLoadingDialog(message: String) {
 
         if (loaddingDialog == null) {
-            loaddingDialog = Dialog.getLoadingDialog()
+            loaddingDialog = getLoadingDialog()
         }
 
         loaddingDialog?.setLoadingMessage(message)
@@ -342,7 +338,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     override fun showProgressDialog(title: String) {
 
         if (progressDialog == null) {
-            progressDialog = Dialog.getProgressDialog(title)
+            progressDialog = getProgressDialog(title)
         }
         progressDialog?.show()
 
@@ -368,7 +364,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     }
 
     override fun showErrorDialog(msg: String) {
-        Dialog.showBase(message = msg)
+        showBaseDialog(message = msg)
     }
 
     /**

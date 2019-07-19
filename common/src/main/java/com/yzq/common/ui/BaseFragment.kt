@@ -9,14 +9,10 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.afollestad.materialdialogs.MaterialDialog
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
-import com.yzq.common.extend.changeProgress
-import com.yzq.common.extend.setLoadingMessage
 import com.yzq.common.mvp.model.CompressImgModel
 import com.yzq.common.mvp.view.BaseView
-import com.yzq.common.widget.Dialog
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -32,8 +28,6 @@ import javax.inject.Inject
  */
 abstract class BaseFragment : Fragment(), BaseView {
 
-    private var loaddingDialog: MaterialDialog? = null
-    private var progressDialog: MaterialDialog? = null
 
     private var stateView: StateView? = null
     private var contentLayout: View? = null
@@ -141,46 +135,6 @@ abstract class BaseFragment : Fragment(), BaseView {
 
         return false
 
-    }
-
-    override fun showLoadingDialog(message: String) {
-
-        if (loaddingDialog == null) {
-            loaddingDialog = Dialog.getLoadingDialog()
-        }
-
-        loaddingDialog?.setLoadingMessage(message)
-        loaddingDialog?.show()
-
-    }
-
-    override fun dismissLoadingDialog() {
-        loaddingDialog?.dismiss()
-    }
-
-    override fun showProgressDialog(title: String) {
-
-        if (progressDialog == null) {
-            progressDialog = Dialog.getProgressDialog(title)
-        }
-
-        progressDialog?.show()
-
-
-    }
-
-    override fun dismissProgressDialog() {
-
-        progressDialog?.dismiss()
-    }
-
-    override fun changeProgress(percent: Int) {
-        progressDialog?.changeProgress(percent)
-
-    }
-
-    override fun showErrorDialog(msg: String) {
-        Dialog.showBase(message = msg)
     }
 
     override fun showLoadding() {
