@@ -30,7 +30,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     private var contentStr: String?
     private var hint: String?
     private var endIconRes: Int
-    private var editEnable = false
+    private var editEnable = true
     private var inputType: Int
 
 
@@ -44,7 +44,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         try {
             iconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_icon, -1)
             inputType = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_inputType, -1)
-            editEnable = typeArr.getBoolean(R.styleable.HorizontalEditView_horz_edit_editEnable, false)
+            editEnable = typeArr.getBoolean(R.styleable.HorizontalEditView_horz_edit_editEnable, true)
             endIconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_endIcon, -1)
             titleStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_title)
             contentStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_content)
@@ -119,5 +119,12 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         icon_end.setOnClickListener(listener)
     }
 
+    /**
+     * 设置编辑框是可用
+     * @param b Boolean
+     */
+    fun setEditEnable(b: Boolean) {
+        input_content.isEnabled = b
+    }
 
 }
