@@ -18,8 +18,13 @@ import com.yzq.common.ui.BaseActivity
 import io.reactivex.Single
 
 
-/*对BaseActivity的扩展*/
+/*
+* 对BaseActivity类的扩展
+* */
 
+
+
+/*获取一个新的Dialog实例*/
 fun BaseActivity.getNewDialog(): MaterialDialog {
 
     return MaterialDialog(this).cancelOnTouchOutside(false).cancelable(false).lifecycleOwner(this)
@@ -59,7 +64,7 @@ fun BaseActivity.showOnlyPostiveCallBackDialog(
         positiveText: String = BaseContstants.SURE
 ): Single<Boolean> {
 
-    return Single.create { emitter ->
+    return Single.create { singleEmitter ->
 
         getNewDialog().show {
             title(text = title)
@@ -67,7 +72,7 @@ fun BaseActivity.showOnlyPostiveCallBackDialog(
             positiveButton(text = positiveText)
 
             positiveButton {
-                emitter.onSuccess(true)
+                singleEmitter.onSuccess(true)
             }
 
         }
@@ -94,7 +99,7 @@ fun BaseActivity.showPositiveCallbackDialog(
         negativeText: String = BaseContstants.CANCLE
 ): Single<Boolean> {
 
-    return Single.create { emitter ->
+    return Single.create { singleEmitter ->
 
         getNewDialog().show {
             title(text = title)
@@ -102,7 +107,7 @@ fun BaseActivity.showPositiveCallbackDialog(
             positiveButton(text = positiveText)
             negativeButton(text = negativeText)
             positiveButton {
-                emitter.onSuccess(true)
+                singleEmitter.onSuccess(true)
             }
         }
 
@@ -127,7 +132,7 @@ fun BaseActivity.showCallbackDialog(
         positiveText: String = BaseContstants.SURE,
         negativeText: String = BaseContstants.CANCLE
 ): Single<Boolean> {
-    return Single.create { emitter ->
+    return Single.create { singleEmitter ->
 
         getNewDialog().show {
             title(text = title)
@@ -135,10 +140,10 @@ fun BaseActivity.showCallbackDialog(
             positiveButton(text = positiveText)
             negativeButton(text = negativeText)
             positiveButton {
-                emitter.onSuccess(true)
+                singleEmitter.onSuccess(true)
             }
             negativeButton {
-                emitter.onSuccess(false)
+                singleEmitter.onSuccess(false)
 
             }
         }
@@ -165,7 +170,7 @@ fun BaseActivity.showBackHintDialog(
         negativeText: String = BaseContstants.CANCLE
 ): Single<Boolean> {
 
-    return Single.create { emitter ->
+    return Single.create { singleEmitter ->
 
         getNewDialog().show {
 
@@ -174,7 +179,7 @@ fun BaseActivity.showBackHintDialog(
             positiveButton(text = positiveText)
             negativeButton(text = negativeText)
             positiveButton {
-                emitter.onSuccess(true)
+                singleEmitter.onSuccess(true)
             }
         }
 
@@ -198,7 +203,7 @@ fun BaseActivity.showSingleSelectList(
 
 ): Single<String> {
 
-    return Single.create {
+    return Single.create { singleEmitter ->
 
         getNewDialog().show {
             title(text = title)
@@ -206,7 +211,7 @@ fun BaseActivity.showSingleSelectList(
                 message(text = message)
             }
             listItems(items = items) { dialog, index, text ->
-                it.onSuccess(text)
+                singleEmitter.onSuccess(text)
             }
 
         }
@@ -240,7 +245,7 @@ fun BaseActivity.showInputDialog(
         inputType: Int = InputType.TYPE_CLASS_TEXT,
         allowEmptyInput: Boolean = false
 ): Single<String> {
-    return Single.create<String> {
+    return Single.create<String> { singleEmitter ->
 
         getNewDialog().show {
 
@@ -252,7 +257,7 @@ fun BaseActivity.showInputDialog(
             negativeButton(text = negativeText)
 
             input(inputHint, prefill = prefill, allowEmpty = allowEmptyInput, inputType = inputType) { materialDialog, charSequence ->
-                it.onSuccess(charSequence.toString().trim())
+                singleEmitter.onSuccess(charSequence.toString().trim())
 
             }
 
@@ -290,7 +295,7 @@ fun BaseActivity.selectYear(
         negativeText: String = BaseContstants.CANCLE
 ): Single<String> {
 
-    return Single.create { emitter ->
+    return Single.create { singleEmitter ->
 
         getNewDialog().show {
             title(text = title)
@@ -300,7 +305,7 @@ fun BaseActivity.selectYear(
             positiveButton {
                 val yearPicker = it.getCustomView().findViewById<YearPicker>(R.id.year_picker)
 
-                emitter.onSuccess(yearPicker.selectedYear.toString())
+                singleEmitter.onSuccess(yearPicker.selectedYear.toString())
             }
 
         }
@@ -321,7 +326,7 @@ fun BaseActivity.selectYear(
  */
 fun BaseActivity.selectDate(title: String = "选择日期", positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE): Single<String> {
 
-    return Single.create { emitter ->
+    return Single.create { singleEmitter ->
 
         getNewDialog().show {
             title(text = title)
@@ -344,7 +349,7 @@ fun BaseActivity.selectDate(title: String = "选择日期", positiveText: String
                 val selectedDate = "${datePicker.year}-${selectedMonth}-${selectedDay}"
                 LogUtils.i("选择的年与日：${selectedDate}")
 
-                emitter.onSuccess(selectedDate)
+                singleEmitter.onSuccess(selectedDate)
 
 
             }
@@ -370,7 +375,7 @@ fun BaseActivity.selectHourAndMinute(
         positiveText: String = BaseContstants.SURE,
         negativeText: String = BaseContstants.CANCLE
 ): Single<String> {
-    return Single.create { emitter ->
+    return Single.create { singleEmitter ->
 
         getNewDialog().show {
             title(text = title)
@@ -395,7 +400,7 @@ fun BaseActivity.selectHourAndMinute(
                 val selectedTime = "${selectedHour}:${selectedMinute}"
                 LogUtils.i("选择时间：${selectedTime}}")
 
-                emitter.onSuccess(selectedTime)
+                singleEmitter.onSuccess(selectedTime)
             }
         }
 
