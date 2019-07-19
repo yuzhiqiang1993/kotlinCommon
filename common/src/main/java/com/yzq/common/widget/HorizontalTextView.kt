@@ -28,6 +28,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     private var startIconRes: Int = -1
     private var titleStr: String?
     private var contentStr: String?
+    private var hintStr: String?
     private var endIconRes: Int = -1
     private var contentLeft = false
 
@@ -44,6 +45,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
                     typeArr.getResourceId(R.styleable.HorizontalTextView_horz_tv_endIcon, -1)
             titleStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_title)
             contentStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_content)
+            hintStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_hint)
             contentLeft = typeArr.getBoolean(R.styleable.HorizontalTextView_horz_tv_content_left, false)
 
         } finally {
@@ -69,6 +71,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
             tv_content.gravity = Gravity.LEFT
         }
         tv_content.setText(contentStr)
+        tv_content.setHint(hintStr)
 
 
     }

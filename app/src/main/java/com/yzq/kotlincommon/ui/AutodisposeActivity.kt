@@ -47,8 +47,6 @@ class AutodisposeActivity : BaseActivity() {
                     tv_count.setText("$it")
                     LogUtils.i("startCount-->$it")
                 }
-
-
     }
 
 

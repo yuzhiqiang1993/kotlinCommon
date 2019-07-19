@@ -26,7 +26,7 @@
         <attr name="horz_tv_content" format="string" />
         <attr name="horz_tv_endIcon" format="reference" />
         <attr name="horz_tv_content_left" format="boolean" />
-
+        <attr name="horz_tv_hint" format="string" />
     </declare-styleable>
 
 </resources>
