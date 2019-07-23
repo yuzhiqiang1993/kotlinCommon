@@ -54,7 +54,7 @@ ext {
     zxing_version = "2.2.8"
     jsoup_version = "1.12.1"
     kotlinx_coroutines_android = "1.2.1"
-    leakcanary_android = "2.0-alpha-2"
+    leakcanary_android = "2.0-alpha-3"
 
 
     signConfigs = [

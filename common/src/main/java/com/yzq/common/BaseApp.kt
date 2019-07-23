@@ -107,6 +107,7 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
     fun exitApp() {
         activityStack.forEach {
             it.finish()
+
         }
     }
 

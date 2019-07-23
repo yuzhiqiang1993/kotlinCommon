@@ -34,7 +34,8 @@ class App : BaseApp() {
         /*初始化Bugly*/
         Beta.showInterruptedStrategy = true
         Beta.canShowUpgradeActs.add(MainActivity::class.java)
-        Bugly.init(this, "52e655831e", BuildConfig.DEBUG)
+        /*第三个参数表示是否在debug下也上报日志信息*/
+        Bugly.init(this, "52e655831e", false)
 
     }
 
