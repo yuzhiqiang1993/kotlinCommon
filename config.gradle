@@ -36,14 +36,14 @@ ext {
     bottom_navigation_bar = "2.1.0"
     gson = "2.8.5"
     material_dialogs = "3.1.0"
-    baseRecyclerViewAdapterHelper = "2.9.46"
+    baseRecyclerViewAdapterHelper = "2.9.47-androidx"
     photoview = "2.3.0"
     objectboxVersion = "2.3.4"
     utilcode = "1.25.0"
     arouter_api = "1.5.0"
     arouter_compiler = "1.2.2"
     walleVersion = "1.1.6"
-    andResGuardVersion = "1.2.16"
+    andResGuardVersion = "1.2.17"
     rx_imgpicker = "2.5.0"
     bugly_crashreport_upgrade = '1.4.1'
     bugly_nativecrashreport = '3.7.1'
