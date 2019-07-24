@@ -193,7 +193,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     /*设置状态栏透明*/
     protected open fun transparentStatusBar() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return
         val window = getWindow()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
