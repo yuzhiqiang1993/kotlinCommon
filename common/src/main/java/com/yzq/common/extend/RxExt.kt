@@ -39,12 +39,6 @@ fun <T> Single<T>.transform(owner: LifecycleOwner): SingleSubscribeProxy<T> {
 * 数据转换
 *
 * */
-fun <T> Observable<BaseResp<T>>.dataConvert(): Observable<T> {
-    return flatMap { baseResp ->
-        if (baseResp.errorCode == ResponseCode.SUCCESS) Observable.just(baseResp.result) else Observable.error(Throwable(message = baseResp.reason))
-    }
-}
-
 fun <T> Single<BaseResp<T>>.dataConvert(): Single<T> {
     return flatMap { baseResp ->
         if (baseResp.errorCode == ResponseCode.SUCCESS) Single.just(baseResp.result) else Single.error(Throwable(message = baseResp.reason))
