@@ -9,6 +9,7 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.CrashUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
+import com.yzq.common.constants.StoragePath
 import java.util.*
 
 
@@ -52,7 +53,7 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
         registerActivityLifecycleCallbacks(this)
         /*打印路径信息*/
-        //StoragePath.getPathInfo()
+        StoragePath.getPathInfo()
     }
 
 

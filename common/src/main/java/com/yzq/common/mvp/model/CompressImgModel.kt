@@ -22,7 +22,7 @@ class CompressImgModel @Inject constructor() {
 
     private val quality = 85
     private val textColor = Color.GRAY
-    private val timeWaterMark = "ESP:" + TimeUtils.getNowString()
+    private val timeWaterMark = "YZQ:" + TimeUtils.getNowString()
     private val rootImgName = AppUtils.getAppPackageName() + "_"
 
 
@@ -59,7 +59,7 @@ class CompressImgModel @Inject constructor() {
             val textSize = defaultW / selectBitMap.density * 14
 
             /*添加图片水印*/
-            var watermarkLogo = ImageUtils.getBitmap(R.drawable.water_logo)
+            var watermarkLogo = ImageUtils.getBitmap(R.drawable.ic_launcher)
 
             val logoW = watermarkLogo.width
             val logoH = watermarkLogo.height
@@ -82,11 +82,14 @@ class CompressImgModel @Inject constructor() {
             LogUtils.i("offsetY=${offsetY}")
 
 
+            selectBitMap =
+                    ImageUtils.addImageWatermark(selectBitMap, watermarkLogo, offsetX, offsetY - textSize, 100)
+
             /*添加文字水印*/
 
             for ((index, str) in waterMarkArr.withIndex()) {
 
-                val strOffsetY = (textSize * (index + 1) + offsetY + watermarkLogo.height / 2).toFloat()
+                val strOffsetY = (textSize * (index + 1) + offsetY + watermarkLogo.height/2).toFloat()
 
                 LogUtils.i("strOffsetY:${strOffsetY}")
 
@@ -102,8 +105,6 @@ class CompressImgModel @Inject constructor() {
 
 
 
-            selectBitMap =
-                    ImageUtils.addImageWatermark(selectBitMap, watermarkLogo, offsetX, offsetY - textSize, 100)
 
             val ratio = getRatioSize(defaultW, defaultH)
             LogUtils.i("缩放比例$ratio")
@@ -122,6 +123,9 @@ class CompressImgModel @Inject constructor() {
 
             /*保存的文件名称*/
             val savedImgPath = StoragePath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
+
+
+            LogUtils.i("图片存储路径：${savedImgPath}")
             /*保存并返回图片路径*/
             if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
                 /*返回保存后的路径*/
@@ -129,6 +133,7 @@ class CompressImgModel @Inject constructor() {
                 LogUtils.i("压缩后图片大小：" + FileUtils.getFileSize(savedImgPath))
             } else {
                 /*返回原路径*/
+                LogUtils.i("保存失败，返回原路径:${path}")
                 e.onSuccess(path)
             }
 
