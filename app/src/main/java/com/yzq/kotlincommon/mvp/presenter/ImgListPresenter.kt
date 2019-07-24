@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.mvp.presenter
 
 import com.yzq.common.extend.transform
 import com.yzq.common.mvp.presenter.BasePresenter
-import com.yzq.common.rx.BaseObserver
+import com.yzq.common.rx.BaseSingleObserver
 import com.yzq.kotlincommon.data.BaiDuImgBean
 import com.yzq.kotlincommon.mvp.model.ImgListModel
 import com.yzq.kotlincommon.mvp.view.ImgListView
@@ -18,16 +18,15 @@ class ImgListPresenter @Inject constructor() : BasePresenter<ImgListView>() {
 
         model.getImgs(currentPage, pageSize)
                 .transform(lifecycleOwner)
-                .subscribe(object : BaseObserver<BaiDuImgBean>(view) {
-                    override fun onNext(baiDuImgBean: BaiDuImgBean) {
-
+                .subscribe(object : BaseSingleObserver<BaiDuImgBean>(view) {
+                    override fun onSuccess(baiDuImgBean: BaiDuImgBean) {
 
                         view.requestSuccess(baiDuImgBean)
                     }
 
                     override fun onError(e: Throwable) {
                         e.printStackTrace()
-                        view.showError(e.localizedMessage)
+                        view.showError(e.message)
                     }
                 })
     }

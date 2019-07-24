@@ -1,5 +1,6 @@
 package com.yzq.common.rx
 
+import android.text.TextUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
 import com.yzq.common.constants.BaseContstants
@@ -41,7 +42,9 @@ abstract class BaseDialogSingleObserver<T>(private val view: BaseView, private v
         } else if (e is SocketTimeoutException) {
             view.showErrorDialog(BaseContstants.SERVER_TIMEOUT)
         } else {
-            view.showErrorDialog(e.localizedMessage)
+
+            view.showErrorDialog(e.message)
+
         }
 
     }

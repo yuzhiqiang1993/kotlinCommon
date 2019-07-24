@@ -4,17 +4,17 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.net.GsonConvert
 import com.yzq.kotlincommon.data.BaiDuImgBean
 import com.yzq.kotlincommon.net.UrlConstants
-import io.reactivex.Observable
+import io.reactivex.Single
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.io.IOException
 import javax.inject.Inject
 
 class ImgListModel @Inject constructor() {
-    fun getImgs(currentPage: Int, pageSize: Int): Observable<BaiDuImgBean> {
+    fun getImgs(currentPage: Int, pageSize: Int): Single<BaiDuImgBean> {
 
 
-        return Observable.create {
+        return Single.create { singleEmitter ->
             val httpClient = OkHttpClient()
 
 
@@ -34,15 +34,13 @@ class ImgListModel @Inject constructor() {
 
                         val data = response.body!!.string()
                         LogUtils.i("请求的数据：${data}")
-
-
                         try {
                             val baiDuImgBean = GsonConvert.fromJson(data, BaiDuImgBean::class.java)
-                            it.onNext(baiDuImgBean)
+                            singleEmitter.onSuccess(baiDuImgBean)
                         } catch (e: Exception) {
-                            it.onError(Exception("数据解析错误"))
+                            singleEmitter.onError(Throwable(message = "数据解析错误"))
                         } finally {
-                            it.onComplete()
+
                         }
 
                     }
@@ -50,10 +48,8 @@ class ImgListModel @Inject constructor() {
                 }
 
                 override fun onFailure(call: Call, e: IOException) {
+                    singleEmitter.onError(e)
 
-
-                    it.onError(e)
-                    it.onComplete()
                 }
 
             })

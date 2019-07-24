@@ -1,6 +1,5 @@
 package com.yzq.common.rx
 
-import android.text.TextUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
 import com.yzq.common.constants.BaseContstants
@@ -36,13 +35,12 @@ abstract class BaseSingleObserver<T>(private val view: BaseView) : SingleObserve
 
         e.printStackTrace()
 
-
         if (e is JSONException || e is JsonParseException) {
             view.showError(BaseContstants.PARSE_DATA_ERROE)
         } else if (e is SocketTimeoutException) {
             view.showError(BaseContstants.SERVER_TIMEOUT)
         } else {
-            view.showError(e.localizedMessage)
+            view.showError(e.message)
         }
     }
 

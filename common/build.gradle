@@ -46,7 +46,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api "androidx.appcompat:appcompat:$appcompat"
-    api "androidx.legacy:legacy-support-v4:$legacy_support_v4"
     api "com.google.android.material:material:$material"
     api "androidx.vectordrawable:vectordrawable:$vectordrawable"
     api "androidx.constraintlayout:constraintlayout:$constraintlayout"

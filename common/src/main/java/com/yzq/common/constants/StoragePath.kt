@@ -1,10 +1,8 @@
 package com.yzq.common.constants
 
 import android.os.Environment
-
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
-
 import java.io.File
 
 /**
@@ -18,7 +16,7 @@ import java.io.File
 object StoragePath {
 
     /*手机存储根路径*/
-    val ROOT_PATH = "${Environment.getExternalStorageDirectory().absolutePath}${File.separator}"
+    val ROOT_PATH = "${Environment.getRootDirectory().absolutePath}${File.separator}"
     /*项目总路径*/
     val PROJECT_PATH = "${ROOT_PATH}yzq${File.separator}"
     /*包名路径*/

@@ -30,7 +30,7 @@ fun <T> Observable<T>.transform(owner: LifecycleOwner): ObservableSubscribeProxy
 }
 
 
-fun <T> Single<T>.tranform(owner: LifecycleOwner): SingleSubscribeProxy<T> {
+fun <T> Single<T>.transform(owner: LifecycleOwner): SingleSubscribeProxy<T> {
 
     return this.compose(RxSchedulers.io2mainForSingle()).autoDisposable(AndroidLifecycleScopeProvider.from(owner, Lifecycle.Event.ON_DESTROY))
 }

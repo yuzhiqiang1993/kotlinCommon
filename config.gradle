@@ -3,9 +3,9 @@ ext {
     gradle_version = '3.4.2'
 
     /*defaultConfig*/
-    compile_sdk_version = 28
-    min_sdk_version = 17
-    target_sdk_version = 28
+    compile_sdk_version = 29 //Android 10(Q)
+    min_sdk_version = 21  //Android 5.0
+    target_sdk_version = 28  //Android 9(P)
     version_code = 1  //eg:1->0.0.1  10->0.1.0  100->1.0.0
     version_name = "0.0.1"
     multiDexEnabled = true
@@ -14,7 +14,7 @@ ext {
 
     /*AndroidX*/
     appcompat = "1.0.2"
-    legacy_support_v4 = "1.0.0"
+    //legacy_support_v4 = "1.0.0"
     material = "1.0.0"
     vectordrawable = "1.0.0"
     constraintlayout = "1.1.3"

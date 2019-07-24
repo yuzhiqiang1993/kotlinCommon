@@ -3,12 +3,14 @@ package com.yzq.common.ui
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.yzq.common.constants.BaseContstants
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.mvp.model.CompressImgModel
@@ -166,11 +168,41 @@ abstract class BaseFragment : Fragment(), BaseView {
 
     }
 
-    override fun showError(msg: String) {
-        stateView?.showError(msg)
+    override fun showError(msg: String?) {
+
+        if (TextUtils.isEmpty(msg)) {
+            stateView?.showError(BaseContstants.UNKONW_ERROR)
+        } else {
+            stateView?.showError(msg!!)
+        }
         contentLayout?.visibility = View.GONE
     }
 
+
+    override fun showLoadingDialog(message: String) {
+        (activity as BaseActivity).showLoadingDialog(message)
+    }
+
+    override fun dismissLoadingDialog() {
+        (activity as BaseActivity).dismissLoadingDialog()
+    }
+
+    override fun showErrorDialog(msg: String?) {
+        (activity as BaseActivity).showErrorDialog(msg)
+    }
+
+
+    override fun showProgressDialog(title: String) {
+        (activity as BaseActivity).showProgressDialog(title)
+    }
+
+    override fun changeProgress(percent: Int) {
+        (activity as BaseActivity).changeProgress(percent)
+    }
+
+    override fun dismissProgressDialog() {
+        (activity as BaseActivity).dismissProgressDialog()
+    }
 
     protected fun initStateView(stateView: StateView, contentLayout: View, isRefreshLayout: Boolean = false) {
         this.stateView = stateView

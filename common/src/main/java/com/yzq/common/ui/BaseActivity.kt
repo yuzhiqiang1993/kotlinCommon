@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
+import com.yzq.common.constants.BaseContstants
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.extend.*
@@ -363,8 +365,14 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     }
 
-    override fun showErrorDialog(msg: String) {
-        showBaseDialog(message = msg)
+
+    override fun showErrorDialog(msg: String?) {
+        if (TextUtils.isEmpty(msg)) {
+            showBaseDialog(message = BaseContstants.UNKONW_ERROR)
+        } else {
+            showBaseDialog(message = msg!!)
+        }
+
     }
 
     /**
@@ -419,8 +427,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      *
      * @param msg  错误信息
      */
-    override fun showError(msg: String) {
-        stateView?.showError(msg)
+    override fun showError(msg: String?) {
+
+        if (TextUtils.isEmpty(msg)) {
+            stateView?.showError(BaseContstants.UNKONW_ERROR)
+        } else {
+            stateView?.showError(msg!!)
+        }
         contentLayout?.visibility = View.GONE
 
     }

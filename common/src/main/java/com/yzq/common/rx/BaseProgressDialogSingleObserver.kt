@@ -1,10 +1,10 @@
 package com.yzq.common.rx
 
+import android.text.TextUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
-import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.constants.BaseContstants
-import io.reactivex.Observer
+import com.yzq.common.mvp.view.BaseView
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import me.jessyan.progressmanager.ProgressListener
@@ -31,7 +31,7 @@ abstract class BaseProgressDialogSingleObserver<T>(private val view: BaseView, p
         } else {
             view.showNoNet()
             d.dispose()
-        
+
         }
     }
 
@@ -45,7 +45,9 @@ abstract class BaseProgressDialogSingleObserver<T>(private val view: BaseView, p
         } else if (e is SocketTimeoutException) {
             view.showErrorDialog(BaseContstants.SERVER_TIMEOUT)
         } else {
-            view.showErrorDialog(e.localizedMessage)
+
+            view.showErrorDialog(e.message)
+
         }
 
     }

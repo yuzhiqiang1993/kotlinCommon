@@ -15,11 +15,11 @@ interface BaseView {
     fun showProgressDialog(title: String)
     fun dismissProgressDialog()
     fun changeProgress(percent: Int)
-    fun showErrorDialog(msg: String)
+    fun showErrorDialog(msg: String?)
     fun showLoadding()
     fun showContent()
     fun showNoData()
     fun showNoNet()
-    fun showError(msg: String)
+    fun showError(msg: String?)
 
 }

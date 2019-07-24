@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.mvp.presenter
 
 import com.blankj.utilcode.util.ToastUtils
-import com.yzq.common.extend.tranform
+import com.yzq.common.extend.transform
 import com.yzq.common.mvp.presenter.BasePresenter
 import com.yzq.common.rx.BaseSingleObserver
 import com.yzq.kotlincommon.data.NewsBean
@@ -16,7 +16,7 @@ class NewsPresenter @Inject constructor() : BasePresenter<NewsView>() {
 
     fun requestData() {
         model.getData()
-                .tranform(lifecycleOwner)
+                .transform(lifecycleOwner)
                 .subscribe(object : BaseSingleObserver<NewsBean>(view) {
                     override fun onSuccess(newsBean: NewsBean) {
 

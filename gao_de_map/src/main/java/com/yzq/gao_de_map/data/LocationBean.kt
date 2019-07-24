@@ -14,15 +14,15 @@ import android.os.Parcelable
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 data class LocationBean(
-    var address: String = "", // 上海市闵行区梅强路228号靠近春申创意园A座
-    var city: String = "", // 上海市
-    var cityCode: String = "", // 021
-    var country: String = "", // 中国
-    var district: String = "", // 闵行区
-    var districtCode: String = "", // 310112
-    var latitude: Double = 0.0, // 31.108519
-    var longitude: Double = 0.0, // 121.418365
-    var province: String = "" // 上海市
+        var address: String? = "", // 上海市闵行区梅强路228号靠近春申创意园A座
+        var city: String? = "", // 上海市
+        var cityCode: String? = "", // 021
+        var country: String? = "", // 中国
+        var district: String? = "", // 闵行区
+        var districtCode: String? = "", // 310112
+        var latitude: Double = 0.0, // 31.108519
+        var longitude: Double = 0.0, // 121.418365
+        var province: String? = "" // 上海市
 ) : Parcelable {
     constructor(source: Parcel) : this(
         source.readString(),
