@@ -14,7 +14,7 @@ import com.yzq.common.widget.StateView
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ImgListAdapter
 import com.yzq.kotlincommon.dagger.DaggerMainComponent
-import com.yzq.kotlincommon.data.BaiDuImgBean
+import com.yzq.kotlincommon.data.Subject
 import com.yzq.kotlincommon.mvp.presenter.ImgListPresenter
 import com.yzq.kotlincommon.mvp.view.ImgListView
 import kotlinx.android.synthetic.main.activity_image_list.*
@@ -31,19 +31,17 @@ import kotlinx.android.synthetic.main.activity_image_list.*
 @Route(path = RoutePath.Main.IMG_LIST)
 class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgListView, BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
 
-    private val baiDuImgList = arrayListOf<BaiDuImgBean.Data>()
+    private val subjectList = arrayListOf<Subject>()
 
-    private var imgListAdapter: ImgListAdapter = ImgListAdapter(R.layout.item_img_list, baiDuImgList)
+    private var imgListAdapter: ImgListAdapter = ImgListAdapter(R.layout.item_img_list, subjectList)
 
     var httpRequestType = HttpRequestType.FIRST
 
 
-    /*当前页码*/
-    private var currentPage = 0
-    /*总页码*/
-    private var totalPage = 0
-    /*每页请求多少条数据*/
-    private val pageSize = 100
+    /*开始位置*/
+    private var start = 0
+    /*请求个数*/
+    private var count = 30
 
     override fun getContentLayoutId(): Int {
 
@@ -75,6 +73,7 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
         layout_swipe_refresh.setOnRefreshListener {
 
             httpRequestType = HttpRequestType.REFRESH
+            start = 0
             initData()
         }
     }
@@ -103,33 +102,34 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
 
     override fun initData() {
 
-        baiDuImgList.clear()
+        subjectList.clear()
 
         if (httpRequestType == HttpRequestType.FIRST) {
             showLoadding()
         }
 
-        presenter.getImgs(currentPage, pageSize)
+        presenter.getImgs(start, count)
 
 
     }
 
-    override fun requestSuccess(baiDuImgBean: BaiDuImgBean) {
 
-        val totalPageSize: Double = baiDuImgBean.totalNum / pageSize.toDouble()
+    override fun requestSuccess(subjects: List<Subject>) {
 
-        LogUtils.i("算出来的总页数：${totalPageSize}")
 
-        totalPage = Math.ceil(totalPageSize).toInt()
+        if (subjects.size == 0) {
+            imgListAdapter.loadMoreEnd()
+            return
+        }
+        start += subjects.size
 
-        baiDuImgBean.data.remove(baiDuImgBean.data.last())
-
+        LogUtils.i("start:${start}")
 
         if (httpRequestType == HttpRequestType.LOAD_MORE) {
-            imgListAdapter.addData(baiDuImgBean.data)
+            imgListAdapter.addData(subjects)
             imgListAdapter.loadMoreComplete()
         } else {
-            imgListAdapter.setNewData(baiDuImgBean.data)
+            imgListAdapter.setNewData(subjects)
         }
 
 
@@ -140,17 +140,16 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
 
-        preViewImg(imgListAdapter.data[position].imageUrl)
+        preViewImg(imgListAdapter.data[position].images.large)
 
     }
 
 
     override fun onLoadMoreRequested() {
 
-        if (currentPage < totalPage) {
+        if (start <= 250) {
             httpRequestType = HttpRequestType.LOAD_MORE
-
-            presenter.getImgs(currentPage, pageSize)
+            presenter.getImgs(start, count)
         } else {
             imgListAdapter.loadMoreEnd()
         }

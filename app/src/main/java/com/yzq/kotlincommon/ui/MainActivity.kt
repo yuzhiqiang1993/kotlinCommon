@@ -79,7 +79,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
 
     override fun initData() {
 
-        items.add("新闻页面（Retrofit）")
+        items.add("电影列表")
         items.add("任务页面（悬浮吸顶、侧滑菜单）")
         items.add("图片页面（选择压缩）")
         items.add("弹窗")
@@ -106,7 +106,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
         when (position) {
-            0 -> skip(RoutePath.Main.NEWS)
+            0 -> skip(RoutePath.Main.MOVIES)
             1 -> skip(RoutePath.Main.TASK)
             2 -> skip(RoutePath.Main.IMG_COMPRESS)
             3 -> skip(RoutePath.Main.DIALOG)

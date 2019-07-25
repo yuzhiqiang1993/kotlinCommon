@@ -10,5 +10,5 @@ package com.yzq.kotlincommon.net
  */
 
 object UrlConstants {
-   const val BAIDU_IMG = "http://image.baidu.com/search/index"
+
 }

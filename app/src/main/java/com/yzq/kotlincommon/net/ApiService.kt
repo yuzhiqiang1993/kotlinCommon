@@ -1,24 +1,14 @@
 package com.yzq.kotlincommon.net
 
-import com.yzq.common.data.BaseResp
-import com.yzq.kotlincommon.data.NewsBean
-import com.yzq.kotlincommon.data.request.GetNews
-import io.reactivex.Observable
+import com.yzq.kotlincommon.data.MovieBean
 import io.reactivex.Single
-import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ApiService {
 
-    @POST(ApiConstants.index)
-    @FormUrlEncoded
-    fun getIndex(@Field(ParamConstants.type) type: String, @Field(ParamConstants.key) key: String): Single<BaseResp<NewsBean>>
-
-
-    @POST(ApiConstants.index)
-    fun getIndex(@Body getNews: GetNews): Observable<BaseResp<NewsBean>>
+    @GET(ApiConstants.top250)
+    fun getMovies(@Query(ParamConstants.key) key: String = "0b2bdeda43b5688921839c8ecb20399b", @Query(ParamConstants.start) start: Int = 0, @Query(ParamConstants.count) count: Int = 10): Single<MovieBean>
 
 
 }

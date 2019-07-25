@@ -12,7 +12,9 @@ package com.yzq.kotlincommon.net
 
 object ApiConstants {
 
-    const val index = "index"
+    const val top250 = "top250"
+
+
 
 
 }

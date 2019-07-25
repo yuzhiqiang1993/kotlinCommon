@@ -14,7 +14,7 @@ object RoutePath {
     object Main {
         const val TASK = "/main/task"
         const val MAIN = "/main/main"
-        const val NEWS = "/main/news"
+        const val MOVIES = "/main/movies"
         const val IMG_COMPRESS = "/main/imgCompress"
         const val DIALOG = "/main/dialog"
         const val ZXING = "/main/zxing"

@@ -10,9 +10,8 @@ package com.yzq.kotlincommon.net
  */
 
 object ParamConstants {
-    const val type = "type"
-    const val key = "key"
-    const val page = "pn"
-    const val size = "rn"
-    const val tag = "tag1"
+
+    const val key = "apikey"
+    const val start = "start"
+    const val count = "count"
 }

@@ -58,7 +58,7 @@ class RetrofitFactory private constructor() {
         val okHttpBuilder = OkHttpClient.Builder()
                 .connectTimeout(5, TimeUnit.SECONDS)
                 .readTimeout(5, TimeUnit.SECONDS)
-                .addInterceptor(RequestHeadersInterceptor())
+                //.addInterceptor(RequestHeadersInterceptor())
                 //   .addInterceptor(RequestEncryptInterceptor())
                 .addInterceptor(initLogInterceptor())
         // .addInterceptor(ResponseDecryptInterceptor())

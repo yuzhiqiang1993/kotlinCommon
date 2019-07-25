@@ -37,7 +37,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.NewsActivity"
+            android:name=".ui.MoviesActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity

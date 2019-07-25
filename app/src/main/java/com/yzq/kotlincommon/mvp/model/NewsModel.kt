@@ -1,23 +1,16 @@
 package com.yzq.kotlincommon.mvp.model
 
-import com.yzq.common.data.BaseResp
-import com.yzq.common.extend.dataConvert
 import com.yzq.common.net.RetrofitFactory
-import com.yzq.kotlincommon.data.NewsBean
-import com.yzq.kotlincommon.data.request.GetNews
+import com.yzq.kotlincommon.data.MovieBean
 import com.yzq.kotlincommon.net.ApiService
-import io.reactivex.Observable
 import io.reactivex.Single
-import kotlinx.coroutines.Deferred
 import javax.inject.Inject
 
 class NewsModel @Inject constructor() {
 
-    fun getData(type: String = "top", key: String = "4c52313fc9247e5b4176aed5ddd56ad7"): Single<NewsBean> {
+    fun getData(start: Int, count: Int): Single<MovieBean> {
 
-        val getNews = GetNews(type = type, key = key)
-
-        return RetrofitFactory.instance.getService(ApiService::class.java).getIndex(type, key).dataConvert()
+        return RetrofitFactory.instance.getService(ApiService::class.java).getMovies("0b2bdeda43b5688921839c8ecb20399b", start, count)
     }
 
 

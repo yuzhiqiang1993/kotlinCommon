@@ -89,7 +89,7 @@ class CompressImgModel @Inject constructor() {
 
             for ((index, str) in waterMarkArr.withIndex()) {
 
-                val strOffsetY = (textSize * (index + 1) + offsetY + watermarkLogo.height/2).toFloat()
+                val strOffsetY = (textSize * (index + 1) + offsetY + watermarkLogo.height / 2).toFloat()
 
                 LogUtils.i("strOffsetY:${strOffsetY}")
 
@@ -102,8 +102,6 @@ class CompressImgModel @Inject constructor() {
                         strOffsetY
                 )
             }
-
-
 
 
             val ratio = getRatioSize(defaultW, defaultH)

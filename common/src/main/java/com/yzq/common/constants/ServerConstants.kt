@@ -13,12 +13,11 @@ import com.yzq.common.BuildConfig
 
 object ServerConstants {
 
+    private val SERVER_URL_RELEASE = "https://api.douban.com/"
 
-    private val SERVER_URL_RELEASE = "http://v.juhe.cn/"
+    private val SERVER_URL_DEBUG = "https://api.douban.com/"
 
-    private val SERVER_URL_DEBUG = "http://v.juhe.cn/"
-
-    private val API = "toutiao/"
+    private val API = "v2/movie/"
 
 
     val DEVICE_ID = "DeviceId"
