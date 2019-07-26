@@ -10,10 +10,8 @@
 
     <application
         android:allowBackup="false"
-        android:hardwareAccelerated="false"
         android:largeHeap="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
 
         <provider

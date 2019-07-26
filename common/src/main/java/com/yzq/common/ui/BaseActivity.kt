@@ -13,11 +13,13 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
+import com.yzq.common.R
 import com.yzq.common.constants.BaseContstants
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
@@ -177,7 +179,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      *
      * @param recy RecyclerView  列表
      * @param layoutManager RecyclerView.LayoutManager  布局，默认是线性布局
-     * @param hasImg Boolean  是否有图片  默认没有
      * @param needItemDecoration Boolean 是否需要分割线  默认需要
      */
     protected open fun initRecycleView(recy: RecyclerView, layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this), needItemDecoration: Boolean = true) {
@@ -185,9 +186,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         recy.layoutManager = layoutManager
         if (needItemDecoration) {
             recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
-
         }
-
     }
 
 
@@ -255,13 +254,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * @param name  图片的名称
      * @param path  图片路径
      */
-    protected fun preViewImg(path: String) {
-
+    protected fun preViewImg(path: String, view: View) {
         val intent = Intent(this, ImgPreviewActivity::class.java)
         intent.putExtra(ImgPreviewActivity.IMG_PATH, path)
 
-
-        startActivity(intent)
+        val options =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, getString(R.string.img_transition))
+        startActivity(intent, options.toBundle())
 
     }
 
@@ -290,7 +289,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     @SuppressLint("AutoDispose", "CheckResult")
     override fun onBackPressed() {
-
 
         if (showBackHint) {
             showBackHintDialog().subscribe { clickPositive -> finish() }

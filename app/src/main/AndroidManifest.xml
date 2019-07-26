@@ -9,18 +9,18 @@
     <application
         android:name=".App"
         android:allowBackup="false"
-        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
+
         <activity
             android:name=".ui.ImageListActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
-        <!-- 阿里热修复相关配置 -->
+            android:configChanges="keyboardHidden|orientation|screenSize" /> <!-- 阿里热修复相关配置 -->
         <meta-data
             android:name="com.taobao.android.hotfix.IDSECRET"
             android:value="25877406-1" />
@@ -35,7 +35,6 @@
             android:name=".ui.FlexBoxActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.MoviesActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

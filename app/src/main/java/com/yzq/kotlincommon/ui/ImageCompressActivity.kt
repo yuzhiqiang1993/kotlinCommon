@@ -61,7 +61,7 @@ class ImageCompressActivity : BaseActivity() {
 
 
         iv_img.setOnClickListener {
-            preViewImg(imgPath)
+            preViewImg(imgPath,it)
         }
 
 

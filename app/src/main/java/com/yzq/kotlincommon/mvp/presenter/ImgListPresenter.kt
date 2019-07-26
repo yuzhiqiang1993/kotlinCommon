@@ -14,15 +14,12 @@ class ImgListPresenter @Inject constructor() : BasePresenter<ImgListView>() {
     lateinit var model: ImgListModel
 
     fun getImgs(start: Int, count: Int) {
-
-
         model.getImgs(start, count)
                 .transform(lifecycleOwner)
                 .subscribe(object : BaseSingleObserver<MovieBean>(view) {
                     override fun onSuccess(movieBean: MovieBean) {
                         view.requestSuccess(movieBean.subjects)
                     }
-
                 })
     }
 

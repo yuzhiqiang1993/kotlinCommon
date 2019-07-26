@@ -17,7 +17,7 @@ class MovieAdapter(layoutResId: Int, data: List<Subject>) : BaseQuickAdapter<Sub
 
         val iv_img = helper.itemView.iv_img
 
-        iv_img.loadWithOptions(item.images.small, 20)
+        iv_img.loadWithOptions(item.images.medium, 20)
 
         helper.addOnClickListener(R.id.iv_img)
 

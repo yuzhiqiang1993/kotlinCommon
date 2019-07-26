@@ -28,5 +28,6 @@
     <string name="not_update">暂不更新</string>
     <string name="zero">0</string>
     <string name="hundred">100</string>
+    <string name="img_transition">img_transition</string>
 
 </resources>

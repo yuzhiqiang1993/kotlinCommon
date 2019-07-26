@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.os.Bundle
 import com.blankj.utilcode.util.BarUtils
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.yzq.common.R
 import kotlinx.android.synthetic.main.activity_img_preview.*
 
@@ -31,6 +30,7 @@ class ImgPreviewActivity : BaseActivity() {
 
     override fun getContentLayoutId(): Int {
 
+
         return R.layout.activity_img_preview
     }
 
@@ -50,10 +50,14 @@ class ImgPreviewActivity : BaseActivity() {
         BarUtils.setStatusBarColor(this, Color.BLACK)
         setAllowFastClick(true)
 
+        photo_view.setOnClickListener { finishAfterTransition() }
+        Glide.with(this).load(imagePath).into(photo_view)
 
-        Glide.with(this).load(imagePath).fitCenter().transition(withCrossFade()) .into(photo_view)
-
-        photo_view.setOnClickListener { finish() }
     }
+
+    override fun onBackPressed() {
+        finishAfterTransition()
+    }
+
 
 }

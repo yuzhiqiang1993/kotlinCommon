@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui
 
 import android.view.View
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
@@ -125,13 +126,15 @@ class MoviesActivity : BaseMvpActivity<MovieView, MoviePresenter>(), MovieView, 
     }
 
 
-    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View?, position: Int) {
 
         operationItem = movieAdapter.data.get(position)
-
+        val imgView = recy.layoutManager!!.findViewByPosition(position)!!.findViewById<AppCompatImageView>(R.id.iv_img)
         when (view!!.id) {
-            R.id.iv_img ->
-                preViewImg(operationItem.images.large)
+            R.id.iv_img -> {
+
+                preViewImg(operationItem.images.large, imgView)
+            }
         }
 
     }

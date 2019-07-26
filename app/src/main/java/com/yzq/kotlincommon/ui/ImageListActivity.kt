@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui
 
 import android.view.View
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -140,7 +141,8 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
 
-        preViewImg(imgListAdapter.data[position].images.large)
+        val imgView = recy.layoutManager!!.findViewByPosition(position)!!.findViewById<AppCompatImageView>(R.id.iv_img)
+        preViewImg(imgListAdapter.data[position].images.large, imgView)
 
     }
 
