@@ -23,7 +23,6 @@ class GaoDeActivity : BaseActivity(), LocationView {
     lateinit var locationSignModel: LocationSignModel
 
     override fun getContentLayoutId(): Int {
-
         return R.layout.activity_gao_de
     }
 
@@ -31,7 +30,7 @@ class GaoDeActivity : BaseActivity(), LocationView {
 
         DaggerGaoDeComponent.builder().build().inject(this)
 
-        locationSignModel.initLocation(this)
+        locationSignModel.initLocation(this,this)
 
 
     }
@@ -64,6 +63,5 @@ class GaoDeActivity : BaseActivity(), LocationView {
 
         tv_location_result.text = locationDetail
     }
-
 
 }

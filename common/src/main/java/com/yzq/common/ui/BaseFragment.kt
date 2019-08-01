@@ -1,7 +1,6 @@
 package com.yzq.common.ui
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -118,15 +117,6 @@ abstract class BaseFragment : Fragment(), BaseView {
     fun onEventMainThread(msg: EventMsg) {
     }
 
-
-    protected fun preViewImg(path: String) {
-
-        val intent = Intent(activity, ImgPreviewActivity::class.java)
-        intent.putExtra(ImgPreviewActivity.IMG_PATH, path)
-
-        startActivity(intent)
-
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

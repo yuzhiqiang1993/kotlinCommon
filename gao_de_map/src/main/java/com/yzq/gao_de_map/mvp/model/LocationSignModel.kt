@@ -1,5 +1,6 @@
 package com.yzq.gao_de_map.mvp.model
 
+import androidx.lifecycle.*
 import com.amap.api.location.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
@@ -17,15 +18,16 @@ import javax.inject.Inject
  *
  */
 
-class LocationSignModel @Inject constructor() : AMapLocationListener {
+class LocationSignModel @Inject constructor() : AMapLocationListener,LifecycleObserver {
 
     private var locationClient: AMapLocationClient? = null
     private var view: LocationView? = null
 
     /*初始化定位*/
-    fun initLocation(view: LocationView) {
+    fun initLocation(view: LocationView,lifecycleOwner: LifecycleOwner) {
         this.view = view
 
+        lifecycleOwner.lifecycle.addObserver(this)
 
         if (locationClient == null) {
             synchronized(AMapLocationClient::class.java) {
@@ -156,11 +158,15 @@ class LocationSignModel @Inject constructor() : AMapLocationListener {
     /**
      * 销毁定位
      */
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     fun destroyLocation() {
-
+        LogUtils.i("destroyLocation")
         locationClient?.stopLocation()
         locationClient?.onDestroy()
 
     }
+
+
+
 
 }
