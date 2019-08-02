@@ -20,7 +20,7 @@ ext {
     constraintlayout = "1.1.3"
     annotation = "1.1.0"
     multiDexVersion = "2.0.1"
-
+    lifecycle_extensions="2.0.0"
     /*third party*/
     eventbus = "3.1.1"
     glide = "4.9.0"

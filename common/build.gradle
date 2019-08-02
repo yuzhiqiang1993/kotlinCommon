@@ -51,6 +51,7 @@ dependencies {
     api "androidx.constraintlayout:constraintlayout:$constraintlayout"
     api "androidx.annotation:annotation:$annotation"
     api "androidx.multidex:multidex:$multiDexVersion"
+    api "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
 
     /*dagger2*/
     api "com.google.dagger:dagger:$dagger2"
