@@ -9,7 +9,7 @@ package com.yzq.common.constants
  *
  */
 
-object BaseContstants {
+object BaseConstants {
 
 
     val NO_NET = "无网络，请检查"

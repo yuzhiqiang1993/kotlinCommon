@@ -20,7 +20,7 @@ import com.ycuwq.datepicker.date.YearPicker
 import com.ycuwq.datepicker.time.HourAndMinutePicker
 import com.yzq.common.AppContext
 import com.yzq.common.R
-import com.yzq.common.constants.BaseContstants
+import com.yzq.common.constants.BaseConstants
 import com.yzq.common.ui.BaseActivity
 import io.reactivex.Single
 import java.io.File
@@ -47,7 +47,7 @@ fun BaseActivity.getNewDialog(): MaterialDialog {
  * @param positiveText  确定按钮的文本
  */
 
-fun BaseActivity.showBaseDialog(title: String = BaseContstants.HINT, message: String, positiveText: String = BaseContstants.SURE) {
+fun BaseActivity.showBaseDialog(title: String = BaseConstants.HINT, message: String, positiveText: String = BaseConstants.SURE) {
 
     getNewDialog().show {
         title(text = title)
@@ -67,9 +67,9 @@ fun BaseActivity.showBaseDialog(title: String = BaseContstants.HINT, message: St
  * @param positiveText  确定按钮的文字
  */
 fun BaseActivity.showOnlyPostiveCallBackDialog(
-        title: String = BaseContstants.HINT,
+        title: String = BaseConstants.HINT,
         message: String,
-        positiveText: String = BaseContstants.SURE
+        positiveText: String = BaseConstants.SURE
 ): Single<Boolean> {
 
     return Single.create { singleEmitter ->
@@ -101,10 +101,10 @@ fun BaseActivity.showOnlyPostiveCallBackDialog(
  * @param negativeText  取消按钮文本
  */
 fun BaseActivity.showPositiveCallbackDialog(
-        title: String = BaseContstants.HINT,
+        title: String = BaseConstants.HINT,
         message: String,
-        positiveText: String = BaseContstants.SURE,
-        negativeText: String = BaseContstants.CANCLE
+        positiveText: String = BaseConstants.SURE,
+        negativeText: String = BaseConstants.CANCLE
 ): Single<Boolean> {
 
     return Single.create { singleEmitter ->
@@ -135,10 +135,10 @@ fun BaseActivity.showPositiveCallbackDialog(
  * @param negativeText  取消按钮文本
  */
 fun BaseActivity.showCallbackDialog(
-        title: String = BaseContstants.HINT,
+        title: String = BaseConstants.HINT,
         message: String,
-        positiveText: String = BaseContstants.SURE,
-        negativeText: String = BaseContstants.CANCLE
+        positiveText: String = BaseConstants.SURE,
+        negativeText: String = BaseConstants.CANCLE
 ): Single<Boolean> {
     return Single.create { singleEmitter ->
 
@@ -172,10 +172,10 @@ fun BaseActivity.showCallbackDialog(
  * @param negativeText  取消按钮文本
  */
 fun BaseActivity.showBackHintDialog(
-        title: String = BaseContstants.HINT,
-        message: String = BaseContstants.BACK_HINT,
-        positiveText: String = BaseContstants.SURE,
-        negativeText: String = BaseContstants.CANCLE
+        title: String = BaseConstants.HINT,
+        message: String = BaseConstants.BACK_HINT,
+        positiveText: String = BaseConstants.SURE,
+        negativeText: String = BaseConstants.CANCLE
 ): Single<Boolean> {
 
     return Single.create { singleEmitter ->
@@ -205,7 +205,7 @@ fun BaseActivity.showBackHintDialog(
  * @param items  选项
  */
 fun BaseActivity.showSingleSelectList(
-        title: String = BaseContstants.HINT,
+        title: String = BaseConstants.HINT,
         message: String = "",
         items: List<String>
 
@@ -244,9 +244,9 @@ fun BaseActivity.showSingleSelectList(
  * @param allowEmptyInput  是否允许输入空
  */
 fun BaseActivity.showInputDialog(
-        title: String = BaseContstants.HINT,
-        positiveText: String = BaseContstants.SURE,
-        negativeText: String = BaseContstants.CANCLE,
+        title: String = BaseConstants.HINT,
+        positiveText: String = BaseConstants.SURE,
+        negativeText: String = BaseConstants.CANCLE,
         message: String = "",
         inputHint: String = "",
         prefill: String = "",
@@ -299,8 +299,8 @@ fun BaseActivity.getProgressDialog(title: String): MaterialDialog {
 /*选择年份*/
 fun BaseActivity.selectYear(
         title: String = "选择年份",
-        positiveText: String = BaseContstants.SURE,
-        negativeText: String = BaseContstants.CANCLE
+        positiveText: String = BaseConstants.SURE,
+        negativeText: String = BaseConstants.CANCLE
 ): Single<String> {
 
     return Single.create { singleEmitter ->
@@ -332,7 +332,7 @@ fun BaseActivity.selectYear(
  * @param positiveText  确定文本
  * @param negativeText  取消文本
  */
-fun BaseActivity.selectDate(title: String = "选择日期", positiveText: String = BaseContstants.SURE, negativeText: String = BaseContstants.CANCLE): Single<String> {
+fun BaseActivity.selectDate(title: String = "选择日期", positiveText: String = BaseConstants.SURE, negativeText: String = BaseConstants.CANCLE): Single<String> {
 
     return Single.create { singleEmitter ->
 
@@ -380,8 +380,8 @@ fun BaseActivity.selectDate(title: String = "选择日期", positiveText: String
  */
 fun BaseActivity.selectHourAndMinute(
         title: String = "选择时间",
-        positiveText: String = BaseContstants.SURE,
-        negativeText: String = BaseContstants.CANCLE
+        positiveText: String = BaseConstants.SURE,
+        negativeText: String = BaseConstants.CANCLE
 ): Single<String> {
     return Single.create { singleEmitter ->
 

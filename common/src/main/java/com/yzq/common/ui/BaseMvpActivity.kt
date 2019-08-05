@@ -14,7 +14,7 @@ import javax.inject.Inject
  */
 
 
-abstract class BaseMvpActivity<V : BaseView, P : BasePresenter<V>> : BaseActivity(), BaseView {
+abstract class BaseMvpActivity<V : BaseView, P : BasePresenter<V>> : BaseActivity() {
 
 
     @Inject

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.yzq.common.constants.BaseContstants
+import com.yzq.common.constants.BaseConstants
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.mvp.model.CompressImgModel
@@ -161,7 +161,7 @@ abstract class BaseFragment : Fragment(), BaseView {
     override fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(BaseContstants.UNKONW_ERROR)
+            stateView?.showError(BaseConstants.UNKONW_ERROR)
         } else {
             stateView?.showError(msg!!)
         }

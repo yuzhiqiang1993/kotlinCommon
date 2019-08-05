@@ -18,6 +18,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
 
+
         <activity
             android:name=".ui.ImageListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" /> <!-- 阿里热修复相关配置 -->
@@ -77,6 +78,9 @@
             android:name=".ui.DropDownMenuActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
+
+
+        <activity android:name=".ui.MoviesVmActivity" />
     </application>
 
 </manifest>

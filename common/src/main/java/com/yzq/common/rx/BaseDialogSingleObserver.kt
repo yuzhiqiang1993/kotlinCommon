@@ -3,9 +3,8 @@ package com.yzq.common.rx
 import android.text.TextUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
-import com.yzq.common.constants.BaseContstants
-import com.yzq.common.mvp.view.BaseView
-import io.reactivex.Observer
+import com.yzq.common.constants.BaseConstants
+import com.yzq.common.mvvm.BaseViewModel
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import org.json.JSONException
@@ -19,38 +18,39 @@ import java.net.SocketTimeoutException
  * @time   : 16:00
  *
  */
-abstract class BaseDialogSingleObserver<T>(private val view: BaseView, private val content: String = BaseContstants.LOADING, private val hideDialog: Boolean = true) : SingleObserver<T> {
+abstract class BaseDialogSingleObserver<T>(private val vm: BaseViewModel, private val content: String = BaseConstants.LOADING, private val hideDialog: Boolean = true) : SingleObserver<T> {
 
 
     override fun onSubscribe(d: Disposable) {
         if (NetworkUtils.isConnected()) {
-            view.showLoadingDialog(content)
+            vm.showloadingDialog(content)
 
         } else {
-            view.showNoNet()
+            vm.showErrorDialog(BaseConstants.NO_NET)
             d.dispose()
         }
     }
 
 
     override fun onError(e: Throwable) {
-        view.dismissLoadingDialog()
+        vm.dismissLoadingDialog()
         e.printStackTrace()
 
         if (e is JSONException || e is JsonParseException) {
-            view.showErrorDialog(BaseContstants.PARSE_DATA_ERROE)
+            vm.showErrorDialog(BaseConstants.PARSE_DATA_ERROE)
         } else if (e is SocketTimeoutException) {
-            view.showErrorDialog(BaseContstants.SERVER_TIMEOUT)
+            vm.showErrorDialog(BaseConstants.SERVER_TIMEOUT)
         } else {
 
-            view.showErrorDialog(e.message)
+            val msg = if (TextUtils.isEmpty(e.message)) "未知错误" else e.message!!
+            vm.showErrorDialog(msg)
 
         }
 
     }
 
     override fun onSuccess(t: T) {
-        view.dismissLoadingDialog()
+        vm.dismissLoadingDialog()
     }
 
 

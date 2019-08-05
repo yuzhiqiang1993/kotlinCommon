@@ -1,20 +1,21 @@
 package com.yzq.kotlincommon.ui
 
+import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.ui.BaseMvpActivity
+import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.common.widget.StateView
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MovieAdapter
-import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import com.yzq.kotlincommon.data.Subject
-import com.yzq.kotlincommon.mvp.presenter.MoviePresenter
-import com.yzq.kotlincommon.mvp.view.MovieView
+import com.yzq.kotlincommon.mvp.view_model.MovieViewModel
 import kotlinx.android.synthetic.main.activity_movie_list.*
 
 
@@ -26,8 +27,8 @@ import kotlinx.android.synthetic.main.activity_movie_list.*
  *
  */
 
-
-class MoviesActivity : BaseMvpActivity<MovieView, MoviePresenter>(), MovieView, BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
+@Route(path = RoutePath.Main.MOVIES)
+class MoviesVmActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
 
 
     private lateinit var movieAdapter: MovieAdapter
@@ -36,13 +37,17 @@ class MoviesActivity : BaseMvpActivity<MovieView, MoviePresenter>(), MovieView, 
     private var start = 0
     private var count = 50
 
-    override fun initInject() {
 
-        DaggerMainComponent.builder().build().inject(this)
+    override fun onCreate(savedInstanceState: Bundle?) {
 
+        initViewModel(MovieViewModel::class.java)
+        super.onCreate(savedInstanceState)
     }
 
+
     override fun getContentLayoutId(): Int {
+
+
         return R.layout.activity_movie_list
     }
 
@@ -70,7 +75,25 @@ class MoviesActivity : BaseMvpActivity<MovieView, MoviePresenter>(), MovieView, 
         super.initData()
         showLoadding()
 
-        presenter.requestData(start, count)
+        viewModel.requestData(start, count)
+
+
+        viewModel.subjects.observe(this, object : Observer<List<Subject>> {
+            override fun onChanged(t: List<Subject>) {
+
+                LogUtils.i("数据发生变化")
+                start = count
+                count += count
+
+                if (t.size > 0) {
+                    showData(t)
+                } else {
+                    showNoData()
+                }
+
+
+            }
+        })
 
 
 //        GlobalScope.launch(Dispatchers.Main) {
@@ -92,20 +115,6 @@ class MoviesActivity : BaseMvpActivity<MovieView, MoviePresenter>(), MovieView, 
 
     }
 
-
-    override fun requestSuccess(data: List<Subject>) {
-
-        start = count
-        count += count
-
-        if (data.size > 0) {
-            showData(data)
-        } else {
-            showNoData()
-        }
-
-
-    }
 
     private fun showData(data: List<Subject>) {
 

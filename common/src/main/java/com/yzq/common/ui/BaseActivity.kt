@@ -20,7 +20,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.yzq.common.R
-import com.yzq.common.constants.BaseContstants
+import com.yzq.common.constants.BaseConstants
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.extend.*
@@ -62,6 +62,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     lateinit var compressImgModel: CompressImgModel  //图片压缩model
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -78,6 +80,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
         initInject()
         initPresenter()
+        initViewModel()
 
 
         EventBusUtil.register(this)
@@ -125,6 +128,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     protected open fun initPresenter() {
 
     }
+
+
+    /*初始化Model*/
+    protected open fun initViewModel(){
+
+    }
+
 
     /**
      * 初始化控件
@@ -365,7 +375,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
 
     override fun showErrorDialog(msg: String?) {
         if (TextUtils.isEmpty(msg)) {
-            showBaseDialog(message = BaseContstants.UNKONW_ERROR)
+            showBaseDialog(message = BaseConstants.UNKONW_ERROR)
         } else {
             showBaseDialog(message = msg!!)
         }
@@ -427,7 +437,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     override fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(BaseContstants.UNKONW_ERROR)
+            stateView?.showError(BaseConstants.UNKONW_ERROR)
         } else {
             stateView?.showError(msg!!)
         }
