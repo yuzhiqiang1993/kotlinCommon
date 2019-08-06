@@ -9,7 +9,6 @@ import com.yzq.common.extend.openCamera
 
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import kotlinx.android.synthetic.main.activity_image_compress.*
 
 
@@ -30,14 +29,6 @@ class ImageCompressActivity : BaseActivity() {
         return R.layout.activity_image_compress
     }
 
-
-    override fun initInject() {
-        super.initInject()
-
-        DaggerMainComponent.builder().build().inject(this)
-
-
-    }
 
 
     private lateinit var imgPath: String

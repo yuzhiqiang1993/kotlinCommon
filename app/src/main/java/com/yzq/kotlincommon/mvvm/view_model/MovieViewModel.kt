@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.mvp.view_model
+package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
@@ -7,19 +7,20 @@ import com.yzq.common.mvvm.BaseViewModel
 import com.yzq.common.rx.BaseSingleVmObserver
 import com.yzq.kotlincommon.data.MovieBean
 import com.yzq.kotlincommon.data.Subject
-import com.yzq.kotlincommon.mvp.model.NewsModel
+import com.yzq.kotlincommon.mvvm.model.MoviesModel
+
 
 class MovieViewModel : BaseViewModel() {
-
-    var model: NewsModel = NewsModel()
+    private var start = 0
+    private var count = 50
+    var model: MoviesModel = MoviesModel()
 
 
     var subjects = MutableLiveData<List<Subject>>()
 
 
     /*请求数据*/
-    fun requestData(start: Int, count: Int) {
-
+    fun requestData() {
         model.getData(start, count)
                 .transform(lifecycleOwner)
                 .subscribe(object : BaseSingleVmObserver<MovieBean>(this) {

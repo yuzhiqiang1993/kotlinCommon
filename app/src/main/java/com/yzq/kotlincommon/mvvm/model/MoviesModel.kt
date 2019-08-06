@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.mvp.model
+package com.yzq.kotlincommon.mvvm.model
 
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.kotlincommon.data.MovieBean
@@ -6,7 +6,7 @@ import com.yzq.kotlincommon.net.ApiService
 import io.reactivex.Single
 import javax.inject.Inject
 
-class NewsModel @Inject constructor() {
+class MoviesModel @Inject constructor() {
 
     fun getData(start: Int, count: Int): Single<MovieBean> {
 

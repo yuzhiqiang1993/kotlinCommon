@@ -42,8 +42,7 @@ abstract class BaseFragment : Fragment(), BaseView {
         super.onAttach(context)
 
         initArgs(arguments!!)
-        initInject()
-        initPresenter()
+
 
     }
 
@@ -65,17 +64,6 @@ abstract class BaseFragment : Fragment(), BaseView {
 
 
     protected open fun initArgs(arguments: Bundle) {
-
-
-    }
-
-
-    protected open fun initInject() {
-
-
-    }
-
-    protected open fun initPresenter() {
 
 
     }

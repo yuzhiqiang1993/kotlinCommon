@@ -41,7 +41,7 @@ abstract class BaseSingleVmObserver<T>(private val vm: BaseViewModel) : SingleOb
         } else if (e is SocketTimeoutException) {
             vm.showError(BaseConstants.SERVER_TIMEOUT)
         } else {
-            var msg = if (TextUtils.isEmpty(e.message)) "未知错误" else e.message!!
+            val msg = if (TextUtils.isEmpty(e.message)) "未知错误" else e.message!!
             vm.showError(msg)
         }
     }

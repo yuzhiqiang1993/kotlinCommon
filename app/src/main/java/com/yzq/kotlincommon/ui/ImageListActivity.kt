@@ -3,21 +3,19 @@ package com.yzq.kotlincommon.ui
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.HttpRequestType
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.ui.BaseMvpActivity
+import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.common.widget.AdapterLoadMoreView
 import com.yzq.common.widget.StateView
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ImgListAdapter
-import com.yzq.kotlincommon.dagger.DaggerMainComponent
 import com.yzq.kotlincommon.data.Subject
-import com.yzq.kotlincommon.mvp.presenter.ImgListPresenter
-import com.yzq.kotlincommon.mvp.view.ImgListView
+import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
 import kotlinx.android.synthetic.main.activity_image_list.*
 
 
@@ -30,28 +28,21 @@ import kotlinx.android.synthetic.main.activity_image_list.*
  */
 
 @Route(path = RoutePath.Main.IMG_LIST)
-class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgListView, BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
+class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
+    override fun setViewModel(): Class<ImgListViewModel> = ImgListViewModel::class.java
 
-    private val subjectList = arrayListOf<Subject>()
 
-    private var imgListAdapter: ImgListAdapter = ImgListAdapter(R.layout.item_img_list, subjectList)
+    private var imgListAdapter: ImgListAdapter = ImgListAdapter(R.layout.item_img_list, arrayListOf())
+
 
     var httpRequestType = HttpRequestType.FIRST
 
-
-    /*开始位置*/
-    private var start = 0
-    /*请求个数*/
-    private var count = 30
 
     override fun getContentLayoutId(): Int {
 
         return R.layout.activity_image_list
     }
 
-    override fun initInject() {
-        DaggerMainComponent.builder().build().inject(this)
-    }
 
     override fun initWidget() {
 
@@ -74,7 +65,7 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
         layout_swipe_refresh.setOnRefreshListener {
 
             httpRequestType = HttpRequestType.REFRESH
-            start = 0
+
             initData()
         }
     }
@@ -103,28 +94,27 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
 
     override fun initData() {
 
-        subjectList.clear()
+        showLoadding()
+        viewModel.getData(HttpRequestType.FIRST)
 
-        if (httpRequestType == HttpRequestType.FIRST) {
-            showLoadding()
-        }
 
-        presenter.getImgs(start, count)
+        viewModel.subjectsLive.observe(this, object : Observer<List<Subject>> {
+            override fun onChanged(t: List<Subject>) {
+                requestSuccess(t)
 
+            }
+
+        })
 
     }
 
 
-    override fun requestSuccess(subjects: List<Subject>) {
-
+    fun requestSuccess(subjects: List<Subject>) {
 
         if (subjects.size == 0) {
             imgListAdapter.loadMoreEnd()
             return
         }
-        start += subjects.size
-
-        LogUtils.i("start:${start}")
 
         if (httpRequestType == HttpRequestType.LOAD_MORE) {
             imgListAdapter.addData(subjects)
@@ -132,7 +122,6 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
         } else {
             imgListAdapter.setNewData(subjects)
         }
-
 
         showContent()
 
@@ -149,9 +138,9 @@ class ImageListActivity : BaseMvpActivity<ImgListView, ImgListPresenter>(), ImgL
 
     override fun onLoadMoreRequested() {
 
-        if (start <= 250) {
-            httpRequestType = HttpRequestType.LOAD_MORE
-            presenter.getImgs(start, count)
+        if (viewModel.start <= 250) {
+
+            viewModel.getData(HttpRequestType.LOAD_MORE)
         } else {
             imgListAdapter.loadMoreEnd()
         }

@@ -80,7 +80,6 @@
             android:screenOrientation="portrait" />
 
 
-        <activity android:name=".ui.MoviesVmActivity" />
     </application>
 
 </manifest>

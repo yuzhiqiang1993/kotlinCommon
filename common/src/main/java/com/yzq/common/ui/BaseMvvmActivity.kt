@@ -22,10 +22,12 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
     lateinit var viewModel: VM
 
 
-    fun initViewModel(clazz: Class<VM>) {
+    abstract fun setViewModel(): Class<VM>
+
+    override fun initViewModel() {
         @Suppress("UNCHECKED_CAST")
 
-        viewModel = ViewModelProviders.of(this).get(clazz)
+        viewModel = ViewModelProviders.of(this).get(setViewModel())
         viewModel.initViewModel(this)
 
         viewModel.loadState.observe(this, object : Observer<ViewStateBean> {

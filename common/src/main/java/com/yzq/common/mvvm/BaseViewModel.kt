@@ -23,7 +23,10 @@ abstract class BaseViewModel : ViewModel() {
         this.lifecycleOwner = lifecycleOwner
     }
 
-
+    /**
+     * 显示弹窗逻辑
+     * @param content String
+     */
     fun showloadingDialog(content: String) {
         viewStateBean.message = content
         viewStateBean.state = ViewStateContstants.showLoaddingDialog

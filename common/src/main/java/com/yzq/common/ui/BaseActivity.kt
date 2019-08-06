@@ -30,7 +30,6 @@ import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import javax.inject.Inject
 
 
 /**
@@ -58,10 +57,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     private var showBackHint = false //是否显示返回提示框
 
 
-    @Inject
-    lateinit var compressImgModel: CompressImgModel  //图片压缩model
-
-
+    var compressImgModel: CompressImgModel = CompressImgModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -78,10 +74,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
         }
 
 
-        initInject()
-        initPresenter()
         initViewModel()
-
 
         EventBusUtil.register(this)
 
@@ -113,25 +106,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     protected abstract fun getContentLayoutId(): Int
 
 
-    /**
-     * 执行一些依赖注入操作
-     *
-     */
-    protected open fun initInject() {
-
-    }
-
-    /**
-     * 初始化Presenter
-     *
-     */
-    protected open fun initPresenter() {
-
-    }
-
-
-    /*初始化Model*/
-    protected open fun initViewModel(){
+    protected open fun initViewModel() {
 
     }
 
