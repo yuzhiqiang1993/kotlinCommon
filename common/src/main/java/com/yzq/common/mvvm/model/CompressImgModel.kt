@@ -1,4 +1,4 @@
-package com.yzq.common.mvp.model
+package com.yzq.common.mvvm.model
 
 import android.graphics.Bitmap
 import android.graphics.Color

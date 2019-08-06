@@ -12,8 +12,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.yzq.common.constants.BaseConstants
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
-import com.yzq.common.mvp.model.CompressImgModel
-import com.yzq.common.mvp.view.BaseView
+import com.yzq.common.mvvm.model.CompressImgModel
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -27,7 +26,7 @@ import javax.inject.Inject
  * @time   : 9:49
  *
  */
-abstract class BaseFragment : Fragment(), BaseView {
+abstract class BaseFragment : Fragment() {
 
 
     private var stateView: StateView? = null
@@ -117,13 +116,13 @@ abstract class BaseFragment : Fragment(), BaseView {
 
     }
 
-    override fun showLoadding() {
+    fun showLoadding() {
         stateView?.showLoading()
         contentLayout?.visibility = View.GONE
 
     }
 
-    override fun showContent() {
+    fun showContent() {
         stateView?.hide()
         contentLayout?.visibility = View.VISIBLE
 
@@ -134,19 +133,19 @@ abstract class BaseFragment : Fragment(), BaseView {
 
     }
 
-    override fun showNoData() {
+    fun showNoData() {
         stateView?.showNoData()
         contentLayout?.visibility = View.GONE
 
     }
 
-    override fun showNoNet() {
+    fun showNoNet() {
         stateView?.showNoNet()
         contentLayout?.visibility = View.GONE
 
     }
 
-    override fun showError(msg: String?) {
+    fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
             stateView?.showError(BaseConstants.UNKONW_ERROR)
@@ -157,28 +156,28 @@ abstract class BaseFragment : Fragment(), BaseView {
     }
 
 
-    override fun showLoadingDialog(message: String) {
+    fun showLoadingDialog(message: String) {
         (activity as BaseActivity).showLoadingDialog(message)
     }
 
-    override fun dismissLoadingDialog() {
+    fun dismissLoadingDialog() {
         (activity as BaseActivity).dismissLoadingDialog()
     }
 
-    override fun showErrorDialog(msg: String?) {
+    fun showErrorDialog(msg: String?) {
         (activity as BaseActivity).showErrorDialog(msg)
     }
 
 
-    override fun showProgressDialog(title: String) {
+    fun showProgressDialog(title: String) {
         (activity as BaseActivity).showProgressDialog(title)
     }
 
-    override fun changeProgress(percent: Int) {
+    fun changeProgress(percent: Int) {
         (activity as BaseActivity).changeProgress(percent)
     }
 
-    override fun dismissProgressDialog() {
+    fun dismissProgressDialog() {
         (activity as BaseActivity).dismissProgressDialog()
     }
 

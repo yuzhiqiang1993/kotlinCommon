@@ -5,10 +5,12 @@ object ViewStateContstants {
 
     val showLoaddingDialog = 0
     val dismissLoaddingDialog = 1
-    val showLoadding = 2
-    val showContent = 3
-    val showErrorDialog = 4
-    val showNoNet=5
-    val showError=6
+    val showProgressDialog = 2
+    val dismissProgressDialog = 3
+    val changeProgress = 4
+    val showErrorDialog = 5
+    val showNoNet = 6
+    val showError = 7
+
 
 }

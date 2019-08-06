@@ -1,10 +1,11 @@
 package com.yzq.common.ui
 
+import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.yzq.common.constants.ViewStateContstants
 import com.yzq.common.data.ViewStateBean
-import com.yzq.common.mvvm.BaseViewModel
+import com.yzq.common.mvvm.view_model.BaseViewModel
 
 
 /**
@@ -19,18 +20,27 @@ import com.yzq.common.mvvm.BaseViewModel
 abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
 
 
-    lateinit var viewModel: VM
+    lateinit var vm: VM
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+
+        initViewModel()
+        super.onCreate(savedInstanceState)
+
+
+    }
 
     abstract fun setViewModel(): Class<VM>
 
-    override fun initViewModel() {
+    fun initViewModel() {
         @Suppress("UNCHECKED_CAST")
 
-        viewModel = ViewModelProviders.of(this).get(setViewModel())
-        viewModel.initViewModel(this)
+        vm = ViewModelProviders.of(this).get(setViewModel())
+        vm.initViewModel(this)
 
-        viewModel.loadState.observe(this, object : Observer<ViewStateBean> {
+        vm.loadState.observe(this, object : Observer<ViewStateBean> {
             override fun onChanged(viewStateBean: ViewStateBean) {
                 handleViewState(viewStateBean)
             }
@@ -57,11 +67,14 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
             ViewStateContstants.showErrorDialog -> {
                 showErrorDialog(content)
             }
-            ViewStateContstants.showLoadding -> {
-                showLoadding()
+            ViewStateContstants.showProgressDialog -> {
+                showProgressDialog(content)
             }
-            ViewStateContstants.showContent -> {
-                showContent()
+            ViewStateContstants.dismissProgressDialog -> {
+                dismissProgressDialog()
+            }
+            ViewStateContstants.changeProgress -> {
+                changeProgress(content.toInt())
             }
             ViewStateContstants.showNoNet -> {
                 showNoNet()

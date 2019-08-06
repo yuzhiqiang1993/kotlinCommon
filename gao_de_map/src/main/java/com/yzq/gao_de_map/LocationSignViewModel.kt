@@ -1,13 +1,14 @@
-package com.yzq.gao_de_map.mvp.model
+package com.yzq.gao_de_map
 
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.OnLifecycleEvent
 import com.amap.api.location.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
 import com.yzq.common.AppContext
-import com.yzq.gao_de_map.data.LocationBean
-import com.yzq.gao_de_map.mvp.view.LocationView
-import javax.inject.Inject
+import com.yzq.common.mvvm.view_model.BaseViewModel
 
 
 /**
@@ -18,27 +19,19 @@ import javax.inject.Inject
  *
  */
 
-class LocationSignModel @Inject constructor() : AMapLocationListener,LifecycleObserver {
+class LocationSignViewModel : BaseViewModel(), AMapLocationListener, LifecycleObserver {
 
-    private var locationClient: AMapLocationClient? = null
-    private var view: LocationView? = null
+    private var locationClient: AMapLocationClient
 
-    /*初始化定位*/
-    fun initLocation(view: LocationView,lifecycleOwner: LifecycleOwner) {
-        this.view = view
 
-        lifecycleOwner.lifecycle.addObserver(this)
+    var locationData = MutableLiveData<AMapLocation>()
 
-        if (locationClient == null) {
-            synchronized(AMapLocationClient::class.java) {
-                if (locationClient == null) {
-                    locationClient = AMapLocationClient(AppContext)
-                    locationClient!!.setLocationOption(initOption())
-                    locationClient!!.setLocationListener(this)
 
-                }
-            }
-        }
+    init {
+        /*初始化定位*/
+        locationClient = AMapLocationClient(AppContext)
+        locationClient.setLocationOption(initOption())
+        locationClient.setLocationListener(this)
 
     }
 
@@ -55,9 +48,8 @@ class LocationSignModel @Inject constructor() : AMapLocationListener,LifecycleOb
     /*开始定位*/
 
     fun startLocation() {
-
-
-        locationClient?.startLocation()
+        lifecycleOwner.lifecycle.addObserver(this)
+        locationClient.startLocation()
 
     }
 
@@ -92,31 +84,12 @@ class LocationSignModel @Inject constructor() : AMapLocationListener,LifecycleOb
             sb.append("定位时间: " + TimeUtils.millis2String(location.time) + "\n")
 
 
-            val locationBean = LocationBean()
-
-            locationBean.longitude = location.longitude
-            locationBean.latitude = location.latitude
-            locationBean.country = location.country
-            locationBean.province = location.province
-            locationBean.city = location.city
-            locationBean.cityCode = location.cityCode
-            locationBean.district = location.district
-            locationBean.districtCode = location.adCode
-            locationBean.address = location.address
-
-
-            view?.locationSuccess(locationBean)
-
-
         } else {
             //定位失败
             sb.append("定位失败" + "\n")
             sb.append("错误码:" + location.errorCode + "\n")
             sb.append("错误信息:" + location.errorInfo + "\n")
             sb.append("错误描述:" + location.locationDetail + "\n")
-
-
-            view?.locationFailed(location.locationDetail)
 
 
         }
@@ -132,6 +105,8 @@ class LocationSignModel @Inject constructor() : AMapLocationListener,LifecycleOb
         val result = sb.toString()
 
         LogUtils.i(result)
+
+        locationData.value = location
 
 
     }
@@ -159,14 +134,12 @@ class LocationSignModel @Inject constructor() : AMapLocationListener,LifecycleOb
      * 销毁定位
      */
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun destroyLocation() {
+    private fun destroyLocation() {
         LogUtils.i("destroyLocation")
-        locationClient?.stopLocation()
-        locationClient?.onDestroy()
+        locationClient.stopLocation()
+        locationClient.onDestroy()
 
     }
-
-
 
 
 }

@@ -6,6 +6,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.load
 import com.yzq.common.extend.openCamera
+import com.yzq.common.extend.transform
+import com.yzq.common.mvvm.model.CompressImgModel
 
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
@@ -24,11 +26,12 @@ import kotlinx.android.synthetic.main.activity_image_compress.*
 class ImageCompressActivity : BaseActivity() {
 
 
+    val compressImgModel = CompressImgModel()
+
     override fun getContentLayoutId(): Int {
 
         return R.layout.activity_image_compress
     }
-
 
 
     private lateinit var imgPath: String
@@ -43,6 +46,7 @@ class ImageCompressActivity : BaseActivity() {
 
             openCamera().subscribe { file ->
                 compressImgModel.compressImgWithWatermark(file.path)
+                        .transform(this)
                         .subscribe { path ->
                             imgPath = path
                             iv_img.load(imgPath)
@@ -52,7 +56,7 @@ class ImageCompressActivity : BaseActivity() {
 
 
         iv_img.setOnClickListener {
-            preViewImg(imgPath,it)
+            preViewImg(imgPath, it)
         }
 
 

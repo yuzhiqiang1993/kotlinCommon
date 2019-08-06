@@ -33,7 +33,7 @@
         <service android:name="com.amap.api.location.APSService" />
 
         <activity
-            android:name=".ui.GaoDeActivity"
+            android:name=".GaoDeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
 

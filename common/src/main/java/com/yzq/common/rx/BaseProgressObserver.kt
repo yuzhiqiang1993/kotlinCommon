@@ -1,9 +1,10 @@
 package com.yzq.common.rx
 
+import android.text.TextUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
 import com.yzq.common.constants.BaseConstants
-import com.yzq.common.mvp.view.BaseView
+import com.yzq.common.mvvm.view_model.BaseViewModel
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import me.jessyan.progressmanager.ProgressListener
@@ -20,15 +21,16 @@ import java.net.SocketTimeoutException
  * @time   : 16:23
  *
  */
-abstract class BaseProgressDialogSingleObserver<T>(private val view: BaseView, private val title: String, private val url: String) : SingleObserver<T>, ProgressListener {
+abstract class BaseProgressObserver<T>(private val vm: BaseViewModel, private val title: String, private val url: String) : SingleObserver<T>, ProgressListener {
 
     override fun onSubscribe(d: Disposable) {
 
         if (NetworkUtils.isConnected()) {
             ProgressManager.getInstance().addRequestListener(url, this)
-            view.showProgressDialog(title)
+
+            vm.showProgressDialog(title)
         } else {
-            view.showNoNet()
+            vm.showNoNet()
             d.dispose()
 
         }
@@ -37,15 +39,15 @@ abstract class BaseProgressDialogSingleObserver<T>(private val view: BaseView, p
     override fun onError(e: Throwable) {
 
         e.printStackTrace()
-        view.dismissProgressDialog()
+        vm.dismissProgressDialog()
 
         if (e is JSONException || e is JsonParseException) {
-            view.showErrorDialog(BaseConstants.PARSE_DATA_ERROE)
+            vm.showErrorDialog(BaseConstants.PARSE_DATA_ERROE)
         } else if (e is SocketTimeoutException) {
-            view.showErrorDialog(BaseConstants.SERVER_TIMEOUT)
+            vm.showErrorDialog(BaseConstants.SERVER_TIMEOUT)
         } else {
-
-            view.showErrorDialog(e.message)
+            val msg = if (TextUtils.isEmpty(e.message)) BaseConstants.UNKONW_ERROR else e.message!!
+            vm.showErrorDialog(msg)
 
         }
 
@@ -53,19 +55,19 @@ abstract class BaseProgressDialogSingleObserver<T>(private val view: BaseView, p
 
 
     override fun onSuccess(t: T) {
-        view.dismissProgressDialog()
+        vm.dismissProgressDialog()
 
     }
 
     override fun onProgress(progressInfo: ProgressInfo?) {
 
-        view.changeProgress(progressInfo!!.percent)
+        vm.changeProgress(progressInfo!!.percent)
 
     }
 
     override fun onError(id: Long, e: java.lang.Exception?) {
 
-        view.dismissProgressDialog()
+        vm.dismissProgressDialog()
 
     }
 }

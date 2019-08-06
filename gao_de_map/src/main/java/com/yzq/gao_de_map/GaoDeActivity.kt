@@ -1,26 +1,23 @@
-package com.yzq.gao_de_map.ui
+package com.yzq.gao_de_map
 
 import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.amap.api.location.AMapLocation
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.net.GsonConvert
-import com.yzq.common.ui.BaseActivity
-import com.yzq.gao_de_map.R
-import com.yzq.gao_de_map.data.LocationBean
-import com.yzq.gao_de_map.mvp.model.LocationSignModel
-import com.yzq.gao_de_map.mvp.view.LocationView
+import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.gao_de_map.utils.MapPermissionUtils
 import kotlinx.android.synthetic.main.activity_gao_de.*
 
 @Route(path = RoutePath.GaoDe.GAO_DE)
-class GaoDeActivity : BaseActivity(), LocationView {
+class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
+    override fun setViewModel(): Class<LocationSignViewModel> = LocationSignViewModel::class.java
 
-
-    var locationSignModel = LocationSignModel()
 
     override fun getContentLayoutId(): Int {
-        locationSignModel.initLocation(this, this)
+
         return R.layout.activity_gao_de
     }
 
@@ -37,23 +34,28 @@ class GaoDeActivity : BaseActivity(), LocationView {
 
             MapPermissionUtils.checkLocationPermission(true, this)
                     .subscribe { hasPermission ->
-                        locationSignModel.startLocation()
+
+                        vm.startLocation()
 
                     }
         }
 
+
+        vm.locationData.observe(this, object : Observer<AMapLocation> {
+            override fun onChanged(t: AMapLocation) {
+
+                if (t.errorCode == 0) {
+                    tv_location_result.text = GsonConvert.toJson(t)
+                } else {
+                    tv_location_result.text = t.locationDetail
+                }
+
+
+            }
+        })
+
+
     }
 
-
-    override fun locationSuccess(location: LocationBean) {
-        tv_location_result.text = GsonConvert.toJson(location)
-
-
-    }
-
-    override fun locationFailed(locationDetail: String) {
-
-        tv_location_result.text = locationDetail
-    }
 
 }

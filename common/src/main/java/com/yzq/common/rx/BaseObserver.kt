@@ -1,9 +1,10 @@
 package com.yzq.common.rx
 
+import android.text.TextUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
 import com.yzq.common.constants.BaseConstants
-import com.yzq.common.mvp.view.BaseView
+import com.yzq.common.mvvm.view_model.BaseViewModel
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import org.json.JSONException
@@ -18,14 +19,14 @@ import java.net.SocketTimeoutException
  *
  */
 
-abstract class BaseSingleObserver<T>(private val view: BaseView) : SingleObserver<T> {
+abstract class BaseObserver<T>(private val vm: BaseViewModel) : SingleObserver<T> {
 
 
     override fun onSubscribe(d: Disposable) {
 
         /*没有网络给出提示并取消发送*/
         if (!NetworkUtils.isConnected()) {
-            view.showNoNet()
+            vm.showNoNet()
             d.dispose()
         }
     }
@@ -36,11 +37,12 @@ abstract class BaseSingleObserver<T>(private val view: BaseView) : SingleObserve
         e.printStackTrace()
 
         if (e is JSONException || e is JsonParseException) {
-            view.showError(BaseConstants.PARSE_DATA_ERROE)
+            vm.showError(BaseConstants.PARSE_DATA_ERROE)
         } else if (e is SocketTimeoutException) {
-            view.showError(BaseConstants.SERVER_TIMEOUT)
+            vm.showError(BaseConstants.SERVER_TIMEOUT)
         } else {
-            view.showError(e.message)
+            val msg = if (TextUtils.isEmpty(e.message)) BaseConstants.UNKONW_ERROR else e.message!!
+            vm.showError(msg)
         }
     }
 

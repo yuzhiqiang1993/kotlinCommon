@@ -3,8 +3,8 @@ package com.yzq.kotlincommon.mvvm.view_model
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.extend.transform
-import com.yzq.common.mvvm.BaseViewModel
-import com.yzq.common.rx.BaseSingleVmObserver
+import com.yzq.common.mvvm.view_model.BaseViewModel
+import com.yzq.common.rx.BaseObserver
 import com.yzq.kotlincommon.data.MovieBean
 import com.yzq.kotlincommon.data.Subject
 import com.yzq.kotlincommon.mvvm.model.MoviesModel
@@ -19,11 +19,12 @@ class MovieViewModel : BaseViewModel() {
     var subjects = MutableLiveData<List<Subject>>()
 
 
+
     /*请求数据*/
     fun requestData() {
         model.getData(start, count)
                 .transform(lifecycleOwner)
-                .subscribe(object : BaseSingleVmObserver<MovieBean>(this) {
+                .subscribe(object : BaseObserver<MovieBean>(this) {
                     override fun onSuccess(movieBean: MovieBean) {
 
                         LogUtils.i("请求成功")

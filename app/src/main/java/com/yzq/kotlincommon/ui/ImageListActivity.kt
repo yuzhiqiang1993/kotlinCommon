@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.HttpRequestType
 import com.yzq.common.constants.RoutePath
@@ -29,13 +30,12 @@ import kotlinx.android.synthetic.main.activity_image_list.*
 
 @Route(path = RoutePath.Main.IMG_LIST)
 class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
+
+
     override fun setViewModel(): Class<ImgListViewModel> = ImgListViewModel::class.java
 
 
-    private var imgListAdapter: ImgListAdapter = ImgListAdapter(R.layout.item_img_list, arrayListOf())
-
-
-    var httpRequestType = HttpRequestType.FIRST
+    private lateinit var imgListAdapter: ImgListAdapter
 
 
     override fun getContentLayoutId(): Int {
@@ -64,7 +64,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
 
         layout_swipe_refresh.setOnRefreshListener {
 
-            httpRequestType = HttpRequestType.REFRESH
+            vm.requestType = HttpRequestType.REFRESH
 
             initData()
         }
@@ -78,7 +78,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
         //layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
 
         initRecycleView(recy, layoutManager = layoutManager, needItemDecoration = false)
-
+        imgListAdapter = ImgListAdapter(R.layout.item_img_list, arrayListOf())
         imgListAdapter.setOnItemClickListener(this)
 
         imgListAdapter.setEnableLoadMore(true)
@@ -89,19 +89,10 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
         imgListAdapter.setLoadMoreView(AdapterLoadMoreView)
         recy.adapter = imgListAdapter
 
-    }
-
-
-    override fun initData() {
-
-        showLoadding()
-        viewModel.getData(HttpRequestType.FIRST)
-
-
-        viewModel.subjectsLive.observe(this, object : Observer<List<Subject>> {
+        vm.subjectsLive.observe(this, object : Observer<List<Subject>> {
             override fun onChanged(t: List<Subject>) {
-                requestSuccess(t)
 
+                handleDataChanged(t)
             }
 
         })
@@ -109,21 +100,36 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
     }
 
 
-    fun requestSuccess(subjects: List<Subject>) {
+    override fun initData() {
 
-        if (subjects.size == 0) {
-            imgListAdapter.loadMoreEnd()
-            return
+        if (vm.requestType == HttpRequestType.FIRST) {
+            showLoadding()
         }
 
-        if (httpRequestType == HttpRequestType.LOAD_MORE) {
-            imgListAdapter.addData(subjects)
+        vm.start = 0
+
+        vm.getData()
+
+
+    }
+
+    private fun handleDataChanged(t: List<Subject>) {
+
+        if (vm.requestType == HttpRequestType.LOAD_MORE) {
+
+            if (t.size == 0) {
+                imgListAdapter.loadMoreEnd()
+            }
+            imgListAdapter.addData(t)
             imgListAdapter.loadMoreComplete()
+
         } else {
-            imgListAdapter.setNewData(subjects)
+            imgListAdapter.setNewData(t)
+
         }
 
         showContent()
+        LogUtils.i("数据个数：" + imgListAdapter.data.size)
 
     }
 
@@ -138,9 +144,9 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
 
     override fun onLoadMoreRequested() {
 
-        if (viewModel.start <= 250) {
-
-            viewModel.getData(HttpRequestType.LOAD_MORE)
+        if (vm.start <= 250) {
+            vm.requestType = HttpRequestType.LOAD_MORE
+            vm.getData()
         } else {
             imgListAdapter.loadMoreEnd()
         }

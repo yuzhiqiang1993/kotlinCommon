@@ -19,13 +19,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.R
 import com.yzq.common.constants.BaseConstants
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.extend.*
-import com.yzq.common.mvp.model.CompressImgModel
-import com.yzq.common.mvp.view.BaseView
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
@@ -40,7 +39,7 @@ import org.greenrobot.eventbus.ThreadMode
  *
  */
 
-abstract class BaseActivity : AppCompatActivity(), BaseView {
+abstract class BaseActivity : AppCompatActivity() {
 
 
     private var lastClickTime: Long = 0//最后一次点击的时间
@@ -57,9 +56,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
     private var showBackHint = false //是否显示返回提示框
 
 
-    var compressImgModel: CompressImgModel = CompressImgModel()
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -73,8 +69,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
             }
         }
 
-
-        initViewModel()
 
         EventBusUtil.register(this)
 
@@ -104,11 +98,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      *
      */
     protected abstract fun getContentLayoutId(): Int
-
-
-    protected open fun initViewModel() {
-
-    }
 
 
     /**
@@ -294,7 +283,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      *
      * @param message  加载框文本信息
      */
-    override fun showLoadingDialog(message: String) {
+    fun showLoadingDialog(message: String) {
 
         if (loaddingDialog == null) {
             loaddingDialog = getLoadingDialog()
@@ -310,7 +299,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      *
      *解除加载框
      */
-    override fun dismissLoadingDialog() {
+    fun dismissLoadingDialog() {
         loaddingDialog?.dismiss()
     }
 
@@ -319,7 +308,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      *
      * @param title  提示文本
      */
-    override fun showProgressDialog(title: String) {
+    fun showProgressDialog(title: String) {
 
         if (progressDialog == null) {
             progressDialog = getProgressDialog(title)
@@ -333,7 +322,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * 解除进度框
      *
      */
-    override fun dismissProgressDialog() {
+    fun dismissProgressDialog() {
         progressDialog?.dismiss()
     }
 
@@ -342,13 +331,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      *
      * @param percent  当前进度
      */
-    override fun changeProgress(percent: Int) {
+    fun changeProgress(percent: Int) {
         progressDialog?.changeProgress(percent)
 
     }
 
 
-    override fun showErrorDialog(msg: String?) {
+    fun showErrorDialog(msg: String?) {
         if (TextUtils.isEmpty(msg)) {
             showBaseDialog(message = BaseConstants.UNKONW_ERROR)
         } else {
@@ -361,7 +350,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * 显示加载中
      *
      */
-    override fun showLoadding() {
+    fun showLoadding() {
         stateView?.showLoading()
         contentLayout?.visibility = View.GONE
 
@@ -371,7 +360,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * 显示内容布局
      *
      */
-    override fun showContent() {
+    fun showContent() {
         stateView?.hide()
         contentLayout?.visibility = View.VISIBLE
 
@@ -386,7 +375,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * 显示无数据
      *
      */
-    override fun showNoData() {
+    fun showNoData() {
         stateView?.showNoData()
         contentLayout?.visibility = View.GONE
 
@@ -397,10 +386,12 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      * 显示无网络
      *
      */
-    override fun showNoNet() {
-        stateView?.showNoNet()
-        contentLayout?.visibility = View.GONE
+    fun showNoNet() {
+//        stateView?.showNoNet()
+//        contentLayout?.visibility = View.GONE
 
+
+        ToastUtils.showLong(BaseConstants.NO_NET)
 
     }
 
@@ -409,7 +400,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseView {
      *
      * @param msg  错误信息
      */
-    override fun showError(msg: String?) {
+    fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
             stateView?.showError(BaseConstants.UNKONW_ERROR)

@@ -1,4 +1,4 @@
-package com.yzq.common.mvvm
+package com.yzq.common.mvvm.view_model
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
@@ -40,17 +40,6 @@ abstract class BaseViewModel : ViewModel() {
         loadState.value = viewStateBean
     }
 
-    fun showLoading() {
-        viewStateBean.message = ""
-        viewStateBean.state = ViewStateContstants.showLoadding
-        loadState.value = viewStateBean
-    }
-
-    fun showContent() {
-        viewStateBean.message = ""
-        viewStateBean.state = ViewStateContstants.showContent
-        loadState.value = viewStateBean
-    }
 
     fun showErrorDialog(content: String) {
         viewStateBean.message = content
@@ -58,17 +47,39 @@ abstract class BaseViewModel : ViewModel() {
         loadState.value = viewStateBean
     }
 
-    fun showNoNet(){
+    fun showNoNet() {
         viewStateBean.message = ""
         viewStateBean.state = ViewStateContstants.showNoNet
         loadState.value = viewStateBean
     }
 
 
-    fun showError(content: String){
+    fun showError(content: String) {
         viewStateBean.message = content
         viewStateBean.state = ViewStateContstants.showError
         loadState.value = viewStateBean
+    }
+
+    fun showProgressDialog(title: String) {
+
+        viewStateBean.message = title
+        viewStateBean.state = ViewStateContstants.showProgressDialog
+        loadState.value = viewStateBean
+    }
+
+    fun dismissProgressDialog() {
+        viewStateBean.message = ""
+        viewStateBean.state = ViewStateContstants.dismissProgressDialog
+        loadState.value = viewStateBean
+    }
+
+    fun changeProgress(percent: Int) {
+
+        viewStateBean.message = percent.toString()
+        viewStateBean.state = ViewStateContstants.changeProgress
+        loadState.value = viewStateBean
+
+
     }
 
 }

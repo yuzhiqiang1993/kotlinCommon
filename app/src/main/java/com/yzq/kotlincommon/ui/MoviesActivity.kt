@@ -64,9 +64,9 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
 
     override fun initData() {
 
-        viewModel.requestData()
+        vm.requestData()
 
-        viewModel.subjects.observe(this, object : Observer<List<Subject>> {
+        vm.subjects.observe(this, object : Observer<List<Subject>> {
             override fun onChanged(t: List<Subject>) {
 
                 LogUtils.i("数据发生变化")
