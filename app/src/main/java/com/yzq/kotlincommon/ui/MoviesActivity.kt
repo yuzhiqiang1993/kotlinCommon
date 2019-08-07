@@ -30,7 +30,7 @@ import kotlinx.android.synthetic.main.activity_movie_list.*
 class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
 
 
-    override fun setViewModel(): Class<MovieViewModel> = MovieViewModel::class.java
+    override fun getViewModelClass(): Class<MovieViewModel> = MovieViewModel::class.java
 
 
     private lateinit var movieAdapter: MovieAdapter
@@ -44,7 +44,6 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
 
 
     override fun initWidget() {
-        super.initWidget()
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "电影列表")
 
@@ -63,9 +62,11 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
 
 
     override fun initData() {
-
         vm.requestData()
+    }
 
+
+    override fun observeViewModel() {
         vm.subjects.observe(this, object : Observer<List<Subject>> {
             override fun onChanged(t: List<Subject>) {
 
@@ -79,7 +80,6 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
 
             }
         })
-
 
     }
 

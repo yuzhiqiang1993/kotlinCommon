@@ -18,7 +18,7 @@ import java.net.SocketTimeoutException
  * @time   : 16:00
  *
  */
-abstract class BaseDialogObserver<T>(private val vm: BaseViewModel, private val content: String = BaseConstants.LOADING, private val hideDialog: Boolean = true) : SingleObserver<T> {
+abstract class BaseDialogObserver<T>(private val vm: BaseViewModel, private val content: String = BaseConstants.LOADING) : SingleObserver<T> {
 
 
     override fun onSubscribe(d: Disposable) {
@@ -26,8 +26,10 @@ abstract class BaseDialogObserver<T>(private val vm: BaseViewModel, private val 
             vm.showloadingDialog(content)
 
         } else {
-            vm.showErrorDialog(BaseConstants.NO_NET)
+            vm.showNoNet()
             d.dispose()
+
+
         }
     }
 
@@ -47,10 +49,6 @@ abstract class BaseDialogObserver<T>(private val vm: BaseViewModel, private val 
 
         }
 
-    }
-
-    override fun onSuccess(t: T) {
-        vm.dismissLoadingDialog()
     }
 
 

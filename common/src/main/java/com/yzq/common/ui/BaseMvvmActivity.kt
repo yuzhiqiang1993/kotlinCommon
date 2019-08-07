@@ -1,6 +1,5 @@
 package com.yzq.common.ui
 
-import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.yzq.common.constants.ViewStateContstants
@@ -23,21 +22,15 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
     lateinit var vm: VM
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    abstract fun getViewModelClass(): Class<VM>
+
+    abstract fun observeViewModel()
 
 
-        initViewModel()
-        super.onCreate(savedInstanceState)
-
-
-    }
-
-    abstract fun setViewModel(): Class<VM>
-
-    fun initViewModel() {
+    override fun initViewModel() {
         @Suppress("UNCHECKED_CAST")
 
-        vm = ViewModelProviders.of(this).get(setViewModel())
+        vm = ViewModelProviders.of(this).get(getViewModelClass())
         vm.initViewModel(this)
 
         vm.loadState.observe(this, object : Observer<ViewStateBean> {
@@ -46,6 +39,8 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
             }
 
         })
+
+        observeViewModel()
     }
 
 

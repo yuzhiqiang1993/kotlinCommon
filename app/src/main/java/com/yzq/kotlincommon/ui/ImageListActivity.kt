@@ -32,7 +32,7 @@ import kotlinx.android.synthetic.main.activity_image_list.*
 class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
 
 
-    override fun setViewModel(): Class<ImgListViewModel> = ImgListViewModel::class.java
+    override fun getViewModelClass(): Class<ImgListViewModel> = ImgListViewModel::class.java
 
 
     private lateinit var imgListAdapter: ImgListAdapter
@@ -45,7 +45,6 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
 
 
     override fun initWidget() {
-
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "瀑布流图片（图片列表优化）")
 
@@ -70,6 +69,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
         }
     }
 
+
     private fun initRecy() {
 
         val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
@@ -88,6 +88,11 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
         imgListAdapter.setOnLoadMoreListener(this, recy)
         imgListAdapter.setLoadMoreView(AdapterLoadMoreView)
         recy.adapter = imgListAdapter
+
+
+    }
+
+    override fun observeViewModel() {
 
         vm.subjectsLive.observe(this, object : Observer<List<Subject>> {
             override fun onChanged(t: List<Subject>) {

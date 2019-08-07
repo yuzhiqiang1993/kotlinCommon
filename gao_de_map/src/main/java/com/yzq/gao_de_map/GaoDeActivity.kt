@@ -13,7 +13,9 @@ import kotlinx.android.synthetic.main.activity_gao_de.*
 
 @Route(path = RoutePath.GaoDe.GAO_DE)
 class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
-    override fun setViewModel(): Class<LocationSignViewModel> = LocationSignViewModel::class.java
+
+
+    override fun getViewModelClass(): Class<LocationSignViewModel> = LocationSignViewModel::class.java
 
 
     override fun getContentLayoutId(): Int {
@@ -24,7 +26,6 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
 
     @SuppressLint("AutoDispose")
     override fun initWidget() {
-
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
 
@@ -41,6 +42,10 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
         }
 
 
+    }
+
+
+    override fun observeViewModel() {
         vm.locationData.observe(this, object : Observer<AMapLocation> {
             override fun onChanged(t: AMapLocation) {
 
@@ -53,7 +58,6 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
 
             }
         })
-
 
     }
 

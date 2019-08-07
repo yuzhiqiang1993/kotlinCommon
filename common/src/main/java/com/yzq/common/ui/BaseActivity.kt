@@ -75,7 +75,7 @@ abstract class BaseActivity : AppCompatActivity() {
         initArgs(intent.extras)
 
         setContentView(getContentLayoutId())
-
+        initViewModel()
         initWidget()
         initData()
 
@@ -91,6 +91,10 @@ abstract class BaseActivity : AppCompatActivity() {
     protected open fun initArgs(extras: Bundle?) {
 
     }
+
+
+    protected open fun initViewModel() {}
+
 
 
     /**

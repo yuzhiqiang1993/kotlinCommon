@@ -1,13 +1,16 @@
 package com.yzq.kotlincommon.ui
 
+import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.navFinish
-import com.yzq.common.ui.BaseActivity
+import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.common.utils.LocalSpUtils
 import com.yzq.kotlincommon.R
+import com.yzq.kotlincommon.mvvm.view_model.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
 
@@ -20,7 +23,10 @@ import kotlinx.android.synthetic.main.activity_login.*
  */
 
 @Route(path = RoutePath.Main.LOGIN)
-class LoginActivity : BaseActivity() {
+class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
+
+
+    override fun getViewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
 
     override fun getContentLayoutId(): Int {
 
@@ -37,17 +43,37 @@ class LoginActivity : BaseActivity() {
         input_pwd.setText(LocalSpUtils.pwd)
 
 
+
         btn_login.setOnClickListener {
 
             LocalSpUtils.account = input_account.text.toString()
             LocalSpUtils.pwd = input_pwd.text.toString()
 
+            vm.login()
 
-            ARouter.getInstance()
-                    .build(RoutePath.Main.MAIN)
-                    .navFinish(this)
 
         }
+
+
+    }
+
+
+    override fun observeViewModel() {
+
+        vm.loginData.observe(this, object : Observer<Boolean> {
+            override fun onChanged(t: Boolean) {
+                LogUtils.i("数据发生变化")
+
+
+                ARouter.getInstance()
+                        .build(RoutePath.Main.MAIN)
+                        .navFinish(this@LoginActivity)
+
+            }
+
+        })
+
+
     }
 
 
