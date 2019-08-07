@@ -12,11 +12,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.yzq.common.constants.BaseConstants
 import com.yzq.common.eventBus.EventBusUtil
 import com.yzq.common.eventBus.EventMsg
-import com.yzq.common.mvvm.model.CompressImgModel
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-import javax.inject.Inject
 
 
 /**
@@ -32,9 +30,6 @@ abstract class BaseFragment : Fragment() {
     private var stateView: StateView? = null
     private var contentLayout: View? = null
     private var isRefreshLayout: Boolean = false
-
-    @Inject
-    lateinit var compressImgModel: CompressImgModel
 
 
     override fun onAttach(context: Context) {

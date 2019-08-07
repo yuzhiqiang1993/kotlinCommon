@@ -3,22 +3,20 @@ package com.yzq.common.mvvm.model
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Matrix
-import android.media.ExifInterface
+import androidx.exifinterface.media.ExifInterface
 import com.blankj.utilcode.util.*
 import com.yzq.common.R
 import com.yzq.common.constants.StoragePath
 import io.reactivex.Observable
 import io.reactivex.Single
 import java.io.IOException
-import javax.inject.Inject
-
 
 /**
  * Created by yzq on 2018/1/25.
  * 图片压缩model
  */
 
-class CompressImgModel @Inject constructor() {
+class CompressImgModel {
 
     private val quality = 85
     private val textColor = Color.GRAY

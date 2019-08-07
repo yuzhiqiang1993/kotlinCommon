@@ -4,9 +4,9 @@ import com.yzq.common.net.RetrofitFactory
 import com.yzq.kotlincommon.data.MovieBean
 import com.yzq.kotlincommon.net.ApiService
 import io.reactivex.Single
-import javax.inject.Inject
 
-class MoviesModel @Inject constructor() {
+
+class MoviesModel {
 
     fun getData(start: Int, count: Int): Single<MovieBean> {
 
