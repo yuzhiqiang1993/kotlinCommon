@@ -11,8 +11,7 @@
         android:id="@+id/iv_img"
         android:layout_width="@dimen/len_76"
         android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:scaleType="centerCrop" />
+        android:layout_gravity="center_vertical" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_title"

@@ -3,9 +3,8 @@ package com.yzq.kotlincommon.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.yzq.common.extend.load
+import com.yzq.common.extend.loadWithThumbnail
 import com.yzq.kotlincommon.data.Subject
-
 import kotlinx.android.synthetic.main.item_img_list.view.*
 import kotlin.random.Random
 
@@ -20,7 +19,7 @@ class ImgListAdapter(layoutResId: Int, data: List<Subject>) : BaseQuickAdapter<S
         iv_img.layoutParams.height = 300 + Random.nextInt(300)
 
 
-        iv_img.load(item.images.large)
+        iv_img.loadWithThumbnail(item.images.small)
 
 
     }
