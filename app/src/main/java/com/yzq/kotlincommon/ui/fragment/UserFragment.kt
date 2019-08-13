@@ -1,6 +1,6 @@
 package com.yzq.kotlincommon.ui.fragment
 
-import android.os.Bundle
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.ui.BaseFragment
 import com.yzq.kotlincommon.R
 
@@ -12,9 +12,9 @@ class UserFragment : BaseFragment() {
     }
 
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
+    override fun initWidget() {
 
+        LogUtils.i("UserFragment")
+    }
 
 }

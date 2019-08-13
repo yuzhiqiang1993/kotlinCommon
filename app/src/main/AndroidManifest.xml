@@ -17,7 +17,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
-        <activity android:name=".ui.activity.FragmentActivity"></activity>
+        <activity
+            android:name=".ui.activity.FragmentActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".ui.activity.ImageListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" /> <!-- 阿里热修复相关配置 -->

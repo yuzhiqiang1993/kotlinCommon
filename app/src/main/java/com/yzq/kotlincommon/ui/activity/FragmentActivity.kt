@@ -1,12 +1,12 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.ui.BaseFragment
 import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.mvvm.view_model.FragmentViewModel
@@ -34,42 +34,37 @@ class FragmentActivity : BaseMvvmActivity<FragmentViewModel>(), BottomNavigation
         bottom_navigation_bar.setTabSelectedListener(this)
 
 
-
-
-        LogUtils.i("supportFragmentManager" + supportFragmentManager)
-
-        vm.fragmentList.forEach {
-
-            if (!it.isAdded) {
-
-                LogUtils.i("没有添加过")
-                supportFragmentManager.beginTransaction().add(R.id.layout_fragment, it).commit()
-            }
-        }
+        showFragment(vm.taskFragment)
 
 
     }
 
     override fun observeViewModel() {
 
-        vm.tabSelectedPosition.observe(this, object : Observer<Int> {
-            override fun onChanged(position: Int) {
-                LogUtils.i("position：${position}")
-                showFragment(position)
-            }
-        })
+//        vm.tabSelectedPosition.observe(this, object : Observer<Int> {
+//            override fun onChanged(position: Int) {
+//                LogUtils.i("position：${position}")
+//                showFragment(position)
+//            }
+//        })
 
     }
 
-    private fun showFragment(position: Int) {
+    private fun showFragment(fragment: BaseFragment) {
+
+        if (!fragment.isAdded) {
+            supportFragmentManager.beginTransaction().add(R.id.layout_fragment, fragment).commit()
+        }
+
+        vm.addFragment(fragment)
+
 
         vm.fragmentList.forEach {
 
             supportFragmentManager.beginTransaction().hide(it).commit()
         }
 
-
-        supportFragmentManager.beginTransaction().show(vm.fragmentList[position]).commit()
+        supportFragmentManager.beginTransaction().show(fragment).commit()
 
 
     }
@@ -84,8 +79,16 @@ class FragmentActivity : BaseMvvmActivity<FragmentViewModel>(), BottomNavigation
 
 
     override fun onTabSelected(position: Int) {
+        LogUtils.i("onTabSelected:${position}")
+        when (position) {
+            0 -> {
+                showFragment(vm.taskFragment)
+            }
+            1 -> {
+                showFragment(vm.userFragment)
+            }
+        }
 
-        vm.changeTabSelected(position)
 
     }
 
