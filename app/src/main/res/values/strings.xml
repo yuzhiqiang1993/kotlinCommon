@@ -14,4 +14,7 @@
     <string name="menu_tools">工具</string>
     <string name="menu_share">分享</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

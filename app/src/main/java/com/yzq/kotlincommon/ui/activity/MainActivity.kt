@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.ui
+package com.yzq.kotlincommon.ui.activity
 
 import android.graphics.Color
 import android.view.MenuItem
@@ -90,6 +90,8 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
         items.add("高德定位")
         items.add("FlexBoxLayout")
         items.add("瀑布流图片")
+        items.add("fragment")
+
         setdata()
     }
 
@@ -117,6 +119,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
             8 -> skip(RoutePath.GaoDe.GAO_DE)
             9 -> skip(RoutePath.Main.FLEX_BOX)
             10 -> skip(RoutePath.Main.IMG_LIST)
+            11 -> skip(RoutePath.Main.FRAGMENT)
 
         }
     }

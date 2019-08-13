@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.ui
+package com.yzq.kotlincommon.ui.activity
 
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView

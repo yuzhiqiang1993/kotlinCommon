@@ -1,10 +1,9 @@
-package com.yzq.kotlincommon.ui
+package com.yzq.kotlincommon.ui.activity
 
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.navFinish
 import com.yzq.common.ui.BaseMvvmActivity
@@ -62,13 +61,11 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
 
         vm.loginData.observe(this, object : Observer<Boolean> {
             override fun onChanged(t: Boolean) {
-                LogUtils.i("数据发生变化")
-
 
                 ARouter.getInstance()
                         .build(RoutePath.Main.MAIN)
                         .navFinish(this@LoginActivity)
-
+                dismissLoadingDialog()
             }
 
         })

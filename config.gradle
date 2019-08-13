@@ -27,7 +27,7 @@ ext {
     permission = "2.0.1"
     retrofit = "2.6.1"
     progressmanager_version = "1.5.0"
-    ok_http = "4.0.1"
+    ok_http = "4.1.0"
     rx_android = "2.1.1"
 //    rx_java = "2.2.8"
     rx_kotlin = "2.4.0"
@@ -38,7 +38,7 @@ ext {
     baseRecyclerViewAdapterHelper = "2.9.49-androidx"
     photoview = "2.3.0"
     objectboxVersion = "2.3.4"
-    utilcode = "1.25.5"
+    utilcode = "1.25.7"
     arouter_api = "1.5.0"
     arouter_compiler = "1.2.2"
     walleVersion = "1.1.6"
@@ -46,7 +46,7 @@ ext {
     rx_imgpicker = "2.5.0"
     bugly_crashreport_upgrade = '1.4.1'
     bugly_nativecrashreport = '3.7.1'
-    datepickerVersion = "1.2.2"
+    datepickerVersion = "1.2.3"
     flexbox = "1.1.0"
     hotfix = "3.2.8"
     gradle_versions_plugin = "0.21.0"

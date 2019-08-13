@@ -5,7 +5,7 @@ import androidx.multidex.MultiDex
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.BaseApp
-import com.yzq.kotlincommon.ui.MainActivity
+import com.yzq.kotlincommon.ui.activity.MainActivity
 
 
 /**
@@ -25,6 +25,7 @@ class App : BaseApp() {
         initBugly()
 
     }
+
 
     /**
      * 初始化bugly

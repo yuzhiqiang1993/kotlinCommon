@@ -34,37 +34,35 @@ abstract class BaseFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-
-        initArgs(arguments!!)
-
-
+        initArgs(arguments)
     }
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(getContentLayoutId(), container, false)
-
         EventBusUtil.register(this)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        initViewModel()
         initWidget()
         initData()
 
     }
 
+    protected open fun initViewModel() {}
 
-    protected open fun initArgs(arguments: Bundle) {
+
+    protected open fun initArgs(arguments: Bundle?) {
 
 
     }
 
 
     /*初始化数据*/
-    protected fun initData() {
+    protected open fun initData() {
 
     }
 
@@ -74,7 +72,7 @@ abstract class BaseFragment : Fragment() {
 
 
     /*初始化View*/
-    protected fun initWidget() {
+    protected open fun initWidget() {
 
 
     }
@@ -96,7 +94,7 @@ abstract class BaseFragment : Fragment() {
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEventMainThread(msg: EventMsg) {
+    open fun onEventMainThread(msg: EventMsg) {
     }
 
 
@@ -105,19 +103,19 @@ abstract class BaseFragment : Fragment() {
         EventBusUtil.unregister(this)
     }
 
-    fun onBackPressed(): Boolean {
+    protected open fun onBackPressed(): Boolean {
 
         return false
 
     }
 
-    fun showLoadding() {
+    protected open fun showLoadding() {
         stateView?.showLoading()
         contentLayout?.visibility = View.GONE
 
     }
 
-    fun showContent() {
+    protected open fun showContent() {
         stateView?.hide()
         contentLayout?.visibility = View.VISIBLE
 
@@ -128,19 +126,19 @@ abstract class BaseFragment : Fragment() {
 
     }
 
-    fun showNoData() {
+    protected open fun showNoData() {
         stateView?.showNoData()
         contentLayout?.visibility = View.GONE
 
     }
 
-    fun showNoNet() {
+    protected open fun showNoNet() {
         stateView?.showNoNet()
         contentLayout?.visibility = View.GONE
 
     }
 
-    fun showError(msg: String?) {
+    protected open fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
             stateView?.showError(BaseConstants.UNKONW_ERROR)
@@ -151,32 +149,32 @@ abstract class BaseFragment : Fragment() {
     }
 
 
-    fun showLoadingDialog(message: String) {
+    protected open fun showLoadingDialog(message: String) {
         (activity as BaseActivity).showLoadingDialog(message)
     }
 
-    fun dismissLoadingDialog() {
+    protected open fun dismissLoadingDialog() {
         (activity as BaseActivity).dismissLoadingDialog()
     }
 
-    fun showErrorDialog(msg: String?) {
+    protected open fun showErrorDialog(msg: String?) {
         (activity as BaseActivity).showErrorDialog(msg)
     }
 
 
-    fun showProgressDialog(title: String) {
+    protected open fun showProgressDialog(title: String) {
         (activity as BaseActivity).showProgressDialog(title)
     }
 
-    fun changeProgress(percent: Int) {
+    protected open fun changeProgress(percent: Int) {
         (activity as BaseActivity).changeProgress(percent)
     }
 
-    fun dismissProgressDialog() {
+    protected open fun dismissProgressDialog() {
         (activity as BaseActivity).dismissProgressDialog()
     }
 
-    protected fun initStateView(stateView: StateView, contentLayout: View, isRefreshLayout: Boolean = false) {
+    protected open fun initStateView(stateView: StateView, contentLayout: View, isRefreshLayout: Boolean = false) {
         this.stateView = stateView
         this.contentLayout = contentLayout
         this.isRefreshLayout = isRefreshLayout

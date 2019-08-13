@@ -28,8 +28,6 @@ abstract class BaseDialogObserver<T>(private val vm: BaseViewModel, private val 
         } else {
             vm.showNoNet()
             d.dispose()
-
-
         }
     }
 

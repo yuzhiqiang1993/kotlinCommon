@@ -4,15 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.FlexBoxActivity">
+    tools:context=".ui.fragment.TaskFragment">
 
-    <include layout="@layout/toolbar" />
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recy"
+    <TextView
+        android:id="@+id/tv_task"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Hello" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
