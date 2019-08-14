@@ -6,8 +6,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.diff.BaseQuickDiffCallback
 import com.yzq.common.constants.HttpRequestType
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.ui.BaseMvvmActivity
@@ -129,12 +129,26 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
             imgListAdapter.loadMoreComplete()
 
         } else {
-            imgListAdapter.setNewData(t)
+
+            // imgListAdapter.setNewData(t)
+
+
+            /*下面这种方式更新数据性能更高  且不会出现列表项刷新闪屏的情况*/
+            imgListAdapter.setNewDiffData(object : BaseQuickDiffCallback<Subject>(t) {
+                override fun areItemsTheSame(oldItem: Subject, newItem: Subject): Boolean {
+                    return oldItem.id.equals(newItem.id)
+                }
+
+                override fun areContentsTheSame(oldItem: Subject, newItem: Subject): Boolean {
+                    return oldItem.images.small.equals(newItem.images.small)
+                }
+
+            })
 
         }
 
         showContent()
-        LogUtils.i("数据个数：" + imgListAdapter.data.size)
+
 
     }
 
