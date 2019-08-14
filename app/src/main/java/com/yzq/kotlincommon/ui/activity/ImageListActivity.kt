@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.diff.BaseQuickDiffCallback
 import com.yzq.common.constants.HttpRequestType
@@ -35,7 +36,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
     override fun getViewModelClass(): Class<ImgListViewModel> = ImgListViewModel::class.java
 
 
-    private lateinit var imgListAdapter: ImgListAdapter
+    private var imgListAdapter = ImgListAdapter(R.layout.item_img_list, arrayListOf())
 
 
     override fun getContentLayoutId(): Int {
@@ -78,13 +79,12 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
         //layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
 
         initRecycleView(recy, layoutManager = layoutManager, needItemDecoration = false)
-        imgListAdapter = ImgListAdapter(R.layout.item_img_list, arrayListOf())
-        imgListAdapter.setOnItemClickListener(this)
+
+
+        imgListAdapter.onItemClickListener = this
 
         imgListAdapter.setEnableLoadMore(true)
-//        imgListAdapter.openLoadAnimation()
-//        imgListAdapter.isFirstOnly(false)
-        // imgListAdapter.setPreLoadNumber(6)
+
         imgListAdapter.setOnLoadMoreListener(this, recy)
         imgListAdapter.setLoadMoreView(AdapterLoadMoreView)
         recy.adapter = imgListAdapter
@@ -130,9 +130,6 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
 
         } else {
 
-            // imgListAdapter.setNewData(t)
-
-
             /*下面这种方式更新数据性能更高  且不会出现列表项刷新闪屏的情况*/
             imgListAdapter.setNewDiffData(object : BaseQuickDiffCallback<Subject>(t) {
                 override fun areItemsTheSame(oldItem: Subject, newItem: Subject): Boolean {
@@ -163,6 +160,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
 
     override fun onLoadMoreRequested() {
 
+        LogUtils.i("onLoadMoreRequested")
         if (vm.start <= 250) {
             vm.requestType = HttpRequestType.LOAD_MORE
             vm.getData()
