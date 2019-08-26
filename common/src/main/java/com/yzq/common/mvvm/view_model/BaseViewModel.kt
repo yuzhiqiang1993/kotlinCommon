@@ -3,8 +3,8 @@ package com.yzq.common.mvvm.view_model
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.yzq.common.constants.ViewStateContstants
-import com.yzq.common.data.ViewStateBean
+import com.yzq.data_constants.constants.ViewStateContstants
+import com.yzq.data_constants.data.base.ViewStateBean
 
 
 /*

@@ -3,8 +3,7 @@ package com.yzq.common.net
 import android.util.Log
 import com.google.gson.Gson
 import com.yzq.common.BuildConfig
-import com.yzq.common.constants.ServerConstants
-import com.yzq.common.net.interceptor.RequestHeadersInterceptor
+import com.yzq.data_constants.constants.net.ServerConstants
 import me.jessyan.progressmanager.ProgressManager
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

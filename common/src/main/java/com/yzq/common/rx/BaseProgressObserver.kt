@@ -3,8 +3,8 @@ package com.yzq.common.rx
 import android.text.TextUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
-import com.yzq.common.constants.BaseConstants
 import com.yzq.common.mvvm.view_model.BaseViewModel
+import com.yzq.data_constants.constants.BaseConstants
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import me.jessyan.progressmanager.ProgressListener

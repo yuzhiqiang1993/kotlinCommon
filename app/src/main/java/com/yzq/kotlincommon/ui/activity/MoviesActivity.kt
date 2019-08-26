@@ -8,12 +8,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.yzq.common.constants.RoutePath
 import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.common.widget.StateView
+import com.yzq.data_constants.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MovieAdapter
-import com.yzq.kotlincommon.data.Subject
+import com.yzq.data_constants.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.view_model.MovieViewModel
 import kotlinx.android.synthetic.main.activity_movie_list.*
 

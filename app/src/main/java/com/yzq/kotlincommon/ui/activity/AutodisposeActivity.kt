@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.constants.RoutePath
+import com.yzq.data_constants.constants.RoutePath
 import com.yzq.common.extend.transform
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R

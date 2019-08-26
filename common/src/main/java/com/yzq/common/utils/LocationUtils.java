@@ -13,8 +13,9 @@ import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.os.Bundle;
 import android.provider.Settings;
-import androidx.annotation.RequiresPermission;
 import android.util.Log;
+
+import androidx.annotation.RequiresPermission;
 
 import com.blankj.utilcode.util.Utils;
 

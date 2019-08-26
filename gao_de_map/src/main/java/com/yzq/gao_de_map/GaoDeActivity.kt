@@ -5,13 +5,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.amap.api.location.AMapLocation
-import com.yzq.common.constants.RoutePath
+import com.yzq.data_constants.constants.RoutePath
 import com.yzq.common.net.GsonConvert
 import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.gao_de_map.utils.MapPermissionUtils
 import kotlinx.android.synthetic.main.activity_gao_de.*
 
-@Route(path = RoutePath.GaoDe.GAO_DE)
+@Route(path = com.yzq.data_constants.constants.RoutePath.GaoDe.GAO_DE)
 class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
 
 

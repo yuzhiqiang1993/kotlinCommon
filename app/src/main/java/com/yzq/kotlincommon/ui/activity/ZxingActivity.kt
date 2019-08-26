@@ -9,11 +9,11 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yanzhenjie.permission.runtime.Permission
-import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.requestPermission
 import com.yzq.common.extend.showBaseDialog
 import com.yzq.common.extend.transform
 import com.yzq.common.ui.BaseActivity
+import com.yzq.data_constants.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.zxinglibrary.android.CaptureActivity
 import com.yzq.zxinglibrary.bean.ZxingConfig

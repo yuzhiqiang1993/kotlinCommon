@@ -15,9 +15,9 @@ import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.google.android.material.navigation.NavigationView
 import com.tencent.bugly.beta.Beta
-import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.transform
 import com.yzq.common.ui.BaseActivity
+import com.yzq.data_constants.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
 import io.reactivex.Observable
@@ -108,18 +108,18 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
         when (position) {
-            0 -> skip(RoutePath.Main.MOVIES)
-            1 -> skip(RoutePath.Main.TASK)
-            2 -> skip(RoutePath.Main.IMG_COMPRESS)
-            3 -> skip(RoutePath.Main.DIALOG)
-            4 -> skip(RoutePath.Main.ZXING)
-            5 -> skip(RoutePath.Main.LOGIN)
-            6 -> skip(RoutePath.Main.AUTODISPOSE)
-            7 -> skip(RoutePath.Main.DROP_DOWN_MENU)
-            8 -> skip(RoutePath.GaoDe.GAO_DE)
-            9 -> skip(RoutePath.Main.FLEX_BOX)
-            10 -> skip(RoutePath.Main.IMG_LIST)
-            11 -> skip(RoutePath.Main.FRAGMENT)
+            0 -> skip(com.yzq.data_constants.constants.RoutePath.Main.MOVIES)
+            1 -> skip(com.yzq.data_constants.constants.RoutePath.Main.TASK)
+            2 -> skip(com.yzq.data_constants.constants.RoutePath.Main.IMG_COMPRESS)
+            3 -> skip(com.yzq.data_constants.constants.RoutePath.Main.DIALOG)
+            4 -> skip(com.yzq.data_constants.constants.RoutePath.Main.ZXING)
+            5 -> skip(com.yzq.data_constants.constants.RoutePath.Main.LOGIN)
+            6 -> skip(com.yzq.data_constants.constants.RoutePath.Main.AUTODISPOSE)
+            7 -> skip(com.yzq.data_constants.constants.RoutePath.Main.DROP_DOWN_MENU)
+            8 -> skip(com.yzq.data_constants.constants.RoutePath.GaoDe.GAO_DE)
+            9 -> skip(com.yzq.data_constants.constants.RoutePath.Main.FLEX_BOX)
+            10 -> skip(com.yzq.data_constants.constants.RoutePath.Main.IMG_LIST)
+            11 -> skip(com.yzq.data_constants.constants.RoutePath.Main.FRAGMENT)
 
         }
     }

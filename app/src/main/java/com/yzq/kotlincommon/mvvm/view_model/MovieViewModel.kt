@@ -5,8 +5,8 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.extend.transform
 import com.yzq.common.mvvm.view_model.BaseViewModel
 import com.yzq.common.rx.BaseObserver
-import com.yzq.kotlincommon.data.MovieBean
-import com.yzq.kotlincommon.data.Subject
+import com.yzq.data_constants.data.movie.MovieBean
+import com.yzq.data_constants.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.model.MoviesModel
 
 

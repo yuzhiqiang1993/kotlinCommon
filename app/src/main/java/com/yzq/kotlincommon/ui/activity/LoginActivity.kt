@@ -4,10 +4,10 @@ import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.BarUtils
-import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.navFinish
 import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.common.utils.LocalSpUtils
+import com.yzq.data_constants.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.mvvm.view_model.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
@@ -63,7 +63,7 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
             override fun onChanged(t: Boolean) {
 
                 ARouter.getInstance()
-                        .build(RoutePath.Main.MAIN)
+                        .build(com.yzq.data_constants.constants.RoutePath.Main.MAIN)
                         .navFinish(this@LoginActivity)
                 dismissLoadingDialog()
             }

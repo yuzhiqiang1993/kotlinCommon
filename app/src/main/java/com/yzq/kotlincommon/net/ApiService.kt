@@ -1,6 +1,8 @@
 package com.yzq.kotlincommon.net
 
-import com.yzq.kotlincommon.data.MovieBean
+import com.yzq.data_constants.constants.net.ApiConstants
+import com.yzq.data_constants.constants.net.ParamConstants
+import com.yzq.data_constants.data.movie.MovieBean
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

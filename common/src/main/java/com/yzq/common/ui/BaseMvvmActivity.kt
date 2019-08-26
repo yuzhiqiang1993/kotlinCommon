@@ -2,8 +2,8 @@ package com.yzq.common.ui
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.yzq.common.constants.ViewStateContstants
-import com.yzq.common.data.ViewStateBean
+import com.yzq.data_constants.constants.ViewStateContstants
+import com.yzq.data_constants.data.base.ViewStateBean
 import com.yzq.common.mvvm.view_model.BaseViewModel
 
 
@@ -33,12 +33,7 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
         vm = ViewModelProviders.of(this).get(getViewModelClass())
         vm.initViewModel(this)
 
-        vm.loadState.observe(this, object : Observer<ViewStateBean> {
-            override fun onChanged(viewStateBean: ViewStateBean) {
-                handleViewState(viewStateBean)
-            }
-
-        })
+        vm.loadState.observe(this, Observer<ViewStateBean> { viewStateBean -> handleViewState(viewStateBean) })
 
         observeViewModel()
     }

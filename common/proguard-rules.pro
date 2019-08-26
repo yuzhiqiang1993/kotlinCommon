@@ -1,9 +1,5 @@
 
 
--dontwarn com.yzq.common.data**
-#对含有反射类的处理
--keep class com.yzq.common.data.** { *; }
-
 
 #
 # ----------------------------- 第三方 -----------------------------
@@ -19,11 +15,6 @@
        public static *** w(...);
 }
 
-
-#gson
--dontwarn com.google.gson.**
--keep class com.google.gson.**{*;}
--keep interface com.google.gson.**{*;}
 
 
 # EventBus
