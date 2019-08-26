@@ -1,7 +1,4 @@
-#实体类
--dontwarn com.yzq.gao_de_map.data**
 
--keep class com.yzq.gao_de_map.data.** { *; }
 
 # 3D 地图 V5.0.0之后：
     -keep   class com.amap.api.maps.**{*;}

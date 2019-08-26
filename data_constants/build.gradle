@@ -3,11 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "com.github.ben-manes.versions"
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
+
+
 
 android {
     compileSdkVersion compile_sdk_version
@@ -18,6 +15,7 @@ android {
         versionName version_name
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
+        consumerProguardFiles 'consumer-rules.pro'
     }
 
     lintOptions {
