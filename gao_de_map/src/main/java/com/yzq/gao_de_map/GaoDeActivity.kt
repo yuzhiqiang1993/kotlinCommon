@@ -5,7 +5,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.amap.api.location.AMapLocation
-import com.yzq.data_constants.constants.RoutePath
 import com.yzq.common.net.GsonConvert
 import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.gao_de_map.utils.MapPermissionUtils
@@ -36,6 +35,8 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
             MapPermissionUtils.checkLocationPermission(true, this)
                     .subscribe { hasPermission ->
 
+                        showLoadingDialog("正在获取位置信息")
+
                         vm.startLocation()
 
                     }
@@ -54,6 +55,8 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
                 } else {
                     tv_location_result.text = t.locationDetail
                 }
+
+                dismissLoadingDialog()
 
 
             }
