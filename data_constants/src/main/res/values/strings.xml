@@ -1,5 +1,5 @@
 <resources>
-
+    <string name="app_name">kotlinCommon</string>
     <string name="loadding">正在加载中…</string>
     <string name="loadding_more">正在加载更多…</string>
     <string name="load_more_fail">加载失败…</string>
@@ -29,5 +29,6 @@
     <string name="zero">0</string>
     <string name="hundred">100</string>
     <string name="img_transition">img_transition</string>
+
 
 </resources>

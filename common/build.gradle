@@ -114,8 +114,6 @@ dependencies {
     /*flexbox*/
     api "com.google.android:flexbox:$flexbox"
 
-    /*阿里热修复*/
-    api "com.aliyun.ams:alicloud-android-hotfix:$hotfix"
 
     /*内存泄漏检测 leakcanary*/
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_android}"

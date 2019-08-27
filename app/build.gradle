@@ -31,6 +31,7 @@ android {
             keyAlias rootProject.ext.signConfigs.keyAlias
             keyPassword rootProject.ext.signConfigs.keypwd
             storeFile file(rootProject.ext.signConfigs.storeFilePath)
+            v2SigningEnabled true
         }
     }
 

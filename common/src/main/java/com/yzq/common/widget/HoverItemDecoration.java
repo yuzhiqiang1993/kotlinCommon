@@ -8,6 +8,7 @@ import android.util.TypedValue;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yzq.common.R;
@@ -69,10 +70,10 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
         width = context.getResources().getDisplayMetrics().widthPixels;
 
         itemPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        /**
-         * 分组item的颜色
+        /*
+          分组item的颜色
          */
-        int itemHoverPaintColor = this.context.getResources().getColor(R.color.gray_300);
+        int itemHoverPaintColor = ContextCompat.getColor(context, R.color.gray_300);
         itemPaint.setColor(itemHoverPaintColor);
 
         itemHoverPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -83,12 +84,12 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
         itemDivideHeight = dp2px(1);
 
         textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        /**
-         * 分组文字的颜色
+        /*
+          分组文字的颜色
          */
-        int textPaintColor = this.context.getResources().getColor(R.color.black);
+        int textPaintColor = ContextCompat.getColor(context, R.color.black);
         textPaint.setColor(textPaintColor);
-        textPaint.setTextSize(sp2px(15));
+        textPaint.setTextSize(sp2px());
 
 
     }
@@ -203,9 +204,9 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
     }
 
 
-    private int sp2px(int spVal) {
+    private int sp2px() {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
-                spVal, context.getResources().getDisplayMetrics());
+                15, context.getResources().getDisplayMetrics());
 
     }
 
