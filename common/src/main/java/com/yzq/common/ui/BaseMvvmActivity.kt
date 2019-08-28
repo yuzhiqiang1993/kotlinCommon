@@ -2,9 +2,9 @@ package com.yzq.common.ui
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.yzq.common.mvvm.view_model.BaseViewModel
 import com.yzq.data_constants.constants.ViewStateContstants
 import com.yzq.data_constants.data.base.ViewStateBean
-import com.yzq.common.mvvm.view_model.BaseViewModel
 
 
 /**
@@ -28,8 +28,6 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
 
 
     override fun initViewModel() {
-        @Suppress("UNCHECKED_CAST")
-
         vm = ViewModelProviders.of(this).get(getViewModelClass())
         vm.initViewModel(this)
 

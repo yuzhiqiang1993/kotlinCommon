@@ -1,8 +1,7 @@
 package com.yzq.common.mvvm.view_model
 
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.data_constants.constants.ViewStateContstants
 import com.yzq.data_constants.data.base.ViewStateBean
 
@@ -10,7 +9,7 @@ import com.yzq.data_constants.data.base.ViewStateBean
 /*
 * 封装的BaseViewModel
 * */
-abstract class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     lateinit var lifecycleOwner: LifecycleOwner
 
@@ -21,6 +20,7 @@ abstract class BaseViewModel : ViewModel() {
 
     fun initViewModel(lifecycleOwner: LifecycleOwner) {
         this.lifecycleOwner = lifecycleOwner
+        this.lifecycleOwner.lifecycle.addObserver(this)
     }
 
     /**
@@ -81,5 +81,13 @@ abstract class BaseViewModel : ViewModel() {
 
 
     }
+
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    protected open fun onDestory() {
+        LogUtils.i("lifecycleOwner：${lifecycleOwner}-->Lifecycle.Event.ON_DESTROY")
+
+    }
+
 
 }

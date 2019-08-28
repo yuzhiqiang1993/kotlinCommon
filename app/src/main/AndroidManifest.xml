@@ -23,7 +23,6 @@
         <activity
             android:name=".ui.activity.ImageListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
-
         <activity
             android:name=".ui.activity.FlexBoxActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

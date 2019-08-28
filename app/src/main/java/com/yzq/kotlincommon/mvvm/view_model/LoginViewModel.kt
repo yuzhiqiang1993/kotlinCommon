@@ -24,7 +24,7 @@ class LoginViewModel : BaseViewModel() {
                 .transform(lifecycleOwner)
                 .subscribe(object : BaseDialogObserver<MovieBean>(this) {
                     override fun onSuccess(t: MovieBean) {
-                        loginData.value=true
+                        loginData.value = true
                     }
 
                 })

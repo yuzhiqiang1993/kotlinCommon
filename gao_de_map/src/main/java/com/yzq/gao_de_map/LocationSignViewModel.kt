@@ -1,9 +1,6 @@
 package com.yzq.gao_de_map
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.OnLifecycleEvent
 import com.amap.api.location.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
@@ -19,7 +16,7 @@ import com.yzq.common.mvvm.view_model.BaseViewModel
  *
  */
 
-class LocationSignViewModel : BaseViewModel(), AMapLocationListener, LifecycleObserver {
+class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
     private var locationClient: AMapLocationClient
 
@@ -32,7 +29,6 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener, LifecycleOb
         locationClient = AMapLocationClient(AppContext)
         locationClient.setLocationOption(initOption())
         locationClient.setLocationListener(this)
-
     }
 
 
@@ -48,7 +44,6 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener, LifecycleOb
     /*开始定位*/
 
     fun startLocation() {
-        lifecycleOwner.lifecycle.addObserver(this)
         locationClient.startLocation()
 
     }
@@ -130,14 +125,11 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener, LifecycleOb
         return str
     }
 
-    /**
-     * 销毁定位
-     */
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    private fun destroyLocation() {
-        LogUtils.i("destroyLocation")
+
+    override fun onDestory() {
         locationClient.stopLocation()
         locationClient.onDestroy()
+        lifecycleOwner.lifecycle.removeObserver(this)
 
     }
 
