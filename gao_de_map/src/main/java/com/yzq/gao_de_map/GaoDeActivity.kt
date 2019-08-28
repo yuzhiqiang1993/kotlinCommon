@@ -5,7 +5,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.amap.api.location.AMapLocation
-import com.yzq.common.net.GsonConvert
 import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.gao_de_map.utils.MapPermissionUtils
 import kotlinx.android.synthetic.main.activity_gao_de.*
@@ -51,7 +50,7 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
             override fun onChanged(t: AMapLocation) {
 
                 if (t.errorCode == 0) {
-                    tv_location_result.text = GsonConvert.toJson(t)
+                    tv_location_result.text = t.address
                 } else {
                     tv_location_result.text = t.locationDetail
                 }
