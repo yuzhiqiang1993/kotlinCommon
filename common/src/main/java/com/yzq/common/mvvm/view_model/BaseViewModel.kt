@@ -83,9 +83,41 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     }
 
 
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    protected open fun onCreate() {
+        LogUtils.i("lifecycleOwner：${lifecycleOwner}-->ON_CREATE")
+
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    protected open fun onStart() {
+        LogUtils.i("lifecycleOwner：${lifecycleOwner}-->ON_START")
+
+    }
+
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    protected open fun onResume() {
+        LogUtils.i("lifecycleOwner：${lifecycleOwner}-->ON_RESUME")
+
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    protected open fun onPause() {
+        LogUtils.i("lifecycleOwner：${lifecycleOwner}-->ON_PAUSE")
+
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    protected open fun onStop() {
+        LogUtils.i("lifecycleOwner：${lifecycleOwner}-->ON_STOP")
+
+    }
+
+
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     protected open fun onDestory() {
-        LogUtils.i("lifecycleOwner：${lifecycleOwner}-->Lifecycle.Event.ON_DESTROY")
+        LogUtils.i("lifecycleOwner：${lifecycleOwner}-->ON_DESTROY")
 
     }
 
