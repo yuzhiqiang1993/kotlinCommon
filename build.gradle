@@ -1,7 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-
     apply from: file("config.gradle")
     repositories {
         google()
@@ -20,6 +19,7 @@ buildscript {
         /*用于检测依赖库是否有最新版本*/
         classpath "com.github.ben-manes:gradle-versions-plugin:${gradle_versions_plugin}"
     }
+
 
 
 }

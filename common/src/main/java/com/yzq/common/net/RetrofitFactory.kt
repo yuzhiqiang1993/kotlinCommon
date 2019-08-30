@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 
 /**
  * @description: RetrofitFactory
- * @author : yzq *
+ * @author : yzq
  * @date   : 2018/7/9
  * @time   : 16:44
  *
@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit
 class RetrofitFactory private constructor() {
 
     private val retrofit: Retrofit
-
+    
 
     init {
 

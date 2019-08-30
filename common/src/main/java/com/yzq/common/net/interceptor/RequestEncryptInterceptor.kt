@@ -1,5 +1,6 @@
 package com.yzq.common.net.interceptor
 
+
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.utils.AESUtil
 import com.yzq.common.utils.RSAUtil
@@ -10,6 +11,7 @@ import okhttp3.Response
 import okio.Buffer
 import java.net.URLDecoder
 import java.nio.charset.Charset
+import java.util.*
 
 
 /**
@@ -30,7 +32,7 @@ class RequestEncryptInterceptor : Interceptor {
 
         var charset = Charset.forName("UTF-8")
 
-        val method = request.method.toLowerCase().trim()
+        val method = request.method.trim().toLowerCase(Locale.ROOT)
 
         LogUtils.i("请求方式：${method}")
 
@@ -99,14 +101,17 @@ class RequestEncryptInterceptor : Interceptor {
                 val contentType = requestBody.contentType()
 
 
+
                 if (contentType != null) {
-                    charset = contentType.charset(charset)
+
+
+                    charset = contentType.charset(charset)!!
 
                     LogUtils.i("contentType===>${contentType}")
                     LogUtils.i("contentType===> type:${contentType.type},subType:${contentType.subtype}")
 
                     /*如果是二进制上传  则不进行加密*/
-                    if (contentType.type.toLowerCase().equals("multipart")) {
+                    if (contentType.type.toLowerCase(Locale.ROOT).equals("multipart")) {
                         LogUtils.i("上传文件，不加密")
                         return chain.proceed(request)
                     }

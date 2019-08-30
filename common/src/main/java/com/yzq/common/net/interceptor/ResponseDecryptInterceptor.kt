@@ -58,7 +58,7 @@ class ResponseDecryptInterceptor : Interceptor {
 
                     val contentType = responseBody.contentType()
                     if (contentType != null) {
-                        charset = contentType.charset(charset)
+                        charset = contentType.charset(charset)!!
                     }
 
                     val bodyString = buffer.clone().readString(charset).trim()
