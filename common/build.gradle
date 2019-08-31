@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "com.github.ben-manes.versions"
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.yuzhiqiang1993'
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())

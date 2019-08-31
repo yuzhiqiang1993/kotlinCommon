@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+
     apply from: file("config.gradle")
     repositories {
         google()
@@ -18,7 +19,10 @@ buildscript {
         classpath "com.tencent.mm:AndResGuard-gradle-plugin:$andResGuardVersion"
         /*用于检测依赖库是否有最新版本*/
         classpath "com.github.ben-manes:gradle-versions-plugin:${gradle_versions_plugin}"
+
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1' // Add this line
     }
+
 
 
 
@@ -31,10 +35,13 @@ allprojects {
     repositories {
         google()
         jcenter()
+//        maven {
+//            url "https://jitpack.io"
+//        }
         maven {
             url "https://jitpack.io"
+            credentials { username authToken }
         }
-
 
     }
 }
