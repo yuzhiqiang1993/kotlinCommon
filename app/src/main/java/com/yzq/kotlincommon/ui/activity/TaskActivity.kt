@@ -9,10 +9,10 @@ import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.widget.HoverItemDecoration
-import com.yzq.data_constants.constants.RoutePath
+import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TaskAdapter
-import com.yzq.data_constants.data.task.TaskBean
+import com.yzq.kotlincommon.data.task.TaskBean
 import kotlinx.android.synthetic.main.activity_task.*
 import java.util.*
 

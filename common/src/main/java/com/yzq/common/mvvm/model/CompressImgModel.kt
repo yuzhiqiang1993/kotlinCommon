@@ -6,7 +6,7 @@ import android.graphics.Matrix
 import androidx.exifinterface.media.ExifInterface
 import com.blankj.utilcode.util.*
 import com.yzq.common.R
-import com.yzq.data_constants.constants.StoragePath
+import com.yzq.common.constants.StoragePath
 import io.reactivex.Observable
 import io.reactivex.Single
 import java.io.IOException

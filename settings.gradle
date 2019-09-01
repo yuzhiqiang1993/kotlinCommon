@@ -1,1 +1,1 @@
-include ':app', ':common', ':custom_view', ':gao_de_map', ':data_constants'
+include ':app', ':common', ':custom_view', ':gao_de_map'

@@ -115,11 +115,15 @@ dependencies {
     api "com.tencent.bugly:nativecrashreport:$bugly_nativecrashreport"
     /*flexbox*/
     api "com.google.android:flexbox:$flexbox"
+    /*Gson*/
+    api "com.google.code.gson:gson:$gson"
+    /*utils*/
+    api "com.blankj:utilcodex:$utilcode"
 
 
     /*内存泄漏检测 leakcanary*/
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_android}"
-    api project(path: ':data_constants')
+//    api project(path: ':data_constants')
 
 }
 

@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
-import com.yzq.data_constants.constants.StoragePath
+import com.yzq.common.constants.StoragePath
 import java.util.*
 
 

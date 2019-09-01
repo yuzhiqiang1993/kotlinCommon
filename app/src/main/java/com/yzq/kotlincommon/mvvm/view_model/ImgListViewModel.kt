@@ -4,9 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import com.yzq.common.extend.transform
 import com.yzq.common.mvvm.view_model.BaseViewModel
 import com.yzq.common.rx.BaseObserver
-import com.yzq.data_constants.constants.net.HttpRequestType
-import com.yzq.data_constants.data.movie.MovieBean
-import com.yzq.data_constants.data.movie.Subject
+import com.yzq.common.constants.net.HttpRequestType
+import com.yzq.kotlincommon.data.movie.MovieBean
+import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.model.MoviesModel
 
 class ImgListViewModel : BaseViewModel() {

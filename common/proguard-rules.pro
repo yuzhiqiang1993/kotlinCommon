@@ -339,3 +339,10 @@
 -keepclassmembernames class kotlinx.** {
     volatile <fields>;
 }
+
+
+#gson
+-dontwarn com.google.gson.**
+-keep class com.google.gson.**{*;}
+-keep interface com.google.gson.**{*;}
+

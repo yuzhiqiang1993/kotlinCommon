@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.extend.transform
 import com.yzq.common.mvvm.view_model.BaseViewModel
 import com.yzq.common.rx.BaseDialogObserver
-import com.yzq.data_constants.data.movie.MovieBean
+import com.yzq.kotlincommon.data.movie.MovieBean
 import com.yzq.kotlincommon.mvvm.model.MoviesModel
 
 class LoginViewModel : BaseViewModel() {

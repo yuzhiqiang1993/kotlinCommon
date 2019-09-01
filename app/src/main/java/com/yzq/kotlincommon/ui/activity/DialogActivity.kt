@@ -9,7 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.extend.*
 import com.yzq.common.ui.BaseActivity
-import com.yzq.data_constants.constants.RoutePath
+import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import io.reactivex.Observable
 import io.reactivex.Observer

@@ -4,7 +4,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.yzq.common.extend.loadWithThumbnail
 import com.yzq.kotlincommon.R
-import com.yzq.data_constants.data.movie.Subject
+import com.yzq.kotlincommon.data.movie.Subject
 import kotlinx.android.synthetic.main.item_movie_layout.view.*
 
 

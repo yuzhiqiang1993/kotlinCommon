@@ -9,7 +9,7 @@ import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.gao_de_map.utils.MapPermissionUtils
 import kotlinx.android.synthetic.main.activity_gao_de.*
 
-@Route(path = com.yzq.data_constants.constants.RoutePath.GaoDe.GAO_DE)
+@Route(path = com.yzq.common.constants.RoutePath.GaoDe.GAO_DE)
 class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
 
 

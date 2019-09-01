@@ -26,7 +26,7 @@ import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.extend.*
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
-import com.yzq.data_constants.constants.BaseConstants
+import com.yzq.common.constants.BaseConstants
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 

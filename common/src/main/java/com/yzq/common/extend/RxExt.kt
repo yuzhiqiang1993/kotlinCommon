@@ -7,8 +7,8 @@ import com.uber.autodispose.SingleSubscribeProxy
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 import com.uber.autodispose.autoDisposable
 import com.yzq.common.rx.RxSchedulers
-import com.yzq.data_constants.constants.net.ResponseCode
-import com.yzq.data_constants.data.base.BaseResp
+import com.yzq.common.constants.net.ResponseCode
+import com.yzq.common.data.BaseResp
 import io.reactivex.Observable
 import io.reactivex.Single
 

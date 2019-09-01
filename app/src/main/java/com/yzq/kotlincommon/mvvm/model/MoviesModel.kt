@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.mvvm.model
 
 import com.yzq.common.net.RetrofitFactory
-import com.yzq.data_constants.data.movie.MovieBean
+import com.yzq.kotlincommon.data.movie.MovieBean
 import com.yzq.kotlincommon.net.ApiService
 import io.reactivex.Single
 

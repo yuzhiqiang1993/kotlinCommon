@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.adapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.yzq.kotlincommon.R
-import com.yzq.data_constants.data.task.TaskBean
+import com.yzq.kotlincommon.data.task.TaskBean
 import kotlinx.android.synthetic.main.item_task_content.view.*
 
 class TaskAdapter(layoutResId: Int, data: MutableList<TaskBean>?) : BaseQuickAdapter<TaskBean, BaseViewHolder>(layoutResId, data) {

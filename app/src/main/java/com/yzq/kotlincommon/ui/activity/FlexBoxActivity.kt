@@ -9,7 +9,7 @@ import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.yzq.common.ui.BaseActivity
-import com.yzq.data_constants.constants.RoutePath
+import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TagAdapter
 import kotlinx.android.synthetic.main.activity_flex_box.*

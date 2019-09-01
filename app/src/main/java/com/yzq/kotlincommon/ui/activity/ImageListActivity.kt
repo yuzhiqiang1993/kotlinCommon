@@ -12,11 +12,11 @@ import com.chad.library.adapter.base.diff.BaseQuickDiffCallback
 import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.common.widget.AdapterLoadMoreView
 import com.yzq.common.widget.StateView
-import com.yzq.data_constants.constants.RoutePath
-import com.yzq.data_constants.constants.net.HttpRequestType
+import com.yzq.common.constants.RoutePath
+import com.yzq.common.constants.net.HttpRequestType
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ImgListAdapter
-import com.yzq.data_constants.data.movie.Subject
+import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
 import kotlinx.android.synthetic.main.activity_image_list.*
 
