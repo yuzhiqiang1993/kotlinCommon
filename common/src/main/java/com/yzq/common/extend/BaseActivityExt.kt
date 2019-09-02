@@ -18,10 +18,12 @@ import com.yanzhenjie.permission.runtime.Permission
 import com.ycuwq.datepicker.date.DatePicker
 import com.ycuwq.datepicker.date.YearPicker
 import com.ycuwq.datepicker.time.HourAndMinutePicker
-import com.yzq.lib_base.AppContext
 import com.yzq.common.R
-import com.yzq.lib_base.constants.BaseConstants
 import com.yzq.common.ui.BaseActivity
+import com.yzq.lib_base.AppContext
+import com.yzq.lib_base.constants.BaseConstants
+import com.yzq.lib_base.extend.loading
+import com.yzq.lib_base.extend.progress
 import io.reactivex.Single
 import java.io.File
 
@@ -47,7 +49,11 @@ fun BaseActivity.getNewDialog(): MaterialDialog {
  * @param positiveText  确定按钮的文本
  */
 
-fun BaseActivity.showBaseDialog(title: String = com.yzq.lib_base.constants.BaseConstants.HINT, message: String, positiveText: String = com.yzq.lib_base.constants.BaseConstants.SURE) {
+fun BaseActivity.showBaseDialog(
+    title: String = BaseConstants.HINT,
+    message: String,
+    positiveText: String = BaseConstants.SURE
+) {
 
     getNewDialog().show {
         title(text = title)
@@ -67,9 +73,9 @@ fun BaseActivity.showBaseDialog(title: String = com.yzq.lib_base.constants.BaseC
  * @param positiveText  确定按钮的文字
  */
 fun BaseActivity.showOnlyPostiveCallBackDialog(
-    title: String = com.yzq.lib_base.constants.BaseConstants.HINT,
+    title: String = BaseConstants.HINT,
     message: String,
-    positiveText: String = com.yzq.lib_base.constants.BaseConstants.SURE
+    positiveText: String = BaseConstants.SURE
 ): Single<Boolean> {
 
     return Single.create { singleEmitter ->
@@ -101,10 +107,10 @@ fun BaseActivity.showOnlyPostiveCallBackDialog(
  * @param negativeText  取消按钮文本
  */
 fun BaseActivity.showPositiveCallbackDialog(
-    title: String = com.yzq.lib_base.constants.BaseConstants.HINT,
+    title: String = BaseConstants.HINT,
     message: String,
-    positiveText: String = com.yzq.lib_base.constants.BaseConstants.SURE,
-    negativeText: String = com.yzq.lib_base.constants.BaseConstants.CANCLE
+    positiveText: String = BaseConstants.SURE,
+    negativeText: String = BaseConstants.CANCLE
 ): Single<Boolean> {
 
     return Single.create { singleEmitter ->
@@ -135,10 +141,10 @@ fun BaseActivity.showPositiveCallbackDialog(
  * @param negativeText  取消按钮文本
  */
 fun BaseActivity.showCallbackDialog(
-    title: String = com.yzq.lib_base.constants.BaseConstants.HINT,
+    title: String = BaseConstants.HINT,
     message: String,
-    positiveText: String = com.yzq.lib_base.constants.BaseConstants.SURE,
-    negativeText: String = com.yzq.lib_base.constants.BaseConstants.CANCLE
+    positiveText: String = BaseConstants.SURE,
+    negativeText: String = BaseConstants.CANCLE
 ): Single<Boolean> {
     return Single.create { singleEmitter ->
 
@@ -172,10 +178,10 @@ fun BaseActivity.showCallbackDialog(
  * @param negativeText  取消按钮文本
  */
 fun BaseActivity.showBackHintDialog(
-    title: String = com.yzq.lib_base.constants.BaseConstants.HINT,
-    message: String = com.yzq.lib_base.constants.BaseConstants.BACK_HINT,
-    positiveText: String = com.yzq.lib_base.constants.BaseConstants.SURE,
-    negativeText: String = com.yzq.lib_base.constants.BaseConstants.CANCLE
+    title: String = BaseConstants.HINT,
+    message: String = BaseConstants.BACK_HINT,
+    positiveText: String = BaseConstants.SURE,
+    negativeText: String = BaseConstants.CANCLE
 ): Single<Boolean> {
 
     return Single.create { singleEmitter ->
@@ -205,7 +211,7 @@ fun BaseActivity.showBackHintDialog(
  * @param items  选项
  */
 fun BaseActivity.showSingleSelectList(
-    title: String = com.yzq.lib_base.constants.BaseConstants.HINT,
+    title: String = BaseConstants.HINT,
     message: String = "",
     items: List<String>
 
@@ -244,9 +250,9 @@ fun BaseActivity.showSingleSelectList(
  * @param allowEmptyInput  是否允许输入空
  */
 fun BaseActivity.showInputDialog(
-    title: String = com.yzq.lib_base.constants.BaseConstants.HINT,
-    positiveText: String = com.yzq.lib_base.constants.BaseConstants.SURE,
-    negativeText: String = com.yzq.lib_base.constants.BaseConstants.CANCLE,
+    title: String = BaseConstants.HINT,
+    positiveText: String = BaseConstants.SURE,
+    negativeText: String = BaseConstants.CANCLE,
     message: String = "",
     inputHint: String = "",
     prefill: String = "",
@@ -264,7 +270,12 @@ fun BaseActivity.showInputDialog(
             positiveButton(text = positiveText)
             negativeButton(text = negativeText)
 
-            input(inputHint, prefill = prefill, allowEmpty = allowEmptyInput, inputType = inputType) { materialDialog, charSequence ->
+            input(
+                inputHint,
+                prefill = prefill,
+                allowEmpty = allowEmptyInput,
+                inputType = inputType
+            ) { materialDialog, charSequence ->
                 singleEmitter.onSuccess(charSequence.toString().trim())
 
             }
@@ -299,8 +310,8 @@ fun BaseActivity.getProgressDialog(title: String): MaterialDialog {
 /*选择年份*/
 fun BaseActivity.selectYear(
     title: String = "选择年份",
-    positiveText: String = com.yzq.lib_base.constants.BaseConstants.SURE,
-    negativeText: String = com.yzq.lib_base.constants.BaseConstants.CANCLE
+    positiveText: String = BaseConstants.SURE,
+    negativeText: String = BaseConstants.CANCLE
 ): Single<String> {
 
     return Single.create { singleEmitter ->
@@ -332,7 +343,11 @@ fun BaseActivity.selectYear(
  * @param positiveText  确定文本
  * @param negativeText  取消文本
  */
-fun BaseActivity.selectDate(title: String = "选择日期", positiveText: String = com.yzq.lib_base.constants.BaseConstants.SURE, negativeText: String = com.yzq.lib_base.constants.BaseConstants.CANCLE): Single<String> {
+fun BaseActivity.selectDate(
+    title: String = "选择日期",
+    positiveText: String = BaseConstants.SURE,
+    negativeText: String = BaseConstants.CANCLE
+): Single<String> {
 
     return Single.create { singleEmitter ->
 
@@ -380,8 +395,8 @@ fun BaseActivity.selectDate(title: String = "选择日期", positiveText: String
  */
 fun BaseActivity.selectHourAndMinute(
     title: String = "选择时间",
-    positiveText: String = com.yzq.lib_base.constants.BaseConstants.SURE,
-    negativeText: String = com.yzq.lib_base.constants.BaseConstants.CANCLE
+    positiveText: String = BaseConstants.SURE,
+    negativeText: String = BaseConstants.CANCLE
 ): Single<String> {
     return Single.create { singleEmitter ->
 
@@ -393,7 +408,7 @@ fun BaseActivity.selectHourAndMinute(
             positiveButton {
 
                 val hourAndMinutePicker =
-                        it.findViewById<HourAndMinutePicker>(R.id.hour_minute_picker)
+                    it.findViewById<HourAndMinutePicker>(R.id.hour_minute_picker)
                 var selectedHour = hourAndMinutePicker.hour.toString()
                 var selectedMinute = hourAndMinutePicker.minute.toString()
                 if (hourAndMinutePicker.hour < 10) {
@@ -423,13 +438,13 @@ fun BaseActivity.requestPermission(vararg permissions: String): Single<Boolean> 
     return Single.create { singleEmitter ->
 
         AndPermission.with(this)
-                .runtime()
-                .permission(permissions)
-                .onGranted {
-                    singleEmitter.onSuccess(true)
-                }.onDenied {
-                    permissionDenied(it)
-                }.start()
+            .runtime()
+            .permission(permissions)
+            .onGranted {
+                singleEmitter.onSuccess(true)
+            }.onDenied {
+                permissionDenied(it)
+            }.start()
 
 
     }
@@ -439,12 +454,12 @@ fun BaseActivity.requestPermission(vararg permissions: String): Single<Boolean> 
 /**
  * 权限被拒绝
  *
- * @param permissions  要申请的全新
+ * @param permissions  要申请的权限
  *
  */
 private fun BaseActivity.permissionDenied(permissions: List<String>) {
 
-    if (AndPermission.hasAlwaysDeniedPermission(com.yzq.lib_base.AppContext, permissions)) {
+    if (AndPermission.hasAlwaysDeniedPermission(AppContext, permissions)) {
         this.showPermissionDailog(permissions)
     } else {
         ToastUtils.showShort("权限被拒绝")
@@ -463,18 +478,23 @@ private val REQUEST_CODE_SETTING = 1
 @SuppressLint("CheckResult")
 private fun BaseActivity.showPermissionDailog(permissions: List<String>) {
 
-    val permissionNames = Permission.transformText(com.yzq.lib_base.AppContext, permissions)
+    val permissionNames = Permission.transformText(AppContext, permissions)
     val message = "我们需要的 ${TextUtils.join("、", permissionNames)} 权限被拒绝,这将导致部分功能不可用，请手动开启! "
 
 
-    showPositiveCallbackDialog(title = "开启权限", message = message, positiveText = "去开启", negativeText = "不开启")
-            .subscribe { click ->
-                AndPermission.with(this)
-                        .runtime()
-                        .setting()
-                        .start(REQUEST_CODE_SETTING)
+    showPositiveCallbackDialog(
+        title = "开启权限",
+        message = message,
+        positiveText = "去开启",
+        negativeText = "不开启"
+    )
+        .subscribe { click ->
+            AndPermission.with(this)
+                .runtime()
+                .setting()
+                .start(REQUEST_CODE_SETTING)
 
-            }
+        }
 
 
 }
@@ -485,14 +505,14 @@ fun BaseActivity.openCamera(): Single<File> {
     return Single.create { singleEmitter ->
 
         requestPermission(Permission.CAMERA)
-                .subscribe { hasPermission ->
-                    RxImagePicker.create().openCamera(this)
-                            .subscribe { result ->
-                                val file = UriUtils.uri2File(result.uri)
-                                singleEmitter.onSuccess(file)
-                            }
+            .subscribe { hasPermission ->
+                RxImagePicker.create().openCamera(this)
+                    .subscribe { result ->
+                        val file = UriUtils.uri2File(result.uri)
+                        singleEmitter.onSuccess(file)
+                    }
 
 
-                }
+            }
     }
 }

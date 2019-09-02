@@ -4,7 +4,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "com.github.ben-manes.versions"
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.yuzhiqiang1993'
+group = 'com.github.yuzhiqiang1993'
+
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
@@ -47,14 +48,27 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-//    api "androidx.appcompat:appcompat:$appcompat"
-//    api "com.google.android.material:material:$material"
-//    api "androidx.vectordrawable:vectordrawable:$vectordrawable"
-//    api "androidx.constraintlayout:constraintlayout:$constraintlayout"
-//    api "androidx.annotation:annotation:$annotation"
-//    api "androidx.multidex:multidex:$multiDexVersion"
+    compileOnly "androidx.appcompat:appcompat:$appcompat"
+    compileOnly "com.google.android.material:material:$material"
+    compileOnly "androidx.vectordrawable:vectordrawable:$vectordrawable"
+    compileOnly "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    compileOnly "androidx.annotation:annotation:$annotation"
+    compileOnly "androidx.multidex:multidex:$multiDexVersion"
 
     compileOnly "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
+
+
+    /*dialog*/
+    compileOnly "com.afollestad.material-dialogs:core:$material_dialogs"
+    compileOnly "com.afollestad.material-dialogs:input:$material_dialogs"
+    compileOnly "com.afollestad.material-dialogs:bottomsheets:$material_dialogs"
+    compileOnly "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
+
+
+    /*glide*/
+    compileOnly "com.github.bumptech.glide:glide:$glide"
+    kapt "com.github.bumptech.glide:compiler:$glide"
+
 
     /*rx*/
     compileOnly "io.reactivex.rxjava2:rxkotlin:$rx_kotlin"

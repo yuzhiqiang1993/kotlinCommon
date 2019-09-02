@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.yzq.common.extend.loadWithThumbnail
+import com.yzq.lib_base.extend.loadWithThumbnail
 import com.yzq.kotlincommon.data.movie.Subject
 import kotlinx.android.synthetic.main.item_img_list.view.*
 import kotlin.random.Random

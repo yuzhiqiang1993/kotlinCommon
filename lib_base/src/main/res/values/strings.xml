@@ -1,3 +1,32 @@
 <resources>
+    <string name="loadding">正在加载中…</string>
+    <string name="loadding_more">正在加载更多…</string>
+    <string name="load_more_fail">加载失败…</string>
+    <string name="timeout">请求超时，请稍后再试</string>
+    <string name="no_data">暂无数据</string>
+    <string name="retry">重试</string>
+    <string name="no_net">网络无链接，请检查</string>
+    <string name="add">添加</string>
+    <string name="upload">上传</string>
+    <string name="login">登录</string>
+    <string name="change_pwd">修改密码</string>
+    <string name="input_account_hint">请输入账号</string>
+    <string name="input_pwd_hint">请输入密码</string>
+    <string name="input_old_pwd_hint">请输入原密码</string>
+    <string name="input_new_pwd_hint">请输入新密码</string>
+    <string name="input_pwd_again_hint">请再次输入新密码</string>
+    <string name="the_user_name_cannot_be_empty">用户名不能为空</string>
+    <string name="the_password_cannot_be_empty">密码不能为空</string>
+    <string name="version_updade">版本更新</string>
+    <string name="logout">退出登录</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="hint">提示</string>
+    <string name="has_new_version">有新版本</string>
+    <string name="sure_update">确定更新</string>
+    <string name="not_update">暂不更新</string>
+    <string name="zero">0</string>
+    <string name="hundred">100</string>
+    <string name="img_transition">img_transition</string>
 
 </resources>

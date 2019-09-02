@@ -21,11 +21,16 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.R
-import com.yzq.lib_base.eventBus.EventBusUtil
-import com.yzq.lib_base.eventBus.EventMsg
-import com.yzq.common.extend.*
+import com.yzq.common.extend.getLoadingDialog
+import com.yzq.common.extend.getProgressDialog
+import com.yzq.common.extend.showBackHintDialog
+import com.yzq.common.extend.showBaseDialog
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
+import com.yzq.lib_base.eventBus.EventBusUtil
+import com.yzq.lib_base.eventBus.EventMsg
+import com.yzq.lib_base.extend.changeProgress
+import com.yzq.lib_base.extend.setLoadingMessage
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 

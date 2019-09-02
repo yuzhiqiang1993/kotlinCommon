@@ -1,4 +1,4 @@
-package com.yzq.common.extend
+package com.yzq.lib_base.extend
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
@@ -10,7 +10,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.yzq.common.R
+import com.yzq.lib_base.R
 
 
 /**
@@ -23,20 +23,31 @@ import com.yzq.common.R
 
 
 val options = RequestOptions()
-        .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-        .format(DecodeFormat.PREFER_RGB_565)
-        .placeholder(R.color.gray_100)
-        .error(R.color.gray_100)
-        .skipMemoryCache(true)
+    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+    .format(DecodeFormat.PREFER_RGB_565)
+    .placeholder(R.color.gray_100)
+    .error(R.color.gray_100)
+    .skipMemoryCache(true)
 
 
 interface ImgRequestListener : RequestListener<Drawable> {
-    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+    override fun onLoadFailed(
+        e: GlideException?,
+        model: Any?,
+        target: Target<Drawable>?,
+        isFirstResource: Boolean
+    ): Boolean {
 
         return false
     }
 
-    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+    override fun onResourceReady(
+        resource: Drawable?,
+        model: Any?,
+        target: Target<Drawable>?,
+        dataSource: DataSource?,
+        isFirstResource: Boolean
+    ): Boolean {
         return false
     }
 
@@ -51,9 +62,9 @@ interface ImgRequestListener : RequestListener<Drawable> {
 fun ImageView.load(path: String): ImageView {
 
     Glide.with(context)
-            .load(path.trim())
-            .apply(options)
-            .into(this)
+        .load(path.trim())
+        .apply(options)
+        .into(this)
 
     return this
 }
@@ -68,11 +79,11 @@ fun ImageView.load(path: String): ImageView {
 fun ImageView.loadWithThumbnail(path: String): ImageView {
 
     Glide.with(context)
-            .load(path.trim())
-            .thumbnail(0.8f)
-            .apply(options)
-            .override(this.width, this.height)
-            .into(this)
+        .load(path.trim())
+        .thumbnail(0.8f)
+        .apply(options)
+        .override(this.width, this.height)
+        .into(this)
 
     return this
 }

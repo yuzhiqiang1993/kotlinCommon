@@ -6,8 +6,8 @@ ext {
     compile_sdk_version = 29 //Android 9(P)
     min_sdk_version = 21  //Android 5.0
     target_sdk_version = 29  //Android 9(P)
-    version_code = 1  //eg:1->0.0.1  10->0.1.0  100->1.0.0
-    version_name = "0.0.1"
+    version_code = 2  //eg:1->0.0.1  10->0.1.0  100->1.0.0
+    version_name = "0.0.2"
     multiDexEnabled = true
 
     /*dependencies*/

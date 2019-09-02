@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.ui.activity
 import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.yzq.common.extend.load
+import com.yzq.lib_base.extend.load
 import com.yzq.common.extend.openCamera
 import com.yzq.lib_base.extend.transform
 import com.yzq.common.model.CompressImgModel

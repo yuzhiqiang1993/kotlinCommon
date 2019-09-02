@@ -1,4 +1,4 @@
-package com.yzq.common.extend
+package com.yzq.lib_base.extend
 
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -6,7 +6,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
-import com.yzq.common.R
+import com.yzq.lib_base.R
 
 
 /**
@@ -29,7 +29,8 @@ fun MaterialDialog.loading(): MaterialDialog {
  */
 fun MaterialDialog.setLoadingMessage(loaddingMessage: String): MaterialDialog {
 
-    val loaddingMessageTv = getCustomView().findViewById<AppCompatTextView>(R.id.loadding_message_tv)
+    val loaddingMessageTv =
+        getCustomView().findViewById<AppCompatTextView>(R.id.loadding_message_tv)
     loaddingMessageTv.text = loaddingMessage
     return this
 

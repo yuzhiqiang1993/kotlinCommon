@@ -23,7 +23,6 @@ abstract class BaseObserver<T>(private val vm: BaseViewModel) : SingleObserver<T
 
 
     override fun onSubscribe(d: Disposable) {
-
         /*没有网络给出提示并取消发送*/
         if (!NetworkUtils.isConnected()) {
             vm.showNoNet()
