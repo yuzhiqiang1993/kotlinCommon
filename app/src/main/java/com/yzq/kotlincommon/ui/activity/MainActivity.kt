@@ -15,7 +15,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.google.android.material.navigation.NavigationView
 import com.tencent.bugly.beta.Beta
-import com.yzq.lib_base.extend.transform
+import com.yzq.lib_rx.transform
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R

@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
-import com.yzq.lib_base.extend.transform
+import com.yzq.lib_rx.transform
 import com.yzq.lib_base.view_model.BaseViewModel
 import com.yzq.lib_base.rx.BaseObserver
 import com.yzq.common.constants.net.HttpRequestType

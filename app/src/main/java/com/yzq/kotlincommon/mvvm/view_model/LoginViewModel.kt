@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.mvvm.view_model
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.lib_base.extend.transform
+import com.yzq.lib_rx.transform
 import com.yzq.lib_base.view_model.BaseViewModel
 import com.yzq.lib_base.rx.BaseDialogObserver
 import com.yzq.kotlincommon.data.movie.MovieBean

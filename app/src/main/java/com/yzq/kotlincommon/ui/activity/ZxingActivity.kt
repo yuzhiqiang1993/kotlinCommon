@@ -11,7 +11,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.extend.requestPermission
 import com.yzq.common.extend.showBaseDialog
-import com.yzq.lib_base.extend.transform
+import com.yzq.lib_rx.transform
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R

@@ -1,4 +1,4 @@
-package com.yzq.lib_base.extend
+package com.yzq.lib_rx
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
@@ -6,7 +6,6 @@ import com.uber.autodispose.ObservableSubscribeProxy
 import com.uber.autodispose.SingleSubscribeProxy
 import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 import com.uber.autodispose.autoDisposable
-import com.yzq.lib_base.rx.RxSchedulers
 import io.reactivex.Observable
 import io.reactivex.Single
 

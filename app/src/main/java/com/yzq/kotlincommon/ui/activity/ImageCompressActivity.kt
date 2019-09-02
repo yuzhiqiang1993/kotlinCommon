@@ -8,7 +8,7 @@ import com.yzq.common.extend.openCamera
 import com.yzq.common.model.CompressImgModel
 import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
-import com.yzq.lib_base.extend.transform
+import com.yzq.lib_rx.transform
 import com.yzq.lib_img.load
 import kotlinx.android.synthetic.main.activity_image_compress.*
 

@@ -2,6 +2,7 @@ package com.yzq.lib_base.data
 
 import com.yzq.lib_base.constants.ViewStateContstants
 
+
 /*
 *
 * 视图状态

@@ -58,17 +58,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
 
 
-
-    /*rx*/
-    implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin"
-    implementation "io.reactivex.rxjava2:rxandroid:$rx_android"
-
-    /*AutoDispose*/
-    implementation "com.uber.autodispose:autodispose-ktx:$autodispose_version"
-    implementation "com.uber.autodispose:autodispose-android-archcomponents-ktx:$autodispose_version"
-
-
-
     /*ARouter*/
     implementation "com.alibaba:arouter-api:$arouter_api"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
@@ -83,6 +72,7 @@ dependencies {
 
 
     implementation project(path: ':lib_resource')
+    implementation project(path: ':lib_rx')
 
 }
 
