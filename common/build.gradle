@@ -64,34 +64,15 @@ dependencies {
     api "com.uber.autodispose:autodispose-ktx:$autodispose_version"
     api "com.uber.autodispose:autodispose-android-archcomponents-ktx:$autodispose_version"
 
-    /*eventbus*/
-    implementation "org.greenrobot:eventbus:$eventbus"
+
 
     /*permission*/
     api "com.yanzhenjie.permission:x:$permission"
 
-    /*dialog*/
-    api "com.afollestad.material-dialogs:core:$material_dialogs"
-    api "com.afollestad.material-dialogs:input:$material_dialogs"
-    api "com.afollestad.material-dialogs:bottomsheets:$material_dialogs"
-    api "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
 
     /*RxImagepicker*/
     api "com.github.qingmei2:rximagepicker:$rx_imgpicker"
 
-    /*retrofit*/
-    api "com.squareup.okhttp3:okhttp:$ok_http"
-    api "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.okhttp3:logging-interceptor:$ok_http"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
-
-    /*协程Android库，提供了ui调度*/
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${kotlinx_coroutines_android}"
-
-    /*glide*/
-    api "com.github.bumptech.glide:glide:$glide"
-    kapt "com.github.bumptech.glide:compiler:$glide"
 
     /*ARouter*/
     api "com.alibaba:arouter-api:$arouter_api"
@@ -101,8 +82,7 @@ dependencies {
     api "com.ashokvarma.android:bottom-navigation-bar:$bottom_navigation_bar"
     /*baseRecyclerViewAdapterHelper*/
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$baseRecyclerViewAdapterHelper"
-    /*progressmanager*/
-    implementation "me.jessyan:progressmanager:$progressmanager_version"
+
     /*Datepicker*/
     implementation "com.ycuwq.widgets:datepicker:$datepickerVersion"
     /*Bugly*/
@@ -110,8 +90,7 @@ dependencies {
     api "com.tencent.bugly:nativecrashreport:$bugly_nativecrashreport"
     /*flexbox*/
     api "com.google.android:flexbox:$flexbox"
-    /*Gson*/
-    api "com.google.code.gson:gson:$gson"
+
     /*utils*/
     api "com.blankj:utilcodex:$utilcode"
 
@@ -122,6 +101,7 @@ dependencies {
     api project(path: ':lib_net')
     api project(path: ':lib_img')
     api project(path: ':lib_eventbus')
+    api project(path: ':lib_materialdialog')
     //api 'com.github.yuzhiqiang1993:kotlincommon:0.0.2vm'
 }
 

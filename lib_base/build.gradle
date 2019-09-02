@@ -58,11 +58,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
 
 
-    /*dialog*/
-    implementation "com.afollestad.material-dialogs:core:$material_dialogs"
-    implementation "com.afollestad.material-dialogs:input:$material_dialogs"
-    implementation "com.afollestad.material-dialogs:bottomsheets:$material_dialogs"
-    implementation "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
 
     /*rx*/
     implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin"

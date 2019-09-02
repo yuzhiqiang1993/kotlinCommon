@@ -42,16 +42,16 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     /*retrofit*/
-    compileOnly "com.squareup.okhttp3:okhttp:$ok_http"
-    compileOnly "com.squareup.retrofit2:retrofit:$retrofit"
-    compileOnly "com.squareup.okhttp3:logging-interceptor:$ok_http"
-    compileOnly "com.squareup.retrofit2:converter-gson:$retrofit"
-    compileOnly "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+    api "com.squareup.okhttp3:okhttp:$ok_http"
+    api "com.squareup.retrofit2:retrofit:$retrofit"
+    api "com.squareup.okhttp3:logging-interceptor:$ok_http"
+    api "com.squareup.retrofit2:converter-gson:$retrofit"
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
 
     /*progressmanager*/
-    compileOnly "me.jessyan:progressmanager:$progressmanager_version"
+    api "me.jessyan:progressmanager:$progressmanager_version"
     /*utils*/
-    compileOnly "com.blankj:utilcodex:$utilcode"
+    implementation "com.blankj:utilcodex:$utilcode"
 
 
 }

@@ -28,10 +28,8 @@ import com.yzq.common.extend.showBaseDialog
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
 import com.yzq.lib_base.constants.BaseConstants
-import com.yzq.lib_eventbus.EventBusUtil
-import com.yzq.lib_eventbus.EventMsg
-import com.yzq.lib_base.extend.changeProgress
-import com.yzq.lib_base.extend.setLoadingMessage
+import com.yzq.lib_materialdialog.changeProgress
+import com.yzq.lib_materialdialog.setLoadingMessage
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 

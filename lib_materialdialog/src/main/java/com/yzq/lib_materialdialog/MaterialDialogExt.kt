@@ -1,4 +1,4 @@
-package com.yzq.lib_base.extend
+package com.yzq.lib_materialdialog
 
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -6,7 +6,6 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
-import com.yzq.lib_base.R
 
 
 /**
