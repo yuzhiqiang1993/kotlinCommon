@@ -67,42 +67,18 @@ dependencies {
     /*eventbus*/
     implementation "org.greenrobot:eventbus:$eventbus"
 
-    /*permission*/
-    api "com.yanzhenjie.permission:x:$permission"
-
-    /*dialog*/
-    api "com.afollestad.material-dialogs:core:$material_dialogs"
-    api "com.afollestad.material-dialogs:input:$material_dialogs"
-    api "com.afollestad.material-dialogs:bottomsheets:$material_dialogs"
-    api "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
-
-    /*RxImagepicker*/
-    api "com.github.qingmei2:rximagepicker:$rx_imgpicker"
-
-
-    /*glide*/
-    api "com.github.bumptech.glide:glide:$glide"
-    kapt "com.github.bumptech.glide:compiler:$glide"
-
-    /*photoView*/
-    api "com.github.chrisbanes:PhotoView:$photoview"
-
 
     /*ARouter*/
     api "com.alibaba:arouter-api:$arouter_api"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
 
+    /*utils*/
+    api "com.blankj:utilcodex:$utilcode"
+    /*Gson*/
+    implementation "com.google.code.gson:gson:$gson"
 
     /*progressmanager*/
     implementation "me.jessyan:progressmanager:$progressmanager_version"
-    /*Datepicker*/
-    implementation "com.ycuwq.widgets:datepicker:$datepickerVersion"
-    /*flexbox*/
-    api "com.google.android:flexbox:$flexbox"
-    /*Gson*/
-    api "com.google.code.gson:gson:$gson"
-    /*utils*/
-    api "com.blankj:utilcodex:$utilcode"
 
 }
 

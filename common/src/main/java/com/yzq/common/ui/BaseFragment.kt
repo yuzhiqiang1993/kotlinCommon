@@ -9,9 +9,8 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.yzq.lib_base.constants.BaseConstants
-import com.yzq.common.eventBus.EventBusUtil
-import com.yzq.common.eventBus.EventMsg
+import com.yzq.lib_base.eventBus.EventBusUtil
+import com.yzq.lib_base.eventBus.EventMsg
 import com.yzq.common.widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode

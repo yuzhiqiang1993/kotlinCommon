@@ -1,9 +1,8 @@
-package com.yzq.common.net
+package com.yzq.lib_net.net
 
 import android.util.Log
 import com.google.gson.Gson
-import com.yzq.common.BuildConfig
-import com.yzq.common.constants.net.ServerConstants
+import com.yzq.lib_net.BuildConfig
 import me.jessyan.progressmanager.ProgressManager
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,21 +23,21 @@ import java.util.concurrent.TimeUnit
 class RetrofitFactory private constructor() {
 
     private val retrofit: Retrofit
-    
+
 
     init {
 
         val gson = Gson().newBuilder()
-                .setLenient()
-                .serializeNulls()
-                .create()
+            .setLenient()
+            .serializeNulls()
+            .create()
 
         retrofit = Retrofit.Builder()
-                .baseUrl(ServerConstants.apiUrl)
-                .client(initOkhttpClient())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build()
+            .baseUrl(com.yzq.lib_net.constants.ServerConstants.apiUrl)
+            .client(initOkhttpClient())
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
 
     }
 
@@ -55,11 +54,11 @@ class RetrofitFactory private constructor() {
     private fun initOkhttpClient(): OkHttpClient {
 
         val okHttpBuilder = OkHttpClient.Builder()
-                .connectTimeout(5, TimeUnit.SECONDS)
-                .readTimeout(5, TimeUnit.SECONDS)
-                //.addInterceptor(RequestHeadersInterceptor())
-                //   .addInterceptor(RequestEncryptInterceptor())
-                .addInterceptor(initLogInterceptor())
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(5, TimeUnit.SECONDS)
+            //.addInterceptor(RequestHeadersInterceptor())
+            //   .addInterceptor(RequestEncryptInterceptor())
+            .addInterceptor(initLogInterceptor())
         // .addInterceptor(ResponseDecryptInterceptor())
 
         return ProgressManager.getInstance().with(okHttpBuilder).build()

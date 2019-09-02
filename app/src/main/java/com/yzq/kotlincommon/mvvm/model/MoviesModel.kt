@@ -1,6 +1,6 @@
 package com.yzq.kotlincommon.mvvm.model
 
-import com.yzq.common.net.RetrofitFactory
+import com.yzq.lib_net.net.RetrofitFactory
 import com.yzq.kotlincommon.data.movie.MovieBean
 import com.yzq.kotlincommon.net.ApiService
 import io.reactivex.Single

@@ -21,8 +21,8 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.R
-import com.yzq.common.eventBus.EventBusUtil
-import com.yzq.common.eventBus.EventMsg
+import com.yzq.lib_base.eventBus.EventBusUtil
+import com.yzq.lib_base.eventBus.EventMsg
 import com.yzq.common.extend.*
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView

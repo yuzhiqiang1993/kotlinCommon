@@ -1,4 +1,4 @@
-package com.yzq.common.net
+package com.yzq.lib_net.net
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

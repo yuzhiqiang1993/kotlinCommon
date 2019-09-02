@@ -1,4 +1,4 @@
-package com.yzq.common.utils
+package com.yzq.lib_net.utils
 
 
 import java.security.*
@@ -46,12 +46,14 @@ object RSAUtil {
         // 公钥加密，私钥解密
         val encryptByPublicData = encryptByPublic(str, publicKey)
         println("公钥加密后：$encryptByPublicData")
-        val decryptByPrivateData = decryptByPrivate(encryptByPublicData, privateKey)
+        val decryptByPrivateData =
+            decryptByPrivate(encryptByPublicData, privateKey)
         println("私钥解密后：$decryptByPrivateData")
         // 私钥加密，公钥解密
         val encryptByPrivateData = encryptByPrivate(str, privateKey)
         println("私钥加密后：$encryptByPrivateData")
-        val decryptByPublicData = decryptByPublic(encryptByPrivateData, publicKey)
+        val decryptByPublicData =
+            decryptByPublic(encryptByPrivateData, publicKey)
         println("公钥解密后：$decryptByPublicData")
         // 产生签名
         val signData = sign(encryptByPrivateData, privateKey)

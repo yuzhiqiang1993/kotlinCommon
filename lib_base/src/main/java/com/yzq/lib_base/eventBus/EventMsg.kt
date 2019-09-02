@@ -1,4 +1,4 @@
-package com.yzq.common.eventBus
+package com.yzq.lib_base.eventBus
 
 
 /**

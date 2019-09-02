@@ -1,10 +1,10 @@
-package com.yzq.common.net.interceptor
+package com.yzq.lib_net.net.interceptor
 
 
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.utils.AESUtil
-import com.yzq.common.utils.RSAUtil
-import com.yzq.common.constants.net.ServerConstants
+import com.yzq.lib_net.constants.ServerConstants
+import com.yzq.lib_net.utils.AESUtil
+import com.yzq.lib_net.utils.RSAUtil
 import okhttp3.Interceptor
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
@@ -12,7 +12,6 @@ import okio.Buffer
 import java.net.URLDecoder
 import java.nio.charset.Charset
 import java.util.*
-
 
 /**
  * @description: 对请求数据进行加密处理
@@ -70,7 +69,10 @@ class RequestEncryptInterceptor : Interceptor {
                     LogUtils.i("加密后的参数：$encryptqueryparamNames")
 
                     /*用RSA公钥对随机key进行加密*/
-                    val encryptRandomKey = RSAUtil.encryptByPublic(randomKey, ServerConstants.RSA_PUB_KEY)
+                    val encryptRandomKey = RSAUtil.encryptByPublic(
+                        randomKey,
+                        ServerConstants.RSA_PUB_KEY
+                    )
 
                     LogUtils.i("RSA公钥加密后的随机key：$encryptRandomKey")
 
@@ -78,8 +80,11 @@ class RequestEncryptInterceptor : Interceptor {
                     val newGet = "$apiPath?param=$encryptqueryparamNames"
 
                     request = request.newBuilder().url(newGet)
-                            .addHeader(ServerConstants.AES_KEY, encryptRandomKey)
-                            .build()
+                        .addHeader(
+                            ServerConstants.AES_KEY,
+                            encryptRandomKey
+                        )
+                        .build()
 
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -138,7 +143,10 @@ class RequestEncryptInterceptor : Interceptor {
                     LogUtils.i("加密后的请求数据为：${aesEncryptData}")
 
                     /*再使用公钥对随机的key进行加密 得到加密后的key*/
-                    val encryptAesKeyStr = RSAUtil.encryptByPublic(randomKey, ServerConstants.RSA_PUB_KEY)
+                    val encryptAesKeyStr = RSAUtil.encryptByPublic(
+                        randomKey,
+                        ServerConstants.RSA_PUB_KEY
+                    )
 
                     /*将加密后的key放到header里*/
                     LogUtils.i("加密后的key：${encryptAesKeyStr}")
@@ -149,7 +157,10 @@ class RequestEncryptInterceptor : Interceptor {
 
                     /*将加密过后的AES随机key放到请求头中并构建新的request*/
                     val newRequestBuilder = request.newBuilder()
-                    newRequestBuilder.addHeader(ServerConstants.AES_KEY, encryptAesKeyStr)
+                    newRequestBuilder.addHeader(
+                        ServerConstants.AES_KEY,
+                        encryptAesKeyStr
+                    )
 
                     when (method) {
                         "post" -> newRequestBuilder.post(newRequestBody)

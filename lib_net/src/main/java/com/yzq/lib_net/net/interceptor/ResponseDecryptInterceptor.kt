@@ -1,15 +1,13 @@
-package com.yzq.common.net.interceptor
+package com.yzq.lib_net.net.interceptor
 
 
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.utils.AESUtil
-import com.yzq.common.utils.RSAUtil
-import com.yzq.common.constants.net.ServerConstants
+import com.yzq.lib_net.utils.AESUtil
+import com.yzq.lib_net.utils.RSAUtil
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
 import java.nio.charset.Charset
-
 
 /**
  * @description: 对响应数据进行解密
@@ -37,7 +35,7 @@ class ResponseDecryptInterceptor : Interceptor {
             val responseBody = response.body
 
             /*获取请求头中的key*/
-            val aesKey = response.header(ServerConstants.AES_KEY)
+            val aesKey = response.header(com.yzq.lib_net.constants.ServerConstants.AES_KEY)
 
             LogUtils.i("响应头中的AESKey:${aesKey}")
 
@@ -46,7 +44,10 @@ class ResponseDecryptInterceptor : Interceptor {
                 try {
 
                     /*1.先用RSA公钥对随机Key进行解密*/
-                    val decryptAesKey = RSAUtil.decryptByPublic(aesKey, ServerConstants.RSA_PUB_KEY)
+                    val decryptAesKey = RSAUtil.decryptByPublic(
+                        aesKey,
+                        com.yzq.lib_net.constants.ServerConstants.RSA_PUB_KEY
+                    )
 
                     LogUtils.i("decryptAesKey:${decryptAesKey}")
                     /*2.使用aesKey对密文进行解密获取最终的明文*/
