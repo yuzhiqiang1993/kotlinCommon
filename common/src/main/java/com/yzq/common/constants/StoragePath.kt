@@ -26,13 +26,15 @@ object StoragePath {
     val PICTURE_PATH = "${APP_PATH}picture${File.separator}"
 
     fun logPathInfo() {
-        LogUtils.i("""
+        LogUtils.i(
+            """
                 根路径：$ROOT_PATH,
                 项目总路径：$PROJECT_PATH,
                 包名路径：$APP_PATH,
                 图片路径：$PICTURE_PATH
 
-            """.trimIndent())
+            """.trimIndent()
+        )
     }
 
 

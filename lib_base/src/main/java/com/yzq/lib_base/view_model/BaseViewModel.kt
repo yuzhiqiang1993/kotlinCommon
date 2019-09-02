@@ -1,9 +1,9 @@
-package com.yzq.common.mvvm.view_model
+package com.yzq.lib_base.view_model
 
 import androidx.lifecycle.*
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.constants.ViewStateContstants
-import com.yzq.common.data.ViewStateBean
+import com.yzq.lib_base.data.ViewStateBean
+import com.yzq.lib_base.constants.ViewStateContstants
 
 
 /*

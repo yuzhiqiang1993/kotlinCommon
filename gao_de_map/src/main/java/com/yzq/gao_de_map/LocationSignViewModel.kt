@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import com.amap.api.location.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
-import com.yzq.common.AppContext
-import com.yzq.common.mvvm.view_model.BaseViewModel
+import com.yzq.lib_base.AppContext
+import com.yzq.lib_base.view_model.BaseViewModel
 
 
 /**
@@ -26,7 +26,7 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
     init {
         /*初始化定位*/
-        locationClient = AMapLocationClient(AppContext)
+        locationClient = AMapLocationClient(com.yzq.lib_base.AppContext)
         locationClient.setLocationOption(initOption())
         locationClient.setLocationListener(this)
     }

@@ -3,7 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "com.github.ben-manes.versions"
-
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.yuzhiqiang1993'
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
@@ -54,8 +55,7 @@ dependencies {
     api "androidx.multidex:multidex:$multiDexVersion"
 
     api "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
-    /*处理图片方向*/
-    implementation 'androidx.exifinterface:exifinterface:1.0.0'
+
     /*rx*/
     api "io.reactivex.rxjava2:rxkotlin:$rx_kotlin"
     api "io.reactivex.rxjava2:rxandroid:$rx_android"
@@ -79,15 +79,6 @@ dependencies {
     /*RxImagepicker*/
     api "com.github.qingmei2:rximagepicker:$rx_imgpicker"
 
-    /*retrofit*/
-    api "com.squareup.okhttp3:okhttp:$ok_http"
-    api "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.okhttp3:logging-interceptor:$ok_http"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
-
-    /*协程Android库，提供了ui调度*/
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:${kotlinx_coroutines_android}"
 
     /*glide*/
     api "com.github.bumptech.glide:glide:$glide"
@@ -101,28 +92,17 @@ dependencies {
     api "com.alibaba:arouter-api:$arouter_api"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
 
-    /*bottom_navigation_bar*/
-    api "com.ashokvarma.android:bottom-navigation-bar:$bottom_navigation_bar"
-    /*baseRecyclerViewAdapterHelper*/
-    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$baseRecyclerViewAdapterHelper"
+
     /*progressmanager*/
     implementation "me.jessyan:progressmanager:$progressmanager_version"
     /*Datepicker*/
     implementation "com.ycuwq.widgets:datepicker:$datepickerVersion"
-    /*Bugly*/
-    api "com.tencent.bugly:crashreport_upgrade:$bugly_crashreport_upgrade"
-    api "com.tencent.bugly:nativecrashreport:$bugly_nativecrashreport"
     /*flexbox*/
     api "com.google.android:flexbox:$flexbox"
     /*Gson*/
     api "com.google.code.gson:gson:$gson"
     /*utils*/
     api "com.blankj:utilcodex:$utilcode"
-
-
-    /*内存泄漏检测 leakcanary*/
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_android}"
-    api project(path: ':lib_base')
 
 }
 

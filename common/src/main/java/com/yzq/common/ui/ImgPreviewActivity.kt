@@ -48,7 +48,7 @@ class ImgPreviewActivity : BaseActivity() {
         super.initWidget()
 
         BarUtils.setStatusBarColor(this, Color.BLACK)
-        setAllowFastClick(true)
+        allowFastClick()
 
         photo_view.setOnClickListener { finishAfterTransition() }
         Glide.with(this).load(imagePath).into(photo_view)

@@ -1,4 +1,4 @@
-package com.yzq.common
+package com.yzq.lib_base
 
 import android.app.Activity
 import android.app.Application
@@ -8,7 +8,6 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
-import com.yzq.common.constants.StoragePath
 import java.util.*
 
 
@@ -43,16 +42,13 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
         /*初始化Utils*/
         initUtils()
 
-        /*初始化Crash*/
-        //initCrash()
 
         /*初始化ARouter*/
         initARouter()
 
 
         registerActivityLifecycleCallbacks(this)
-        /*打印路径信息*/
-        StoragePath.logPathInfo()
+
     }
 
 
@@ -77,9 +73,9 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
         Utils.init(AppContext)
         val config = LogUtils.getConfig()
-                .setLogSwitch(BuildConfig.DEBUG)
-                .setGlobalTag(AppUtils.getAppName())
-                .setConsoleSwitch(BuildConfig.DEBUG)
+            .setLogSwitch(BuildConfig.DEBUG)
+            .setGlobalTag(AppUtils.getAppName())
+            .setConsoleSwitch(BuildConfig.DEBUG)
 
         LogUtils.d(config.toString())
 

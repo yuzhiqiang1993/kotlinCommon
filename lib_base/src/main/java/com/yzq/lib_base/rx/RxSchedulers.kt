@@ -1,4 +1,4 @@
-package com.yzq.common.rx
+package com.yzq.lib_base.rx
 
 import io.reactivex.ObservableTransformer
 import io.reactivex.SingleTransformer

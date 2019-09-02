@@ -1,10 +1,10 @@
-package com.yzq.common.rx
+package com.yzq.lib_base.rx
 
 import android.text.TextUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
-import com.yzq.common.mvvm.view_model.BaseViewModel
-import com.yzq.common.constants.BaseConstants
+import com.yzq.lib_base.constants.BaseConstants
+import com.yzq.lib_base.view_model.BaseViewModel
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import org.json.JSONException
@@ -18,7 +18,10 @@ import java.net.SocketTimeoutException
  * @time   : 16:00
  *
  */
-abstract class BaseDialogObserver<T>(private val vm: BaseViewModel, private val content: String = BaseConstants.LOADING) : SingleObserver<T> {
+abstract class BaseDialogObserver<T>(
+    private val vm: BaseViewModel,
+    private val content: String = BaseConstants.LOADING
+) : SingleObserver<T> {
 
 
     override fun onSubscribe(d: Disposable) {

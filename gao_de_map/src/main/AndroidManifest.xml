@@ -27,7 +27,7 @@
 
 
     <application
-        android:name="com.yzq.common.BaseApp"
+        android:name="com.yzq.lib_base.BaseApp"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         tools:ignore="GoogleAppIndexingWarning">

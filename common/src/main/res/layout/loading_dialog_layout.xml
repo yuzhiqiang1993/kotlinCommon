@@ -18,10 +18,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
-        android:textSize="@dimen/font_16"
         android:paddingStart="@dimen/len_10"
         android:paddingEnd="@dimen/len_0"
+        android:text="@string/loadding"
         android:textColor="?android:textColorSecondary"
-        android:text="@string/loadding" />
+        android:textSize="@dimen/font_16" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

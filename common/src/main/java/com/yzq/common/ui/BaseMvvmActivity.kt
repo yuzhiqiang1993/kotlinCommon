@@ -2,9 +2,8 @@ package com.yzq.common.ui
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.yzq.common.mvvm.view_model.BaseViewModel
-import com.yzq.common.constants.ViewStateContstants
-import com.yzq.common.data.ViewStateBean
+import com.yzq.lib_base.data.ViewStateBean
+import com.yzq.lib_base.view_model.BaseViewModel
 
 
 /**
@@ -31,7 +30,9 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
         vm = ViewModelProviders.of(this).get(getViewModelClass())
         vm.initViewModel(this)
 
-        vm.loadState.observe(this, Observer<ViewStateBean> { viewStateBean -> handleViewState(viewStateBean) })
+        vm.loadState.observe(
+            this,
+            Observer<ViewStateBean> { viewStateBean -> handleViewState(viewStateBean) })
 
         observeViewModel()
     }
@@ -45,29 +46,29 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
         val content = viewStateBean.message
         when (viewStateBean.state) {
 
-            ViewStateContstants.showLoaddingDialog -> {
+            com.yzq.lib_base.constants.ViewStateContstants.showLoaddingDialog -> {
                 showLoadingDialog(content)
             }
-            ViewStateContstants.dismissLoaddingDialog -> {
+            com.yzq.lib_base.constants.ViewStateContstants.dismissLoaddingDialog -> {
                 dismissLoadingDialog()
             }
 
-            ViewStateContstants.showErrorDialog -> {
+            com.yzq.lib_base.constants.ViewStateContstants.showErrorDialog -> {
                 showErrorDialog(content)
             }
-            ViewStateContstants.showProgressDialog -> {
+            com.yzq.lib_base.constants.ViewStateContstants.showProgressDialog -> {
                 showProgressDialog(content)
             }
-            ViewStateContstants.dismissProgressDialog -> {
+            com.yzq.lib_base.constants.ViewStateContstants.dismissProgressDialog -> {
                 dismissProgressDialog()
             }
-            ViewStateContstants.changeProgress -> {
+            com.yzq.lib_base.constants.ViewStateContstants.changeProgress -> {
                 changeProgress(content.toInt())
             }
-            ViewStateContstants.showNoNet -> {
+            com.yzq.lib_base.constants.ViewStateContstants.showNoNet -> {
                 showNoNet()
             }
-            ViewStateContstants.showError -> {
+            com.yzq.lib_base.constants.ViewStateContstants.showError -> {
                 showError(content)
             }
         }

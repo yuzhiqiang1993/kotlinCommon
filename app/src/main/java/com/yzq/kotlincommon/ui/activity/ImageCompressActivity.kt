@@ -5,8 +5,8 @@ import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.extend.load
 import com.yzq.common.extend.openCamera
-import com.yzq.common.extend.transform
-import com.yzq.common.mvvm.model.CompressImgModel
+import com.yzq.lib_base.extend.transform
+import com.yzq.common.model.CompressImgModel
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R

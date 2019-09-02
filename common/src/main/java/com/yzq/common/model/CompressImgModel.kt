@@ -1,4 +1,4 @@
-package com.yzq.common.mvvm.model
+package com.yzq.common.model
 
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -26,8 +26,8 @@ class CompressImgModel {
 
     /*压缩图片保存路径*/
     fun compressImgWithWatermark(
-            path: String,
-            waterMarkArr: ArrayList<String> = arrayListOf(timeWaterMark)
+        path: String,
+        waterMarkArr: ArrayList<String> = arrayListOf(timeWaterMark)
     ): Single<String> {
         return Single.create { e ->
             LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
@@ -42,7 +42,15 @@ class CompressImgModel {
                 val matrix = Matrix()
                 matrix.postRotate(degree.toFloat())
                 selectBitMap =
-                        Bitmap.createBitmap(selectBitMap, 0, 0, selectBitMap.width, selectBitMap.height, matrix, true)
+                    Bitmap.createBitmap(
+                        selectBitMap,
+                        0,
+                        0,
+                        selectBitMap.width,
+                        selectBitMap.height,
+                        matrix,
+                        true
+                    )
 
             }
 
@@ -68,9 +76,9 @@ class CompressImgModel {
             }
 
             watermarkLogo = ImageUtils.compressByScale(
-                    watermarkLogo,
-                    (logoW / logoRatio).toInt(),
-                    (logoH / logoRatio).toInt()
+                watermarkLogo,
+                (logoW / logoRatio).toInt(),
+                (logoH / logoRatio).toInt()
             )
 
 
@@ -81,23 +89,30 @@ class CompressImgModel {
 
 
             selectBitMap =
-                    ImageUtils.addImageWatermark(selectBitMap, watermarkLogo, offsetX, offsetY - textSize, 100)
+                ImageUtils.addImageWatermark(
+                    selectBitMap,
+                    watermarkLogo,
+                    offsetX,
+                    offsetY - textSize,
+                    100
+                )
 
             /*添加文字水印*/
 
             for ((index, str) in waterMarkArr.withIndex()) {
 
-                val strOffsetY = (textSize * (index + 1) + offsetY + watermarkLogo.height / 2).toFloat()
+                val strOffsetY =
+                    (textSize * (index + 1) + offsetY + watermarkLogo.height / 2).toFloat()
 
                 LogUtils.i("strOffsetY:${strOffsetY}")
 
                 selectBitMap = ImageUtils.addTextWatermark(
-                        selectBitMap,
-                        str,
-                        textSize,
-                        textColor,
-                        offsetX.toFloat(),
-                        strOffsetY
+                    selectBitMap,
+                    str,
+                    textSize,
+                    textColor,
+                    offsetX.toFloat(),
+                    strOffsetY
                 )
             }
 
@@ -106,9 +121,9 @@ class CompressImgModel {
             LogUtils.i("缩放比例$ratio")
             /*先按比例压缩*/
             selectBitMap = ImageUtils.compressByScale(
-                    selectBitMap,
-                    (defaultW / ratio).toInt(),
-                    (defaultH / ratio).toInt()
+                selectBitMap,
+                (defaultW / ratio).toInt(),
+                (defaultH / ratio).toInt()
             )
             LogUtils.i("比例压缩后：" + selectBitMap.width + ":" + selectBitMap.height)
 
@@ -118,7 +133,8 @@ class CompressImgModel {
             LogUtils.i("压缩后的" + selectBitMap.width + ":" + selectBitMap.height)
 
             /*保存的文件名称*/
-            val savedImgPath = StoragePath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
+            val savedImgPath =
+                StoragePath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
 
 
             LogUtils.i("图片存储路径：${savedImgPath}")
@@ -151,7 +167,11 @@ class CompressImgModel {
             LogUtils.i("缩放比例$ratio")
             /*先按比例压缩*/
             selectBitMap =
-                    ImageUtils.compressByScale(selectBitMap, (defaultW / ratio).toInt(), (defaultH / ratio).toInt())
+                ImageUtils.compressByScale(
+                    selectBitMap,
+                    (defaultW / ratio).toInt(),
+                    (defaultH / ratio).toInt()
+                )
             LogUtils.i("比例压缩后：" + selectBitMap.width + ":" + selectBitMap.height)
 
             /*再按质量压缩*/
@@ -160,7 +180,8 @@ class CompressImgModel {
             LogUtils.i("质量压缩后的" + selectBitMap.width + ":" + selectBitMap.height)
 
             /*保存的文件名称*/
-            val savedImgPath = StoragePath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
+            val savedImgPath =
+                StoragePath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
             /*保存并返回图片路径*/
             if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
                 /*返回保存后的路径*/
@@ -182,8 +203,8 @@ class CompressImgModel {
         try {
             val exifInterface = ExifInterface(path);
             val orientation = exifInterface.getAttributeInt(
-                    ExifInterface.TAG_ORIENTATION,
-                    ExifInterface.ORIENTATION_NORMAL
+                ExifInterface.TAG_ORIENTATION,
+                ExifInterface.ORIENTATION_NORMAL
             );
             when (orientation) {
                 ExifInterface.ORIENTATION_ROTATE_90 ->

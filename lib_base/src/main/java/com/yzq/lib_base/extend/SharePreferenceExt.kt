@@ -1,9 +1,8 @@
-package com.yzq.common.extend
+package com.yzq.lib_base.extend
 
 import android.annotation.SuppressLint
 import android.content.Context
 import com.blankj.utilcode.util.AppUtils
-import com.yzq.common.AppContext
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -21,7 +20,7 @@ class SharedPreference<T>(val name: String, val defaultVal: T) : ReadWriteProper
     private val prfs by lazy {
 
         // LogUtils.i("prfs lazy ->${AppUtils.getAppPackageName()}")
-        AppContext.getSharedPreferences(AppUtils.getAppPackageName(), Context.MODE_PRIVATE)
+        com.yzq.lib_base.AppContext.getSharedPreferences(AppUtils.getAppPackageName(), Context.MODE_PRIVATE)
     }
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): T {

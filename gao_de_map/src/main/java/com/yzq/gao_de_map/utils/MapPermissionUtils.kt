@@ -3,7 +3,7 @@ package com.yzq.gao_de_map.utils
 import android.annotation.SuppressLint
 import android.widget.Toast
 import com.yanzhenjie.permission.runtime.Permission
-import com.yzq.common.AppContext
+import com.yzq.lib_base.AppContext
 import com.yzq.common.extend.requestPermission
 import com.yzq.common.ui.BaseActivity
 import com.yzq.common.utils.LocationUtils
@@ -38,7 +38,7 @@ object MapPermissionUtils {
                     if (LocationUtils.isGpsEnabled()) {
                         emitter.onSuccess(true)
                     } else {
-                        Toast.makeText(AppContext, "该功能需要获取当前位置信息，请打开GPS", Toast.LENGTH_LONG).show()
+                        Toast.makeText(com.yzq.lib_base.AppContext, "该功能需要获取当前位置信息，请打开GPS", Toast.LENGTH_LONG).show()
                         LocationUtils.openGpsSettings()
                     }
 

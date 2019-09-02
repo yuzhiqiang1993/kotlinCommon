@@ -26,7 +26,6 @@ import com.yzq.common.eventBus.EventMsg
 import com.yzq.common.extend.*
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
-import com.yzq.common.constants.BaseConstants
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -138,7 +137,13 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param showBackHint Boolean  点击返回键时是否弹窗提示
      * @param transparentStatusBar Boolean 是否沉浸式状态栏，默认状态栏透明
      */
-    protected open fun initToolbar(toolbar: Toolbar, title: String, displayHome: Boolean = true, showBackHint: Boolean = false, transparentStatusBar: Boolean = true) {
+    protected open fun initToolbar(
+        toolbar: Toolbar,
+        title: String,
+        displayHome: Boolean = true,
+        showBackHint: Boolean = false,
+        transparentStatusBar: Boolean = true
+    ) {
 
         toolbar.title = title
         setSupportActionBar(toolbar)
@@ -158,7 +163,13 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param layoutManager RecyclerView.LayoutManager  布局，默认是线性布局
      * @param needItemDecoration Boolean 是否需要分割线  默认需要
      */
-    protected open fun initRecycleView(recy: RecyclerView, layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this), needItemDecoration: Boolean = true) {
+    protected open fun initRecycleView(
+        recy: RecyclerView,
+        layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(
+            this
+        ),
+        needItemDecoration: Boolean = true
+    ) {
 
         recy.layoutManager = layoutManager
         if (needItemDecoration) {
@@ -174,7 +185,8 @@ abstract class BaseActivity : AppCompatActivity() {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             val option = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                val vis = window.getDecorView().getSystemUiVisibility() and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                val vis =
+                    window.getDecorView().getSystemUiVisibility() and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
                 window.getDecorView().setSystemUiVisibility(option or vis)
             } else {
                 window.getDecorView().setSystemUiVisibility(option)
@@ -205,7 +217,12 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param showBackHint  点击返回时是否显示返回提示框，默认不显示
      */
     @SuppressLint("AutoDispose")
-    protected fun initHeader(backIv: AppCompatImageView, titleTv: TextView, title: String, showBackHint: Boolean = false) {
+    protected fun initHeader(
+        backIv: AppCompatImageView,
+        titleTv: TextView,
+        title: String,
+        showBackHint: Boolean = false
+    ) {
         titleTv.text = title
         this.showBackHint = showBackHint
 
@@ -216,12 +233,10 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     /**
-     * 是否允许快速点击
-     *
-     * @param allowFastClick 默认值为false
+     * 允许快速点击
      */
-    protected open fun setAllowFastClick(allowFastClick: Boolean) {
-        this.allowFastClick = allowFastClick
+    protected open fun allowFastClick() {
+        this.allowFastClick = true
     }
 
 
@@ -236,7 +251,11 @@ abstract class BaseActivity : AppCompatActivity() {
         intent.putExtra(ImgPreviewActivity.IMG_PATH, path)
 
         val options =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(this, view, getString(R.string.img_transition))
+            ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,
+                view,
+                getString(R.string.img_transition)
+            )
         startActivity(intent, options.toBundle())
 
     }
@@ -342,7 +361,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun showErrorDialog(msg: String?) {
         if (TextUtils.isEmpty(msg)) {
-            showBaseDialog(message = BaseConstants.UNKONW_ERROR)
+            showBaseDialog(message = com.yzq.lib_base.constants.BaseConstants.UNKONW_ERROR)
         } else {
             showBaseDialog(message = msg!!)
         }
@@ -394,7 +413,7 @@ abstract class BaseActivity : AppCompatActivity() {
 //        contentLayout?.visibility = View.GONE
 
 
-        ToastUtils.showLong(BaseConstants.NO_NET)
+        ToastUtils.showLong(com.yzq.lib_base.constants.BaseConstants.NO_NET)
 
     }
 
@@ -406,7 +425,7 @@ abstract class BaseActivity : AppCompatActivity() {
     fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(BaseConstants.UNKONW_ERROR)
+            stateView?.showError(com.yzq.lib_base.constants.BaseConstants.UNKONW_ERROR)
         } else {
             stateView?.showError(msg!!)
         }
@@ -421,7 +440,11 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param contentLayout  内容布局
      * @param isRefreshLayout  是否是下拉刷新
      */
-    protected fun initStateView(stateView: StateView, contentLayout: View, isRefreshLayout: Boolean = false) {
+    protected fun initStateView(
+        stateView: StateView,
+        contentLayout: View,
+        isRefreshLayout: Boolean = false
+    ) {
         this.stateView = stateView
         this.contentLayout = contentLayout
         this.isRefreshLayout = isRefreshLayout
