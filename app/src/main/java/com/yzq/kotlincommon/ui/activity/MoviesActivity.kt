@@ -8,9 +8,9 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.yzq.common.constants.RoutePath
 import com.yzq.common.ui.BaseMvvmActivity
 import com.yzq.common.widget.StateView
-import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MovieAdapter
 import com.yzq.kotlincommon.data.movie.Subject
@@ -27,7 +27,8 @@ import kotlinx.android.synthetic.main.activity_movie_list.*
  */
 
 @Route(path = RoutePath.Main.MOVIES)
-class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.OnItemChildClickListener {
+class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnItemClickListener,
+    BaseQuickAdapter.OnItemChildClickListener {
 
 
     override fun getViewModelClass(): Class<MovieViewModel> = MovieViewModel::class.java
@@ -105,7 +106,8 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View?, position: Int) {
 
         operationItem = movieAdapter.data.get(position)
-        val imgView = recy.layoutManager!!.findViewByPosition(position)!!.findViewById<AppCompatImageView>(R.id.iv_img)
+        val imgView =
+            recy.layoutManager!!.findViewByPosition(position)!!.findViewById<AppCompatImageView>(R.id.iv_img)
         when (view!!.id) {
             R.id.iv_img -> {
 

@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.yzq.lib_base.eventBus.EventBusUtil
-import com.yzq.lib_base.eventBus.EventMsg
+import com.yzq.lib_eventbus.EventBusUtil
+import com.yzq.lib_eventbus.EventMsg
 import com.yzq.common.widget.StateView
 import com.yzq.lib_base.constants.BaseConstants
 import org.greenrobot.eventbus.Subscribe
@@ -40,7 +40,7 @@ abstract class BaseFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(getContentLayoutId(), container, false)
-        EventBusUtil.register(this)
+        com.yzq.lib_eventbus.EventBusUtil.register(this)
         return view
     }
 
@@ -94,13 +94,13 @@ abstract class BaseFragment : Fragment() {
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    open fun onEventMainThread(msg: EventMsg) {
+    open fun onEventMainThread(msg: com.yzq.lib_eventbus.EventMsg) {
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
-        EventBusUtil.unregister(this)
+        com.yzq.lib_eventbus.EventBusUtil.unregister(this)
     }
 
     protected open fun onBackPressed(): Boolean {

@@ -1,6 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#03A9F4</color>
+    <color name="primary_light">#BBDEFB</color>
+    <!--主要文字颜色-->
+    <color name="primary_text">#212121</color>
+    <!--次要文字颜色-->
+    <color name="secondary_text">#757575</color>
+    <!--图标颜色-->
+    <color name="icons">#FFFFFF</color>
+    <!--分割线颜色-->
+    <color name="divider">#BDBDBD</color>
+
+
+    <!--浅灰色-->
+    <color name="lightGray">#888888</color>
+    <!--深灰色-->
+    <color name="darkGray">#333333</color>
+    <!--波纹颜色-->
+    <color name="wave_color">#20000000</color>
+    <!--浅灰色灰色背景-->
+    <color name="bg_gray">#F2F2F2</color>
+    <!--文字提示颜色-->
+    <color name="font_hint">#919191</color>
+
+
     <color name="trans">#00000000</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>

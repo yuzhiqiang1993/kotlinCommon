@@ -20,6 +20,7 @@ import com.ycuwq.datepicker.date.YearPicker
 import com.ycuwq.datepicker.time.HourAndMinutePicker
 import com.yzq.common.R
 import com.yzq.common.ui.BaseActivity
+import com.yzq.common.widget.StateView
 import com.yzq.lib_base.AppContext
 import com.yzq.lib_base.constants.BaseConstants
 import com.yzq.lib_base.extend.loading
@@ -31,7 +32,6 @@ import java.io.File
 /*
 * 对BaseActivity类的扩展
 * */
-
 
 
 /*获取一个新的Dialog实例*/

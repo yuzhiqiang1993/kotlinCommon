@@ -93,10 +93,6 @@ dependencies {
     api "com.github.bumptech.glide:glide:$glide"
     kapt "com.github.bumptech.glide:compiler:$glide"
 
-    /*photoView*/
-    api "com.github.chrisbanes:PhotoView:$photoview"
-
-
     /*ARouter*/
     api "com.alibaba:arouter-api:$arouter_api"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
@@ -122,8 +118,10 @@ dependencies {
 
     /*内存泄漏检测 leakcanary*/
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_android}"
-    //api project(path: ':lib_base')
+    api project(path: ':lib_base')
     api project(path: ':lib_net')
-    api 'com.github.yuzhiqiang1993:kotlincommon:0.0.2vm'
+    api project(path: ':lib_img')
+    api project(path: ':lib_eventbus')
+    //api 'com.github.yuzhiqiang1993:kotlincommon:0.0.2vm'
 }
 

@@ -3,13 +3,13 @@ package com.yzq.kotlincommon.ui.activity
 import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.yzq.lib_base.extend.load
+import com.yzq.common.constants.RoutePath
 import com.yzq.common.extend.openCamera
-import com.yzq.lib_base.extend.transform
 import com.yzq.common.model.CompressImgModel
 import com.yzq.common.ui.BaseActivity
-import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
+import com.yzq.lib_base.extend.transform
+import com.yzq.lib_img.load
 import kotlinx.android.synthetic.main.activity_image_compress.*
 
 
@@ -45,11 +45,11 @@ class ImageCompressActivity : BaseActivity() {
 
             openCamera().subscribe { file ->
                 compressImgModel.compressImgWithWatermark(file.path)
-                        .transform(this)
-                        .subscribe { path ->
-                            imgPath = path
-                            iv_img.load(imgPath)
-                        }
+                    .transform(this)
+                    .subscribe { path ->
+                        imgPath = path
+                        iv_img.load(imgPath)
+                    }
             }
         }
 

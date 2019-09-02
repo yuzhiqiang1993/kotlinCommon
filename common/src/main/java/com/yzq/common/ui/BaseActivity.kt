@@ -28,8 +28,8 @@ import com.yzq.common.extend.showBaseDialog
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
 import com.yzq.lib_base.constants.BaseConstants
-import com.yzq.lib_base.eventBus.EventBusUtil
-import com.yzq.lib_base.eventBus.EventMsg
+import com.yzq.lib_eventbus.EventBusUtil
+import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_base.extend.changeProgress
 import com.yzq.lib_base.extend.setLoadingMessage
 import org.greenrobot.eventbus.Subscribe
@@ -75,7 +75,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
 
-        EventBusUtil.register(this)
+        com.yzq.lib_eventbus.EventBusUtil.register(this)
 
         initArgs(intent.extras)
 
@@ -92,7 +92,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * 初始化参数
      *
      * @param extras  传递的参数对象
-     */
+    */
     protected open fun initArgs(extras: Bundle?) {
 
     }
@@ -121,7 +121,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param eventMsg  传递的消息
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    open fun onEventMainThread(eventMsg: EventMsg) {
+    open fun onEventMainThread(eventMsg: com.yzq.lib_eventbus.EventMsg) {
 
 
     }
@@ -459,7 +459,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        EventBusUtil.unregister(this)
+        com.yzq.lib_eventbus.EventBusUtil.unregister(this)
     }
 
 

@@ -48,51 +48,46 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    compileOnly "androidx.appcompat:appcompat:$appcompat"
-    compileOnly "com.google.android.material:material:$material"
-    compileOnly "androidx.vectordrawable:vectordrawable:$vectordrawable"
-    compileOnly "androidx.constraintlayout:constraintlayout:$constraintlayout"
-    compileOnly "androidx.annotation:annotation:$annotation"
-    compileOnly "androidx.multidex:multidex:$multiDexVersion"
+    implementation "androidx.appcompat:appcompat:$appcompat"
+    implementation "com.google.android.material:material:$material"
+    implementation "androidx.vectordrawable:vectordrawable:$vectordrawable"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    implementation "androidx.annotation:annotation:$annotation"
+    implementation "androidx.multidex:multidex:$multiDexVersion"
 
-    compileOnly "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
 
 
     /*dialog*/
-    compileOnly "com.afollestad.material-dialogs:core:$material_dialogs"
-    compileOnly "com.afollestad.material-dialogs:input:$material_dialogs"
-    compileOnly "com.afollestad.material-dialogs:bottomsheets:$material_dialogs"
-    compileOnly "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
-
-
-    /*glide*/
-    compileOnly "com.github.bumptech.glide:glide:$glide"
-    kapt "com.github.bumptech.glide:compiler:$glide"
-
+    implementation "com.afollestad.material-dialogs:core:$material_dialogs"
+    implementation "com.afollestad.material-dialogs:input:$material_dialogs"
+    implementation "com.afollestad.material-dialogs:bottomsheets:$material_dialogs"
+    implementation "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
 
     /*rx*/
-    compileOnly "io.reactivex.rxjava2:rxkotlin:$rx_kotlin"
-    compileOnly "io.reactivex.rxjava2:rxandroid:$rx_android"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin"
+    implementation "io.reactivex.rxjava2:rxandroid:$rx_android"
 
     /*AutoDispose*/
-    compileOnly "com.uber.autodispose:autodispose-ktx:$autodispose_version"
-    compileOnly "com.uber.autodispose:autodispose-android-archcomponents-ktx:$autodispose_version"
+    implementation "com.uber.autodispose:autodispose-ktx:$autodispose_version"
+    implementation "com.uber.autodispose:autodispose-android-archcomponents-ktx:$autodispose_version"
 
-    /*eventbus*/
-    compileOnly "org.greenrobot:eventbus:$eventbus"
 
 
     /*ARouter*/
-    compileOnly "com.alibaba:arouter-api:$arouter_api"
+    implementation "com.alibaba:arouter-api:$arouter_api"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
 
     /*utils*/
-    compileOnly "com.blankj:utilcodex:$utilcode"
+    implementation "com.blankj:utilcodex:$utilcode"
     /*Gson*/
-    compileOnly "com.google.code.gson:gson:$gson"
+    implementation "com.google.code.gson:gson:$gson"
 
     /*progressmanager*/
-    compileOnly "me.jessyan:progressmanager:$progressmanager_version"
+    implementation "me.jessyan:progressmanager:$progressmanager_version"
+
+
+    implementation project(path: ':lib_resource')
 
 }
 
