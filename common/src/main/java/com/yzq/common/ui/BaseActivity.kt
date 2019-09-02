@@ -27,6 +27,7 @@ import com.yzq.common.extend.showBackHintDialog
 import com.yzq.common.extend.showBaseDialog
 import com.yzq.common.widget.ItemDecoration
 import com.yzq.common.widget.StateView
+import com.yzq.lib_base.constants.BaseConstants
 import com.yzq.lib_base.eventBus.EventBusUtil
 import com.yzq.lib_base.eventBus.EventMsg
 import com.yzq.lib_base.extend.changeProgress
@@ -366,7 +367,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun showErrorDialog(msg: String?) {
         if (TextUtils.isEmpty(msg)) {
-            showBaseDialog(message = com.yzq.lib_base.constants.BaseConstants.UNKONW_ERROR)
+            showBaseDialog(message = BaseConstants.UNKONW_ERROR)
         } else {
             showBaseDialog(message = msg!!)
         }
@@ -418,7 +419,7 @@ abstract class BaseActivity : AppCompatActivity() {
 //        contentLayout?.visibility = View.GONE
 
 
-        ToastUtils.showLong(com.yzq.lib_base.constants.BaseConstants.NO_NET)
+        ToastUtils.showLong(BaseConstants.NO_NET)
 
     }
 
@@ -430,7 +431,7 @@ abstract class BaseActivity : AppCompatActivity() {
     fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(com.yzq.lib_base.constants.BaseConstants.UNKONW_ERROR)
+            stateView?.showError(BaseConstants.UNKONW_ERROR)
         } else {
             stateView?.showError(msg!!)
         }

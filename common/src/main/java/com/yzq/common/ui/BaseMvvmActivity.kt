@@ -2,6 +2,7 @@ package com.yzq.common.ui
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
 import com.yzq.lib_base.view_model.BaseViewModel
 
@@ -46,29 +47,29 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
         val content = viewStateBean.message
         when (viewStateBean.state) {
 
-            com.yzq.lib_base.constants.ViewStateContstants.showLoaddingDialog -> {
+            ViewStateContstants.showLoaddingDialog -> {
                 showLoadingDialog(content)
             }
-            com.yzq.lib_base.constants.ViewStateContstants.dismissLoaddingDialog -> {
+            ViewStateContstants.dismissLoaddingDialog -> {
                 dismissLoadingDialog()
             }
 
-            com.yzq.lib_base.constants.ViewStateContstants.showErrorDialog -> {
+            ViewStateContstants.showErrorDialog -> {
                 showErrorDialog(content)
             }
-            com.yzq.lib_base.constants.ViewStateContstants.showProgressDialog -> {
+            ViewStateContstants.showProgressDialog -> {
                 showProgressDialog(content)
             }
-            com.yzq.lib_base.constants.ViewStateContstants.dismissProgressDialog -> {
+            ViewStateContstants.dismissProgressDialog -> {
                 dismissProgressDialog()
             }
-            com.yzq.lib_base.constants.ViewStateContstants.changeProgress -> {
+            ViewStateContstants.changeProgress -> {
                 changeProgress(content.toInt())
             }
-            com.yzq.lib_base.constants.ViewStateContstants.showNoNet -> {
+            ViewStateContstants.showNoNet -> {
                 showNoNet()
             }
-            com.yzq.lib_base.constants.ViewStateContstants.showError -> {
+            ViewStateContstants.showError -> {
                 showError(content)
             }
         }

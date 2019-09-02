@@ -4,7 +4,6 @@
 -keep class com.yzq.kotlincommon.data.** { *; }
 
 
-
 # EventBus
 -keepattributes *Annotation*
 -keepclassmembers class ** {

@@ -122,8 +122,8 @@ dependencies {
 
     /*内存泄漏检测 leakcanary*/
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_android}"
-    api project(path: ':lib_base')
+    //api project(path: ':lib_base')
     api project(path: ':lib_net')
-
+    api 'com.github.yuzhiqiang1993:kotlincommon:0.0.2vm'
 }
 

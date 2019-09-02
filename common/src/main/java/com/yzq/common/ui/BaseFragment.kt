@@ -12,6 +12,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.yzq.lib_base.eventBus.EventBusUtil
 import com.yzq.lib_base.eventBus.EventMsg
 import com.yzq.common.widget.StateView
+import com.yzq.lib_base.constants.BaseConstants
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -140,7 +141,7 @@ abstract class BaseFragment : Fragment() {
     protected open fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(com.yzq.lib_base.constants.BaseConstants.UNKONW_ERROR)
+            stateView?.showError(BaseConstants.UNKONW_ERROR)
         } else {
             stateView?.showError(msg!!)
         }
