@@ -1,21 +1,21 @@
-package com.yzq.widget.drop_down_menu;
+package com.yzq.lib_widget.drop_down_menu;
 
 import android.content.Context;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
-
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.yzq.widget.R;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
+
+import com.yzq.lib_widget.R;
+
 
 /*
-* 自定义的tabItem
-* */
+ * 自定义的tabItem
+ * */
 public class TabItem extends LinearLayout {
 
     private AppCompatTextView titleTv;
@@ -41,7 +41,7 @@ public class TabItem extends LinearLayout {
     private void initView(Context context) {
         view = LayoutInflater.from(context).inflate(R.layout.layout_tab_item, this);
         titleTv = view.findViewById(R.id.tv_tab_title);
-        tabIcon=view.findViewById(R.id.iv_tab_icon);
+        tabIcon = view.findViewById(R.id.iv_tab_icon);
     }
 
 
@@ -50,12 +50,12 @@ public class TabItem extends LinearLayout {
     }
 
 
-    public void setTitleColor(int textSelectedColor){
+    public void setTitleColor(int textSelectedColor) {
         titleTv.setTextColor(textSelectedColor);
     }
 
 
-    public void setIcon(int menuSelectedIcon, int color){
+    public void setIcon(int menuSelectedIcon, int color) {
         tabIcon.setImageResource(menuSelectedIcon);
         tabIcon.setColorFilter(color);
 

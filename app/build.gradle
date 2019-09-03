@@ -73,7 +73,6 @@ dependencies {
 
     implementation project(':common')
 
-    implementation project(':custom_view')
 
     if (isModule.toBoolean()) {
         implementation project(':gao_de_map')

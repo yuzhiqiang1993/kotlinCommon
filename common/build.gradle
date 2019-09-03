@@ -74,8 +74,7 @@ dependencies {
     /*baseRecyclerViewAdapterHelper*/
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$baseRecyclerViewAdapterHelper"
 
-    /*Datepicker*/
-    implementation "com.ycuwq.widgets:datepicker:$datepickerVersion"
+
     /*Bugly*/
     api "com.tencent.bugly:crashreport_upgrade:$bugly_crashreport_upgrade"
     api "com.tencent.bugly:nativecrashreport:$bugly_nativecrashreport"
@@ -94,6 +93,8 @@ dependencies {
     api project(path: ':lib_eventbus')
     api project(path: ':lib_materialdialog')
     api project(path: ':lib_rx')
+    api project(path: ':lib_resource')
+    api project(path: ':lib_widget')
     //api 'com.github.yuzhiqiang1993:kotlincommon:0.0.2vm'
 }
 

@@ -1,4 +1,4 @@
-package com.yzq.common.widget
+package com.yzq.lib_widget
 
 import android.content.Context
 import android.text.InputType
@@ -6,7 +6,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.yzq.common.R
 import kotlinx.android.synthetic.main.view_horizontal_edit_layout.view.*
 
 
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.main.view_horizontal_edit_layout.view.*
  */
 
 class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-        ConstraintLayout(context, attrs, defStyleAttr) {
+    ConstraintLayout(context, attrs, defStyleAttr) {
 
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -43,8 +42,10 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
         try {
             iconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_icon, -1)
-            inputType = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_inputType, -1)
-            editEnable = typeArr.getBoolean(R.styleable.HorizontalEditView_horz_edit_editEnable, true)
+            inputType =
+                typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_inputType, -1)
+            editEnable =
+                typeArr.getBoolean(R.styleable.HorizontalEditView_horz_edit_editEnable, true)
             endIconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_endIcon, -1)
             titleStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_title)
             contentStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_content)

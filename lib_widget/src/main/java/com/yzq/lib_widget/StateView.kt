@@ -1,11 +1,10 @@
-package com.yzq.common.widget
+package com.yzq.lib_widget
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import com.yzq.common.R
 import kotlinx.android.synthetic.main.layout_state_view.view.*
 
 
@@ -17,7 +16,8 @@ import kotlinx.android.synthetic.main.layout_state_view.view.*
  *
  */
 
-class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : LinearLayout(context, attrs, defStyleAttr) {
+class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
+    LinearLayout(context, attrs, defStyleAttr) {
 
 
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)

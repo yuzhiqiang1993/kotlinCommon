@@ -1,4 +1,4 @@
-package com.yzq.widget.drop_down_menu;
+package com.yzq.lib_widget.drop_down_menu;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,11 +9,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.yzq.widget.R;
+import androidx.annotation.NonNull;
+
+import com.yzq.lib_widget.R;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
 
 
 public class DropDownMenu extends LinearLayout {
@@ -124,8 +124,7 @@ public class DropDownMenu extends LinearLayout {
 
         popupMenuViews = new FrameLayout(getContext());
 
-        popupMenuViews.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (DeviceUtils.getScreenSize(getContext()).y * menuHeighPercent)));
-        // popupMenuViews.setLayoutParams(new FrameLayout.LayoutParams(DeviceUtils.getScreenSize(getContext()).x / 3, (int) (DeviceUtils.getScreenSize(getContext()).y * menuHeighPercent)));
+        popupMenuViews.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (DeviceUtils.getSceenHeight(getContext()) * menuHeighPercent)));
 
 
         popupMenuViews.setVisibility(GONE);

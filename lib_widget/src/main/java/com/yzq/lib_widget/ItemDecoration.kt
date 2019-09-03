@@ -1,8 +1,7 @@
-package com.yzq.common.widget
+package com.yzq.lib_widget
 
 import android.content.Context
 import androidx.core.content.ContextCompat
-import com.yzq.common.R
 
 
 /**
@@ -17,9 +16,9 @@ object ItemDecoration {
 
     fun baseItemDecoration(context: Context): SuperDividerItemDecoration {
         return SuperDividerItemDecoration.Builder(context)
-                .setDividerColor(ContextCompat.getColor(context, R.color.gray_300))
-                .setDividerWidth(1)
-                .build()
+            .setDividerColor(ContextCompat.getColor(context, R.color.gray_300))
+            .setDividerWidth(1)
+            .build()
 
     }
 

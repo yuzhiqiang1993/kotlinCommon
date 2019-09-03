@@ -25,11 +25,10 @@ import com.yzq.common.extend.getLoadingDialog
 import com.yzq.common.extend.getProgressDialog
 import com.yzq.common.extend.showBackHintDialog
 import com.yzq.common.extend.showBaseDialog
-import com.yzq.common.widget.ItemDecoration
-import com.yzq.common.widget.StateView
 import com.yzq.lib_base.constants.BaseConstants
 import com.yzq.lib_materialdialog.changeProgress
 import com.yzq.lib_materialdialog.setLoadingMessage
+import com.yzq.lib_widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -90,7 +89,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * 初始化参数
      *
      * @param extras  传递的参数对象
-    */
+     */
     protected open fun initArgs(extras: Bundle?) {
 
     }
@@ -177,7 +176,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
         recy.layoutManager = layoutManager
         if (needItemDecoration) {
-            recy.addItemDecoration(ItemDecoration.baseItemDecoration(this))
+            recy.addItemDecoration(com.yzq.lib_widget.ItemDecoration.baseItemDecoration(this))
         }
     }
 

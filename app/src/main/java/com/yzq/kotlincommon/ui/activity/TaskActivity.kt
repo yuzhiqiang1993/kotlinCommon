@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.ui.BaseActivity
-import com.yzq.common.widget.HoverItemDecoration
+import com.yzq.lib_widget.HoverItemDecoration
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TaskAdapter
@@ -80,17 +80,19 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
         taskAdapter = TaskAdapter(R.layout.item_task_swipe_layout, tasks)
         taskAdapter.onItemChildClickListener = this
 
-        val hoverItemDecoration = HoverItemDecoration(this, HoverItemDecoration.BindItemTextCallback {
-            val taskBean = tasks[it]
-            val title = if (taskBean.type == 0) {
-                "巡查"
-            } else {
-                "急查"
-            }
+        val hoverItemDecoration = com.yzq.lib_widget.HoverItemDecoration(
+            this,
+            com.yzq.lib_widget.HoverItemDecoration.BindItemTextCallback {
+                val taskBean = tasks[it]
+                val title = if (taskBean.type == 0) {
+                    "巡查"
+                } else {
+                    "急查"
+                }
 
-            return@BindItemTextCallback title
+                return@BindItemTextCallback title
 
-        })
+            })
         recy.addItemDecoration(hoverItemDecoration)
 
 

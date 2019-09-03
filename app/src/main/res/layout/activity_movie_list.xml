@@ -19,7 +19,9 @@
         app:layout_constraintTop_toBottomOf="@id/layout_appbar" />
 
 
-    <com.yzq.common.widget.StateView
+
+
+    <com.yzq.lib_widget.StateView
         android:id="@+id/state_view"
         android:layout_width="0dp"
         android:layout_height="0dp"

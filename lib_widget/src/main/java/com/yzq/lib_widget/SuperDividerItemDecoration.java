@@ -1,4 +1,4 @@
-package com.yzq.common.widget;
+package com.yzq.lib_widget;
 
 import android.content.Context;
 import android.graphics.Canvas;

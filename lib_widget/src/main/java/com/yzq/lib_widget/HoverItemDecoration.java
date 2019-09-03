@@ -1,4 +1,4 @@
-package com.yzq.common.widget;
+package com.yzq.lib_widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,8 +10,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.yzq.common.R;
 
 
 /**

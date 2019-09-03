@@ -1,4 +1,4 @@
-package com.yzq.widget.swipe_menu;
+package com.yzq.lib_widget.swipe_menu;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -15,13 +15,14 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 
-import com.yzq.widget.R;
+import com.yzq.lib_widget.R;
+
 
 /**
  * 侧滑菜单
  */
 public class SwipeMenuLayout extends ViewGroup {
-   // private static final String TAG = "zxt/SwipeMenuLayout";
+    // private static final String TAG = "zxt/SwipeMenuLayout";
 
     private int mScaleTouchSlop;//为了处理单击事件的冲突
     private int mMaxVelocity;//计算滑动速度用

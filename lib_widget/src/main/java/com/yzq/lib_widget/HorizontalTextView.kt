@@ -1,4 +1,4 @@
-package com.yzq.common.widget
+package com.yzq.lib_widget
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,7 +6,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.yzq.common.R
 import kotlinx.android.synthetic.main.view_horizontal_text_layout.view.*
 
 
@@ -19,7 +18,7 @@ import kotlinx.android.synthetic.main.view_horizontal_text_layout.view.*
  */
 
 class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-        ConstraintLayout(context, attrs, defStyleAttr) {
+    ConstraintLayout(context, attrs, defStyleAttr) {
 
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -42,11 +41,12 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         try {
             startIconRes = typeArr.getResourceId(R.styleable.HorizontalTextView_horz_tv_icon, -1)
             endIconRes =
-                    typeArr.getResourceId(R.styleable.HorizontalTextView_horz_tv_endIcon, -1)
+                typeArr.getResourceId(R.styleable.HorizontalTextView_horz_tv_endIcon, -1)
             titleStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_title)
             contentStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_content)
             hintStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_hint)
-            contentLeft = typeArr.getBoolean(R.styleable.HorizontalTextView_horz_tv_content_left, false)
+            contentLeft =
+                typeArr.getBoolean(R.styleable.HorizontalTextView_horz_tv_content_left, false)
 
         } finally {
             typeArr.recycle()

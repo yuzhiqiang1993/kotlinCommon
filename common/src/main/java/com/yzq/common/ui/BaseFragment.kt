@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.yzq.lib_eventbus.EventBusUtil
-import com.yzq.lib_eventbus.EventMsg
-import com.yzq.common.widget.StateView
 import com.yzq.lib_base.constants.BaseConstants
+import com.yzq.lib_widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -38,7 +36,11 @@ abstract class BaseFragment : Fragment() {
     }
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         val view = inflater.inflate(getContentLayoutId(), container, false)
         com.yzq.lib_eventbus.EventBusUtil.register(this)
         return view
@@ -174,7 +176,11 @@ abstract class BaseFragment : Fragment() {
         (activity as BaseActivity).dismissProgressDialog()
     }
 
-    protected open fun initStateView(stateView: StateView, contentLayout: View, isRefreshLayout: Boolean = false) {
+    protected open fun initStateView(
+        stateView: StateView,
+        contentLayout: View,
+        isRefreshLayout: Boolean = false
+    ) {
         this.stateView = stateView
         this.contentLayout = contentLayout
         this.isRefreshLayout = isRefreshLayout
