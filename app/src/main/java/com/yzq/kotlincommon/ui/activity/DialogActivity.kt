@@ -7,10 +7,13 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
-import com.yzq.common.extend.*
-import com.yzq.common.ui.BaseActivity
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.extend.selectDate
+import com.yzq.common.extend.selectHourAndMinute
+import com.yzq.common.extend.selectYear
+import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
+import com.yzq.lib_materialdialog.*
 import com.yzq.lib_rx.transform
 import io.reactivex.Observable
 import io.reactivex.Observer
@@ -97,9 +100,9 @@ class DialogActivity : BaseActivity() {
             showLoadingDialog("登录中...")
 
             Observable.timer(3, TimeUnit.SECONDS)
-                    .subscribe {
-                        dismissLoadingDialog()
-                    }
+                .subscribe {
+                    dismissLoadingDialog()
+                }
         }
 
 
@@ -107,40 +110,58 @@ class DialogActivity : BaseActivity() {
             var count = 0
             showProgressDialog("模拟进度")
             Observable.interval(200, TimeUnit.MILLISECONDS)
-                    .transform(this)
-                    .subscribe(object : Observer<Long> {
+                .transform(this)
+                .subscribe(object : Observer<Long> {
 
-                        lateinit var d: Disposable
-                        override fun onComplete() {
+                    lateinit var d: Disposable
+                    override fun onComplete() {
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+                        this.d = d
+                    }
+
+                    override fun onNext(t: Long) {
+
+                        count += 5
+                        if (count <= 100) {
+                            changeProgress(count)
+                        } else {
+                            dismissProgressDialog()
+                            d.dispose()
                         }
 
-                        override fun onSubscribe(d: Disposable) {
-                            this.d = d
-                        }
+                    }
 
-                        override fun onNext(t: Long) {
+                    override fun onError(e: Throwable) {
+                    }
 
-                            count += 5
-                            if (count <= 100) {
-                                changeProgress(count)
-                            } else {
-                                dismissProgressDialog()
-                                d.dispose()
-                            }
-
-                        }
-
-                        override fun onError(e: Throwable) {
-                        }
-
-                    })
+                })
 
 
         }
 
-        btn_select_year.setOnClickListener { selectYear().subscribe { selectedYear -> ToastUtils.showShort(selectedYear) } }
-        btn_select_date.setOnClickListener { selectDate().subscribe { selectedDate -> ToastUtils.showShort(selectedDate) } }
-        btn_select_time.setOnClickListener { selectHourAndMinute().subscribe { selectedHourAndMinute -> ToastUtils.showShort(selectedHourAndMinute) } }
+        btn_select_year.setOnClickListener {
+            selectYear().subscribe { selectedYear ->
+                ToastUtils.showShort(
+                    selectedYear
+                )
+            }
+        }
+        btn_select_date.setOnClickListener {
+            selectDate().subscribe { selectedDate ->
+                ToastUtils.showShort(
+                    selectedDate
+                )
+            }
+        }
+        btn_select_time.setOnClickListener {
+            selectHourAndMinute().subscribe { selectedHourAndMinute ->
+                ToastUtils.showShort(
+                    selectedHourAndMinute
+                )
+            }
+        }
 
 
 
@@ -148,13 +169,13 @@ class DialogActivity : BaseActivity() {
 
 
             MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT))
-                    .show {
-                        title(R.string.hint)
-                        message(text = "bottom sheet")
-                        positiveButton(text = "确定")
-                        negativeButton(text = "取消")
+                .show {
+                    title(R.string.hint)
+                    message(text = "bottom sheet")
+                    positiveButton(text = "确定")
+                    negativeButton(text = "取消")
 
-                    }
+                }
         }
 
 

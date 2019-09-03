@@ -1,1 +1,1 @@
-include ':app', ':common', ':gao_de_map', ':lib_base', ':lib_net', ':lib_img', ':lib_resource', ':lib_eventbus', ':lib_materialdialog', ':lib_rx', ':lib_widget'
+include ':app', ':common', ':gao_de_map', ':lib_base', ':lib_net', ':lib_img', ':lib_resource', ':lib_eventbus', ':lib_materialdialog', ':lib_rx', ':lib_widget', ':lib_base_ui'

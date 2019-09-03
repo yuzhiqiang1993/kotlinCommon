@@ -21,13 +21,8 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.R
-import com.yzq.common.extend.getLoadingDialog
-import com.yzq.common.extend.getProgressDialog
-import com.yzq.common.extend.showBackHintDialog
-import com.yzq.common.extend.showBaseDialog
 import com.yzq.lib_base.constants.BaseConstants
-import com.yzq.lib_materialdialog.changeProgress
-import com.yzq.lib_materialdialog.setLoadingMessage
+import com.yzq.lib_materialdialog.*
 import com.yzq.lib_widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
