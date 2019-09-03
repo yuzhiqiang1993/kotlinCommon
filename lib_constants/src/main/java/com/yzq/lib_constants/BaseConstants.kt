@@ -1,4 +1,4 @@
-package com.yzq.lib_base.constants
+package com.yzq.lib_constants
 
 
 /**

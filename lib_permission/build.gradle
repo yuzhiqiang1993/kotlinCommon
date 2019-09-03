@@ -40,17 +40,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$appcompat"
-    implementation "com.google.android.material:material:$material"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
-    /*dialog*/
-    api "com.afollestad.material-dialogs:core:$material_dialogs"
-    api "com.afollestad.material-dialogs:input:$material_dialogs"
-    api "com.afollestad.material-dialogs:bottomsheets:$material_dialogs"
-    api "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
-
-    implementation project(path: ':lib_resource')
-    implementation project(path: ':lib_widget')
+    /*permission*/
+    api "com.yanzhenjie.permission:x:$permission"
+    implementation project(path: ':lib_materialdialog')
     implementation project(path: ':lib_rx')
-    implementation project(path: ':lib_constants')
+    /*utils*/
+    implementation "com.blankj:utilcodex:$utilcode"
+
+
 }

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.yzq.lib_base.constants.BaseConstants
+import com.yzq.lib_constants.BaseConstants
 import com.yzq.lib_widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -143,7 +143,7 @@ abstract class BaseFragment : Fragment() {
     protected open fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(BaseConstants.UNKONW_ERROR)
+            stateView?.showError(com.yzq.lib_constants.BaseConstants.UNKONW_ERROR)
         } else {
             stateView?.showError(msg!!)
         }

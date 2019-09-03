@@ -3,7 +3,7 @@ package com.yzq.lib_base.rx
 import android.text.TextUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
-import com.yzq.lib_base.constants.BaseConstants
+import com.yzq.lib_constants.BaseConstants
 import com.yzq.lib_base.view_model.BaseViewModel
 import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
@@ -46,11 +46,11 @@ abstract class BaseProgressObserver<T>(
         vm.dismissProgressDialog()
 
         if (e is JSONException || e is JsonParseException) {
-            vm.showErrorDialog(BaseConstants.PARSE_DATA_ERROE)
+            vm.showErrorDialog(com.yzq.lib_constants.BaseConstants.PARSE_DATA_ERROE)
         } else if (e is SocketTimeoutException) {
-            vm.showErrorDialog(BaseConstants.SERVER_TIMEOUT)
+            vm.showErrorDialog(com.yzq.lib_constants.BaseConstants.SERVER_TIMEOUT)
         } else {
-            val msg = if (TextUtils.isEmpty(e.message)) BaseConstants.UNKONW_ERROR else e.message!!
+            val msg = if (TextUtils.isEmpty(e.message)) com.yzq.lib_constants.BaseConstants.UNKONW_ERROR else e.message!!
             vm.showErrorDialog(msg)
 
         }

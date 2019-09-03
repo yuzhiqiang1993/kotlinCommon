@@ -76,6 +76,7 @@ dependencies {
     implementation project(path: ':lib_widget')
     implementation project(path: ':lib_eventbus')
     implementation project(path: ':lib_materialdialog')
+    implementation project(path: ':lib_constants')
 
 }
 

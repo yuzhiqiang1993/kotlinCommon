@@ -9,12 +9,12 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yanzhenjie.permission.runtime.Permission
-import com.yzq.common.extend.requestPermission
-import com.yzq.common.extend.showBaseDialog
-import com.yzq.lib_rx.transform
-import com.yzq.common.ui.BaseActivity
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
+import com.yzq.lib_materialdialog.showBaseDialog
+import com.yzq.lib_permission.requestPermission
+import com.yzq.lib_rx.transform
 import com.yzq.zxinglibrary.android.CaptureActivity
 import com.yzq.zxinglibrary.bean.ZxingConfig
 import com.yzq.zxinglibrary.common.Constant
@@ -58,24 +58,24 @@ class ZxingActivity : BaseActivity() {
     @SuppressLint("AutoDispose", "CheckResult")
     private fun getLicenseInfo() {
         requestPermission(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe { hasPermission ->
-                    val intent = Intent(this, CaptureActivity::class.java)
-                    startActivityForResult(intent, REQUEST_LICENSE_CODE)
-                }
+            .subscribe { hasPermission ->
+                val intent = Intent(this, CaptureActivity::class.java)
+                startActivityForResult(intent, REQUEST_LICENSE_CODE)
+            }
     }
 
     val REQUEST_CODE_SCAN = 555
     @SuppressLint("CheckResult", "AutoDispose")
     private fun excuteZxing() {
         requestPermission(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe { hasPermission ->
+            .subscribe { hasPermission ->
 
-                    val intent = Intent(this, CaptureActivity::class.java)
-                    val zxingConfig = ZxingConfig()
-                    zxingConfig.isFullScreenScan = false
-                    intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig);
-                    startActivityForResult(intent, REQUEST_CODE_SCAN)
-                }
+                val intent = Intent(this, CaptureActivity::class.java)
+                val zxingConfig = ZxingConfig()
+                zxingConfig.isFullScreenScan = false
+                intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig);
+                startActivityForResult(intent, REQUEST_CODE_SCAN)
+            }
 
     }
 
@@ -146,11 +146,13 @@ class ZxingActivity : BaseActivity() {
                 showBaseDialog(message = "请扫描营业执照上的二维码！")
                 return@subscribe
             } else {
-                tv_result.setText("""
+                tv_result.setText(
+                    """
                 统一社会信用代码:${code}
                 企业名称:${name}
                 法定代表人:${people}
-            """.trimIndent())
+            """.trimIndent()
+                )
                 dismissLoadingDialog()
 
             }

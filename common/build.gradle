@@ -57,12 +57,6 @@ dependencies {
     /*处理图片方向*/
     implementation 'androidx.exifinterface:exifinterface:1.0.0'
 
-    /*permission*/
-    api "com.yanzhenjie.permission:x:$permission"
-
-
-    /*RxImagepicker*/
-    api "com.github.qingmei2:rximagepicker:$rx_imgpicker"
 
 
     /*ARouter*/
@@ -95,6 +89,8 @@ dependencies {
     api project(path: ':lib_rx')
     api project(path: ':lib_resource')
     api project(path: ':lib_widget')
+    api project(path: ':lib_constants')
+    api project(path: ':lib_permission')
     //api 'com.github.yuzhiqiang1993:kotlincommon:0.0.2vm'
 }
 

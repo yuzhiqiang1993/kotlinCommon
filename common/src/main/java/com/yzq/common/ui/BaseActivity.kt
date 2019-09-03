@@ -21,7 +21,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.R
-import com.yzq.lib_base.constants.BaseConstants
+import com.yzq.lib_constants.BaseConstants
 import com.yzq.lib_materialdialog.*
 import com.yzq.lib_widget.StateView
 import org.greenrobot.eventbus.Subscribe
@@ -423,7 +423,7 @@ abstract class BaseActivity : AppCompatActivity() {
     fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(BaseConstants.UNKONW_ERROR)
+            stateView?.showError(com.yzq.lib_constants.BaseConstants.UNKONW_ERROR)
         } else {
             stateView?.showError(msg!!)
         }
