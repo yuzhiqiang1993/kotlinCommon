@@ -46,4 +46,5 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
     implementation "androidx.annotation:annotation:$annotation"
     implementation "androidx.multidex:multidex:$multiDexVersion"
+
 }
