@@ -1,0 +1,80 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="YzqAppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+
+        <item name="colorPrimary">@color/red_700</item>
+        <item name="colorPrimaryDark">@color/red_200</item>
+        <item name="colorAccent">@color/red_50</item>
+        <item name="android:textColorPrimary">@color/primary_text</item>
+        <item name="android:textColorSecondary">@color/secondary_text</item>
+        <item name="android:icon">@color/icons</item>
+        <item name="android:divider">@color/divider</item>
+        <item name="colorControlHighlight">@color/wave_color</item>
+        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:windowBackground">@color/bg_gray</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:configChanges">screenSize|keyboardHidden|orientation</item>
+        <item name="android:windowSoftInputMode">adjustPan|stateHidden</item>
+
+
+    </style>
+
+
+    <style name="YzqAppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+
+    <!--toolbar样式-->
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.Light">
+        <!--<item name="android:textColorSecondary">@color/white</item>-->
+        <!--<item name="android:colorBackground">@color/white</item>-->
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+        <!--<item name="colorControlNormal">@color/white</item>-->
+        <!--<item name="android:textColorPrimary">@color/white</item>-->
+
+    </style>
+
+    <!--设置toolbar弹出菜单的位置-->
+    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="overlapAnchor">false</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:dropDownVerticalOffset">@dimen/len_2</item>
+
+    </style>
+
+
+    <!--tablayout样式-->
+    <style name="TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:background">@color/white</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabIndicatorColor">@color/colorAccent</item>
+        <item name="tabGravity">fill</item>
+        <item name="tabSelectedTextColor">@color/colorAccent</item>
+    </style>
+
+
+    <!--Button-->
+    <style name="Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/colorAccent</item>
+
+
+    </style>
+
+
+    <!--outline button-->
+    <style name="OutlineButton" parent="Widget.MaterialComponents.Button.OutlinedButton" />
+
+    <!--text button-->
+    <style name="TextButton" parent="Widget.MaterialComponents.Button.TextButton" />
+
+
+</resources>

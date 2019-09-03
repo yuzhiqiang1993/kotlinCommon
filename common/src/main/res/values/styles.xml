@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="AppTheme" parent="YzqAppTheme">
         <!-- Customize your theme here. -->
 
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -22,61 +22,5 @@
 
 
     </style>
-
-
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
-
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
-
-
-    <!--toolbar样式-->
-    <style name="ToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.Light">
-        <!--<item name="android:textColorSecondary">@color/white</item>-->
-        <!--<item name="android:colorBackground">@color/white</item>-->
-        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
-        <!--<item name="colorControlNormal">@color/white</item>-->
-        <!--<item name="android:textColorPrimary">@color/white</item>-->
-
-    </style>
-
-    <!--设置toolbar弹出菜单的位置-->
-    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
-        <item name="overlapAnchor">false</item>
-        <item name="android:background">@color/white</item>
-        <item name="android:dropDownVerticalOffset">@dimen/len_2</item>
-
-    </style>
-
-
-    <!--tablayout样式-->
-    <style name="TabLayout" parent="Widget.MaterialComponents.TabLayout">
-        <item name="android:background">@color/white</item>
-        <item name="tabMode">fixed</item>
-        <item name="tabIndicatorColor">@color/colorAccent</item>
-        <item name="tabGravity">fill</item>
-        <item name="tabSelectedTextColor">@color/colorAccent</item>
-    </style>
-
-
-    <!--Button-->
-    <style name="Button" parent="Widget.MaterialComponents.Button">
-        <item name="android:textColor">@color/white</item>
-        <item name="android:background">@color/colorAccent</item>
-
-
-    </style>
-
-
-    <!--outline button-->
-    <style name="OutlineButton" parent="Widget.MaterialComponents.Button.OutlinedButton" />
-
-    <!--text button-->
-    <style name="TextButton" parent="Widget.MaterialComponents.Button.TextButton" />
-
 
 </resources>
