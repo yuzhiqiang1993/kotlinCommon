@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.yzq.lib_rx.transform
 import com.yzq.lib_base.view_model.BaseViewModel
 import com.yzq.lib_base.rx.BaseObserver
-import com.yzq.common.constants.net.HttpRequestType
+import com.yzq.lib_constants.HttpRequestType
 import com.yzq.kotlincommon.data.movie.MovieBean
 import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.model.MoviesModel

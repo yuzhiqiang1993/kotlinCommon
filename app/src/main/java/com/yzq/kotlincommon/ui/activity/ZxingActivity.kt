@@ -10,7 +10,7 @@ import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.ui.BaseActivity
+import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.kotlincommon.R
 import com.yzq.lib_materialdialog.showBaseDialog
 import com.yzq.lib_permission.requestPermission

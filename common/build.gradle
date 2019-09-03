@@ -57,8 +57,6 @@ dependencies {
     /*处理图片方向*/
     implementation 'androidx.exifinterface:exifinterface:1.0.0'
 
-
-
     /*ARouter*/
     api "com.alibaba:arouter-api:$arouter_api"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
@@ -78,19 +76,20 @@ dependencies {
     /*utils*/
     api "com.blankj:utilcodex:$utilcode"
 
-
     /*内存泄漏检测 leakcanary*/
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_android}"
+
+
     api project(path: ':lib_base')
     api project(path: ':lib_net')
-    api project(path: ':lib_img')
-    api project(path: ':lib_eventbus')
-    api project(path: ':lib_materialdialog')
-    api project(path: ':lib_rx')
-    api project(path: ':lib_resource')
-    api project(path: ':lib_widget')
-    api project(path: ':lib_constants')
-    api project(path: ':lib_permission')
+//    api project(path: ':lib_img')
+//    api project(path: ':lib_eventbus')
+//    api project(path: ':lib_materialdialog')
+//    api project(path: ':lib_rx')
+//    api project(path: ':lib_resource')
+//    api project(path: ':lib_widget')
+//    api project(path: ':lib_constants')
+//    api project(path: ':lib_permission')
     //api 'com.github.yuzhiqiang1993:kotlincommon:0.0.2vm'
 }
 

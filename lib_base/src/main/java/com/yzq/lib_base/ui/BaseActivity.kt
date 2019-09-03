@@ -1,4 +1,4 @@
-package com.yzq.common.ui
+package com.yzq.lib_base.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -20,8 +20,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.yzq.common.R
 import com.yzq.lib_constants.BaseConstants
+import com.yzq.lib_eventbus.EventBusUtil
+import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_materialdialog.*
 import com.yzq.lib_widget.StateView
 import org.greenrobot.eventbus.Subscribe
@@ -67,7 +68,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
 
-        com.yzq.lib_eventbus.EventBusUtil.register(this)
+        EventBusUtil.register(this)
 
         initArgs(intent.extras)
 
@@ -113,7 +114,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param eventMsg  传递的消息
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    open fun onEventMainThread(eventMsg: com.yzq.lib_eventbus.EventMsg) {
+    open fun onEventMainThread(eventMsg: EventMsg) {
 
 
     }
@@ -423,7 +424,7 @@ abstract class BaseActivity : AppCompatActivity() {
     fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(com.yzq.lib_constants.BaseConstants.UNKONW_ERROR)
+            stateView?.showError(BaseConstants.UNKONW_ERROR)
         } else {
             stateView?.showError(msg!!)
         }
@@ -451,7 +452,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        com.yzq.lib_eventbus.EventBusUtil.unregister(this)
+        EventBusUtil.unregister(this)
     }
 
 

@@ -1,6 +1,6 @@
 package com.yzq.common.extend
 
-import com.yzq.common.constants.net.ResponseCode
+import com.yzq.common.constants.ResponseCode
 import com.yzq.common.data.BaseResp
 import io.reactivex.Single
 

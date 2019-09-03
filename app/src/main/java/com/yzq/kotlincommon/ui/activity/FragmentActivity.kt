@@ -5,8 +5,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.ashokvarma.bottomnavigation.BottomNavigationItem
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.ui.BaseFragment
-import com.yzq.common.ui.BaseMvvmActivity
+import com.yzq.lib_base.ui.BaseFragment
+import com.yzq.lib_base.ui.BaseMvvmActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.mvvm.view_model.FragmentViewModel

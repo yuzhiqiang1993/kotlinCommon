@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.ui.fragment
 
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.ui.BaseFragment
+import com.yzq.lib_base.ui.BaseFragment
 import com.yzq.kotlincommon.R
 
 class UserFragment : BaseFragment() {

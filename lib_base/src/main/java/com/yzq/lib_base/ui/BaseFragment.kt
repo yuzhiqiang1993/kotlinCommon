@@ -1,4 +1,4 @@
-package com.yzq.common.ui
+package com.yzq.lib_base.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -143,7 +143,7 @@ abstract class BaseFragment : Fragment() {
     protected open fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(com.yzq.lib_constants.BaseConstants.UNKONW_ERROR)
+            stateView?.showError(BaseConstants.UNKONW_ERROR)
         } else {
             stateView?.showError(msg!!)
         }

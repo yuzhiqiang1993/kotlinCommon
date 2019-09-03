@@ -7,12 +7,12 @@ import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.yzq.common.ui.BaseActivity
-import com.yzq.lib_widget.HoverItemDecoration
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TaskAdapter
 import com.yzq.kotlincommon.data.task.TaskBean
+import com.yzq.lib_base.ui.BaseActivity
+import com.yzq.lib_widget.HoverItemDecoration
 import kotlinx.android.synthetic.main.activity_task.*
 import java.util.*
 
@@ -80,9 +80,9 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
         taskAdapter = TaskAdapter(R.layout.item_task_swipe_layout, tasks)
         taskAdapter.onItemChildClickListener = this
 
-        val hoverItemDecoration = com.yzq.lib_widget.HoverItemDecoration(
+        val hoverItemDecoration = HoverItemDecoration(
             this,
-            com.yzq.lib_widget.HoverItemDecoration.BindItemTextCallback {
+            HoverItemDecoration.BindItemTextCallback {
                 val taskBean = tasks[it]
                 val title = if (taskBean.type == 0) {
                     "巡查"

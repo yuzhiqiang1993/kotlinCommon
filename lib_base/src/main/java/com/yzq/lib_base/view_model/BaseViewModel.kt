@@ -2,8 +2,8 @@ package com.yzq.lib_base.view_model
 
 import androidx.lifecycle.*
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.lib_constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
+import com.yzq.lib_constants.ViewStateContstants
 
 
 /*

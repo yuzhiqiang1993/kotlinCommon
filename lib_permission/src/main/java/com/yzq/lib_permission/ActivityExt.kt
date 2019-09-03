@@ -22,8 +22,6 @@ fun AppCompatActivity.requestPermission(vararg permissions: String): Single<Bool
             }.onDenied {
                 permissionDenied(it)
             }.start()
-
-
     }
 
 }

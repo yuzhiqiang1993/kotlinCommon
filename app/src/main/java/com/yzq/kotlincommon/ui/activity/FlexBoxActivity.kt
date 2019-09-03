@@ -8,10 +8,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
-import com.yzq.common.ui.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TagAdapter
+import com.yzq.lib_base.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_flex_box.*
 
 
@@ -51,7 +51,8 @@ class FlexBoxActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
     override fun initData() {
         super.initData()
 
-        tags = arrayListOf("java", "kotlin", "javascript", "php", "android", "go", "python", "flutter")
+        tags =
+            arrayListOf("java", "kotlin", "javascript", "php", "android", "go", "python", "flutter")
         tagAdapter = TagAdapter(R.layout.item_tag_layout, tags)
         tagAdapter.setOnItemClickListener(this)
         recy.adapter = tagAdapter

@@ -8,8 +8,8 @@ import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.ui.BaseActivity
 import com.yzq.kotlincommon.R
+import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_materialdialog.*
 import com.yzq.lib_rx.transform
 import io.reactivex.Observable

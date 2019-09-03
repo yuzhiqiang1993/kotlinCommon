@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".ui.ImgPreviewActivity">
+    tools:context="com.yzq.lib_base.com.yzq.lib_img.ImgPreviewActivity">
 
 
     <com.github.chrisbanes.photoview.PhotoView

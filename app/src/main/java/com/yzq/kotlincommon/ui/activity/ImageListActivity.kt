@@ -9,10 +9,10 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.diff.BaseQuickDiffCallback
-import com.yzq.common.ui.BaseMvvmActivity
+import com.yzq.lib_base.ui.BaseMvvmActivity
 import com.yzq.common.widget.AdapterLoadMoreView
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.constants.net.HttpRequestType
+import com.yzq.lib_constants.HttpRequestType
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ImgListAdapter
 import com.yzq.kotlincommon.data.movie.Subject

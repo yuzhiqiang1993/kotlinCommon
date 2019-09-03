@@ -5,7 +5,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.amap.api.location.AMapLocation
-import com.yzq.common.ui.BaseMvvmActivity
+import com.yzq.lib_base.ui.BaseMvvmActivity
 import com.yzq.gao_de_map.utils.MapPermissionUtils
 import kotlinx.android.synthetic.main.activity_gao_de.*
 

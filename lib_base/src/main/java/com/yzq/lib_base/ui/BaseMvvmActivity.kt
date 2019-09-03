@@ -1,4 +1,4 @@
-package com.yzq.common.ui
+package com.yzq.lib_base.ui
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders

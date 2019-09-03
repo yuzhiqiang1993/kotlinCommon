@@ -5,7 +5,7 @@ import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.model.CompressImgModel
-import com.yzq.common.ui.BaseActivity
+import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.kotlincommon.R
 import com.yzq.lib_rx.transform
 import com.yzq.lib_img.load

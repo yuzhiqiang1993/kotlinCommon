@@ -70,13 +70,15 @@ dependencies {
     /*progressmanager*/
     implementation "me.jessyan:progressmanager:$progressmanager_version"
 
+    api project(path: ':lib_constants')
+    api project(path: ':lib_eventbus')
+    api project(path: ':lib_img')
+    api project(path: ':lib_materialdialog')
+    api project(path: ':lib_permission')
+    api project(path: ':lib_resource')
+    api project(path: ':lib_rx')
+    api project(path: ':lib_widget')
 
-    implementation project(path: ':lib_resource')
-    implementation project(path: ':lib_rx')
-    implementation project(path: ':lib_widget')
-    implementation project(path: ':lib_eventbus')
-    implementation project(path: ':lib_materialdialog')
-    implementation project(path: ':lib_constants')
 
 }
 

@@ -1,9 +1,9 @@
-package com.yzq.common.extend
+package com.yzq.lib_base.extend
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.facade.callback.NavCallback
-import com.yzq.common.ui.BaseActivity
 
 
 /**
@@ -14,7 +14,7 @@ import com.yzq.common.ui.BaseActivity
  *
  */
 
-fun Postcard.navFinish(activity: BaseActivity) {
+fun Postcard.navFinish(activity: AppCompatActivity) {
     navigation(activity, object : NavCallback() {
         override fun onArrival(postcard: Postcard?) {
             activity.finish()
@@ -31,7 +31,7 @@ fun Postcard.navFinish(activity: BaseActivity) {
  *
  */
 
-fun Postcard.navClear(activity: BaseActivity) {
+fun Postcard.navClear(activity: AppCompatActivity) {
     withFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            .navigation(activity)
+        .navigation(activity)
 }

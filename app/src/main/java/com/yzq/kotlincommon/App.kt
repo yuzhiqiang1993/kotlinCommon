@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.multidex.MultiDex
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
-import com.yzq.lib_base.BaseApp
 import com.yzq.kotlincommon.ui.activity.MainActivity
+import com.yzq.lib_base.BaseApp
 
 
 /**
@@ -16,12 +16,11 @@ import com.yzq.kotlincommon.ui.activity.MainActivity
  *
  */
 
-class App : com.yzq.lib_base.BaseApp() {
+class App : BaseApp() {
 
 
     override fun onCreate() {
         super.onCreate()
-        // SophixManager.getInstance().queryAndLoadNewPatch();
         initBugly()
 
     }

@@ -1,10 +1,10 @@
-package com.yzq.common.ui
+package com.yzq.lib_base.ui
 
 import android.graphics.Color
 import android.os.Bundle
 import com.blankj.utilcode.util.BarUtils
 import com.bumptech.glide.Glide
-import com.yzq.common.R
+import com.yzq.lib_base.R
 import kotlinx.android.synthetic.main.activity_img_preview.*
 
 
@@ -29,18 +29,13 @@ class ImgPreviewActivity : BaseActivity() {
 
 
     override fun getContentLayoutId(): Int {
-
-
         return R.layout.activity_img_preview
     }
 
     override fun initArgs(extras: Bundle?) {
         if (extras != null) {
             imagePath = extras.getString(IMG_PATH)!!
-
         }
-
-
     }
 
 

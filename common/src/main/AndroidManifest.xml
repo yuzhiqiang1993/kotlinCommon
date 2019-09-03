@@ -23,7 +23,7 @@
         </provider>
 
         <activity
-            android:name=".ui.ImgPreviewActivity"
+            android:name="com.yzq.lib_base.ui.ImgPreviewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
     </application>

@@ -9,7 +9,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.ui.BaseMvvmActivity
+import com.yzq.lib_base.ui.BaseMvvmActivity
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MovieAdapter
 import com.yzq.kotlincommon.data.movie.Subject
