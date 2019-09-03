@@ -1,8 +1,8 @@
 package com.yzq.common.constants
 
 import android.os.Environment
-import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.PathUtils
 import java.io.File
 
 /**
@@ -18,10 +18,14 @@ object StoragePath {
 
     /*手机存储根路径*/
     val ROOT_PATH = "${Environment.getExternalStorageDirectory().absolutePath}${File.separator}"
+    /*共享路径*/
+    val path = "${PathUtils.getExternalAppFilesPath()}"
     /*项目总路径*/
-    val PROJECT_PATH = "${ROOT_PATH}yzq${File.separator}"
+
+    val PROJECT_PATH = PathUtils.getExternalAppDataPath()
     /*包名路径*/
-    val APP_PATH = "$PROJECT_PATH${AppUtils.getAppPackageName()}${File.separator}"
+    // val APP_PATH = "$PROJECT_PATH${AppUtils.getAppPackageName()}${File.separator}"
+    val APP_PATH = PathUtils.getExternalAppDataPath()
     /*图片路径*/
     val PICTURE_PATH = "${APP_PATH}picture${File.separator}"
 

@@ -57,19 +57,20 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
 
-
-    /*ARouter*/
-    implementation "com.alibaba:arouter-api:$arouter_api"
-    kapt "com.alibaba:arouter-compiler:$arouter_compiler"
-
     /*utils*/
     implementation "com.blankj:utilcodex:$utilcode"
-    /*Gson*/
-    implementation "com.google.code.gson:gson:$gson"
 
     /*progressmanager*/
     implementation "me.jessyan:progressmanager:$progressmanager_version"
 
+    /*Gson*/
+    implementation "com.google.code.gson:gson:$gson"
+    /*ARouter*/
+    implementation "com.alibaba:arouter-api:$arouter_api"
+    kapt "com.alibaba:arouter-compiler:$arouter_compiler"
+
+
+    api project(path: ':lib_base_adapter')
     api project(path: ':lib_constants')
     api project(path: ':lib_eventbus')
     api project(path: ':lib_img')

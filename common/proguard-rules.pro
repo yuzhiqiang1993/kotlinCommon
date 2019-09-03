@@ -222,9 +222,6 @@
 
 
 
-
-
-
 #ARouter
 -keep public class com.alibaba.android.arouter.routes.**{*;}
 -keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
@@ -234,25 +231,6 @@
 -keep class * implements com.alibaba.android.arouter.facade.template.IProvider
 
 
-#dagger
--keep class dagger.* { *; }
--keep class javax.inject.* { *; }
--keep class * extends dagger.internal.Binding
--keep class * extends dagger.internal.ModuleAdapter
--keep class * extends dagger.internal.StaticInjection
-
-
-
-#adapter
--keep class com.chad.library.adapter.** {
-*;
-}
--keep public class * extends com.chad.library.adapter.base.BaseQuickAdapter
--keep public class * extends com.chad.library.adapter.base.BaseViewHolder
--keepclassmembers  class **$** extends com.chad.library.adapter.base.BaseViewHolder {
-     <init>(...);
-}
--keep class com.qingmei2.rximagepicker.** {*;}
 
 
 #Bugly

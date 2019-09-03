@@ -10,7 +10,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.diff.BaseQuickDiffCallback
 import com.yzq.lib_base.ui.BaseMvvmActivity
-import com.yzq.common.widget.AdapterLoadMoreView
+import com.yzq.lib_base_adapter.AdapterLoadMoreView
 import com.yzq.common.constants.RoutePath
 import com.yzq.lib_constants.HttpRequestType
 import com.yzq.kotlincommon.R
@@ -86,7 +86,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
         imgListAdapter.setEnableLoadMore(true)
 
         imgListAdapter.setOnLoadMoreListener(this, recy)
-        imgListAdapter.setLoadMoreView(AdapterLoadMoreView)
+        imgListAdapter.setLoadMoreView(com.yzq.lib_base_adapter.AdapterLoadMoreView)
         recy.adapter = imgListAdapter
 
 

@@ -1,7 +1,6 @@
-package com.yzq.common.widget
+package com.yzq.lib_base_adapter
 
 import com.chad.library.adapter.base.loadmore.LoadMoreView
-import com.yzq.common.R
 
 
 /**

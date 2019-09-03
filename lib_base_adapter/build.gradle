@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "com.github.ben-manes.versions"
 
+
 android {
     compileSdkVersion compile_sdk_version
     defaultConfig {
@@ -41,18 +42,15 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    /*retrofit*/
-    api "com.squareup.okhttp3:okhttp:$ok_http"
-    api "com.squareup.retrofit2:retrofit:$retrofit"
-    api "com.squareup.okhttp3:logging-interceptor:$ok_http"
-    api "com.squareup.retrofit2:converter-gson:$retrofit"
-    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
 
-    /*progressmanager*/
-    api "me.jessyan:progressmanager:$progressmanager_version"
+
+    /*baseRecyclerViewAdapterHelper*/
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$baseRecyclerViewAdapterHelper"
+
+
+
     /*utils*/
     implementation "com.blankj:utilcodex:$utilcode"
-
 
 }
 
