@@ -14,6 +14,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MovieAdapter
 import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.view_model.MovieViewModel
+import com.yzq.lib_base.extend.init
 import com.yzq.lib_widget.StateView
 import kotlinx.android.synthetic.main.activity_movie_list.*
 
@@ -48,8 +49,9 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "电影列表")
 
-        initRecycleView(recy)
+       // init(recy)
 
+        recy.init()
         initStateView(state_view, recy)
 
         state_view.setRetryListener(object : StateView.RetryListener {

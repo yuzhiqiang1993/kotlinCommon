@@ -11,6 +11,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TaskAdapter
 import com.yzq.kotlincommon.data.task.TaskBean
+import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_widget.HoverItemDecoration
 import kotlinx.android.synthetic.main.activity_task.*
@@ -45,7 +46,7 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
 
         initToolbar(toolbar, "任务")
-        initRecycleView(recy)
+        recy.init()
 
     }
 

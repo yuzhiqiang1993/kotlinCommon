@@ -9,14 +9,14 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.diff.BaseQuickDiffCallback
-import com.yzq.lib_base.ui.BaseMvvmActivity
-import com.yzq.lib_base_adapter.AdapterLoadMoreView
 import com.yzq.common.constants.RoutePath
-import com.yzq.lib_constants.HttpRequestType
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ImgListAdapter
 import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
+import com.yzq.lib_base.extend.init
+import com.yzq.lib_base.ui.BaseMvvmActivity
+import com.yzq.lib_constants.HttpRequestType
 import com.yzq.lib_widget.StateView
 import kotlinx.android.synthetic.main.activity_image_list.*
 
@@ -30,7 +30,8 @@ import kotlinx.android.synthetic.main.activity_image_list.*
  */
 
 @Route(path = RoutePath.Main.IMG_LIST)
-class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
+class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
+    BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
 
 
     override fun getViewModelClass(): Class<ImgListViewModel> = ImgListViewModel::class.java
@@ -64,7 +65,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
 
         layout_swipe_refresh.setOnRefreshListener {
 
-            vm.requestType = HttpRequestType.REFRESH
+            requestType = HttpRequestType.REFRESH
 
             initData()
         }
@@ -78,7 +79,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
         /*防止回到顶部时重新布局可能导致item跳跃*/
         //layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
 
-        initRecycleView(recy, layoutManager = layoutManager, needItemDecoration = false)
+        recy.init(layoutManager, false)
 
 
         imgListAdapter.onItemClickListener = this
@@ -107,7 +108,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
 
     override fun initData() {
 
-        if (vm.requestType == HttpRequestType.FIRST) {
+        if (requestType == HttpRequestType.FIRST) {
             showLoadding()
         }
 
@@ -120,7 +121,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
 
     private fun handleDataChanged(t: List<Subject>) {
 
-        if (vm.requestType == HttpRequestType.LOAD_MORE) {
+        if (requestType == HttpRequestType.LOAD_MORE) {
 
             if (t.size == 0) {
                 imgListAdapter.loadMoreEnd()
@@ -152,7 +153,8 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
 
-        val imgView = recy.layoutManager!!.findViewByPosition(position)!!.findViewById<AppCompatImageView>(R.id.iv_img)
+        val imgView =
+            recy.layoutManager!!.findViewByPosition(position)!!.findViewById<AppCompatImageView>(R.id.iv_img)
         preViewImg(imgListAdapter.data[position].images.large, imgView)
 
     }
@@ -162,12 +164,11 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(), BaseQuickAdapter
 
         LogUtils.i("onLoadMoreRequested")
         if (vm.start <= 250) {
-            vm.requestType = HttpRequestType.LOAD_MORE
+            requestType = HttpRequestType.LOAD_MORE
             vm.getData()
         } else {
             imgListAdapter.loadMoreEnd()
         }
-
 
     }
 

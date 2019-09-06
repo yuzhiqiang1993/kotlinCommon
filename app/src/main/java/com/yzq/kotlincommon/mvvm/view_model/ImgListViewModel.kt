@@ -13,7 +13,7 @@ class ImgListViewModel : BaseViewModel() {
 
 
     var start = 0
-    var requestType = HttpRequestType.FIRST
+//    var requestType = HttpRequestType.FIRST
     private val count = 30
     private var model: MoviesModel = MoviesModel()
 

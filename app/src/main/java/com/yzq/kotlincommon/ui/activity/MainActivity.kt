@@ -20,6 +20,7 @@ import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
+import com.yzq.lib_base.extend.init
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.appbar_main.*
 import java.util.concurrent.TimeUnit
@@ -55,7 +56,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener, Navig
 
         initToolbar(toolbar, "kotlin common", displayHome = false)
 
-        initRecycleView(recy)
+        recy.init()
 
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)

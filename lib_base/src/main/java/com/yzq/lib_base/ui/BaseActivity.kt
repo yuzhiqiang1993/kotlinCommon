@@ -14,13 +14,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.lib_constants.BaseConstants
+import com.yzq.lib_constants.HttpRequestType
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_materialdialog.*
@@ -53,6 +52,8 @@ abstract class BaseActivity : AppCompatActivity() {
     private var isRefreshLayout: Boolean = false//是否有下拉刷新
     private var showBackHint = false //是否显示返回提示框
 
+
+    protected var requestType = HttpRequestType.FIRST
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -152,27 +153,6 @@ abstract class BaseActivity : AppCompatActivity() {
         if (transparentStatusBar) {
             transparentStatusBar()
             BarUtils.addMarginTopEqualStatusBarHeight(toolbar)
-        }
-    }
-
-
-    /**
-     *
-     * @param recy RecyclerView  列表
-     * @param layoutManager RecyclerView.LayoutManager  布局，默认是线性布局
-     * @param needItemDecoration Boolean 是否需要分割线  默认需要
-     */
-    protected open fun initRecycleView(
-        recy: RecyclerView,
-        layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(
-            this
-        ),
-        needItemDecoration: Boolean = true
-    ) {
-
-        recy.layoutManager = layoutManager
-        if (needItemDecoration) {
-            recy.addItemDecoration(com.yzq.lib_widget.ItemDecoration.baseItemDecoration(this))
         }
     }
 
@@ -388,8 +368,6 @@ abstract class BaseActivity : AppCompatActivity() {
         if (isRefreshLayout and (contentLayout != null)) {
             (contentLayout as SwipeRefreshLayout).isRefreshing = false
         }
-
-
     }
 
     /**
@@ -408,8 +386,16 @@ abstract class BaseActivity : AppCompatActivity() {
      *
      */
     fun showNoNet() {
-//        stateView?.showNoNet()
-//        contentLayout?.visibility = View.GONE
+
+        when (requestType) {
+            HttpRequestType.FIRST -> {
+                stateView?.showNoNet()
+                contentLayout?.visibility = View.GONE
+            }
+            HttpRequestType.REFRESH -> {
+                (contentLayout as SwipeRefreshLayout).isRefreshing = false
+            }
+        }
 
 
         ToastUtils.showLong(BaseConstants.NO_NET)
