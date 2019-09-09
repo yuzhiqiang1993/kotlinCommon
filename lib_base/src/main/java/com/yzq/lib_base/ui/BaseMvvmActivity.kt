@@ -2,9 +2,9 @@ package com.yzq.lib_base.ui
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.yzq.lib_constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
 import com.yzq.lib_base.view_model.BaseViewModel
+import com.yzq.lib_constants.ViewStateContstants
 
 
 /**

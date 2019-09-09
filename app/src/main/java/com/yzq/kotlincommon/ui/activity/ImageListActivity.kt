@@ -109,6 +109,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
     override fun initData() {
 
         if (requestType == HttpRequestType.FIRST) {
+
             showLoadding()
         }
 

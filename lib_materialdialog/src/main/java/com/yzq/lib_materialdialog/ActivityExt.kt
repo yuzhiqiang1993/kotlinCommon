@@ -206,7 +206,7 @@ fun AppCompatActivity.showSingleSelectList(
                 message(text = message)
             }
             listItems(items = items) { dialog, index, text ->
-                singleEmitter.onSuccess(text)
+                singleEmitter.onSuccess(text.toString())
             }
 
         }
