@@ -3,6 +3,7 @@ package com.yzq.lib_net.net
 import android.util.Log
 import com.google.gson.Gson
 import com.yzq.lib_net.BuildConfig
+import com.yzq.lib_net.constants.ServerConstants
 import me.jessyan.progressmanager.ProgressManager
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -33,7 +34,7 @@ class RetrofitFactory private constructor() {
             .create()
 
         retrofit = Retrofit.Builder()
-            .baseUrl(com.yzq.lib_net.constants.ServerConstants.apiUrl)
+            .baseUrl(ServerConstants.apiUrl)
             .client(initOkhttpClient())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

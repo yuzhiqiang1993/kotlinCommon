@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.multidex.MultiDex
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
+import com.yzq.common.constants.StoragePath
 import com.yzq.kotlincommon.ui.activity.MainActivity
 import com.yzq.lib_base.BaseApp
 
@@ -23,6 +24,7 @@ class App : BaseApp() {
         super.onCreate()
         initBugly()
 
+        StoragePath.logPathInfo()
     }
 
 

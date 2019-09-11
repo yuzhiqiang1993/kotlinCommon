@@ -134,7 +134,7 @@ class CompressImgModel {
 
             /*保存的文件名称*/
             val savedImgPath =
-                StoragePath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
+                StoragePath.externalAppPicturesPath + rootImgName + System.currentTimeMillis() + ".jpg"
 
 
             LogUtils.i("图片存储路径：${savedImgPath}")
@@ -181,7 +181,7 @@ class CompressImgModel {
 
             /*保存的文件名称*/
             val savedImgPath =
-                StoragePath.PICTURE_PATH + rootImgName + System.currentTimeMillis() + ".jpg"
+                StoragePath.externalAppPicturesPath + rootImgName + System.currentTimeMillis() + ".jpg"
             /*保存并返回图片路径*/
             if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
                 /*返回保存后的路径*/

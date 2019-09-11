@@ -102,7 +102,7 @@ class ZxingActivity : BaseActivity() {
                         LogUtils.i("扫描的是营业执照")
 
                         /*开始提取数据*/
-                        parseData(content)
+                        parseData(content!!)
 
                     } else {
                         ToastUtils.showShort("请扫描营业执照上的二维码！")
