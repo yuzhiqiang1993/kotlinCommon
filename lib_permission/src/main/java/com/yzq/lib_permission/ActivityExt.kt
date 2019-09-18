@@ -13,7 +13,6 @@ import io.reactivex.Single
 /*权限申请*/
 fun AppCompatActivity.requestPermission(vararg permissions: String): Single<Boolean> {
 
-
     return Single.create { singleEmitter ->
 
         AndPermission.with(this)
@@ -21,6 +20,8 @@ fun AppCompatActivity.requestPermission(vararg permissions: String): Single<Bool
             .permission(permissions)
             .onGranted {
                 singleEmitter.onSuccess(true)
+
+
             }.onDenied {
                 permissionDenied(it)
             }.start()

@@ -1,12 +1,9 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
-import com.yzq.kotlincommon.data.movie.MovieBean
 import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.model.MoviesModel
-import com.yzq.lib_base.rx.BaseObserver
 import com.yzq.lib_base.view_model.BaseViewModel
-import com.yzq.lib_rx.transform
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
