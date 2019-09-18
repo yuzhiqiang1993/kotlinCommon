@@ -24,6 +24,8 @@ import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_materialdialog.*
 import com.yzq.lib_widget.StateView
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -38,6 +40,8 @@ import org.greenrobot.eventbus.ThreadMode
 
 abstract class BaseActivity : AppCompatActivity() {
 
+
+    protected var mainScope = MainScope()
 
     private var lastClickTime: Long = 0//最后一次点击的时间
 
@@ -439,6 +443,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         EventBusUtil.unregister(this)
+        mainScope.cancel()
     }
 
 

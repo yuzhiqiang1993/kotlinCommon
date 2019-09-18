@@ -2,18 +2,16 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.model.CompressImgModel
-import com.yzq.lib_base.ui.BaseActivity
+import com.yzq.common.model.CompressImgViewModel
 import com.yzq.kotlincommon.R
-import com.yzq.lib_rx.transform
+import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_img.load
 import com.yzq.lib_img.openCamera
 import kotlinx.android.synthetic.main.activity_image_compress.*
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 
 /**
@@ -28,7 +26,8 @@ import kotlinx.coroutines.withContext
 class ImageCompressActivity : BaseActivity() {
 
 
-    val compressImgModel = CompressImgModel()
+    lateinit var compressImgViewModel: CompressImgViewModel
+
 
     override fun getContentLayoutId(): Int {
 
@@ -42,18 +41,15 @@ class ImageCompressActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
+        compressImgViewModel = ViewModelProvider(this).get(CompressImgViewModel::class.java)
+
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "图片")
         fab_camera.setOnClickListener {
 
             openCamera().subscribe { file ->
+                compressImgViewModel.compressImg(file.path)
 
-                compressImgModel.compressImgWithWatermark(file.path)
-                    .transform(this)
-                    .subscribe { path ->
-                        imgPath = path
-                        iv_img.load(imgPath)
-                    }
             }
         }
 
@@ -63,6 +59,13 @@ class ImageCompressActivity : BaseActivity() {
         }
 
 
+        compressImgViewModel.compressedImgPath.observe(this, Observer {
+            imgPath = it
+            iv_img.load(imgPath)
+        })
+
+
     }
+
 
 }
