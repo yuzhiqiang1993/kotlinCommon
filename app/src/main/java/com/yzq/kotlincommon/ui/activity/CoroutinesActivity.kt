@@ -50,11 +50,11 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
 
 
         with(vm) {
-            subjects.observe(this@CoroutinesActivity, Observer {
+            geocoder.observe(this@CoroutinesActivity, Observer {
 
 
                 LogUtils.i("请求完成")
-                tv.text = it[0].title
+                tv.text = it.formattedAddress
 
                 showContent()
 

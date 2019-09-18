@@ -6,7 +6,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.model.CompressImgViewModel
+import com.yzq.common.view_model.CompressImgViewModel
 import com.yzq.kotlincommon.R
 import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_img.load

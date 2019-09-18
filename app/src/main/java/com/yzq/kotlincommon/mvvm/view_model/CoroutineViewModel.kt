@@ -1,21 +1,20 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
-import com.yzq.kotlincommon.data.movie.Subject
-import com.yzq.kotlincommon.mvvm.model.MoviesModel
+import com.yzq.common.extend.dataConvert
+import com.yzq.kotlincommon.data.gaode.Geocoder
+import com.yzq.kotlincommon.net.ApiService
 import com.yzq.lib_base.view_model.BaseViewModel
+import com.yzq.lib_net.net.RetrofitFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 
 class CoroutineViewModel : BaseViewModel() {
-    private var start = 0
-    private var count = 1
-    var model: MoviesModel = MoviesModel()
 
 
-    var subjects = MutableLiveData<List<Subject>>()
+    var geocoder = MutableLiveData<Geocoder>()
 
 
     /*请求数据*/
@@ -24,14 +23,17 @@ class CoroutineViewModel : BaseViewModel() {
 
         launchLoading {
 
-            val movieBean = withContext(Dispatchers.IO) {
+            val geocoderBean = withContext(Dispatchers.IO) {
 
                 delay(2000)
-                model.getData1(start, count)
+
+                RetrofitFactory.instance.getService(ApiService::class.java)
+                    .geocoder().dataConvert()
+
 
             }
 
-            subjects.value = movieBean.subjects
+            geocoder.value = geocoderBean
         }
 
 

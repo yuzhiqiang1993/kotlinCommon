@@ -1,7 +1,5 @@
 package com.yzq.common.data
 
-import com.google.gson.annotations.SerializedName
-
 
 /**
  * @Description: 服务端返回数据基类
@@ -11,8 +9,7 @@ import com.google.gson.annotations.SerializedName
  *
  */
 data class BaseResp<T>(
-        var reason: String = "", // 成功的返回
-        var result: T,
-        @SerializedName("error_code")
-        var errorCode: Int = 0 // 0
+    var message: String = "", // 成功的返回
+    var result: T,
+    var status: Int = 0 // 0
 )

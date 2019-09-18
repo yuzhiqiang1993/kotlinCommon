@@ -1,4 +1,4 @@
-package com.yzq.common.model
+package com.yzq.common.view_model
 
 import android.graphics.Bitmap
 import android.graphics.Color
