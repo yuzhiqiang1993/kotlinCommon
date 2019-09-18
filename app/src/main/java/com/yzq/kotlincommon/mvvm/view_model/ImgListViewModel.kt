@@ -7,6 +7,8 @@ import com.yzq.kotlincommon.mvvm.model.MoviesModel
 import com.yzq.lib_base.rx.BaseObserver
 import com.yzq.lib_base.view_model.BaseViewModel
 import com.yzq.lib_rx.transform
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class ImgListViewModel : BaseViewModel() {
 
@@ -20,17 +22,26 @@ class ImgListViewModel : BaseViewModel() {
 
     fun getData() {
 
-        model.getData(start, count)
-            .transform(lifecycleOwner)
-            .subscribe(object : BaseObserver<MovieBean>(this) {
-                override fun onSuccess(movie: MovieBean) {
-                    start += count
 
-                    subjectsLive.value = movie.subjects
+        launchLoading {
 
-                }
+            subjectsLive.value = withContext(Dispatchers.IO) {
+                model.getData(start, count)
+            }.subjects
 
-            })
+        }
+
+//        model.getData(start, count)
+//            .transform(lifecycleOwner)
+//            .subscribe(object : BaseObserver<MovieBean>(this) {
+//                override fun onSuccess(movie: MovieBean) {
+//                    start += count
+//
+//                    subjectsLive.value = movie.subjects
+//
+//                }
+//
+//            })
 
 
     }

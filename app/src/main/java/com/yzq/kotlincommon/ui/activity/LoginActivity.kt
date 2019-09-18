@@ -49,8 +49,8 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
             LocalSpUtils.account = input_account.text.toString()
             LocalSpUtils.pwd = input_pwd.text.toString()
 
-//            vm.loginWithCoroutine()
-            vm.login()
+            vm.loginWithCoroutine()
+            //   vm.login()
 
         }
 
