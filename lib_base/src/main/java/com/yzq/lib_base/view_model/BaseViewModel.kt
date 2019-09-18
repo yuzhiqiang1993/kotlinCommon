@@ -27,7 +27,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     var loadState = MutableLiveData<ViewStateBean>()
 
 
-
     fun launchLoadingDialog(block: suspend CoroutineScope.() -> Unit) {
 
         viewModelScope.launch {

@@ -31,18 +31,6 @@ class ImgListViewModel : BaseViewModel() {
 
         }
 
-//        model.getData(start, count)
-//            .transform(lifecycleOwner)
-//            .subscribe(object : BaseObserver<MovieBean>(this) {
-//                override fun onSuccess(movie: MovieBean) {
-//                    start += count
-//
-//                    subjectsLive.value = movie.subjects
-//
-//                }
-//
-//            })
-
 
     }
 
