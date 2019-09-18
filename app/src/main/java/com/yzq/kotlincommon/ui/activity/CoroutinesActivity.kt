@@ -8,6 +8,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
 import com.yzq.lib_base.ui.BaseMvvmActivity
+import com.yzq.lib_widget.StateView
 import kotlinx.android.synthetic.main.activity_coroutines.*
 
 
@@ -26,6 +27,14 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
 
         initToolbar(toolbar, "Coroutine 协程")
         initStateView(state_view, tv)
+
+        state_view.setRetryListener(object : StateView.RetryListener {
+            override fun retry() {
+                initData()
+
+            }
+
+        })
     }
 
 
@@ -33,7 +42,6 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
         super.initData()
         showLoadding()
         vm.requestData()
-
 
     }
 

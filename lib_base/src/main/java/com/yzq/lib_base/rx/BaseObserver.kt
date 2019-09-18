@@ -36,11 +36,11 @@ abstract class BaseObserver<T>(private val vm: BaseViewModel) : SingleObserver<T
         e.printStackTrace()
 
         if (e is JSONException || e is JsonParseException) {
-            vm.showError(com.yzq.lib_constants.BaseConstants.PARSE_DATA_ERROE)
+            vm.showError(BaseConstants.PARSE_DATA_ERROE)
         } else if (e is SocketTimeoutException) {
-            vm.showError(com.yzq.lib_constants.BaseConstants.SERVER_TIMEOUT)
+            vm.showError(BaseConstants.SERVER_TIMEOUT)
         } else {
-            val msg = if (TextUtils.isEmpty(e.message)) com.yzq.lib_constants.BaseConstants.UNKONW_ERROR else e.message!!
+            val msg = if (TextUtils.isEmpty(e.message)) BaseConstants.UNKONW_ERROR else e.message!!
             vm.showError(msg)
         }
     }

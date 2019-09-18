@@ -1,12 +1,18 @@
 package com.yzq.lib_base.view_model
 
+import android.text.TextUtils
 import androidx.lifecycle.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
+import com.google.gson.JsonParseException
 import com.yzq.lib_base.data.ViewStateBean
 import com.yzq.lib_constants.BaseConstants
 import com.yzq.lib_constants.ViewStateContstants
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import org.json.JSONException
+import java.net.SocketTimeoutException
 
 
 /*
@@ -21,6 +27,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     var loadState = MutableLiveData<ViewStateBean>()
 
 
+
     fun launchLoadingDialog(block: suspend CoroutineScope.() -> Unit) {
 
         viewModelScope.launch {
@@ -30,9 +37,62 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 return@launch
             }
             showloadingDialog(BaseConstants.LOADING)
-            block()
 
-            dismissLoadingDialog()
+            try {
+                block()
+            } catch (e: Exception) {
+                dismissLoadingDialog()
+                e.printStackTrace()
+                if (e is JSONException || e is JsonParseException) {
+                    showErrorDialog(BaseConstants.PARSE_DATA_ERROE)
+                } else if (e is SocketTimeoutException) {
+                    showErrorDialog(BaseConstants.SERVER_TIMEOUT)
+                } else {
+                    val msg =
+                        if (TextUtils.isEmpty(e.message)) BaseConstants.UNKONW_ERROR else e.message!!
+                    showErrorDialog(msg)
+                }
+
+            } finally {
+                cancel()
+
+            }
+
+        }
+
+
+    }
+
+    fun launchLoading(block: suspend CoroutineScope.() -> Unit) {
+
+        viewModelScope.launch {
+            if (!NetworkUtils.isConnected()) {
+                showNoNet()
+                cancel()
+                return@launch
+            }
+
+            try {
+                block()
+            } catch (e: Exception) {
+
+                e.printStackTrace()
+
+                if (e is JSONException || e is JsonParseException) {
+                    showError(BaseConstants.PARSE_DATA_ERROE)
+                } else if (e is SocketTimeoutException) {
+                    showError(BaseConstants.SERVER_TIMEOUT)
+                } else {
+                    val msg =
+                        if (TextUtils.isEmpty(e.message)) BaseConstants.UNKONW_ERROR else e.message!!
+                    showError(msg)
+                }
+
+            } finally {
+                cancel()
+            }
+
+
         }
 
 

@@ -11,6 +11,9 @@ import com.yzq.lib_rx.transform
 import com.yzq.lib_img.load
 import com.yzq.lib_img.openCamera
 import kotlinx.android.synthetic.main.activity_image_compress.*
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 /**
@@ -44,6 +47,7 @@ class ImageCompressActivity : BaseActivity() {
         fab_camera.setOnClickListener {
 
             openCamera().subscribe { file ->
+
                 compressImgModel.compressImgWithWatermark(file.path)
                     .transform(this)
                     .subscribe { path ->
