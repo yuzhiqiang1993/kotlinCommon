@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.yzq.lib_constants.BaseConstants
+import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_widget.StateView
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -42,7 +43,7 @@ abstract class BaseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(getContentLayoutId(), container, false)
-        com.yzq.lib_eventbus.EventBusUtil.register(this)
+        EventBusUtil.register(this)
         return view
     }
 

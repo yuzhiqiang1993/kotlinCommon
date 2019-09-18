@@ -9,6 +9,7 @@ import com.yzq.kotlincommon.ui.fragment.UserFragment
 class FragmentViewModel : BaseViewModel() {
 
 
+
     val taskFragment by lazy {
         TaskFragment.newInstance()
     }

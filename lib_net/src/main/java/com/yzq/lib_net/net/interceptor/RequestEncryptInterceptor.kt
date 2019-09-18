@@ -118,6 +118,7 @@ class RequestEncryptInterceptor : Interceptor {
                     /*如果是二进制上传  则不进行加密*/
                     if (contentType.type.toLowerCase(Locale.ROOT).equals("multipart")) {
                         LogUtils.i("上传文件，不加密")
+
                         return chain.proceed(request)
                     }
 

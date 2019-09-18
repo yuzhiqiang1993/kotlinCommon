@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">kotlinCommon</string>
 
-<!--    <string name="zero">0</string>-->
-<!--    <string name="hundred">100</string>-->
+    <!--    <string name="zero">0</string>-->
+    <!--    <string name="hundred">100</string>-->
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

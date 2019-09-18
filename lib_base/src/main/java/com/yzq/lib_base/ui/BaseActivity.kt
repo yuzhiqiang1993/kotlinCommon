@@ -79,8 +79,6 @@ abstract class BaseActivity : AppCompatActivity() {
         initData()
 
 
-
-
     }
 
 

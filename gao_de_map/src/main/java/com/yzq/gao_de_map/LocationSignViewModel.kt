@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import com.amap.api.location.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
-import com.yzq.lib_base.AppContext
 import com.yzq.lib_base.view_model.BaseViewModel
 
 
@@ -89,8 +88,10 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
         }
         sb.append("***定位质量报告***").append("\n")
-        sb.append("* WIFI开关：").append(if (location.locationQualityReport.isWifiAble) "开启" else "关闭").append("\n")
-        sb.append("* GPS状态：").append(getGPSStatusString(location.locationQualityReport.gpsStatus)).append("\n")
+        sb.append("* WIFI开关：").append(if (location.locationQualityReport.isWifiAble) "开启" else "关闭")
+            .append("\n")
+        sb.append("* GPS状态：").append(getGPSStatusString(location.locationQualityReport.gpsStatus))
+            .append("\n")
         sb.append("* GPS星数：").append(location.locationQualityReport.gpsSatellites).append("\n")
         sb.append("****************").append("\n")
         //定位之后的回调时间
@@ -117,9 +118,11 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
         var str = ""
         when (statusCode) {
             AMapLocationQualityReport.GPS_STATUS_OK -> str = "GPS状态正常"
-            AMapLocationQualityReport.GPS_STATUS_NOGPSPROVIDER -> str = "手机中没有GPS Provider，无法进行GPS定位"
+            AMapLocationQualityReport.GPS_STATUS_NOGPSPROVIDER -> str =
+                "手机中没有GPS Provider，无法进行GPS定位"
             AMapLocationQualityReport.GPS_STATUS_OFF -> str = "GPS关闭，建议开启GPS，提高定位质量"
-            AMapLocationQualityReport.GPS_STATUS_MODE_SAVING -> str = "选择的定位模式中不包含GPS定位，建议选择包含GPS定位的模式，提高定位质量"
+            AMapLocationQualityReport.GPS_STATUS_MODE_SAVING -> str =
+                "选择的定位模式中不包含GPS定位，建议选择包含GPS定位的模式，提高定位质量"
             AMapLocationQualityReport.GPS_STATUS_NOGPSPERMISSION -> str = "没有GPS定位权限，建议开启gps定位权限"
         }
         return str
@@ -127,9 +130,9 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
 
     override fun onDestory() {
+        LogUtils.i("onDestroy")
         locationClient.stopLocation()
         locationClient.onDestroy()
-        lifecycleOwner.lifecycle.removeObserver(this)
 
     }
 

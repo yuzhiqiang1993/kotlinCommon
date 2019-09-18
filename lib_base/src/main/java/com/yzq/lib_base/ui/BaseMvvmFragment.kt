@@ -31,7 +31,12 @@ abstract class BaseMvvmFragment<VM : BaseViewModel> : BaseFragment() {
         @Suppress("UNCHECKED_CAST")
 
         vm = ViewModelProviders.of(this).get(getViewModelClass())
-        vm.initViewModel(this)
+
+
+        vm.let {
+            vm.lifecycleOwner = this
+            lifecycle.addObserver(it)
+        }
 
         vm.loadState.observe(
             this,

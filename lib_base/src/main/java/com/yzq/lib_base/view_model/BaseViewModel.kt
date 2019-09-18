@@ -18,11 +18,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     var loadState = MutableLiveData<ViewStateBean>()
 
 
-    fun initViewModel(lifecycleOwner: LifecycleOwner) {
-        this.lifecycleOwner = lifecycleOwner
-        this.lifecycleOwner.lifecycle.addObserver(this)
-    }
-
     /**
      * 显示弹窗逻辑
      * @param content String
@@ -117,6 +112,8 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     protected open fun onDestory() {
+
+        lifecycleOwner.lifecycle.removeObserver(this)
         LogUtils.i("lifecycleOwner：${lifecycleOwner}-->ON_DESTROY")
 
     }

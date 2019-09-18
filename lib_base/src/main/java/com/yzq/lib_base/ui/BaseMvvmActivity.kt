@@ -29,7 +29,12 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
 
     override fun initViewModel() {
         vm = ViewModelProviders.of(this).get(getViewModelClass())
-        vm.initViewModel(this)
+
+        vm.let {
+            vm.lifecycleOwner = this
+            lifecycle.addObserver(it)
+        }
+
 
         vm.loadState.observe(
             this,
@@ -75,6 +80,5 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
         }
 
     }
-
 
 }
