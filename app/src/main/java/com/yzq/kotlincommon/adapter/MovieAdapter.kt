@@ -14,11 +14,14 @@ class MovieAdapter(layoutResId: Int, data: List<Subject>) :
 
     override fun convert(helper: BaseViewHolder, item: Subject) {
 
-        helper.itemView.tv_title.text = item.title
 
-        val iv_img = helper.itemView.iv_img
+        with(helper.itemView) {
 
-        iv_img.loadWithThumbnail(item.images.small)
+            tv_title.text = item.title
+
+            iv_img.loadWithThumbnail(item.images.small)
+
+        }
 
         helper.addOnClickListener(R.id.iv_img)
 

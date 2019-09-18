@@ -1,79 +1,60 @@
 package com.yzq.kotlincommon.ui.activity
 
+import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
-import com.yzq.lib_base.ui.BaseActivity
-import kotlinx.coroutines.*
-import kotlin.system.measureTimeMillis
+import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
+import com.yzq.lib_base.ui.BaseMvvmActivity
+import kotlinx.android.synthetic.main.activity_coroutines.*
 
-class CoroutinesActivity : BaseActivity() {
+
+@Route(path = RoutePath.Main.COROUTINE)
+class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
+
+    override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
+
     override fun getContentLayoutId(): Int = R.layout.activity_coroutines
 
 
     override fun initWidget() {
         super.initWidget()
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+
+        initToolbar(toolbar, "Coroutine 协程")
+        initStateView(state_view, tv)
     }
 
 
     override fun initData() {
         super.initData()
+        showLoadding()
+        vm.requestData()
 
-        runBlocking {
 
+    }
+
+
+    override fun observeViewModel() {
+
+
+        with(vm) {
+            subjects.observe(this@CoroutinesActivity, Observer {
+
+
+                LogUtils.i("请求完成")
+                tv.text = it[0].title
+
+                showContent()
+
+            })
         }
-
-        val job = GlobalScope.launch {
-            LogUtils.i("开始协程")
-
-            /*delay只会阻塞协程体后面的代码  不影响协程体之外的代码*/
-            delay(3000)
-
-            LogUtils.i("hello")
-
-        }
-
-        runBlocking {
-
-            LogUtils.i("开始阻塞")
-            delay(3000)
-            LogUtils.i("阻塞3秒")
-        }
-
-        LogUtils.i("world")
-
 
     }
 
 
 }
 
-suspend fun main() {
-
-    val time = measureTimeMillis {
-
-        coroutineScope {
-            val one = async { one() }
-            val two = async { two() }
-
-            println(one.await() + two.await())
-        }
-
-
-    }
-    println("time:$time")
-}
-
-suspend fun one(): Int {
-    delay(1000)
-    println("one")
-
-    return 1
-}
-
-
-suspend fun two(): Int {
-    delay(1000)
-    println("tow")
-
-    return 2
-}

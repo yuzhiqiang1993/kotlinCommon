@@ -25,6 +25,7 @@ object RoutePath {
         const val FLEX_BOX = "/main/flexBox"
         const val IMG_LIST = "/main/imgList"
         const val FRAGMENT = "/main/fragment"
+        const val COROUTINE = "/main/coroutine"
 
     }
 

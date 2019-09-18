@@ -45,11 +45,12 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
 
         btn_login.setOnClickListener {
 
+
             LocalSpUtils.account = input_account.text.toString()
             LocalSpUtils.pwd = input_pwd.text.toString()
 
+//            vm.loginWithCoroutine()
             vm.login()
-
 
         }
 
@@ -59,14 +60,10 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
 
     override fun observeViewModel() {
 
-        vm.loginData.observe(this, object : Observer<Boolean> {
-            override fun onChanged(t: Boolean) {
-
-                ARouter.getInstance()
-                    .build(com.yzq.common.constants.RoutePath.Main.MAIN)
-                    .navFinish(this@LoginActivity)
-                dismissLoadingDialog()
-            }
+        vm.loginData.observe(this, Observer<Boolean> {
+            ARouter.getInstance()
+                .build(com.yzq.common.constants.RoutePath.Main.MAIN)
+                .navFinish(this@LoginActivity)
 
         })
 

@@ -2,8 +2,11 @@ package com.yzq.lib_base.view_model
 
 import androidx.lifecycle.*
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.NetworkUtils
 import com.yzq.lib_base.data.ViewStateBean
+import com.yzq.lib_constants.BaseConstants
 import com.yzq.lib_constants.ViewStateContstants
+import kotlinx.coroutines.*
 
 
 /*
@@ -16,6 +19,24 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     var viewStateBean = ViewStateBean()
     var loadState = MutableLiveData<ViewStateBean>()
+
+
+    fun launchLoadingDialog(block: suspend CoroutineScope.() -> Unit) {
+
+        viewModelScope.launch {
+            if (!NetworkUtils.isConnected()) {
+                showNoNet()
+                cancel()
+                return@launch
+            }
+            showloadingDialog(BaseConstants.LOADING)
+            block()
+
+            dismissLoadingDialog()
+        }
+
+
+    }
 
 
     /**

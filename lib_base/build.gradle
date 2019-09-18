@@ -70,8 +70,6 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
 
 
-
-
     api project(path: ':lib_base_adapter')
     api project(path: ':lib_constants')
     api project(path: ':lib_eventbus')
