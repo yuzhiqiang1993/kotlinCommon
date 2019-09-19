@@ -20,7 +20,6 @@ class CoroutineViewModel : BaseViewModel() {
     /*请求数据*/
     fun requestData() {
 
-
         launchLoading {
 
             val geocoderBean = withContext(Dispatchers.IO) {

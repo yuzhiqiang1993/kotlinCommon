@@ -8,7 +8,9 @@ import com.google.gson.JsonParseException
 import com.yzq.lib_base.data.ViewStateBean
 import com.yzq.lib_constants.BaseConstants
 import com.yzq.lib_constants.ViewStateContstants
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
 import org.json.JSONException
 import java.net.SocketTimeoutException
 

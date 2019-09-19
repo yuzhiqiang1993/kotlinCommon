@@ -31,7 +31,6 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
         state_view.setRetryListener(object : StateView.RetryListener {
             override fun retry() {
                 initData()
-
             }
 
         })
@@ -51,7 +50,6 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
 
         with(vm) {
             geocoder.observe(this@CoroutinesActivity, Observer {
-
 
                 LogUtils.i("请求完成")
                 tv.text = it.formattedAddress

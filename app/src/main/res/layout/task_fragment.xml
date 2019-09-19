@@ -6,11 +6,18 @@
     android:orientation="vertical"
     tools:context=".ui.fragment.TaskFragment">
 
+
     <TextView
         android:id="@+id/tv_task"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="Hello" />
+
+
+    <com.yzq.lib_widget.StateView
+        android:id="@+id/state_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
