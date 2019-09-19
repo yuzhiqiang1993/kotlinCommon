@@ -55,7 +55,8 @@ dependencies {
     implementation "androidx.annotation:annotation:$annotation"
     implementation "androidx.multidex:multidex:$multiDexVersion"
 
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
+    api "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
+    api "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayout"
 
     /*utils*/
     implementation "com.blankj:utilcodex:$utilcode"
@@ -80,6 +81,7 @@ dependencies {
     api project(path: ':lib_rx')
     api project(path: ':lib_widget')
     api project(path: ':lib_coroutine')
+
 
 
 }

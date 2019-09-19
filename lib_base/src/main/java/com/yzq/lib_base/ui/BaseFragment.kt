@@ -11,7 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.yzq.lib_constants.BaseConstants
 import com.yzq.lib_eventbus.EventBusUtil
+import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_widget.StateView
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -29,6 +32,8 @@ abstract class BaseFragment : Fragment() {
     private var stateView: StateView? = null
     private var contentLayout: View? = null
     private var isRefreshLayout: Boolean = false
+
+    private val mainScope = MainScope()
 
 
     override fun onAttach(context: Context) {
@@ -97,16 +102,18 @@ abstract class BaseFragment : Fragment() {
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    open fun onEventMainThread(msg: com.yzq.lib_eventbus.EventMsg) {
+    open fun onEventMainThread(msg: EventMsg) {
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
-        com.yzq.lib_eventbus.EventBusUtil.unregister(this)
+        EventBusUtil.unregister(this)
+        mainScope.cancel()
     }
 
     protected open fun onBackPressed(): Boolean {
+
 
         return false
 
