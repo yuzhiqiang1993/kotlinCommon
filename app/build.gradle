@@ -72,7 +72,8 @@ dependencies {
     implementation "com.meituan.android.walle:library:${walleVersion}"
 
     implementation project(':common')
-
+    implementation project(':lib_room')
+    kapt "androidx.room:room-compiler:$room_version"
     if (isModule.toBoolean()) {
         implementation project(':gao_de_map')
     }

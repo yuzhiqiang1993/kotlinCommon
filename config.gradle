@@ -19,8 +19,8 @@ ext {
     multiDexVersion = "2.0.1"
     lifecycle_extensions = "2.1.0"
     kotlinx_coroutines = "1.3.1"
-    swiperefreshlayout="1.0.0"
-    room_version="2.1.0"
+    swiperefreshlayout = "1.0.0"
+    room_version = "2.1.0"
 
     /*third party*/
     eventbus = "3.1.1"
@@ -47,7 +47,7 @@ ext {
     bugly_crashreport_upgrade = '1.4.1'
     bugly_nativecrashreport = '3.7.1'
     datepickerVersion = "1.2.3"
-    flexbox = "1.1.0"
+    flexbox = "1.1.1"
     gradle_versions_plugin = "0.21.0"
     zxing_version = "2.2.8"
     jsoup_version = "1.12.1"

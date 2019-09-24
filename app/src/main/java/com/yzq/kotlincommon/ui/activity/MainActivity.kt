@@ -98,6 +98,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener,
         items.add("瀑布流图片")
         items.add("fragment")
         items.add("coroutine(协程)")
+        items.add("room(数据库)")
 
         setdata()
     }
@@ -128,6 +129,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener,
             10 -> skip(RoutePath.Main.IMG_LIST)
             11 -> skip(RoutePath.Main.FRAGMENT)
             12 -> skip(RoutePath.Main.COROUTINE)
+            13 -> skip(RoutePath.Main.ROOM)
 
         }
     }
