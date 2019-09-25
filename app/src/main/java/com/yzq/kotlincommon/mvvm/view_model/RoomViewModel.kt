@@ -20,11 +20,15 @@ class RoomViewModel : BaseViewModel() {
 
     var users = MutableLiveData<List<User>>()
 
+    var updatePosition = MutableLiveData<Int>()
+
 
     init {
         userDao = UserDataBase.instance.userDao()
     }
 
+
+    /*查*/
     fun loadData() {
 
 
@@ -34,16 +38,15 @@ class RoomViewModel : BaseViewModel() {
                 userDao.getAllUsers()
             }
 
-
             users.value = userList
 
-            LogUtils.i("数据库数据：${userList.toList()}")
+
         }
 
 
     }
 
-
+    /*增*/
     fun insertUser() {
 
         val randomName = getRandomStr()
@@ -59,6 +62,36 @@ class RoomViewModel : BaseViewModel() {
             LogUtils.i("插入成功")
 
             loadData()
+        }
+
+    }
+
+
+    /*删*/
+    fun deleteUser(user: User) {
+        viewModelScope.launch {
+
+            withContext(Dispatchers.IO) {
+
+                userDao.deleteUser(user)
+
+            }
+
+            loadData()
+        }
+    }
+
+
+    /*改*/
+    fun updateUser(user: User, position: Int) {
+
+        viewModelScope.launch {
+
+            withContext(Dispatchers.IO) {
+                userDao.updateUser(user)
+            }
+
+            updatePosition.value = position
         }
 
     }
