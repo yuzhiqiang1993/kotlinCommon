@@ -5,7 +5,6 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.diff.BaseQuickDiffCallback
 import com.yzq.common.constants.RoutePath
@@ -97,14 +96,7 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemC
             users.observe(this@RoomActivity, Observer {
 
 
-                LogUtils.i("旧数据：${roomAdapter.data}")
-
-                LogUtils.i("数据发生变化:${it}")
-
-                val newDatas = arrayListOf<User>()
-                newDatas.addAll(it)
-
-                roomAdapter.setNewDiffData(object : BaseQuickDiffCallback<User>(newDatas) {
+                roomAdapter.setNewDiffData(object : BaseQuickDiffCallback<User>(it) {
 
                     override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
 
