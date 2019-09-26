@@ -1,20 +1,20 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.ashokvarma.bottomnavigation.BottomNavigationBar
-import com.ashokvarma.bottomnavigation.BottomNavigationItem
-import com.blankj.utilcode.util.LogUtils
-import com.yzq.lib_base.ui.BaseFragment
-import com.yzq.lib_base.ui.BaseMvvmActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.mvvm.view_model.FragmentViewModel
+import com.yzq.lib_base.ui.BaseFragment
+import com.yzq.lib_base.ui.BaseMvvmActivity
 import kotlinx.android.synthetic.main.activity_fragment.*
 
 
 @Route(path = RoutePath.Main.FRAGMENT)
-class FragmentActivity : BaseMvvmActivity<FragmentViewModel>(), BottomNavigationBar.OnTabSelectedListener {
+class FragmentActivity : BaseMvvmActivity<FragmentViewModel>(),
+    BottomNavigationView.OnNavigationItemSelectedListener {
 
     override fun getViewModelClass(): Class<FragmentViewModel> = FragmentViewModel::class.java
 
@@ -27,11 +27,9 @@ class FragmentActivity : BaseMvvmActivity<FragmentViewModel>(), BottomNavigation
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "Fragment")
 
-        bottom_navigation_bar.addItem(BottomNavigationItem(R.drawable.ic_edit, "任务"))
-                .addItem(BottomNavigationItem(R.drawable.ic_user, "用户"))
-                .initialise()
 
-        bottom_navigation_bar.setTabSelectedListener(this)
+
+        bottom_navigation.setOnNavigationItemSelectedListener(this)
 
 
         showFragment(vm.taskFragment)
@@ -69,27 +67,17 @@ class FragmentActivity : BaseMvvmActivity<FragmentViewModel>(), BottomNavigation
 
     }
 
-    override fun onTabReselected(position: Int) {
+    override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
 
-    }
+        when (menuItem.itemId) {
+            R.id.menu_task -> showFragment(vm.taskFragment)
+            R.id.menu_user -> showFragment(vm.userFragment)
 
-    override fun onTabUnselected(position: Int) {
-
-    }
-
-
-    override fun onTabSelected(position: Int) {
-        LogUtils.i("onTabSelected:${position}")
-        when (position) {
-            0 -> {
-                showFragment(vm.taskFragment)
-            }
-            1 -> {
-                showFragment(vm.userFragment)
-            }
         }
 
+        return true
 
     }
+
 
 }

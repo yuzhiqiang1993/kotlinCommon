@@ -22,20 +22,20 @@ class CoroutineViewModel : BaseViewModel() {
 
         launchLoading {
 
-            val geocoderBean = withContext(Dispatchers.IO) {
-
-                delay(2000)
-
-                RetrofitFactory.instance.getService(ApiService::class.java)
-                    .geocoder().dataConvert()
-
-
-            }
+            val geocoderBean = httpGeocoder()
 
             geocoder.value = geocoderBean
         }
 
 
+    }
+
+
+    suspend fun httpGeocoder() = withContext(Dispatchers.IO) {
+
+        delay(1000)
+        RetrofitFactory.instance.getService(ApiService::class.java)
+            .geocoder().dataConvert()
     }
 
 }

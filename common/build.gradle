@@ -61,8 +61,7 @@ dependencies {
     api "com.alibaba:arouter-api:$arouter_api"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
 
-    /*bottom_navigation_bar*/
-    api "com.ashokvarma.android:bottom-navigation-bar:$bottom_navigation_bar"
+
     /*baseRecyclerViewAdapterHelper*/
     api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$baseRecyclerViewAdapterHelper"
 
