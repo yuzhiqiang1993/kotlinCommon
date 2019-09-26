@@ -19,9 +19,7 @@ class LoginViewModel : BaseViewModel() {
     fun loginWithCoroutine() {
         launchLoadingDialog {
 
-            val movieBean = withContext(Dispatchers.IO) {
-                model.getData(0, 1)
-            }
+            val movieBean =    model.getData(0, 1)
             LogUtils.i("请求完成：" + GsonConvert.toJson(movieBean))
 
             loginData.value = true

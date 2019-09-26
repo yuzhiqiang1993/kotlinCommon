@@ -19,9 +19,7 @@ class ImgListViewModel : BaseViewModel() {
 
     fun getData() {
         launchLoading {
-            subjectsLive.value = withContext(Dispatchers.IO) {
-                model.getData(start, count)
-            }.subjects
+            subjectsLive.value =model.getData(start,count).subjects
         }
     }
 }
