@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.LogUtils
@@ -15,54 +16,41 @@ import kotlinx.coroutines.withContext
 class RoomViewModel : BaseViewModel() {
 
 
+    var users: LiveData<List<User>>
+
     private var userDao: UserDao
 
-
-    var users = MutableLiveData<List<User>>()
 
     var updatePosition = MutableLiveData<Int>()
 
 
     init {
         userDao = UserDataBase.instance.userDao()
+
+        /*查  由于getAllUsers返回类型为LiveData类型  默认就异步的 所以无需使用协程 */
+
+        users = userDao.getAllUsers()
     }
 
-
-    /*查*/
-    fun loadData() {
-
-
-        viewModelScope.launch {
-
-            val userList = withContext(Dispatchers.IO) {
-                userDao.getAllUsers()
-            }
-
-            users.value = userList
-
-
-        }
-
-
-    }
 
     /*增*/
     fun insertUser() {
 
-        val randomName = getRandomStr()
-
-        val user = User(name = randomName)
 
         viewModelScope.launch {
 
             withContext(Dispatchers.IO) {
+                val randomName = getRandomStr()
+
+                val user = User(name = randomName)
                 userDao.insertUser(user)
             }
 
             LogUtils.i("插入成功")
 
-            loadData()
+
         }
+
 
     }
 
@@ -77,7 +65,7 @@ class RoomViewModel : BaseViewModel() {
 
             }
 
-            loadData()
+
         }
     }
 
@@ -96,6 +84,20 @@ class RoomViewModel : BaseViewModel() {
 
     }
 
+    /*改*/
+    fun updateUser(id: Int, name: String) {
+
+        viewModelScope.launch {
+
+            withContext(Dispatchers.IO) {
+                val user = User(id, name)
+                userDao.updateUser(user)
+            }
+
+//            updatePosition.value = position
+        }
+
+    }
 
     private fun getRandomStr(): String {
         val str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

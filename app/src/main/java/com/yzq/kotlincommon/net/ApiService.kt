@@ -24,7 +24,7 @@ interface ApiService {
         @Query("ak") ak: String = "RFVByxDyRXlNDpKGKybtFkz0pEw6mQn0",
         @Query("output") output: String = "json",
         @Query("latest_admin") latest_admin: String = "1"
-    ):BaseResp<Geocoder>
+    ): BaseResp<Geocoder>
 
 
 }

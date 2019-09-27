@@ -78,8 +78,8 @@ abstract class BaseActivity : AppCompatActivity() {
         initArgs(intent.extras)
 
         setContentView(getContentLayoutId())
-        initViewModel()
         initWidget()
+        initViewModel()
         initData()
 
 

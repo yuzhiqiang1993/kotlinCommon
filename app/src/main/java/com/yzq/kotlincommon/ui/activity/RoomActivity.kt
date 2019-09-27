@@ -51,23 +51,12 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemC
 
     }
 
-    override fun initData() {
-        vm.loadData()
-
-
-    }
-
     @SuppressLint("AutoDispose", "CheckResult")
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         val clickUser = roomAdapter.data[position]
         showInputDialog()
             .subscribe { input ->
-
-                clickUser.name = input
-
-
-                vm.updateUser(clickUser, position)
-
+                vm.updateUser(clickUser.id, input)
             }
 
     }
@@ -111,10 +100,6 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemC
             })
 
 
-            updatePosition.observe(this@RoomActivity, Observer {
-
-                roomAdapter.notifyItemChanged(it)
-            })
         }
 
 
