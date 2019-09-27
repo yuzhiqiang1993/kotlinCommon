@@ -15,18 +15,18 @@ import com.yzq.kotlincommon.mvvm.view_model.RoomViewModel
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseMvvmActivity
 import com.yzq.lib_materialdialog.showInputDialog
-import com.yzq.lib_materialdialog.showOnlyPostiveCallBackDialog
 import kotlinx.android.synthetic.main.activity_zoom.*
 
 
 @Route(path = RoutePath.Main.ROOM)
-class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemClickListener,
-    BaseQuickAdapter.OnItemLongClickListener {
+class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemChildClickListener {
 
 
     private val roomAdapter = RoomAdapter(R.layout.item_room, arrayListOf())
 
     override fun getContentLayoutId() = R.layout.activity_zoom
+
+    private lateinit var operationItem: User
 
 
     override fun getViewModelClass(): Class<RoomViewModel> = RoomViewModel::class.java
@@ -40,8 +40,8 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemC
         recy.init()
 
         recy.adapter = roomAdapter
-        roomAdapter.onItemClickListener = this
-        roomAdapter.onItemLongClickListener = this
+        roomAdapter.onItemChildClickListener = this
+
 
 
         fab_add.setOnClickListener {
@@ -51,31 +51,23 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemC
 
     }
 
-    @SuppressLint("AutoDispose", "CheckResult")
-    override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-        val clickUser = roomAdapter.data[position]
-        showInputDialog()
-            .subscribe { input ->
-                vm.updateUser(clickUser.id, input)
+
+    @SuppressLint("AutoDispose")
+    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
+
+        operationItem = roomAdapter.data[position]
+        when (view.id) {
+            R.id.tv_delete -> {
+                vm.deleteUser(operationItem)
             }
 
-    }
-
-
-    @SuppressLint("AutoDispose", "CheckResult")
-    override fun onItemLongClick(
-        adapter: BaseQuickAdapter<*, *>?,
-        view: View?,
-        position: Int
-    ): Boolean {
-        val clickUser = roomAdapter.data[position]
-        showOnlyPostiveCallBackDialog(message = "确认删除${clickUser.name}")
-            .subscribe { clickPositive ->
-                vm.deleteUser(clickUser)
-
+            R.id.tv_user -> {
+                showInputDialog(title = "修改")
+                    .subscribe { input ->
+                        vm.updateUser(operationItem.id, input)
+                    }
             }
-
-        return true
+        }
     }
 
 
@@ -97,6 +89,7 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemC
                         return oldItem.name.equals(newItem.name)
                     }
                 })
+
             })
 
 

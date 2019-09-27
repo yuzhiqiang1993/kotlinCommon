@@ -15,5 +15,10 @@ class RoomAdapter(layoutResId: Int, data: MutableList<User>) :
         }
 
 
+
+        helper.addOnClickListener(R.id.tv_delete)
+        helper.addOnClickListener(R.id.tv_user)
+
+
     }
 }

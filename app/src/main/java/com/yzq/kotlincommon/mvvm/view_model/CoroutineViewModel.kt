@@ -31,6 +31,7 @@ class CoroutineViewModel : BaseViewModel() {
     }
 
 
+
     suspend fun httpGeocoder() = withContext(Dispatchers.IO) {
 
         delay(1000)

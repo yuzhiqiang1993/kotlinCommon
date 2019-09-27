@@ -17,7 +17,6 @@ class RoomViewModel : BaseViewModel() {
 
 
     var users: LiveData<List<User>>
-
     private var userDao: UserDao
 
 
@@ -27,9 +26,9 @@ class RoomViewModel : BaseViewModel() {
     init {
         userDao = UserDataBase.instance.userDao()
 
-        /*查  由于getAllUsers返回类型为LiveData类型  默认就异步的 所以无需使用协程 */
-
         users = userDao.getAllUsers()
+
+
     }
 
 

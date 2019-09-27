@@ -8,21 +8,19 @@ import androidx.room.*
 interface UserDao {
 
 
-
-    /*当返回值类型为 LiveData 时，默认就是异步的 我们无需使用suspend关键字修饰，去掉*/
-    @Query("select * from user")
+    @Query("select * from user order by id desc")
     fun getAllUsers(): LiveData<List<User>>
 
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertUser(user: User)
+    fun insertUser(vararg user: User)
 
 
     @Delete
-    fun deleteUser(user: User)
+    fun deleteUser(vararg user: User)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun updateUser(user: User)
+    fun updateUser(vararg user: User)
 
 
 }

@@ -55,7 +55,15 @@ dependencies {
     implementation "androidx.annotation:annotation:$annotation"
     implementation "androidx.multidex:multidex:$multiDexVersion"
 
-    api "androidx.lifecycle:lifecycle-extensions:$lifecycle_extensions"
+
+    // ViewModel and LiveData
+    api "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+//    // alternatively - just ViewModel
+//    api "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version" // For Kotlin use lifecycle-viewmodel-ktx
+//    // alternatively - just LiveData
+//    api "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+
+
     api "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayout"
 
     /*utils*/

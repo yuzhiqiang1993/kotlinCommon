@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.yzq.lib_widget.swipe_menu.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:id="@+id/tv_user"
     android:layout_height="wrap_content"
-    android:background="@drawable/list_item_selector"
-    android:gravity="start|center_vertical"
-    android:padding="@dimen/len_10"
-    android:text="sadsadsa"
-    android:textColor="@color/black" />
+    app:leftSwipe="true"
+    app:swipeEnable="true">
 
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/list_item_selector"
+        android:gravity="start|center_vertical"
+        android:padding="@dimen/len_10"
+        android:minHeight="@dimen/len_56"
+        android:textColor="@color/black" />
+
+    <include layout="@layout/item_delete_menu" />
+
+</com.yzq.lib_widget.swipe_menu.SwipeMenuLayout>
