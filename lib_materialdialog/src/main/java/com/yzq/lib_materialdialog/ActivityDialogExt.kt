@@ -1,6 +1,6 @@
 package com.yzq.lib_materialdialog
 
-import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ComponentActivity
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
@@ -15,7 +15,7 @@ import io.reactivex.Single
 
 
 /*获取一个新的Dialog实例*/
-fun AppCompatActivity.getNewDialog(): MaterialDialog {
+fun ComponentActivity.getNewDialog(): MaterialDialog {
 
     return MaterialDialog(this).cancelOnTouchOutside(false).cancelable(false).lifecycleOwner(this)
 }
@@ -29,7 +29,7 @@ fun AppCompatActivity.getNewDialog(): MaterialDialog {
  * @param positiveText  确定按钮的文本
  */
 
-fun AppCompatActivity.showBaseDialog(
+fun ComponentActivity.showBaseDialog(
     title: String = BaseConstants.HINT,
     message: String,
     positiveText: String = BaseConstants.SURE
@@ -53,7 +53,7 @@ fun AppCompatActivity.showBaseDialog(
  * @param message  提示信息
  * @param positiveText  确定按钮的文字
  */
-fun AppCompatActivity.showOnlyPostiveCallBackDialog(
+fun ComponentActivity.showOnlyPostiveCallBackDialog(
     title: String = BaseConstants.HINT,
     message: String,
     positiveText: String = BaseConstants.SURE
@@ -87,7 +87,7 @@ fun AppCompatActivity.showOnlyPostiveCallBackDialog(
  * @param positiveText 确定按钮文本
  * @param negativeText  取消按钮文本
  */
-fun AppCompatActivity.showPositiveCallbackDialog(
+fun ComponentActivity.showPositiveCallbackDialog(
     title: String = BaseConstants.HINT,
     message: String,
     positiveText: String = BaseConstants.SURE,
@@ -121,7 +121,7 @@ fun AppCompatActivity.showPositiveCallbackDialog(
  * @param positiveText  确定按钮文本
  * @param negativeText  取消按钮文本
  */
-fun AppCompatActivity.showCallbackDialog(
+fun ComponentActivity.showCallbackDialog(
     title: String = BaseConstants.HINT,
     message: String,
     positiveText: String = BaseConstants.SURE,
@@ -158,7 +158,7 @@ fun AppCompatActivity.showCallbackDialog(
  * @param positiveText  确定按钮文本
  * @param negativeText  取消按钮文本
  */
-fun AppCompatActivity.showBackHintDialog(
+fun ComponentActivity.showBackHintDialog(
     title: String = BaseConstants.HINT,
     message: String = BaseConstants.BACK_HINT,
     positiveText: String = BaseConstants.SURE,
@@ -191,7 +191,7 @@ fun AppCompatActivity.showBackHintDialog(
  * @param message  消息
  * @param items  选项
  */
-fun AppCompatActivity.showSingleSelectList(
+fun ComponentActivity.showSingleSelectList(
     title: String = BaseConstants.HINT,
     message: String = "",
     items: List<String>
@@ -230,7 +230,7 @@ fun AppCompatActivity.showSingleSelectList(
  * @param inputType  输入类型
  * @param allowEmptyInput  是否允许输入空
  */
-fun AppCompatActivity.showInputDialog(
+fun ComponentActivity.showInputDialog(
     title: String = BaseConstants.HINT,
     positiveText: String = BaseConstants.SURE,
     negativeText: String = BaseConstants.CANCLE,
@@ -272,7 +272,7 @@ fun AppCompatActivity.showInputDialog(
  * 加载框
  *
  */
-fun AppCompatActivity.getLoadingDialog(): MaterialDialog {
+fun ComponentActivity.getLoadingDialog(): MaterialDialog {
     return getNewDialog().loading()
 }
 
@@ -281,7 +281,7 @@ fun AppCompatActivity.getLoadingDialog(): MaterialDialog {
  *
  * @param title  标题
  */
-fun AppCompatActivity.getProgressDialog(title: String): MaterialDialog {
+fun ComponentActivity.getProgressDialog(title: String): MaterialDialog {
 
     return getNewDialog().progress().title(text = title)
 
@@ -289,7 +289,7 @@ fun AppCompatActivity.getProgressDialog(title: String): MaterialDialog {
 
 
 /*选择年份*/
-fun AppCompatActivity.selectYear(
+fun ComponentActivity.selectYear(
     title: String = "选择年份",
     positiveText: String = BaseConstants.SURE,
     negativeText: String = BaseConstants.CANCLE
@@ -324,7 +324,7 @@ fun AppCompatActivity.selectYear(
  * @param positiveText  确定文本
  * @param negativeText  取消文本
  */
-fun AppCompatActivity.selectDate(
+fun ComponentActivity.selectDate(
     title: String = "选择日期",
     positiveText: String = BaseConstants.SURE,
     negativeText: String = BaseConstants.CANCLE
@@ -374,7 +374,7 @@ fun AppCompatActivity.selectDate(
  * @param positiveText 确定按钮文本
  * @param negativeText  取消按钮文本
  */
-fun AppCompatActivity.selectHourAndMinute(
+fun ComponentActivity.selectHourAndMinute(
     title: String = "选择时间",
     positiveText: String = BaseConstants.SURE,
     negativeText: String = BaseConstants.CANCLE
