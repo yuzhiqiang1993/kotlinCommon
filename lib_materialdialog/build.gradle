@@ -50,8 +50,12 @@ dependencies {
     api "com.afollestad.material-dialogs:bottomsheets:$material_dialogs"
     api "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
 
-    implementation project(path: ':lib_resource')
-    implementation project(path: ':lib_widget')
-    implementation project(path: ':lib_rx')
-    implementation project(path: ':lib_constants')
+
+    /*Datepicker*/
+    api "com.ycuwq.widgets:datepicker:$datepickerVersion"
+
+    /*rx*/
+    implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin"
+
+
 }

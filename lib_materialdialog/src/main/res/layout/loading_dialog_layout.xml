@@ -20,7 +20,6 @@
         android:layout_weight="1"
         android:paddingStart="@dimen/len_10"
         android:paddingEnd="@dimen/len_0"
-        android:text="@string/loadding"
         android:textColor="?android:textColorSecondary"
         android:textSize="@dimen/font_16" />
 

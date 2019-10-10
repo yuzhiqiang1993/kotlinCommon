@@ -25,6 +25,8 @@ class App : BaseApp() {
         initBugly()
 
         StoragePath.logPathInfo()
+
+
     }
 
 

@@ -49,8 +49,7 @@ dependencies {
     implementation "androidx.multidex:multidex:$multiDexVersion"
     /*utils*/
     implementation "com.blankj:utilcodex:$utilcode"
-    /*Datepicker*/
-    api "com.ycuwq.widgets:datepicker:$datepickerVersion"
+
 
     implementation project(path: ":lib_resource")
 }

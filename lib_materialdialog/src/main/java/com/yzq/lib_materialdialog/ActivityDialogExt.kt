@@ -10,7 +10,6 @@ import com.afollestad.materialdialogs.list.listItems
 import com.ycuwq.datepicker.date.DatePicker
 import com.ycuwq.datepicker.date.YearPicker
 import com.ycuwq.datepicker.time.HourAndMinutePicker
-import com.yzq.lib_constants.BaseConstants
 import io.reactivex.Single
 
 
@@ -30,13 +29,12 @@ fun ComponentActivity.getNewDialog(): MaterialDialog {
  */
 
 fun ComponentActivity.showBaseDialog(
-    title: String = BaseConstants.HINT,
+    title: String = HINT,
     message: String,
-    positiveText: String = BaseConstants.SURE
+    positiveText: String = SURE
 ) {
 
     getNewDialog().show {
-        title(R.string.hint)
         title(text = title)
         message(text = message)
         positiveButton(text = positiveText)
@@ -54,9 +52,9 @@ fun ComponentActivity.showBaseDialog(
  * @param positiveText  确定按钮的文字
  */
 fun ComponentActivity.showOnlyPostiveCallBackDialog(
-    title: String = BaseConstants.HINT,
+    title: String = HINT,
     message: String,
-    positiveText: String = BaseConstants.SURE
+    positiveText: String = SURE
 ): Single<Boolean> {
 
     return Single.create { singleEmitter ->
@@ -88,10 +86,10 @@ fun ComponentActivity.showOnlyPostiveCallBackDialog(
  * @param negativeText  取消按钮文本
  */
 fun ComponentActivity.showPositiveCallbackDialog(
-    title: String = BaseConstants.HINT,
+    title: String = HINT,
     message: String,
-    positiveText: String = BaseConstants.SURE,
-    negativeText: String = BaseConstants.CANCLE
+    positiveText: String = SURE,
+    negativeText: String = CANCLE
 ): Single<Boolean> {
 
     return Single.create { singleEmitter ->
@@ -122,10 +120,10 @@ fun ComponentActivity.showPositiveCallbackDialog(
  * @param negativeText  取消按钮文本
  */
 fun ComponentActivity.showCallbackDialog(
-    title: String = BaseConstants.HINT,
+    title: String = HINT,
     message: String,
-    positiveText: String = BaseConstants.SURE,
-    negativeText: String = BaseConstants.CANCLE
+    positiveText: String = SURE,
+    negativeText: String = CANCLE
 ): Single<Boolean> {
     return Single.create { singleEmitter ->
 
@@ -159,10 +157,10 @@ fun ComponentActivity.showCallbackDialog(
  * @param negativeText  取消按钮文本
  */
 fun ComponentActivity.showBackHintDialog(
-    title: String = BaseConstants.HINT,
-    message: String = BaseConstants.BACK_HINT,
-    positiveText: String = BaseConstants.SURE,
-    negativeText: String = BaseConstants.CANCLE
+    title: String = HINT,
+    message: String = BACK_HINT,
+    positiveText: String = SURE,
+    negativeText: String = CANCLE
 ): Single<Boolean> {
 
     return Single.create { singleEmitter ->
@@ -192,7 +190,7 @@ fun ComponentActivity.showBackHintDialog(
  * @param items  选项
  */
 fun ComponentActivity.showSingleSelectList(
-    title: String = BaseConstants.HINT,
+    title: String = HINT,
     message: String = "",
     items: List<String>
 
@@ -231,9 +229,9 @@ fun ComponentActivity.showSingleSelectList(
  * @param allowEmptyInput  是否允许输入空
  */
 fun ComponentActivity.showInputDialog(
-    title: String = BaseConstants.HINT,
-    positiveText: String = BaseConstants.SURE,
-    negativeText: String = BaseConstants.CANCLE,
+    title: String = HINT,
+    positiveText: String = SURE,
+    negativeText: String = CANCLE,
     message: String = "",
     inputHint: String = "",
     prefill: String = "",
@@ -291,11 +289,11 @@ fun ComponentActivity.getProgressDialog(title: String): MaterialDialog {
 /*选择年份*/
 fun ComponentActivity.selectYear(
     title: String = "选择年份",
-    positiveText: String = BaseConstants.SURE,
-    negativeText: String = BaseConstants.CANCLE
+    positiveText: String = SURE,
+    negativeText: String = CANCLE
 ): Single<String> {
 
-    return io.reactivex.Single.create { singleEmitter ->
+    return Single.create { singleEmitter ->
 
         getNewDialog().show {
             title(text = title)
@@ -326,8 +324,8 @@ fun ComponentActivity.selectYear(
  */
 fun ComponentActivity.selectDate(
     title: String = "选择日期",
-    positiveText: String = BaseConstants.SURE,
-    negativeText: String = BaseConstants.CANCLE
+    positiveText: String = SURE,
+    negativeText: String = CANCLE
 ): Single<String> {
 
     return io.reactivex.Single.create { singleEmitter ->
@@ -376,8 +374,8 @@ fun ComponentActivity.selectDate(
  */
 fun ComponentActivity.selectHourAndMinute(
     title: String = "选择时间",
-    positiveText: String = BaseConstants.SURE,
-    negativeText: String = BaseConstants.CANCLE
+    positiveText: String = SURE,
+    negativeText: String = CANCLE
 ): Single<String> {
     return io.reactivex.Single.create { singleEmitter ->
 

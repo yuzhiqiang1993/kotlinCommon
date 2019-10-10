@@ -18,6 +18,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.yzq.lib_base.R
 import com.yzq.lib_constants.BaseConstants
 import com.yzq.lib_constants.HttpRequestType
 import com.yzq.lib_eventbus.EventBusUtil
