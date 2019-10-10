@@ -55,7 +55,7 @@ class ZxingActivity : BaseActivity() {
     }
 
     val REQUEST_LICENSE_CODE = 666
-    @SuppressLint("AutoDispose", "CheckResult")
+    @SuppressLint("CheckResult", "AutoDispose")
     private fun getLicenseInfo() {
         requestPermission(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)
             .subscribe { hasPermission ->

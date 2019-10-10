@@ -6,7 +6,6 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
 import com.yzq.lib_base.data.ViewStateBean
-import com.yzq.lib_constants.BaseConstants
 import com.yzq.lib_constants.ViewStateContstants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
@@ -35,7 +34,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 cancel()
                 return@launch
             }
-            showloadingDialog(BaseConstants.LOADING)
+            showloadingDialog(ViewStateContstants.LOADING)
 
             try {
 
@@ -46,12 +45,12 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 dismissLoadingDialog()
                 e.printStackTrace()
                 if (e is JSONException || e is JsonParseException) {
-                    showErrorDialog(BaseConstants.PARSE_DATA_ERROE)
+                    showErrorDialog(ViewStateContstants.PARSE_DATA_ERROE)
                 } else if (e is SocketTimeoutException) {
-                    showErrorDialog(BaseConstants.SERVER_TIMEOUT)
+                    showErrorDialog(ViewStateContstants.SERVER_TIMEOUT)
                 } else {
                     val msg =
-                        if (TextUtils.isEmpty(e.message)) BaseConstants.UNKONW_ERROR else e.message!!
+                        if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
                     showErrorDialog(msg)
                 }
 
@@ -81,12 +80,12 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 e.printStackTrace()
 
                 if (e is JSONException || e is JsonParseException) {
-                    showError(BaseConstants.PARSE_DATA_ERROE)
+                    showError(ViewStateContstants.PARSE_DATA_ERROE)
                 } else if (e is SocketTimeoutException) {
-                    showError(BaseConstants.SERVER_TIMEOUT)
+                    showError(ViewStateContstants.SERVER_TIMEOUT)
                 } else {
                     val msg =
-                        if (TextUtils.isEmpty(e.message)) BaseConstants.UNKONW_ERROR else e.message!!
+                        if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
                     showError(msg)
                 }
 

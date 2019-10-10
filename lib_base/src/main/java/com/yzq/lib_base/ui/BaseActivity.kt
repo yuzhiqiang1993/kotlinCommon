@@ -19,8 +19,8 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.lib_base.R
-import com.yzq.lib_constants.BaseConstants
 import com.yzq.lib_constants.HttpRequestType
+import com.yzq.lib_constants.ViewStateContstants
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_materialdialog.*
@@ -79,8 +79,9 @@ abstract class BaseActivity : AppCompatActivity() {
         initArgs(intent.extras)
 
         setContentView(getContentLayoutId())
-        initWidget()
         initViewModel()
+        initWidget()
+
         initData()
 
 
@@ -200,7 +201,6 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param title  要显示的标题文本
      * @param showBackHint  点击返回时是否显示返回提示框，默认不显示
      */
-    @SuppressLint("AutoDispose")
     protected fun initHeader(
         backIv: AppCompatImageView,
         titleTv: TextView,
@@ -267,7 +267,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-    @SuppressLint("AutoDispose", "CheckResult")
+    @SuppressLint("CheckResult", "AutoDispose")
     override fun onBackPressed() {
 
         if (showBackHint) {
@@ -345,7 +345,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun showErrorDialog(msg: String?) {
         if (TextUtils.isEmpty(msg)) {
-            showBaseDialog(message = BaseConstants.UNKONW_ERROR)
+            showBaseDialog(message = ViewStateContstants.UNKONW_ERROR)
         } else {
             showBaseDialog(message = msg!!)
         }
@@ -403,7 +403,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
 
-        ToastUtils.showLong(BaseConstants.NO_NET)
+        ToastUtils.showLong(ViewStateContstants.NO_NET)
 
     }
 
@@ -415,7 +415,7 @@ abstract class BaseActivity : AppCompatActivity() {
     fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(BaseConstants.UNKONW_ERROR)
+            stateView?.showError(ViewStateContstants.UNKONW_ERROR)
         } else {
             stateView?.showError(msg!!)
         }

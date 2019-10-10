@@ -1,13 +1,12 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
-import com.yzq.lib_rx.transform
-import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.kotlincommon.R
+import com.yzq.lib_base.ui.BaseActivity
+import com.yzq.lib_rx.transform
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.activity_autodispose.*
 import java.util.concurrent.TimeUnit
@@ -39,7 +38,7 @@ class AutodisposeActivity : BaseActivity() {
     }
 
 
-    @SuppressLint("AutoDispose")
+
     private fun startCount() {
         Observable.interval(1, TimeUnit.SECONDS)
                 .transform(this)

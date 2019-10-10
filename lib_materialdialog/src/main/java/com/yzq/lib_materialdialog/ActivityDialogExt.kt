@@ -16,6 +16,7 @@ import io.reactivex.Single
 /*获取一个新的Dialog实例*/
 fun ComponentActivity.getNewDialog(): MaterialDialog {
 
+
     return MaterialDialog(this).cancelOnTouchOutside(false).cancelable(false).lifecycleOwner(this)
 }
 

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.yzq.lib_constants.BaseConstants
+import com.yzq.lib_constants.ViewStateContstants
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_widget.StateView
@@ -151,7 +151,7 @@ abstract class BaseFragment : Fragment() {
     protected open fun showError(msg: String?) {
 
         if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(BaseConstants.UNKONW_ERROR)
+            stateView?.showError(ViewStateContstants.UNKONW_ERROR)
         } else {
             stateView?.showError(msg!!)
         }
@@ -160,28 +160,28 @@ abstract class BaseFragment : Fragment() {
 
 
     protected open fun showLoadingDialog(message: String) {
-        (activity as BaseActivity).showLoadingDialog(message)
+        showLoadingDialog(message)
     }
 
     protected open fun dismissLoadingDialog() {
-        (activity as BaseActivity).dismissLoadingDialog()
+        dismissLoadingDialog()
     }
 
     protected open fun showErrorDialog(msg: String?) {
-        (activity as BaseActivity).showErrorDialog(msg)
+        showErrorDialog(msg)
     }
 
 
     protected open fun showProgressDialog(title: String) {
-        (activity as BaseActivity).showProgressDialog(title)
+        showProgressDialog(title)
     }
 
     protected open fun changeProgress(percent: Int) {
-        (activity as BaseActivity).changeProgress(percent)
+        changeProgress(percent)
     }
 
     protected open fun dismissProgressDialog() {
-        (activity as BaseActivity).dismissProgressDialog()
+        dismissProgressDialog()
     }
 
     protected open fun initStateView(
