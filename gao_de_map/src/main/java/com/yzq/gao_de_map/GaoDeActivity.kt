@@ -1,19 +1,24 @@
 package com.yzq.gao_de_map
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.amap.api.location.AMapLocation
-import com.yzq.lib_base.ui.BaseMvvmActivity
+import com.yanzhenjie.permission.runtime.Permission
+import com.yzq.common.utils.LocationUtils
 import com.yzq.gao_de_map.utils.MapPermissionUtils
+import com.yzq.lib_base.ui.BaseMvvmActivity
+import com.yzq.lib_permission.requestPermission
 import kotlinx.android.synthetic.main.activity_gao_de.*
 
 @Route(path = com.yzq.common.constants.RoutePath.GaoDe.GAO_DE)
 class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
 
 
-    override fun getViewModelClass(): Class<LocationSignViewModel> = LocationSignViewModel::class.java
+    override fun getViewModelClass(): Class<LocationSignViewModel> =
+        LocationSignViewModel::class.java
 
 
     override fun getContentLayoutId(): Int {
@@ -31,14 +36,16 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
 
         btn_location.setOnClickListener {
 
+
+
             MapPermissionUtils.checkLocationPermission(true, this)
-                    .subscribe { hasPermission ->
+                .subscribe { hasPermission ->
 
-                        showLoadingDialog("正在获取位置信息")
+                    showLoadingDialog("正在获取位置信息")
 
-                        vm.startLocation()
+                    vm.startLocation()
 
-                    }
+                }
         }
 
 

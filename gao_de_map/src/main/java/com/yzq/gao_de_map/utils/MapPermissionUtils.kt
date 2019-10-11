@@ -2,10 +2,10 @@ package com.yzq.gao_de_map.utils
 
 import android.annotation.SuppressLint
 import android.widget.Toast
+import com.yanzhenjie.permission.Action
 import com.yanzhenjie.permission.runtime.Permission
-
-import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.common.utils.LocationUtils
+import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_permission.requestPermission
 import io.reactivex.Single
 
@@ -31,29 +31,28 @@ object MapPermissionUtils {
                 Permission.ACCESS_COARSE_LOCATION,
                 Permission.WRITE_EXTERNAL_STORAGE,
                 Permission.READ_EXTERNAL_STORAGE,
-                Permission.READ_PHONE_STATE
-            ).subscribe { hasPermission ->
+                Permission.READ_PHONE_STATE,
+                granted = Action {
+                    if (needGps) {
 
+                        if (LocationUtils.isGpsEnabled()) {
+                            emitter.onSuccess(true)
+                        } else {
+                            Toast.makeText(
+                                activity,
+                                "该功能需要获取当前位置信息，请打开GPS",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            LocationUtils.openGpsSettings()
+                        }
 
-                if (needGps) {
-
-                    if (LocationUtils.isGpsEnabled()) {
-                        emitter.onSuccess(true)
                     } else {
-                        Toast.makeText(
-                            activity,
-                            "该功能需要获取当前位置信息，请打开GPS",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        LocationUtils.openGpsSettings()
+                        emitter.onSuccess(true)
                     }
 
-                } else {
-                    emitter.onSuccess(true)
                 }
 
-
-            }
+            )
 
 
         }

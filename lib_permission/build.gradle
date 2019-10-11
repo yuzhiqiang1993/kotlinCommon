@@ -44,7 +44,6 @@ dependencies {
     /*permission*/
     api "com.yanzhenjie.permission:x:$permission"
     implementation project(path: ':lib_materialdialog')
-    implementation project(path: ':lib_rx')
     /*utils*/
     implementation "com.blankj:utilcodex:$utilcode"
 

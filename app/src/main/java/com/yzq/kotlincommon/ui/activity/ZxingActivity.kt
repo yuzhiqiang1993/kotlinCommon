@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.yanzhenjie.permission.Action
 import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
@@ -55,29 +56,25 @@ class ZxingActivity : BaseActivity() {
     }
 
     val REQUEST_LICENSE_CODE = 666
-    @SuppressLint("CheckResult", "AutoDispose")
     private fun getLicenseInfo() {
-        requestPermission(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)
-            .subscribe { hasPermission ->
-                val intent = Intent(this, CaptureActivity::class.java)
-                startActivityForResult(intent, REQUEST_LICENSE_CODE)
-            }
+        requestPermission(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE, granted = Action {
+
+            val intent = Intent(this, CaptureActivity::class.java)
+            startActivityForResult(intent, REQUEST_LICENSE_CODE)
+        })
+
     }
 
     val REQUEST_CODE_SCAN = 555
-    @SuppressLint("CheckResult", "AutoDispose")
-    private fun excuteZxing() {
-        requestPermission(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE)
-            .subscribe { hasPermission ->
+    private fun excuteZxing() =
+        requestPermission(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE, granted = Action {
+            val intent = Intent(this, CaptureActivity::class.java)
+            val zxingConfig = ZxingConfig()
+            zxingConfig.isFullScreenScan = false
+            intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig);
+            startActivityForResult(intent, REQUEST_CODE_SCAN)
 
-                val intent = Intent(this, CaptureActivity::class.java)
-                val zxingConfig = ZxingConfig()
-                zxingConfig.isFullScreenScan = false
-                intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig);
-                startActivityForResult(intent, REQUEST_CODE_SCAN)
-            }
-
-    }
+        })
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
