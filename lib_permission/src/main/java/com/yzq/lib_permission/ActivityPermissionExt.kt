@@ -2,28 +2,32 @@ package com.yzq.lib_permission
 
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ToastUtils
-import com.yanzhenjie.permission.Action
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.AndPermission.hasAlwaysDeniedPermission
 import com.yanzhenjie.permission.runtime.Permission.transformText
 import com.yzq.lib_materialdialog.showPositiveCallbackDialog
 
 
+typealias PermissionGranted = (List<String>) -> Unit
+
 /*权限申请*/
-fun AppCompatActivity.requestPermission(
+fun AppCompatActivity.requestPermissions(
     vararg permissions: String,
-    granted: Action<MutableList<String>>
+    permissionGranted: PermissionGranted
 ) {
     AndPermission.with(this)
         .runtime()
         .permission(permissions)
-        .onGranted(granted)
+        .onGranted {
+            permissionGranted(it)
+        }
         .onDenied {
             permissionDenied(it)
         }.start()
 
 
 }
+
 
 /**
  * 权限被拒绝

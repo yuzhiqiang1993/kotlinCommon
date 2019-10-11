@@ -6,14 +6,15 @@ import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_materialdialog.*
+import com.yzq.lib_rx.NextObserver
 import com.yzq.lib_rx.transform
 import io.reactivex.Observable
-import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.dialog_scroll_layout.*
 import java.util.concurrent.TimeUnit
@@ -110,34 +111,28 @@ class DialogActivity : BaseActivity() {
 
         btn_progress.setOnClickListener {
             var count = 0
+
             showProgressDialog("模拟进度")
+
+
             Observable.interval(200, TimeUnit.MILLISECONDS)
                 .transform(this)
-                .subscribe(object : Observer<Long> {
-
+                .subscribe(object : NextObserver<Long>() {
                     lateinit var d: Disposable
-                    override fun onComplete() {
-                    }
-
                     override fun onSubscribe(d: Disposable) {
                         this.d = d
                     }
 
                     override fun onNext(t: Long) {
-
+                        LogUtils.i(count)
                         count += 5
                         if (count <= 100) {
                             changeProgress(count)
                         } else {
-                            dismissProgressDialog()
                             d.dispose()
+                            dismissProgressDialog()
                         }
-
                     }
-
-                    override fun onError(e: Throwable) {
-                    }
-
                 })
 
 
@@ -179,4 +174,6 @@ class DialogActivity : BaseActivity() {
 
 
     }
+
+
 }

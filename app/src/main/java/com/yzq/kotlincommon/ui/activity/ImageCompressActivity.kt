@@ -46,11 +46,8 @@ class ImageCompressActivity : BaseActivity() {
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "图片")
         fab_camera.setOnClickListener {
+            openCamera { compressImgViewModel.compressImg(it.path) }
 
-            openCamera().subscribe { file ->
-                compressImgViewModel.compressImg(file.path)
-
-            }
         }
 
 
