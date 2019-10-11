@@ -73,7 +73,7 @@ dependencies {
     implementation "me.jessyan:progressmanager:$progressmanager_version"
 
     /*Gson*/
-    implementation "com.google.code.gson:gson:$gson"
+    api "com.google.code.gson:gson:$gson"
     /*ARouter*/
     implementation "com.alibaba:arouter-api:$arouter_api"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"

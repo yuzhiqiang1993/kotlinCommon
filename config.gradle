@@ -32,7 +32,7 @@ ext {
     rx_android = "2.1.1"
     rx_kotlin = "2.4.0"
     autodispose_version = "1.2.0"
-    gson = "2.8.5"
+    gson = "2.8.6"
     material_dialogs = "3.1.1"
     baseRecyclerViewAdapterHelper = "2.9.50"
     photoview = "2.3.0"
