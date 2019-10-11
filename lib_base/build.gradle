@@ -80,7 +80,6 @@ dependencies {
 
 
     api project(path: ':lib_base_adapter')
-    api project(path: ':lib_constants')
     api project(path: ':lib_eventbus')
     api project(path: ':lib_img')
     api project(path: ':lib_materialdialog')

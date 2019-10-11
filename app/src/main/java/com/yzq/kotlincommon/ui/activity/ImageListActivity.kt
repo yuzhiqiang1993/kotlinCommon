@@ -16,7 +16,6 @@ import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseMvvmActivity
-import com.yzq.lib_constants.HttpRequestType
 import com.yzq.lib_widget.StateView
 import kotlinx.android.synthetic.main.activity_image_list.*
 
@@ -65,7 +64,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
         layout_swipe_refresh.setOnRefreshListener {
 
-            requestType = HttpRequestType.REFRESH
+            requestType = http_refresh
 
             initData()
         }
@@ -108,7 +107,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
     override fun initData() {
 
-        if (requestType == HttpRequestType.FIRST) {
+        if (requestType == http_first) {
 
             showLoadding()
         }
@@ -122,7 +121,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
     private fun handleDataChanged(t: List<Subject>) {
 
-        if (requestType == HttpRequestType.LOAD_MORE) {
+        if (requestType == http_load_more) {
 
             if (t.size == 0) {
                 imgListAdapter.loadMoreEnd()
@@ -165,7 +164,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
         LogUtils.i("onLoadMoreRequested")
         if (vm.start <= 250) {
-            requestType = HttpRequestType.LOAD_MORE
+            requestType = http_load_more
             vm.getData()
         } else {
             imgListAdapter.loadMoreEnd()

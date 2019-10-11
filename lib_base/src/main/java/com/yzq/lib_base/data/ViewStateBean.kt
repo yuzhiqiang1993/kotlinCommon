@@ -1,6 +1,6 @@
 package com.yzq.lib_base.data
 
-import com.yzq.lib_constants.ViewStateContstants
+import com.yzq.lib_base.constants.ViewStateContstants
 
 
 /*

@@ -1,4 +1,4 @@
-package com.yzq.lib_constants
+package com.yzq.lib_base.constants
 
 /*视图状态常量*/
 object ViewStateContstants {

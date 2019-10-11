@@ -19,8 +19,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.lib_base.R
-import com.yzq.lib_constants.HttpRequestType
-import com.yzq.lib_constants.ViewStateContstants
+import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_materialdialog.*
@@ -58,7 +57,11 @@ abstract class BaseActivity : AppCompatActivity() {
     private var showBackHint = false //是否显示返回提示框
 
 
-    protected var requestType = HttpRequestType.FIRST
+    protected val http_first = 0//首次请求
+    protected val http_refresh = 1//刷新
+    protected val http_load_more = 2//加载更多
+
+    protected var requestType = http_first
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -395,11 +398,11 @@ abstract class BaseActivity : AppCompatActivity() {
     fun showNoNet() {
 
         when (requestType) {
-            HttpRequestType.FIRST -> {
+            http_first -> {
                 stateView?.showNoNet()
                 contentLayout?.visibility = View.GONE
             }
-            HttpRequestType.REFRESH -> {
+            http_refresh -> {
                 (contentLayout as SwipeRefreshLayout).isRefreshing = false
             }
         }
