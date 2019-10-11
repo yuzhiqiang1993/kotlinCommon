@@ -47,46 +47,51 @@ class DialogActivity : BaseActivity() {
             showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
         }
 
+
+
         btn_only_positive_callback.setOnClickListener {
 
-            showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作").subscribe { clickPositive ->
-
+            showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作") {
                 ToastUtils.showShort("点击了确定")
             }
         }
         btn_positive_callback.setOnClickListener {
-            showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作").subscribe { clickPositive ->
-
+            showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作") {
                 ToastUtils.showShort("点击了确定")
             }
 
         }
 
+
         btn_callback.setOnClickListener {
-            showCallbackDialog(message = "双选项双回调").subscribe { clickPositive ->
-                if (clickPositive) {
+
+            showCallbackDialog(message = "双选项双回调",
+                positiveCallback = {
                     ToastUtils.showShort("点击了确定")
-                } else {
+                },
+                negativeCallback = {
                     ToastUtils.showShort("点击了取消")
                 }
-
-            }
-
+            )
         }
+
 
         btn_single_select.setOnClickListener {
 
             val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
 
-            showSingleSelectList(title = "语言", items = datas).subscribe { selectedData ->
-                ToastUtils.showShort(selectedData)
+            showSingleSelectList(title = "语言", items = datas) { dialog, index, text ->
 
+                ToastUtils.showShort(text.toString())
             }
         }
 
+
+
         btn_input.setOnClickListener {
-            showInputDialog().subscribe { inputData ->
-                ToastUtils.showShort(inputData)
+
+            showInputDialog(positiveText = "完成") { materialDialog, charSequence ->
+                ToastUtils.showShort(charSequence.toString())
             }
 
         }

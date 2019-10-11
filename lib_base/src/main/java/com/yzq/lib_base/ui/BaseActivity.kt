@@ -271,7 +271,9 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onBackPressed() {
 
         if (showBackHint) {
-            showBackHintDialog().subscribe { clickPositive -> finish() }
+            showBackHintDialog(positiveCallback = {
+                finish()
+            })
         } else {
             finish()
         }

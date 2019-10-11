@@ -21,7 +21,6 @@ fun AppCompatActivity.requestPermission(vararg permissions: String): Single<Bool
             .onGranted {
                 singleEmitter.onSuccess(true)
 
-
             }.onDenied {
                 permissionDenied(it)
             }.start()
@@ -67,13 +66,13 @@ private fun AppCompatActivity.showPermissionDailog(permissions: List<String>) {
         positiveText = "去开启",
         negativeText = "不开启"
     )
-        .subscribe { click ->
-            AndPermission.with(this)
-                .runtime()
-                .setting()
-                .start(REQUEST_CODE_SETTING)
+    { click ->
+        AndPermission.with(this)
+            .runtime()
+            .setting()
+            .start(REQUEST_CODE_SETTING)
 
-        }
+    }
 
 
 }

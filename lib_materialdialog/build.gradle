@@ -55,7 +55,7 @@ dependencies {
     api "com.ycuwq.widgets:datepicker:$datepickerVersion"
 
     /*rx*/
-    implementation "io.reactivex.rxjava2:rxkotlin:$rx_kotlin"
+    implementation project(path: ':lib_rx')
 
 
 }

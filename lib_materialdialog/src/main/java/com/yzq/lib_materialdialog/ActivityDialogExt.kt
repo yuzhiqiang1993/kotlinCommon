@@ -1,11 +1,15 @@
 package com.yzq.lib_materialdialog
 
+import android.text.TextUtils
 import androidx.core.app.ComponentActivity
+import com.afollestad.materialdialogs.DialogCallback
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
+import com.afollestad.materialdialogs.input.InputCallback
 import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
+import com.afollestad.materialdialogs.list.ItemListener
 import com.afollestad.materialdialogs.list.listItems
 import com.ycuwq.datepicker.date.DatePicker
 import com.ycuwq.datepicker.date.YearPicker
@@ -55,23 +59,14 @@ fun ComponentActivity.showBaseDialog(
 fun ComponentActivity.showOnlyPostiveCallBackDialog(
     title: String = HINT,
     message: String,
-    positiveText: String = SURE
-): Single<Boolean> {
+    positiveText: String = SURE,
+    callback: DialogCallback
+) {
 
-    return Single.create { singleEmitter ->
-
-        getNewDialog().show {
-            title(text = title)
-            message(text = message)
-            positiveButton(text = positiveText)
-
-            positiveButton {
-                singleEmitter.onSuccess(true)
-            }
-
-        }
-
-
+    getNewDialog().show {
+        title(text = title)
+        message(text = message)
+        positiveButton(text = positiveText, click = callback)
     }
 
 
@@ -79,31 +74,28 @@ fun ComponentActivity.showOnlyPostiveCallBackDialog(
 
 
 /**
- * 有取消和确定按钮的弹窗 确定按钮有回调
  *
- * @param title  标题
- * @param message  信息
- * @param positiveText 确定按钮文本
- * @param negativeText  取消按钮文本
+ * @receiver ComponentActivity
+ * @param title String  标题
+ * @param message String  显示内容
+ * @param positiveText String  确定文本
+ * @param negativeText String  取消文本
+ * @param positiveCallback Function1<MaterialDialog, Unit>  确定回调
  */
 fun ComponentActivity.showPositiveCallbackDialog(
     title: String = HINT,
     message: String,
     positiveText: String = SURE,
-    negativeText: String = CANCLE
-): Single<Boolean> {
+    negativeText: String = CANCLE,
+    positiveCallback: DialogCallback
+) {
 
-    return Single.create { singleEmitter ->
 
-        getNewDialog().show {
-            title(text = title)
-            message(text = message)
-            positiveButton(text = positiveText)
-            negativeButton(text = negativeText)
-            positiveButton {
-                singleEmitter.onSuccess(true)
-            }
-        }
+    getNewDialog().show {
+        title(text = title)
+        message(text = message)
+        positiveButton(text = positiveText, click = positiveCallback)
+        negativeButton(text = negativeText)
 
 
     }
@@ -124,25 +116,17 @@ fun ComponentActivity.showCallbackDialog(
     title: String = HINT,
     message: String,
     positiveText: String = SURE,
-    negativeText: String = CANCLE
-): Single<Boolean> {
-    return Single.create { singleEmitter ->
-
-        getNewDialog().show {
-            title(text = title)
-            message(text = message)
-            positiveButton(text = positiveText)
-            negativeButton(text = negativeText)
-            positiveButton {
-                singleEmitter.onSuccess(true)
-            }
-            negativeButton {
-                singleEmitter.onSuccess(false)
-
-            }
-        }
+    negativeText: String = CANCLE,
+    positiveCallback: DialogCallback,
+    negativeCallback: DialogCallback
+) {
 
 
+    getNewDialog().show {
+        title(text = title)
+        message(text = message)
+        positiveButton(text = positiveText, click = positiveCallback)
+        negativeButton(text = negativeText, click = negativeCallback)
     }
 
 
@@ -161,21 +145,18 @@ fun ComponentActivity.showBackHintDialog(
     title: String = HINT,
     message: String = BACK_HINT,
     positiveText: String = SURE,
+    positiveCallback: DialogCallback,
     negativeText: String = CANCLE
-): Single<Boolean> {
+) {
 
-    return Single.create { singleEmitter ->
 
-        getNewDialog().show {
+    getNewDialog().show {
 
-            title(text = title)
-            message(text = message)
-            positiveButton(text = positiveText)
-            negativeButton(text = negativeText)
-            positiveButton {
-                singleEmitter.onSuccess(true)
-            }
-        }
+        title(text = title)
+        message(text = message)
+        positiveButton(text = positiveText)
+        negativeButton(text = negativeText, click = positiveCallback)
+
 
     }
 
@@ -193,26 +174,19 @@ fun ComponentActivity.showBackHintDialog(
 fun ComponentActivity.showSingleSelectList(
     title: String = HINT,
     message: String = "",
-    items: List<String>
+    items: List<String>,
+    listListener: ItemListener
 
-): Single<String> {
-
-    return Single.create { singleEmitter ->
-
-        getNewDialog().show {
-            title(text = title)
-            if (!android.text.TextUtils.isEmpty(message)) {
-                message(text = message)
-            }
-            listItems(items = items) { dialog, index, text ->
-                singleEmitter.onSuccess(text.toString())
-            }
-
+) {
+    getNewDialog().show {
+        title(text = title)
+        if (!TextUtils.isEmpty(message)) {
+            message(text = message)
         }
+        listItems(items = items, selection = listListener)
 
 
     }
-
 
 }
 
@@ -229,6 +203,8 @@ fun ComponentActivity.showSingleSelectList(
  * @param inputType  输入类型
  * @param allowEmptyInput  是否允许输入空
  */
+
+
 fun ComponentActivity.showInputDialog(
     title: String = HINT,
     positiveText: String = SURE,
@@ -237,30 +213,27 @@ fun ComponentActivity.showInputDialog(
     inputHint: String = "",
     prefill: String = "",
     inputType: Int = android.text.InputType.TYPE_CLASS_TEXT,
-    allowEmptyInput: Boolean = false
-): Single<String> {
-    return Single.create<String> { singleEmitter ->
+    allowEmptyInput: Boolean = false,
+    waitForPositiveButton: Boolean = true,
+    inputCallback: InputCallback
+) {
+    getNewDialog().show {
 
-        getNewDialog().show {
-
-            title(text = title)
-            if (!android.text.TextUtils.isEmpty(message)) {
-                message(text = message)
-            }
-            positiveButton(text = positiveText)
-            negativeButton(text = negativeText)
-
-            input(
-                inputHint,
-                prefill = prefill,
-                allowEmpty = allowEmptyInput,
-                inputType = inputType
-            ) { materialDialog, charSequence ->
-                singleEmitter.onSuccess(charSequence.toString().trim())
-
-            }
-
+        title(text = title)
+        if (!TextUtils.isEmpty(message)) {
+            message(text = message)
         }
+        positiveButton(text = positiveText)
+        negativeButton(text = negativeText)
+
+        input(
+            hint = inputHint,
+            prefill = prefill,
+            allowEmpty = allowEmptyInput,
+            inputType = inputType,
+            waitForPositiveButton = waitForPositiveButton,
+            callback = inputCallback
+        )
 
 
     }
@@ -298,15 +271,13 @@ fun ComponentActivity.selectYear(
 
         getNewDialog().show {
             title(text = title)
-            positiveButton(text = positiveText)
-            negativeButton(text = negativeText)
             customView(viewRes = R.layout.layout_year_picker, scrollable = false)
-            positiveButton {
+            positiveButton(text = positiveText, click = {
                 val yearPicker = it.getCustomView().findViewById<YearPicker>(R.id.year_picker)
 
                 singleEmitter.onSuccess(yearPicker.selectedYear.toString())
-            }
-
+            })
+            negativeButton(text = negativeText)
         }
 
 
@@ -329,14 +300,13 @@ fun ComponentActivity.selectDate(
     negativeText: String = CANCLE
 ): Single<String> {
 
-    return io.reactivex.Single.create { singleEmitter ->
+    return Single.create { singleEmitter ->
 
         getNewDialog().show {
             title(text = title)
-            positiveButton(text = positiveText)
-            negativeButton(text = negativeText)
             customView(viewRes = R.layout.layout_date_picker, scrollable = false)
-            positiveButton {
+
+            positiveButton(text = positiveText, click = {
                 val datePicker = it.findViewById<DatePicker>(R.id.date_picker)
                 var selectedMonth = datePicker.month.toString()
                 var selectedDay = datePicker.day.toString()
@@ -355,7 +325,9 @@ fun ComponentActivity.selectDate(
                 singleEmitter.onSuccess(selectedDate)
 
 
-            }
+            })
+            negativeButton(text = negativeText)
+
 
         }
 
@@ -378,7 +350,7 @@ fun ComponentActivity.selectHourAndMinute(
     positiveText: String = SURE,
     negativeText: String = CANCLE
 ): Single<String> {
-    return io.reactivex.Single.create { singleEmitter ->
+    return Single.create { singleEmitter ->
 
         getNewDialog().show {
             title(text = title)

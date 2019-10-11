@@ -62,10 +62,9 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemC
             }
 
             R.id.tv_user -> {
-                showInputDialog(title = "修改")
-                    .subscribe { input ->
-                        vm.updateUser(operationItem.id, input)
-                    }
+                showInputDialog(title = "修改") { dialog, input ->
+                    vm.updateUser(operationItem.id, input.toString())
+                }
             }
         }
     }
