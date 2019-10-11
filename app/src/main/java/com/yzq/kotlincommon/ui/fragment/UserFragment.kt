@@ -1,9 +1,10 @@
 package com.yzq.kotlincommon.ui.fragment
 
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.yzq.kotlincommon.R
 import com.yzq.lib_base.ui.BaseFragment
-import com.yzq.lib_materialdialog.showBaseDialog
+import com.yzq.lib_materialdialog.showCallbackDialog
 import kotlinx.android.synthetic.main.fragment_user.*
 
 class UserFragment : BaseFragment() {
@@ -19,7 +20,15 @@ class UserFragment : BaseFragment() {
         LogUtils.i("UserFragment")
         btn_show_dialog.setOnClickListener {
 
-            activity?.showBaseDialog(message = "这是在Fragment中调Activity的弹窗")
+            activity?.showCallbackDialog(
+                message = "这是在Fragment中调Activity的弹窗",
+                positiveCallback = {
+                    ToastUtils.showShort("点击了确定")
+                },
+                negativeCallback = {
+                    ToastUtils.showShort("点击了取消")
+                }
+            )
         }
 
     }

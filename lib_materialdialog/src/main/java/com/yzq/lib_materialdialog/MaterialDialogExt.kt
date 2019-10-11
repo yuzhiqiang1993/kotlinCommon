@@ -26,7 +26,7 @@ fun MaterialDialog.loading(): MaterialDialog {
  *
  * @param loaddingMessage
  */
-fun MaterialDialog.setLoadingMessage(loaddingMessage: String= LOADING): MaterialDialog {
+fun MaterialDialog.setLoadingMessage(loaddingMessage: String = LOADING): MaterialDialog {
 
     val loaddingMessageTv =
         getCustomView().findViewById<AppCompatTextView>(R.id.loadding_message_tv)

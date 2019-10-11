@@ -1,6 +1,5 @@
 package com.yzq.lib_permission
 
-import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.ToastUtils
 import com.yanzhenjie.permission.Action

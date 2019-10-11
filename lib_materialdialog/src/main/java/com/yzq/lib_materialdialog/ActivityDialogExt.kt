@@ -14,7 +14,6 @@ import com.afollestad.materialdialogs.list.listItems
 import com.ycuwq.datepicker.date.DatePicker
 import com.ycuwq.datepicker.date.YearPicker
 import com.ycuwq.datepicker.time.HourAndMinutePicker
-import io.reactivex.Single
 
 
 /*获取一个新的Dialog实例*/
@@ -260,27 +259,25 @@ fun ComponentActivity.getProgressDialog(title: String): MaterialDialog {
 }
 
 
+typealias DatePickerListener = (String) -> Unit
+
 /*选择年份*/
 fun ComponentActivity.selectYear(
     title: String = "选择年份",
     positiveText: String = SURE,
-    negativeText: String = CANCLE
-): Single<String> {
+    negativeText: String = CANCLE,
+    datePickerListener: DatePickerListener
+) {
 
-    return Single.create { singleEmitter ->
+    getNewDialog().show {
+        title(text = title)
+        customView(viewRes = R.layout.layout_year_picker, scrollable = false)
+        negativeButton(text = negativeText)
+        positiveButton(text = positiveText) {
+            val yearPicker = it.getCustomView().findViewById<YearPicker>(R.id.year_picker)
+            datePickerListener(yearPicker.selectedYear.toString())
 
-        getNewDialog().show {
-            title(text = title)
-            customView(viewRes = R.layout.layout_year_picker, scrollable = false)
-            positiveButton(text = positiveText, click = {
-                val yearPicker = it.getCustomView().findViewById<YearPicker>(R.id.year_picker)
-
-                singleEmitter.onSuccess(yearPicker.selectedYear.toString())
-            })
-            negativeButton(text = negativeText)
         }
-
-
     }
 
 
@@ -297,36 +294,30 @@ fun ComponentActivity.selectYear(
 fun ComponentActivity.selectDate(
     title: String = "选择日期",
     positiveText: String = SURE,
-    negativeText: String = CANCLE
-): Single<String> {
-
-    return Single.create { singleEmitter ->
-
-        getNewDialog().show {
-            title(text = title)
-            customView(viewRes = R.layout.layout_date_picker, scrollable = false)
-
-            positiveButton(text = positiveText, click = {
-                val datePicker = it.findViewById<DatePicker>(R.id.date_picker)
-                var selectedMonth = datePicker.month.toString()
-                var selectedDay = datePicker.day.toString()
-
-                if (datePicker.month < 10) {
-                    selectedMonth = "0${datePicker.month}"
-                }
-
-                if (datePicker.day < 10) {
-                    selectedDay = "0${datePicker.day}"
-                }
-
-                val selectedDate = "${datePicker.year}-${selectedMonth}-${selectedDay}"
+    negativeText: String = CANCLE,
+    datePickerListener: DatePickerListener
+) {
 
 
-                singleEmitter.onSuccess(selectedDate)
+    getNewDialog().show {
+        title(text = title)
+        customView(viewRes = R.layout.layout_date_picker, scrollable = false)
+        negativeButton(text = negativeText)
+        positiveButton(text = positiveText) {
+            val datePicker = it.findViewById<DatePicker>(R.id.date_picker)
+            var selectedMonth = datePicker.month.toString()
+            var selectedDay = datePicker.day.toString()
 
+            if (datePicker.month < 10) {
+                selectedMonth = "0${datePicker.month}"
+            }
 
-            })
-            negativeButton(text = negativeText)
+            if (datePicker.day < 10) {
+                selectedDay = "0${datePicker.day}"
+            }
+
+            val selectedDate = "${datePicker.year}-${selectedMonth}-${selectedDay}"
+            datePickerListener(selectedDate)
 
 
         }
@@ -340,43 +331,44 @@ fun ComponentActivity.selectDate(
 
 /**
  * 选择小时和分钟
- *
- * @param title  标题
- * @param positiveText 确定按钮文本
- * @param negativeText  取消按钮文本
+ * @receiver ComponentActivity
+ * @param title String  标题
+ * @param positiveText String  确定按钮文本
+ * @param negativeText String  取消按钮文本
+ * @param datePickerListener Function1<String, Unit>  回调
  */
 fun ComponentActivity.selectHourAndMinute(
     title: String = "选择时间",
     positiveText: String = SURE,
-    negativeText: String = CANCLE
-): Single<String> {
-    return Single.create { singleEmitter ->
-
-        getNewDialog().show {
-            title(text = title)
-            positiveButton(text = positiveText)
-            negativeButton(text = negativeText)
-            customView(viewRes = R.layout.layout_hour_minute_picker, scrollable = false)
-            positiveButton {
-
-                val hourAndMinutePicker =
-                    it.findViewById<HourAndMinutePicker>(R.id.hour_minute_picker)
-                var selectedHour = hourAndMinutePicker.hour.toString()
-                var selectedMinute = hourAndMinutePicker.minute.toString()
-                if (hourAndMinutePicker.hour < 10) {
-                    selectedHour = "0${hourAndMinutePicker.hour}"
-                }
-
-                if (hourAndMinutePicker.minute < 10) {
-                    selectedMinute = "0${hourAndMinutePicker.minute}"
-                }
+    negativeText: String = CANCLE,
+    datePickerListener: DatePickerListener
+) {
 
 
-                val selectedTime = "${selectedHour}:${selectedMinute}"
+    getNewDialog().show {
+        title(text = title)
+        customView(viewRes = R.layout.layout_hour_minute_picker, scrollable = false)
+        negativeButton(text = negativeText)
+        positiveButton(text = positiveText) {
 
-                singleEmitter.onSuccess(selectedTime)
+            val hourAndMinutePicker =
+                it.findViewById<HourAndMinutePicker>(R.id.hour_minute_picker)
+            var selectedHour = hourAndMinutePicker.hour.toString()
+            var selectedMinute = hourAndMinutePicker.minute.toString()
+            if (hourAndMinutePicker.hour < 10) {
+                selectedHour = "0${hourAndMinutePicker.hour}"
             }
-        }
-    }
 
+            if (hourAndMinutePicker.minute < 10) {
+                selectedMinute = "0${hourAndMinutePicker.minute}"
+            }
+
+            val selectedTime = "${selectedHour}:${selectedMinute}"
+
+            datePickerListener(selectedTime)
+        }
+
+
+    }
 }
+

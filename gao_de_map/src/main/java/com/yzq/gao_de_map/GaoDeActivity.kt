@@ -40,7 +40,6 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
 
             MapPermissionUtils.checkLocationPermission(true, this)
                 .subscribe { hasPermission ->
-
                     showLoadingDialog("正在获取位置信息")
 
                     vm.startLocation()

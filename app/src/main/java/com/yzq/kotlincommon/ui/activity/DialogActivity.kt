@@ -144,24 +144,21 @@ class DialogActivity : BaseActivity() {
         }
 
         btn_select_year.setOnClickListener {
-            selectYear().subscribe { selectedYear ->
-                ToastUtils.showShort(
-                    selectedYear
-                )
+
+            selectYear {
+                ToastUtils.showShort(it)
             }
+
         }
         btn_select_date.setOnClickListener {
-            selectDate().subscribe { selectedDate ->
-                ToastUtils.showShort(
-                    selectedDate
-                )
-            }
+
+
+            selectDate { ToastUtils.showShort(it) }
+
         }
         btn_select_time.setOnClickListener {
-            selectHourAndMinute().subscribe { selectedHourAndMinute ->
-                ToastUtils.showShort(
-                    selectedHourAndMinute
-                )
+            selectHourAndMinute {
+                ToastUtils.showShort(it)
             }
         }
 

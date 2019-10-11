@@ -52,7 +52,6 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemC
     }
 
 
-    @SuppressLint("AutoDispose")
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
         operationItem = roomAdapter.data[position]

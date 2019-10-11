@@ -11,6 +11,7 @@ import java.io.File
 
 /*调相机拍照*/
 fun AppCompatActivity.openCamera(): Single<File> {
+
     return Single.create { singleEmitter ->
 
         requestPermission(
