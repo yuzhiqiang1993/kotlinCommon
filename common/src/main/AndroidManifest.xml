@@ -12,4 +12,5 @@
         android:largeHeap="true"
         android:theme="@style/AppTheme" />
 
+
 </manifest>

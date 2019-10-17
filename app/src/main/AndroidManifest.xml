@@ -17,8 +17,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
-        <activity android:name=".ui.activity.RoomActivity"></activity>
-        <activity android:name=".ui.activity.CoroutinesActivity"></activity>
+        <activity
+            android:name=".ui.activity.RoomActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.CoroutinesActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.FragmentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
@@ -56,13 +62,16 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".ui.activity.AutodisposeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

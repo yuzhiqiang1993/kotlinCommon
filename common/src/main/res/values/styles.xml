@@ -23,4 +23,11 @@
 
     </style>
 
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+
 </resources>
