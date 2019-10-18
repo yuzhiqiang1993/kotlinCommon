@@ -62,7 +62,7 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
 
         vm.loginData.observe(this, Observer<Boolean> {
             ARouter.getInstance()
-                .build(com.yzq.common.constants.RoutePath.Main.MAIN)
+                .build(RoutePath.Main.MAIN)
                 .navFinish(this@LoginActivity)
 
         })
