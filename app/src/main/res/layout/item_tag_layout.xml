@@ -4,7 +4,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/len_6"
-    android:layout_marginLeft="@dimen/len_6"
     android:layout_marginTop="@dimen/len_6"
     android:background="@drawable/tag_bg"
     android:gravity="center"
@@ -13,6 +12,5 @@
     android:paddingTop="@dimen/len_2"
     android:paddingRight="@dimen/len_8"
     android:paddingBottom="@dimen/len_2"
-    android:text="测试"
     android:textColor="@color/colorPrimary" />
 

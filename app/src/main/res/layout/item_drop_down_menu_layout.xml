@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/len_10"
-        android:text="测试"
+        android:paddingRight="@dimen/len_10"
         android:textColor="@color/primary_text" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

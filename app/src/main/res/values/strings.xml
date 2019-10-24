@@ -15,5 +15,6 @@
     <string name="menu_slideshow">幻灯片</string>
     <string name="menu_tools">工具</string>
     <string name="menu_share">分享</string>
+    <string name="title">标题</string>
 
 </resources>
