@@ -192,9 +192,28 @@ class CompressImgViewModel : BaseViewModel() {
     /*只压缩图片*/
     private fun compressImg(path: String): String {
 
-
         LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
+        /*获取图片旋转的角度*/
+        val degree = readPictureDegree(path)
         var selectBitMap = ImageUtils.getBitmap(path)
+
+        if (degree != 0) {
+            LogUtils.i("图片旋转了，进行调整")
+            val matrix = Matrix()
+            matrix.postRotate(degree.toFloat())
+            selectBitMap =
+                Bitmap.createBitmap(
+                    selectBitMap,
+                    0,
+                    0,
+                    selectBitMap.width,
+                    selectBitMap.height,
+                    matrix,
+                    true
+                )
+
+        }
+
 
         val defaultW = selectBitMap.width
         val defaultH = selectBitMap.height
