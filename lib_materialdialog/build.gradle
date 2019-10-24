@@ -53,6 +53,7 @@ dependencies {
 
     /*Datepicker*/
     api "com.ycuwq.widgets:datepicker:$datepickerVersion"
+    implementation project(path: ':lib_resource')
 
 
 }

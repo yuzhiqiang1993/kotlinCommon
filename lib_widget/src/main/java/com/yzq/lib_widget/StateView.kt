@@ -16,7 +16,14 @@ import kotlinx.android.synthetic.main.layout_state_view.view.*
  *
  */
 
-class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
+
+typealias RetryListener = () -> Unit
+
+class StateView(
+    context: Context?,
+    attrs: AttributeSet?,
+    defStyleAttr: Int
+) :
     LinearLayout(context, attrs, defStyleAttr) {
 
 
@@ -25,22 +32,12 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
 
 
     private var view: View
-    private var retryListener: RetryListener? = null
 
     init {
 
 
         view = LayoutInflater.from(context).inflate(R.layout.layout_state_view, this)
 
-        btn_retry.setOnClickListener({
-            showLoading()
-            if (retryListener == null) {
-                showNoData()
-            } else {
-                retryListener?.retry()
-            }
-
-        })
         showLoading()
 
     }
@@ -92,14 +89,12 @@ class StateView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) :
     }
 
 
-    fun setRetryListener(retryListener: RetryListener) {
-        this.retryListener = retryListener
+    fun Retry(retry: RetryListener) {
+        btn_retry.setOnClickListener({
+            showLoading()
+            retry()
+        })
 
     }
 
-
-    interface RetryListener {
-
-        fun retry()
-    }
 }

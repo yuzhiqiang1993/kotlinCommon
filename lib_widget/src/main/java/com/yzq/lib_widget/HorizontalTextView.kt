@@ -68,7 +68,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         tv_title.text = titleStr
 
         if (contentLeft) {
-            tv_content.gravity = Gravity.LEFT
+            tv_content.gravity = Gravity.START
         }
         tv_content.setText(contentStr)
         tv_content.setHint(hintStr)

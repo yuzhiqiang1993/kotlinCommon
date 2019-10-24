@@ -9,13 +9,12 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
-import com.yzq.lib_base.ui.BaseMvvmActivity
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MovieAdapter
 import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.view_model.MovieViewModel
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_widget.StateView
+import com.yzq.lib_base.ui.BaseMvvmActivity
 import kotlinx.android.synthetic.main.activity_movie_list.*
 
 
@@ -48,19 +47,11 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
     override fun initWidget() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "电影列表")
-
-       // init(recy)
-
         recy.init()
         initStateView(state_view, recy)
-
-        state_view.setRetryListener(object : StateView.RetryListener {
-            override fun retry() {
-                initData()
-            }
-
-        })
-
+        state_view.Retry {
+            initData()
+        }
     }
 
 

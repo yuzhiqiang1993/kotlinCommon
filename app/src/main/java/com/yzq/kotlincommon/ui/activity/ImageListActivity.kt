@@ -16,7 +16,6 @@ import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseMvvmActivity
-import com.yzq.lib_widget.StateView
 import kotlinx.android.synthetic.main.activity_image_list.*
 
 
@@ -54,12 +53,9 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
         initStateView(state_view, layout_swipe_refresh, true)
 
-        state_view.setRetryListener(object : StateView.RetryListener {
-            override fun retry() {
+        state_view.Retry {
                 initData()
-            }
-
-        })
+        }
 
 
         layout_swipe_refresh.setOnRefreshListener {

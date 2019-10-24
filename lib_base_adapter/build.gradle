@@ -50,6 +50,8 @@ dependencies {
 
     /*utils*/
     implementation "com.blankj:utilcodex:$utilcode"
+    implementation project(path: ':lib_resource')
+
 
 }
 

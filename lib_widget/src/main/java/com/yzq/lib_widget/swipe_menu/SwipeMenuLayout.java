@@ -48,7 +48,7 @@ public class SwipeMenuLayout extends ViewGroup {
     private boolean isUserSwiped;
 
     //存储的是当前正在展开的View
-    private static SwipeMenuLayout mViewCache;
+    private SwipeMenuLayout mViewCache;
 
     //防止多只手指一起滑我的flag 在每次down里判断， touch事件结束清空
     private static boolean isTouching;
@@ -134,7 +134,7 @@ public class SwipeMenuLayout extends ViewGroup {
      *
      * @return
      */
-    public static SwipeMenuLayout getViewCache() {
+    public SwipeMenuLayout getViewCache() {
         return mViewCache;
     }
 
