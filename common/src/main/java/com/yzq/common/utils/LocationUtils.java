@@ -309,10 +309,9 @@ public final class LocationUtils {
             return true;
         } else if (isNewer && !isLessAccurate) {
             return true;
-        } else if (isNewer && !isSignificantlyLessAccurate && isFromSameProvider) {
-            return true;
+        } else {
+            return isNewer && !isSignificantlyLessAccurate && isFromSameProvider;
         }
-        return false;
     }
 
     /**
@@ -365,6 +364,8 @@ public final class LocationUtils {
                 case LocationProvider.TEMPORARILY_UNAVAILABLE:
                     Log.d("LocationUtils", "当前GPS状态为暂停服务状态");
                     break;
+
+                default:
             }
         }
 

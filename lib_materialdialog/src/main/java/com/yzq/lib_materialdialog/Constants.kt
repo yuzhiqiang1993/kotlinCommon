@@ -1,7 +1,7 @@
 package com.yzq.lib_materialdialog
 
-val HINT = "提示"
-val SURE = "确定"
-val CANCLE = "取消"
-val LOADING = "请求中..."
-val BACK_HINT = "返回不会保存本页数据，确定返回？"
+const val HINT = "提示"
+const val SURE = "确定"
+const val CANCLE = "取消"
+const val LOADING = "请求中..."
+const val BACK_HINT = "返回不会保存本页数据，确定返回？"

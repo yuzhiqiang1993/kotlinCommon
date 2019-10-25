@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yzq.lib_materialdialog" />
+<manifest package="com.yzq.lib_materialdialog" />

@@ -22,7 +22,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     lateinit var lifecycleOwner: LifecycleOwner
 
 
-    var viewStateBean = ViewStateBean()
+    private var viewStateBean = ViewStateBean()
     var loadState = MutableLiveData<ViewStateBean>()
 
 
@@ -104,34 +104,34 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
      * 显示弹窗逻辑
      * @param content String
      */
-    fun showloadingDialog(content: String) {
+    private fun showloadingDialog(content: String) {
         viewStateBean.message = content
         viewStateBean.state = ViewStateContstants.showLoaddingDialog
 
         loadState.value = viewStateBean
     }
 
-    fun dismissLoadingDialog() {
+    private fun dismissLoadingDialog() {
         viewStateBean.message = ""
         viewStateBean.state = ViewStateContstants.dismissLoaddingDialog
         loadState.value = viewStateBean
     }
 
 
-    fun showErrorDialog(content: String) {
+    private fun showErrorDialog(content: String) {
         viewStateBean.message = content
         viewStateBean.state = ViewStateContstants.showErrorDialog
         loadState.value = viewStateBean
     }
 
-    fun showNoNet() {
+    private fun showNoNet() {
         viewStateBean.message = ""
         viewStateBean.state = ViewStateContstants.showNoNet
         loadState.value = viewStateBean
     }
 
 
-    fun showError(content: String) {
+    private fun showError(content: String) {
         viewStateBean.message = content
         viewStateBean.state = ViewStateContstants.showError
         loadState.value = viewStateBean

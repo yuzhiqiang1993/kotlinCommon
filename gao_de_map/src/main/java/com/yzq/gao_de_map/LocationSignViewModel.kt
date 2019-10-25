@@ -17,7 +17,7 @@ import com.yzq.lib_base.view_model.BaseViewModel
 
 class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
-    private var locationClient: AMapLocationClient
+    private var locationClient: AMapLocationClient = AMapLocationClient(com.yzq.lib_base.AppContext)
 
 
     var locationData = MutableLiveData<AMapLocation>()
@@ -25,7 +25,6 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
     init {
         /*初始化定位*/
-        locationClient = AMapLocationClient(com.yzq.lib_base.AppContext)
         locationClient.setLocationOption(initOption())
         locationClient.setLocationListener(this)
     }
@@ -34,7 +33,7 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
     /*签到场景配置*/
     private fun initOption(): AMapLocationClientOption {
         val mOption = AMapLocationClientOption()
-        mOption.setLocationPurpose(AMapLocationClientOption.AMapLocationPurpose.SignIn)
+        mOption.locationPurpose = AMapLocationClientOption.AMapLocationPurpose.SignIn
 
         return mOption
 
@@ -130,10 +129,10 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
 
     override fun onDestory() {
+        super.onDestory()
         LogUtils.i("onDestroy")
         locationClient.stopLocation()
         locationClient.onDestroy()
-
     }
 
 

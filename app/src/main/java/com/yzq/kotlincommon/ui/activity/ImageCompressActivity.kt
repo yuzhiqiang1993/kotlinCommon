@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.activity_image_compress.*
 class ImageCompressActivity : BaseActivity() {
 
 
-    lateinit var compressImgViewModel: CompressImgViewModel
+    private lateinit var compressImgViewModel: CompressImgViewModel
 
 
     override fun getContentLayoutId(): Int {

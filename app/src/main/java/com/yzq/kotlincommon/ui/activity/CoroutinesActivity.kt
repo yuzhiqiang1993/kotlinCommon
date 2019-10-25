@@ -27,7 +27,7 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
         initToolbar(toolbar, "Coroutine 协程")
         initStateView(state_view, tv)
 
-        state_view.Retry {
+        state_view.retry {
             initData()
         }
 

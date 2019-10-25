@@ -41,10 +41,10 @@ class EventBusUtil private constructor() {
             EventBus.getDefault().post(eventMsg)
         }
 
+
         /**
-         * 发布粘性订阅事件
-         *
-         * @param event 事件对象
+         * 粘性广播
+         * @param eventMsg EventMsg
          */
         fun postSticky(eventMsg: EventMsg) {
             EventBus.getDefault().postSticky(eventMsg)

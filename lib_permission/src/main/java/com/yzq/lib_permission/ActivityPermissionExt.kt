@@ -47,7 +47,7 @@ private fun AppCompatActivity.permissionDenied(permissions: List<String>) {
 }
 
 
-private val REQUEST_CODE_SETTING = 1
+private const val REQUEST_CODE_SETTING = 1
 /**
  * 用户拒绝权限后的提示框
  *

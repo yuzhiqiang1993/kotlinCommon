@@ -21,15 +21,15 @@ object RSAUtil {
 
 
     //加密方式
-    private val KEY_RSA = "RSA"
+    private const val KEY_RSA = "RSA"
     //公钥
-    private val KEY_RSA_PUBLICKEY = "RSAPublicKey"
+    private const val KEY_RSA_PUBLICKEY = "RSAPublicKey"
     //私钥
-    private val KEY_RSA_PRIVATEKEY = "RSAPrivateKey"
+    private const val KEY_RSA_PRIVATEKEY = "RSAPrivateKey"
     //签名算法
-    private val KEY_RSA_SIGNATURE = "SHA256withRSA"
+    private const val KEY_RSA_SIGNATURE = "SHA256withRSA"
     //加密方式，算法，填充方式
-    private val cipherMode = "RSA/ECB/PKCS1Padding"
+    private const val cipherMode = "RSA/ECB/PKCS1Padding"
 
 
     /**
@@ -117,7 +117,7 @@ object RSAUtil {
      * @param key 需要Base64解码的字符串
      * @return 字节数组
      */
-    fun Base64Decode2Bytes(key: String): ByteArray {
+    private fun base64Decode2Bytes(key: String): ByteArray {
         return Base64.decode(key)
     }
 
@@ -127,7 +127,7 @@ object RSAUtil {
      * @param key 需要Base64编码的字节数组
      * @return 字符串
      */
-    fun base64Encode2Str(key: ByteArray): String {
+    private fun base64Encode2Str(key: ByteArray): String {
         return Base64.encode(key)
     }
 
@@ -144,13 +144,12 @@ object RSAUtil {
     fun encryptByPublic(encryptingStr: String, publicKeyStr: String): String {
 
         // 将公钥由字符串转为UTF-8格式的字节数组
-        val publicKeyBytes = Base64Decode2Bytes(publicKeyStr)
+        val publicKeyBytes = base64Decode2Bytes(publicKeyStr)
         // 获得公钥
         val keySpec = X509EncodedKeySpec(publicKeyBytes)
         // 取得待加密数据
         val data = encryptingStr.toByteArray()
-        val factory: KeyFactory
-        factory = KeyFactory.getInstance(KEY_RSA)
+        val factory: KeyFactory = KeyFactory.getInstance(KEY_RSA)
         val publicKey = factory.generatePublic(keySpec)
         // 对数据加密
         val cipher = Cipher.getInstance(cipherMode)
@@ -171,11 +170,11 @@ object RSAUtil {
     fun decryptByPrivate(encryptedStr: String, privateKeyStr: String): String {
 
         // 对私钥解密
-        val privateKeyBytes = Base64Decode2Bytes(privateKeyStr)
+        val privateKeyBytes = base64Decode2Bytes(privateKeyStr)
         // 获得私钥
         val keySpec = PKCS8EncodedKeySpec(privateKeyBytes)
         // 获得待解密数据
-        val data = Base64Decode2Bytes(encryptedStr)
+        val data = base64Decode2Bytes(encryptedStr)
         val factory = KeyFactory.getInstance(KEY_RSA)
         val privateKey = factory.generatePrivate(keySpec)
         // 对数据解密
@@ -196,7 +195,7 @@ object RSAUtil {
     @Throws(Exception::class)
     fun encryptByPrivate(encryptingStr: String, privateKeyStr: String): String {
 
-        val privateKeyBytes = Base64Decode2Bytes(privateKeyStr)
+        val privateKeyBytes = base64Decode2Bytes(privateKeyStr)
         // 获得私钥
         val keySpec = PKCS8EncodedKeySpec(privateKeyBytes)
         // 取得待加密数据
@@ -222,11 +221,11 @@ object RSAUtil {
     fun decryptByPublic(encryptedStr: String, publicKeyStr: String): String {
 
         // 对公钥解密
-        val publicKeyBytes = Base64Decode2Bytes(publicKeyStr)
+        val publicKeyBytes = base64Decode2Bytes(publicKeyStr)
         // 取得公钥
         val keySpec = X509EncodedKeySpec(publicKeyBytes)
         // 取得待加密数据
-        val data = Base64Decode2Bytes(encryptedStr)
+        val data = base64Decode2Bytes(encryptedStr)
         val factory = KeyFactory.getInstance(KEY_RSA)
         val publicKey = factory.generatePublic(keySpec)
         // 对数据解密
@@ -244,13 +243,13 @@ object RSAUtil {
      * @param privateKey   私钥
      * @return 经过Base64编码后的签名数据
      */
-    fun sign(encryptedStr: String, privateKey: String): String {
+    private fun sign(encryptedStr: String, privateKey: String): String {
 
 
         //将私钥加密数据字符串转换为字节数组
         val data = encryptedStr.toByteArray()
         // 解密由base64编码的私钥
-        val bytes = Base64Decode2Bytes(privateKey)
+        val bytes = base64Decode2Bytes(privateKey)
         // 构造PKCS8EncodedKeySpec对象
         val pkcs = PKCS8EncodedKeySpec(bytes)
         // 指定的加密算法
@@ -278,7 +277,7 @@ object RSAUtil {
         //将私钥加密数据字符串转换为字节数组
         val data = encryptedStr.toByteArray()
         // 解密由base64编码的公钥
-        val bytes = Base64Decode2Bytes(publicKey)
+        val bytes = base64Decode2Bytes(publicKey)
         // 构造X509EncodedKeySpec对象
         val keySpec = X509EncodedKeySpec(bytes)
         // 指定的加密算法
@@ -290,6 +289,6 @@ object RSAUtil {
         signature.initVerify(key)
         signature.update(data)
 
-        return signature.verify(Base64Decode2Bytes(sign))
+        return signature.verify(base64Decode2Bytes(sign))
     }
 }

@@ -49,7 +49,7 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
         initToolbar(toolbar, "电影列表")
         recy.init()
         initStateView(state_view, recy)
-        state_view.Retry {
+        state_view.retry {
             initData()
         }
     }
@@ -61,19 +61,16 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
 
 
     override fun observeViewModel() {
-        vm.subjects.observe(this, object : Observer<List<Subject>> {
-            override fun onChanged(t: List<Subject>) {
-
+        vm.subjects.observe(this,
+            Observer<List<Subject>> { t ->
                 LogUtils.i("数据发生变化")
 
-                if (t.size > 0) {
+                if (t.isNotEmpty()) {
                     showData(t)
                 } else {
                     showNoData()
                 }
-
-            }
-        })
+            })
 
     }
 
@@ -90,7 +87,7 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
 
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View?, position: Int) {
-        operationItem = movieAdapter.data.get(position)
+        operationItem = movieAdapter.data[position]
 
         ToastUtils.showShort(operationItem.title)
     }
@@ -98,7 +95,7 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
 
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View?, position: Int) {
 
-        operationItem = movieAdapter.data.get(position)
+        operationItem = movieAdapter.data[position]
         val imgView =
             recy.layoutManager!!.findViewByPosition(position)!!.findViewById<AppCompatImageView>(R.id.iv_img)
         when (view!!.id) {

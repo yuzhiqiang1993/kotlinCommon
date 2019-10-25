@@ -54,7 +54,7 @@ class FlexBoxActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
         tags =
             arrayListOf("java", "kotlin", "javascript", "php", "android", "go", "python", "flutter")
         tagAdapter = TagAdapter(R.layout.item_tag_layout, tags)
-        tagAdapter.setOnItemClickListener(this)
+        tagAdapter.onItemClickListener = this
         recy.adapter = tagAdapter
     }
 

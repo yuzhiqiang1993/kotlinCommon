@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
-import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.DropDownMenuFilterAdapter
 import com.yzq.kotlincommon.adapter.DropDownMenuFoodTypeAdapter
+import com.yzq.lib_base.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_drop_down_menu.*
 
 
@@ -33,7 +33,7 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
         return R.layout.activity_drop_down_menu
     }
 
-    private lateinit var tv_filter: AppCompatTextView
+    private lateinit var tvFilter: AppCompatTextView
 
     private lateinit var dropDownMenuFoodTypeAdapter: DropDownMenuFoodTypeAdapter
     private lateinit var dropDownMenuFiltersAdapter: DropDownMenuFilterAdapter
@@ -61,7 +61,7 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
 
 
         val contentLayout = layoutInflater.inflate(R.layout.drop_down_menu_content, null)
-        tv_filter = contentLayout.findViewById(R.id.tv_filter)
+        tvFilter = contentLayout.findViewById(R.id.tv_filter)
 
 
         foodTypeRecy = RecyclerView(this)
@@ -75,7 +75,7 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
 
         dropdown_menu.setDropDownMenu(tabs, popupViews, contentLayout)
 
-        tv_filter.text = "$foodType--$filter"
+        tvFilter.text = "$foodType--$filter"
         setData()
     }
 
@@ -103,7 +103,7 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
                 foodType = dropDownMenuFoodTypeAdapter.data[position]
 
                 dropdown_menu.setTabText(foodType)
-                tv_filter.text = "$foodType--$filter"
+                tvFilter.text = "$foodType--$filter"
 
                 dropdown_menu.closeMenu()
 
@@ -113,7 +113,7 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
                 filter = dropDownMenuFiltersAdapter.data[position]
 
                 dropdown_menu.setTabText(filter)
-                tv_filter.text = "$foodType--$filter"
+                tvFilter.text = "$foodType--$filter"
                 dropdown_menu.closeMenu()
             }
         }

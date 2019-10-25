@@ -2,7 +2,7 @@ ext {
 
     /*defaultConfig*/
     compile_sdk_version = 29 //Android 9(P)
-    min_sdk_version = 19  //Android 5.0
+    min_sdk_version = 21  //Android 5.0
     target_sdk_version = 29  //Android 9(P)
     version_code = 8  //eg:1->0.0.1  10->0.1.0  100->1.0.0
     version_name = "0.0.8"

@@ -35,7 +35,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
     init {
 
-        LayoutInflater.from(context).inflate(R.layout.view_horizontal_edit_layout, this);
+        LayoutInflater.from(context).inflate(R.layout.view_horizontal_edit_layout, this)
 
 
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalEditView)
@@ -79,7 +79,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         }
 
         tv_title.text = titleStr
-        input_content.setHint(hint)
+        input_content.hint = hint
         input_content.setText(contentStr)
         input_content.isEnabled = editEnable
 
@@ -109,7 +109,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      */
     fun setTitle(title: String) {
         this.titleStr = title
-        tv_title.setText(titleStr)
+        tv_title.text = titleStr
     }
 
     /**

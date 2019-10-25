@@ -43,7 +43,7 @@ class AutodisposeActivity : BaseActivity() {
         Observable.interval(1, TimeUnit.SECONDS)
                 .transform(this)
                 .subscribe {
-                    tv_count.setText("$it")
+                    tv_count.text = "$it"
                     LogUtils.i("startCount-->$it")
                 }
     }

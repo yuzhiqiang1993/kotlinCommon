@@ -13,17 +13,17 @@ import com.yzq.lib_net.BuildConfig
 
 object ServerConstants {
 
-    private val SERVER_URL_RELEASE = "https://api.douban.com/"
+    private const val SERVER_URL_RELEASE = "https://api.douban.com/"
 
-    private val SERVER_URL_DEBUG = "https://api.douban.com/"
+    private const val SERVER_URL_DEBUG = "https://api.douban.com/"
 
-    private val API = "v2/movie/"
+    private const val API = "v2/movie/"
 
 
-    val DEVICE_ID = "DeviceId"
-    val AES_KEY = "aesKey"
+    const val DEVICE_ID = "DeviceId"
+    const val AES_KEY = "aesKey"
 
-    val RSA_PUB_KEY =
+    const val RSA_PUB_KEY =
         "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCIarYvrIMZGHKa8f2E6ubg0//28R1zJ4ArD+XELXYvDrM8UBR42PqJCpjPN3hC91YAnnk2Y9U+X5o/rGxH5ZTZzYy+rkAmZFJa1fK2mWDxPYJoxH+DGHQc+h8t83BMB4pKqVPhcJVF6Ie+qpD5RFUU/e5iEz8ZZFDroVE3ubKaKwIDAQAB"
 
 

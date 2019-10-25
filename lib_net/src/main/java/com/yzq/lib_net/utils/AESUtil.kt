@@ -17,7 +17,7 @@ import javax.crypto.spec.SecretKeySpec
 object AESUtil {
 
 
-    private val cipherMode = "AES/CBC/PKCS5Padding"//算法/模式/补码方式
+    private const val cipherMode = "AES/CBC/PKCS5Padding"//算法/模式/补码方式
 
     /*
     *  AES秘钥支持128bit/192bit/256bit三种长度的秘钥，一个字节等于8bit，
@@ -27,7 +27,7 @@ object AESUtil {
 
 
     /*当加密模式为CBC时  需要偏移量*/
-    private val offset = "1234567890000000"
+    private const val offset = "1234567890000000"
 
 
     /**

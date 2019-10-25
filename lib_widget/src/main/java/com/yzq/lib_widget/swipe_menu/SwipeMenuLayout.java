@@ -21,6 +21,7 @@ import com.yzq.lib_widget.R;
 /**
  * 侧滑菜单
  */
+@SuppressWarnings({"ALL", "AlibabaLowerCamelCaseVariableNaming"})
 public class SwipeMenuLayout extends ViewGroup {
     // private static final String TAG = "zxt/SwipeMenuLayout";
 
@@ -37,14 +38,14 @@ public class SwipeMenuLayout extends ViewGroup {
     private View mContentView;//2016 11 13 add ，存储contentView(第一个View)
 
     //上一次的xy
-    private PointF mLastP = new PointF();
+    private PointF lastP = new PointF();
 
     //在Intercept函数的up时，判断这个变量，如果仍为true 说明是点击事件，则关闭菜单。
     private boolean isUnMoved = true;
 
     //2016 11 03 add,判断手指起始落点，如果距离属于滑动了，就屏蔽一切点击事件。
     //up-down的坐标，判断是否是滑动，如果是，则屏蔽一切点击事件
-    private PointF mFirstP = new PointF();
+    private PointF firstP = new PointF();
     private boolean isUserSwiped;
 
     //存储的是当前正在展开的View
@@ -54,7 +55,7 @@ public class SwipeMenuLayout extends ViewGroup {
     private static boolean isTouching;
 
     private VelocityTracker mVelocityTracker;//滑动速度变量
-    private android.util.Log LogUtils;
+
 
     /**
      * 右滑删除功能的开关,默认开
@@ -288,8 +289,8 @@ public class SwipeMenuLayout extends ViewGroup {
                     } else {
                         isTouching = true;//第一个摸的指头，赶紧改变标志，宣誓主权。
                     }
-                    mLastP.set(ev.getRawX(), ev.getRawY());
-                    mFirstP.set(ev.getRawX(), ev.getRawY());//2016 11 03 add,判断手指起始落点，如果距离属于滑动了，就屏蔽一切点击事件。
+                    lastP.set(ev.getRawX(), ev.getRawY());
+                    firstP.set(ev.getRawX(), ev.getRawY());//2016 11 03 add,判断手指起始落点，如果距离属于滑动了，就屏蔽一切点击事件。
 
                     //如果down，view和cacheview不一样，则立马让它还原。且把它置为null
                     if (mViewCache != null) {
@@ -309,7 +310,7 @@ public class SwipeMenuLayout extends ViewGroup {
                     if (iosInterceptFlag) {
                         break;
                     }
-                    float gap = mLastP.x - ev.getRawX();
+                    float gap = lastP.x - ev.getRawX();
                     //为了在水平滑动中禁止父类ListView等再竖直滑动
                     if (Math.abs(gap) > 10 || Math.abs(getScrollX()) > 10) {//2016 09 29 修改此处，使屏蔽父布局滑动更加灵敏，
                         getParent().requestDisallowInterceptTouchEvent(true);
@@ -341,12 +342,12 @@ public class SwipeMenuLayout extends ViewGroup {
                         }
                     }
 
-                    mLastP.set(ev.getRawX(), ev.getRawY());
+                    lastP.set(ev.getRawX(), ev.getRawY());
                     break;
                 case MotionEvent.ACTION_UP:
                 case MotionEvent.ACTION_CANCEL:
                     //2016 11 03 add,判断手指起始落点，如果距离属于滑动了，就屏蔽一切点击事件。
-                    if (Math.abs(ev.getRawX() - mFirstP.x) > mScaleTouchSlop) {
+                    if (Math.abs(ev.getRawX() - firstP.x) > mScaleTouchSlop) {
                         isUserSwiped = true;
                     }
 
@@ -408,7 +409,7 @@ public class SwipeMenuLayout extends ViewGroup {
                 // fix 长按事件和侧滑的冲突。
                 case MotionEvent.ACTION_MOVE:
                     //屏蔽滑动时的事件
-                    if (Math.abs(ev.getRawX() - mFirstP.x) > mScaleTouchSlop) {
+                    if (Math.abs(ev.getRawX() - firstP.x) > mScaleTouchSlop) {
                         return true;
                     }
                     break;
@@ -446,6 +447,8 @@ public class SwipeMenuLayout extends ViewGroup {
                     //add by zhangxutong 2016 11 03 end
 
                     break;
+
+                default:
             }
             //模仿IOS 点击其他区域关闭：
             if (iosInterceptFlag) {

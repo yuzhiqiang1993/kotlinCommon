@@ -226,15 +226,6 @@
 -keep class com.yzq.common.data.** { *; }
 
 
-#ARouter
--keep public class com.alibaba.android.arouter.routes.**{*;}
--keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
-# 如果使用了 byType 的方式获取 Service，需添加下面规则，保护接口
--keep interface * implements com.alibaba.android.arouter.facade.template.IProvider
-# 如果使用了 单类注入，即不定义接口实现 IProvider，需添加下面规则，保护实现
--keep class * implements com.alibaba.android.arouter.facade.template.IProvider
-
-
 
 
 #Bugly
@@ -242,20 +233,4 @@
 -keep public class com.tencent.bugly.**{*;}
 
 
-
-# 协程
--keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
--keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
--keepnames class kotlinx.coroutines.android.AndroidExceptionPreHandler {}
--keepnames class kotlinx.coroutines.android.AndroidDispatcherFactory {}
-
--keepclassmembernames class kotlinx.** {
-    volatile <fields>;
-}
-
-
-#gson
--dontwarn com.google.gson.**
--keep class com.google.gson.**{*;}
--keep interface com.google.gson.**{*;}
 

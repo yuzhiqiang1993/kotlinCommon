@@ -18,6 +18,6 @@ object IntentExtraName {
     const val FACILITY_CODE: String = "facilityCode"
     const val ASSESS_ITEM: String = "assessItem"
     const val TAG: String = "tag"
-    val ASSESS_ITEM_NAME: String = "assessItemName"
+    const val ASSESS_ITEM_NAME: String = "assessItemName"
 
 }

@@ -31,7 +31,7 @@ class CoroutineViewModel : BaseViewModel() {
     }
 
 
-    suspend fun httpGeocoder() = withContext(Dispatchers.IO) {
+    private suspend fun httpGeocoder() = withContext(Dispatchers.IO) {
 
         delay(1000)
         RetrofitFactory.instance.getService(ApiService::class.java)

@@ -53,14 +53,14 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
         initStateView(state_view, layout_swipe_refresh, true)
 
-        state_view.Retry {
+        state_view.retry {
                 initData()
         }
 
 
         layout_swipe_refresh.setOnRefreshListener {
 
-            requestType = http_refresh
+            requestType = httpRefresh
 
             initData()
         }
@@ -90,20 +90,15 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
     override fun observeViewModel() {
 
-        vm.subjectsLive.observe(this, object : Observer<List<Subject>> {
-            override fun onChanged(t: List<Subject>) {
-
-                handleDataChanged(t)
-            }
-
-        })
+        vm.subjectsLive.observe(this,
+            Observer<List<Subject>> { t -> handleDataChanged(t) })
 
     }
 
 
     override fun initData() {
 
-        if (requestType == http_first) {
+        if (requestType == httpFirst) {
 
             showLoadding()
         }
@@ -117,9 +112,9 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
     private fun handleDataChanged(t: List<Subject>) {
 
-        if (requestType == http_load_more) {
+        if (requestType == httpLoadMore) {
 
-            if (t.size == 0) {
+            if (t.isEmpty()) {
                 imgListAdapter.loadMoreEnd()
             }
             imgListAdapter.addData(t)
@@ -160,7 +155,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
         LogUtils.i("onLoadMoreRequested")
         if (vm.start <= 250) {
-            requestType = http_load_more
+            requestType = httpLoadMore
             vm.getData()
         } else {
             imgListAdapter.loadMoreEnd()

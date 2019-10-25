@@ -172,16 +172,16 @@ class CompressImgViewModel : BaseViewModel() {
 
         LogUtils.i("图片存储路径：${savedImgPath}")
         /*保存并返回图片路径*/
-        if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
+        return if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
             /*返回保存后的路径*/
 
 
             LogUtils.i("压缩后图片大小：" + FileUtils.getFileSize(savedImgPath))
-            return savedImgPath
+            savedImgPath
         } else {
             /*返回原路径*/
             LogUtils.i("保存失败，返回原路径:${path}")
-            return path
+            path
 
         }
 
@@ -238,17 +238,17 @@ class CompressImgViewModel : BaseViewModel() {
         val savedImgPath =
             StoragePath.externalAppPicturesPath + rootImgName + System.currentTimeMillis() + ".jpg"
         /*保存并返回图片路径*/
-        if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
+        return if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
             /*返回保存后的路径*/
 
 
             LogUtils.i("压缩后图片大小：" + FileUtils.getFileSize(savedImgPath))
-            return savedImgPath
+            savedImgPath
         } else {
             /*返回原路径*/
 
             LogUtils.i("压缩失败，返回原图")
-            return path
+            path
         }
 
 
@@ -259,11 +259,11 @@ class CompressImgViewModel : BaseViewModel() {
     private fun readPictureDegree(path: String): Int {
         var degree = 0
         try {
-            val exifInterface = ExifInterface(path);
+            val exifInterface = ExifInterface(path)
             val orientation = exifInterface.getAttributeInt(
                 ExifInterface.TAG_ORIENTATION,
                 ExifInterface.ORIENTATION_NORMAL
-            );
+            )
             when (orientation) {
                 ExifInterface.ORIENTATION_ROTATE_90 ->
                     degree = 90

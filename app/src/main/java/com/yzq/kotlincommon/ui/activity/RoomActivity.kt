@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.annotation.SuppressLint
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer

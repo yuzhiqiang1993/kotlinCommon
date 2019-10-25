@@ -27,7 +27,7 @@ public class DropDownMenu extends LinearLayout {
     //遮罩半透明View，点击可关闭DropDownMenu
     private View maskView;
     //tabMenuView里面选中的tab位置，-1表示未选中
-    private int current_tab_position = -1;
+    private int currentTabPosition = -1;
 
     //tab选中颜色
     private int textSelectedColor = 0xff890c85;
@@ -160,8 +160,8 @@ public class DropDownMenu extends LinearLayout {
      * @param text
      */
     public void setTabText(String text) {
-        if (current_tab_position != -1) {
-            TabItem tabItem = (TabItem) tabMenuView.getChildAt(current_tab_position);
+        if (currentTabPosition != -1) {
+            TabItem tabItem = (TabItem) tabMenuView.getChildAt(currentTabPosition);
             tabItem.setTitle(text);
         }
     }
@@ -176,9 +176,9 @@ public class DropDownMenu extends LinearLayout {
      * 关闭菜单
      */
     public void closeMenu() {
-        if (current_tab_position != -1) {
+        if (currentTabPosition != -1) {
 
-            TabItem tabItem = (TabItem) tabMenuView.getChildAt(current_tab_position);
+            TabItem tabItem = (TabItem) tabMenuView.getChildAt(currentTabPosition);
             tabItem.setTitleColor(textUnselectedColor);
             tabItem.setIcon(menuUnselectedIcon, textUnselectedColor);
 
@@ -186,7 +186,7 @@ public class DropDownMenu extends LinearLayout {
             popupMenuViews.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.dd_menu_out));
             maskView.setVisibility(GONE);
             maskView.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.dd_mask_out));
-            current_tab_position = -1;
+            currentTabPosition = -1;
         }
 
     }
@@ -197,7 +197,7 @@ public class DropDownMenu extends LinearLayout {
      * @return
      */
     public boolean isShowing() {
-        return current_tab_position != -1;
+        return currentTabPosition != -1;
     }
 
     /**
@@ -206,7 +206,7 @@ public class DropDownMenu extends LinearLayout {
      * @param target
      */
     private void switchMenu(View target) {
-        System.out.println(current_tab_position);
+        System.out.println(currentTabPosition);
         /*先隐藏其他选项*/
 
         for (int i = 0; i < tabMenuView.getChildCount(); i++) {
@@ -214,12 +214,12 @@ public class DropDownMenu extends LinearLayout {
             if (target == tabMenuView.getChildAt(i)) {
 
                 /*点击的是已经选中的item*/
-                if (current_tab_position == i) {
+                if (currentTabPosition == i) {
                     closeMenu();
                 } else {
                     /*点击的是其他item*/
                     /*当下拉菜单处于关闭状态时*/
-                    if (current_tab_position == -1) {
+                    if (currentTabPosition == -1) {
                         popupMenuViews.setVisibility(View.VISIBLE);
                         popupMenuViews.setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.dd_menu_in));
                         maskView.setVisibility(VISIBLE);
@@ -230,7 +230,7 @@ public class DropDownMenu extends LinearLayout {
                     currentTabItem.setTitleColor(textSelectedColor);
                     currentTabItem.setIcon(menuSelectedIcon, textSelectedColor);
 
-                    current_tab_position = i;
+                    currentTabPosition = i;
                 }
             } else {
                 /*隐藏其他的popupMenuViews*/

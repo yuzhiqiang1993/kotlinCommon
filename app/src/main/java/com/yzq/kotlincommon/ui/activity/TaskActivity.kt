@@ -30,7 +30,7 @@ import java.util.*
 class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
 
 
-    var tasks = arrayListOf<TaskBean>()
+    private var tasks = arrayListOf<TaskBean>()
     private var type: Int = 0
     private lateinit var taskAdapter: TaskAdapter
 
@@ -55,10 +55,10 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
         super.initData()
 
         for (i in 1..100) {
-            if (i % 2 == 0) {
-                type = 1
+            type = if (i % 2 == 0) {
+                1
             } else {
-                type = 0
+                0
             }
             val taskBean = TaskBean("任务${i}", type)
             tasks.add(taskBean)
@@ -85,13 +85,12 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
             this,
             HoverItemDecoration.BindItemTextCallback {
                 val taskBean = tasks[it]
-                val title = if (taskBean.type == 0) {
+
+                return@BindItemTextCallback if (taskBean.type == 0) {
                     "巡查"
                 } else {
                     "急查"
                 }
-
-                return@BindItemTextCallback title
 
             })
         recy.addItemDecoration(hoverItemDecoration)

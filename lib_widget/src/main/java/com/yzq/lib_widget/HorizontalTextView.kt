@@ -33,7 +33,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
     init {
 
-        LayoutInflater.from(context).inflate(R.layout.view_horizontal_text_layout, this);
+        LayoutInflater.from(context).inflate(R.layout.view_horizontal_text_layout, this)
 
 
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalTextView)
@@ -70,8 +70,8 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         if (contentLeft) {
             tv_content.gravity = Gravity.START
         }
-        tv_content.setText(contentStr)
-        tv_content.setHint(hintStr)
+        tv_content.text = contentStr
+        tv_content.hint = hintStr
 
 
     }
@@ -83,7 +83,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      */
     fun setContent(content: String) {
         this.contentStr = content
-        tv_content.setText(contentStr)
+        tv_content.text = contentStr
     }
 
 
@@ -93,7 +93,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      */
     fun setTitle(title: String) {
         this.titleStr = title
-        tv_title.setText(titleStr)
+        tv_title.text = titleStr
     }
 
     /**

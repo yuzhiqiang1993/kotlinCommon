@@ -5,8 +5,6 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.kotlincommon.mvvm.model.MoviesModel
 import com.yzq.lib_base.view_model.BaseViewModel
 import com.yzq.lib_net.net.GsonConvert
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class LoginViewModel : BaseViewModel() {
 

@@ -31,12 +31,10 @@ class StateView(
     constructor(context: Context?) : this(context, null)
 
 
-    private var view: View
+    private var view: View = LayoutInflater.from(context).inflate(R.layout.layout_state_view, this)
 
     init {
 
-
-        view = LayoutInflater.from(context).inflate(R.layout.layout_state_view, this)
 
         showLoading()
 
@@ -81,7 +79,7 @@ class StateView(
     }
 
     fun hideRetryBtn() {
-        btn_retry.setVisibility(View.GONE)
+        btn_retry.visibility = View.GONE
     }
 
     fun hide() {
@@ -89,11 +87,11 @@ class StateView(
     }
 
 
-    fun Retry(retry: RetryListener) {
-        btn_retry.setOnClickListener({
+    fun retry(retry: RetryListener) {
+        btn_retry.setOnClickListener {
             showLoading()
             retry()
-        })
+        }
 
     }
 

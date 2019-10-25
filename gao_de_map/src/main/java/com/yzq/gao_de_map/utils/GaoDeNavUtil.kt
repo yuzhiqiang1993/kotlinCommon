@@ -16,7 +16,7 @@ import android.net.Uri
 object GaoDeNavUtil {
 
 
-    val packageName = "com.autonavi.minimap"
+    private const val packageName = "com.autonavi.minimap"
 
 
     /**
@@ -43,7 +43,7 @@ object GaoDeNavUtil {
         uriString = builder.toString()
         val intent = Intent(Intent.ACTION_VIEW)
         intent.setPackage(packageName)
-        intent.setData(Uri.parse(uriString))
+        intent.data = Uri.parse(uriString)
         context.startActivity(intent)
 
     }

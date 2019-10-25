@@ -57,11 +57,11 @@ abstract class BaseActivity : AppCompatActivity() {
     private var showBackHint = false //是否显示返回提示框
 
 
-    protected val http_first = 0//首次请求
-    protected val http_refresh = 1//刷新
-    protected val http_load_more = 2//加载更多
+    protected val httpFirst = 0//首次请求
+    protected val httpRefresh = 1//刷新
+    protected val httpLoadMore = 2//加载更多
 
-    protected var requestType = http_first
+    protected var requestType = httpFirst
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -168,18 +168,18 @@ abstract class BaseActivity : AppCompatActivity() {
 
     /*设置状态栏透明*/
     protected open fun transparentStatusBar() {
-        val window = getWindow()
+        val window = window
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             val option = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 val vis =
-                    window.getDecorView().getSystemUiVisibility() and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                window.getDecorView().setSystemUiVisibility(option or vis)
+                    window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                window.decorView.systemUiVisibility = option or vis
             } else {
-                window.getDecorView().setSystemUiVisibility(option)
+                window.decorView.systemUiVisibility = option
             }
-            window.setStatusBarColor(Color.TRANSPARENT)
+            window.statusBarColor = Color.TRANSPARENT
         } else {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         }
@@ -228,10 +228,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
     /**
-     * 跳转到图片预览界面
      *
-     * @param name  图片的名称
-     * @param path  图片路径
+     * @param path String  图片路径
+     * @param view View  view
      */
     protected fun preViewImg(path: String, view: View) {
         val intent = Intent(this, ImgPreviewActivity::class.java)
@@ -281,11 +280,6 @@ abstract class BaseActivity : AppCompatActivity() {
             finish()
         }
 
-    }
-
-
-    override fun onResume() {
-        super.onResume()
     }
 
 
@@ -398,11 +392,11 @@ abstract class BaseActivity : AppCompatActivity() {
     fun showNoNet() {
 
         when (requestType) {
-            http_first -> {
+            httpFirst -> {
                 stateView?.showNoNet()
                 contentLayout?.visibility = View.GONE
             }
-            http_refresh -> {
+            httpRefresh -> {
                 (contentLayout as SwipeRefreshLayout).isRefreshing = false
             }
         }

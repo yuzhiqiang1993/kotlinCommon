@@ -44,9 +44,8 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
 
 
     override fun observeViewModel() {
-        vm.locationData.observe(this, object : Observer<AMapLocation> {
-            override fun onChanged(t: AMapLocation) {
-
+        vm.locationData.observe(this,
+            Observer<AMapLocation> { t ->
                 if (t.errorCode == 0) {
                     tv_location_result.text = t.address
                 } else {
@@ -54,10 +53,7 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
                 }
 
                 dismissLoadingDialog()
-
-
-            }
-        })
+            })
 
     }
 

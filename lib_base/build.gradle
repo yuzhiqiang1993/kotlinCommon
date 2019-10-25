@@ -48,26 +48,22 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.appcompat:appcompat:$appcompat"
-    implementation "com.google.android.material:material:$material"
-    implementation "androidx.vectordrawable:vectordrawable:$vectordrawable"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
-    implementation "androidx.annotation:annotation:$annotation"
-    implementation "androidx.multidex:multidex:$multiDexVersion"
-
+    api "androidx.appcompat:appcompat:$appcompat"
+    api "com.google.android.material:material:$material"
+    api "androidx.vectordrawable:vectordrawable:$vectordrawable"
+    api "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    api "androidx.annotation:annotation:$annotation"
+    api "androidx.multidex:multidex:$multiDexVersion"
 
     // ViewModel and LiveData
     api "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
-//    // alternatively - just ViewModel
-//    api "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version" // For Kotlin use lifecycle-viewmodel-ktx
-//    // alternatively - just LiveData
-//    api "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
 
 
+    /*下拉刷新*/
     api "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayout"
 
     /*utils*/
-    implementation "com.blankj:utilcodex:$utilcode"
+    api "com.blankj:utilcodex:$utilcode"
 
     /*progressmanager*/
     implementation "me.jessyan:progressmanager:$progressmanager_version"
@@ -75,7 +71,7 @@ dependencies {
     /*Gson*/
     api "com.google.code.gson:gson:$gson"
     /*ARouter*/
-    implementation "com.alibaba:arouter-api:$arouter_api"
+    api "com.alibaba:arouter-api:$arouter_api"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
 
 

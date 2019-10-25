@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.net
 import com.yzq.common.data.BaseResp
 import com.yzq.kotlincommon.data.gaode.Geocoder
 import com.yzq.kotlincommon.data.movie.MovieBean
-import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 

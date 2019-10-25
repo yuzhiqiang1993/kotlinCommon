@@ -13,7 +13,7 @@ object ResponseCode {
 
 
     /*成功*/
-    val SUCCESS = 0
+    const val SUCCESS = 0
 
 
 }

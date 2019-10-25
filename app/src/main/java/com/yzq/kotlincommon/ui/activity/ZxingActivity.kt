@@ -54,23 +54,23 @@ class ZxingActivity : BaseActivity() {
 
     }
 
-    val REQUEST_LICENSE_CODE = 666
+    private val requestLicenseCode = 666
     private fun getLicenseInfo() {
         requestPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) {
             val intent = Intent(this, CaptureActivity::class.java)
-            startActivityForResult(intent, REQUEST_LICENSE_CODE)
+            startActivityForResult(intent, requestLicenseCode)
         }
 
     }
 
-    val REQUEST_CODE_SCAN = 555
+    private val requestCodeScan = 555
     private fun excuteZxing() =
         requestPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) {
             val intent = Intent(this, CaptureActivity::class.java)
             val zxingConfig = ZxingConfig()
             zxingConfig.isFullScreenScan = false
-            intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig);
-            startActivityForResult(intent, REQUEST_CODE_SCAN)
+            intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig)
+            startActivityForResult(intent, requestCodeScan)
         }
 
 
@@ -78,16 +78,16 @@ class ZxingActivity : BaseActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         when (requestCode) {
-            REQUEST_CODE_SCAN -> {
+            requestCodeScan -> {
                 if (data != null) {
                     val content = data.getStringExtra(Constant.CODED_CONTENT)
-                    tv_result.setText(content)
+                    tv_result.text = content
                 }
 
 
             }
 
-            REQUEST_LICENSE_CODE -> {
+            requestLicenseCode -> {
 
                 if (data != null) {
                     val content = data.getStringExtra(Constant.CODED_CONTENT)
@@ -131,22 +131,20 @@ class ZxingActivity : BaseActivity() {
             val name = it.select(".tableYyzz tbody tr:first-child td:nth-child(2) i").text()
             val people = it.select(".tableYyzz tbody tr:nth-child(2) td:nth-child(2) i").text()
 
-            LogUtils.i("统一社会信用代码：" + code)
-            LogUtils.i("企业名称：" + name)
-            LogUtils.i("法定代表人：" + people)
+            LogUtils.i("统一社会信用代码：$code")
+            LogUtils.i("企业名称：$name")
+            LogUtils.i("法定代表人：$people")
 
             if (TextUtils.isEmpty(code) || TextUtils.isEmpty(name) || TextUtils.isEmpty(people)) {
                 dismissLoadingDialog()
                 showBaseDialog(message = "请扫描营业执照上的二维码！")
                 return@subscribe
             } else {
-                tv_result.setText(
-                    """
-                统一社会信用代码:${code}
-                企业名称:${name}
-                法定代表人:${people}
-            """.trimIndent()
-                )
+                tv_result.text = """
+                            统一社会信用代码:${code}
+                            企业名称:${name}
+                            法定代表人:${people}
+                        """.trimIndent()
                 dismissLoadingDialog()
 
             }

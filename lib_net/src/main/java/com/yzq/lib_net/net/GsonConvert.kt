@@ -20,13 +20,9 @@ import java.lang.reflect.Type
 object GsonConvert {
 
 
-    private var gson: Gson
-
-    init {
-        gson = GsonBuilder()
-                .serializeNulls()
-                .create()
-    }
+    private var gson: Gson = GsonBuilder()
+            .serializeNulls()
+            .create()
 
 
     @Throws(JsonIOException::class, JsonSyntaxException::class)

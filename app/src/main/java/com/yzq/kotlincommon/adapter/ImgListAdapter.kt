@@ -14,13 +14,13 @@ class ImgListAdapter(layoutResId: Int, data: List<Subject>) :
 
     override fun convert(helper: BaseViewHolder, item: Subject) {
 
-        val iv_img = helper.itemView.iv_img
+        val ivImg = helper.itemView.iv_img
 
         /*高度随机*/
-        iv_img.layoutParams.height = 300 + Random.nextInt(300)
+        ivImg.layoutParams.height = 300 + Random.nextInt(300)
 
 
-        iv_img.loadWithThumbnail(item.images.small)
+        ivImg.loadWithThumbnail(item.images.small)
 
 
     }

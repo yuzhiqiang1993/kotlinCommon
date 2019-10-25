@@ -34,7 +34,7 @@ class App : BaseApp() {
      * 初始化bugly
      *
      */
-    fun initBugly() {
+    private fun initBugly() {
         /*初始化Bugly*/
         Beta.showInterruptedStrategy = true
         Beta.canShowUpgradeActs.add(MainActivity::class.java)

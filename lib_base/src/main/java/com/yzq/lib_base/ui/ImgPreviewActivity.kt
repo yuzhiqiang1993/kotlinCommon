@@ -19,11 +19,11 @@ import kotlinx.android.synthetic.main.activity_img_preview.*
 class ImgPreviewActivity : BaseActivity() {
 
 
-    lateinit var imagePath: String
+    private lateinit var imagePath: String
 
 
     companion object {
-        val IMG_PATH = "imgPath"
+        const val IMG_PATH = "imgPath"
 
     }
 
@@ -45,7 +45,11 @@ class ImgPreviewActivity : BaseActivity() {
         BarUtils.setStatusBarColor(this, Color.BLACK)
         allowFastClick()
 
-        photo_view.setOnClickListener { finishAfterTransition() }
+        photo_view.setOnClickListener {
+
+            finishAfterTransition()
+
+        }
         Glide.with(this).load(imagePath).into(photo_view)
 
     }

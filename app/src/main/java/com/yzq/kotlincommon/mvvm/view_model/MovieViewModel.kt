@@ -9,7 +9,7 @@ import com.yzq.lib_base.view_model.BaseViewModel
 class MovieViewModel : BaseViewModel() {
     private var start = 0
     private var count = 50
-    var model: MoviesModel = MoviesModel()
+    private var model: MoviesModel = MoviesModel()
 
 
     var subjects = MutableLiveData<List<Subject>>()

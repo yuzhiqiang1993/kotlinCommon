@@ -17,14 +17,13 @@ class RoomViewModel : BaseViewModel() {
 
 
     var users: LiveData<List<User>>
-    private var userDao: UserDao
+    private var userDao: UserDao = UserDataBase.instance.userDao()
 
 
-    var updatePosition = MutableLiveData<Int>()
+    private var updatePosition = MutableLiveData<Int>()
 
 
     init {
-        userDao = UserDataBase.instance.userDao()
 
         users = userDao.getAllUsers()
 
@@ -85,6 +84,7 @@ class RoomViewModel : BaseViewModel() {
 
     /*改*/
     fun updateUser(id: Int, name: String) {
+
 
         viewModelScope.launch {
 
