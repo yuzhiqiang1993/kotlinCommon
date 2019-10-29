@@ -30,24 +30,34 @@
     </declare-styleable>
 
 
-    <declare-styleable name="DropDownMenu">
+    <!--HorizontalEditView 自定义属性-->
+    <declare-styleable name="StateView">
 
-        <attr name="textSelectedColor" format="color"/>
-        <attr name="textUnselectedColor" format="color"/>
-        <attr name="menuBackgroundColor" format="color"/>
-        <attr name="maskColor" format="color"/>
-        <attr name="menuTextSize" format="dimension"/>
-        <attr name="menuSelectedIcon" format="reference"/>
-        <attr name="menuUnselectedIcon" format="reference"/>
-        <attr name="menuMenuHeightPercent" format="float"/>
+        <attr name="no_data_img_res" format="reference" />
+        <attr name="no_net_img_res" format="reference" />
+        <attr name="error_img_res" format="reference" />
+
+
     </declare-styleable>
 
 
+    <declare-styleable name="DropDownMenu">
+
+        <attr name="textSelectedColor" format="color" />
+        <attr name="textUnselectedColor" format="color" />
+        <attr name="menuBackgroundColor" format="color" />
+        <attr name="maskColor" format="color" />
+        <attr name="menuTextSize" format="dimension" />
+        <attr name="menuSelectedIcon" format="reference" />
+        <attr name="menuUnselectedIcon" format="reference" />
+        <attr name="menuMenuHeightPercent" format="float" />
+    </declare-styleable>
+
 
     <declare-styleable name="SwipeMenuLayout">
-        <attr name="swipeEnable" format="boolean"/>
-        <attr name="ios" format="boolean"/>
-        <attr name="leftSwipe" format="boolean"/>
+        <attr name="swipeEnable" format="boolean" />
+        <attr name="ios" format="boolean" />
+        <attr name="leftSwipe" format="boolean" />
     </declare-styleable>
 
 </resources>
