@@ -20,7 +20,6 @@ class SharedPreference<T>(val name: String, private val defaultVal: T) : ReadWri
 
     private val prfs by lazy {
 
-        // LogUtils.i("prfs lazy ->${AppUtils.getAppPackageName()}")
         AppContext.getSharedPreferences(AppUtils.getAppPackageName(), Context.MODE_PRIVATE)
     }
 
