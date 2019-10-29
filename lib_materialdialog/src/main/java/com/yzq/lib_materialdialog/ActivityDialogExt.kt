@@ -252,9 +252,9 @@ fun ComponentActivity.getLoadingDialog(): MaterialDialog {
  *
  * @param title  标题
  */
-fun ComponentActivity.getProgressDialog(title: String): MaterialDialog {
+fun ComponentActivity.getProgressDialog(): MaterialDialog {
 
-    return getNewDialog().progress().title(text = title)
+    return getNewDialog().progress()
 
 }
 

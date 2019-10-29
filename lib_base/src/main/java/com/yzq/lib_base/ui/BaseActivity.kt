@@ -15,7 +15,6 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.lib_base.R
@@ -24,8 +23,6 @@ import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_materialdialog.*
 import com.yzq.lib_widget.StateView
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -40,16 +37,13 @@ import org.greenrobot.eventbus.ThreadMode
 
 abstract class BaseActivity : AppCompatActivity() {
 
-
-    protected var mainScope = MainScope()
-
     private var lastClickTime: Long = 0//最后一次点击的时间
 
     private val intervalTime = 300//两次点击之间的间隔
     private var allowFastClick = false//是否允许快速点击
 
-    private var loaddingDialog: MaterialDialog? = null//加载框
-    private var progressDialog: MaterialDialog? = null//进度框
+    private val loaddingDialog by lazy { getLoadingDialog() }//加载框
+    private val progressDialog by lazy { getProgressDialog() } //进度框
 
     private var stateView: StateView? = null //状态布局
     private var contentLayout: View? = null//内容布局
@@ -289,14 +283,8 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param message  加载框文本信息
      */
     fun showLoadingDialog(message: String) {
-
-        if (loaddingDialog == null) {
-            loaddingDialog = getLoadingDialog()
-        }
-
-        loaddingDialog?.setLoadingMessage(message)
-        loaddingDialog?.show()
-
+        loaddingDialog.setLoadingMessage(message)
+        loaddingDialog.show()
 
     }
 
@@ -305,7 +293,7 @@ abstract class BaseActivity : AppCompatActivity() {
      *解除加载框
      */
     fun dismissLoadingDialog() {
-        loaddingDialog?.dismiss()
+        loaddingDialog.dismiss()
     }
 
     /**
@@ -314,11 +302,8 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param title  提示文本
      */
     fun showProgressDialog(title: String) {
-
-        if (progressDialog == null) {
-            progressDialog = getProgressDialog(title)
-        }
-        progressDialog?.show()
+        progressDialog.changeTitle(title)
+        progressDialog.show()
 
 
     }
@@ -328,7 +313,7 @@ abstract class BaseActivity : AppCompatActivity() {
      *
      */
     fun dismissProgressDialog() {
-        progressDialog?.dismiss()
+        progressDialog.dismiss()
     }
 
     /**
@@ -337,7 +322,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param percent  当前进度
      */
     fun changeProgress(percent: Int) {
-        progressDialog?.changeProgress(percent)
+        progressDialog.changeProgress(percent)
 
     }
 
@@ -443,7 +428,6 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         EventBusUtil.unregister(this)
-        mainScope.cancel()
     }
 
 

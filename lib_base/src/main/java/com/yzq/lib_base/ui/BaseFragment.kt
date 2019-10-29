@@ -13,8 +13,6 @@ import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_widget.StateView
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -33,7 +31,6 @@ abstract class BaseFragment : Fragment() {
     private var contentLayout: View? = null
     private var isRefreshLayout: Boolean = false
 
-    private val mainScope = MainScope()
 
 
     override fun onAttach(context: Context) {
@@ -109,7 +106,6 @@ abstract class BaseFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         EventBusUtil.unregister(this)
-        mainScope.cancel()
     }
 
     protected open fun onBackPressed(): Boolean {
@@ -160,28 +156,28 @@ abstract class BaseFragment : Fragment() {
 
 
     protected open fun showLoadingDialog(message: String) {
-        showLoadingDialog(message)
+        (activity as BaseActivity).showLoadingDialog(message)
     }
 
     protected open fun dismissLoadingDialog() {
-        dismissLoadingDialog()
+        (activity as BaseActivity).dismissLoadingDialog()
     }
 
     protected open fun showErrorDialog(msg: String?) {
-        showErrorDialog(msg)
+        (activity as BaseActivity).showErrorDialog(msg)
     }
 
 
     protected open fun showProgressDialog(title: String) {
-        showProgressDialog(title)
+        (activity as BaseActivity).showProgressDialog(title)
     }
 
     protected open fun changeProgress(percent: Int) {
-        changeProgress(percent)
+        (activity as BaseActivity).changeProgress(percent)
     }
 
     protected open fun dismissProgressDialog() {
-        dismissProgressDialog()
+        (activity as BaseActivity).dismissProgressDialog()
     }
 
     protected open fun initStateView(

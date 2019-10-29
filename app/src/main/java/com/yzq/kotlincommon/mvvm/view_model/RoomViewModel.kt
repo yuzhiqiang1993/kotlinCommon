@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.LogUtils
@@ -16,19 +15,11 @@ import kotlinx.coroutines.withContext
 class RoomViewModel : BaseViewModel() {
 
 
-    var users: LiveData<List<User>>
+    val users by lazy { userDao.getAllUsers() }
     private var userDao: UserDao = UserDataBase.instance.userDao()
 
 
-    private var updatePosition = MutableLiveData<Int>()
-
-
-    init {
-
-        users = userDao.getAllUsers()
-
-
-    }
+    private val updatePosition by lazy { MutableLiveData<Int>() }
 
 
     /*增*/

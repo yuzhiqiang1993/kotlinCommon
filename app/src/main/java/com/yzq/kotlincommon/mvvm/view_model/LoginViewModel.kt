@@ -9,15 +9,14 @@ import com.yzq.lib_net.net.GsonConvert
 class LoginViewModel : BaseViewModel() {
 
 
-    private var model = MoviesModel()
-    var loginData = MutableLiveData<Boolean>()
-
+    private val model by lazy { MoviesModel() }
+    val loginData by lazy { MutableLiveData<Boolean>() }
 
 
     fun loginWithCoroutine() {
         launchLoadingDialog {
 
-            val movieBean =    model.getData(0, 1)
+            val movieBean = model.getData(0, 1)
             LogUtils.i("请求完成：" + GsonConvert.toJson(movieBean))
 
             loginData.value = true

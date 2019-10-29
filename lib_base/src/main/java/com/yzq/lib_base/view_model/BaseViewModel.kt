@@ -26,7 +26,10 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     var loadState = MutableLiveData<ViewStateBean>()
 
 
-    fun launchLoadingDialog(block: suspend CoroutineScope.() -> Unit) {
+    fun launchLoadingDialog(
+        loadText: String = ViewStateContstants.LOADING,
+        block: suspend CoroutineScope.() -> Unit
+    ) {
 
         viewModelScope.launch {
             if (!NetworkUtils.isConnected()) {
@@ -34,7 +37,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 cancel()
                 return@launch
             }
-            showloadingDialog(ViewStateContstants.LOADING)
+            showloadingDialog(loadText)
 
             try {
 

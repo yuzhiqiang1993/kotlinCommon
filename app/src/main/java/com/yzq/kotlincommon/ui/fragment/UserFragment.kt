@@ -18,6 +18,8 @@ class UserFragment : BaseFragment() {
     override fun initWidget() {
 
         LogUtils.i("UserFragment")
+
+
         btn_show_dialog.setOnClickListener {
 
             activity?.showCallbackDialog(

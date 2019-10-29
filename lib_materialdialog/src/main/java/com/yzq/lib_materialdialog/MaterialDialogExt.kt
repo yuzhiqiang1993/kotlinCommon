@@ -44,11 +44,11 @@ fun MaterialDialog.setLoadingMessage(loaddingMessage: String = LOADING): Materia
  *
  */
 
-fun MaterialDialog.progress(): MaterialDialog {
+fun MaterialDialog.progress() = customView(R.layout.progress_dialog_layout, scrollable = false)
 
-    customView(R.layout.progress_dialog_layout, scrollable = false)
-    return this
-}
+
+fun MaterialDialog.changeTitle(title: String) = title(text = title)
+
 
 /**
  * 改变进度

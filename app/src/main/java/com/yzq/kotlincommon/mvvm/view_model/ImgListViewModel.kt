@@ -10,14 +10,14 @@ class ImgListViewModel : BaseViewModel() {
 
     var start = 0
     private val count = 30
-    private var model: MoviesModel = MoviesModel()
+    private val model: MoviesModel by lazy { MoviesModel() }
 
-    var subjectsLive = MutableLiveData<List<Subject>>()
+    val subjectsLive by lazy { MutableLiveData<List<Subject>>() }
 
 
     fun getData() {
         launchLoading {
-            subjectsLive.value =model.getData(start,count).subjects
+            subjectsLive.value = model.getData(start, count).subjects
         }
     }
 }

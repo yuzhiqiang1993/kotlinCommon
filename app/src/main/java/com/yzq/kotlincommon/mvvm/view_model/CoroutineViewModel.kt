@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 class CoroutineViewModel : BaseViewModel() {
 
 
-    var geocoder = MutableLiveData<Geocoder>()
+    val geocoder by lazy { MutableLiveData<Geocoder>() }
 
 
     /*请求数据*/
