@@ -59,7 +59,6 @@ dependencies {
     api "com.google.android:flexbox:$flexbox"
 
 
-
     /*内存泄漏检测 leakcanary*/
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_android}"
 
