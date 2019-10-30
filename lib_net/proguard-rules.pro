@@ -33,3 +33,7 @@
 -keep class com.google.gson.**{*;}
 -keep interface com.google.gson.**{*;}
 
+#ProgressManager
+-keep class me.jessyan.progressmanager.** { *; }
+ -keep interface me.jessyan.progressmanager.** { *; }
+

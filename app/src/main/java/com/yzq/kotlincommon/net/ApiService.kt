@@ -3,8 +3,10 @@ package com.yzq.kotlincommon.net
 import com.yzq.common.data.BaseResp
 import com.yzq.kotlincommon.data.gaode.Geocoder
 import com.yzq.kotlincommon.data.movie.MovieBean
+import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Query
+import retrofit2.http.Streaming
 
 interface ApiService {
 
@@ -25,5 +27,12 @@ interface ApiService {
         @Query("latest_admin") latest_admin: String = "1"
     ): BaseResp<Geocoder>
 
+
+    /*下载安装包*/
+
+
+    @Streaming
+    @GET(ApiConstants.apk)
+    suspend fun downloadApk(): ResponseBody
 
 }

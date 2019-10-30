@@ -22,8 +22,44 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     lateinit var lifecycleOwner: LifecycleOwner
 
 
-    private var viewStateBean = ViewStateBean()
-    var loadState = MutableLiveData<ViewStateBean>()
+    private val viewStateBean by lazy { ViewStateBean() }
+    val loadState by lazy { MutableLiveData<ViewStateBean>() }
+
+
+    fun launchScope(block: suspend CoroutineScope.() -> Unit) {
+
+        viewModelScope.launch {
+            if (!NetworkUtils.isConnected()) {
+                showNoNet()
+                cancel()
+                return@launch
+            }
+
+            try {
+                block()
+            } catch (e: Exception) {
+                dismissLoadingDialog()
+                e.printStackTrace()
+                if (e is JSONException || e is JsonParseException) {
+                    showErrorDialog(ViewStateContstants.PARSE_DATA_ERROE)
+                } else if (e is SocketTimeoutException) {
+                    showErrorDialog(ViewStateContstants.SERVER_TIMEOUT)
+                } else {
+                    val msg =
+                        if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+                    showErrorDialog(msg)
+                }
+
+            } finally {
+                cancel()
+            }
+
+        }
+
+
+    }
+
+
 
 
     fun launchLoadingDialog(
@@ -40,10 +76,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
             showloadingDialog(loadText)
 
             try {
-
                 block()
-
-
             } catch (e: Exception) {
                 dismissLoadingDialog()
                 e.printStackTrace()
@@ -66,6 +99,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
 
     }
+
 
     fun launchLoading(block: suspend CoroutineScope.() -> Unit) {
 
@@ -154,7 +188,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     }
 
     fun changeProgress(percent: Int) {
-
         viewStateBean.message = percent.toString()
         viewStateBean.state = ViewStateContstants.changeProgress
         loadState.value = viewStateBean

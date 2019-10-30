@@ -26,7 +26,8 @@ fun AppCompatActivity.requestPermissions(
         }.start()
 
 
-}
+}/*权限申请*/
+
 
 
 /**

@@ -18,6 +18,7 @@ import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
+import com.yzq.kotlincommon.data.NaviItem
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_rx.transform
@@ -38,7 +39,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener,
     NavigationView.OnNavigationItemSelectedListener {
 
 
-    private var items = arrayListOf<String>()
+    private var items = arrayListOf<NaviItem>()
 
 
     private lateinit var mainAdapter: MainAdapter
@@ -85,20 +86,20 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener,
 
     override fun initData() {
 
-        items.add("电影列表")
-        items.add("任务页面（悬浮吸顶、侧滑菜单）")
-        items.add("图片页面（选择压缩）")
-        items.add("弹窗")
-        items.add("Zxing")
-        items.add("登录页面（SharedPreference）")
-        items.add("AutoDispose")
-        items.add("下拉菜单")
-        items.add("高德定位")
-        items.add("FlexBoxLayout")
-        items.add("瀑布流图片")
-        items.add("fragment")
-        items.add("coroutine(协程)")
-        items.add("room(数据库)")
+        items.add(NaviItem("电影列表", RoutePath.Main.MOVIES))
+        items.add(NaviItem("任务页面（悬浮吸顶、侧滑菜单）", RoutePath.Main.TASK))
+        items.add(NaviItem("图片页面（选择压缩）", RoutePath.Main.IMG_COMPRESS))
+        items.add(NaviItem("弹窗", RoutePath.Main.DIALOG))
+        items.add(NaviItem("Zxing", RoutePath.Main.ZXING))
+        items.add(NaviItem("登录页面（SharedPreference）", RoutePath.Main.LOGIN))
+        items.add(NaviItem("下拉菜单", RoutePath.Main.DROP_DOWN_MENU))
+        items.add(NaviItem("高德定位", RoutePath.GaoDe.GAO_DE))
+        items.add(NaviItem("FlexBoxLayout", RoutePath.Main.FLEX_BOX))
+        items.add(NaviItem("瀑布流图片", RoutePath.Main.IMG_LIST))
+        items.add(NaviItem("fragment", RoutePath.Main.FRAGMENT))
+        items.add(NaviItem("coroutine(协程)", RoutePath.Main.COROUTINE))
+        items.add(NaviItem("room(数据库)", RoutePath.Main.ROOM))
+        items.add(NaviItem("下载进度", RoutePath.Main.DOWNLOAD))
 
         setdata()
     }
@@ -114,24 +115,9 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener,
 
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
+        val clickItem = mainAdapter.data[position]
 
-        when (position) {
-            0 -> skip(RoutePath.Main.MOVIES)
-            1 -> skip(RoutePath.Main.TASK)
-            2 -> skip(RoutePath.Main.IMG_COMPRESS)
-            3 -> skip(RoutePath.Main.DIALOG)
-            4 -> skip(RoutePath.Main.ZXING)
-            5 -> skip(RoutePath.Main.LOGIN)
-            6 -> skip(RoutePath.Main.AUTODISPOSE)
-            7 -> skip(RoutePath.Main.DROP_DOWN_MENU)
-            8 -> skip(RoutePath.GaoDe.GAO_DE)
-            9 -> skip(RoutePath.Main.FLEX_BOX)
-            10 -> skip(RoutePath.Main.IMG_LIST)
-            11 -> skip(RoutePath.Main.FRAGMENT)
-            12 -> skip(RoutePath.Main.COROUTINE)
-            13 -> skip(RoutePath.Main.ROOM)
-
-        }
+        skip(clickItem.path)
     }
 
     private fun skip(path: String) {

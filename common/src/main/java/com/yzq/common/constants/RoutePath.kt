@@ -26,7 +26,8 @@ object RoutePath {
         const val IMG_LIST = "/main/imgList"
         const val FRAGMENT = "/main/fragment"
         const val COROUTINE = "/main/coroutine"
-        const val ROOM = "/main/ROOM"
+        const val ROOM = "/main/room"
+        const val DOWNLOAD = "/main/download"
 
     }
 
