@@ -50,15 +50,13 @@ dependencies {
     /*photoView*/
     api "com.github.chrisbanes:PhotoView:$photoview"
 
-    /*RxImagepicker*/
-    api "com.github.qingmei2:rximagepicker:$rx_imgpicker"
-
+    api "com.github.HuanTanSheng:EasyPhotos:$easyPhotos"
     /*utils*/
     implementation "com.blankj:utilcodex:$utilcode"
 
 
     implementation project(path: ':lib_resource')
-    implementation project(path: ':lib_permission')
+
 
 }
 

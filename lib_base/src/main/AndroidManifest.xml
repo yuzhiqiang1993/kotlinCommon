@@ -15,7 +15,6 @@
         </provider>
         <activity
             android:name=".ui.ImgPreviewActivity"
-
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
 

@@ -42,7 +42,7 @@ ext {
     arouter_compiler = "1.2.2"
     walleVersion = "1.1.6"
     andResGuardVersion = "1.2.17"
-    rx_imgpicker = "2.5.0"
+    easyPhotos = "3.0.3"
     bugly_crashreport_upgrade = '1.4.2'
     bugly_nativecrashreport = '3.7.1'
     datepickerVersion = "1.3.1"

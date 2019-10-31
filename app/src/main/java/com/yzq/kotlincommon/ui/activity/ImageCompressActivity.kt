@@ -5,13 +5,17 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
+import com.huantansheng.easyphotos.callback.SelectCallback
+import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.view_model.CompressImgViewModel
 import com.yzq.kotlincommon.R
 import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_img.load
-import com.yzq.lib_img.openCamera
+import com.yzq.lib_img.openAlbum
 import kotlinx.android.synthetic.main.activity_image_compress.*
+import java.util.*
 
 
 /**
@@ -46,7 +50,16 @@ class ImageCompressActivity : BaseActivity() {
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "图片")
         fab_camera.setOnClickListener {
-            openCamera { compressImgViewModel.compressImg(it.path) }
+            //            openCamera { compressImgViewModel.compressImg(it) }
+
+            openAlbum(callback = object : SelectCallback() {
+                override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
+                    LogUtils.i(photos)
+
+                }
+
+            })
+
 
         }
 
