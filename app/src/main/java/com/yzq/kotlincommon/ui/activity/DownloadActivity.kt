@@ -1,7 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yanzhenjie.permission.runtime.Permission
@@ -32,6 +31,7 @@ class DownloadActivity : BaseMvvmActivity<DownloadViewModel>() {
         }
 
         btn_download.setOnClickListener {
+
             vm.downloadApk()
 
         }
@@ -39,15 +39,6 @@ class DownloadActivity : BaseMvvmActivity<DownloadViewModel>() {
     }
 
     override fun observeViewModel() {
-
-
-        with(vm) {
-            percent.observe(this@DownloadActivity, Observer {
-
-                progress_bar.progress = it
-
-            })
-        }
 
 
     }

@@ -254,7 +254,7 @@ fun ComponentActivity.getLoadingDialog(): MaterialDialog {
  */
 fun ComponentActivity.getProgressDialog(): MaterialDialog {
 
-    return getNewDialog().progress()
+    return getNewDialog().progress().cancelOnTouchOutside(false).cancelable(false)
 
 }
 

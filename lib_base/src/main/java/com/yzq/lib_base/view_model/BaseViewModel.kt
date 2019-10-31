@@ -10,6 +10,9 @@ import com.yzq.lib_base.data.ViewStateBean
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import me.jessyan.progressmanager.ProgressListener
+import me.jessyan.progressmanager.ProgressManager
+import me.jessyan.progressmanager.body.ProgressInfo
 import org.json.JSONException
 import java.net.SocketTimeoutException
 
@@ -24,42 +27,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     private val viewStateBean by lazy { ViewStateBean() }
     val loadState by lazy { MutableLiveData<ViewStateBean>() }
-
-
-    fun launchScope(block: suspend CoroutineScope.() -> Unit) {
-
-        viewModelScope.launch {
-            if (!NetworkUtils.isConnected()) {
-                showNoNet()
-                cancel()
-                return@launch
-            }
-
-            try {
-                block()
-            } catch (e: Exception) {
-                dismissLoadingDialog()
-                e.printStackTrace()
-                if (e is JSONException || e is JsonParseException) {
-                    showErrorDialog(ViewStateContstants.PARSE_DATA_ERROE)
-                } else if (e is SocketTimeoutException) {
-                    showErrorDialog(ViewStateContstants.SERVER_TIMEOUT)
-                } else {
-                    val msg =
-                        if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
-                    showErrorDialog(msg)
-                }
-
-            } finally {
-                cancel()
-            }
-
-        }
-
-
-    }
-
-
 
 
     fun launchLoadingDialog(
@@ -128,6 +95,68 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
             } finally {
                 cancel()
+            }
+
+
+        }
+
+
+    }
+
+
+    fun launchProgressDialog(url: String, title: String, block: suspend CoroutineScope.() -> Unit) {
+
+        viewModelScope.launch {
+            if (!NetworkUtils.isConnected()) {
+                showNoNet()
+                cancel()
+                return@launch
+            }
+
+            ProgressManager.getInstance()
+                .addResponseListener(url, object : ProgressListener {
+                    override fun onProgress(progressInfo: ProgressInfo?) {
+
+                        LogUtils.i("下载进度:${progressInfo?.percent}")
+
+                        changeProgress(progressInfo!!.percent)
+
+                    }
+
+                    override fun onError(id: Long, e: Exception?) {
+
+                        LogUtils.i("下载出错：${e?.printStackTrace()}")
+
+                        dismissProgressDialog()
+
+                    }
+
+                })
+
+
+
+            try {
+
+                showProgressDialog(title)
+
+                block()
+            } catch (e: Exception) {
+
+                e.printStackTrace()
+
+                if (e is JSONException || e is JsonParseException) {
+                    showError(ViewStateContstants.PARSE_DATA_ERROE)
+                } else if (e is SocketTimeoutException) {
+                    showError(ViewStateContstants.SERVER_TIMEOUT)
+                } else {
+                    val msg =
+                        if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+                    showError(msg)
+                }
+
+            } finally {
+                cancel()
+                dismissProgressDialog()
             }
 
 
