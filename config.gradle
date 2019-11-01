@@ -4,8 +4,8 @@ ext {
     compile_sdk_version = 29
     min_sdk_version = 21
     target_sdk_version = 29
-    version_code = 9  //eg:1->0.0.1  10->0.1.0  100->1.0.0
-    version_name = "0.0.9"
+    version_code = 10  //eg:1->0.0.1  10->0.1.0  100->1.0.0
+    version_name = "0.1.0"
     multiDexEnabled = true
 
     /*dependencies*/

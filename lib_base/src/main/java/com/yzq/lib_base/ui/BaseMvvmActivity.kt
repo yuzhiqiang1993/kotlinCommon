@@ -21,7 +21,6 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
 
     lateinit var vm: VM
 
-
     abstract fun getViewModelClass(): Class<VM>
 
     abstract fun observeViewModel()
