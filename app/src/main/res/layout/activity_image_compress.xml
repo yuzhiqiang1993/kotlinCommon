@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activity.ImageCompressActivity">
 
 
@@ -17,14 +18,29 @@
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
 
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_camera"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
+        android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/len_16"
-        android:tint="@color/white"
-        app:srcCompat="@drawable/ic_menu_camera" />
+        android:orientation="vertical">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_menu_camera" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/len_10"
+            android:tint="@color/white"
+            app:srcCompat="@drawable/ic_menu_gallery" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

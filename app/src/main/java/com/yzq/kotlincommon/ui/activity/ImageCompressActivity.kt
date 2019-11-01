@@ -6,7 +6,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
-import com.huantansheng.easyphotos.callback.SelectCallback
 import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.view_model.CompressImgViewModel
@@ -14,8 +13,8 @@ import com.yzq.kotlincommon.R
 import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_img.load
 import com.yzq.lib_img.openAlbum
+import com.yzq.lib_img.openCamera
 import kotlinx.android.synthetic.main.activity_image_compress.*
-import java.util.*
 
 
 /**
@@ -31,6 +30,8 @@ class ImageCompressActivity : BaseActivity() {
 
 
     private lateinit var compressImgViewModel: CompressImgViewModel
+
+    private var selectedPhotos = arrayListOf<Photo>()
 
 
     override fun getContentLayoutId(): Int {
@@ -50,17 +51,22 @@ class ImageCompressActivity : BaseActivity() {
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "图片")
         fab_camera.setOnClickListener {
-            //            openCamera { compressImgViewModel.compressImg(it) }
+            openCamera {
 
-            openAlbum(callback = object : SelectCallback() {
-                override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
-                    LogUtils.i(photos)
+                compressImgViewModel.compressImg(it[0].path)
+            }
+        }
 
-                }
-
-            })
+        fab_album.setOnClickListener {
 
 
+            openAlbum(count = 5, selectedPhotos = selectedPhotos) {
+                selectedPhotos.clear()
+                selectedPhotos.addAll(it)
+                compressImgViewModel.compressImg(selectedPhotos[0].path)
+
+                LogUtils.i("选择的图片是$selectedPhotos")
+            }
         }
 
 

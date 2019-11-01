@@ -4,42 +4,48 @@ import androidx.appcompat.app.AppCompatActivity
 import com.huantansheng.easyphotos.EasyPhotos
 import com.huantansheng.easyphotos.callback.SelectCallback
 import com.huantansheng.easyphotos.models.album.entity.Photo
-import java.util.*
+import com.huantansheng.easyphotos.setting.Setting
 
 
-typealias ImageSingleSelected = (String) -> Unit
+typealias ImageSelected = (ArrayList<Photo>) -> Unit
 
 
-/*调相机拍照*/
-fun AppCompatActivity.openCamera(imageSingleSelected: ImageSingleSelected) {
+fun AppCompatActivity.openCamera(imageSelected: ImageSelected) {
     EasyPhotos.createCamera(this)
         .setFileProviderAuthority("$packageName.provider")
         .start(object : SelectCallback() {
             override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
-                imageSingleSelected(photos[0].path)
+                imageSelected(photos)
             }
         })
 }
 
-
 fun AppCompatActivity.openAlbum(
-    showCamera: Boolean = false,
     count: Int = 1,
+    showCamera: Boolean = false,
     minFileSize: Long = 1,
     showGif: Boolean = false,
     showPuzzle: Boolean = false,
-    callback: SelectCallback
+    showClearMenu: Boolean = false,
+    selectedPhotos: ArrayList<Photo> = arrayListOf(),
+    imageSelected: ImageSelected
 
 ) {
-
     EasyPhotos.createAlbum(this, showCamera, GlideEngine)
         .setCount(count)
         .setMinFileSize(minFileSize)
         .setFileProviderAuthority("$packageName.provider")
         .setGif(showGif)
-        .setOriginalMenu(false, false, null)
         .setPuzzleMenu(showPuzzle)
-        .start(callback)
+        .setCleanMenu(showClearMenu)
+        .setCameraLocation(Setting.LIST_FIRST)
+        .setSelectedPhotos(selectedPhotos)
+        .start(object : SelectCallback() {
+            override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
+                imageSelected(photos)
+            }
+
+        })
 
 
 }
