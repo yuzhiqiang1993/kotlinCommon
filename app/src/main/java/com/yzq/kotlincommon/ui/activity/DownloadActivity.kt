@@ -8,7 +8,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.mvvm.view_model.DownloadViewModel
 import com.yzq.lib_base.ui.BaseMvvmActivity
-import com.yzq.lib_permission.requestPermissions
+import com.yzq.lib_permission.getPermissions
 import kotlinx.android.synthetic.main.activity_download.*
 
 @Route(path = RoutePath.Main.DOWNLOAD)
@@ -25,7 +25,7 @@ class DownloadActivity : BaseMvvmActivity<DownloadViewModel>() {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "网络进度")
 
-        requestPermissions(Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE) {
+        getPermissions(Permission.WRITE_EXTERNAL_STORAGE, Permission.READ_EXTERNAL_STORAGE) {
 
             LogUtils.i("有以下权限:${it}")
         }

@@ -13,7 +13,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_materialdialog.showBaseDialog
-import com.yzq.lib_permission.requestPermissions
+import com.yzq.lib_permission.getPermissions
 import com.yzq.lib_rx.transform
 import com.yzq.zxinglibrary.android.CaptureActivity
 import com.yzq.zxinglibrary.bean.ZxingConfig
@@ -56,7 +56,7 @@ class ZxingActivity : BaseActivity() {
 
     private val requestLicenseCode = 666
     private fun getLicenseInfo() {
-        requestPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) {
+        getPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) {
             val intent = Intent(this, CaptureActivity::class.java)
             startActivityForResult(intent, requestLicenseCode)
         }
@@ -65,7 +65,7 @@ class ZxingActivity : BaseActivity() {
 
     private val requestCodeScan = 555
     private fun excuteZxing() =
-        requestPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) {
+        getPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) {
             val intent = Intent(this, CaptureActivity::class.java)
             val zxingConfig = ZxingConfig()
             zxingConfig.isFullScreenScan = false

@@ -1,6 +1,6 @@
 package com.yzq.lib_permission
 
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.blankj.utilcode.util.ToastUtils
 import com.yanzhenjie.permission.AndPermission
 import com.yanzhenjie.permission.AndPermission.hasAlwaysDeniedPermission
@@ -9,8 +9,8 @@ import com.yzq.lib_materialdialog.showPositiveCallbackDialog
 
 
 /*权限申请*/
-fun AppCompatActivity.getPermissions(
-    vararg permissions: String,
+fun Fragment.getPermissions(
+     vararg permissions: String,
     permissionGranted: PermissionGranted
 ) {
     AndPermission.with(this)
@@ -33,7 +33,7 @@ fun AppCompatActivity.getPermissions(
  * @param permissions  要申请的权限
  *
  */
-private fun AppCompatActivity.permissionDenied(permissions: List<String>) {
+private fun Fragment.permissionDenied(permissions: List<String>) {
 
     if (hasAlwaysDeniedPermission(this, permissions)) {
         showPermissionDailog(permissions)
@@ -51,9 +51,9 @@ private const val REQUEST_CODE_SETTING = 1
  *
  * @param permissions  用户拒绝的权限
  */
-private fun AppCompatActivity.showPermissionDailog(permissions: List<String>) {
+private fun Fragment.showPermissionDailog(permissions: List<String>) {
 
-    val permissionNames = transformText(this, permissions)
+    val permissionNames = transformText(activity, permissions)
     val message =
         "我们需要的 ${android.text.TextUtils.join("、", permissionNames)} 权限被拒绝,这将导致部分功能不可用，请手动开启! "
 

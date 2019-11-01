@@ -1,7 +1,7 @@
 package com.yzq.lib_materialdialog
 
 import android.text.TextUtils
-import androidx.core.app.ComponentActivity
+import androidx.fragment.app.Fragment
 import com.afollestad.materialdialogs.DialogCallback
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
@@ -17,10 +17,11 @@ import com.ycuwq.datepicker.time.HourAndMinutePicker
 
 
 /*获取一个新的Dialog实例*/
-fun ComponentActivity.getNewDialog(): MaterialDialog {
+fun Fragment.getNewDialog(): MaterialDialog {
 
 
-    return MaterialDialog(this).cancelOnTouchOutside(false).cancelable(false).lifecycleOwner(this)
+    return MaterialDialog(requireActivity()).cancelOnTouchOutside(false).cancelable(false)
+        .lifecycleOwner(this)
 }
 
 
@@ -32,7 +33,7 @@ fun ComponentActivity.getNewDialog(): MaterialDialog {
  * @param positiveText  确定按钮的文本
  */
 
-fun ComponentActivity.showBaseDialog(
+fun Fragment.showBaseDialog(
     title: String = HINT,
     message: String,
     positiveText: String = SURE
@@ -55,7 +56,7 @@ fun ComponentActivity.showBaseDialog(
  * @param message  提示信息
  * @param positiveText  确定按钮的文字
  */
-fun ComponentActivity.showOnlyPostiveCallBackDialog(
+fun Fragment.showOnlyPostiveCallBackDialog(
     title: String = HINT,
     message: String,
     positiveText: String = SURE,
@@ -74,14 +75,14 @@ fun ComponentActivity.showOnlyPostiveCallBackDialog(
 
 /**
  *
- * @receiver ComponentActivity
+ * @receiver Fragment
  * @param title String  标题
  * @param message String  显示内容
  * @param positiveText String  确定文本
  * @param negativeText String  取消文本
  * @param positiveCallback Function1<MaterialDialog, Unit>  确定回调
  */
-fun ComponentActivity.showPositiveCallbackDialog(
+fun Fragment.showPositiveCallbackDialog(
     title: String = HINT,
     message: String,
     positiveText: String = SURE,
@@ -111,7 +112,7 @@ fun ComponentActivity.showPositiveCallbackDialog(
  * @param positiveText  确定按钮文本
  * @param negativeText  取消按钮文本
  */
-fun ComponentActivity.showCallbackDialog(
+fun Fragment.showCallbackDialog(
     title: String = HINT,
     message: String,
     positiveText: String = SURE,
@@ -140,7 +141,7 @@ fun ComponentActivity.showCallbackDialog(
  * @param positiveText  确定按钮文本
  * @param negativeText  取消按钮文本
  */
-fun ComponentActivity.showBackHintDialog(
+fun Fragment.showBackHintDialog(
     title: String = HINT,
     message: String = BACK_HINT,
     positiveText: String = SURE,
@@ -170,7 +171,7 @@ fun ComponentActivity.showBackHintDialog(
  * @param message  消息
  * @param items  选项
  */
-fun ComponentActivity.showSingleSelectList(
+fun Fragment.showSingleSelectList(
     title: String = HINT,
     message: String = "",
     items: List<String>,
@@ -204,7 +205,7 @@ fun ComponentActivity.showSingleSelectList(
  */
 
 
-fun ComponentActivity.showInputDialog(
+fun Fragment.showInputDialog(
     title: String = HINT,
     positiveText: String = SURE,
     negativeText: String = CANCLE,
@@ -243,7 +244,7 @@ fun ComponentActivity.showInputDialog(
  * 加载框
  *
  */
-fun ComponentActivity.getLoadingDialog(): MaterialDialog {
+fun Fragment.getLoadingDialog(): MaterialDialog {
     return getNewDialog().loading()
 }
 
@@ -252,7 +253,7 @@ fun ComponentActivity.getLoadingDialog(): MaterialDialog {
  *
  * @param title  标题
  */
-fun ComponentActivity.getProgressDialog(): MaterialDialog {
+fun Fragment.getProgressDialog(): MaterialDialog {
 
     return getNewDialog().progress().cancelOnTouchOutside(false).cancelable(false)
 
@@ -260,7 +261,7 @@ fun ComponentActivity.getProgressDialog(): MaterialDialog {
 
 
 /*选择年份*/
-fun ComponentActivity.selectYear(
+fun Fragment.selectYear(
     title: String = "选择年份",
     positiveText: String = SURE,
     negativeText: String = CANCLE,
@@ -289,7 +290,7 @@ fun ComponentActivity.selectYear(
  * @param positiveText  确定文本
  * @param negativeText  取消文本
  */
-fun ComponentActivity.selectDate(
+fun Fragment.selectDate(
     title: String = "选择日期",
     positiveText: String = SURE,
     negativeText: String = CANCLE,
@@ -329,13 +330,13 @@ fun ComponentActivity.selectDate(
 
 /**
  * 选择小时和分钟
- * @receiver ComponentActivity
+ * @receiver Fragment
  * @param title String  标题
  * @param positiveText String  确定按钮文本
  * @param negativeText String  取消按钮文本
  * @param datePickerListener Function1<String, Unit>  回调
  */
-fun ComponentActivity.selectHourAndMinute(
+fun Fragment.selectHourAndMinute(
     title: String = "选择时间",
     positiveText: String = SURE,
     negativeText: String = CANCLE,

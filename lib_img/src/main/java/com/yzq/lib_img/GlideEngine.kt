@@ -23,7 +23,7 @@ object GlideEngine : ImageEngine {
     }
 
     override fun loadPhoto(context: Context, uri: Uri, imageView: ImageView) {
-        Glide.with(context).load(uri).transition(withCrossFade()).into(imageView);
+        Glide.with(context).load(uri).transition(withCrossFade()).into(imageView)
     }
 
     override fun loadGifAsBitmap(context: Context, gifUri: Uri, imageView: ImageView) {

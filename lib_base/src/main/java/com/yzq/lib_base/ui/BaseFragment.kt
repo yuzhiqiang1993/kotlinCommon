@@ -32,7 +32,6 @@ abstract class BaseFragment : Fragment() {
     private var isRefreshLayout: Boolean = false
 
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         initArgs(arguments)

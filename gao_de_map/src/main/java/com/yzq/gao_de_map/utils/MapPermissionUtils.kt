@@ -5,7 +5,7 @@ import android.widget.Toast
 import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.utils.LocationUtils
 import com.yzq.lib_base.ui.BaseActivity
-import com.yzq.lib_permission.requestPermissions
+import com.yzq.lib_permission.getPermissions
 
 
 /**
@@ -27,7 +27,7 @@ object MapPermissionUtils {
         activity: BaseActivity,
         mapPermission: MapPermission
     ) {
-        activity.requestPermissions(
+        activity.getPermissions(
             Permission.ACCESS_FINE_LOCATION,
             Permission.ACCESS_COARSE_LOCATION,
             Permission.WRITE_EXTERNAL_STORAGE,

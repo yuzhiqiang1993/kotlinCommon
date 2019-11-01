@@ -7,9 +7,6 @@ import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.huantansheng.easyphotos.setting.Setting
 
 
-typealias ImageSelected = (ArrayList<Photo>) -> Unit
-
-
 fun AppCompatActivity.openCamera(imageSelected: ImageSelected) {
     EasyPhotos.createCamera(this)
         .setFileProviderAuthority("$packageName.provider")
@@ -19,6 +16,7 @@ fun AppCompatActivity.openCamera(imageSelected: ImageSelected) {
             }
         })
 }
+
 
 fun AppCompatActivity.openAlbum(
     count: Int = 1,
@@ -49,6 +47,4 @@ fun AppCompatActivity.openAlbum(
 
 
 }
-
-
 

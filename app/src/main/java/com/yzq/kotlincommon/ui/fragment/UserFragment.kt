@@ -2,9 +2,12 @@ package com.yzq.kotlincommon.ui.fragment
 
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.kotlincommon.R
 import com.yzq.lib_base.ui.BaseFragment
+import com.yzq.lib_img.openAlbum
 import com.yzq.lib_materialdialog.showCallbackDialog
+import com.yzq.lib_permission.getPermissions
 import kotlinx.android.synthetic.main.fragment_user.*
 
 class UserFragment : BaseFragment() {
@@ -22,8 +25,8 @@ class UserFragment : BaseFragment() {
 
         btn_show_dialog.setOnClickListener {
 
-            activity?.showCallbackDialog(
-                message = "这是在Fragment中调Activity的弹窗",
+            showCallbackDialog(
+                message = "这是在Fragment中调的弹窗",
                 positiveCallback = {
                     ToastUtils.showShort("点击了确定")
                 },
@@ -32,6 +35,25 @@ class UserFragment : BaseFragment() {
                 }
             )
         }
+
+        btn_select_img.setOnClickListener {
+
+            openAlbum {
+
+                ToastUtils.showShort("选择的图片:$it")
+            }
+        }
+
+
+        btn_permission.setOnClickListener {
+
+
+            getPermissions(permissions = *Permission.Group.STORAGE) {
+
+                ToastUtils.showShort("获取了权限：$it")
+            }
+        }
+
 
     }
 }
