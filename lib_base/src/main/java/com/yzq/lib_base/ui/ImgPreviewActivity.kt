@@ -27,7 +27,6 @@ class ImgPreviewActivity : BaseActivity() {
 
     }
 
-
     override fun getContentLayoutId(): Int {
         return R.layout.activity_img_preview
     }
@@ -45,11 +44,7 @@ class ImgPreviewActivity : BaseActivity() {
         BarUtils.setStatusBarColor(this, Color.BLACK)
         allowFastClick()
 
-        photo_view.setOnClickListener {
-
-            finishAfterTransition()
-
-        }
+        photo_view.setOnClickListener { finishAfterTransition() }
         Glide.with(this).load(imagePath).into(photo_view)
 
     }

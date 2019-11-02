@@ -26,7 +26,6 @@ import org.greenrobot.eventbus.ThreadMode
  */
 abstract class BaseFragment : Fragment() {
 
-
     private var stateView: StateView? = null
     private var contentLayout: View? = null
     private var isRefreshLayout: Boolean = false
@@ -165,7 +164,6 @@ abstract class BaseFragment : Fragment() {
     protected open fun showErrorDialog(msg: String?) {
         (activity as BaseActivity).showErrorDialog(msg)
     }
-
 
     protected open fun showProgressDialog(title: String) {
         (activity as BaseActivity).showProgressDialog(title)

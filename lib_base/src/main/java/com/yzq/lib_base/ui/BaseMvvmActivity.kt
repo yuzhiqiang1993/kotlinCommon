@@ -18,27 +18,21 @@ import com.yzq.lib_base.view_model.BaseViewModel
 
 abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
 
-
     lateinit var vm: VM
 
     abstract fun getViewModelClass(): Class<VM>
 
     abstract fun observeViewModel()
 
-
     override fun initViewModel() {
         vm = ViewModelProviders.of(this).get(getViewModelClass())
-
         with(vm) {
             lifecycleOwner = this@BaseMvvmActivity
             lifecycle.addObserver(this)
-
             loadState.observe(
                 lifecycleOwner,
                 Observer<ViewStateBean> { viewStateBean -> handleViewState(viewStateBean) })
         }
-
-
         observeViewModel()
     }
 
@@ -57,7 +51,6 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
             ViewStateContstants.dismissLoaddingDialog -> {
                 dismissLoadingDialog()
             }
-
             ViewStateContstants.showErrorDialog -> {
                 showErrorDialog(content)
             }

@@ -54,7 +54,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
         initStateView(state_view, layout_swipe_refresh, true)
 
         state_view.retry {
-                initData()
+            initData()
         }
 
 
