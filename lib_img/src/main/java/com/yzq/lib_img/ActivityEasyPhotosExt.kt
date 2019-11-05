@@ -8,7 +8,7 @@ import com.huantansheng.easyphotos.setting.Setting
 
 
 /**
- * 打开相加
+ * 打开相机
  * @receiver AppCompatActivity
  * @param imageSelected Function1<ArrayList<Photo>, Unit>  回调函数
  */

@@ -9,7 +9,9 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withC
 import com.huantansheng.easyphotos.engine.ImageEngine
 
 
-/*Glide*/
+/**
+ *Glide图片加载引擎
+ */
 object GlideEngine : ImageEngine {
     override fun getCacheBitmap(context: Context, uri: Uri, width: Int, height: Int): Bitmap {
         return Glide.with(context).asBitmap().load(uri).submit(width, height)

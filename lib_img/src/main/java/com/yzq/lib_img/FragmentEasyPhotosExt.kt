@@ -7,6 +7,11 @@ import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.huantansheng.easyphotos.setting.Setting
 
 
+/**
+ * 打开相机
+ * @receiver AppCompatActivity
+ * @param imageSelected Function1<ArrayList<Photo>, Unit>  回调函数
+ */
 fun Fragment.openCamera(imageSelected: ImageSelected) {
     EasyPhotos.createCamera(this)
         .setFileProviderAuthority("${requireActivity().packageName}.provider")
@@ -17,7 +22,18 @@ fun Fragment.openCamera(imageSelected: ImageSelected) {
         })
 }
 
-
+/**
+ * 打开相册
+ * @receiver AppCompatActivity
+ * @param count Int  最大选取数量
+ * @param showCamera Boolean  是否显示相机
+ * @param minFileSize Long  最小显示文件的大小
+ * @param showGif Boolean  是否显示gif
+ * @param showPuzzle Boolean 是否显示拼图按钮
+ * @param showClearMenu Boolean 是否显示清空按钮
+ * @param selectedPhotos ArrayList<Photo>  已选择的图片
+ * @param imageSelected Function1<ArrayList<Photo>, Unit>   回调函数
+ */
 fun Fragment.openAlbum(
     count: Int = 1,
     showCamera: Boolean = false,
