@@ -22,12 +22,6 @@ class FileRetrofitFactory private constructor() {
 
 
     init {
-
-        val gson = Gson().newBuilder()
-            .setLenient()
-            .serializeNulls()
-            .create()
-
         retrofit = Retrofit.Builder()
             .baseUrl(ServerConstants.apiUrl)
             .client(initOkhttpClient())
@@ -51,8 +45,6 @@ class FileRetrofitFactory private constructor() {
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
 
-
-        //return okHttpBuilder.build()
         return ProgressManager.getInstance().with(okHttpBuilder).build()
     }
 

@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit
  * @author : yzq
  * @date   : 2019/4/30
  * @time   : 13:37
- *
  */
 
 @Route(path = RoutePath.Main.AUTODISPOSE)
@@ -38,14 +37,13 @@ class AutodisposeActivity : BaseActivity() {
     }
 
 
-
     private fun startCount() {
         Observable.interval(1, TimeUnit.SECONDS)
-                .transform(this)
-                .subscribe {
-                    tv_count.text = "$it"
-                    LogUtils.i("startCount-->$it")
-                }
+            .transform(this)
+            .subscribe {
+                tv_count.text = "$it"
+                LogUtils.i("startCount-->$it")
+            }
     }
 
 

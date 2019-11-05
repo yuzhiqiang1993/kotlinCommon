@@ -36,6 +36,7 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
 
 
     override fun getContentLayoutId(): Int {
+
         return R.layout.activity_task
     }
 

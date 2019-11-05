@@ -8,7 +8,12 @@ import com.yanzhenjie.permission.runtime.Permission.transformText
 import com.yzq.lib_materialdialog.showPositiveCallbackDialog
 
 
-/*权限申请*/
+/**
+ *
+ * @receiver AppCompatActivity
+ * @param permissions Array<out String>  要申请的权限
+ * @param permissionGranted Function1<List<String>, Unit>  权限允许回调函数
+ */
 fun AppCompatActivity.getPermissions(
     vararg permissions: String,
     permissionGranted: PermissionGranted
