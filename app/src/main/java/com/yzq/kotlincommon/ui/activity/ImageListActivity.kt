@@ -16,7 +16,6 @@ import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseMvvmActivity
 import kotlinx.android.synthetic.main.activity_image_list.*
-import kotlinx.coroutines.MainScope
 
 
 /**
@@ -31,7 +30,6 @@ import kotlinx.coroutines.MainScope
 class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
     BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
 
-    private val mainScope = MainScope()
 
     override fun getViewModelClass(): Class<ImgListViewModel> = ImgListViewModel::class.java
 
@@ -119,6 +117,8 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
         vm.start = 0
 
         vm.getData()
+
+
 
 
     }

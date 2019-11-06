@@ -57,6 +57,9 @@ dependencies {
 
     // ViewModel and LiveData
     api "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    def paging_version = "2.1.0"
+    api "androidx.paging:paging-runtime-ktx:$paging_version" // For Kotlin use paging-runtime-ktx
+
 
 
     /*下拉刷新*/

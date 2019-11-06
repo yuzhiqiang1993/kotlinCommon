@@ -2,6 +2,7 @@ package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagedList
 import androidx.recyclerview.widget.DiffUtil
 import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.model.MoviesModel
@@ -21,6 +22,9 @@ class ImgListViewModel : BaseViewModel() {
     val subjectsDiffResult by lazy { MutableLiveData<DiffUtil.DiffResult>() }
 
 
+    val subjectsList by lazy { MutableLiveData<PagedList<Subject>>() }
+
+
     fun getData() {
         launchLoading {
             subjectsLive.value = model.getData(start, count).subjects
@@ -29,7 +33,7 @@ class ImgListViewModel : BaseViewModel() {
 
 
     /**
-     * 计算就列表和新列表之间的差异值
+     * 计算旧数据和新数据之间的差异值
      * @param oldData List<Subject>
      * @param newData List<Subject>
      */

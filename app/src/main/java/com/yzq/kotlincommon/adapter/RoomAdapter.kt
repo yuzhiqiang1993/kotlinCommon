@@ -8,17 +8,10 @@ import com.yzq.kotlincommon.data.data_base.User
 class RoomAdapter(layoutResId: Int, data: MutableList<User>) :
     BaseQuickAdapter<User, BaseViewHolder>(layoutResId, data) {
     override fun convert(helper: BaseViewHolder, item: User) {
-
-
         with(item) {
             helper.setText(R.id.tv_user, "${id}--->${name}")
         }
-
-
-
         helper.addOnClickListener(R.id.tv_delete)
         helper.addOnClickListener(R.id.tv_user)
-
-
     }
 }
