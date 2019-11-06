@@ -73,7 +73,6 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemC
         with(vm) {
             users.observe(this@RoomActivity, Observer {
 
-
                 roomAdapter.setNewDiffData(object : BaseQuickDiffCallback<User>(it) {
 
                     override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {

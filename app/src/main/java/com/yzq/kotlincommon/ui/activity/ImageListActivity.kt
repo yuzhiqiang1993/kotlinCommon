@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.diff.BaseQuickDiffCallback
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ImgListAdapter
@@ -17,6 +16,7 @@ import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseMvvmActivity
 import kotlinx.android.synthetic.main.activity_image_list.*
+import kotlinx.coroutines.MainScope
 
 
 /**
@@ -31,6 +31,7 @@ import kotlinx.android.synthetic.main.activity_image_list.*
 class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
     BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
 
+    private val mainScope = MainScope()
 
     override fun getViewModelClass(): Class<ImgListViewModel> = ImgListViewModel::class.java
 
@@ -90,8 +91,20 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
     override fun observeViewModel() {
 
-        vm.subjectsLive.observe(this,
-            Observer<List<Subject>> { t -> handleDataChanged(t) })
+        with(vm) {
+            subjectsLive.observe(this@ImageListActivity, Observer {
+
+                handleDataChanged(it)
+            })
+
+            subjectsDiffResult.observe(this@ImageListActivity, Observer {
+
+                LogUtils.i("更新数据")
+                imgListAdapter.setNewDiffData(it, vm.subjectsLive.value!!)
+            })
+
+        }
+
 
     }
 
@@ -122,17 +135,22 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
         } else {
 
+
+            /*异步计算出需要更新的数据*/
+            vm.calculateDiff(imgListAdapter.data, t)
+
+
             /*下面这种方式更新数据性能更高  且不会出现列表项刷新闪屏的情况*/
-            imgListAdapter.setNewDiffData(object : BaseQuickDiffCallback<Subject>(t) {
-                override fun areItemsTheSame(oldItem: Subject, newItem: Subject): Boolean {
-                    return oldItem.id.equals(newItem.id)
-                }
-
-                override fun areContentsTheSame(oldItem: Subject, newItem: Subject): Boolean {
-                    return oldItem.images.small.equals(newItem.images.small)
-                }
-
-            })
+//            imgListAdapter.setNewDiffData(object : BaseQuickDiffCallback<Subject>(t) {
+//                override fun areItemsTheSame(oldItem: Subject, newItem: Subject): Boolean {
+//                    return oldItem.id.equals(newItem.id)
+//                }
+//
+//                override fun areContentsTheSame(oldItem: Subject, newItem: Subject): Boolean {
+//                    return oldItem.images.small.equals(newItem.images.small)
+//                }
+//
+//            })
 
         }
 

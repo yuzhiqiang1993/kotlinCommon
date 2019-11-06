@@ -24,6 +24,7 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
 
     abstract fun observeViewModel()
 
+
     override fun initViewModel() {
         vm = ViewModelProviders.of(this).get(getViewModelClass())
         with(vm) {
