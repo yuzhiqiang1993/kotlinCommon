@@ -1,6 +1,7 @@
 package com.yzq.lib_base.ui
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import com.blankj.utilcode.util.BarUtils
 import com.bumptech.glide.Glide
@@ -44,13 +45,19 @@ class ImgPreviewActivity : BaseActivity() {
         BarUtils.setStatusBarColor(this, Color.BLACK)
         allowFastClick()
 
-        photo_view.setOnClickListener { finishAfterTransition() }
+        photo_view.setOnClickListener {
+            onBackPressed()
+        }
         Glide.with(this).load(imagePath).into(photo_view)
 
     }
 
     override fun onBackPressed() {
-        finishAfterTransition()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            finishAfterTransition()
+        } else {
+            finish()
+        }
     }
 
 

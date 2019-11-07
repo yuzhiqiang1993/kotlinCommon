@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.kotlincommon.data.data_base.User
@@ -17,9 +16,6 @@ class RoomViewModel : BaseViewModel() {
 
     val users by lazy { userDao.getAllUsers() }
     private var userDao: UserDao = UserDataBase.instance.userDao()
-
-
-    private val updatePosition by lazy { MutableLiveData<Int>() }
 
 
     /*增*/
@@ -60,20 +56,6 @@ class RoomViewModel : BaseViewModel() {
 
 
     /*改*/
-    fun updateUser(user: User, position: Int) {
-
-        viewModelScope.launch {
-
-            withContext(Dispatchers.IO) {
-                userDao.updateUser(user)
-            }
-
-            updatePosition.value = position
-        }
-
-    }
-
-    /*改*/
     fun updateUser(id: Int, name: String) {
 
 
@@ -84,7 +66,6 @@ class RoomViewModel : BaseViewModel() {
                 userDao.updateUser(user)
             }
 
-//            updatePosition.value = position
         }
 
     }
