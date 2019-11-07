@@ -2,6 +2,7 @@ ext {
 
     /*defaultConfig*/
     compile_sdk_version = 29
+    build_tools_version="29.0.0"
     min_sdk_version = 21
     target_sdk_version = 29
     version_code = 10  //eg:1->0.0.1  10->0.1.0  100->1.0.0

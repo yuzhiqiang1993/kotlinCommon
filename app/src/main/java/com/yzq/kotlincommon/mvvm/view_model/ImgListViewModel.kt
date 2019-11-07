@@ -63,7 +63,7 @@ class ImgListViewModel : BaseViewModel() {
                         oldItemPosition: Int,
                         newItemPosition: Int
                     ): Boolean {
-                        return oldDatas[oldItemPosition].images.small.equals(newDatas[newItemPosition].images.small)
+                        return oldDatas[oldItemPosition] == newDatas[newItemPosition]
                     }
 
                 })
