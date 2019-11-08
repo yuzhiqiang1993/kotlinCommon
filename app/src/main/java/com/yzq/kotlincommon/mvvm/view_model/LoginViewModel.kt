@@ -13,7 +13,7 @@ class LoginViewModel : BaseViewModel() {
     val loginData by lazy { MutableLiveData<Boolean>() }
 
 
-    fun loginWithCoroutine() {
+    fun login() {
         launchLoadingDialog {
 
             val movieBean = model.getData(0, 1)

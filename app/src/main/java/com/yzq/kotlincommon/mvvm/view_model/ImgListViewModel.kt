@@ -2,7 +2,6 @@ package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagedList
 import androidx.recyclerview.widget.DiffUtil
 import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.model.MoviesModel
@@ -22,12 +21,11 @@ class ImgListViewModel : BaseViewModel() {
     val subjectsDiffResult by lazy { MutableLiveData<DiffUtil.DiffResult>() }
 
 
-    val subjectsList by lazy { MutableLiveData<PagedList<Subject>>() }
-
-
     fun getData() {
         launchLoading {
-            subjectsLive.value = model.getData(start, count).subjects
+            val datas = model.getData(start, count).subjects
+            subjectsLive.value = datas
+            start += datas.size
         }
     }
 

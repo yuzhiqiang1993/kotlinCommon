@@ -39,13 +39,11 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
         super.onCreate()
 
         INSTANCE = this
+
         /*初始化Utils*/
         initUtils()
-
-
         /*初始化ARouter*/
         initARouter()
-
 
         registerActivityLifecycleCallbacks(this)
 
