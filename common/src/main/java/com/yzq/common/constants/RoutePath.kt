@@ -28,6 +28,7 @@ object RoutePath {
         const val COROUTINE = "/main/coroutine"
         const val ROOM = "/main/room"
         const val DOWNLOAD = "/main/download"
+        const val EXO_PLAYER = "/main/exoPlayer"
 
     }
 

@@ -100,6 +100,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener,
         items.add(NaviItem("coroutine(协程)", RoutePath.Main.COROUTINE))
         items.add(NaviItem("room(数据库)", RoutePath.Main.ROOM))
         items.add(NaviItem("下载进度", RoutePath.Main.DOWNLOAD))
+        items.add(NaviItem("视频播放", RoutePath.Main.EXO_PLAYER))
 
         setdata()
     }
