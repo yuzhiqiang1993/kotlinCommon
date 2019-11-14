@@ -38,8 +38,10 @@ class ExoPlayerActivity : BaseActivity() {
         val dataSource =
             DefaultDataSourceFactory(this, Util.getUserAgent(this, AppUtils.getAppName()))
         /*视频地址*/
-        val url = "http://www.kangaijianshen.com//uploadfiles//2018//01//1516761517281689936.mp4"
-        val vedioUri = Uri.parse(url)
+        val vedioUrl =
+            "http://www.kangaijianshen.com//uploadfiles//2018//01//1516761517281689936.mp4"
+        val mp3Url = "http://www.kangaijianshen.com/uploadfiles/2019/04/1554776246936376791.mp3"
+        val vedioUri = Uri.parse(vedioUrl)
         val mediaSource = ProgressiveMediaSource.Factory(dataSource).createMediaSource(vedioUri)
 
         player.prepare(mediaSource)
