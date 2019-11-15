@@ -1,7 +1,7 @@
-package com.yzq.lib_net.net.interceptor
+package com.yzq.common.net.net.interceptor
 
 import com.blankj.utilcode.util.DeviceUtils
-import com.yzq.lib_net.constants.ServerConstants
+import com.yzq.common.constants.ServerConstants
 import okhttp3.Interceptor
 import okhttp3.Response
 

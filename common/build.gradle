@@ -63,9 +63,18 @@ dependencies {
     /*内存泄漏检测 leakcanary*/
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_android}"
 
+    /*retrofit*/
+    api "com.squareup.okhttp3:okhttp:$ok_http"
+    api "com.squareup.retrofit2:retrofit:$retrofit"
+    api "com.squareup.okhttp3:logging-interceptor:$ok_http"
+    api "com.squareup.retrofit2:converter-gson:$retrofit"
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+
+    /*progressmanager*/
+    api "me.jessyan:progressmanager:$progressmanager_version"
+
 
     api project(path: ':lib_base')
-    api project(path: ':lib_net')
 
 }
 

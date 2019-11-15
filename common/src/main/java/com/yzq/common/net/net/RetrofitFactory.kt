@@ -1,9 +1,9 @@
-package com.yzq.lib_net.net
+package com.yzq.common.net.net
 
 import android.util.Log
 import com.google.gson.Gson
-import com.yzq.lib_net.BuildConfig
-import com.yzq.lib_net.constants.ServerConstants
+import com.yzq.common.BuildConfig
+import com.yzq.common.constants.ServerConstants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

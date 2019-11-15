@@ -1,10 +1,10 @@
-package com.yzq.lib_net.net.interceptor
+package com.yzq.common.net.net.interceptor
 
 
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.lib_net.constants.ServerConstants
-import com.yzq.lib_net.utils.AESUtil
-import com.yzq.lib_net.utils.RSAUtil
+import com.yzq.common.constants.ServerConstants
+import com.yzq.common.net.utils.AESUtil
+import com.yzq.common.net.utils.RSAUtil
 import okhttp3.Interceptor
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response

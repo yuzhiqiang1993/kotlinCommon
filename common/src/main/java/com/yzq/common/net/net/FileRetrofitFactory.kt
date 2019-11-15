@@ -1,7 +1,6 @@
-package com.yzq.lib_net.net
+package com.yzq.common.net.net
 
-import com.google.gson.Gson
-import com.yzq.lib_net.constants.ServerConstants
+import com.yzq.common.constants.ServerConstants
 import me.jessyan.progressmanager.ProgressManager
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

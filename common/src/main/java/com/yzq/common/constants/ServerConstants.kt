@@ -1,6 +1,6 @@
-package com.yzq.lib_net.constants
+package com.yzq.common.constants
 
-import com.yzq.lib_net.BuildConfig
+import com.yzq.common.BuildConfig
 
 
 /**

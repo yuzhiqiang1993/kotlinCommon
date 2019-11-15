@@ -1,4 +1,4 @@
-package com.yzq.lib_net.utils
+package com.yzq.common.net.utils
 
 import java.util.*
 import javax.crypto.Cipher
