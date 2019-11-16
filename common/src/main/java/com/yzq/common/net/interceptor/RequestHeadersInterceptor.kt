@@ -1,4 +1,4 @@
-package com.yzq.common.net.net.interceptor
+package com.yzq.common.net.interceptor
 
 import com.blankj.utilcode.util.DeviceUtils
 import com.yzq.common.constants.ServerConstants

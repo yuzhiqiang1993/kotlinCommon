@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.kotlincommon.mvvm.model.MoviesModel
 import com.yzq.lib_base.view_model.BaseViewModel
-import com.yzq.common.net.net.GsonConvert
+import com.yzq.common.net.GsonConvert
 
 class LoginViewModel : BaseViewModel() {
 

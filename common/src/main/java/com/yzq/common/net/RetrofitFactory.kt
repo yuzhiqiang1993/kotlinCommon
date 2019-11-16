@@ -1,4 +1,4 @@
-package com.yzq.common.net.net
+package com.yzq.common.net
 
 import android.util.Log
 import com.google.gson.Gson

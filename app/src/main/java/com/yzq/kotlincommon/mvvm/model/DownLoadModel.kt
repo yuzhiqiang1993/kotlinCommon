@@ -4,7 +4,7 @@ import com.blankj.utilcode.util.FileIOUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.PathUtils
 import com.yzq.kotlincommon.net.ApiService
-import com.yzq.common.net.net.FileRetrofitFactory
+import com.yzq.common.net.FileRetrofitFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File

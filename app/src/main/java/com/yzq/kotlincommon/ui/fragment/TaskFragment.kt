@@ -5,7 +5,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
 import com.yzq.lib_base.ui.BaseMvvmFragment
-import com.yzq.common.net.net.GsonConvert
+import com.yzq.common.net.GsonConvert
 import kotlinx.android.synthetic.main.task_fragment.*
 
 class TaskFragment : BaseMvvmFragment<CoroutineViewModel>() {

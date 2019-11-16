@@ -1,4 +1,4 @@
-package com.yzq.common.net.net
+package com.yzq.common.net
 
 import com.yzq.common.constants.ServerConstants
 import me.jessyan.progressmanager.ProgressManager

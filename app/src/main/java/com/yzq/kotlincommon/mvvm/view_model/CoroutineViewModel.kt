@@ -5,7 +5,7 @@ import com.yzq.common.extend.dataConvert
 import com.yzq.kotlincommon.data.gaode.Geocoder
 import com.yzq.kotlincommon.net.ApiService
 import com.yzq.lib_base.view_model.BaseViewModel
-import com.yzq.common.net.net.RetrofitFactory
+import com.yzq.common.net.RetrofitFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
