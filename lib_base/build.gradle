@@ -76,6 +76,17 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
 
 
+    /*retrofit*/
+    api "com.squareup.okhttp3:okhttp:$ok_http"
+    api "com.squareup.retrofit2:retrofit:$retrofit"
+    api "com.squareup.okhttp3:logging-interceptor:$ok_http"
+    api "com.squareup.retrofit2:converter-gson:$retrofit"
+    api "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+
+    /*progressmanager*/
+    api "me.jessyan:progressmanager:$progressmanager_version"
+
+
     api project(path: ':lib_base_adapter')
     api project(path: ':lib_eventbus')
     api project(path: ':lib_img')
