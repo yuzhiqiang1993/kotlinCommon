@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!--文字-->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_tab_title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="asdsadsa"
+        android:background="@drawable/linear_gradient_color"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_16" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

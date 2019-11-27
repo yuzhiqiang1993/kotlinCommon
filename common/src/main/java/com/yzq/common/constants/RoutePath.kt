@@ -12,6 +12,7 @@ package com.yzq.common.constants
 object RoutePath {
 
     object Main {
+
         const val TASK = "/main/task"
         const val MAIN = "/main/main"
         const val MOVIES = "/main/movies"
@@ -29,7 +30,7 @@ object RoutePath {
         const val ROOM = "/main/room"
         const val DOWNLOAD = "/main/download"
         const val EXO_PLAYER = "/main/exoPlayer"
-
+        const val VIEW_PAGER: String = "/main/viewPager"
     }
 
 
