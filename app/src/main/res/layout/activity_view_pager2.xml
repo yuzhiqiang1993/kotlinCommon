@@ -11,22 +11,19 @@
     <include layout="@layout/toolbar" />
 
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+    <FrameLayout
+        android:id="@+id/layout_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabIndicator="@drawable/tab_in"
-        app:tabIndicatorColor="@color/red_400"
-        app:tabIndicatorHeight="@dimen/len_2"
-        app:tabIndicatorFullWidth="false"
-        app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/black"
-        app:tabTextColor="@color/gray_600" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:background="@color/white"
+        app:menu="@menu/menu_view_pager" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,15 +1,20 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.view.MenuItem
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ViewPagerAdapter
+import com.yzq.kotlincommon.ui.fragment.ViewPagerFragment
+import com.yzq.kotlincommon.ui.fragment.ViewPagerWithFragment
 import com.yzq.lib_base.ui.BaseActivity
+import com.yzq.lib_base.ui.BaseFragment
 import kotlinx.android.synthetic.main.activity_view_pager2.*
 
 
@@ -21,41 +26,65 @@ import kotlinx.android.synthetic.main.activity_view_pager2.*
  */
 
 @Route(path = RoutePath.Main.VIEW_PAGER)
-class ViewPager2Activity : BaseActivity() {
+class ViewPager2Activity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
     override fun getContentLayoutId() = R.layout.activity_view_pager2
 
-    private val viewPagerAdapter =
-        ViewPagerAdapter(
-            R.layout.item_view_pager,
-            arrayListOf(
-                "首页",
-                "康复心脑通",
-                "郭林新气功",
-                "名师讲坛",
-                "抗癌明星"
-            )
-        )
+    private val viewPagerFragment = ViewPagerFragment()
+    private val viewPagerWithFragment = ViewPagerWithFragment()
+    val fragmentList = arrayListOf<BaseFragment>()
 
     override fun initWidget() {
         super.initWidget()
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "ViewPager示例")
 
-        view_pager.adapter = viewPagerAdapter
+        bottom_navigation.setOnNavigationItemSelectedListener(this)
+
+        showFragment(viewPagerFragment)
 
 
-        TabLayoutMediator(tab_layout, view_pager) { tab, position ->
+    }
 
-            tab.setCustomView(R.layout.layout_custom_tab)
-            val tabTitleTv = tab.customView!!.findViewById<AppCompatTextView>(R.id.tv_tab_title)
-            tabTitleTv.text = viewPagerAdapter.data[position]
+    private fun showFragment(fragment: BaseFragment) {
+
+        if (!fragment.isAdded) {
+            supportFragmentManager.beginTransaction().add(R.id.layout_fragment, fragment).commit()
+        }
+
+        addFragment(fragment)
 
 
-            LogUtils.i("""当前Tab${tab.isSelected}:$position""")
+        fragmentList.forEach {
 
-        }.attach()
+            supportFragmentManager.beginTransaction().hide(it).commit()
+        }
 
+        supportFragmentManager.beginTransaction().show(fragment).commit()
+
+
+    }
+
+
+    fun addFragment(fragment: BaseFragment) {
+
+        if (!fragmentList.contains(fragment)) {
+            fragmentList.add(fragment)
+        }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_view -> {
+                showFragment(viewPagerFragment)
+            }
+            R.id.menu_fragment -> {
+
+                showFragment(viewPagerWithFragment)
+            }
+        }
+
+        return true
 
     }
 

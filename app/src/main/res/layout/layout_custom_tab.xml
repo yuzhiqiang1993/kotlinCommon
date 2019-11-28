@@ -13,8 +13,6 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="asdsadsa"
-        android:background="@drawable/linear_gradient_color"
-        android:textColor="@color/white"
         android:textSize="@dimen/font_16" />
 
 
