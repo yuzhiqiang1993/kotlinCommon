@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,12 +8,22 @@
     tools:context=".ui.fragment.ViewPagerWithFragment">
 
 
-    <TextView
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="sdsadsa"
-        />
+        app:tabIndicator="@drawable/tab_in"
+        app:tabIndicatorColor="@color/yellow_600"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="@dimen/len_4"
+        app:tabMode="scrollable" />
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/len_1"
+        android:background="@color/white" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>
