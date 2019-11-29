@@ -20,12 +20,5 @@ class FragmentViewModel : BaseViewModel() {
     val fragmentList = arrayListOf<BaseFragment>()
 
 
-    fun addFragment(fragment: BaseFragment) {
-
-        if (!fragmentList.contains(fragment)) {
-            fragmentList.add(fragment)
-        }
-    }
-
 }
 

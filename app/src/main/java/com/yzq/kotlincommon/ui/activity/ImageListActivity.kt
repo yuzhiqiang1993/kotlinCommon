@@ -119,8 +119,6 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
         vm.getData()
 
 
-
-
     }
 
     private fun handleDataChanged(t: List<Subject>) {

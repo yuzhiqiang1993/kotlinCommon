@@ -48,41 +48,47 @@ class ViewPager2Activity : BaseActivity(), BottomNavigationView.OnNavigationItem
 
     private fun showFragment(fragment: BaseFragment) {
 
-        if (!fragment.isAdded) {
-            supportFragmentManager.beginTransaction().add(R.id.layout_fragment, fragment).commit()
+
+        with(supportFragmentManager.beginTransaction()) {
+            if (!fragment.isAdded) {
+                add(R.id.layout_fragment, fragment)
+            }
+
+            if (!fragmentList.contains(fragment)) {
+                fragmentList.add(fragment)
+            }
+
+
+            fragmentList.forEach {
+
+                if (fragment != it) {
+                    hide(it)
+                }
+
+            }
+
+            show(fragment).commit()
         }
-
-        addFragment(fragment)
-
-
-        fragmentList.forEach {
-
-            supportFragmentManager.beginTransaction().hide(it).commit()
-        }
-
-        supportFragmentManager.beginTransaction().show(fragment).commit()
 
 
     }
 
-
-    fun addFragment(fragment: BaseFragment) {
-
-        if (!fragmentList.contains(fragment)) {
-            fragmentList.add(fragment)
-        }
-    }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_view -> {
-                showFragment(viewPagerFragment)
-            }
-            R.id.menu_fragment -> {
 
-                showFragment(viewPagerWithFragment)
+        if (!item.isChecked) {
+            when (item.itemId) {
+                R.id.menu_view -> {
+                    showFragment(viewPagerFragment)
+                }
+                R.id.menu_fragment -> {
+
+                    showFragment(viewPagerWithFragment)
+                }
             }
         }
+
+
 
         return true
 

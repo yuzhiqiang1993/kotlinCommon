@@ -21,7 +21,6 @@ class ViewPagerFragment : BaseFragment() {
 
     override fun getContentLayoutId() = R.layout.fragment_view_pager
 
-    private val tabs = arrayListOf<TabLayout.Tab>()
     private val viewPagerAdapter =
         ViewPagerAdapter(
             R.layout.item_view_pager,
