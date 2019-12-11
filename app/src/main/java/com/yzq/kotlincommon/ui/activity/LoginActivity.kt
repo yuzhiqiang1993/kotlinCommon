@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.text.TextUtils
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
@@ -44,6 +45,25 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
 
 
         btn_login.setOnClickListener {
+
+            val account = input_account.text?.trim().toString()
+            val pwd = input_pwd.text?.trim().toString()
+
+            input_layout_account.isErrorEnabled = false
+            input_layout_pwd.isErrorEnabled = false
+
+            if (TextUtils.isEmpty(account)) {
+                input_layout_account.isErrorEnabled = true
+                input_layout_account.error = "账号不能为空，请检查"
+                return@setOnClickListener
+            }
+            if (TextUtils.isEmpty(account)) {
+                input_layout_pwd.isErrorEnabled = true
+                input_layout_pwd.error = "密码不能为空，请检查"
+                return@setOnClickListener
+            }
+
+
 
 
             LocalSpUtils.account = input_account.text.toString()
