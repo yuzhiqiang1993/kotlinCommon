@@ -77,7 +77,7 @@ dependencies {
     implementation "org.jsoup:jsoup:${jsoup_version}"
     implementation "com.meituan.android.walle:library:${walleVersion}"
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.10.7'
+    implementation 'com.google.android.exoplayer:exoplayer:2.10.8'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation project(':common')
     implementation project(':lib_room')

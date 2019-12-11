@@ -1,8 +1,10 @@
 package com.yzq.common.view_model
 
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Matrix
+import android.graphics.drawable.Drawable
 import androidx.exifinterface.media.ExifInterface
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -63,7 +65,7 @@ class CompressImgViewModel : BaseViewModel() {
     ): String {
 
 
-        LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
+        LogUtils.i("压缩前图片大小：" + FileUtils.getFileLength(path))
 
 
         /*获取图片旋转的角度*/
@@ -159,9 +161,9 @@ class CompressImgViewModel : BaseViewModel() {
             (defaultH / ratio).toInt()
         )
         LogUtils.i("比例压缩后：" + selectBitMap.width + ":" + selectBitMap.height)
-
+        val imgArr = ImageUtils.compressByQuality(selectBitMap, quality)
         /*再按质量压缩*/
-        selectBitMap = ImageUtils.compressByQuality(selectBitMap, quality)
+        selectBitMap = BitmapFactory.decodeByteArray(imgArr, 0, imgArr.size)
 
         LogUtils.i("压缩后的" + selectBitMap.width + ":" + selectBitMap.height)
 
@@ -176,7 +178,7 @@ class CompressImgViewModel : BaseViewModel() {
             /*返回保存后的路径*/
 
 
-            LogUtils.i("压缩后图片大小：" + FileUtils.getFileSize(savedImgPath))
+            LogUtils.i("压缩后图片大小：" + FileUtils.getFileLength(savedImgPath))
             savedImgPath
         } else {
             /*返回原路径*/
@@ -192,7 +194,7 @@ class CompressImgViewModel : BaseViewModel() {
     /*只压缩图片*/
     private fun compressImg(path: String): String {
 
-        LogUtils.i("压缩前图片大小：" + FileUtils.getFileSize(path))
+        LogUtils.i("压缩前图片大小：" + FileUtils.getFileLength(path))
         /*获取图片旋转的角度*/
         val degree = readPictureDegree(path)
         var selectBitMap = ImageUtils.getBitmap(path)
@@ -229,8 +231,9 @@ class CompressImgViewModel : BaseViewModel() {
             )
         LogUtils.i("比例压缩后：" + selectBitMap.width + ":" + selectBitMap.height)
 
+        val imgArr = ImageUtils.compressByQuality(selectBitMap, quality)
         /*再按质量压缩*/
-        selectBitMap = ImageUtils.compressByQuality(selectBitMap, quality)
+        selectBitMap = BitmapFactory.decodeByteArray(imgArr, 0, imgArr.size)
 
         LogUtils.i("质量压缩后的" + selectBitMap.width + ":" + selectBitMap.height)
 
@@ -242,7 +245,7 @@ class CompressImgViewModel : BaseViewModel() {
             /*返回保存后的路径*/
 
 
-            LogUtils.i("压缩后图片大小：" + FileUtils.getFileSize(savedImgPath))
+            LogUtils.i("压缩后图片大小：" + FileUtils.getFileLength(savedImgPath))
             savedImgPath
         } else {
             /*返回原路径*/
