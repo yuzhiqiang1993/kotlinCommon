@@ -58,6 +58,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 }
 
             } finally {
+                dismissLoadingDialog()
                 cancel()
 
             }
@@ -155,8 +156,9 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 }
 
             } finally {
-                cancel()
                 dismissProgressDialog()
+                cancel()
+
             }
 
 
