@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.ui.activity
 import android.text.TextUtils
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.BarUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.utils.LocalSpUtils
@@ -80,9 +79,7 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
     override fun observeViewModel() {
 
         vm.loginData.observe(this, Observer<Boolean> {
-            ARouter.getInstance()
-                .build(RoutePath.Main.MAIN)
-                .navFinish(this@LoginActivity)
+            navFinish(RoutePath.Main.MAIN)
 
         })
 
