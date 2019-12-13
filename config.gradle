@@ -51,7 +51,7 @@ ext {
     gradle_versions_plugin = "0.21.0"
     zxing_version = "2.2.8"
     jsoup_version = "1.12.1"
-    leakcanary_android = "2.0-beta-3"
+    leakcanary_android = "2.0"
 
 
     signConfigs = [
