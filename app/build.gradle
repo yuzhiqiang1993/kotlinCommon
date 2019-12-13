@@ -73,12 +73,7 @@ dependencies {
     implementation "com.github.yuzhiqiang1993:zxing:${zxing_version}"
     implementation "org.jsoup:jsoup:${jsoup_version}"
     implementation "com.meituan.android.walle:library:${walleVersion}"
-
-
-    api "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
-    api "androidx.room:room-ktx:$room_version"
-
 
     implementation 'com.google.android.exoplayer:exoplayer:2.10.8'
     implementation "androidx.viewpager2:viewpager2:1.0.0"

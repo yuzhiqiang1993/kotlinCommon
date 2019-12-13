@@ -53,6 +53,14 @@ dependencies {
 
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
 
+
+
+    api "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    api "androidx.room:room-ktx:$room_version"
+
+
+
     /*Bugly*/
     api "com.tencent.bugly:crashreport_upgrade:$bugly_crashreport_upgrade"
     api "com.tencent.bugly:nativecrashreport:$bugly_nativecrashreport"
