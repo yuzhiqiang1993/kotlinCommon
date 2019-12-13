@@ -56,7 +56,7 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
                 input_layout_account.error = "账号不能为空，请检查"
                 return@setOnClickListener
             }
-            if (TextUtils.isEmpty(account)) {
+            if (TextUtils.isEmpty(pwd)) {
                 input_layout_pwd.isErrorEnabled = true
                 input_layout_pwd.error = "密码不能为空，请检查"
                 return@setOnClickListener

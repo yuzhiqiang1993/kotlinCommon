@@ -19,7 +19,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout_account"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/len_10"
@@ -29,6 +28,7 @@
             android:id="@+id/input_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             android:hint="@string/input_account_hint"
             android:maxLines="1" />
 
@@ -37,7 +37,6 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout_pwd"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/len_10"
@@ -48,6 +47,7 @@
             android:id="@+id/input_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
             android:hint="@string/input_pwd_hint"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>

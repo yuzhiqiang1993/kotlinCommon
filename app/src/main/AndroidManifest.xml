@@ -20,7 +20,10 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
-        <activity android:name=".ui.activity.ViewPager2Activity"></activity>
+        <activity
+            android:name=".ui.activity.ViewPager2Activity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.ExoPlayerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
