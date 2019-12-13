@@ -16,6 +16,7 @@ android {
         versionName version_name
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
+        resConfigs "zh"
         ndk {
             abiFilters "armeabi-v7a"
         }
