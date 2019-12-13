@@ -55,7 +55,7 @@ ext {
 
 
     signConfigs = [
-            storeFilePath: "kotlinCommon.jks",
+            storeFilePath: "kotlinCommon",
             storePwd     : "123456",
             keyAlias     : "kotlinCommon",
             keypwd       : "123456"
