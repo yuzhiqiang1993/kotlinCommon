@@ -4,11 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.ExoPlayerActivity">
+    tools:context=".ui.activity.VideoPlayerActivity">
 
-
-    <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/exo_player_view"
+    <com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+        android:id="@+id/video_player"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="196dp" />
+
+
 </androidx.appcompat.widget.LinearLayoutCompat>

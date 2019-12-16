@@ -25,7 +25,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.activity.ExoPlayerActivity"
+            android:name=".ui.activity.VideoPlayerActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".ui.activity.DownloadActivity"

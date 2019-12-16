@@ -1,7 +1,7 @@
 package com.yzq.lib_base.ui
 
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
 import com.yzq.lib_base.view_model.BaseViewModel
@@ -27,7 +27,7 @@ abstract class BaseMvvmFragment<VM : BaseViewModel> : BaseFragment() {
 
 
     override fun initViewModel() {
-        vm = ViewModelProviders.of(this).get(getViewModelClass())
+        vm = ViewModelProvider(this).get(getViewModelClass())
 
 
         vm.let {

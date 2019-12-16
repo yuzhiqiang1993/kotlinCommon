@@ -76,7 +76,7 @@ dependencies {
     implementation "com.meituan.android.walle:library:${walleVersion}"
     kapt "androidx.room:room-compiler:$room_version"
 
-    implementation 'com.google.android.exoplayer:exoplayer:2.10.8'
+    implementation 'com.shuyu:GSYVideoPlayer:7.1.2'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation project(':common')
     if (isModule.toBoolean()) {

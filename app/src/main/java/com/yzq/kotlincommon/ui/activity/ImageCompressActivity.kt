@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.ui.activity
 import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.huantansheng.easyphotos.models.album.entity.Photo
@@ -46,7 +46,7 @@ class ImageCompressActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-        compressImgViewModel = ViewModelProviders.of(this).get(CompressImgViewModel::class.java)
+        compressImgViewModel = ViewModelProvider(this).get(CompressImgViewModel::class.java)
 
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "图片")
