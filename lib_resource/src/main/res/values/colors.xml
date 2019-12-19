@@ -10,6 +10,12 @@
     <color name="primary_text">#212121</color>
     <!--次要文字颜色-->
     <color name="secondary_text">#757575</color>
+
+
+    <color name="primary_icon">#000000</color>
+    <color name="secondary_icon">#9e9e9e</color>
+
+
     <!--图标颜色-->
     <color name="icons">#FFFFFF</color>
     <!--分割线颜色-->
