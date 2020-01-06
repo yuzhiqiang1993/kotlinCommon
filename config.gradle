@@ -27,9 +27,9 @@ ext {
     eventbus = "3.1.1"
     glide = "4.10.0"
     permission = "2.0.3"
-    retrofit = "2.7.0"
+    retrofit = "2.7.1"
     progressmanager_version = "1.5.0"
-    ok_http = "4.2.2"
+    ok_http = "4.3.0"
     rx_android = "2.1.1"
     rx_kotlin = "2.4.0"
     autodispose_version = "1.2.0"
@@ -51,7 +51,7 @@ ext {
     gradle_versions_plugin = "0.27.0"
     zxing_version = "2.2.8"
     jsoup_version = "1.12.1"
-    leakcanary_android = "2.0"
+    leakcanary_android = "2.1"
 
 
     signConfigs = [

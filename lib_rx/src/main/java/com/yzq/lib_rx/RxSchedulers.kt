@@ -21,7 +21,7 @@ object RxSchedulers {
 
         return ObservableTransformer { upstream ->
             upstream.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
 
         }
 
@@ -30,7 +30,7 @@ object RxSchedulers {
     fun <T> io2mainForSingle(): SingleTransformer<T, T> {
         return SingleTransformer { upstream ->
             upstream.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
         }
     }
 
