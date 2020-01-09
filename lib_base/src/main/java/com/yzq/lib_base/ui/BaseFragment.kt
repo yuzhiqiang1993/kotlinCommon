@@ -13,6 +13,9 @@ import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_widget.StateView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -24,7 +27,7 @@ import org.greenrobot.eventbus.ThreadMode
  * @time   : 9:49
  *
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
 
     private var stateView: StateView? = null
     private var contentLayout: View? = null
@@ -187,4 +190,9 @@ abstract class BaseFragment : Fragment() {
         this.isRefreshLayout = isRefreshLayout
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cancel()
+    }
 }
