@@ -2,9 +2,10 @@ package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.kotlincommon.data.data_base.User
-import com.yzq.kotlincommon.data.data_base.UserDao
-import com.yzq.kotlincommon.data.data_base.UserDataBase
+import com.yzq.common.data.data_base.User
+import com.yzq.common.data.data_base.UserDao
+import com.yzq.common.data.data_base.UserDataBase
+
 import com.yzq.lib_base.view_model.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

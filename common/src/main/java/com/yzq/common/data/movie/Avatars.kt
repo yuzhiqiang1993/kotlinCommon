@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.data.movie
+package com.yzq.common.data.movie
 
 
 data class Avatars(

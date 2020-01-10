@@ -1,6 +1,6 @@
 package com.yzq.kotlincommon.mvvm.model
 
-import com.yzq.kotlincommon.data.movie.MovieBean
+import com.yzq.common.data.movie.MovieBean
 import com.yzq.kotlincommon.net.ApiService
 import com.yzq.common.net.RetrofitFactory
 import kotlinx.coroutines.Dispatchers

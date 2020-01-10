@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.mvvm.view_model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DiffUtil
-import com.yzq.kotlincommon.data.movie.Subject
+import com.yzq.common.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.model.MoviesModel
 import com.yzq.lib_base.view_model.BaseViewModel
 import kotlinx.coroutines.Dispatchers

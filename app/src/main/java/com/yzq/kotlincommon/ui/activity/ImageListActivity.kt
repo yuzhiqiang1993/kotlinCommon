@@ -9,9 +9,9 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.data.movie.Subject
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ImgListAdapter
-import com.yzq.kotlincommon.data.movie.Subject
 import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseMvvmActivity

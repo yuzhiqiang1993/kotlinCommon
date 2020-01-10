@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.data.movie
+package com.yzq.common.data.movie
 
 
 import com.google.gson.annotations.SerializedName

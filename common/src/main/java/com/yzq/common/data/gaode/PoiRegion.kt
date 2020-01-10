@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.data.gaode
+package com.yzq.common.data.gaode
 
 
 import com.google.gson.annotations.SerializedName

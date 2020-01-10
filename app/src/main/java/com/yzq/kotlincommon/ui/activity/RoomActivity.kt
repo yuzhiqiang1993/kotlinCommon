@@ -7,9 +7,9 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.diff.BaseQuickDiffCallback
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.data.data_base.User
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.RoomAdapter
-import com.yzq.kotlincommon.data.data_base.User
 import com.yzq.kotlincommon.mvvm.view_model.RoomViewModel
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseMvvmActivity

@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.data.data_base
+package com.yzq.common.data.data_base
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.data.gaode
+package com.yzq.common.data.gaode
 
 data class LocationBean(
         /*经度*/

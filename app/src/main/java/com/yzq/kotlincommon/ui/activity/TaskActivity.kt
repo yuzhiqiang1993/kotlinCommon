@@ -8,9 +8,9 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.data.task.TaskBean
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TaskAdapter
-import com.yzq.kotlincommon.data.task.TaskBean
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_widget.HoverItemDecoration

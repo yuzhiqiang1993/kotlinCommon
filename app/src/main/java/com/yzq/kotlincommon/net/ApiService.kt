@@ -1,8 +1,8 @@
 package com.yzq.kotlincommon.net
 
 import com.yzq.common.data.BaseResp
-import com.yzq.kotlincommon.data.gaode.Geocoder
-import com.yzq.kotlincommon.data.movie.MovieBean
+import com.yzq.common.data.gaode.Geocoder
+import com.yzq.common.data.movie.MovieBean
 import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Query

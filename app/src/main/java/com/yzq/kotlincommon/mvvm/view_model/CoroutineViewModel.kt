@@ -1,8 +1,8 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
+import com.yzq.common.data.gaode.Geocoder
 import com.yzq.common.extend.dataConvert
-import com.yzq.kotlincommon.data.gaode.Geocoder
 import com.yzq.kotlincommon.net.ApiService
 import com.yzq.lib_base.view_model.BaseViewModel
 import com.yzq.common.net.RetrofitFactory

@@ -24,6 +24,10 @@ import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_rx.transform
 import io.reactivex.Observable
 import kotlinx.android.synthetic.main.appbar_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.concurrent.TimeUnit
 
 /**
@@ -74,13 +78,14 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener,
 
         navView.setNavigationItemSelectedListener(this)
 
-        Observable.timer(3, TimeUnit.SECONDS)
-            .transform(this)
-            .subscribe {
+        launch {
+
+            delay(1000)
+            withContext(Dispatchers.IO) {
                 LogUtils.i("检查更新")
                 Beta.checkUpgrade()
             }
-
+        }
     }
 
 
