@@ -78,6 +78,10 @@ dependencies {
 
     implementation 'com.shuyu:GSYVideoPlayer:7.1.2'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    implementation 'com.github.zhpanvip:BannerViewPager:2.6.5'
+    implementation 'com.rishabhharit.roundedimageview:RoundedImageView:0.8.4'
+
     implementation project(':common')
     if (isModule.toBoolean()) {
         implementation project(':gao_de_map')

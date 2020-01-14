@@ -32,7 +32,7 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
     private var stateView: StateView? = null
     private var contentLayout: View? = null
     private var isRefreshLayout: Boolean = false
-
+    protected lateinit var rootView: View
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -45,9 +45,9 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(getContentLayoutId(), container, false)
+        rootView = inflater.inflate(getContentLayoutId(), container, false)
         EventBusUtil.register(this)
-        return view
+        return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
