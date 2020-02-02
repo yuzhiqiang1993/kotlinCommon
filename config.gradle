@@ -12,24 +12,24 @@ ext {
     /*dependencies*/
 
     /*AndroidX*/
-    appcompat = "1.2.0-alpha01"
-    material = "1.2.0-alpha03"
+    appcompat = "1.2.0-alpha02"
+    material = "1.2.0-alpha04"
     vectordrawable = "1.1.0"
     constraintlayout = "2.0.0-beta4"
     annotation = "1.1.0"
     multiDexVersion = "2.0.1"
-    lifecycle_version = "2.2.0-rc03"
+    lifecycle_version = "2.2.0"
     kotlinx_coroutines = "1.3.3"
     swiperefreshlayout = "1.1.0-alpha03"
     room_version = "2.2.3"
 
     /*third party*/
     eventbus = "3.1.1"
-    glide = "4.10.0"
+    glide = "4.11.0"
     permission = "2.0.3"
     retrofit = "2.7.1"
     progressmanager_version = "1.5.0"
-    ok_http = "4.3.0"
+    ok_http = "4.3.1"
     rx_android = "2.1.1"
     rx_kotlin = "2.4.0"
     autodispose_version = "1.2.0"
