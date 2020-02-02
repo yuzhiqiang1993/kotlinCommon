@@ -10,20 +10,20 @@
     <com.yzq.kotlincommon.widget.banner.CustomBannerViewPager
         android:id="@+id/banner_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/len_128"
+        android:layout_height="@dimen/dp_128"
         app:bvp_indicator_checked_color="@color/white"
         app:bvp_indicator_normal_color="@color/gray_500"
-        app:bvp_page_margin="@dimen/len_10"
+        app:bvp_page_margin="@dimen/dp_10"
         app:bvp_page_style="multi_page" />
 
 
     <TextView
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/len_60"
+        android:layout_height="@dimen/dp_60"
         android:gravity="center"
         android:text="content"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_20" />
+        android:textSize="@dimen/sp_20" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

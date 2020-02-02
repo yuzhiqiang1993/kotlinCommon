@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/len_16"
+        android:layout_margin="@dimen/dp_16"
         android:orientation="vertical">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -36,7 +36,7 @@
             android:id="@+id/fab_album"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/len_10"
+            android:layout_marginTop="@dimen/dp_10"
             android:tint="@color/white"
             app:srcCompat="@drawable/ic_menu_gallery" />
 

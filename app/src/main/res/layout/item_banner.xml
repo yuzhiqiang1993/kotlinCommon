@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scaleType="centerCrop"
-    app:cornerRadius="@dimen/len_10"
+    app:cornerRadius="@dimen/dp_10"
     app:roundedCorners="all" />
 
 

@@ -12,7 +12,7 @@
         <item name="android:icon">@color/icons</item>
         <item name="android:divider">@color/divider</item>
         <item name="colorControlHighlight">@color/wave_color</item>
-        <item name="android:textSize">@dimen/font_14</item>
+        <item name="android:textSize">@dimen/sp_14</item>
         <item name="android:windowBackground">@color/bg_gray</item>
         <item name="android:screenOrientation">portrait</item>
         <item name="android:configChanges">screenSize|keyboardHidden|orientation</item>

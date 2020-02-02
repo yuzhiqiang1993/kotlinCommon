@@ -13,10 +13,10 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_count"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/len_48"
+        android:layout_height="@dimen/dp_48"
         android:gravity="center"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_18" />
+        android:textSize="@dimen/sp_18" />
 
 
     <com.google.android.material.button.MaterialButton
@@ -24,7 +24,7 @@
         style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/len_10"
+        android:layout_margin="@dimen/dp_10"
         android:text="@string/start_count" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

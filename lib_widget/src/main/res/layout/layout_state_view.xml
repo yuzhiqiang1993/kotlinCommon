@@ -13,8 +13,8 @@
         android:orientation="horizontal">
 
         <ProgressBar
-            android:layout_width="@dimen/len_24"
-            android:layout_height="@dimen/len_24" />
+            android:layout_width="@dimen/dp_24"
+            android:layout_height="@dimen/dp_24" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -37,24 +37,24 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_hint"
-            android:layout_width="@dimen/len_128"
-            android:layout_height="@dimen/len_96" />
+            android:layout_width="@dimen/dp_128"
+            android:layout_height="@dimen/dp_96" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/len_16"
+            android:layout_marginTop="@dimen/dp_16"
             android:gravity="center"
             android:textColor="@color/primary_text"
-            android:textSize="@dimen/font_18" />
+            android:textSize="@dimen/sp_18" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_retry"
             style="@style/Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/len_10"
+            android:layout_marginTop="@dimen/dp_10"
             android:text="@string/retry"
             android:textColor="@color/white" />
 

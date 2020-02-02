@@ -11,9 +11,9 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbar_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/len_224"
+        android:layout_height="@dimen/dp_224"
         android:theme="@style/AppTheme.AppBarOverlay"
-        app:elevation="@dimen/len_2">
+        app:elevation="@dimen/dp_2">
 
 
         <com.google.android.material.appbar.CollapsingToolbarLayout

@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
-    android:minHeight="@dimen/len_28"
-    android:paddingStart="@dimen/len_32"
-    android:paddingEnd="@dimen/len_0"
+    android:minHeight="@dimen/dp_28"
+    android:paddingStart="@dimen/dp_32"
+    android:paddingEnd="@dimen/dp_0"
     android:text="sadsad" />
 

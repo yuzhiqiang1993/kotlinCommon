@@ -15,8 +15,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/list_item_selector"
         android:gravity="start|center_vertical"
-        android:padding="@dimen/len_10"
-        android:minHeight="@dimen/len_56"
+        android:padding="@dimen/dp_10"
+        android:minHeight="@dimen/dp_56"
         android:textColor="@color/black" />
 
     <include layout="@layout/item_delete_menu" />

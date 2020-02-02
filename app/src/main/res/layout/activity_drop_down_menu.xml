@@ -19,7 +19,7 @@
         app:menuBackgroundColor="@color/white"
         app:menuMenuHeightPercent="0.6"
         app:menuSelectedIcon="@drawable/ic_arrow_up"
-        app:menuTextSize="@dimen/font_14"
+        app:menuTextSize="@dimen/sp_14"
         app:menuUnselectedIcon="@drawable/ic_arrow_down"
         app:textSelectedColor="@color/colorAccent"
         app:textUnselectedColor="@color/black" />

@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/len_72"
+        android:layout_marginTop="@dimen/dp_72"
         app:srcCompat="@mipmap/ic_launcher_round" />
 
 
@@ -21,7 +21,7 @@
         android:id="@+id/input_layout_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/len_10"
+        android:layout_margin="@dimen/dp_10"
         app:endIconMode="clear_text">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -39,7 +39,7 @@
         android:id="@+id/input_layout_pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/len_10"
+        android:layout_margin="@dimen/dp_10"
         app:endIconMode="password_toggle">
 
 
@@ -58,7 +58,7 @@
         style="@style/Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/len_10"
+        android:layout_margin="@dimen/dp_10"
         android:text="@string/login" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

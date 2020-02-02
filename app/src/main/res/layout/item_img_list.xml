@@ -3,7 +3,7 @@
     android:id="@+id/iv_img"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/len_1"
+    android:layout_margin="@dimen/dp_1"
     android:scaleType="centerCrop"
     />
 

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/len_76"
+    android:layout_height="@dimen/dp_76"
     android:background="@drawable/list_item_selector"
     android:orientation="horizontal"
-    android:padding="@dimen/len_10">
+    android:padding="@dimen/dp_10">
 
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_img"
-        android:layout_width="@dimen/len_76"
+        android:layout_width="@dimen/dp_76"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:scaleType="centerCrop" />
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:padding="@dimen/len_10"
+        android:padding="@dimen/dp_10"
         android:textColor="@color/black" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

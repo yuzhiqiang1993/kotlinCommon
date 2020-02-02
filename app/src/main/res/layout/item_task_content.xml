@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/list_item_selector"
     android:orientation="horizontal"
-    android:padding="@dimen/len_10">
+    android:padding="@dimen/dp_10">
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical"
-        android:padding="@dimen/len_10"
+        android:padding="@dimen/dp_10"
         android:textColor="@color/primary_text" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

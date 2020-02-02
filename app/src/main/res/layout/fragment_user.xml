@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_margin="@dimen/len_10"
+        android:layout_margin="@dimen/dp_10"
         android:text="显示弹窗" />
 
     <com.google.android.material.button.MaterialButton
@@ -20,7 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_margin="@dimen/len_10"
+        android:layout_margin="@dimen/dp_10"
         android:text="选图片" />
 
     <com.google.android.material.button.MaterialButton
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_margin="@dimen/len_10"
+        android:layout_margin="@dimen/dp_10"
         android:text="申请权限" />
 
 

@@ -13,7 +13,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="asdsadsa"
-        android:textSize="@dimen/font_16" />
+        android:textSize="@dimen/sp_16" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/len_16"
+        android:layout_margin="@dimen/dp_16"
         android:src="@drawable/ic_add"
         android:tint="@color/white" />
 

@@ -2,8 +2,8 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <size
-        android:width="@dimen/len_10"
-        android:height="@dimen/len_2" />
+        android:width="@dimen/dp_10"
+        android:height="@dimen/dp_2" />
 
 <!--    <solid android:color="@color/yellow_500" />-->
 <!--    <stroke-->

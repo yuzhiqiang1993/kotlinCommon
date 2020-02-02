@@ -8,4 +8,4 @@
     android:gravity="center"
     android:text="sadsadsad"
     android:textColor="@color/black"
-    android:textSize="@dimen/font_28" />
+    android:textSize="@dimen/sp_28" />
