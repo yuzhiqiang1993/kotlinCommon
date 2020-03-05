@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemClickListener
+import com.chad.library.adapter.base.listener.OnLoadMoreListener
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.movie.Subject
 import com.yzq.kotlincommon.R
@@ -15,6 +17,7 @@ import com.yzq.kotlincommon.adapter.ImgListAdapter
 import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseMvvmActivity
+import com.yzq.lib_base_adapter.AdapterLoadMoreView
 import kotlinx.android.synthetic.main.activity_image_list.*
 
 
@@ -28,7 +31,7 @@ import kotlinx.android.synthetic.main.activity_image_list.*
 
 @Route(path = RoutePath.Main.IMG_LIST)
 class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
-    BaseQuickAdapter.OnItemClickListener, BaseQuickAdapter.RequestLoadMoreListener {
+    OnItemClickListener, OnLoadMoreListener {
 
 
     override fun getViewModelClass(): Class<ImgListViewModel> = ImgListViewModel::class.java
@@ -76,12 +79,12 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
         recy.init(layoutManager, false)
 
 
-        imgListAdapter.onItemClickListener = this
+        imgListAdapter.setOnItemClickListener(this)
 
-        imgListAdapter.setEnableLoadMore(true)
+        imgListAdapter.loadMoreModule?.setOnLoadMoreListener(this)
+        imgListAdapter.loadMoreModule?.loadMoreView = AdapterLoadMoreView()
 
-        imgListAdapter.setOnLoadMoreListener(this, recy)
-        imgListAdapter.setLoadMoreView(com.yzq.lib_base_adapter.AdapterLoadMoreView)
+
         recy.adapter = imgListAdapter
 
 
@@ -98,7 +101,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
             subjectsDiffResult.observe(this@ImageListActivity, Observer {
 
                 LogUtils.i("更新数据")
-                imgListAdapter.setNewDiffData(it, vm.subjectsLive.value!!)
+                imgListAdapter.setDiffNewData(it, vm.subjectsLive.value!!)
             })
 
         }
@@ -126,30 +129,16 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
         if (requestType == httpLoadMore) {
 
             if (t.isEmpty()) {
-                imgListAdapter.loadMoreEnd()
+                imgListAdapter.loadMoreModule?.loadMoreEnd()
+            } else {
+                imgListAdapter.addData(t)
+                imgListAdapter.loadMoreModule?.loadMoreComplete()
             }
-            imgListAdapter.addData(t)
-            imgListAdapter.loadMoreComplete()
+
 
         } else {
-
-
             /*异步计算出需要更新的数据*/
             vm.calculateDiff(imgListAdapter.data, t)
-
-
-            /*下面这种方式更新数据性能更高  且不会出现列表项刷新闪屏的情况*/
-//            imgListAdapter.setNewDiffData(object : BaseQuickDiffCallback<Subject>(t) {
-//                override fun areItemsTheSame(oldItem: Subject, newItem: Subject): Boolean {
-//                    return oldItem.id.equals(newItem.id)
-//                }
-//
-//                override fun areContentsTheSame(oldItem: Subject, newItem: Subject): Boolean {
-//                    return oldItem.images.small.equals(newItem.images.small)
-//                }
-//
-//            })
-
         }
 
         showContent()
@@ -158,25 +147,27 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
     }
 
 
-    override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+    override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
         val imgView =
-            recy.layoutManager!!.findViewByPosition(position)!!.findViewById<AppCompatImageView>(R.id.iv_img)
+            recy.layoutManager!!.findViewByPosition(position)!!
+                .findViewById<AppCompatImageView>(R.id.iv_img)
         preViewImg(imgListAdapter.data[position].images.large, imgView)
 
     }
 
 
-    override fun onLoadMoreRequested() {
-
+    override fun onLoadMore() {
         LogUtils.i("onLoadMoreRequested")
         if (vm.start <= 250) {
             requestType = httpLoadMore
             vm.getData()
         } else {
-            imgListAdapter.loadMoreEnd()
+            imgListAdapter.loadMoreModule?.loadMoreEnd()
         }
 
+
     }
+
 
 }

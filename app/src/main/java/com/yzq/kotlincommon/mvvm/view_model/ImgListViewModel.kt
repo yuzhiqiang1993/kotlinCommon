@@ -14,10 +14,10 @@ class ImgListViewModel : BaseViewModel() {
 
 
     var start = 0
-    private val count = 30
+    private val count = 50
     private val model: MoviesModel by lazy { MoviesModel() }
 
-    val subjectsLive by lazy { MutableLiveData<List<Subject>>() }
+    val subjectsLive by lazy { MutableLiveData<MutableList<Subject>>() }
     val subjectsDiffResult by lazy { MutableLiveData<DiffUtil.DiffResult>() }
 
 

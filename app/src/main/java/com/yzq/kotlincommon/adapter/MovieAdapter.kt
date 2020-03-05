@@ -1,14 +1,13 @@
 package com.yzq.kotlincommon.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.yzq.common.data.movie.Subject
-import com.yzq.kotlincommon.R
 import com.yzq.lib_img.loadWithThumbnail
 import kotlinx.android.synthetic.main.item_movie_layout.view.*
 
 
-class MovieAdapter(layoutResId: Int, data: List<Subject>) :
+class MovieAdapter(layoutResId: Int, data: MutableList<Subject>) :
     BaseQuickAdapter<Subject, BaseViewHolder>(layoutResId, data) {
 
 
@@ -22,8 +21,6 @@ class MovieAdapter(layoutResId: Int, data: List<Subject>) :
             iv_img.loadWithThumbnail(item.images.small)
 
         }
-
-        helper.addOnClickListener(R.id.iv_img)
 
     }
 

@@ -8,6 +8,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemChildClickListener
+import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.movie.Subject
 import com.yzq.kotlincommon.R
@@ -27,8 +29,8 @@ import kotlinx.android.synthetic.main.activity_movie_list.*
  */
 
 @Route(path = RoutePath.Main.MOVIES)
-class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnItemClickListener,
-    BaseQuickAdapter.OnItemChildClickListener {
+class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), OnItemClickListener,
+    OnItemChildClickListener {
 
 
     override fun getViewModelClass(): Class<MovieViewModel> = MovieViewModel::class.java
@@ -62,7 +64,7 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
 
     override fun observeViewModel() {
         vm.subjects.observe(this,
-            Observer<List<Subject>> { t ->
+            Observer { t ->
                 LogUtils.i("数据发生变化")
 
                 if (t.isNotEmpty()) {
@@ -75,32 +77,32 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), BaseQuickAdapter.OnIt
     }
 
 
-    private fun showData(data: List<Subject>) {
+    private fun showData(data: MutableList<Subject>) {
 
         movieAdapter = MovieAdapter(R.layout.item_movie_layout, data)
+        movieAdapter.addChildClickViewIds(R.id.iv_img)
         recy.adapter = movieAdapter
-        movieAdapter.onItemClickListener = this
-        movieAdapter.onItemChildClickListener = this
-
+        movieAdapter.setOnItemClickListener(this)
+        movieAdapter.setOnItemChildClickListener(this)
         showContent()
     }
 
 
-    override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View?, position: Int) {
+    override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
         operationItem = movieAdapter.data[position]
 
         ToastUtils.showShort(operationItem.title)
     }
 
 
-    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View?, position: Int) {
+    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
         operationItem = movieAdapter.data[position]
         val imgView =
-            recy.layoutManager!!.findViewByPosition(position)!!.findViewById<AppCompatImageView>(R.id.iv_img)
-        when (view!!.id) {
+            recy.layoutManager!!.findViewByPosition(position)!!
+                .findViewById<AppCompatImageView>(R.id.iv_img)
+        when (view.id) {
             R.id.iv_img -> {
-
                 preViewImg(operationItem.images.large, imgView)
             }
         }

@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.task.TaskBean
 import com.yzq.kotlincommon.R
@@ -27,7 +28,7 @@ import java.util.*
  */
 
 @Route(path = RoutePath.Main.TASK)
-class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
+class TaskActivity : BaseActivity(), OnItemChildClickListener {
 
 
     private var tasks = arrayListOf<TaskBean>()
@@ -80,7 +81,7 @@ class TaskActivity : BaseActivity(), BaseQuickAdapter.OnItemChildClickListener {
 
 
         taskAdapter = TaskAdapter(R.layout.item_task_swipe_layout, tasks)
-        taskAdapter.onItemChildClickListener = this
+        taskAdapter.setOnItemChildClickListener(this)
 
         val hoverItemDecoration = HoverItemDecoration(
             this,

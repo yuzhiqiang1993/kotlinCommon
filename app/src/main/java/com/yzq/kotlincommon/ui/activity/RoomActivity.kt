@@ -3,9 +3,10 @@ package com.yzq.kotlincommon.ui.activity
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DiffUtil
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.diff.BaseQuickDiffCallback
+import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.data_base.User
 import com.yzq.kotlincommon.R
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_zoom.*
 
 
 @Route(path = RoutePath.Main.ROOM)
-class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemChildClickListener {
+class RoomActivity : BaseMvvmActivity<RoomViewModel>(), OnItemChildClickListener {
 
 
     private val roomAdapter = RoomAdapter(R.layout.item_room, arrayListOf())
@@ -37,11 +38,19 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemC
         initToolbar(toolbar, "Room")
 
         recy.init()
-
+        roomAdapter.addChildClickViewIds(R.id.tv_delete, R.id.tv_user)
         recy.adapter = roomAdapter
-        roomAdapter.onItemChildClickListener = this
+        roomAdapter.setOnItemChildClickListener(this)
+        roomAdapter.setDiffCallback(object : DiffUtil.ItemCallback<User>() {
+            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+                return oldItem.id.equals(newItem.id)
+            }
 
+            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+                return oldItem.name.equals(newItem.name)
+            }
 
+        })
 
         fab_add.setOnClickListener {
 
@@ -72,19 +81,7 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), BaseQuickAdapter.OnItemC
 
         with(vm) {
             users.observe(this@RoomActivity, Observer {
-
-                roomAdapter.setNewDiffData(object : BaseQuickDiffCallback<User>(it) {
-
-                    override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-
-                        return oldItem.id.equals(newItem.id)
-                    }
-
-                    override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-
-                        return oldItem.name.equals(newItem.name)
-                    }
-                })
+                roomAdapter.setDiffNewData(it)
 
             })
 

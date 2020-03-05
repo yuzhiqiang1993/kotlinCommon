@@ -29,11 +29,27 @@
 
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_load_failed"
+        android:id="@+id/tv_load_more_failed"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@string/load_more_fail"
+        android:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_load_more_complete"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/load_more_complete"
+        android:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_load_more_end"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/load_more_end"
         android:visibility="gone" />
 
 </FrameLayout>

@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.google.android.material.navigation.NavigationView
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.RoutePath
@@ -39,8 +40,8 @@ import java.util.concurrent.TimeUnit
  */
 
 @Route(path = RoutePath.Main.MAIN)
-class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener,
-    NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(),
+    NavigationView.OnNavigationItemSelectedListener, OnItemClickListener {
 
 
     private var items = arrayListOf<NaviItem>()
@@ -114,7 +115,7 @@ class MainActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener,
     private fun setdata() {
         val recy = findViewById<RecyclerView>(R.id.recy)
         mainAdapter = MainAdapter(R.layout.item_main_layout, items)
-        mainAdapter.onItemClickListener = this
+        mainAdapter.setOnItemClickListener(this)
         recy.adapter = mainAdapter
 
 

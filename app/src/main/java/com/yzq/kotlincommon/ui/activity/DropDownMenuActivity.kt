@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.DropDownMenuFilterAdapter
@@ -25,7 +26,7 @@ import kotlinx.android.synthetic.main.activity_drop_down_menu.*
  */
 
 @Route(path = RoutePath.Main.DROP_DOWN_MENU)
-class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListener {
+class DropDownMenuActivity : BaseActivity(), OnItemClickListener {
 
 
     override fun getContentLayoutId(): Int {
@@ -81,11 +82,13 @@ class DropDownMenuActivity : BaseActivity(), BaseQuickAdapter.OnItemClickListene
 
     private fun setData() {
 
-        dropDownMenuFoodTypeAdapter = DropDownMenuFoodTypeAdapter(R.layout.item_drop_down_menu_layout, foodTypes)
-        dropDownMenuFoodTypeAdapter.onItemClickListener = this
+        dropDownMenuFoodTypeAdapter =
+            DropDownMenuFoodTypeAdapter(R.layout.item_drop_down_menu_layout, foodTypes)
+        dropDownMenuFoodTypeAdapter.setOnItemClickListener(this)
 
-        dropDownMenuFiltersAdapter = DropDownMenuFilterAdapter(R.layout.item_drop_down_menu_layout, filters)
-        dropDownMenuFiltersAdapter.onItemClickListener = this
+        dropDownMenuFiltersAdapter =
+            DropDownMenuFilterAdapter(R.layout.item_drop_down_menu_layout, filters)
+        dropDownMenuFiltersAdapter.setOnItemClickListener(this)
 
         foodTypeRecy.adapter = dropDownMenuFoodTypeAdapter
         filtersRecy.adapter = dropDownMenuFiltersAdapter

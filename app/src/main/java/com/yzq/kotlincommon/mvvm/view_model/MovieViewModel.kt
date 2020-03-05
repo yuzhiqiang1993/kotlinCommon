@@ -12,7 +12,7 @@ class MovieViewModel : BaseViewModel() {
     private val model: MoviesModel by lazy { MoviesModel() }
 
 
-    var subjects = MutableLiveData<List<Subject>>()
+    var subjects = MutableLiveData<MutableList<Subject>>()
 
 
     /*请求数据*/

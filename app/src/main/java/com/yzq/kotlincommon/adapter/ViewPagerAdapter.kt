@@ -1,9 +1,8 @@
 package com.yzq.kotlincommon.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.yzq.kotlincommon.R
-import kotlinx.android.synthetic.main.item_view_pager.view.*
 
 
 /**

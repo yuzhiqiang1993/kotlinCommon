@@ -24,10 +24,10 @@ ext {
     room_version = "2.2.4"
 
     /*third party*/
-    eventbus = "3.1.1"
+    eventbus = "3.2.0"
     glide = "4.11.0"
     permission = "2.0.3"
-    retrofit = "2.7.1"
+    retrofit = "2.7.2"
     progressmanager_version = "1.5.0"
     ok_http = "4.4.0"
     rx_android = "2.1.1"
@@ -35,7 +35,7 @@ ext {
     autodispose_version = "1.2.0"
     gson = "2.8.6"
     material_dialogs = "3.1.1"
-    baseRecyclerViewAdapterHelper = "2.9.50"
+    baseRecyclerViewAdapterHelper = "3.0.1"
     photoview = "2.3.0"
     objectboxVersion = "2.3.4"
     utilcode = "1.26.0"
@@ -50,7 +50,7 @@ ext {
     flexbox = "2.0.1"
     gradle_versions_plugin = "0.27.0"
     zxing_version = "2.2.8"
-    jsoup_version = "1.12.2"
+    jsoup_version = '1.13.1'
     leakcanary_android = "2.2"
     bannerViewPager = "2.7.0"
     viewpager2="1.0.0"

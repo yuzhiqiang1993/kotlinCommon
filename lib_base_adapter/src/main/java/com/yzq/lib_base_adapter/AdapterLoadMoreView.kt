@@ -1,6 +1,10 @@
 package com.yzq.lib_base_adapter
 
-import com.chad.library.adapter.base.loadmore.LoadMoreView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.chad.library.adapter.base.loadmore.BaseLoadMoreView
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
 
 /**
@@ -11,21 +15,24 @@ import com.chad.library.adapter.base.loadmore.LoadMoreView
  *
  */
 
-object AdapterLoadMoreView : LoadMoreView() {
-    override fun getLayoutId(): Int {
-        return R.layout.layout_load_more
+open class AdapterLoadMoreView : BaseLoadMoreView() {
+    override fun getLoadComplete(holder: BaseViewHolder): View {
+        return holder.getView(R.id.tv_load_more_complete)
     }
 
-    override fun getLoadingViewId(): Int {
-        return R.id.layout_loadding_more
+    override fun getLoadEndView(holder: BaseViewHolder): View {
+        return holder.getView(R.id.tv_load_more_end)
     }
 
-    override fun getLoadEndViewId(): Int {
-        return 0
+
+    override fun getLoadFailView(holder: BaseViewHolder): View {
+        return holder.getView(R.id.tv_load_more_failed)
     }
 
-    override fun getLoadFailViewId(): Int {
-        return R.id.tv_load_failed
+    override fun getLoadingView(holder: BaseViewHolder): View {
+        return holder.getView(R.id.layout_loadding_more)
     }
 
+    override fun getRootView(parent: ViewGroup) =
+        LayoutInflater.from(parent.context).inflate(R.layout.layout_load_more, parent, false)
 }

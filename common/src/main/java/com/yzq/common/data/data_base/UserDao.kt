@@ -9,7 +9,7 @@ interface UserDao {
 
 
     @Query("select * from user order by id desc")
-    fun getAllUsers(): LiveData<List<User>>
+    fun getAllUsers(): LiveData<MutableList<User>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertUser(vararg user: User)
