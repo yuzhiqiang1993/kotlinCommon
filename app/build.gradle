@@ -77,10 +77,10 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
 
     implementation 'com.shuyu:GSYVideoPlayer:7.1.2'
-    implementation "androidx.viewpager2:viewpager2:1.0.0"
+    implementation "androidx.viewpager2:viewpager2:${viewpager2}"
 
-    implementation 'com.github.zhpanvip:BannerViewPager:2.6.6'
-    implementation 'com.rishabhharit.roundedimageview:RoundedImageView:0.8.4'
+    implementation "com.github.zhpanvip:BannerViewPager:${bannerViewPager}"
+    implementation "com.rishabhharit.roundedimageview:RoundedImageView:${roundedImageView}"
 
     implementation project(':common')
     if (isModule.toBoolean()) {
