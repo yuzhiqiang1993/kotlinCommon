@@ -64,7 +64,10 @@ class ImgListViewModel : BaseViewModel() {
                         return oldDatas[oldItemPosition] == newDatas[newItemPosition]
                     }
 
+
+
                 })
+
 
             }
         }
