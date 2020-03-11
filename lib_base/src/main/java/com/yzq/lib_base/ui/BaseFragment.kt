@@ -33,7 +33,8 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
     private var contentLayout: View? = null
     private var isRefreshLayout: Boolean = false
     protected lateinit var rootView: View
-
+    protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
+    protected var extrasTag = ""
     override fun onAttach(context: Context) {
         super.onAttach(context)
         initArgs(arguments)

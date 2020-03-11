@@ -55,7 +55,8 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     private var contentLayout: View? = null//内容布局
     private var isRefreshLayout: Boolean = false//是否有下拉刷新
     private var showBackHint = false //是否显示返回提示框
-
+    protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
+    protected var extrasTag = ""
 
     protected val httpFirst = 0//首次请求
     protected val httpRefresh = 1//刷新
