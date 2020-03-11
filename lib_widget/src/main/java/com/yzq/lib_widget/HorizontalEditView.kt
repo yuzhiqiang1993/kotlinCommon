@@ -30,7 +30,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     private var hint: String?
     private var endIconRes: Int
     private var editEnable = true
-    private var inputType: Int
+    private var inputType: String?
 
 
     init {
@@ -43,7 +43,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         try {
             iconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_icon, -1)
             inputType =
-                typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_inputType, -1)
+                typeArr.getString(R.styleable.HorizontalEditView_horz_edit_inputType)
             editEnable =
                 typeArr.getBoolean(R.styleable.HorizontalEditView_horz_edit_editEnable, true)
             endIconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_endIcon, -1)
@@ -73,9 +73,10 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
         /*设置inputType*/
         when (inputType) {
-            0 -> input_content.inputType = InputType.TYPE_CLASS_PHONE
-            1 -> input_content.inputType = InputType.TYPE_CLASS_NUMBER
-            2 -> input_content.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+            "0" -> input_content.inputType = InputType.TYPE_CLASS_PHONE
+            "1" -> input_content.inputType = InputType.TYPE_CLASS_NUMBER
+            "2" -> input_content.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+            else -> input_content.inputType = InputType.TYPE_CLASS_TEXT
         }
 
         tv_title.text = titleStr
