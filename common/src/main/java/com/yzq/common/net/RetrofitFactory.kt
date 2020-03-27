@@ -3,7 +3,7 @@ package com.yzq.common.net
 import android.util.Log
 import com.google.gson.Gson
 import com.yzq.common.BuildConfig
-import com.yzq.common.constants.ServerConstants
+import com.yzq.common.net.constants.ServerConstants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

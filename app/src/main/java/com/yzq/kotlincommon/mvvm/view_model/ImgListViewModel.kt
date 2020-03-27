@@ -4,18 +4,17 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DiffUtil
 import com.yzq.common.data.movie.Subject
-import com.yzq.kotlincommon.mvvm.model.MoviesModel
-import com.yzq.lib_base.view_model.BaseViewModel
+import com.yzq.common.net.view_model.ApiServiceViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ImgListViewModel : BaseViewModel() {
+class ImgListViewModel : ApiServiceViewModel() {
 
 
     var start = 0
     private val count = 50
-    private val model: MoviesModel by lazy { MoviesModel() }
+
 
     val subjectsLive by lazy { MutableLiveData<MutableList<Subject>>() }
     val subjectsDiffResult by lazy { MutableLiveData<DiffUtil.DiffResult>() }
@@ -23,7 +22,7 @@ class ImgListViewModel : BaseViewModel() {
 
     fun getData() {
         launchLoading {
-            val datas = model.getData(start, count).subjects
+            val datas = apiServiceModel.getData(start, count).subjects
             subjectsLive.value = datas
             start += datas.size
         }
@@ -63,7 +62,6 @@ class ImgListViewModel : BaseViewModel() {
                     ): Boolean {
                         return oldDatas[oldItemPosition] == newDatas[newItemPosition]
                     }
-
 
 
                 })

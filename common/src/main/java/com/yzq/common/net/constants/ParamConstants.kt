@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.net
+package com.yzq.common.net.constants
 
 
 /**

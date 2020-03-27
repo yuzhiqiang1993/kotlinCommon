@@ -2,7 +2,7 @@ package com.yzq.common.net.interceptor
 
 
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.constants.ServerConstants
+import com.yzq.common.net.constants.ServerConstants
 import com.yzq.common.net.utils.AESUtil
 import com.yzq.common.net.utils.RSAUtil
 import okhttp3.Interceptor

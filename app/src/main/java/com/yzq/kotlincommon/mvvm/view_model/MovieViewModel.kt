@@ -2,14 +2,12 @@ package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
 import com.yzq.common.data.movie.Subject
-import com.yzq.kotlincommon.mvvm.model.MoviesModel
-import com.yzq.lib_base.view_model.BaseViewModel
+import com.yzq.common.net.view_model.ApiServiceViewModel
 
 
-class MovieViewModel : BaseViewModel() {
+class MovieViewModel : ApiServiceViewModel() {
     private var start = 0
     private var count = 50
-    private val model: MoviesModel by lazy { MoviesModel() }
 
 
     var subjects = MutableLiveData<MutableList<Subject>>()
@@ -19,7 +17,7 @@ class MovieViewModel : BaseViewModel() {
     fun requestData() {
 
         launchLoading {
-            subjects.value = model.getData(start, count).subjects
+            subjects.value = apiServiceModel.getData(start, count).subjects
 
         }
 

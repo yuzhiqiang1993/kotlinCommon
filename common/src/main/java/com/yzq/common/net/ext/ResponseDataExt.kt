@@ -1,6 +1,6 @@
-package com.yzq.common.extend
+package com.yzq.common.net.ext
 
-import com.yzq.common.constants.ResponseCode
+import com.yzq.common.net.constants.ResponseCode
 import com.yzq.common.data.BaseResp
 
 /*

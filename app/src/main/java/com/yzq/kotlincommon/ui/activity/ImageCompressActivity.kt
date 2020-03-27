@@ -75,7 +75,7 @@ class ImageCompressActivity : BaseActivity() {
         }
 
 
-        compressImgViewModel.compressedImgPath.observe(this, Observer {
+        compressImgViewModel.compressedImgPathLiveData.observe(this, Observer {
             imgPath = it
             iv_img.load(imgPath)
         })

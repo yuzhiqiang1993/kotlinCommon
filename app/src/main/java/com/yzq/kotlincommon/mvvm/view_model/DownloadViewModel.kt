@@ -1,21 +1,18 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
-import com.yzq.kotlincommon.mvvm.model.DownLoadModel
-import com.yzq.kotlincommon.net.ApiConstants
-import com.yzq.lib_base.view_model.BaseViewModel
+import com.yzq.common.net.constants.ApiConstants
+import com.yzq.common.net.view_model.ApiServiceViewModel
 
 
-class DownloadViewModel : BaseViewModel() {
+class DownloadViewModel : ApiServiceViewModel() {
 
-
-    private val downLoadModel by lazy { DownLoadModel() }
 
     fun downloadApk() {
 
 
         launchProgressDialog(ApiConstants.apk, "下载") {
 
-            downLoadModel.downloadApk()
+            apiServiceModel.downloadApk()
 
         }
 

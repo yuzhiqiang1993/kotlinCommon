@@ -1,4 +1,4 @@
-package com.yzq.common.constants
+package com.yzq.common.net.constants
 
 import com.yzq.common.BuildConfig
 

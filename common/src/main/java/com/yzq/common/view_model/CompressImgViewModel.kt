@@ -4,7 +4,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Matrix
-import android.graphics.drawable.Drawable
 import androidx.exifinterface.media.ExifInterface
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -30,7 +29,7 @@ class CompressImgViewModel : BaseViewModel() {
     private val rootImgName = AppUtils.getAppPackageName() + "_"
 
 
-    var compressedImgPath = MutableLiveData<String>()
+    var compressedImgPathLiveData = MutableLiveData<String>()
 
 
     fun compressImg(
@@ -41,7 +40,7 @@ class CompressImgViewModel : BaseViewModel() {
 
         viewModelScope.launch {
 
-            compressedImgPath.value = withContext(Dispatchers.IO) {
+            compressedImgPathLiveData.value = withContext(Dispatchers.IO) {
 
                 if (needWatermark) {
                     compressImgWithWatermark(path, waterMarkArr)

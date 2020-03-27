@@ -1,6 +1,6 @@
 package com.yzq.common.net
 
-import com.yzq.common.constants.ServerConstants
+import com.yzq.common.net.constants.ServerConstants
 import me.jessyan.progressmanager.ProgressManager
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

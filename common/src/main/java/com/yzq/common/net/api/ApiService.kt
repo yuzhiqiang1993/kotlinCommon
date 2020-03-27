@@ -1,8 +1,10 @@
-package com.yzq.kotlincommon.net
+package com.yzq.common.net.api
 
 import com.yzq.common.data.BaseResp
 import com.yzq.common.data.gaode.Geocoder
 import com.yzq.common.data.movie.MovieBean
+import com.yzq.common.net.constants.ApiConstants
+import com.yzq.common.net.constants.ParamConstants
 import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -34,5 +36,4 @@ interface ApiService {
     @Streaming
     @GET(ApiConstants.apk)
     suspend fun downloadApk(): ResponseBody
-
 }
