@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".ui.fragment.PagerContentFragment">
 
-    <com.yzq.kotlincommon.widget.banner.CustomBannerViewPager
+    <com.zhpan.bannerview.BannerViewPager
         android:id="@+id/banner_view_pager"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_128"
@@ -22,7 +22,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
         android:gravity="center"
-        android:text="content"
         android:textColor="@color/black"
         android:textSize="@dimen/sp_20" />
 

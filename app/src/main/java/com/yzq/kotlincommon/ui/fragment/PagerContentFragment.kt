@@ -3,8 +3,8 @@ package com.yzq.kotlincommon.ui.fragment
 
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.widget.banner.BannerViewHolder
-import com.yzq.kotlincommon.widget.banner.CustomBannerViewPager
 import com.yzq.lib_base.ui.BaseFragment
+import com.zhpan.bannerview.BannerViewPager
 import kotlinx.android.synthetic.main.fragment_pager_content.*
 
 
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_pager_content.*
 
 class PagerContentFragment(var content: String) : BaseFragment() {
 
-    private lateinit var bannerPager: CustomBannerViewPager<String, BannerViewHolder>
+    private lateinit var bannerPager: BannerViewPager<String, BannerViewHolder>
     override fun getContentLayoutId() = R.layout.fragment_pager_content
 
     private val bannerImgs = arrayListOf(

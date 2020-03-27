@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup">
         <activity
             android:name=".ui.activity.ViewPager2Activity"
