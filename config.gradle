@@ -52,7 +52,7 @@ ext {
     zxing_version = "2.2.8"
     jsoup_version = '1.13.1'
     leakcanary_android = "2.2"
-    bannerViewPager = "2.7.1"
+    bannerViewPager = "2.7.3"
     viewpager2 = "1.0.0"
     roundedImageView = "0.8.4"
     signConfigs = [
