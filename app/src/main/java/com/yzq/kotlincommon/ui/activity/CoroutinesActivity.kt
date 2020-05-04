@@ -9,8 +9,6 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
 import com.yzq.lib_base.ui.BaseMvvmActivity
 import kotlinx.android.synthetic.main.activity_coroutines.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 @Route(path = RoutePath.Main.COROUTINE)
@@ -40,6 +38,7 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
         super.initData()
         showLoadding()
         vm.requestData()
+
 
     }
 
