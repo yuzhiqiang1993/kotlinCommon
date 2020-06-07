@@ -4,8 +4,7 @@ import android.view.View
 import com.rishabhharit.roundedimageview.RoundedImageView
 import com.yzq.kotlincommon.R
 import com.yzq.lib_img.load
-import com.zhpan.bannerview.holder.ViewHolder
-
+import com.zhpan.bannerview.BaseViewHolder
 
 /**
  * @description: BannerViewHolder
@@ -14,16 +13,9 @@ import com.zhpan.bannerview.holder.ViewHolder
  * @time   : 16:13
  */
 
-class BannerViewHolder : ViewHolder<String> {
-
-    private lateinit var bannerIv: RoundedImageView
-
-    override fun onBind(itemView: View, data: String, position: Int, size: Int) {
-        bannerIv = itemView.findViewById(R.id.iv_banner)
+class BannerViewHolder(itemView: View) : BaseViewHolder<String>(itemView) {
+    override fun bindData(data: String, position: Int, pageSize: Int) {
+        val bannerIv = findView<RoundedImageView>(R.id.iv_banner)
         bannerIv.load(data)
-    }
-
-    override fun getLayoutId(): Int {
-        return R.layout.item_banner
     }
 }

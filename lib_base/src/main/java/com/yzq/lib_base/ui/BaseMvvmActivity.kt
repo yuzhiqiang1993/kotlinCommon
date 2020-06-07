@@ -34,7 +34,7 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
             lifecycle.addObserver(this)
             loadState.observe(
                 lifecycleOwner,
-                Observer<ViewStateBean> { viewStateBean -> handleViewState(viewStateBean) })
+                Observer { viewStateBean -> handleViewState(viewStateBean) })
         }
         observeViewModel()
     }

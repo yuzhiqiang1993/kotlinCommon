@@ -2,6 +2,7 @@ package com.yzq.kotlincommon.ui.fragment
 
 
 import com.yzq.kotlincommon.R
+import com.yzq.kotlincommon.widget.banner.BannerAdapter
 import com.yzq.kotlincommon.widget.banner.BannerViewHolder
 import com.yzq.lib_base.ui.BaseFragment
 import com.zhpan.bannerview.BannerViewPager
@@ -31,8 +32,9 @@ class PagerContentFragment(var content: String) : BaseFragment() {
         super.initWidget()
         bannerPager = rootView.findViewById(R.id.banner_view_pager)
 
-        bannerPager.setHolderCreator { BannerViewHolder() }
+        bannerPager
             .setAutoPlay(true)
+            .setAdapter(BannerAdapter())
             .create(bannerImgs)
 
 

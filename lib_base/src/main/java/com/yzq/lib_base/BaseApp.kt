@@ -69,7 +69,7 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
     private fun initUtils() {
 
-        Utils.init(AppContext)
+        Utils.init(this)
         val config = LogUtils.getConfig()
             .setLogSwitch(BuildConfig.DEBUG)
             .setGlobalTag(AppUtils.getAppName())
