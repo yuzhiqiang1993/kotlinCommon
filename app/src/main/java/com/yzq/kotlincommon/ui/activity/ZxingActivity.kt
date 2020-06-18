@@ -5,10 +5,10 @@ import android.content.Intent
 import android.text.TextUtils
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.lib_base.ui.BaseActivity
@@ -56,16 +56,18 @@ class ZxingActivity : BaseActivity() {
 
     private val requestLicenseCode = 666
     private fun getLicenseInfo() {
-        getPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) {
+        getPermissions(PermissionConstants.CAMERA, PermissionConstants.STORAGE) {
+
             val intent = Intent(this, CaptureActivity::class.java)
             startActivityForResult(intent, requestLicenseCode)
         }
+
 
     }
 
     private val requestCodeScan = 555
     private fun excuteZxing() =
-        getPermissions(Permission.CAMERA, Permission.WRITE_EXTERNAL_STORAGE) {
+        getPermissions(PermissionConstants.CAMERA, PermissionConstants.STORAGE) {
             val intent = Intent(this, CaptureActivity::class.java)
             val zxingConfig = ZxingConfig()
             zxingConfig.isFullScreenScan = false

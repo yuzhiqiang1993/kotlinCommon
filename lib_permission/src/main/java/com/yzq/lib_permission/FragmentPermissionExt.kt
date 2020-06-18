@@ -1,79 +1,49 @@
 package com.yzq.lib_permission
 
 import androidx.fragment.app.Fragment
-import com.blankj.utilcode.util.ToastUtils
-import com.yanzhenjie.permission.AndPermission
-import com.yanzhenjie.permission.AndPermission.hasAlwaysDeniedPermission
-import com.yanzhenjie.permission.runtime.Permission.transformText
+import com.blankj.utilcode.constant.PermissionConstants
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.PermissionUtils
 import com.yzq.lib_materialdialog.showPositiveCallbackDialog
 
-
 /**
  *
- * @receiver AppCompatActivity
- * @param permissions Array<out String>  要申请的权限
- * @param permissionGranted Function1<List<String>, Unit>  权限允许回调函数
+ * @receiver Fragment
+ * @param permissions Array<out String>
+ * @param permissionGranted Function1<List<String>, Unit>
  */
 fun Fragment.getPermissions(
-     vararg permissions: String,
+    @PermissionConstants.Permission vararg permissions: String,
     permissionGranted: PermissionGranted
 ) {
-    AndPermission.with(this)
-        .runtime()
-        .permission(permissions)
-        .onGranted {
-            permissionGranted(it)
-        }
-        .onDenied {
-            permissionDenied(it)
-        }.start()
+    PermissionUtils.permission(*permissions)
+        .rationale { activity, shouldRequest ->
+            /*用户拒绝后再次请求获取权限*/
+            shouldRequest.again(true)
 
+        }.callback(object : PermissionUtils.FullCallback {
+            override fun onGranted(granted: MutableList<String>) {
+                /*同意*/
+                LogUtils.i("有权限${granted}")
+                permissionGranted(granted)
+            }
 
-}
+            override fun onDenied(deniedForever: MutableList<String>, denied: MutableList<String>) {
+                /*拒绝 提示去设置手动打开权限*/
+                LogUtils.i("权限被拒绝 deniedForever:${deniedForever},denied:${denied}")
 
+                if (deniedForever.size > 0) {
+                    /*存在被拒绝且不再提示的权限 此时需要提示用户打开设置手动开启权限*/
+                    showPositiveCallbackDialog(
+                        title = "开启权限",
+                        message = "我们需要的权限被您拒绝，请手动开启权限，",
+                        positiveText = "去开启",
+                        negativeText = "不开启"
+                    ) {
+                        PermissionUtils.launchAppDetailsSettings()
+                    }
+                }
+            }
 
-/**
- * 权限被拒绝
- *
- * @param permissions  要申请的权限
- *
- */
-private fun Fragment.permissionDenied(permissions: List<String>) {
-
-    if (hasAlwaysDeniedPermission(this, permissions)) {
-        showPermissionDailog(permissions)
-    } else {
-        ToastUtils.showShort("权限被拒绝")
-    }
-
-
-}
-
-
-private const val REQUEST_CODE_SETTING = 1
-/**
- * 用户拒绝权限后的提示框
- *
- * @param permissions  用户拒绝的权限
- */
-private fun Fragment.showPermissionDailog(permissions: List<String>) {
-
-    val permissionNames = transformText(activity, permissions)
-    val message =
-        "我们需要的 ${android.text.TextUtils.join("、", permissionNames)} 权限被拒绝,这将导致部分功能不可用，请手动开启! "
-
-    showPositiveCallbackDialog(
-        title = "开启权限",
-        message = message,
-        positiveText = "去开启",
-        negativeText = "不开启"
-    ) {
-        AndPermission.with(this)
-            .runtime()
-            .setting()
-            .start(REQUEST_CODE_SETTING)
-
-    }
-
-
+        }).request()
 }

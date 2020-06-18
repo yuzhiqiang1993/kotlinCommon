@@ -26,7 +26,6 @@ ext {
     /*third party*/
     eventbus = "3.2.0"
     glide = "4.11.0"
-    permission = "2.0.3"
     retrofit = "2.9.0"
     progressmanager_version = "1.5.0"
     ok_http = "4.7.2"

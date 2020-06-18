@@ -2,7 +2,7 @@ package com.yzq.gao_de_map.utils
 
 import android.annotation.SuppressLint
 import android.widget.Toast
-import com.yanzhenjie.permission.runtime.Permission
+import com.blankj.utilcode.constant.PermissionConstants
 import com.yzq.common.utils.LocationUtils
 import com.yzq.lib_base.ui.BaseActivity
 import com.yzq.lib_permission.getPermissions
@@ -28,12 +28,8 @@ object MapPermissionUtils {
         mapPermission: MapPermission
     ) {
         activity.getPermissions(
-            Permission.ACCESS_FINE_LOCATION,
-            Permission.ACCESS_COARSE_LOCATION,
-            Permission.WRITE_EXTERNAL_STORAGE,
-            Permission.READ_EXTERNAL_STORAGE,
-            Permission.READ_PHONE_STATE
-
+            PermissionConstants.LOCATION,
+            PermissionConstants.STORAGE
         ) {
             if (needGps) {
 

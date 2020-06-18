@@ -1,8 +1,8 @@
 package com.yzq.kotlincommon.ui.fragment
 
+import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.yanzhenjie.permission.runtime.Permission
 import com.yzq.kotlincommon.R
 import com.yzq.lib_base.ui.BaseFragment
 import com.yzq.lib_img.openAlbum
@@ -47,11 +47,10 @@ class UserFragment : BaseFragment() {
 
         btn_permission.setOnClickListener {
 
-
-            getPermissions(permissions = *Permission.Group.STORAGE) {
-
+            getPermissions(PermissionConstants.STORAGE) {
                 ToastUtils.showShort("获取了权限：$it")
             }
+
         }
 
 
