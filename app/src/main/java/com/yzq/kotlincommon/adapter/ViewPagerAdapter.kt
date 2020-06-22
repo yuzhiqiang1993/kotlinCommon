@@ -14,9 +14,9 @@ import com.yzq.kotlincommon.R
 
 class ViewPagerAdapter(layoutResId: Int, data: MutableList<String>) :
     BaseQuickAdapter<String, BaseViewHolder>(layoutResId, data) {
-    override fun convert(helper: BaseViewHolder, item: String) {
+    override fun convert(holder: BaseViewHolder, item: String) {
 
-        helper.setText(R.id.tv_pager_content, item)
+        holder.setText(R.id.tv_pager_content, item)
 
 
     }

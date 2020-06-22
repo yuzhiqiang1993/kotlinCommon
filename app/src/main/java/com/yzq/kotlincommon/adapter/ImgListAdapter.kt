@@ -14,9 +14,9 @@ class ImgListAdapter(layoutResId: Int, data: MutableList<Subject>) :
     BaseQuickAdapter<Subject, BaseViewHolder>(layoutResId, data), LoadMoreModule {
 
 
-    override fun convert(helper: BaseViewHolder, item: Subject) {
+    override fun convert(holder: BaseViewHolder, item: Subject) {
 
-        val ivImg = helper.itemView.iv_img
+        val ivImg = holder.itemView.iv_img
 
         /*高度随机*/
         ivImg.layoutParams.height = 300 + Random.nextInt(300)

@@ -9,9 +9,9 @@ class MainAdapter(layoutResId: Int, data: MutableList<NaviItem>) :
     BaseQuickAdapter<NaviItem, BaseViewHolder>(layoutResId, data) {
 
 
-    override fun convert(helper: BaseViewHolder, item: NaviItem) {
+    override fun convert(holder: BaseViewHolder, item: NaviItem) {
 
-        val itemView = helper.itemView as HorizontalTextView
+        val itemView = holder.itemView as HorizontalTextView
 
         itemView.setTitle(item.title)
 

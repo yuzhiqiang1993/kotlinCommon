@@ -7,9 +7,9 @@ import kotlinx.android.synthetic.main.item_task_content.view.*
 
 class TaskAdapter(layoutResId: Int, data: MutableList<TaskBean>?) :
     BaseQuickAdapter<TaskBean, BaseViewHolder>(layoutResId, data) {
-    override fun convert(helper: BaseViewHolder, item: TaskBean) {
+    override fun convert(holder: BaseViewHolder, item: TaskBean) {
 
-        helper.itemView.tv_name.text = item.name
+        holder.itemView.tv_name.text = item.name
 
     }
 }

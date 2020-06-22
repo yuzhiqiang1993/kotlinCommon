@@ -8,9 +8,9 @@ import com.yzq.kotlincommon.R
 
 class RoomAdapter(layoutResId: Int, data: MutableList<User>) :
     BaseQuickAdapter<User, BaseViewHolder>(layoutResId, data) {
-    override fun convert(helper: BaseViewHolder, item: User) {
+    override fun convert(holder: BaseViewHolder, item: User) {
         with(item) {
-            helper.setText(R.id.tv_user, "${id}--->${name}")
+            holder.setText(R.id.tv_user, "${id}--->${name}")
         }
     }
 }
