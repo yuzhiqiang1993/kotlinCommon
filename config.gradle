@@ -44,14 +44,14 @@ ext {
     andResGuardVersion = "1.2.18"
     easyPhotos = "3.0.6"
     bugly_crashreport_upgrade = '1.4.5'
-    bugly_nativecrashreport = '3.7.1'
+    bugly_nativecrashreport = '3.7.3'
     datepickerVersion = "1.3.1"
     flexbox = "2.0.1"
     gradle_versions_plugin = "0.28.0"
     zxing_version = "2.2.8"
     jsoup_version = '1.13.1'
-    leakcanary_android = "2.3"
-    bannerViewPager = "3.1.2"
+    leakcanary_android = "2.4"
+    bannerViewPager = "3.1.3"
     viewpager2 = "1.1.0-alpha01"
     roundedImageView = "0.8.4"
     signConfigs = [
