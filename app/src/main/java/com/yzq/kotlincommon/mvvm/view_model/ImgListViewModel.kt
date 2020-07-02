@@ -15,7 +15,6 @@ class ImgListViewModel : ApiServiceViewModel() {
     var start = 0
     private val count = 50
 
-
     val subjectsLive by lazy { MutableLiveData<MutableList<Subject>>() }
     val subjectsDiffResult by lazy { MutableLiveData<DiffUtil.DiffResult>() }
 

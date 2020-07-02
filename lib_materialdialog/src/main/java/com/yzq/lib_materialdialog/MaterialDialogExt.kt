@@ -15,11 +15,9 @@ import com.afollestad.materialdialogs.customview.getCustomView
  * @time   : 13:03
  *
  */
-fun MaterialDialog.loading(): MaterialDialog {
-    customView(R.layout.loading_dialog_layout, scrollable = false)
-    return this
+fun MaterialDialog.loading(): MaterialDialog =
+    customView(R.layout.loading_dialog_layout, scrollable = false).cornerRadius(4f)
 
-}
 
 /**
  * 设置加载框的文本
@@ -44,7 +42,8 @@ fun MaterialDialog.setLoadingMessage(loaddingMessage: String = LOADING): Materia
  *
  */
 
-fun MaterialDialog.progress() = customView(R.layout.progress_dialog_layout, scrollable = false)
+fun MaterialDialog.progress() =
+    customView(R.layout.progress_dialog_layout, scrollable = false).cornerRadius(4f)
 
 
 fun MaterialDialog.changeTitle(title: String) = title(text = title)

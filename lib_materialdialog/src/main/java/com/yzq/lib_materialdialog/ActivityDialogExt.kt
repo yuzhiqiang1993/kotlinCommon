@@ -21,6 +21,7 @@ fun ComponentActivity.getNewDialog(): MaterialDialog {
 
 
     return MaterialDialog(this).cancelOnTouchOutside(false).cancelable(false).lifecycleOwner(this)
+
 }
 
 
