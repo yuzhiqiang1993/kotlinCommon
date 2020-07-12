@@ -144,7 +144,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
                 block()
             } catch (e: Exception) {
-
+                LogUtils.e("出现异常")
                 e.printStackTrace()
 
                 if (e is JSONException || e is JsonParseException) {
