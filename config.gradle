@@ -40,7 +40,7 @@ ext {
     utilcode = "1.29.0"
     arouter_api = "1.5.0"
     arouter_compiler = "1.2.2"
-    walleVersion = "1.1.6"
+    walleVersion = "1.1.7"
     andResGuardVersion = "1.2.18"
     easyPhotos = "3.0.6"
     bugly_crashreport_upgrade = '1.4.5'
@@ -51,7 +51,7 @@ ext {
     zxing_version = "2.2.8"
     jsoup_version = '1.13.1'
     leakcanary_android = "2.4"
-    bannerViewPager = "3.1.4"
+    bannerViewPager = "3.1.5"
     viewpager2 = "1.1.0-alpha01"
     roundedImageView = "0.8.4"
     signConfigs = [
