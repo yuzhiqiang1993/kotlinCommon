@@ -74,7 +74,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
             }
         }
 
-
         EventBusUtil.register(this)
 
         initArgs(intent.extras)

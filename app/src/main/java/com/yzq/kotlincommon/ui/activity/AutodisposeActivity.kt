@@ -33,7 +33,10 @@ class AutodisposeActivity : BaseActivity() {
 
         btn_count.setOnClickListener {
             startCount()
+
         }
+
+
     }
 
 

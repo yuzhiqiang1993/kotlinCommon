@@ -2,6 +2,7 @@ package com.yzq.kotlincommon.ui.activity
 
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
@@ -9,6 +10,8 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
 import com.yzq.lib_base.ui.BaseMvvmActivity
 import kotlinx.android.synthetic.main.activity_coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 @Route(path = RoutePath.Main.COROUTINE)
@@ -31,6 +34,24 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
             initData()
         }
 
+        launch {
+            LogUtils.i("launch 当前线程:${Thread.currentThread().name}")
+        }
+
+        launch(Dispatchers.IO) {
+            LogUtils.i("IO 当前线程:${Thread.currentThread().name}")
+        }
+        launch(Dispatchers.Default) {
+            LogUtils.i("Default 当前线程:${Thread.currentThread().name}")
+        }
+        launch(Dispatchers.Unconfined) {
+            LogUtils.i("Unconfined 当前线程:${Thread.currentThread().name}")
+        }
+
+
+        lifecycleScope.launch {
+            LogUtils.i("lifecycleScope 当前线程:${Thread.currentThread().name}")
+        }
     }
 
 
