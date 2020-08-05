@@ -1,8 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.*
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
@@ -49,8 +48,18 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
         }
 
 
-        lifecycleScope.launch {
-            LogUtils.i("lifecycleScope 当前线程:${Thread.currentThread().name}")
+        lifecycleScope.launchWhenCreated {
+            whenCreated {
+                LogUtils.i("lifecycleScope whenCreated")
+            }
+            whenStarted {
+                LogUtils.i("lifecycleScope whenStarted")
+            }
+            whenResumed {
+                LogUtils.i("lifecycleScope whenResumed")
+            }
+
+
         }
     }
 
