@@ -77,7 +77,7 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
     }
 
 
-    override fun observeViewModel() {
+    override fun  observeViewModel() {
 
         vm.loginData.observe(this, Observer<Boolean> {
             navFinish(RoutePath.Main.MAIN)

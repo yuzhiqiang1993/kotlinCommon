@@ -8,6 +8,7 @@ import android.os.Message
 import android.view.KeyEvent
 import android.webkit.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
@@ -40,6 +41,9 @@ class WebViewActivity : BaseActivity() {
 
     override fun initWidget() {
         super.initWidget()
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        initToolbar(toolbar, "WebView")
 
         val url = "http://192.168.8.121:4200"
         webview.loadUrl(url)
