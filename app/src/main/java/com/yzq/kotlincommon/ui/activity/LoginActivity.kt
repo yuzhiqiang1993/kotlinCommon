@@ -35,7 +35,7 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
 
     override fun initWidget() {
         super.initWidget()
-        
+
         BarUtils.transparentStatusBar(this)
         BarUtils.setStatusBarLightMode(this, true)
 

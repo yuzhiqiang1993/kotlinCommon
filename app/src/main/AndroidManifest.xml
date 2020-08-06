@@ -20,6 +20,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup">
+        <activity android:name=".ui.activity.WebViewActivity"></activity>
         <activity
             android:name=".ui.activity.ViewPager2Activity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -77,8 +78,7 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-           >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

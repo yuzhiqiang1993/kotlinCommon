@@ -22,14 +22,11 @@ import com.yzq.kotlincommon.adapter.MainAdapter
 import com.yzq.kotlincommon.data.NaviItem
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseActivity
-import com.yzq.lib_rx.transform
-import io.reactivex.Observable
 import kotlinx.android.synthetic.main.appbar_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.concurrent.TimeUnit
 
 /**
  * @description: 导航页面
@@ -108,6 +105,7 @@ class MainActivity : BaseActivity(),
         items.add(NaviItem("下载进度", RoutePath.Main.DOWNLOAD))
         items.add(NaviItem("视频播放", RoutePath.Main.EXO_PLAYER))
         items.add(NaviItem("ViewPager", RoutePath.Main.VIEW_PAGER))
+        items.add(NaviItem("WebView", RoutePath.Main.WEB_VIEW))
 
         setdata()
     }

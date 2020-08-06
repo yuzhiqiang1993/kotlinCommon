@@ -31,6 +31,7 @@ object RoutePath {
         const val DOWNLOAD = "/main/download"
         const val EXO_PLAYER = "/main/exoPlayer"
         const val VIEW_PAGER: String = "/main/viewPager"
+        const val WEB_VIEW: String = "/main/webView"
     }
 
 
