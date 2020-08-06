@@ -35,8 +35,9 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
 
     override fun initWidget() {
         super.initWidget()
-
-        BarUtils.setStatusBarVisibility(this, false)
+        
+        BarUtils.transparentStatusBar(this)
+        BarUtils.setStatusBarLightMode(this, true)
 
         input_account.setText(LocalSpUtils.account)
         input_pwd.setText(LocalSpUtils.pwd)

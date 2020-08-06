@@ -78,7 +78,7 @@
             android:name=".ui.activity.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
