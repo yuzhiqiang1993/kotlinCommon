@@ -163,7 +163,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
             requestType = httpLoadMore
             vm.getData()
         } else {
-            imgListAdapter.loadMoreModule?.loadMoreEnd()
+            imgListAdapter.loadMoreModule.loadMoreEnd()
         }
 
 

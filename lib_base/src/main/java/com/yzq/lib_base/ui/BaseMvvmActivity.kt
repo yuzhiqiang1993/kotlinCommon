@@ -1,6 +1,5 @@
 package com.yzq.lib_base.ui
 
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
@@ -34,7 +33,7 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
             lifecycle.addObserver(this)
             loadState.observe(
                 lifecycleOwner,
-                Observer { viewStateBean -> handleViewState(viewStateBean) })
+                { viewStateBean -> handleViewState(viewStateBean) })
         }
         observeViewModel()
     }

@@ -192,7 +192,7 @@ class CompressImgViewModel : BaseViewModel() {
 
     /*只压缩图片*/
     private fun compressImg(path: String): String {
-
+        LogUtils.i("path:${path}")
         LogUtils.i("压缩前图片大小：" + FileUtils.getFileLength(path))
         /*获取图片旋转的角度*/
         val degree = readPictureDegree(path)

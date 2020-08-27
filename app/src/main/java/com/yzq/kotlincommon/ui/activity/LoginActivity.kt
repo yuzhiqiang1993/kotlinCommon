@@ -68,8 +68,8 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
 
             LocalSpUtils.account = input_account.text.toString()
             LocalSpUtils.pwd = input_pwd.text.toString()
-
-            vm.login()
+            navFinish(RoutePath.Main.MAIN)
+          //  vm.login()
 
         }
 
