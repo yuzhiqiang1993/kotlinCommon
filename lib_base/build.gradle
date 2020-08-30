@@ -64,7 +64,6 @@ dependencies {
     api "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
 
 
-
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines"
 
