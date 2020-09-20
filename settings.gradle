@@ -1,1 +1,39 @@
-include ':app', ':common', ':gao_de_map', ':lib_base', ':lib_img', ':lib_resource', ':lib_eventbus', ':lib_materialdialog', ':lib_rx', ':lib_widget',  ':lib_permission', ':lib_base_adapter'
+include ':app',
+        ':common',
+        ':gao_de_map',
+        ':lib_base',
+        ':lib_img',
+        ':lib_resource',
+        ':lib_eventbus',
+        ':lib_materialdialog',
+        ':lib_rx',
+        ':lib_widget',
+        ':lib_permission',
+        ':lib_base_adapter'
+
+
+gradle.buildStarted {
+    print("buildStarted")
+}
+
+
+gradle.projectsLoaded {
+
+    println("projectsLoaded")
+}
+
+gradle.getTaskGraph().addTaskExecutionListener(new TaskExecutionListener() {
+    @Override
+    void beforeExecute(Task task) {
+
+        println("beforeExecute:${task.name}")
+
+    }
+
+    @Override
+    void afterExecute(Task task, TaskState state) {
+        println("afterExecute:${task.name}")
+    }
+})
+
+
