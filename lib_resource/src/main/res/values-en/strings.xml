@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">KotlinCommon</string>
+    <string name="loading">Loading…</string>
+    <string name="data_parse_error">Data parsing error</string>
+    <string name="loading_more">Loading more…</string>
+    <string name="unknown_exception">unknown exception</string>
+    <string name="load_more_fail">Load more failed…</string>
+    <string name="load_more_complete">Load more complete…</string>
+    <string name="load_more_end">Load more end…</string>
+    <string name="timeout">timeout</string>
+    <string name="no_data">no data</string>
+    <string name="retry">retry</string>
+    <string name="no_net">no net</string>
+    <string name="add">Add</string>
+    <string name="upload">upload</string>
+    <string name="login">login</string>
+    <string name="change_pwd">change pwd</string>
+    <string name="input_account_hint">please enter account</string>
+    <string name="input_pwd_hint">please enter password</string>
+    <string name="input_old_pwd_hint">Please enter the original password</string>
+    <string name="input_new_pwd_hint">Please enter a new password</string>
+    <string name="input_pwd_again_hint">Please enter your new password again</string>
+    <string name="the_user_name_cannot_be_empty">The user name cannot be empty</string>
+    <string name="the_password_cannot_be_empty">The password cannot be empty</string>
+    <string name="version_updade">version updating</string>
+    <string name="logout">Logout</string>
+    <string name="sure">Sure</string>
+    <string name="cancel">Cancel</string>
+    <string name="hint">Hint</string>
+    <string name="has_new_version">New Version</string>
+    <string name="sure_update">Update</string>
+    <string name="not_update">Temporarily not update</string>
+    <string name="zero">0</string>
+    <string name="hundred">100</string>
+    <string name="img_transition">img_transition</string>
+    <string name="download">Download</string>
+    <string name="start_location">Start location</string>
+    <string name="start_count">Start Count</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_gallery">Album</string>
+    <string name="menu_slideshow">Slide</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="title">Title</string>
+
+
+    <!--App-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Kotlin Common</string>
+    <string name="nav_header_subtitle">www.yzq.name</string>
+    <string name="nav_header_desc">yzq</string>
+
+</resources>

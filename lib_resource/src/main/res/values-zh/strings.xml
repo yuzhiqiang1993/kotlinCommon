@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">KotlinCommon</string>
     <string name="loading">加载中…</string>
@@ -43,13 +44,11 @@
     <string name="menu_share">分享</string>
     <string name="title">标题</string>
 
-
     <!--App-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Kotlin Common</string>
     <string name="nav_header_subtitle">www.yzq.name</string>
     <string name="nav_header_desc">yzq</string>
-
 
 </resources>
