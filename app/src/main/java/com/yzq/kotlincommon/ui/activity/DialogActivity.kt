@@ -97,7 +97,7 @@ class DialogActivity : BaseActivity() {
 
         }
 
-        btn_loadding.setOnClickListener {
+        btn_loading.setOnClickListener {
 
 
             showLoadingDialog("登录中...")

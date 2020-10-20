@@ -51,10 +51,10 @@ abstract class BaseMvvmFragment<VM : BaseViewModel> : BaseFragment() {
         val content = viewStateBean.message
         when (viewStateBean.state) {
 
-            ViewStateContstants.showLoaddingDialog -> {
+            ViewStateContstants.showLoadingDialog -> {
                 showLoadingDialog(content)
             }
-            ViewStateContstants.dismissLoaddingDialog -> {
+            ViewStateContstants.dismissLoadingDialog -> {
                 dismissLoadingDialog()
             }
 

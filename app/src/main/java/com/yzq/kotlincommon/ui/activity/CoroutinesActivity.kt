@@ -66,7 +66,7 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
 
     override fun initData() {
         super.initData()
-        showLoadding()
+        showLoading()
         vm.requestData()
 
 

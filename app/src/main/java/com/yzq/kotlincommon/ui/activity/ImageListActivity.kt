@@ -114,7 +114,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
 
         if (requestType == httpFirst) {
 
-            showLoadding()
+            showLoading()
         }
 
         vm.start = 0

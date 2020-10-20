@@ -117,7 +117,7 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
 
     }
 
-    protected open fun showLoadding() {
+    protected open fun showLoading() {
         stateView?.showLoading()
         contentLayout?.visibility = View.GONE
 

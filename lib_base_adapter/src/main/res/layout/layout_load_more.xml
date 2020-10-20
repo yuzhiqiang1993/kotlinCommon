@@ -7,7 +7,7 @@
     android:orientation="horizontal">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/layout_loadding_more"
+        android:id="@+id/layout_loading_more"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/dp_4"
             android:gravity="center"
-            android:text="@string/loadding"
+            android:text="@string/loading"
             android:textColor="@color/secondary_text" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 

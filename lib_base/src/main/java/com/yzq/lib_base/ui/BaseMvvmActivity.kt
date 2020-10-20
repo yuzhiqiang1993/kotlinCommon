@@ -46,10 +46,10 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
     private fun handleViewState(viewStateBean: ViewStateBean) {
         val content = viewStateBean.message
         when (viewStateBean.state) {
-            ViewStateContstants.showLoaddingDialog -> {
+            ViewStateContstants.showLoadingDialog -> {
                 showLoadingDialog(content)
             }
-            ViewStateContstants.dismissLoaddingDialog -> {
+            ViewStateContstants.dismissLoadingDialog -> {
                 dismissLoadingDialog()
             }
             ViewStateContstants.showErrorDialog -> {

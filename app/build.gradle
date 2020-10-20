@@ -76,7 +76,7 @@ dependencies {
     implementation "com.meituan.android.walle:library:${walleVersion}"
     kapt "androidx.room:room-compiler:$room_version"
 
-    implementation 'com.shuyu:GSYVideoPlayer:7.1.5'
+    implementation 'com.shuyu:GSYVideoPlayer:7.1.6'
     implementation "androidx.viewpager2:viewpager2:${viewpager2}"
 
     implementation "com.github.zhpanvip:BannerViewPager:${bannerViewPager}"

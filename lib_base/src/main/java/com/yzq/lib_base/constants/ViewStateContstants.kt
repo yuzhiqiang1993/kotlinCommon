@@ -2,8 +2,8 @@ package com.yzq.lib_base.constants
 
 /*视图状态常量*/
 object ViewStateContstants {
-    const val showLoaddingDialog = 0
-    const val dismissLoaddingDialog = 1
+    const val showLoadingDialog = 0
+    const val dismissLoadingDialog = 1
     const val showProgressDialog = 2
     const val dismissProgressDialog = 3
     const val changeProgress = 4

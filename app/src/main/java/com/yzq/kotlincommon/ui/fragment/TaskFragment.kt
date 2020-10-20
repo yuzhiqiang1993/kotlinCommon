@@ -26,7 +26,7 @@ class TaskFragment : BaseMvvmFragment<CoroutineViewModel>() {
 
     override fun initData() {
 
-        showLoadding()
+        showLoading()
         vm.requestData()
     }
 

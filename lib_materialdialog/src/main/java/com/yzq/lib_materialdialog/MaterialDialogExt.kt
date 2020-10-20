@@ -22,13 +22,13 @@ fun MaterialDialog.loading(): MaterialDialog =
 /**
  * 设置加载框的文本
  *
- * @param loaddingMessage
+ * @param loadingMessage
  */
-fun MaterialDialog.setLoadingMessage(loaddingMessage: String = LOADING): MaterialDialog {
+fun MaterialDialog.setLoadingMessage(loadingMessage: String = LOADING): MaterialDialog {
 
-    val loaddingMessageTv =
-        getCustomView().findViewById<AppCompatTextView>(R.id.loadding_message_tv)
-    loaddingMessageTv.text = loaddingMessage
+    val loadingMessageTv =
+        getCustomView().findViewById<AppCompatTextView>(R.id.loading_message_tv)
+    loadingMessageTv.text = loadingMessage
     return this
 
 }

@@ -45,7 +45,7 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     private val intervalTime = 300//两次点击之间的间隔
     private var allowFastClick = false//是否允许快速点击
 
-    private val loaddingDialog by lazy { getLoadingDialog() }//加载框
+    private val loadingDialog by lazy { getLoadingDialog() }//加载框
     private val progressDialog by lazy { getProgressDialog() } //进度框
 
     private var stateView: StateView? = null //状态布局
@@ -286,8 +286,8 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      * @param message  加载框文本信息
      */
     fun showLoadingDialog(message: String) {
-        loaddingDialog.setLoadingMessage(message)
-        loaddingDialog.show()
+        loadingDialog.setLoadingMessage(message)
+        loadingDialog.show()
 
     }
 
@@ -296,7 +296,7 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      *解除加载框
      */
     fun dismissLoadingDialog() {
-        loaddingDialog.dismiss()
+        loadingDialog.dismiss()
     }
 
     /**
@@ -343,7 +343,7 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      * 显示加载中
      *
      */
-    fun showLoadding() {
+    fun showLoading() {
         stateView?.showLoading()
         contentLayout?.visibility = View.GONE
 

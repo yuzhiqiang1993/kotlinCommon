@@ -68,7 +68,7 @@ class StateView(
     fun showLoading() {
 
         view.visibility = View.VISIBLE
-        loadding_layout.visibility = View.VISIBLE
+        loading_layout.visibility = View.VISIBLE
 
         abnorma_layout.visibility = View.GONE
     }
@@ -77,7 +77,7 @@ class StateView(
     fun showNoData() {
 
         view.visibility = View.VISIBLE
-        loadding_layout.visibility = View.GONE
+        loading_layout.visibility = View.GONE
         abnorma_layout.visibility = View.VISIBLE
         iv_hint.setImageResource(noDataImgRes)
         tv_hint.text = resources.getString(R.string.no_data)
@@ -85,7 +85,7 @@ class StateView(
 
     fun showNoNet() {
         view.visibility = View.VISIBLE
-        loadding_layout.visibility = View.GONE
+        loading_layout.visibility = View.GONE
         abnorma_layout.visibility = View.VISIBLE
         iv_hint.setImageResource(noNetImgRes)
         // ImageLoader.getInstance().load(context, R.drawable.ic_no_net, hintImg);
@@ -94,7 +94,7 @@ class StateView(
 
     fun showError(errorMsg: String) {
         view.visibility = View.VISIBLE
-        loadding_layout.visibility = View.GONE
+        loading_layout.visibility = View.GONE
         abnorma_layout.visibility = View.VISIBLE
 
         iv_hint.setImageResource(errorImgRes)

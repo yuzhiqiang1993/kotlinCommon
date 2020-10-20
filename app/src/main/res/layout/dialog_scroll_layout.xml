@@ -53,7 +53,7 @@
         android:text="输入" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_loadding"
+        android:id="@+id/btn_loading"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

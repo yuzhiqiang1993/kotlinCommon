@@ -30,7 +30,7 @@ open class AdapterLoadMoreView : BaseLoadMoreView() {
     }
 
     override fun getLoadingView(holder: BaseViewHolder): View {
-        return holder.getView(R.id.layout_loadding_more)
+        return holder.getView(R.id.layout_loading_more)
     }
 
     override fun getRootView(parent: ViewGroup) =

@@ -8,6 +8,6 @@ import com.yzq.lib_base.constants.ViewStateContstants
 * 视图状态
 * */
 data class ViewStateBean(
-    var state: Int = ViewStateContstants.showLoaddingDialog,
+    var state: Int = ViewStateContstants.showLoadingDialog,
     var message: String = "请求中"
 )

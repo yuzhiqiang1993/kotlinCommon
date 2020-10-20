@@ -176,14 +176,14 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
      */
     private fun showloadingDialog(content: String) {
         viewStateBean.message = content
-        viewStateBean.state = ViewStateContstants.showLoaddingDialog
+        viewStateBean.state = ViewStateContstants.showLoadingDialog
 
         loadState.value = viewStateBean
     }
 
     private fun dismissLoadingDialog() {
         viewStateBean.message = ""
-        viewStateBean.state = ViewStateContstants.dismissLoaddingDialog
+        viewStateBean.state = ViewStateContstants.dismissLoadingDialog
         loadState.value = viewStateBean
     }
 

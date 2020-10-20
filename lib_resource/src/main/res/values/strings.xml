@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">lib_resource</string>
-    <string name="loadding_more">正在加载更多…</string>
+    <string name="loading_more">正在加载更多…</string>
     <string name="load_more_fail">加载失败…</string>
     <string name="load_more_complete">加载完成</string>
     <string name="load_more_end">我是有底线的…</string>
@@ -27,8 +27,9 @@
     <string name="has_new_version">有新版本</string>
     <string name="sure_update">确定更新</string>
     <string name="not_update">暂不更新</string>
-    <string name="loadding">加载中…</string>
+    <string name="loading">加载中…</string>
     <string name="zero">0</string>
     <string name="hundred">100</string>
     <string name="download">下载</string>
+    <string name="img_transition">img_transition</string>
 </resources>
