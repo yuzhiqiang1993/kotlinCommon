@@ -13,9 +13,10 @@ import com.yzq.lib_materialdialog.showPositiveCallbackDialog
  * @param permissionGranted Function1<List<String>, Unit>
  */
 fun Fragment.getPermissions(
-    @PermissionConstants.Permission vararg permissions: String,
+    @PermissionConstants.PermissionGroup vararg permissions: String,
     permissionGranted: PermissionGranted
 ) {
+
     PermissionUtils.permission(*permissions)
         .rationale { activity, shouldRequest ->
             /*用户拒绝后再次请求获取权限*/

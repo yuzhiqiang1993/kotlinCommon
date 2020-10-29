@@ -3,6 +3,7 @@ package com.yzq.kotlincommon.ui.activity
 import android.graphics.Color
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -20,6 +21,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
 import com.yzq.kotlincommon.data.NaviItem
+import com.yzq.lib_base.BaseApp
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseActivity
 import kotlinx.android.synthetic.main.appbar_main.*
@@ -157,12 +159,20 @@ class MainActivity : BaseActivity(),
         return true
     }
 
+    var lastBackTimeMillis: Long = 0
     override fun onBackPressed() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-            moveTaskToBack(false)
+            if (System.currentTimeMillis() - lastBackTimeMillis > 2000) {
+                Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show()
+                lastBackTimeMillis = System.currentTimeMillis()
+
+            } else {
+                BaseApp.INSTANCE.exitApp()
+
+            }
         }
     }
 

@@ -9,7 +9,6 @@ import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.jessyan.progressmanager.ProgressListener
 import me.jessyan.progressmanager.ProgressManager
@@ -44,7 +43,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
             showloadingDialog(loadText)
 
             try {
-                delay(1000)
                 block()
             } catch (e: Exception) {
                 dismissLoadingDialog()

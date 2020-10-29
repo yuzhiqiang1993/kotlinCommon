@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.widget.banner
 
 import android.view.View
+import android.view.ViewGroup
 import com.yzq.kotlincommon.R
 import com.zhpan.bannerview.BaseBannerAdapter
 
@@ -14,8 +15,13 @@ class BannerAdapter : BaseBannerAdapter<String, BannerViewHolder>() {
         holder.bindData(data, position, pageSize)
     }
 
-    override fun createViewHolder(itemView: View, viewType: Int): BannerViewHolder {
+    override fun createViewHolder(
+        parent: ViewGroup,
+        itemView: View,
+        viewType: Int
+    ): BannerViewHolder {
 
         return BannerViewHolder(itemView)
     }
+
 }

@@ -1,14 +1,13 @@
 package com.yzq.lib_permission
 
 import androidx.appcompat.app.AppCompatActivity
-import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.PermissionUtils
 import com.yzq.lib_materialdialog.showPositiveCallbackDialog
 
 
 fun AppCompatActivity.getPermissions(
-    @PermissionConstants.Permission vararg permissions: String,
+    vararg permissions: String,
     permissionGranted: PermissionGranted
 ) {
     PermissionUtils.permission(*permissions)
