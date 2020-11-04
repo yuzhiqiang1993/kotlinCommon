@@ -15,7 +15,7 @@ ext {
     appcompat = '1.2.0'
     material = "1.2.1"
     vectordrawable = "1.1.0"
-    constraintlayout = "2.0.3"
+    constraintlayout = "2.0.4"
     annotation = "1.1.0"
     multiDexVersion = "2.0.1"
     lifecycle_version = "2.2.0"
@@ -37,7 +37,7 @@ ext {
     baseRecyclerViewAdapterHelper = "3.0.6"
     photoview = "2.3.0"
     objectboxVersion = "2.3.4"
-    utilcode = "1.30.3"
+    utilcode = "1.30.4"
     arouter_api = "1.5.1"
     arouter_compiler = "1.5.1"
     walleVersion = "1.1.7"

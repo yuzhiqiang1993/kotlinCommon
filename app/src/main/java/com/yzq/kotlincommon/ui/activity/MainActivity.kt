@@ -109,10 +109,11 @@ class MainActivity : BaseActivity(),
         items.add(NaviItem("ViewPager", RoutePath.Main.VIEW_PAGER))
         items.add(NaviItem("WebView", RoutePath.Main.WEB_VIEW))
 
-        setdata()
+
+        setData()
     }
 
-    private fun setdata() {
+    private fun setData() {
         val recy = findViewById<RecyclerView>(R.id.recy)
         mainAdapter = MainAdapter(R.layout.item_main_layout, items)
         mainAdapter.setOnItemClickListener(this)

@@ -55,6 +55,7 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
     private fun initLanguage() {
 
+
         /*语言*/
         val localLanguage = LanguageUtils.getSystemLanguage()
         LogUtils.i("当前系统语言:${localLanguage.language}")
@@ -97,6 +98,7 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
      */
 
     private fun initUtils() {
+
 
         Utils.init(this)
         val config = LogUtils.getConfig()
