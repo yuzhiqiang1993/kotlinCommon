@@ -14,4 +14,5 @@ import com.yzq.lib_base.extend.SharedPreference
 object LocalSpUtils {
     var account: String by SharedPreference("account", "")
     var pwd: String by SharedPreference("pwd", "")
+    var token: String by SharedPreference("token", "")
 }

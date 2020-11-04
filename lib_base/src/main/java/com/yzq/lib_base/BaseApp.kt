@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.LanguageUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
 import java.util.*
@@ -46,6 +47,34 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
         initARouter()
 
         registerActivityLifecycleCallbacks(this)
+
+
+        initLanguage()
+
+    }
+
+    private fun initLanguage() {
+
+        /*语言*/
+        val localLanguage = LanguageUtils.getSystemLanguage()
+        LogUtils.i("当前系统语言:${localLanguage.language}")
+        if (LanguageUtils.isAppliedLanguage()) {
+            LogUtils.i("appliedLanguage语言:${LanguageUtils.getAppliedLanguage().language}")
+        }
+
+        /*如果 appliedLanguage 和 AppContextLanguage 不一致时  统一语言环境*/
+        if (LanguageUtils.isAppliedLanguage() && LanguageUtils.getAppliedLanguage().language != LanguageUtils.getAppContextLanguage().language) {
+            LanguageUtils.updateAppContextLanguage(
+                LanguageUtils.getAppliedLanguage(),
+                {
+                    LogUtils.i("统一语言环境")
+
+                    LogUtils.i("getAppContextLanguage:${LanguageUtils.getAppContextLanguage().language}")
+                    LogUtils.i("getAppliedLanguage:${LanguageUtils.getAppliedLanguage().language}")
+
+
+                })
+        }
 
     }
 

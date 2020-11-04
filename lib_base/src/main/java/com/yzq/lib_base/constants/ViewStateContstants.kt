@@ -1,5 +1,8 @@
 package com.yzq.lib_base.constants
 
+import com.blankj.utilcode.util.StringUtils
+import com.yzq.lib_base.R
+
 /*视图状态常量*/
 object ViewStateContstants {
     const val showLoadingDialog = 0
@@ -11,10 +14,9 @@ object ViewStateContstants {
     const val showNoNet = 6
     const val showError = 7
 
-
-    const val NO_NET = "无网络，请检查"
-    const val PARSE_DATA_ERROE = "数据解析错误"
-    const val SERVER_TIMEOUT = "服务器超时"
-    const val LOADING = "请求中..."
-    const val UNKONW_ERROR = "出现未知异常，请联系管理员"
+    val NO_NET = StringUtils.getString(R.string.no_net)
+    val PARSE_DATA_ERROE = StringUtils.getString(R.string.data_parse_error)
+    val SERVER_TIMEOUT = StringUtils.getString(R.string.timeout)
+    val LOADING = StringUtils.getString(R.string.loading)
+    val UNKONW_ERROR = StringUtils.getString(R.string.unknown_exception)
 }
