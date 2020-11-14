@@ -20,7 +20,8 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup">
-        <activity android:name=".ui.activity.LanguageActivity"></activity>
+        <activity android:name=".ui.activity.DataBindingActivity"></activity>
+        <activity android:name=".ui.activity.LanguageActivity" />
         <activity
             android:name=".ui.activity.WebViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

@@ -20,7 +20,7 @@ import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
-import com.yzq.kotlincommon.data.NaviItem
+import com.yzq.common.data.NaviItem
 import com.yzq.lib_base.BaseApp
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseActivity
@@ -108,6 +108,7 @@ class MainActivity : BaseActivity(),
         items.add(NaviItem("视频播放", RoutePath.Main.EXO_PLAYER))
         items.add(NaviItem("ViewPager", RoutePath.Main.VIEW_PAGER))
         items.add(NaviItem("WebView", RoutePath.Main.WEB_VIEW))
+        items.add(NaviItem("DataBinding", RoutePath.Main.DATA_BINDING))
 
 
         setData()
