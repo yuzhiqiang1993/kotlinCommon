@@ -39,5 +39,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="重置" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_get_data"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获取当前值" />
+
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

@@ -32,17 +32,16 @@ class DataBindingActivity : AppCompatActivity() {
             R.layout.activity_data_binding
         )
 
-
+        vm.resetData()
         vm.dataBindingLiveData.observe(this, {
             LogUtils.i("数据发生变化了:${it}")
             binding.data = it
         })
 
 
-        btn_reset.setOnClickListener {
-            vm.resetData()
+        btn_get_data.setOnClickListener {
+            vm.getData()
         }
-
 
     }
 }
