@@ -13,7 +13,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.DropDownMenuFilterAdapter
 import com.yzq.kotlincommon.adapter.DropDownMenuFoodTypeAdapter
 import com.yzq.kotlincommon.databinding.ActivityDropDownMenuBinding
-import com.yzq.lib_base.ui.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 import kotlinx.android.synthetic.main.activity_drop_down_menu.*
 
 

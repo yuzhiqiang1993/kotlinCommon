@@ -4,7 +4,7 @@ package com.yzq.kotlincommon.ui.fragment
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.widget.banner.BannerAdapter
 import com.yzq.kotlincommon.widget.banner.BannerViewHolder
-import com.yzq.lib_base.ui.BaseFragment
+import com.yzq.lib_base.ui.fragment.BaseFragment
 import com.zhpan.bannerview.BannerViewPager
 import kotlinx.android.synthetic.main.fragment_pager_content.*
 

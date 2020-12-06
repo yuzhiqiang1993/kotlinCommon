@@ -13,7 +13,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TaskAdapter
 import com.yzq.kotlincommon.databinding.ActivityTaskBinding
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 import com.yzq.lib_widget.HoverItemDecoration
 import java.util.*
 

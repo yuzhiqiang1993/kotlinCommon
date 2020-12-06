@@ -15,7 +15,7 @@ import com.yzq.kotlincommon.adapter.ImgListAdapter
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding
 import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVbVmActivity
 import com.yzq.lib_base_adapter.AdapterLoadMoreView
 
 

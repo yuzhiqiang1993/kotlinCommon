@@ -14,7 +14,7 @@ import com.yzq.kotlincommon.adapter.RoomAdapter
 import com.yzq.kotlincommon.databinding.ActivityRoomBinding
 import com.yzq.kotlincommon.mvvm.view_model.RoomViewModel
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVbVmActivity
 import com.yzq.lib_materialdialog.showInputDialog
 
 

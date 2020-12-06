@@ -9,7 +9,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.mvvm.view_model.LoginViewModel
 import com.yzq.lib_base.extend.nav
-import com.yzq.lib_base.ui.BaseVmDbActivity
+import com.yzq.lib_base.ui.activity.BaseDbVmActivity
 
 
 /**
@@ -21,7 +21,7 @@ import com.yzq.lib_base.ui.BaseVmDbActivity
  */
 
 @Route(path = RoutePath.Main.LOGIN)
-class LoginActivity : BaseVmDbActivity<ActivityLoginBinding, LoginViewModel>() {
+class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
 
     override fun getContentLayoutId() = R.layout.activity_login
 

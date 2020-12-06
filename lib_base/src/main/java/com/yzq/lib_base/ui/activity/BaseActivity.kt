@@ -1,4 +1,4 @@
-package com.yzq.lib_base.ui
+package com.yzq.lib_base.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -19,6 +19,7 @@ import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.lib_base.R
 import com.yzq.lib_base.constants.ViewStateContstants
+import com.yzq.lib_base.ui.ImgPreviewActivity
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_materialdialog.*

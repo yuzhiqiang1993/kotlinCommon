@@ -1,11 +1,10 @@
 package com.yzq.kotlincommon.ui.fragment
 
 
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ViewPagerAdapter
-import com.yzq.lib_base.ui.BaseFragment
+import com.yzq.lib_base.ui.fragment.BaseFragment
 import kotlinx.android.synthetic.main.fragment_view_pager.*
 
 

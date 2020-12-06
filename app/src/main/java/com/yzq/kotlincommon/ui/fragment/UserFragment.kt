@@ -4,7 +4,7 @@ import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.kotlincommon.R
-import com.yzq.lib_base.ui.BaseFragment
+import com.yzq.lib_base.ui.fragment.BaseFragment
 import com.yzq.lib_img.openAlbum
 import com.yzq.lib_materialdialog.showCallbackDialog
 import com.yzq.lib_permission.getPermissions

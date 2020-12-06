@@ -1,5 +1,6 @@
-package com.yzq.lib_base.ui
+package com.yzq.lib_base.ui.activity
 
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
@@ -7,15 +8,14 @@ import com.yzq.lib_base.view_model.BaseViewModel
 
 
 /**
- * @description: mvvm Activity基类
- * @author : yzq
- * @date   : 2018/7/12
- * @time   : 10:40
- *
+ * @description: 基于ViewModel和DataBinding的Activity基类
+ * @author : XeonYu
+ * @date   : 2020/12/6
+ * @time   : 18:29
  */
 
-
-abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
+abstract class BaseDbVmActivity<DB : ViewDataBinding, VM : BaseViewModel> :
+    BaseDataBindingActivity<DB>() {
 
     lateinit var vm: VM
 
@@ -27,7 +27,7 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
     override fun initViewModel() {
         vm = ViewModelProvider(this).get(getViewModelClass())
         with(vm) {
-            lifecycleOwner = this@BaseMvvmActivity
+            lifecycleOwner = this@BaseDbVmActivity
             lifecycle.addObserver(this)
             loadState.observe(
                 lifecycleOwner,

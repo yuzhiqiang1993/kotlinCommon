@@ -1,22 +1,23 @@
-package com.yzq.lib_base.ui
+package com.yzq.lib_base.ui.fragment
 
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewbinding.ViewBinding
 import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
 import com.yzq.lib_base.view_model.BaseViewModel
 
 
-
 /**
- * @description: 基于ViewModel和ViewBinding的Activity基类
- * @author : XeonYu
- * @date   : 2020/12/6
- * @time   : 18:29
+ * @description: mvvm Fragment基类
+ * @author : yzq
+ * @date   : 2018/7/12
+ * @time   : 10:40
+ *
  */
 
-abstract class BaseVbVmActivity<VB : ViewBinding, VM : BaseViewModel> :
-    BaseViewBindingActivity<VB>() {
+
+abstract class BaseMvvmFragment<VM : BaseViewModel> : BaseFragment() {
+
 
     lateinit var vm: VM
 
@@ -27,13 +28,17 @@ abstract class BaseVbVmActivity<VB : ViewBinding, VM : BaseViewModel> :
 
     override fun initViewModel() {
         vm = ViewModelProvider(this).get(getViewModelClass())
-        with(vm) {
-            lifecycleOwner = this@BaseVbVmActivity
-            lifecycle.addObserver(this)
-            loadState.observe(
-                lifecycleOwner,
-                { viewStateBean -> handleViewState(viewStateBean) })
+
+
+        vm.let {
+            vm.lifecycleOwner = this
+            lifecycle.addObserver(it)
         }
+
+        vm.loadState.observe(
+            this,
+            Observer<ViewStateBean> { viewStateBean -> handleViewState(viewStateBean) })
+
         observeViewModel()
     }
 
@@ -45,12 +50,14 @@ abstract class BaseVbVmActivity<VB : ViewBinding, VM : BaseViewModel> :
     private fun handleViewState(viewStateBean: ViewStateBean) {
         val content = viewStateBean.message
         when (viewStateBean.state) {
+
             ViewStateContstants.showLoadingDialog -> {
                 showLoadingDialog(content)
             }
             ViewStateContstants.dismissLoadingDialog -> {
                 dismissLoadingDialog()
             }
+
             ViewStateContstants.showErrorDialog -> {
                 showErrorDialog(content)
             }

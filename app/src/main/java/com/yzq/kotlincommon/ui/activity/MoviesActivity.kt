@@ -16,7 +16,7 @@ import com.yzq.kotlincommon.adapter.MovieAdapter
 import com.yzq.kotlincommon.databinding.ActivityMovieListBinding
 import com.yzq.kotlincommon.mvvm.view_model.MovieViewModel
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVbVmActivity
 
 
 /**

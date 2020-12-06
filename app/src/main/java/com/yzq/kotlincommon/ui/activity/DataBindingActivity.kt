@@ -8,7 +8,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDataBindingBinding
 import com.yzq.kotlincommon.mvvm.view_model.DataBindingViewModel
-import com.yzq.lib_base.ui.BaseVmDbActivity
+import com.yzq.lib_base.ui.activity.BaseDbVmActivity
 
 
 /**
@@ -19,7 +19,7 @@ import com.yzq.lib_base.ui.BaseVmDbActivity
  */
 
 @Route(path = RoutePath.Main.DATA_BINDING)
-class DataBindingActivity : BaseVmDbActivity<ActivityDataBindingBinding, DataBindingViewModel>() {
+class DataBindingActivity : BaseDbVmActivity<ActivityDataBindingBinding, DataBindingViewModel>() {
 
     override fun getContentLayoutId() = R.layout.activity_data_binding
 

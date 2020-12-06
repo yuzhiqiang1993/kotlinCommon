@@ -8,7 +8,7 @@ import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.view_model.CompressImgViewModel
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
-import com.yzq.lib_base.ui.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVbVmActivity
 import com.yzq.lib_img.load
 import com.yzq.lib_img.openAlbum
 import com.yzq.lib_img.openCamera

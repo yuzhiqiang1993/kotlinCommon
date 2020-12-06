@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityAutodisposeBinding
-import com.yzq.lib_base.ui.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 import com.yzq.lib_rx.transform
 import io.reactivex.Observable
 import java.util.concurrent.TimeUnit

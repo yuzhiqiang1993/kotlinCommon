@@ -1,4 +1,4 @@
-package com.yzq.lib_base.ui
+package com.yzq.lib_base.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.yzq.lib_base.constants.ViewStateContstants
+import com.yzq.lib_base.ui.activity.BaseActivity
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
 import com.yzq.lib_widget.StateView

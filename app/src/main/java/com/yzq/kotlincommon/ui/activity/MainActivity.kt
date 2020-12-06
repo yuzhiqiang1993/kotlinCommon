@@ -23,7 +23,7 @@ import com.yzq.kotlincommon.adapter.MainAdapter
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.lib_base.BaseApp
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

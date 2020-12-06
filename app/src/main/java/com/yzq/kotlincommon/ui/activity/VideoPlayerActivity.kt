@@ -12,7 +12,7 @@ import com.shuyu.gsyvideoplayer.player.PlayerFactory
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityVideoPlayerBinding
-import com.yzq.lib_base.ui.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 import tv.danmaku.ijk.media.exo2.Exo2PlayerManager
 
 

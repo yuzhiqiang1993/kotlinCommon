@@ -12,7 +12,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TagAdapter
 import com.yzq.kotlincommon.databinding.ActivityFlexBoxBinding
-import com.yzq.lib_base.ui.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 
 
 /**

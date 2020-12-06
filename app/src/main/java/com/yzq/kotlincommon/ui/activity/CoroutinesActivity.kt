@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
-import com.yzq.lib_base.ui.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVbVmActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

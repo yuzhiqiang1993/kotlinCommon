@@ -1,4 +1,4 @@
-package com.yzq.lib_base.ui
+package com.yzq.lib_base.ui.activity
 
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding

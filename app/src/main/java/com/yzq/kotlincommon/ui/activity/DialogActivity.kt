@@ -10,7 +10,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
-import com.yzq.lib_base.ui.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 import com.yzq.lib_materialdialog.*
 import com.yzq.lib_rx.NextObserver
 import com.yzq.lib_rx.transform

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.widget.Toast
 import com.blankj.utilcode.constant.PermissionConstants
 import com.yzq.common.utils.LocationUtils
-import com.yzq.lib_base.ui.BaseActivity
+import com.yzq.lib_base.ui.activity.BaseActivity
 import com.yzq.lib_permission.getPermissions
 
 

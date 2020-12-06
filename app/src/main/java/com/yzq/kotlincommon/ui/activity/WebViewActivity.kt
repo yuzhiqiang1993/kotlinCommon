@@ -1,9 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
 import android.os.Build
-import android.os.Message
 import android.view.KeyEvent
 import android.webkit.*
 import androidx.annotation.RequiresApi
@@ -12,7 +10,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.JsBridge
 import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
-import com.yzq.lib_base.ui.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 
 
 @Route(path = RoutePath.Main.WEB_VIEW)

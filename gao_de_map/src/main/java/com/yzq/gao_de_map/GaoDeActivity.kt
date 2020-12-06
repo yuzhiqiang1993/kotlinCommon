@@ -5,17 +5,16 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.amap.api.location.AMapLocation
+import com.yzq.gao_de_map.databinding.ActivityGaoDeBinding
 import com.yzq.gao_de_map.utils.MapPermissionUtils
-import com.yzq.lib_base.ui.BaseMvvmActivity
-import kotlinx.android.synthetic.main.activity_gao_de.*
+import com.yzq.lib_base.ui.activity.BaseVbVmActivity
 
 @Route(path = com.yzq.common.constants.RoutePath.GaoDe.GAO_DE)
-class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
+class GaoDeActivity : BaseVbVmActivity<ActivityGaoDeBinding, LocationSignViewModel>() {
 
 
-    override fun initContentView() {
-        setContentView(R.layout.activity_gao_de)
-    }
+    override fun getViewBinding() = ActivityGaoDeBinding.inflate(layoutInflater)
+
 
     override fun getViewModelClass(): Class<LocationSignViewModel> =
         LocationSignViewModel::class.java
@@ -28,7 +27,7 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
 
         initToolbar(toolbar, "高德")
 
-        btn_location.setOnClickListener {
+        binding.btnLocation.setOnClickListener {
 
             MapPermissionUtils.checkLocationPermission(true, this) {
                 showLoadingDialog("正在获取位置信息")
@@ -45,9 +44,9 @@ class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
         vm.locationData.observe(this,
             Observer<AMapLocation> { t ->
                 if (t.errorCode == 0) {
-                    tv_location_result.text = t.address
+                    binding.tvLocationResult.text = t.address
                 } else {
-                    tv_location_result.text = t.locationDetail
+                    binding.tvLocationResult.text = t.locationDetail
                 }
 
                 dismissLoadingDialog()

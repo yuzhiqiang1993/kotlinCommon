@@ -7,8 +7,8 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFragmentBinding
 import com.yzq.kotlincommon.mvvm.view_model.FragmentViewModel
-import com.yzq.lib_base.ui.BaseFragment
-import com.yzq.lib_base.ui.BaseVbVmActivity
+import com.yzq.lib_base.ui.fragment.BaseFragment
+import com.yzq.lib_base.ui.activity.BaseVbVmActivity
 
 
 @Route(path = RoutePath.Main.FRAGMENT)
