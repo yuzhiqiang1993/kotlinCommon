@@ -1,36 +1,32 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.view.MenuItem
-import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
+import com.yzq.kotlincommon.databinding.ActivityFragmentBinding
 import com.yzq.kotlincommon.mvvm.view_model.FragmentViewModel
 import com.yzq.lib_base.ui.BaseFragment
-import com.yzq.lib_base.ui.BaseMvvmActivity
-import kotlinx.android.synthetic.main.activity_fragment.*
+import com.yzq.lib_base.ui.BaseVbVmActivity
 
 
 @Route(path = RoutePath.Main.FRAGMENT)
-class FragmentActivity : BaseMvvmActivity<FragmentViewModel>(),
+class FragmentActivity : BaseVbVmActivity<ActivityFragmentBinding, FragmentViewModel>(),
     BottomNavigationView.OnNavigationItemSelectedListener {
+
+    override fun getViewBinding() = ActivityFragmentBinding.inflate(layoutInflater)
 
     override fun getViewModelClass(): Class<FragmentViewModel> = FragmentViewModel::class.java
 
 
-    override fun initContentView() {
-        setContentView(R.layout.activity_fragment)
-    }
-
     override fun initWidget() {
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "Fragment")
+
+        initToolbar(binding.layoutToolbar.toolbar, "Fragment")
 
 
-
-        bottom_navigation.setOnNavigationItemSelectedListener(this)
+        binding.bottomNavigation.setOnNavigationItemSelectedListener(this)
 
 
         showFragment(vm.taskFragment)

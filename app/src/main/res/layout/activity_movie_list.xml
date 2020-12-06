@@ -7,7 +7,9 @@
     tools:context=".ui.activity.MoviesActivity">
 
 
-    <include layout="@layout/toolbar" />
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recy"
@@ -16,9 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_appbar" />
-
-
+        app:layout_constraintTop_toBottomOf="@id/layout_toolbar" />
 
 
     <com.yzq.lib_widget.StateView
@@ -28,7 +28,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_appbar" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_toolbar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

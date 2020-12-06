@@ -2,22 +2,30 @@ package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.net.GsonConvert
+import com.yzq.common.data.LoginBean
 import com.yzq.common.net.view_model.ApiServiceViewModel
+import com.yzq.common.utils.LocalSpUtils
+import kotlinx.coroutines.delay
 
 class LoginViewModel : ApiServiceViewModel() {
 
 
-    val loginData by lazy { MutableLiveData<Boolean>() }
+    val loginLiveData by lazy { MutableLiveData<LoginBean>() }
 
-
-    fun login() {
+    fun login(account: String, pwd: String) {
         launchLoadingDialog {
 
-            val movieBean = apiServiceModel.getData(0, 1)
-            LogUtils.i("请求完成：" + GsonConvert.toJson(movieBean))
+            LocalSpUtils.account = account
+            LocalSpUtils.pwd = pwd
 
-            loginData.value = true
+            LogUtils.i("account:${account},pwd:${pwd}")
+            delay(1000)
+
+            val loginBean = LoginBean()
+            loginBean.account = account
+            loginBean.pwd = pwd
+
+            loginLiveData.value = loginBean
         }
     }
 }

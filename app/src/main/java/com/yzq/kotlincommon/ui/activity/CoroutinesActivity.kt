@@ -1,38 +1,33 @@
 package com.yzq.kotlincommon.ui.activity
 
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.*
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
-import com.yzq.kotlincommon.R
+import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
-import com.yzq.lib_base.ui.BaseMvvmActivity
-import kotlinx.android.synthetic.main.activity_coroutines.*
+import com.yzq.lib_base.ui.BaseVbVmActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
 @Route(path = RoutePath.Main.COROUTINE)
-class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
+class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, CoroutineViewModel>() {
 
     override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
 
-
-    override fun initContentView() {
-        setContentView(R.layout.activity_coroutines)
-    }
+    override fun getViewBinding() = ActivityCoroutinesBinding.inflate(layoutInflater)
 
 
     override fun initWidget() {
         super.initWidget()
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
 
-        initToolbar(toolbar, "Coroutine 协程")
-        initStateView(state_view, tv)
 
-        state_view.retry {
+        initToolbar(binding.layoutToolbar.toolbar, "Coroutine 协程")
+        initStateView(binding.stateView, binding.tv)
+
+        binding.stateView.retry {
             initData()
         }
 
@@ -66,12 +61,10 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
         }
     }
 
-
     override fun initData() {
         super.initData()
         showLoading()
         vm.requestData()
-
 
     }
 
@@ -83,7 +76,7 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
             geocoder.observe(this@CoroutinesActivity, Observer {
 
                 LogUtils.i("请求完成")
-                tv.text = it.formattedAddress
+                binding.tv.text = it.formattedAddress
 
                 showContent()
 

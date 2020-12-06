@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.ui.activity
 import android.annotation.SuppressLint
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -13,7 +12,8 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.DropDownMenuFilterAdapter
 import com.yzq.kotlincommon.adapter.DropDownMenuFoodTypeAdapter
-import com.yzq.lib_base.ui.BaseActivity
+import com.yzq.kotlincommon.databinding.ActivityDropDownMenuBinding
+import com.yzq.lib_base.ui.BaseViewBindingActivity
 import kotlinx.android.synthetic.main.activity_drop_down_menu.*
 
 
@@ -26,7 +26,8 @@ import kotlinx.android.synthetic.main.activity_drop_down_menu.*
  */
 
 @Route(path = RoutePath.Main.DROP_DOWN_MENU)
-class DropDownMenuActivity : BaseActivity(), OnItemClickListener {
+class DropDownMenuActivity : BaseViewBindingActivity<ActivityDropDownMenuBinding>(),
+    OnItemClickListener {
 
 
     private lateinit var tvFilter: AppCompatTextView
@@ -48,17 +49,14 @@ class DropDownMenuActivity : BaseActivity(), OnItemClickListener {
     private lateinit var foodTypeRecy: RecyclerView
     private lateinit var filtersRecy: RecyclerView
 
-    override fun initContentView() {
-        setContentView(R.layout.activity_drop_down_menu)
+    override fun getViewBinding() = ActivityDropDownMenuBinding.inflate(layoutInflater)
 
-    }
 
     @SuppressLint("SetTextI18n")
     override fun initWidget() {
 
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "下拉菜单")
+        initToolbar(binding.layoutToolbar.toolbar, "下拉菜单")
 
 
         val contentLayout = layoutInflater.inflate(R.layout.drop_down_menu_content, null)

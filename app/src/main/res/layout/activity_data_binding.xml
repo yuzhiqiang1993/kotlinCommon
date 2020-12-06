@@ -16,7 +16,9 @@
         android:orientation="vertical"
         tools:context=".ui.activity.DataBindingActivity">
 
-        <include layout="@layout/toolbar" />
+        <include
+            android:id="@+id/layout_toolbar"
+            layout="@layout/toolbar" />
 
 
         <androidx.appcompat.widget.AppCompatTextView

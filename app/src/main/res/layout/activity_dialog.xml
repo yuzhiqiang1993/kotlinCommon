@@ -7,8 +7,9 @@
     android:orientation="vertical"
     tools:context=".ui.activity.DialogActivity">
 
-    <include layout="@layout/toolbar" />
-
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
 
 
     <androidx.core.widget.NestedScrollView
@@ -16,7 +17,9 @@
         android:layout_height="match_parent">
 
 
-        <include layout="@layout/dialog_scroll_layout" />
+        <include
+            android:id="@+id/layout_scroll_content"
+            layout="@layout/dialog_scroll_layout" />
 
     </androidx.core.widget.NestedScrollView>
 

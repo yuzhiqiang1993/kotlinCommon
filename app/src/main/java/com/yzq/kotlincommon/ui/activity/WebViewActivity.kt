@@ -12,28 +12,14 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.JsBridge
 import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
-import com.yzq.lib_base.ui.BaseActivity
-import com.yzq.lib_widget.databinding.ToolbarBinding
-import kotlinx.android.synthetic.main.activity_web_view.*
+import com.yzq.lib_base.ui.BaseViewBindingActivity
 
 
 @Route(path = RoutePath.Main.WEB_VIEW)
-class WebViewActivity : BaseActivity() {
-
-    private lateinit var rootBinding: ActivityWebViewBinding
-
-    private lateinit var toolbarBinding: ToolbarBinding
+class WebViewActivity : BaseViewBindingActivity<ActivityWebViewBinding>() {
 
 
-    override fun initContentView() {
-
-        rootBinding = ActivityWebViewBinding.inflate(layoutInflater)
-
-        toolbarBinding = rootBinding.layoutToolbar
-
-        setContentView(rootBinding.root)
-
-    }
+    override fun getViewBinding() = ActivityWebViewBinding.inflate(layoutInflater)
 
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -41,50 +27,32 @@ class WebViewActivity : BaseActivity() {
         super.initWidget()
 
 
-        initToolbar(rootBinding.layoutToolbar.toolbar, "WebView")
+        initToolbar(binding.layoutToolbar.toolbar, "WebView")
 
 
-        rootBinding.webview.webViewClient = WebViewClient()
-        val settings = webview.settings
+        binding.webview.webViewClient = WebViewClient()
+        val settings = binding.webview.settings
         settings.javaScriptEnabled = true
-        settings.setJavaScriptCanOpenWindowsAutomatically(true)
-        settings.setDomStorageEnabled(true)
+        settings.javaScriptCanOpenWindowsAutomatically = true
+        settings.domStorageEnabled = true
         settings.setAppCacheEnabled(false)
         settings.cacheMode = WebSettings.LOAD_NO_CACHE
-        rootBinding.webview.webViewClient = webViewClient
-        rootBinding.webview.addJavascriptInterface(JsBridge, "Android")
+        binding.webview.webViewClient = webViewClient
+        binding.webview.addJavascriptInterface(JsBridge, "Android")
 
         val url = "http://192.168.8.121:4200"
-        rootBinding.webview.loadUrl(url)
+        binding.webview.loadUrl(url)
 
 
     }
 
 
     val webViewClient = object : WebViewClient() {
-        /*历史记录被更新时调用*/
-        override fun doUpdateVisitedHistory(view: WebView?, url: String?, isReload: Boolean) {
-            super.doUpdateVisitedHistory(view, url, isReload)
-        }
-
-
-        /*应用程序重新请求网页数据时调用*/
-        override fun onFormResubmission(view: WebView?, dontResend: Message?, resend: Message?) {
-            super.onFormResubmission(view, dontResend, resend)
-        }
 
 
         /*加载页面资源时调用  每个资源被加载时都会调用*/
 
-        override fun onLoadResource(view: WebView?, url: String?) {
-            super.onLoadResource(view, url)
-        }
-
         /*页面开始加载时调用 */
-
-        override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-            super.onPageStarted(view, url, favicon)
-        }
 
 
         /*页面加载完毕时调用 */
@@ -101,9 +69,9 @@ class WebViewActivity : BaseActivity() {
             *        console.log('===============angularFun======================>');
             *       };
             * */
-            webview.loadUrl("javascript:window.test()")
-            webview.loadUrl("javascript:test()")
-            webview.loadUrl("javascript:window.webFun()")
+            binding.webview.loadUrl("javascript:window.test()")
+            binding.webview.loadUrl("javascript:test()")
+            binding.webview.loadUrl("javascript:window.webFun()")
 
         }
 
@@ -128,27 +96,14 @@ class WebViewActivity : BaseActivity() {
             super.onReceivedError(view, request, error)
         }
 
-        /*重写此方法可以处理网页中的事件*/
-        override fun shouldOverrideKeyEvent(view: WebView?, event: KeyEvent?): Boolean {
-            return super.shouldOverrideKeyEvent(view, event)
-        }
-
-
-        /*拦截请求*/
-        override fun shouldInterceptRequest(
-            view: WebView?,
-            request: WebResourceRequest?
-        ): WebResourceResponse? {
-            return super.shouldInterceptRequest(view, request)
-        }
 
     }
 
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (webview.canGoBack()) {
-                webview.goBack()
+            if (binding.webview.canGoBack()) {
+                binding.webview.goBack()
                 return true
             }
         }
@@ -158,9 +113,9 @@ class WebViewActivity : BaseActivity() {
 
 
     override fun onDestroy() {
-        webview.clearHistory()
-        webview.clearCache(true)
-        webview.destroy()
+        binding.webview.clearHistory()
+        binding.webview.clearCache(true)
+        binding.webview.destroy()
         super.onDestroy()
     }
 

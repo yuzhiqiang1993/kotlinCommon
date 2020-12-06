@@ -11,9 +11,8 @@ import com.shuyu.gsyvideoplayer.listener.LockClickListener
 import com.shuyu.gsyvideoplayer.player.PlayerFactory
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import com.yzq.common.constants.RoutePath
-import com.yzq.kotlincommon.R
-import com.yzq.lib_base.ui.BaseActivity
-import kotlinx.android.synthetic.main.activity_video_player.*
+import com.yzq.kotlincommon.databinding.ActivityVideoPlayerBinding
+import com.yzq.lib_base.ui.BaseViewBindingActivity
 import tv.danmaku.ijk.media.exo2.Exo2PlayerManager
 
 
@@ -24,17 +23,14 @@ import tv.danmaku.ijk.media.exo2.Exo2PlayerManager
  * @time   : 10:37
  */
 @Route(path = RoutePath.Main.EXO_PLAYER)
-class VideoPlayerActivity : BaseActivity() {
+class VideoPlayerActivity : BaseViewBindingActivity<ActivityVideoPlayerBinding>() {
 
     private lateinit var orientationUtils: OrientationUtils
     private var isPlay = false
     private var isPause = false
 
 
-    override fun initContentView() {
-
-        setContentView(R.layout.activity_video_player)
-    }
+    override fun getViewBinding() = ActivityVideoPlayerBinding.inflate(layoutInflater)
 
 
     override fun initWidget() {
@@ -42,9 +38,9 @@ class VideoPlayerActivity : BaseActivity() {
         PlayerFactory.setPlayManager(Exo2PlayerManager::class.java)
 
         //外部辅助的旋转，帮助全屏
-        orientationUtils = OrientationUtils(this, video_player)
+        orientationUtils = OrientationUtils(this, binding.videoPlayer)
         //初始化不打开外部的旋转
-        orientationUtils.setEnable(false)
+        orientationUtils.isEnable = false
         /*视频地址*/
         val vedioUrl =
             "http://www.kangaijianshen.com//uploadfiles//2018//01//1516761517281689936.mp4"
@@ -88,17 +84,17 @@ class VideoPlayerActivity : BaseActivity() {
 
                 orientationUtils.isEnable = !lock
 
-            }).build(video_player)
+            }).build(binding.videoPlayer)
 
 
 
 
-        video_player.getFullscreenButton()
+        binding.videoPlayer.fullscreenButton
             .setOnClickListener(View.OnClickListener {
                 //直接横屏
                 orientationUtils.resolveByClick()
                 //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar
-                video_player.startWindowFullscreen(this, true, true)
+                binding.videoPlayer.startWindowFullscreen(this, true, true)
             })
 
     }
@@ -113,7 +109,13 @@ class VideoPlayerActivity : BaseActivity() {
 
         //如果旋转了就全屏
         if (isPlay && !isPause) {
-            video_player.onConfigurationChanged(this, newConfig, orientationUtils, true, true)
+            binding.videoPlayer.onConfigurationChanged(
+                this,
+                newConfig,
+                orientationUtils,
+                true,
+                true
+            )
         }
     }
 
@@ -129,16 +131,16 @@ class VideoPlayerActivity : BaseActivity() {
     }
 
     override fun onPause() {
-        video_player.currentPlayer.onVideoPause()
+        binding.videoPlayer.currentPlayer.onVideoPause()
         super.onPause()
         isPause = true
     }
 
 
     override fun onResume() {
-        video_player.getCurrentPlayer().onVideoResume(false);
-        super.onResume();
-        isPause = false;
+        binding.videoPlayer.currentPlayer.onVideoResume(false)
+        super.onResume()
+        isPause = false
 
     }
 
@@ -146,10 +148,11 @@ class VideoPlayerActivity : BaseActivity() {
     override fun onDestroy() {
         super.onDestroy()
         if (isPlay) {
-            video_player.currentPlayer.release()
+            binding.videoPlayer.currentPlayer.release()
         }
 
-        orientationUtils.releaseListener();
+        orientationUtils.releaseListener()
     }
+
 
 }

@@ -42,6 +42,8 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="title">Title</string>
+    <string name="camera">camera</string>
+    <string name="gallery">gallery</string>
 
 
     <!--App-->

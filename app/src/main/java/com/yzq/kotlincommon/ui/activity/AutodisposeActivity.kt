@@ -5,10 +5,10 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
-import com.yzq.lib_base.ui.BaseActivity
+import com.yzq.kotlincommon.databinding.ActivityAutodisposeBinding
+import com.yzq.lib_base.ui.BaseViewBindingActivity
 import com.yzq.lib_rx.transform
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.activity_autodispose.*
 import java.util.concurrent.TimeUnit
 
 
@@ -20,17 +20,18 @@ import java.util.concurrent.TimeUnit
  */
 
 @Route(path = RoutePath.Main.AUTODISPOSE)
-class AutodisposeActivity : BaseActivity() {
-    override fun initContentView() {
-        setContentView(R.layout.activity_autodispose)
-    }
+class AutodisposeActivity : BaseViewBindingActivity<ActivityAutodisposeBinding>() {
+
+
+    override fun getViewBinding() = ActivityAutodisposeBinding.inflate(layoutInflater)
+
 
     override fun initWidget() {
         super.initWidget()
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "AutoDispose")
 
-        btn_count.setOnClickListener {
+        binding.btnCount.setOnClickListener {
             startCount()
 
         }
@@ -43,7 +44,7 @@ class AutodisposeActivity : BaseActivity() {
         Observable.interval(1, TimeUnit.SECONDS)
             .transform(this)
             .subscribe {
-                tv_count.text = "$it"
+                binding.tvCount.text = "$it"
                 LogUtils.i("startCount-->$it")
             }
     }

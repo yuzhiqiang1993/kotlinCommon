@@ -1,16 +1,15 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.text.TextUtils
-import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.BarUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.utils.LocalSpUtils
 import com.yzq.kotlincommon.R
+import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.mvvm.view_model.LoginViewModel
-import com.yzq.lib_base.extend.navFinish
-import com.yzq.lib_base.ui.BaseMvvmActivity
-import kotlinx.android.synthetic.main.activity_login.*
+import com.yzq.lib_base.extend.nav
+import com.yzq.lib_base.ui.BaseVmDbActivity
 
 
 /**
@@ -22,16 +21,11 @@ import kotlinx.android.synthetic.main.activity_login.*
  */
 
 @Route(path = RoutePath.Main.LOGIN)
-class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
+class LoginActivity : BaseVmDbActivity<ActivityLoginBinding, LoginViewModel>() {
 
+    override fun getContentLayoutId() = R.layout.activity_login
 
     override fun getViewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
-
-
-    override fun initContentView() {
-        setContentView(R.layout.activity_login)
-
-    }
 
 
     override fun initWidget() {
@@ -40,52 +34,50 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
         BarUtils.transparentStatusBar(this)
         BarUtils.setStatusBarLightMode(this, true)
 
-        input_account.setText(LocalSpUtils.account)
-        input_pwd.setText(LocalSpUtils.pwd)
 
 
+        binding.btnLogin.setOnClickListener {
 
-        btn_login.setOnClickListener {
 
-            val account = input_account.text?.trim().toString()
-            val pwd = input_pwd.text?.trim().toString()
+            if (TextUtils.isEmpty(binding.account)) {
+                binding.inputLayoutAccount.error = "账号不能为空，请检查"
 
-            input_layout_account.isErrorEnabled = false
-            input_layout_pwd.isErrorEnabled = false
-
-            if (TextUtils.isEmpty(account)) {
-                input_layout_account.isErrorEnabled = true
-                input_layout_account.error = "账号不能为空，请检查"
-                return@setOnClickListener
             }
-            if (TextUtils.isEmpty(pwd)) {
-                input_layout_pwd.isErrorEnabled = true
-                input_layout_pwd.error = "密码不能为空，请检查"
+            if (TextUtils.isEmpty(binding.pwd)) {
+
+                binding.inputLayoutPwd.error = "密码不能为空，请检查"
+
+            }
+
+            if (TextUtils.isEmpty(binding.account) or TextUtils.isEmpty(binding.pwd)) {
                 return@setOnClickListener
             }
 
 
+            vm.login(
+                binding.account!!,
+                binding.pwd!!
+            )
 
-
-            LocalSpUtils.account = input_account.text.toString()
-            LocalSpUtils.pwd = input_pwd.text.toString()
-            navFinish(RoutePath.Main.MAIN)
-            //  vm.login()
 
         }
+    }
 
+    override fun initData() {
+
+        binding.account = LocalSpUtils.account
+        binding.pwd = LocalSpUtils.pwd
 
     }
 
 
     override fun observeViewModel() {
 
-        vm.loginData.observe(this, Observer<Boolean> {
-            navFinish(RoutePath.Main.MAIN)
-
-        })
-
-
+        with(vm) {
+            loginLiveData.observe(this@LoginActivity, {
+                nav(RoutePath.Main.MAIN)
+            })
+        }
     }
 
 

@@ -19,9 +19,9 @@ public final class Base64 {
     private static final int SIXTEENBIT = 16;
     private static final int FOURBYTE = 4;
     private static final int SIGN = -128;
-    private static char PAD = '=';
-    private static byte[] base64Alphabet = new byte[BASELENGTH];
-    private static char[] lookUpBase64Alphabet = new char[LOOKUPLENGTH];
+    private static final char PAD = '=';
+    private static final byte[] base64Alphabet = new byte[BASELENGTH];
+    private static final char[] lookUpBase64Alphabet = new char[LOOKUPLENGTH];
 
     static {
         for (int i = 0; i < BASELENGTH; ++i) {

@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.view.Menu
 import android.view.View
-import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -12,10 +11,10 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.task.TaskBean
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TaskAdapter
+import com.yzq.kotlincommon.databinding.ActivityTaskBinding
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.BaseActivity
+import com.yzq.lib_base.ui.BaseViewBindingActivity
 import com.yzq.lib_widget.HoverItemDecoration
-import kotlinx.android.synthetic.main.activity_task.*
 import java.util.*
 
 
@@ -28,7 +27,7 @@ import java.util.*
  */
 
 @Route(path = RoutePath.Main.TASK)
-class TaskActivity : BaseActivity(), OnItemChildClickListener {
+class TaskActivity : BaseViewBindingActivity<ActivityTaskBinding>(), OnItemChildClickListener {
 
 
     private var tasks = arrayListOf<TaskBean>()
@@ -36,19 +35,14 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
     private lateinit var taskAdapter: TaskAdapter
 
 
-    override fun initContentView() {
-
-        setContentView(R.layout.activity_task)
-    }
+    override fun getViewBinding() = ActivityTaskBinding.inflate(layoutInflater)
 
 
     override fun initWidget() {
         super.initWidget()
 
-        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
-
-        initToolbar(toolbar, "任务")
-        recy.init()
+        initToolbar(binding.layoutToolbar.toolbar, "任务")
+        binding.recy.init()
 
     }
 
@@ -95,10 +89,10 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
                 }
 
             })
-        recy.addItemDecoration(hoverItemDecoration)
+        binding.recy.addItemDecoration(hoverItemDecoration)
 
 
-        recy.adapter = taskAdapter
+        binding.recy.adapter = taskAdapter
 
 
     }
@@ -140,4 +134,6 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
 
         return super.onCreateOptionsMenu(menu)
     }
+
+
 }

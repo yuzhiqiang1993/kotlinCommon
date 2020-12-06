@@ -11,23 +11,22 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.data_base.User
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.RoomAdapter
+import com.yzq.kotlincommon.databinding.ActivityRoomBinding
 import com.yzq.kotlincommon.mvvm.view_model.RoomViewModel
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.BaseMvvmActivity
+import com.yzq.lib_base.ui.BaseVbVmActivity
 import com.yzq.lib_materialdialog.showInputDialog
-import kotlinx.android.synthetic.main.activity_zoom.*
 
 
 @Route(path = RoutePath.Main.ROOM)
-class RoomActivity : BaseMvvmActivity<RoomViewModel>(), OnItemChildClickListener {
+class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
+    OnItemChildClickListener {
+
+
+    override fun getViewBinding() = ActivityRoomBinding.inflate(layoutInflater)
 
 
     private val roomAdapter = RoomAdapter(R.layout.item_room, arrayListOf())
-
-    override fun initContentView() {
-        setContentView(R.layout.activity_zoom)
-
-    }
 
     private lateinit var operationItem: User
 
@@ -40,9 +39,9 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), OnItemChildClickListener
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "Room")
 
-        recy.init()
+        binding.recy.init()
         roomAdapter.addChildClickViewIds(R.id.tv_delete, R.id.tv_user)
-        recy.adapter = roomAdapter
+        binding.recy.adapter = roomAdapter
         roomAdapter.setOnItemChildClickListener(this)
         roomAdapter.setDiffCallback(object : DiffUtil.ItemCallback<User>() {
             override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
@@ -55,7 +54,7 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), OnItemChildClickListener
 
         })
 
-        fab_add.setOnClickListener {
+        binding.fabAdd.setOnClickListener {
 
             vm.insertUser()
         }

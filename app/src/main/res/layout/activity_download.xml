@@ -7,7 +7,9 @@
     tools:context=".ui.activity.DownloadActivity">
 
 
-    <include layout="@layout/toolbar" />
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_download"
@@ -23,7 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_16"
-        android:max="100"
-        android:min="0" />
+        android:max="100" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

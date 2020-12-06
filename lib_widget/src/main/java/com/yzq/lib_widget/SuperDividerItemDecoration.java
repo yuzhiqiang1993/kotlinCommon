@@ -25,26 +25,26 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
     private static final int HORIZONTAL = LinearLayout.HORIZONTAL;
     private static final int VERTICAL = LinearLayout.VERTICAL;
 
-    private Context context;
+    private final Context context;
 
 
     /**
      * 默认分割线的颜色
      */
-    private int dividerDefaultColor = 0xFFE1E5E8;
+    private final int dividerDefaultColor = 0xFFE1E5E8;
 
     /**
      * 分割线的颜色
      */
-    private int dividerColor;
+    private final int dividerColor;
     /**
      * 分割线的宽度
      */
-    private int dividerWidth;
+    private final int dividerWidth;
     /**
      * 分割线距离左右两边的距离
      */
-    private int dividerPadding;
+    private final int dividerPadding;
     /**
      * 分割线距离左边的距离
      */
@@ -65,13 +65,13 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
     /**
      * 是否显示列表最后一条分割线
      */
-    private boolean dividerIsShowLastDivide;
+    private final boolean dividerIsShowLastDivide;
 
 
     /**
      * 分割线item的画笔
      */
-    private Paint dividerPaint;
+    private final Paint dividerPaint;
 
     /**
      * 分割线开始的位置（解决recyclerView添加头布局的时候，要从header下边的position位置算起）
@@ -82,7 +82,7 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
     /**
      * recyclerView布局方式（水平或者垂直）
      */
-    private int orientation;
+    private final int orientation;
 
 
     private SuperDividerItemDecoration(Builder builder) {
@@ -110,7 +110,7 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
 
     public static class Builder {
 
-        private Context context;
+        private final Context context;
         private int dividerColor;
         private int dividerWidth;
         private int dividerPadding;

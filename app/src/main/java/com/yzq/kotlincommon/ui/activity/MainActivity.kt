@@ -5,7 +5,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -21,10 +20,10 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.NaviItem
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
+import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.lib_base.BaseApp
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.BaseActivity
-import kotlinx.android.synthetic.main.appbar_main.*
+import com.yzq.lib_base.ui.BaseViewBindingActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -39,7 +38,7 @@ import kotlinx.coroutines.withContext
  */
 
 @Route(path = RoutePath.Main.MAIN)
-class MainActivity : BaseActivity(),
+class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
     NavigationView.OnNavigationItemSelectedListener, OnItemClickListener {
 
 
@@ -48,36 +47,34 @@ class MainActivity : BaseActivity(),
 
     private lateinit var mainAdapter: MainAdapter
 
-    override fun initContentView() {
 
-        setContentView(R.layout.activity_main)
-    }
+    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 
 
     override fun initWidget() {
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
 
         BarUtils.setStatusBarColor(this, Color.argb(0, 0, 0, 0))
-        BarUtils.addMarginTopEqualStatusBarHeight(toolbar)
+        BarUtils.addMarginTopEqualStatusBarHeight(binding.layoutMain.toolbar)
 
-        initToolbar(toolbar, "kotlin common", displayHome = false)
+        initToolbar(binding.layoutMain.toolbar, "kotlin common", displayHome = false)
 
-        recy.init()
 
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        binding.layoutMain.recy.init()
+
+
         val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
             this,
-            drawerLayout,
-            toolbar,
+            binding.drawerLayout,
+            binding.layoutMain.toolbar,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
-        drawerLayout.addDrawerListener(toggle)
+        binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        navView.setNavigationItemSelectedListener(this)
+        binding.navView.setNavigationItemSelectedListener(this)
 
         launch {
 

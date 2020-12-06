@@ -1,63 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical"
-    tools:context=".ui.activity.LoginActivity">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="login"
+            type="com.yzq.common.data.LoginBean" />
+
+        <variable
+            name="account"
+            type="String" />
+
+        <variable
+            name="pwd"
+            type="String" />
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/dp_72"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+    </data>
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_layout_account"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_10"
-        app:endIconMode="clear_text">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".ui.activity.LoginActivity">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_account"
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_72"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:hint="@string/input_account_hint"
-            android:maxLines="1" />
+            android:layout_margin="@dimen/dp_10"
+            app:endIconMode="clear_text"
+            app:errorEnabled="@{account.trim().length()==0}">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:hint="@string/input_account_hint"
+                android:maxLines="1"
+                android:text="@={account}" />
 
 
-    </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_layout_pwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_10"
-        app:endIconMode="password_toggle">
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_pwd"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:hint="@string/input_pwd_hint"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_margin="@dimen/dp_10"
+            app:endIconMode="password_toggle"
+            app:errorEnabled="@{pwd.trim().length()==0}">
 
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_10"
-        android:text="@string/login" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                android:hint="@string/input_pwd_hint"
+                android:inputType="textPassword"
+                android:text="@={pwd}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_10"
+            android:text="@string/login" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

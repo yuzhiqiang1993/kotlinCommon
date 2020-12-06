@@ -2,7 +2,6 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
@@ -14,10 +13,10 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.movie.Subject
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MovieAdapter
+import com.yzq.kotlincommon.databinding.ActivityMovieListBinding
 import com.yzq.kotlincommon.mvvm.view_model.MovieViewModel
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.BaseMvvmActivity
-import kotlinx.android.synthetic.main.activity_movie_list.*
+import com.yzq.lib_base.ui.BaseVbVmActivity
 
 
 /**
@@ -29,9 +28,11 @@ import kotlinx.android.synthetic.main.activity_movie_list.*
  */
 
 @Route(path = RoutePath.Main.MOVIES)
-class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), OnItemClickListener,
+class MoviesActivity : BaseVbVmActivity<ActivityMovieListBinding, MovieViewModel>(),
+    OnItemClickListener,
     OnItemChildClickListener {
 
+    override fun getViewBinding() = ActivityMovieListBinding.inflate(layoutInflater)
 
     override fun getViewModelClass(): Class<MovieViewModel> = MovieViewModel::class.java
 
@@ -40,17 +41,12 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), OnItemClickListener,
     private lateinit var operationItem: Subject
 
 
-    override fun initContentView() {
-        setContentView(R.layout.activity_movie_list)
-    }
-
-
     override fun initWidget() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "电影列表")
-        recy.init()
-        initStateView(state_view, recy)
-        state_view.retry {
+
+        initToolbar(binding.layoutToolbar.toolbar, "电影列表")
+        binding.recy.init()
+        initStateView(binding.stateView, binding.recy)
+        binding.stateView.retry {
             initData()
         }
     }
@@ -80,7 +76,7 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), OnItemClickListener,
 
         movieAdapter = MovieAdapter(R.layout.item_movie_layout, data)
         movieAdapter.addChildClickViewIds(R.id.iv_img)
-        recy.adapter = movieAdapter
+        binding.recy.adapter = movieAdapter
         movieAdapter.setOnItemClickListener(this)
         movieAdapter.setOnItemChildClickListener(this)
         showContent()
@@ -98,7 +94,7 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), OnItemClickListener,
 
         operationItem = movieAdapter.data[position]
         val imgView =
-            recy.layoutManager!!.findViewByPosition(position)!!
+            binding.recy.layoutManager!!.findViewByPosition(position)!!
                 .findViewById<AppCompatImageView>(R.id.iv_img)
         when (view.id) {
             R.id.iv_img -> {

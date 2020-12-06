@@ -21,44 +21,44 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class HoverItemDecoration extends RecyclerView.ItemDecoration {
 
-    private Context context;
+    private final Context context;
 
-    private int width;
+    private final int width;
 
     /**
      * 分组item的高度
      */
-    private int itemHeight;
+    private final int itemHeight;
     /**
      * 分割线的高度
      */
-    private int itemDivideHeight;
+    private final int itemDivideHeight;
     /**
      * 分组text距离左边的距离
      */
-    private int itemTextPaddingLeft;
+    private final int itemTextPaddingLeft;
 
     /**
      * 分组item的画笔
      */
-    private Paint itemPaint;
+    private final Paint itemPaint;
 
     /**
      * 悬停item的画笔
      */
-    private Paint itemHoverPaint;
+    private final Paint itemHoverPaint;
     /**
      * 文字的画笔
      */
-    private Paint textPaint;
+    private final Paint textPaint;
     /**
      * 绘制文字的矩形边框
      */
-    private Rect textRect = new Rect();
+    private final Rect textRect = new Rect();
     /**
      * 分组字母的回调（一般是取的分组的大写字母）
      */
-    private BindItemTextCallback bindItemTextCallback;
+    private final BindItemTextCallback bindItemTextCallback;
 
 
     public HoverItemDecoration(Context context, BindItemTextCallback bindItemTextCallback) {

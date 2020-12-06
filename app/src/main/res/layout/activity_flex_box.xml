@@ -6,7 +6,9 @@
     android:orientation="vertical"
     tools:context=".ui.activity.FlexBoxActivity">
 
-    <include layout="@layout/toolbar" />
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
 
 
     <androidx.recyclerview.widget.RecyclerView

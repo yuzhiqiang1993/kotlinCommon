@@ -4,8 +4,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityViewBindingBinding
-import com.yzq.lib_base.ui.BaseActivity
-import com.yzq.lib_widget.databinding.ToolbarBinding
+import com.yzq.lib_base.ui.BaseViewBindingActivity
 
 
 /**
@@ -17,28 +16,21 @@ import com.yzq.lib_widget.databinding.ToolbarBinding
 
 
 @Route(path = RoutePath.Main.VIEW_BINDING)
-class ViewBindingActivity : BaseActivity() {
+class ViewBindingActivity : BaseViewBindingActivity<ActivityViewBindingBinding>() {
 
-    private lateinit var binding: ActivityViewBindingBinding
-
-    private lateinit var toolbarBinding: ToolbarBinding
-
-
-    override fun initContentView() {
-        binding = ActivityViewBindingBinding.inflate(layoutInflater)
-        toolbarBinding = binding.layoutToolbar
-        setContentView(binding.root)
-
+    override fun getViewBinding(): ActivityViewBindingBinding {
+        return ActivityViewBindingBinding.inflate(layoutInflater)
     }
-
 
     override fun initWidget() {
 
         initToolbar(binding.layoutToolbar.toolbar, "ViewBinding")
 
-        binding.btn.setOnClickListener {
+        binding.btnClick.setOnClickListener {
 
             ToastUtils.showShort("点击了按钮")
         }
     }
+
+
 }

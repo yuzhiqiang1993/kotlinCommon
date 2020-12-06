@@ -1,20 +1,17 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.annotation.SuppressLint
-import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.view_model.CompressImgViewModel
-import com.yzq.kotlincommon.R
-import com.yzq.lib_base.ui.BaseActivity
+import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
+import com.yzq.lib_base.ui.BaseVbVmActivity
 import com.yzq.lib_img.load
 import com.yzq.lib_img.openAlbum
 import com.yzq.lib_img.openCamera
-import kotlinx.android.synthetic.main.activity_image_compress.*
 
 
 /**
@@ -26,7 +23,8 @@ import kotlinx.android.synthetic.main.activity_image_compress.*
  */
 
 @Route(path = RoutePath.Main.IMG_COMPRESS)
-class ImageCompressActivity : BaseActivity() {
+class ImageCompressActivity :
+    BaseVbVmActivity<ActivityImageCompressBinding, CompressImgViewModel>() {
 
 
     private lateinit var compressImgViewModel: CompressImgViewModel
@@ -34,12 +32,11 @@ class ImageCompressActivity : BaseActivity() {
     private var selectedPhotos = arrayListOf<Photo>()
 
     private lateinit var imgPath: String
-    
 
-    override fun initContentView() {
+    override fun getViewBinding() = ActivityImageCompressBinding.inflate(layoutInflater)
 
-        setContentView(R.layout.activity_image_compress)
-    }
+    override fun getViewModelClass() = CompressImgViewModel::class.java
+
 
     @SuppressLint("AutoDispose")
     override fun initWidget() {
@@ -47,16 +44,16 @@ class ImageCompressActivity : BaseActivity() {
 
         compressImgViewModel = ViewModelProvider(this).get(CompressImgViewModel::class.java)
 
-        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "图片")
-        fab_camera.setOnClickListener {
+
+        initToolbar(binding.layoutToolbar.toolbar, "图片")
+        binding.fabCamera.setOnClickListener {
             openCamera {
 
                 compressImgViewModel.compressImg(it[0].path)
             }
         }
 
-        fab_album.setOnClickListener {
+        binding.fabAlbum.setOnClickListener {
 
 
             openAlbum(count = 5, selectedPhotos = selectedPhotos) {
@@ -69,17 +66,21 @@ class ImageCompressActivity : BaseActivity() {
         }
 
 
-        iv_img.setOnClickListener {
+        binding.ivImg.setOnClickListener {
             preViewImg(imgPath, it)
         }
 
 
-        compressImgViewModel.compressedImgPathLiveData.observe(this, Observer {
-            imgPath = it
-            iv_img.load(imgPath)
-        })
+    }
 
 
+    override fun observeViewModel() {
+        with(vm) {
+            compressedImgPathLiveData.observe(this@ImageCompressActivity, {
+                imgPath = it
+                binding.ivImg.load(imgPath)
+            })
+        }
     }
 
 

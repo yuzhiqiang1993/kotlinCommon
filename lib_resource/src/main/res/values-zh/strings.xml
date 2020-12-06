@@ -43,6 +43,9 @@
     <string name="menu_tools">工具</string>
     <string name="menu_share">分享</string>
     <string name="title">标题</string>
+    <string name="camera">拍照</string>
+    <string name="gallery">相册</string>
+
 
     <!--App-->
     <string name="navigation_drawer_open">Open navigation drawer</string>

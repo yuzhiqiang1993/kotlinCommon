@@ -2,8 +2,6 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
@@ -14,11 +12,11 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.movie.Subject
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ImgListAdapter
+import com.yzq.kotlincommon.databinding.ActivityImageListBinding
 import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.BaseMvvmActivity
+import com.yzq.lib_base.ui.BaseVbVmActivity
 import com.yzq.lib_base_adapter.AdapterLoadMoreView
-import kotlinx.android.synthetic.main.activity_image_list.*
 
 
 /**
@@ -30,9 +28,10 @@ import kotlinx.android.synthetic.main.activity_image_list.*
  */
 
 @Route(path = RoutePath.Main.IMG_LIST)
-class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
+class ImageListActivity : BaseVbVmActivity<ActivityImageListBinding, ImgListViewModel>(),
     OnItemClickListener, OnLoadMoreListener {
 
+    override fun getViewBinding() = ActivityImageListBinding.inflate(layoutInflater)
 
     override fun getViewModelClass(): Class<ImgListViewModel> = ImgListViewModel::class.java
 
@@ -40,26 +39,21 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
     private var imgListAdapter = ImgListAdapter(R.layout.item_img_list, arrayListOf())
 
 
-    override fun initContentView() {
-        setContentView(R.layout.activity_image_list)
-    }
-
-
     override fun initWidget() {
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "瀑布流图片（图片列表优化）")
+
+        initToolbar(binding.layoutToolbar.toolbar, "瀑布流图片（图片列表优化）")
 
         initRecy()
 
 
-        initStateView(state_view, layout_swipe_refresh, true)
+        initStateView(binding.stateView, binding.layoutSwipeRefresh, true)
 
-        state_view.retry {
+        binding.stateView.retry {
             initData()
         }
 
 
-        layout_swipe_refresh.setOnRefreshListener {
+        binding.layoutSwipeRefresh.setOnRefreshListener {
 
             requestType = httpRefresh
 
@@ -75,16 +69,16 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
         /*防止回到顶部时重新布局可能导致item跳跃*/
         //layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
 
-        recy.init(layoutManager, false)
+        binding.recy.init(layoutManager, false)
 
 
         imgListAdapter.setOnItemClickListener(this)
 
-        imgListAdapter.loadMoreModule?.setOnLoadMoreListener(this)
-        imgListAdapter.loadMoreModule?.loadMoreView = AdapterLoadMoreView()
+        imgListAdapter.loadMoreModule.setOnLoadMoreListener(this)
+        imgListAdapter.loadMoreModule.loadMoreView = AdapterLoadMoreView()
 
 
-        recy.adapter = imgListAdapter
+        binding.recy.adapter = imgListAdapter
 
 
     }
@@ -92,12 +86,12 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
     override fun observeViewModel() {
 
         with(vm) {
-            subjectsLive.observe(this@ImageListActivity, Observer {
+            subjectsLive.observe(this@ImageListActivity, {
 
                 handleDataChanged(it)
             })
 
-            subjectsDiffResult.observe(this@ImageListActivity, Observer {
+            subjectsDiffResult.observe(this@ImageListActivity, {
 
                 LogUtils.i("更新数据")
                 imgListAdapter.setDiffNewData(it, vm.subjectsLive.value!!)
@@ -128,10 +122,10 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
         if (requestType == httpLoadMore) {
 
             if (t.isEmpty()) {
-                imgListAdapter.loadMoreModule?.loadMoreEnd()
+                imgListAdapter.loadMoreModule.loadMoreEnd()
             } else {
                 imgListAdapter.addData(t)
-                imgListAdapter.loadMoreModule?.loadMoreComplete()
+                imgListAdapter.loadMoreModule.loadMoreComplete()
             }
 
 
@@ -149,7 +143,7 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
         val imgView =
-            recy.layoutManager!!.findViewByPosition(position)!!
+            binding.recy.layoutManager!!.findViewByPosition(position)!!
                 .findViewById<AppCompatImageView>(R.id.iv_img)
         preViewImg(imgListAdapter.data[position].images.large, imgView)
 

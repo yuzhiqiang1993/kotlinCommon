@@ -11,7 +11,8 @@ import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
-import com.yzq.lib_base.ui.BaseActivity
+import com.yzq.kotlincommon.databinding.ActivityZxingBinding
+import com.yzq.lib_base.ui.BaseViewBindingActivity
 import com.yzq.lib_materialdialog.showBaseDialog
 import com.yzq.lib_permission.getPermissions
 import com.yzq.lib_rx.transform
@@ -19,7 +20,6 @@ import com.yzq.zxinglibrary.android.CaptureActivity
 import com.yzq.zxinglibrary.bean.ZxingConfig
 import com.yzq.zxinglibrary.common.Constant
 import io.reactivex.Observable
-import kotlinx.android.synthetic.main.activity_zxing.*
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
@@ -33,22 +33,17 @@ import org.jsoup.nodes.Document
  */
 
 @Route(path = RoutePath.Main.ZXING)
-class ZxingActivity : BaseActivity() {
-
-    override fun initContentView() {
-        setContentView(R.layout.activity_zxing)
-    }
-
-
+class ZxingActivity : BaseViewBindingActivity<ActivityZxingBinding>() {
+    override fun getViewBinding() = ActivityZxingBinding.inflate(layoutInflater)
     override fun initWidget() {
         super.initWidget()
 
         val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
         initToolbar(toolbar, "Zxing")
 
-        btn_scan.setOnClickListener { excuteZxing() }
+        binding.btnScan.setOnClickListener { excuteZxing() }
 
-        btn_jsoup.setOnClickListener {
+        binding.btnJsoup.setOnClickListener {
             getLicenseInfo()
         }
 
@@ -83,7 +78,7 @@ class ZxingActivity : BaseActivity() {
             requestCodeScan -> {
                 if (data != null) {
                     val content = data.getStringExtra(Constant.CODED_CONTENT)
-                    tv_result.text = content
+                    binding.tvResult.text = content
                 }
 
 
@@ -142,7 +137,7 @@ class ZxingActivity : BaseActivity() {
                 showBaseDialog(message = "请扫描营业执照上的二维码！")
                 return@subscribe
             } else {
-                tv_result.text = """
+                binding.tvResult.text = """
                             统一社会信用代码:${code}
                             企业名称:${name}
                             法定代表人:${people}
@@ -156,4 +151,6 @@ class ZxingActivity : BaseActivity() {
 
 
     }
+
+
 }

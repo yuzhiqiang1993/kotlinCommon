@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.activity
 
-import androidx.databinding.DataBindingUtil
 import com.afollestad.materialdialogs.utils.MDUtil.textChanged
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
@@ -9,8 +8,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDataBindingBinding
 import com.yzq.kotlincommon.mvvm.view_model.DataBindingViewModel
-import com.yzq.lib_base.ui.BaseMvvmActivity
-import kotlinx.android.synthetic.main.activity_data_binding.*
+import com.yzq.lib_base.ui.BaseVmDbActivity
 
 
 /**
@@ -21,23 +19,17 @@ import kotlinx.android.synthetic.main.activity_data_binding.*
  */
 
 @Route(path = RoutePath.Main.DATA_BINDING)
-class DataBindingActivity : BaseMvvmActivity<DataBindingViewModel>() {
+class DataBindingActivity : BaseVmDbActivity<ActivityDataBindingBinding, DataBindingViewModel>() {
 
-
-    private lateinit var binding: ActivityDataBindingBinding
-
-    override fun initContentView() {
-        binding = DataBindingUtil.setContentView<ActivityDataBindingBinding>(
-            this,
-            R.layout.activity_data_binding
-        )
-    }
+    override fun getContentLayoutId() = R.layout.activity_data_binding
 
     override fun getViewModelClass() = DataBindingViewModel::class.java
 
     override fun initWidget() {
         super.initWidget()
-        et_content.textChanged {
+        initToolbar(binding.layoutToolbar.toolbar, "DataBinding")
+
+        binding.etContent.textChanged {
             ToastUtils.showShort(it)
         }
 

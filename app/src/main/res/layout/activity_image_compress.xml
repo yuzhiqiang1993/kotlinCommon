@@ -8,7 +8,9 @@
     tools:context=".ui.activity.ImageCompressActivity">
 
 
-    <include layout="@layout/toolbar" />
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
 
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -29,6 +31,7 @@
             android:id="@+id/fab_camera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/camera"
             android:tint="@color/white"
             app:srcCompat="@drawable/ic_menu_camera" />
 
@@ -37,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_10"
+            android:contentDescription="@string/gallery"
             android:tint="@color/white"
             app:srcCompat="@drawable/ic_menu_gallery" />
 
