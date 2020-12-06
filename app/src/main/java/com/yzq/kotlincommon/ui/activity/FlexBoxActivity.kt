@@ -28,8 +28,11 @@ import kotlinx.android.synthetic.main.activity_flex_box.*
 class FlexBoxActivity : BaseActivity(), OnItemClickListener {
 
     private lateinit var tagAdapter: TagAdapter
-    override fun getContentLayoutId(): Int {
-        return R.layout.activity_flex_box
+
+
+    override fun initContentView() {
+
+        setContentView(R.layout.activity_flex_box)
     }
 
 

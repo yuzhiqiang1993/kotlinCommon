@@ -1,15 +1,9 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.content.res.Configuration
-import android.net.Uri
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.util.Util
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
@@ -37,7 +31,10 @@ class VideoPlayerActivity : BaseActivity() {
     private var isPause = false
 
 
-    override fun getContentLayoutId() = R.layout.activity_video_player
+    override fun initContentView() {
+
+        setContentView(R.layout.activity_video_player)
+    }
 
 
     override fun initWidget() {

@@ -1,16 +1,11 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.view.MenuItem
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.LogUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.tabs.TabLayoutMediator
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.adapter.ViewPagerAdapter
 import com.yzq.kotlincommon.ui.fragment.ViewPagerFragment
 import com.yzq.kotlincommon.ui.fragment.ViewPagerWithFragment
 import com.yzq.lib_base.ui.BaseActivity
@@ -28,11 +23,13 @@ import kotlinx.android.synthetic.main.activity_view_pager2.*
 @Route(path = RoutePath.Main.VIEW_PAGER)
 class ViewPager2Activity : BaseActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
-    override fun getContentLayoutId() = R.layout.activity_view_pager2
-
     private val viewPagerFragment = ViewPagerFragment()
     private val viewPagerWithFragment = ViewPagerWithFragment()
     val fragmentList = arrayListOf<BaseFragment>()
+    override fun initContentView() {
+
+        setContentView(R.layout.activity_view_pager2)
+    }
 
     override fun initWidget() {
         super.initWidget()

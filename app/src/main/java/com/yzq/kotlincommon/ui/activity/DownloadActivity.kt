@@ -13,10 +13,12 @@ import kotlinx.android.synthetic.main.activity_download.*
 
 @Route(path = RoutePath.Main.DOWNLOAD)
 class DownloadActivity : BaseMvvmActivity<DownloadViewModel>() {
+
+    override fun initContentView() {
+        setContentView(R.layout.activity_download)
+    }
+
     override fun getViewModelClass(): Class<DownloadViewModel> = DownloadViewModel::class.java
-
-
-    override fun getContentLayoutId() = R.layout.activity_download
 
 
     override fun initWidget() {

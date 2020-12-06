@@ -33,14 +33,13 @@ class ImageCompressActivity : BaseActivity() {
 
     private var selectedPhotos = arrayListOf<Photo>()
 
-
-    override fun getContentLayoutId(): Int {
-
-        return R.layout.activity_image_compress
-    }
-
-
     private lateinit var imgPath: String
+    
+
+    override fun initContentView() {
+
+        setContentView(R.layout.activity_image_compress)
+    }
 
     @SuppressLint("AutoDispose")
     override fun initWidget() {

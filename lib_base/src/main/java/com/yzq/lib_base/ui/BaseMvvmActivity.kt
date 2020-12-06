@@ -25,8 +25,6 @@ abstract class BaseMvvmActivity<VM : BaseViewModel> : BaseActivity() {
 
 
     override fun initViewModel() {
-
-
         vm = ViewModelProvider(this).get(getViewModelClass())
         with(vm) {
             lifecycleOwner = this@BaseMvvmActivity

@@ -33,6 +33,7 @@ object RoutePath {
         const val VIEW_PAGER: String = "/main/viewPager"
         const val WEB_VIEW: String = "/main/webView"
         const val DATA_BINDING: String = "/main/dataBinding"
+        const val VIEW_BINDING: String = "/main/viewBinding"
 
     }
 

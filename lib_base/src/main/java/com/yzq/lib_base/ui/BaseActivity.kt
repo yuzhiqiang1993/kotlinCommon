@@ -78,7 +78,7 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
         initArgs(intent.extras)
 
-        setContentView(getContentLayoutId())
+        initContentView()
         initViewModel()
         initWidget()
 
@@ -101,12 +101,10 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     protected open fun initViewModel() {}
 
 
-    /**
-     * 获取要加载的布局文件ID
-     *
-     */
-    protected abstract fun getContentLayoutId(): Int
-
+    /*
+    * 初始化视图
+    * */
+    protected abstract fun initContentView()
 
     /**
      * 初始化控件

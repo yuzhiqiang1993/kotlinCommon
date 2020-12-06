@@ -3,50 +3,59 @@ package com.yzq.kotlincommon.ui.activity
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Build
-import android.os.Bundle
 import android.os.Message
 import android.view.KeyEvent
 import android.webkit.*
 import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.JsBridge
-import com.yzq.kotlincommon.R
+import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
 import com.yzq.lib_base.ui.BaseActivity
+import com.yzq.lib_widget.databinding.ToolbarBinding
 import kotlinx.android.synthetic.main.activity_web_view.*
 
 
 @Route(path = RoutePath.Main.WEB_VIEW)
 class WebViewActivity : BaseActivity() {
 
-    override fun getContentLayoutId() = R.layout.activity_web_view
+    private lateinit var rootBinding: ActivityWebViewBinding
+
+    private lateinit var toolbarBinding: ToolbarBinding
+
+
+    override fun initContentView() {
+
+        rootBinding = ActivityWebViewBinding.inflate(layoutInflater)
+
+        toolbarBinding = rootBinding.layoutToolbar
+
+        setContentView(rootBinding.root)
+
+    }
+
 
     @SuppressLint("SetJavaScriptEnabled")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun initWidget() {
+        super.initWidget()
 
-        webview.webViewClient = WebViewClient()
+
+        initToolbar(rootBinding.layoutToolbar.toolbar, "WebView")
+
+
+        rootBinding.webview.webViewClient = WebViewClient()
         val settings = webview.settings
         settings.javaScriptEnabled = true
         settings.setJavaScriptCanOpenWindowsAutomatically(true)
         settings.setDomStorageEnabled(true)
         settings.setAppCacheEnabled(false)
         settings.cacheMode = WebSettings.LOAD_NO_CACHE
-        webview.webViewClient = webViewClient
-        webview.addJavascriptInterface(JsBridge, "Android")
-        WebView.setWebContentsDebuggingEnabled(true)
-    }
-
-    override fun initWidget() {
-        super.initWidget()
-
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "WebView")
+        rootBinding.webview.webViewClient = webViewClient
+        rootBinding.webview.addJavascriptInterface(JsBridge, "Android")
 
         val url = "http://192.168.8.121:4200"
-        webview.loadUrl(url)
+        rootBinding.webview.loadUrl(url)
 
 
     }

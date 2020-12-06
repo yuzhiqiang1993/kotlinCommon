@@ -27,9 +27,10 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
 
     override fun getViewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
 
-    override fun getContentLayoutId(): Int {
 
-        return R.layout.activity_login
+    override fun initContentView() {
+        setContentView(R.layout.activity_login)
+
     }
 
 
@@ -69,7 +70,7 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
             LocalSpUtils.account = input_account.text.toString()
             LocalSpUtils.pwd = input_pwd.text.toString()
             navFinish(RoutePath.Main.MAIN)
-          //  vm.login()
+            //  vm.login()
 
         }
 
@@ -77,7 +78,7 @@ class LoginActivity : BaseMvvmActivity<LoginViewModel>() {
     }
 
 
-    override fun  observeViewModel() {
+    override fun observeViewModel() {
 
         vm.loginData.observe(this, Observer<Boolean> {
             navFinish(RoutePath.Main.MAIN)

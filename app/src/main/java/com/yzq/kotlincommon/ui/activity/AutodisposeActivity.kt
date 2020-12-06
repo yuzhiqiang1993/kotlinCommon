@@ -21,9 +21,8 @@ import java.util.concurrent.TimeUnit
 
 @Route(path = RoutePath.Main.AUTODISPOSE)
 class AutodisposeActivity : BaseActivity() {
-    override fun getContentLayoutId(): Int {
-
-        return R.layout.activity_autodispose
+    override fun initContentView() {
+        setContentView(R.layout.activity_autodispose)
     }
 
     override fun initWidget() {

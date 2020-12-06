@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.ui.activity
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.LogUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
@@ -20,8 +19,9 @@ class FragmentActivity : BaseMvvmActivity<FragmentViewModel>(),
     override fun getViewModelClass(): Class<FragmentViewModel> = FragmentViewModel::class.java
 
 
-    override fun getContentLayoutId(): Int = R.layout.activity_fragment
-
+    override fun initContentView() {
+        setContentView(R.layout.activity_fragment)
+    }
 
     override fun initWidget() {
 
@@ -48,6 +48,7 @@ class FragmentActivity : BaseMvvmActivity<FragmentViewModel>(),
 //        })
 
     }
+
 
     private fun showFragment(fragment: BaseFragment) {
 

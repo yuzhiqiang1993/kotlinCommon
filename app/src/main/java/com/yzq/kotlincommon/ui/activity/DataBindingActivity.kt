@@ -1,9 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.afollestad.materialdialogs.utils.MDUtil.textChanged
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
@@ -12,6 +9,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDataBindingBinding
 import com.yzq.kotlincommon.mvvm.view_model.DataBindingViewModel
+import com.yzq.lib_base.ui.BaseMvvmActivity
 import kotlinx.android.synthetic.main.activity_data_binding.*
 
 
@@ -23,28 +21,39 @@ import kotlinx.android.synthetic.main.activity_data_binding.*
  */
 
 @Route(path = RoutePath.Main.DATA_BINDING)
-class DataBindingActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+class DataBindingActivity : BaseMvvmActivity<DataBindingViewModel>() {
 
-        val vm = ViewModelProvider(this).get(DataBindingViewModel::class.java)
 
-        val binding = DataBindingUtil.setContentView<ActivityDataBindingBinding>(
+    private lateinit var binding: ActivityDataBindingBinding
+
+    override fun initContentView() {
+        binding = DataBindingUtil.setContentView<ActivityDataBindingBinding>(
             this,
             R.layout.activity_data_binding
         )
+    }
 
-        vm.resetData()
-        vm.dataBindingLiveData.observe(this, {
-            LogUtils.i("数据发生变化了:${it}")
-            binding.data = it
-        })
+    override fun getViewModelClass() = DataBindingViewModel::class.java
 
-
+    override fun initWidget() {
+        super.initWidget()
         et_content.textChanged {
-
             ToastUtils.showShort(it)
         }
 
     }
+
+    override fun initData() {
+        super.initData()
+        vm.resetData()
+    }
+
+    override fun observeViewModel() {
+        vm.dataBindingLiveData.observe(this, {
+            LogUtils.i("数据发生变化了:${it}")
+            binding.data = it
+        })
+    }
+
+
 }

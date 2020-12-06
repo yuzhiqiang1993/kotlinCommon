@@ -40,9 +40,8 @@ class ImageListActivity : BaseMvvmActivity<ImgListViewModel>(),
     private var imgListAdapter = ImgListAdapter(R.layout.item_img_list, arrayListOf())
 
 
-    override fun getContentLayoutId(): Int {
-
-        return R.layout.activity_image_list
+    override fun initContentView() {
+        setContentView(R.layout.activity_image_list)
     }
 
 

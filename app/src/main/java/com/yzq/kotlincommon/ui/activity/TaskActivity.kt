@@ -36,9 +36,9 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
     private lateinit var taskAdapter: TaskAdapter
 
 
-    override fun getContentLayoutId(): Int {
+    override fun initContentView() {
 
-        return R.layout.activity_task
+        setContentView(R.layout.activity_task)
     }
 
 

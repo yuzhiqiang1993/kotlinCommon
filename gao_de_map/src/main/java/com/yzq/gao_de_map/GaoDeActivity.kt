@@ -13,14 +13,12 @@ import kotlinx.android.synthetic.main.activity_gao_de.*
 class GaoDeActivity : BaseMvvmActivity<LocationSignViewModel>() {
 
 
+    override fun initContentView() {
+        setContentView(R.layout.activity_gao_de)
+    }
+
     override fun getViewModelClass(): Class<LocationSignViewModel> =
         LocationSignViewModel::class.java
-
-
-    override fun getContentLayoutId(): Int {
-
-        return R.layout.activity_gao_de
-    }
 
 
     @SuppressLint("AutoDispose")

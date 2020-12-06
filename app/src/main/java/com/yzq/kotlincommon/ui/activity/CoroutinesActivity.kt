@@ -18,7 +18,10 @@ class CoroutinesActivity : BaseMvvmActivity<CoroutineViewModel>() {
 
     override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
 
-    override fun getContentLayoutId(): Int = R.layout.activity_coroutines
+
+    override fun initContentView() {
+        setContentView(R.layout.activity_coroutines)
+    }
 
 
     override fun initWidget() {

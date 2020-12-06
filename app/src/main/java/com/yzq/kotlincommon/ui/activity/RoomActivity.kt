@@ -24,7 +24,10 @@ class RoomActivity : BaseMvvmActivity<RoomViewModel>(), OnItemChildClickListener
 
     private val roomAdapter = RoomAdapter(R.layout.item_room, arrayListOf())
 
-    override fun getContentLayoutId() = R.layout.activity_zoom
+    override fun initContentView() {
+        setContentView(R.layout.activity_zoom)
+
+    }
 
     private lateinit var operationItem: User
 

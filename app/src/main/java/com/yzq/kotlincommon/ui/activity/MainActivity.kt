@@ -18,9 +18,9 @@ import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.google.android.material.navigation.NavigationView
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.data.NaviItem
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
-import com.yzq.common.data.NaviItem
 import com.yzq.lib_base.BaseApp
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.BaseActivity
@@ -47,9 +47,10 @@ class MainActivity : BaseActivity(),
 
 
     private lateinit var mainAdapter: MainAdapter
-    override fun getContentLayoutId(): Int {
 
-        return R.layout.activity_main
+    override fun initContentView() {
+
+        setContentView(R.layout.activity_main)
     }
 
 
@@ -109,6 +110,7 @@ class MainActivity : BaseActivity(),
         items.add(NaviItem("ViewPager", RoutePath.Main.VIEW_PAGER))
         items.add(NaviItem("WebView", RoutePath.Main.WEB_VIEW))
         items.add(NaviItem("DataBinding", RoutePath.Main.DATA_BINDING))
+        items.add(NaviItem("ViewBinding", RoutePath.Main.VIEW_BINDING))
 
 
         setData()

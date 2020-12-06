@@ -29,11 +29,6 @@ import kotlinx.android.synthetic.main.activity_drop_down_menu.*
 class DropDownMenuActivity : BaseActivity(), OnItemClickListener {
 
 
-    override fun getContentLayoutId(): Int {
-
-        return R.layout.activity_drop_down_menu
-    }
-
     private lateinit var tvFilter: AppCompatTextView
 
     private lateinit var dropDownMenuFoodTypeAdapter: DropDownMenuFoodTypeAdapter
@@ -52,6 +47,11 @@ class DropDownMenuActivity : BaseActivity(), OnItemClickListener {
 
     private lateinit var foodTypeRecy: RecyclerView
     private lateinit var filtersRecy: RecyclerView
+
+    override fun initContentView() {
+        setContentView(R.layout.activity_drop_down_menu)
+
+    }
 
     @SuppressLint("SetTextI18n")
     override fun initWidget() {

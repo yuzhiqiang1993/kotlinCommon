@@ -40,9 +40,8 @@ class MoviesActivity : BaseMvvmActivity<MovieViewModel>(), OnItemClickListener,
     private lateinit var operationItem: Subject
 
 
-    override fun getContentLayoutId(): Int {
-
-        return R.layout.activity_movie_list
+    override fun initContentView() {
+        setContentView(R.layout.activity_movie_list)
     }
 
 

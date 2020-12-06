@@ -4,15 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.WebViewActivity">
+    tools:context=".ui.activity.ViewBindingActivity">
 
+    <include layout="@layout/toolbar" android:id="@+id/layout_toolbar"/>
 
-    <include layout="@layout/toolbar" android:id="@+id/layout_toolbar" />
-
-
-    <WebView
-        android:id="@+id/webview"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="wrap_content"
+        android:text="click" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>

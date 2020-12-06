@@ -34,9 +34,9 @@ import org.jsoup.nodes.Document
 
 @Route(path = RoutePath.Main.ZXING)
 class ZxingActivity : BaseActivity() {
-    override fun getContentLayoutId(): Int {
 
-        return R.layout.activity_zxing
+    override fun initContentView() {
+        setContentView(R.layout.activity_zxing)
     }
 
 

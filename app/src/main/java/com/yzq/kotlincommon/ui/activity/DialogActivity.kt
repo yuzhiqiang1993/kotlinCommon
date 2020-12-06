@@ -31,8 +31,10 @@ import java.util.concurrent.TimeUnit
 @Route(path = RoutePath.Main.DIALOG)
 class DialogActivity : BaseActivity() {
 
+    override fun initContentView() {
 
-    override fun getContentLayoutId(): Int = R.layout.activity_dialog
+        setContentView(R.layout.activity_dialog)
+    }
 
 
     @SuppressLint("AutoDispose")

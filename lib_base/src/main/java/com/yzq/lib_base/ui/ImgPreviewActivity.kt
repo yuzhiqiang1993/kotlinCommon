@@ -28,14 +28,14 @@ class ImgPreviewActivity : BaseActivity() {
 
     }
 
-    override fun getContentLayoutId(): Int {
-        return R.layout.activity_img_preview
-    }
-
     override fun initArgs(extras: Bundle?) {
         if (extras != null) {
             imagePath = extras.getString(IMG_PATH)!!
         }
+    }
+
+    override fun initContentView() {
+        setContentView(R.layout.activity_img_preview)
     }
 
 
