@@ -17,7 +17,8 @@ abstract class BaseDataBindingActivity<DB : ViewDataBinding> : BaseActivity() {
     protected lateinit var binding: DB
 
     override fun initContentView() {
-        binding = DataBindingUtil.setContentView<DB>(this, getContentLayoutId())
+        binding = DataBindingUtil.setContentView(this, getContentLayoutId())
+        binding.lifecycleOwner = this
     }
 
     abstract fun getContentLayoutId(): Int

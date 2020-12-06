@@ -1,11 +1,13 @@
 package com.yzq.kotlincommon.ui.fragment
 
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ViewPagerAdapter
-import com.yzq.lib_base.ui.fragment.BaseFragment
-import kotlinx.android.synthetic.main.fragment_view_pager.*
+import com.yzq.kotlincommon.databinding.FragmentViewPagerBinding
+import com.yzq.lib_base.ui.fragment.BaseViewBindingFragment
 
 
 /**
@@ -16,9 +18,11 @@ import kotlinx.android.synthetic.main.fragment_view_pager.*
  */
 
 
-class ViewPagerFragment : BaseFragment() {
+class ViewPagerFragment : BaseViewBindingFragment<FragmentViewPagerBinding>() {
 
-    override fun getContentLayoutId() = R.layout.fragment_view_pager
+
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentViewPagerBinding
+        get() = FragmentViewPagerBinding::inflate
 
     private val viewPagerAdapter =
         ViewPagerAdapter(
@@ -34,13 +38,13 @@ class ViewPagerFragment : BaseFragment() {
     override fun initWidget() {
         super.initWidget()
 
-        view_pager.adapter = viewPagerAdapter
+
+        binding.viewPager.adapter = viewPagerAdapter
 
 
-        TabLayoutMediator(tab_layout, view_pager) { tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
 
             tab.text = viewPagerAdapter.data[position]
-
 
         }.attach()
 

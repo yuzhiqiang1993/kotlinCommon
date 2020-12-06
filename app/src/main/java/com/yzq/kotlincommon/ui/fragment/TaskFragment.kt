@@ -1,16 +1,23 @@
 package com.yzq.kotlincommon.ui.fragment
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
-import com.yzq.lib_base.ui.fragment.BaseMvvmFragment
 import com.yzq.common.net.GsonConvert
-import kotlinx.android.synthetic.main.task_fragment.*
+import com.yzq.kotlincommon.databinding.TaskFragmentBinding
+import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
+import com.yzq.lib_base.ui.fragment.BaseVbVmFragment
 
-class TaskFragment : BaseMvvmFragment<CoroutineViewModel>() {
+
+class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>() {
+
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> TaskFragmentBinding
+        get() = TaskFragmentBinding::inflate
+
+
     override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
-    override fun getContentLayoutId(): Int = R.layout.task_fragment
+
 
     companion object {
         fun newInstance() = TaskFragment()
@@ -18,9 +25,9 @@ class TaskFragment : BaseMvvmFragment<CoroutineViewModel>() {
 
     override fun initWidget() {
         LogUtils.i("TaskFragment")
-        tv_task.text = "喻志强"
+        binding.tvTask.text = "喻志强"
 
-        initStateView(state_view,tv_task)
+        initStateView(binding.stateView, binding.tvTask)
 
     }
 
@@ -34,7 +41,7 @@ class TaskFragment : BaseMvvmFragment<CoroutineViewModel>() {
 
         with(vm) {
             geocoder.observe(this@TaskFragment, Observer {
-                tv_task.text = GsonConvert.toJson(it)
+                binding.tvTask.text = GsonConvert.toJson(it)
 
                 showContent()
             })

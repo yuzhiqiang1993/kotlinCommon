@@ -33,9 +33,10 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
     private var stateView: StateView? = null
     private var contentLayout: View? = null
     private var isRefreshLayout: Boolean = false
-    protected lateinit var rootView: View
+
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
     protected var extrasTag = ""
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         initArgs(arguments)
@@ -47,10 +48,20 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        rootView = inflater.inflate(getContentLayoutId(), container, false)
+
+
         EventBusUtil.register(this)
-        return rootView
+
+        return initRootView(inflater, container, savedInstanceState)
+
+
     }
+
+    abstract fun initRootView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -73,10 +84,6 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
     protected open fun initData() {
 
     }
-
-
-    /*返回布局id*/
-    protected abstract fun getContentLayoutId(): Int
 
 
     /*初始化View*/

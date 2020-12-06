@@ -35,146 +35,147 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
 
     @SuppressLint("AutoDispose")
     override fun initWidget() {
-        super.initWidget()
 
-
-        initToolbar(binding.layoutToolbar.toolbar, "弹窗", true)
-
-
-
-        binding.layoutScrollContent.btnBase.setOnClickListener {
-            showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
-        }
+        with(binding) {
+            initToolbar(layoutToolbar.toolbar, "弹窗", true)
 
 
 
-        binding.layoutScrollContent.btnOnlyPositiveCallback.setOnClickListener {
-
-            showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作") {
-                ToastUtils.showShort("点击了确定")
-            }
-        }
-        binding.layoutScrollContent.btnPositiveCallback.setOnClickListener {
-            showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作") {
-                ToastUtils.showShort("点击了确定")
+            layoutScrollContent.btnBase.setOnClickListener {
+                showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
             }
 
-        }
 
 
-        binding.layoutScrollContent.btnCallback.setOnClickListener {
+            layoutScrollContent.btnOnlyPositiveCallback.setOnClickListener {
 
-            showCallbackDialog(message = "双选项双回调",
-                positiveCallback = {
+                showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作") {
                     ToastUtils.showShort("点击了确定")
-                },
-                negativeCallback = {
-                    ToastUtils.showShort("点击了取消")
-                }
-            )
-        }
-
-
-
-        binding.layoutScrollContent.btnSingleSelect
-            .setOnClickListener {
-
-                val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
-
-                showSingleSelectList(title = "语言", items = datas) { dialog, index, text ->
-
-                    ToastUtils.showShort(text.toString())
                 }
             }
-
-
-
-        binding.layoutScrollContent.btnInput
-            .setOnClickListener {
-
-                showInputDialog(positiveText = "完成") { materialDialog, charSequence ->
-                    ToastUtils.showShort(charSequence.toString())
+            layoutScrollContent.btnPositiveCallback.setOnClickListener {
+                showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作") {
+                    ToastUtils.showShort("点击了确定")
                 }
 
             }
 
 
-        binding.layoutScrollContent.btnLoading
-            .setOnClickListener {
-                showLoadingDialog("登录中...")
+            layoutScrollContent.btnCallback.setOnClickListener {
 
-                Observable.timer(3, TimeUnit.SECONDS)
-                    .subscribe {
-                        dismissLoadingDialog()
+                showCallbackDialog(message = "双选项双回调",
+                    positiveCallback = {
+                        ToastUtils.showShort("点击了确定")
+                    },
+                    negativeCallback = {
+                        ToastUtils.showShort("点击了取消")
                     }
+                )
             }
 
 
-        binding.layoutScrollContent.btnProgress
-            .setOnClickListener {
-                var count = 0
 
-                showProgressDialog("模拟进度")
+            layoutScrollContent.btnSingleSelect
+                .setOnClickListener {
+
+                    val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
+
+                    showSingleSelectList(title = "语言", items = datas) { dialog, index, text ->
+
+                        ToastUtils.showShort(text.toString())
+                    }
+                }
 
 
-                Observable.interval(200, TimeUnit.MILLISECONDS)
-                    .transform(this)
-                    .subscribe(object : NextObserver<Long>() {
-                        lateinit var d: Disposable
-                        override fun onSubscribe(d: Disposable) {
-                            this.d = d
+
+            layoutScrollContent.btnInput
+                .setOnClickListener {
+
+                    showInputDialog(positiveText = "完成") { materialDialog, charSequence ->
+                        ToastUtils.showShort(charSequence.toString())
+                    }
+
+                }
+
+
+            layoutScrollContent.btnLoading
+                .setOnClickListener {
+                    showLoadingDialog("登录中...")
+
+                    Observable.timer(3, TimeUnit.SECONDS)
+                        .subscribe {
+                            dismissLoadingDialog()
                         }
+                }
 
-                        override fun onNext(t: Long) {
-                            LogUtils.i(count)
-                            count += 5
-                            if (count <= 100) {
-                                changeProgress(count)
-                            } else {
-                                d.dispose()
-                                dismissProgressDialog()
+
+            layoutScrollContent.btnProgress
+                .setOnClickListener {
+                    var count = 0
+
+                    showProgressDialog("模拟进度")
+
+
+                    Observable.interval(200, TimeUnit.MILLISECONDS)
+                        .transform(this@DialogActivity)
+                        .subscribe(object : NextObserver<Long>() {
+                            lateinit var d: Disposable
+                            override fun onSubscribe(d: Disposable) {
+                                this.d = d
                             }
-                        }
-                    })
+
+                            override fun onNext(t: Long) {
+                                LogUtils.i(count)
+                                count += 5
+                                if (count <= 100) {
+                                    changeProgress(count)
+                                } else {
+                                    d.dispose()
+                                    dismissProgressDialog()
+                                }
+                            }
+                        })
 
 
-            }
-
-        binding.layoutScrollContent.btnSelectYear
-            .setOnClickListener {
-
-                selectYear {
-                    ToastUtils.showShort(it)
                 }
 
-            }
-        binding.layoutScrollContent.btnSelectDate
-            .setOnClickListener {
+            layoutScrollContent.btnSelectYear
+                .setOnClickListener {
 
-
-                selectDate { ToastUtils.showShort(it) }
-
-            }
-        binding.layoutScrollContent.btnSelectTime
-            .setOnClickListener {
-                selectHourAndMinute {
-                    ToastUtils.showShort(it)
-                }
-            }
-
-
-
-        binding.layoutScrollContent.btnBottomDialog
-            .setOnClickListener {
-                MaterialDialog(this, BottomSheet(LayoutMode.WRAP_CONTENT))
-                    .show {
-                        title(R.string.hint)
-                        message(text = "bottom sheet")
-                        positiveButton(text = "确定")
-                        negativeButton(text = "取消")
-
+                    selectYear {
+                        ToastUtils.showShort(it)
                     }
-            }
+
+                }
+            layoutScrollContent.btnSelectDate
+                .setOnClickListener {
+
+
+                    selectDate { ToastUtils.showShort(it) }
+
+                }
+            layoutScrollContent.btnSelectTime
+                .setOnClickListener {
+                    selectHourAndMinute {
+                        ToastUtils.showShort(it)
+                    }
+                }
+
+
+
+            layoutScrollContent.btnBottomDialog
+                .setOnClickListener {
+                    MaterialDialog(this@DialogActivity, BottomSheet(LayoutMode.WRAP_CONTENT))
+                        .show {
+                            title(R.string.hint)
+                            message(text = "bottom sheet")
+                            positiveButton(text = "确定")
+                            negativeButton(text = "取消")
+
+                        }
+                }
+
+        }
 
 
     }

@@ -1,6 +1,8 @@
 package com.yzq.kotlincommon.ui.fragment
 
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -9,14 +11,11 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yzq.kotlincommon.R
-import com.yzq.lib_base.ui.fragment.BaseFragment
-import kotlinx.android.synthetic.main.fragment_view_pager.*
+import com.yzq.kotlincommon.databinding.FragmentViewPagerWithBinding
+import com.yzq.lib_base.ui.fragment.BaseViewBindingFragment
 
 
-class ViewPagerWithFragment : BaseFragment() {
-
-
-    override fun getContentLayoutId() = R.layout.fragment_view_pager_with
+class ViewPagerWithFragment : BaseViewBindingFragment<FragmentViewPagerWithBinding>() {
 
 
     private val tabs = arrayListOf<TabLayout.Tab>()
@@ -33,11 +32,13 @@ class ViewPagerWithFragment : BaseFragment() {
         "软件"
     )
 
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentViewPagerWithBinding
+        get() = FragmentViewPagerWithBinding::inflate
 
     override fun initWidget() {
         super.initWidget()
 
-        view_pager.adapter = object : FragmentStateAdapter(this) {
+        binding.viewPager.adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount(): Int {
 
                 return tabTitles.size
@@ -49,7 +50,7 @@ class ViewPagerWithFragment : BaseFragment() {
         }
 
 
-        TabLayoutMediator(tab_layout, view_pager) { tab, position ->
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
 
             tab.setCustomView(R.layout.layout_custom_tab)
 
@@ -64,8 +65,7 @@ class ViewPagerWithFragment : BaseFragment() {
 
 
 
-        view_pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
 
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -102,5 +102,6 @@ class ViewPagerWithFragment : BaseFragment() {
 
         }
     }
+
 
 }

@@ -1,6 +1,6 @@
 package com.yzq.lib_base.ui.fragment
 
-import androidx.lifecycle.Observer
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
 import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
@@ -8,18 +8,17 @@ import com.yzq.lib_base.view_model.BaseViewModel
 
 
 /**
- * @description: mvvm Fragment基类
- * @author : yzq
- * @date   : 2018/7/12
- * @time   : 10:40
- *
+ * @description: 基于DataBinding和ViewModel的Fragment基类
+ * @author : XeonYu
+ * @date   : 2020/12/6
+ * @time   : 22:14
  */
 
+abstract class BaseDbVmFragment<DB : ViewDataBinding, VM : BaseViewModel> :
+    BaseDataBindingFragment<DB>() {
 
-abstract class BaseMvvmFragment<VM : BaseViewModel> : BaseFragment() {
 
-
-    lateinit var vm: VM
+    protected lateinit var vm: VM
 
     abstract fun getViewModelClass(): Class<VM>
 
@@ -29,15 +28,14 @@ abstract class BaseMvvmFragment<VM : BaseViewModel> : BaseFragment() {
     override fun initViewModel() {
         vm = ViewModelProvider(this).get(getViewModelClass())
 
-
-        vm.let {
-            vm.lifecycleOwner = this
-            lifecycle.addObserver(it)
+        with(vm) {
+            lifecycleOwner = this@BaseDbVmFragment
+            lifecycle.addObserver(this)
+            loadState.observe(this@BaseDbVmFragment, { viewStateBean ->
+                handleViewState(viewStateBean)
+            })
         }
 
-        vm.loadState.observe(
-            this,
-            Observer<ViewStateBean> { viewStateBean -> handleViewState(viewStateBean) })
 
         observeViewModel()
     }

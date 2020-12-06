@@ -1,17 +1,21 @@
 package com.yzq.kotlincommon.ui.fragment
 
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.yzq.kotlincommon.R
-import com.yzq.lib_base.ui.fragment.BaseFragment
+import com.yzq.kotlincommon.databinding.FragmentUserBinding
+import com.yzq.lib_base.ui.fragment.BaseViewBindingFragment
 import com.yzq.lib_img.openAlbum
 import com.yzq.lib_materialdialog.showCallbackDialog
 import com.yzq.lib_permission.getPermissions
-import kotlinx.android.synthetic.main.fragment_user.*
 
-class UserFragment : BaseFragment() {
-    override fun getContentLayoutId(): Int = R.layout.fragment_user
+class UserFragment : BaseViewBindingFragment<FragmentUserBinding>() {
+
+
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentUserBinding
+        get() = FragmentUserBinding::inflate
 
     companion object {
         fun newInstance() = UserFragment()
@@ -23,7 +27,7 @@ class UserFragment : BaseFragment() {
         LogUtils.i("UserFragment")
 
 
-        btn_show_dialog.setOnClickListener {
+        binding.btnShowDialog.setOnClickListener {
 
             showCallbackDialog(
                 message = "这是在Fragment中调的弹窗",
@@ -36,7 +40,7 @@ class UserFragment : BaseFragment() {
             )
         }
 
-        btn_select_img.setOnClickListener {
+        binding.btnSelectImg.setOnClickListener {
 
             openAlbum {
 
@@ -45,7 +49,7 @@ class UserFragment : BaseFragment() {
         }
 
 
-        btn_permission.setOnClickListener {
+        binding.btnPermission.setOnClickListener {
 
             getPermissions(PermissionConstants.STORAGE) {
                 ToastUtils.showShort("获取了权限：$it")
@@ -55,4 +59,5 @@ class UserFragment : BaseFragment() {
 
 
     }
+
 }

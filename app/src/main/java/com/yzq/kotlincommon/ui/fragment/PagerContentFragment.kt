@@ -1,12 +1,11 @@
 package com.yzq.kotlincommon.ui.fragment
 
 
-import com.yzq.kotlincommon.R
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import com.yzq.kotlincommon.databinding.FragmentPagerContentBinding
 import com.yzq.kotlincommon.widget.banner.BannerAdapter
-import com.yzq.kotlincommon.widget.banner.BannerViewHolder
-import com.yzq.lib_base.ui.fragment.BaseFragment
-import com.zhpan.bannerview.BannerViewPager
-import kotlinx.android.synthetic.main.fragment_pager_content.*
+import com.yzq.lib_base.ui.fragment.BaseViewBindingFragment
 
 
 /**
@@ -16,10 +15,13 @@ import kotlinx.android.synthetic.main.fragment_pager_content.*
  * @time   : 14:38
  */
 
-class PagerContentFragment(var content: String) : BaseFragment() {
+class PagerContentFragment(var content: String) :
+    BaseViewBindingFragment<FragmentPagerContentBinding>() {
 
-    private lateinit var bannerPager: BannerViewPager<String, BannerViewHolder>
-    override fun getContentLayoutId() = R.layout.fragment_pager_content
+
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentPagerContentBinding
+        get() = FragmentPagerContentBinding::inflate
+
 
     private val bannerImgs = arrayListOf(
         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575192984139&di=bb0fcbcf625b43c8f0ed625dee7a9a41&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg",
@@ -30,16 +32,17 @@ class PagerContentFragment(var content: String) : BaseFragment() {
 
     override fun initWidget() {
         super.initWidget()
-        bannerPager = rootView.findViewById(R.id.banner_view_pager)
 
-        bannerPager
+
+        binding.bannerViewPager
             .setAutoPlay(true)
             .setAdapter(BannerAdapter())
             .create(bannerImgs)
 
 
 
-        tv_content.text = content
+        binding.tvContent.text = content
     }
+
 
 }
