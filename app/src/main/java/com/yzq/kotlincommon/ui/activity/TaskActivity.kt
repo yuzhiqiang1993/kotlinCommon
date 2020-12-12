@@ -75,6 +75,7 @@ class TaskActivity : BaseViewBindingActivity<ActivityTaskBinding>(), OnItemChild
 
 
         taskAdapter = TaskAdapter(R.layout.item_task_swipe_layout, tasks)
+        taskAdapter.addChildClickViewIds(R.id.tv_name, R.id.tv_delete)
         taskAdapter.setOnItemChildClickListener(this)
 
         val hoverItemDecoration = HoverItemDecoration(

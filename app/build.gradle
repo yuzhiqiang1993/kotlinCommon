@@ -79,15 +79,13 @@ kapt {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
     implementation "com.github.yuzhiqiang1993:zxing:${zxing_version}"
     implementation "org.jsoup:jsoup:${jsoup_version}"
     implementation "com.meituan.android.walle:library:${walleVersion}"
     kapt "androidx.room:room-compiler:$room_version"
 
-    implementation 'com.shuyu:GSYVideoPlayer:7.1.8'
+    implementation 'com.shuyu:GSYVideoPlayer:8.0.0'
     implementation "androidx.viewpager2:viewpager2:${viewpager2}"
 
     implementation "com.github.zhpanvip:BannerViewPager:${bannerViewPager}"
