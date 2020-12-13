@@ -6,7 +6,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import kotlinx.android.synthetic.main.view_horizontal_edit_layout.view.*
+import com.yzq.lib_widget.databinding.ViewHorizontalEditLayoutBinding
 
 
 /**
@@ -33,9 +33,11 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     private var inputType: String?
 
 
+    private val binding: ViewHorizontalEditLayoutBinding
+
     init {
 
-        LayoutInflater.from(context).inflate(R.layout.view_horizontal_edit_layout, this)
+        binding = ViewHorizontalEditLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
 
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalEditView)
@@ -56,33 +58,36 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         }
 
         /*默认隐藏图标*/
-        icon_start.visibility = View.GONE
-        icon_end.visibility = View.GONE
+
+        binding.iconStart.visibility = View.GONE
+
+        binding.iconEnd.visibility = View.GONE
 
         /*显示前面的图标*/
         if (iconRes != -1) {
-            icon_start.visibility = View.VISIBLE
-            icon_start.setImageResource(iconRes)
+            binding.iconStart.visibility = View.VISIBLE
+            binding.iconStart.setImageResource(iconRes)
         }
 
         /*显示后面的图标*/
         if (endIconRes != -1) {
-            icon_end.visibility = View.VISIBLE
-            icon_end.setImageResource(endIconRes)
+            binding.iconEnd.visibility = View.VISIBLE
+            binding.iconEnd.setImageResource(endIconRes)
         }
 
         /*设置inputType*/
         when (inputType) {
-            "0" -> input_content.inputType = InputType.TYPE_CLASS_PHONE
-            "1" -> input_content.inputType = InputType.TYPE_CLASS_NUMBER
-            "2" -> input_content.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
-            else -> input_content.inputType = InputType.TYPE_CLASS_TEXT
+
+            "0" -> binding.inputContent.inputType = InputType.TYPE_CLASS_PHONE
+            "1" -> binding.inputContent.inputType = InputType.TYPE_CLASS_NUMBER
+            "2" -> binding.inputContent.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+            else -> binding.inputContent.inputType = InputType.TYPE_CLASS_TEXT
         }
 
-        tv_title.text = titleStr
-        input_content.hint = hint
-        input_content.setText(contentStr)
-        input_content.isEnabled = editEnable
+        binding.tvTitle.text = titleStr
+        binding.inputContent.hint = hint
+        binding.inputContent.setText(contentStr)
+        binding.inputContent.isEnabled = editEnable
 
     }
 
@@ -93,7 +98,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      */
     fun setContent(content: String) {
         this.contentStr = content
-        input_content.setText(contentStr)
+        binding.inputContent.setText(contentStr)
     }
 
     /**
@@ -101,7 +106,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      * @return String
      */
     fun getContent(): String {
-        return input_content.text.toString().trim()
+        return binding.inputContent.text.toString().trim()
     }
 
     /**
@@ -110,7 +115,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      */
     fun setTitle(title: String) {
         this.titleStr = title
-        tv_title.text = titleStr
+        binding.tvTitle.text = titleStr
     }
 
     /**
@@ -118,7 +123,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      * @param listener OnClickListener
      */
     fun setEndIconOnClick(listener: OnClickListener) {
-        icon_end.setOnClickListener(listener)
+        binding.iconEnd.setOnClickListener(listener)
     }
 
     /**
@@ -126,7 +131,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      * @param b Boolean
      */
     fun setEditEnable(b: Boolean) {
-        input_content.isEnabled = b
+        binding.inputContent.isEnabled = b
     }
 
 }

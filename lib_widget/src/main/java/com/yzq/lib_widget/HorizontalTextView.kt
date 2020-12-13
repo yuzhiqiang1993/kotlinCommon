@@ -6,7 +6,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import kotlinx.android.synthetic.main.view_horizontal_text_layout.view.*
+import com.yzq.lib_widget.databinding.ViewHorizontalTextLayoutBinding
 
 
 /**
@@ -30,10 +30,11 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     private var hintStr: String?
     private var endIconRes: Int = -1
     private var contentLeft = false
+    private val binding: ViewHorizontalTextLayoutBinding
 
     init {
 
-        LayoutInflater.from(context).inflate(R.layout.view_horizontal_text_layout, this)
+        binding = ViewHorizontalTextLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
 
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalTextView)
@@ -53,26 +54,31 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         }
 
 
-        icon_start.visibility = View.GONE
-        icon_end.visibility = View.GONE
+
+
+        binding.iconStart.visibility = View.GONE
+
+        binding.iconEnd.visibility = View.GONE
 
         if (startIconRes != -1) {
-            icon_start.visibility = View.VISIBLE
-            icon_start.setImageResource(startIconRes)
+            binding.iconStart.visibility = View.VISIBLE
+            binding.iconStart.setImageResource(startIconRes)
         }
         if (endIconRes != -1) {
-            icon_end.visibility = View.VISIBLE
-            icon_end.setImageResource(endIconRes)
+            binding.iconEnd.visibility = View.VISIBLE
+            binding.iconEnd.setImageResource(endIconRes)
         }
 
-        tv_title.text = titleStr
+
+        binding.tvTitle.text = titleStr
 
         if (contentLeft) {
-            tv_content.gravity = Gravity.START
-            tv_content.gravity = Gravity.CENTER_VERTICAL
+
+            binding.tvContent.gravity = Gravity.START
+            binding.tvContent.gravity = Gravity.CENTER_VERTICAL
         }
-        tv_content.text = contentStr
-        tv_content.hint = hintStr
+        binding.tvContent.text = contentStr
+        binding.tvContent.hint = hintStr
 
 
     }
@@ -84,7 +90,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      */
     fun setContent(content: String) {
         this.contentStr = content
-        tv_content.text = contentStr
+        binding.tvContent.text = contentStr
     }
 
 
@@ -94,7 +100,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      */
     fun setTitle(title: String) {
         this.titleStr = title
-        tv_title.text = titleStr
+        binding.tvTitle.text = titleStr
     }
 
     /**
@@ -102,7 +108,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
      * @param listener OnClickListener
      */
     fun setEndIconOnClick(listener: OnClickListener) {
-        tv_content.setOnClickListener(listener)
+        binding.tvContent.setOnClickListener(listener)
     }
 
 }

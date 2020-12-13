@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.layout_state_view.view.*
+import com.yzq.lib_widget.databinding.LayoutStateViewBinding
 
 
 /**
@@ -31,18 +31,20 @@ class StateView(
     constructor(context: Context) : this(context, null)
 
 
-    private var view: View
-
     /*无网络图片*/
     private var noNetImgRes = R.drawable.ic_no_net
+
     /*无数据图片*/
     private var noDataImgRes = R.drawable.ic_no_data
+
     /*出现错误图片*/
     private var errorImgRes = R.drawable.ic_error
 
-    init {
-        view = LayoutInflater.from(context).inflate(R.layout.layout_state_view, this)
+    private val binding: LayoutStateViewBinding
 
+    init {
+
+        binding = LayoutStateViewBinding.inflate(LayoutInflater.from(context), this, true)
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.StateView)
 
         try {
@@ -67,52 +69,57 @@ class StateView(
 
     fun showLoading() {
 
-        view.visibility = View.VISIBLE
-        loading_layout.visibility = View.VISIBLE
 
-        abnorma_layout.visibility = View.GONE
+        binding.root.visibility = View.VISIBLE
+
+        binding.loadingLayout.visibility = View.VISIBLE
+
+
+        binding.abnormaLayout.visibility = View.GONE
     }
 
 
     fun showNoData() {
 
-        view.visibility = View.VISIBLE
-        loading_layout.visibility = View.GONE
-        abnorma_layout.visibility = View.VISIBLE
-        iv_hint.setImageResource(noDataImgRes)
-        tv_hint.text = resources.getString(R.string.no_data)
+        binding.root.visibility = View.VISIBLE
+        binding.loadingLayout.visibility = View.GONE
+        binding.abnormaLayout.visibility = View.VISIBLE
+
+        binding.ivHint.setImageResource(noDataImgRes)
+
+        binding.tvHint.text = resources.getString(R.string.no_data)
     }
 
     fun showNoNet() {
-        view.visibility = View.VISIBLE
-        loading_layout.visibility = View.GONE
-        abnorma_layout.visibility = View.VISIBLE
-        iv_hint.setImageResource(noNetImgRes)
+        binding.root.visibility = View.VISIBLE
+        binding.loadingLayout.visibility = View.GONE
+        binding.abnormaLayout.visibility = View.VISIBLE
+        binding.ivHint.setImageResource(noNetImgRes)
         // ImageLoader.getInstance().load(context, R.drawable.ic_no_net, hintImg);
-        tv_hint.text = resources.getString(R.string.no_net)
+        binding.tvHint.text = resources.getString(R.string.no_net)
     }
 
     fun showError(errorMsg: String) {
-        view.visibility = View.VISIBLE
-        loading_layout.visibility = View.GONE
-        abnorma_layout.visibility = View.VISIBLE
+        binding.root.visibility = View.VISIBLE
+        binding.loadingLayout.visibility = View.GONE
+        binding.abnormaLayout.visibility = View.VISIBLE
 
-        iv_hint.setImageResource(errorImgRes)
+        binding.ivHint.setImageResource(errorImgRes)
 
-        tv_hint.text = errorMsg
+        binding.tvHint.text = errorMsg
     }
 
     fun hideRetryBtn() {
-        btn_retry.visibility = View.GONE
+        binding.btnRetry.visibility = View.GONE
     }
 
     fun hide() {
-        view.visibility = View.GONE
+        binding.root.visibility = View.GONE
     }
 
 
     fun retry(retry: RetryListener) {
-        btn_retry.setOnClickListener {
+        binding.btnRetry.setOnClickListener {
             showLoading()
             retry()
         }
