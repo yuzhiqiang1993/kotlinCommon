@@ -19,7 +19,7 @@ ext {
     annotation = "1.1.0"
     multiDexVersion = "2.0.1"
     lifecycle_version = "2.2.0"
-    kotlinx_coroutines = "1.4.1"
+    kotlinx_coroutines = "1.4.2"
     swiperefreshlayout = '1.1.0'
     room_version = "2.2.5"
 
@@ -41,7 +41,7 @@ ext {
     arouter_api = "1.5.1"
     arouter_compiler = "1.5.1"
     walleVersion = "1.1.7"
-    andResGuardVersion = "1.2.19"
+    andResGuardVersion = "1.2.20"
     easyPhotos = "3.0.6"
     bugly_crashreport_upgrade = '1.4.5'
     bugly_nativecrashreport = '3.7.500'
@@ -51,7 +51,7 @@ ext {
     zxing_version = "2.2.8"
     jsoup_version = '1.13.1'
     leakcanary_android = "2.5"
-    bannerViewPager = "3.3.0"
+    bannerViewPager = "3.4.0"
     viewpager2 = "1.1.0-alpha01"
     roundedImageView = "0.8.4"
     signConfigs = [
