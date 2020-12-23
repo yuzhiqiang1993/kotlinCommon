@@ -3,6 +3,8 @@ package com.yzq.kotlincommon.ui.fragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.yzq.kotlincommon.databinding.FragmentPagerContentBinding
 import com.yzq.kotlincommon.widget.banner.BannerAdapter
 import com.yzq.lib_base.ui.fragment.BaseViewBindingFragment
@@ -34,14 +36,22 @@ class PagerContentFragment(var content: String) :
         super.initWidget()
 
 
-        binding.bannerViewPager
-            .setAutoPlay(true)
-            .setAdapter(BannerAdapter())
-            .create(bannerImgs)
+        with(binding) {
+            bannerViewPager
+                .setAutoPlay(true)
+                .setAdapter(BannerAdapter())
+                .setOnPageClickListener { clickedView, position ->
+                    LogUtils.i("setOnPageClickListener:${position}")
+                    ToastUtils.showShort("click:${position}")
+                }
+                .create(bannerImgs)
 
 
 
-        binding.tvContent.text = content
+            tvContent.text = content
+        }
+
+
     }
 
 
