@@ -1,10 +1,11 @@
 package com.yzq.kotlincommon.adapter
 
+import androidx.appcompat.widget.AppCompatImageView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.yzq.common.data.movie.Subject
+import com.yzq.kotlincommon.R
 import com.yzq.lib_img.loadWithThumbnail
-import kotlinx.android.synthetic.main.item_movie_layout.view.*
 
 
 class MovieAdapter(layoutResId: Int, data: MutableList<Subject>) :
@@ -14,11 +15,12 @@ class MovieAdapter(layoutResId: Int, data: MutableList<Subject>) :
     override fun convert(holder: BaseViewHolder, item: Subject) {
 
 
-        with(holder.itemView) {
+        with(holder) {
+            setText(R.id.tv_title, item.title)
 
-            tv_title.text = item.title
 
-            iv_img.loadWithThumbnail(item.images.small)
+            itemView.findViewById<AppCompatImageView>(R.id.iv_img)
+                .loadWithThumbnail(item.images.small)
 
         }
 

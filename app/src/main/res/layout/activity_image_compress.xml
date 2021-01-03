@@ -8,6 +8,8 @@
     tools:context=".ui.activity.ImageCompressActivity">
 
 
+
+
     <include
         android:id="@+id/layout_toolbar"
         layout="@layout/toolbar" />

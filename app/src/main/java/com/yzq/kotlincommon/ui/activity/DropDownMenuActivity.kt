@@ -14,7 +14,6 @@ import com.yzq.kotlincommon.adapter.DropDownMenuFilterAdapter
 import com.yzq.kotlincommon.adapter.DropDownMenuFoodTypeAdapter
 import com.yzq.kotlincommon.databinding.ActivityDropDownMenuBinding
 import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
-import kotlinx.android.synthetic.main.activity_drop_down_menu.*
 
 
 /**
@@ -63,6 +62,7 @@ class DropDownMenuActivity : BaseViewBindingActivity<ActivityDropDownMenuBinding
         tvFilter = contentLayout.findViewById(R.id.tv_filter)
 
 
+
         foodTypeRecy = RecyclerView(this)
         foodTypeRecy.layoutManager = LinearLayoutManager(this)
 
@@ -72,7 +72,7 @@ class DropDownMenuActivity : BaseViewBindingActivity<ActivityDropDownMenuBinding
         popupViews.add(foodTypeRecy)
         popupViews.add(filtersRecy)
 
-        dropdown_menu.setDropDownMenu(tabs, popupViews, contentLayout)
+        binding.dropdownMenu.setDropDownMenu(tabs, popupViews, contentLayout)
 
         tvFilter.text = "$foodType--$filter"
         setData()
@@ -103,19 +103,19 @@ class DropDownMenuActivity : BaseViewBindingActivity<ActivityDropDownMenuBinding
 
                 foodType = dropDownMenuFoodTypeAdapter.data[position]
 
-                dropdown_menu.setTabText(foodType)
+                binding.dropdownMenu.setTabText(foodType)
                 tvFilter.text = "$foodType--$filter"
 
-                dropdown_menu.closeMenu()
+                binding.dropdownMenu.closeMenu()
 
             }
 
             is DropDownMenuFilterAdapter -> {
                 filter = dropDownMenuFiltersAdapter.data[position]
 
-                dropdown_menu.setTabText(filter)
+                binding.dropdownMenu.setTabText(filter)
                 tvFilter.text = "$foodType--$filter"
-                dropdown_menu.closeMenu()
+                binding.dropdownMenu.closeMenu()
             }
         }
 
