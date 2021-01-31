@@ -8,12 +8,14 @@
     tools:context=".ui.activity.MainActivity">
 
 
-    <include layout="@layout/appbar_main" android:id="@+id/layout_main"/>
+    <include
+        android:id="@+id/layout_main"
+        layout="@layout/appbar_main" />
 
 
     <com.google.android.material.navigation.NavigationView
-        android:layout_width="match_parent"
         android:id="@+id/nav_view"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"

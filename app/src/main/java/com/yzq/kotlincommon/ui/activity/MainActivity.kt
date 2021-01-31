@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.graphics.Color
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
@@ -10,7 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
@@ -54,11 +52,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
     override fun initWidget() {
 
 
-        BarUtils.setStatusBarColor(this, Color.argb(0, 0, 0, 0))
-        BarUtils.addMarginTopEqualStatusBarHeight(binding.layoutMain.toolbar)
-
         initToolbar(binding.layoutMain.toolbar, "kotlin common", displayHome = false)
-
 
         binding.layoutMain.recy.init()
 

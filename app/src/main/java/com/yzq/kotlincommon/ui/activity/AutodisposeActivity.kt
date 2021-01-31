@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.view.LayoutInflater
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath

@@ -10,7 +10,7 @@
     <com.zhpan.bannerview.BannerViewPager
         android:id="@+id/banner_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/dp_200"
         app:bvp_indicator_checked_color="@color/white"
         app:bvp_indicator_normal_color="@color/gray_500"
         app:bvp_page_margin="@dimen/dp_10"
