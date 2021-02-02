@@ -32,8 +32,6 @@ class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
 
         colorStatusBar(R.color.white, binding.layoutContainer, true)
 
-
-
         binding.btnLogin.setOnClickListener {
 
 
