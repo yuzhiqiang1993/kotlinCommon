@@ -2,7 +2,6 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.text.TextUtils
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.BarUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.utils.LocalSpUtils
 import com.yzq.kotlincommon.R
@@ -31,8 +30,7 @@ class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
     override fun initWidget() {
         super.initWidget()
 
-        BarUtils.transparentStatusBar(this)
-        BarUtils.setStatusBarLightMode(this, true)
+        colorStatusBar(R.color.white, binding.layoutContainer, true)
 
 
 
@@ -55,8 +53,8 @@ class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
 
 
             vm.login(
-                binding.account!!,
-                binding.pwd!!
+                    binding.account!!,
+                    binding.pwd!!
             )
 
 

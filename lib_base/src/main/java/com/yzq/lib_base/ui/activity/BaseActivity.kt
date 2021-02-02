@@ -2,18 +2,17 @@ package com.yzq.lib_base.ui.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.MotionEvent
 import android.view.View
-import android.view.WindowManager
 import android.widget.TextView
+import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
@@ -143,11 +142,11 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      * @param transparentStatusBar Boolean 是否沉浸式状态栏，默认状态栏透明
      */
     protected open fun initToolbar(
-        toolbar: Toolbar,
-        title: String,
-        displayHome: Boolean = true,
-        showBackHint: Boolean = false,
-        transparentStatusBar: Boolean = true
+            toolbar: Toolbar,
+            title: String,
+            displayHome: Boolean = true,
+            showBackHint: Boolean = false,
+            transparentStatusBar: Boolean = true
     ) {
 
         toolbar.title = title
@@ -156,30 +155,25 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         this.showBackHint = showBackHint
 
         if (transparentStatusBar) {
-            transparentStatusBar()
-            BarUtils.addMarginTopEqualStatusBarHeight(toolbar)
+            transStatusBar(toolbar)
+
         }
     }
 
 
-    /*设置状态栏透明*/
-    protected open fun transparentStatusBar() {
-        val window = window
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            val option = View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                val vis =
-                    window.decorView.systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-                window.decorView.systemUiVisibility = option or vis
-            } else {
-                window.decorView.systemUiVisibility = option
-            }
-            window.statusBarColor = Color.TRANSPARENT
-        } else {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        }
+    protected open fun transStatusBar(view: View, isLightMode: Boolean = false) {
+        BarUtils.transparentStatusBar(this)
+        BarUtils.addMarginTopEqualStatusBarHeight(view)
+        BarUtils.setStatusBarLightMode(this, isLightMode)
+
     }
+
+    protected open fun colorStatusBar(@ColorRes color: Int = R.color.colorAccent, view: View, isLightMode: Boolean = false) {
+        BarUtils.setStatusBarColor(this, ContextCompat.getColor(this, color))
+        BarUtils.addMarginTopEqualStatusBarHeight(view)
+        BarUtils.setStatusBarLightMode(this, isLightMode)
+    }
+
 
     /**
      * Toolbar的返回按钮
@@ -201,10 +195,10 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      * @param showBackHint  点击返回时是否显示返回提示框，默认不显示
      */
     protected fun initHeader(
-        backIv: AppCompatImageView,
-        titleTv: TextView,
-        title: String,
-        showBackHint: Boolean = false
+            backIv: AppCompatImageView,
+            titleTv: TextView,
+            title: String,
+            showBackHint: Boolean = false
     ) {
         titleTv.text = title
         this.showBackHint = showBackHint
@@ -233,11 +227,11 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         intent.putExtra(ImgPreviewActivity.IMG_PATH, path)
 
         val options =
-            ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,
-                view,
-                getString(R.string.img_transition)
-            )
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        this,
+                        view,
+                        getString(R.string.img_transition)
+                )
         startActivity(intent, options.toBundle())
 
     }
@@ -417,9 +411,9 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      * @param isRefreshLayout  是否是下拉刷新
      */
     protected fun initStateView(
-        stateView: StateView,
-        contentLayout: View,
-        isRefreshLayout: Boolean = false
+            stateView: StateView,
+            contentLayout: View,
+            isRefreshLayout: Boolean = false
     ) {
         this.stateView = stateView
         this.contentLayout = contentLayout
