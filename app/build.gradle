@@ -6,7 +6,6 @@ apply plugin: 'AndResGuard'
 apply plugin: "com.github.ben-manes.versions"
 android {
     compileSdkVersion compile_sdk_version
-    buildToolsVersion build_tools_version
     defaultConfig {
         applicationId "com.yzq.kotlincommon"
         minSdkVersion min_sdk_version
@@ -81,7 +80,7 @@ dependencies {
     implementation "com.meituan.android.walle:library:${walleVersion}"
     kapt "androidx.room:room-compiler:$room_version"
 
-    implementation 'com.shuyu:GSYVideoPlayer:8.0.0'
+    implementation 'com.shuyu:GSYVideoPlayer:8.1.0'
     implementation "androidx.viewpager2:viewpager2:${viewpager2}"
 
     implementation "com.github.zhpanvip:BannerViewPager:${bannerViewPager}"

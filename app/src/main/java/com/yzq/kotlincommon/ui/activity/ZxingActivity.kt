@@ -62,13 +62,13 @@ class ZxingActivity : BaseViewBindingActivity<ActivityZxingBinding>() {
 
     private val requestCodeScan = 555
     private fun excuteZxing() =
-        getPermissions(PermissionConstants.CAMERA, PermissionConstants.STORAGE) {
-            val intent = Intent(this, CaptureActivity::class.java)
-            val zxingConfig = ZxingConfig()
-            zxingConfig.isFullScreenScan = false
-            intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig)
-            startActivityForResult(intent, requestCodeScan)
-        }
+            getPermissions(PermissionConstants.CAMERA, PermissionConstants.STORAGE) {
+                val intent = Intent(this, CaptureActivity::class.java)
+                val zxingConfig = ZxingConfig()
+                zxingConfig.isFullScreenScan = false
+                intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig)
+                startActivityForResult(intent, requestCodeScan)
+            }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

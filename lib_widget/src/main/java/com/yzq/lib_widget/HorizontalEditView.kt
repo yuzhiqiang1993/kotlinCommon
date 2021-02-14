@@ -18,7 +18,7 @@ import com.yzq.lib_widget.databinding.ViewHorizontalEditLayoutBinding
  */
 
 class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
-    ConstraintLayout(context, attrs, defStyleAttr) {
+        ConstraintLayout(context, attrs, defStyleAttr) {
 
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -45,9 +45,9 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         try {
             iconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_icon, -1)
             inputType =
-                typeArr.getString(R.styleable.HorizontalEditView_horz_edit_inputType)
+                    typeArr.getString(R.styleable.HorizontalEditView_horz_edit_inputType)
             editEnable =
-                typeArr.getBoolean(R.styleable.HorizontalEditView_horz_edit_editEnable, true)
+                    typeArr.getBoolean(R.styleable.HorizontalEditView_horz_edit_editEnable, true)
             endIconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_endIcon, -1)
             titleStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_title)
             contentStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_content)
