@@ -66,6 +66,8 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
         showLoading()
         vm.requestData()
 
+
+
     }
 
 

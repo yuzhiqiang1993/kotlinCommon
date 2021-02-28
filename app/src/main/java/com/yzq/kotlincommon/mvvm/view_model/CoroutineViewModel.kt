@@ -7,7 +7,6 @@ import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.ext.dataConvert
 import com.yzq.lib_base.view_model.BaseViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 
 
@@ -21,8 +20,10 @@ class CoroutineViewModel : BaseViewModel() {
     fun requestData() {
 
         launchLoading {
-
-            val geocoderBean = httpGeocoder()
+            val geocoderBean = withContext(Dispatchers.IO) {
+                RetrofitFactory.instance.getService(ApiService::class.java)
+                        .geocoder().dataConvert()
+            }
 
             geocoder.value = geocoderBean
         }
@@ -30,12 +31,5 @@ class CoroutineViewModel : BaseViewModel() {
 
     }
 
-
-    private suspend fun httpGeocoder() = withContext(Dispatchers.IO) {
-
-        delay(1000)
-        RetrofitFactory.instance.getService(ApiService::class.java)
-            .geocoder().dataConvert()
-    }
 
 }
