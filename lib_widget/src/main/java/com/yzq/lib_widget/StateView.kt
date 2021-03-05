@@ -20,11 +20,11 @@ import com.yzq.lib_widget.databinding.LayoutStateViewBinding
 typealias RetryListener = () -> Unit
 
 class StateView(
-    context: Context,
-    attrs: AttributeSet?,
-    defStyleAttr: Int
+        context: Context,
+        attrs: AttributeSet?,
+        defStyleAttr: Int
 ) :
-    LinearLayout(context, attrs, defStyleAttr) {
+        LinearLayout(context, attrs, defStyleAttr) {
 
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -50,11 +50,11 @@ class StateView(
         try {
 
             noNetImgRes =
-                typeArr.getResourceId(R.styleable.StateView_no_net_img_res, R.drawable.ic_no_net)
+                    typeArr.getResourceId(R.styleable.StateView_no_net_img_res, R.drawable.ic_no_net)
             noDataImgRes =
-                typeArr.getResourceId(R.styleable.StateView_no_data_img_res, R.drawable.ic_no_data)
+                    typeArr.getResourceId(R.styleable.StateView_no_data_img_res, R.drawable.ic_no_data)
             errorImgRes =
-                typeArr.getResourceId(R.styleable.StateView_error_img_res, R.drawable.ic_error)
+                    typeArr.getResourceId(R.styleable.StateView_error_img_res, R.drawable.ic_error)
 
         } finally {
             typeArr.recycle()
