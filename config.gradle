@@ -20,7 +20,7 @@ ext {
     lifecycle_version = "2.3.0"
     kotlinx_coroutines = "1.4.2"
     swiperefreshlayout = '1.1.0'
-    room_version = "2.2.5"
+    room_version = '2.2.6'
 
     /*third party*/
     eventbus = "3.2.0"
