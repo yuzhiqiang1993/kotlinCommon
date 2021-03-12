@@ -7,9 +7,7 @@ import com.blankj.utilcode.util.NetworkUtils
 import com.google.gson.JsonParseException
 import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.cancel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import me.jessyan.progressmanager.ProgressListener
 import me.jessyan.progressmanager.ProgressManager
 import me.jessyan.progressmanager.body.ProgressInfo
@@ -30,8 +28,8 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
 
     fun launchLoadingDialog(
-        loadText: String = ViewStateContstants.LOADING,
-        block: suspend CoroutineScope.() -> Unit
+            loadText: String = ViewStateContstants.LOADING,
+            block: suspend CoroutineScope.() -> Unit
     ) {
 
         viewModelScope.launch {
@@ -53,7 +51,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                     showErrorDialog(ViewStateContstants.SERVER_TIMEOUT)
                 } else {
                     val msg =
-                        if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+                            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
                     showErrorDialog(msg)
                 }
 
@@ -80,6 +78,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
             try {
                 block()
+
             } catch (e: Exception) {
 
                 e.printStackTrace()
@@ -90,7 +89,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                     showError(ViewStateContstants.SERVER_TIMEOUT)
                 } else {
                     val msg =
-                        if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+                            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
                     showError(msg)
                 }
 
@@ -115,24 +114,24 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
             }
 
             ProgressManager.getInstance()
-                .addResponseListener(url, object : ProgressListener {
-                    override fun onProgress(progressInfo: ProgressInfo?) {
+                    .addResponseListener(url, object : ProgressListener {
+                        override fun onProgress(progressInfo: ProgressInfo?) {
 
-                        LogUtils.i("下载进度:${progressInfo?.percent}")
+                            LogUtils.i("下载进度:${progressInfo?.percent}")
 
-                        changeProgress(progressInfo!!.percent)
+                            changeProgress(progressInfo!!.percent)
 
-                    }
+                        }
 
-                    override fun onError(id: Long, e: Exception?) {
+                        override fun onError(id: Long, e: Exception?) {
 
-                        LogUtils.i("下载出错：${e?.printStackTrace()}")
+                            LogUtils.i("下载出错：${e?.printStackTrace()}")
 
-                        dismissProgressDialog()
+                            dismissProgressDialog()
 
-                    }
+                        }
 
-                })
+                    })
 
 
 
@@ -151,7 +150,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                     showError(ViewStateContstants.SERVER_TIMEOUT)
                 } else {
                     val msg =
-                        if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+                            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
                     showError(msg)
                 }
 

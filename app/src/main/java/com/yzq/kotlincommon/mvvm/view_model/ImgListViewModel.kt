@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DiffUtil
 import com.yzq.common.data.movie.Subject
+import com.yzq.common.net.RetrofitFactory
+import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.view_model.ApiServiceViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -21,9 +23,10 @@ class ImgListViewModel : ApiServiceViewModel() {
 
     fun getData() {
         launchLoading {
-            val datas = apiServiceModel.getData(start, count).subjects
-            subjectsLive.value = datas
-            start += datas.size
+            val datas = RetrofitFactory.instance.getService(ApiService::class.java)
+                    .getMovies("0b2bdeda43b5688921839c8ecb20399b", start, count)
+            subjectsLive.value = datas.subjects
+            start += datas.subjects.size
         }
     }
 
@@ -41,8 +44,8 @@ class ImgListViewModel : ApiServiceViewModel() {
 
                 DiffUtil.calculateDiff(object : DiffUtil.Callback() {
                     override fun areItemsTheSame(
-                        oldItemPosition: Int,
-                        newItemPosition: Int
+                            oldItemPosition: Int,
+                            newItemPosition: Int
                     ): Boolean {
                         return oldDatas[oldItemPosition].id.equals(newDatas[newItemPosition].id)
                     }
@@ -56,8 +59,8 @@ class ImgListViewModel : ApiServiceViewModel() {
                     }
 
                     override fun areContentsTheSame(
-                        oldItemPosition: Int,
-                        newItemPosition: Int
+                            oldItemPosition: Int,
+                            newItemPosition: Int
                     ): Boolean {
                         return oldDatas[oldItemPosition] == newDatas[newItemPosition]
                     }

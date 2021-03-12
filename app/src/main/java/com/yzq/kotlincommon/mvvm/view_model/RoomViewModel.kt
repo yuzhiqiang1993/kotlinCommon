@@ -25,12 +25,16 @@ class RoomViewModel : BaseViewModel() {
 
         viewModelScope.launch {
 
-            withContext(Dispatchers.IO) {
-                val randomName = getRandomStr()
 
-                val user = User(name = randomName)
+            val randomName = getRandomStr()
+
+            val user = User(name = randomName)
+
+            withContext(Dispatchers.IO) {
                 userDao.insertUser(user)
             }
+
+
 
             LogUtils.i("插入成功")
 
