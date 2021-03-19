@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingDefaultResource">
     <corners
-        android:topLeftRadius="15dp"
-        android:topRightRadius="15dp" />
+        android:topLeftRadius="@dimen/radius"
+        android:topRightRadius="@dimen/radius" />
     <gradient
-        android:endColor="#e1f5fe"
-        android:startColor="#e0f7fa"
+        android:angle="225"
+        android:endColor="@color/light_blue_50"
+        android:startColor="@color/white"
         android:type="linear" />
 </shape>

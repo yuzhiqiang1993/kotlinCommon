@@ -8,7 +8,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.loper7.date_time_picker.DateTimeConfig
-import com.loper7.date_time_picker.dialog.CardDatePickerDialog
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
@@ -145,21 +144,9 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                 .setOnClickListener {
 
 
-//                    selectYear { millisecond, dateStr ->
-//                        ToastUtils.showLong(dateStr)
-//                    }
-
-
-                    CardDatePickerDialog.builder(this@DialogActivity)
-                        .setBackGroundModel(CardDatePickerDialog.CARD)
-                        .setThemeColor(
-                            R.drawable.linear_gradient_color
-                        )
-                        .setOnChoose {
-                            ToastUtils.showLong("${it}")
-                        }
-                        .build().show()
-
+                    selectYear { millisecond, dateStr ->
+                        ToastUtils.showLong(dateStr)
+                    }
 
                 }
             layoutScrollContent.btnSelectDate

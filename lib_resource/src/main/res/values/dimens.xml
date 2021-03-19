@@ -1,5 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="SpUsage,UnusedResources">
 
+    <dimen name="radius">4dp</dimen>
+
     <dimen name="dp_m_130">-130dp</dimen>
     <dimen name="dp_m_110">-110dp</dimen>
     <dimen name="dp_m_100">-100dp</dimen>
