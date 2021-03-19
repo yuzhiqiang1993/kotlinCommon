@@ -1,3 +1,4 @@
 package com.yzq.lib_materialdialog
 
-typealias DatePickerListener = (String) -> Unit
+
+typealias DatePickerListener = (millisecond: Long, dateStr: String) -> Unit

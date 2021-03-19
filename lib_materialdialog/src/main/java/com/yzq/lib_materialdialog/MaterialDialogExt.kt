@@ -16,7 +16,7 @@ import com.afollestad.materialdialogs.customview.getCustomView
  *
  */
 fun MaterialDialog.loading(): MaterialDialog =
-    customView(R.layout.loading_dialog_layout, scrollable = false).cornerRadius(4f)
+    customView(R.layout.loading_dialog_layout, scrollable = false)
 
 
 /**

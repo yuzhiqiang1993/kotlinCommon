@@ -1,19 +1,18 @@
 package com.yzq.lib_materialdialog
 
+import android.app.DatePickerDialog
 import android.text.TextUtils
 import androidx.core.app.ComponentActivity
 import com.afollestad.materialdialogs.DialogCallback
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.customview.getCustomView
 import com.afollestad.materialdialogs.input.InputCallback
 import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.afollestad.materialdialogs.list.ItemListener
 import com.afollestad.materialdialogs.list.listItems
-import com.ycuwq.datepicker.date.DatePicker
-import com.ycuwq.datepicker.date.YearPicker
-import com.ycuwq.datepicker.time.HourAndMinutePicker
+import com.loper7.date_time_picker.DateTimeConfig
+import com.loper7.date_time_picker.StringUtils
+import com.loper7.date_time_picker.dialog.CardDatePickerDialog
 
 
 /*获取一个新的Dialog实例*/
@@ -260,114 +259,78 @@ fun ComponentActivity.getProgressDialog(): MaterialDialog {
 }
 
 
-/*选择年份*/
 fun ComponentActivity.selectYear(
-    title: String = "选择年份",
+    displayType: MutableList<Int> = arrayListOf(DateTimeConfig.YEAR),
+    title: String = getString(R.string.select_year),
+    showBackNow: Boolean = false,
+    showFocusDateInfo: Boolean = true,
+    showDateLabel: Boolean = true,
+    maxTime: Long = 0,
+    minTime: Long = 0,
+    defaultTime: Long = 0,
+    dateFormat: String = "yyyy",
     positiveText: String = SURE,
     negativeText: String = CANCLE,
     datePickerListener: DatePickerListener
 ) {
 
-    getNewDialog().show {
-        title(text = title)
-        customView(viewRes = R.layout.layout_year_picker, scrollable = false)
-        negativeButton(text = negativeText)
-        positiveButton(text = positiveText) {
-            val yearPicker = it.getCustomView().findViewById<YearPicker>(R.id.year_picker)
-            datePickerListener(yearPicker.selectedYear.toString())
-
-        }
-    }
-
+    showDatePicker(
+        displayType,
+        title,
+        showBackNow,
+        showFocusDateInfo,
+        showDateLabel,
+        maxTime,
+        minTime,
+        defaultTime,
+        dateFormat,
+        positiveText,
+        negativeText,
+        datePickerListener
+    )
 
 }
 
 
-/**
- * 选择年月日
- *
- * @param title  标题
- * @param positiveText  确定文本
- * @param negativeText  取消文本
- */
-fun ComponentActivity.selectDate(
-    title: String = "选择日期",
+fun ComponentActivity.showDatePicker(
+    displayType: MutableList<Int> = arrayListOf(
+        DateTimeConfig.YEAR,
+        DateTimeConfig.MONTH,
+        DateTimeConfig.DAY,
+        DateTimeConfig.HOUR,
+        DateTimeConfig.MIN,
+        DateTimeConfig.SECOND
+    ),
+    title: String = getString(R.string.select_year),
+    showBackNow: Boolean = true,
+    showFocusDateInfo: Boolean = true,
+    showDateLabel: Boolean = true,
+    maxTime: Long = 0,
+    minTime: Long = 0,
+    defaultTime: Long = 0,
+    dateFormat: String = "yyyy-MM-dd HH:mm:ss",
     positiveText: String = SURE,
     negativeText: String = CANCLE,
     datePickerListener: DatePickerListener
 ) {
 
+    CardDatePickerDialog.builder(this)
+        .setTitle(title)
+        .showBackNow(showBackNow)
+        .showFocusDateInfo(showFocusDateInfo)
+        .showDateLabel(showDateLabel)
+        .setMaxTime(maxTime)
+        .setMinTime(minTime)
+        .setDefaultTime(defaultTime)
+        .setDisplayType(displayType)
+        .setBackGroundModel(R.drawable.shape_bg_dialog_custom)
+        .setOnChoose(positiveText) { millisecond ->
 
-    getNewDialog().show {
-        title(text = title)
-        customView(viewRes = R.layout.layout_date_picker, scrollable = false)
-        negativeButton(text = negativeText)
-        positiveButton(text = positiveText) {
-            val datePicker = it.findViewById<DatePicker>(R.id.date_picker)
-            var selectedMonth = datePicker.month.toString()
-            var selectedDay = datePicker.day.toString()
+            val dateStr = StringUtils.conversionTime(millisecond, dateFormat)
 
-            if (datePicker.month < 10) {
-                selectedMonth = "0${datePicker.month}"
-            }
+            datePickerListener(millisecond, dateStr)
 
-            if (datePicker.day < 10) {
-                selectedDay = "0${datePicker.day}"
-            }
-
-            val selectedDate = "${datePicker.year}-${selectedMonth}-${selectedDay}"
-            datePickerListener(selectedDate)
-
-
-        }
-
-
-    }
+        }.setOnCancel(negativeText).build().show()
 
 
 }
-
-
-/**
- * 选择小时和分钟
- * @receiver ComponentActivity
- * @param title String  标题
- * @param positiveText String  确定按钮文本
- * @param negativeText String  取消按钮文本
- * @param datePickerListener Function1<String, Unit>  回调
- */
-fun ComponentActivity.selectHourAndMinute(
-    title: String = "选择时间",
-    positiveText: String = SURE,
-    negativeText: String = CANCLE,
-    datePickerListener: DatePickerListener
-) {
-
-
-    getNewDialog().show {
-        title(text = title)
-        customView(viewRes = R.layout.layout_hour_minute_picker, scrollable = false)
-        negativeButton(text = negativeText)
-        positiveButton(text = positiveText) {
-
-            val hourAndMinutePicker =
-                it.findViewById<HourAndMinutePicker>(R.id.hour_minute_picker)
-            var selectedHour = hourAndMinutePicker.hour.toString()
-            var selectedMinute = hourAndMinutePicker.minute.toString()
-            if (hourAndMinutePicker.hour < 10) {
-                selectedHour = "0${hourAndMinutePicker.hour}"
-            }
-
-            if (hourAndMinutePicker.minute < 10) {
-                selectedMinute = "0${hourAndMinutePicker.minute}"
-            }
-
-            val selectedTime = "${selectedHour}:${selectedMinute}"
-
-            datePickerListener(selectedTime)
-        }
-
-
-    }
-}
-

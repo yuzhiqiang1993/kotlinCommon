@@ -7,6 +7,8 @@ import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.loper7.date_time_picker.DateTimeConfig
+import com.loper7.date_time_picker.dialog.CardDatePickerDialog
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
@@ -142,23 +144,45 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
             layoutScrollContent.btnSelectYear
                 .setOnClickListener {
 
-                    selectYear {
-                        ToastUtils.showShort(it)
-                    }
+
+//                    selectYear { millisecond, dateStr ->
+//                        ToastUtils.showLong(dateStr)
+//                    }
+
+
+                    CardDatePickerDialog.builder(this@DialogActivity)
+                        .setBackGroundModel(CardDatePickerDialog.CARD)
+                        .setThemeColor(
+                            R.drawable.linear_gradient_color
+                        )
+                        .setOnChoose {
+                            ToastUtils.showLong("${it}")
+                        }
+                        .build().show()
+
 
                 }
             layoutScrollContent.btnSelectDate
                 .setOnClickListener {
 
-
-                    selectDate { ToastUtils.showShort(it) }
+                    showDatePicker { millisecond, dateStr ->
+                        ToastUtils.showLong(dateStr)
+                    }
 
                 }
             layoutScrollContent.btnSelectTime
                 .setOnClickListener {
-                    selectHourAndMinute {
-                        ToastUtils.showShort(it)
+
+                    showDatePicker(
+                        displayType = arrayListOf(
+                            DateTimeConfig.HOUR,
+                            DateTimeConfig.MIN,
+                            DateTimeConfig.SECOND
+                        )
+                    ) { millisecond, dateStr ->
+                        ToastUtils.showLong(dateStr)
                     }
+
                 }
 
 

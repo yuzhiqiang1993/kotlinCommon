@@ -51,8 +51,10 @@ dependencies {
     api "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
 
 
+    api 'com.github.loperSeven:DateTimePicker:0.3.0'
+
     /*Datepicker*/
-    api "com.ycuwq.widgets:datepicker:$datepickerVersion"
+//    api "com.ycuwq.widgets:datepicker:$datepickerVersion"
     implementation project(path: ':lib_resource')
 
 
