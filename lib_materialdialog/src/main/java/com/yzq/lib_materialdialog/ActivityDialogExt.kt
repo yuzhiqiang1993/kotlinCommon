@@ -1,6 +1,5 @@
 package com.yzq.lib_materialdialog
 
-import android.app.DatePickerDialog
 import android.text.TextUtils
 import androidx.core.app.ComponentActivity
 import com.afollestad.materialdialogs.DialogCallback
@@ -259,6 +258,22 @@ fun ComponentActivity.getProgressDialog(): MaterialDialog {
 }
 
 
+/**
+ * 选择年份
+ * @receiver ComponentActivity
+ * @param displayType MutableList<Int>
+ * @param title String
+ * @param showBackNow Boolean
+ * @param showFocusDateInfo Boolean
+ * @param showDateLabel Boolean
+ * @param maxTime Long
+ * @param minTime Long
+ * @param defaultTime Long
+ * @param dateFormat String
+ * @param positiveText String
+ * @param negativeText String
+ * @param datePickerListener Function2<[@kotlin.ParameterName] Long, [@kotlin.ParameterName] String, Unit>
+ */
 fun ComponentActivity.selectYear(
     displayType: MutableList<Int> = arrayListOf(DateTimeConfig.YEAR),
     title: String = getString(R.string.select_year),
@@ -301,7 +316,7 @@ fun ComponentActivity.showDatePicker(
         DateTimeConfig.MIN,
         DateTimeConfig.SECOND
     ),
-    title: String = getString(R.string.select_year),
+    title: String = "",
     showBackNow: Boolean = true,
     showFocusDateInfo: Boolean = true,
     showDateLabel: Boolean = true,

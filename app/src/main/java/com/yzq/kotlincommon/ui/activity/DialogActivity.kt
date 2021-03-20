@@ -65,126 +65,132 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
             layoutScrollContent.btnCallback.setOnClickListener {
 
                 showCallbackDialog(message = "双选项双回调",
-                    positiveCallback = {
-                        ToastUtils.showShort("点击了确定")
-                    },
-                    negativeCallback = {
-                        ToastUtils.showShort("点击了取消")
-                    }
+                        positiveCallback = {
+                            ToastUtils.showShort("点击了确定")
+                        },
+                        negativeCallback = {
+                            ToastUtils.showShort("点击了取消")
+                        }
                 )
             }
 
 
 
             layoutScrollContent.btnSingleSelect
-                .setOnClickListener {
+                    .setOnClickListener {
 
-                    val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
+                        val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
 
-                    showSingleSelectList(title = "语言", items = datas) { dialog, index, text ->
+                        showSingleSelectList(title = "语言", items = datas) { dialog, index, text ->
 
-                        ToastUtils.showShort(text.toString())
+                            ToastUtils.showShort(text.toString())
+                        }
                     }
-                }
 
 
 
             layoutScrollContent.btnInput
-                .setOnClickListener {
+                    .setOnClickListener {
 
-                    showInputDialog(positiveText = "完成") { materialDialog, charSequence ->
-                        ToastUtils.showShort(charSequence.toString())
+                        showInputDialog(positiveText = "完成") { materialDialog, charSequence ->
+                            ToastUtils.showShort(charSequence.toString())
+                        }
+
                     }
-
-                }
 
 
             layoutScrollContent.btnLoading
-                .setOnClickListener {
-                    showLoadingDialog("登录中...")
+                    .setOnClickListener {
+                        showLoadingDialog("登录中...")
 
-                    Observable.timer(3, TimeUnit.SECONDS)
-                        .subscribe {
-                            dismissLoadingDialog()
-                        }
-                }
+                        Observable.timer(3, TimeUnit.SECONDS)
+                                .subscribe {
+                                    dismissLoadingDialog()
+                                }
+                    }
 
 
             layoutScrollContent.btnProgress
-                .setOnClickListener {
-                    var count = 0
+                    .setOnClickListener {
+                        var count = 0
 
-                    showProgressDialog("模拟进度")
-
-
-                    Observable.interval(200, TimeUnit.MILLISECONDS)
-                        .transform(this@DialogActivity)
-                        .subscribe(object : NextObserver<Long>() {
-                            lateinit var d: Disposable
-                            override fun onSubscribe(d: Disposable) {
-                                this.d = d
-                            }
-
-                            override fun onNext(t: Long) {
-                                LogUtils.i(count)
-                                count += 5
-                                if (count <= 100) {
-                                    changeProgress(count)
-                                } else {
-                                    d.dispose()
-                                    dismissProgressDialog()
-                                }
-                            }
-                        })
+                        showProgressDialog("模拟进度")
 
 
-                }
+                        Observable.interval(200, TimeUnit.MILLISECONDS)
+                                .transform(this@DialogActivity)
+                                .subscribe(object : NextObserver<Long>() {
+                                    lateinit var d: Disposable
+                                    override fun onSubscribe(d: Disposable) {
+                                        this.d = d
+                                    }
+
+                                    override fun onNext(t: Long) {
+                                        LogUtils.i(count)
+                                        count += 5
+                                        if (count <= 100) {
+                                            changeProgress(count)
+                                        } else {
+                                            d.dispose()
+                                            dismissProgressDialog()
+                                        }
+                                    }
+                                })
+
+
+                    }
 
             layoutScrollContent.btnSelectYear
-                .setOnClickListener {
+                    .setOnClickListener {
 
 
-                    selectYear { millisecond, dateStr ->
-                        ToastUtils.showLong(dateStr)
+                        selectYear { millisecond, dateStr ->
+                            ToastUtils.showLong(dateStr)
+                        }
+
                     }
-
-                }
             layoutScrollContent.btnSelectDate
-                .setOnClickListener {
+                    .setOnClickListener {
 
-                    showDatePicker { millisecond, dateStr ->
-                        ToastUtils.showLong(dateStr)
+                        val dateFormat = "yyyy-MM-dd"
+                        val displayType = arrayListOf(DateTimeConfig.YEAR, DateTimeConfig.MONTH, DateTimeConfig.DAY)
+
+                        showDatePicker(title = "选择年月日", displayType = displayType, dateFormat = dateFormat) { millisecond, dateStr ->
+                            ToastUtils.showLong(dateStr)
+                        }
+
                     }
-
-                }
             layoutScrollContent.btnSelectTime
-                .setOnClickListener {
-
-                    showDatePicker(
-                        displayType = arrayListOf(
-                            DateTimeConfig.HOUR,
-                            DateTimeConfig.MIN,
-                            DateTimeConfig.SECOND
+                    .setOnClickListener {
+                        val dateFormat = "HH:mm:ss"
+                        val displayType = arrayListOf(
+                                DateTimeConfig.HOUR,
+                                DateTimeConfig.MIN,
+                                DateTimeConfig.SECOND
                         )
-                    ) { millisecond, dateStr ->
-                        ToastUtils.showLong(dateStr)
-                    }
 
-                }
+                        showDatePicker(
+                                title = "选择时分秒", displayType = displayType, dateFormat = dateFormat
+
+                        ) { millisecond, dateStr ->
+                            ToastUtils.showLong(dateStr)
+                        }
+
+                    }
 
 
 
             layoutScrollContent.btnBottomDialog
-                .setOnClickListener {
-                    MaterialDialog(this@DialogActivity, BottomSheet(LayoutMode.WRAP_CONTENT))
-                        .show {
-                            title(R.string.hint)
-                            message(text = "bottom sheet")
-                            positiveButton(text = "确定")
-                            negativeButton(text = "取消")
+                    .setOnClickListener {
+                        MaterialDialog(this@DialogActivity, BottomSheet(LayoutMode.WRAP_CONTENT))
+                                .show {
+                                    title(R.string.hint)
+                                    message(text = "bottom sheet")
+                                    positiveButton(text = "确定")
+                                    negativeButton(text = "取消")
 
-                        }
-                }
+                                }
+                    }
 
         }
 

@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="YzqAppTheme" parent="Theme.MaterialComponents.DayNight.Bridge">
+    <style name="YzqAppTheme" parent="Theme.MaterialComponents.Light.Bridge">
         <!-- Customize your theme here. -->
 
         <item name="colorPrimary">@color/red_700</item>
@@ -10,18 +10,12 @@
         <item name="android:textColorPrimary">@color/primary_text</item>
         <item name="android:textColorSecondary">@color/secondary_text</item>
         <item name="android:icon">@color/icons</item>
-        <item name="android:divider">@color/black_alpha_16</item>
-        <item name="colorControlHighlight">@color/black_alpha_16</item>
         <item name="android:textSize">@dimen/sp_14</item>
         <item name="android:screenOrientation">portrait</item>
         <item name="android:configChanges">screenSize|keyboardHidden|orientation</item>
         <item name="android:windowSoftInputMode">adjustPan|stateHidden</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <!--不加这个Material Dialog 输入框会有个背景色-->
-        <item name="textInputStyle">@style/Widget.MaterialComponents.TextInputLayout.FilledBox
-        </item>
-
 
     </style>
 
