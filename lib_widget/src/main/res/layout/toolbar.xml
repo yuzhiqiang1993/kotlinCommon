@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/linear_gradient_color"
-    android:theme="@style/AppTheme.AppBarOverlay">
+    android:theme="@style/Theme.AppTheme.AppBarOverlay">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_collapseMode="pin"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:popupTheme="@style/Theme.AppTheme.PopupOverlay" />
 
 </com.google.android.material.appbar.AppBarLayout>

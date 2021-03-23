@@ -11,7 +11,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.2'
+        classpath 'com.android.tools.build:gradle:4.1.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         /*多渠道打包*/
@@ -20,6 +20,7 @@ buildscript {
         classpath "com.tencent.mm:AndResGuard-gradle-plugin:$andResGuardVersion"
         /*用于检测依赖库是否有最新版本*/
         classpath "com.github.ben-manes:gradle-versions-plugin:${gradle_versions_plugin}"
+
 
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1' // Add this line
     }

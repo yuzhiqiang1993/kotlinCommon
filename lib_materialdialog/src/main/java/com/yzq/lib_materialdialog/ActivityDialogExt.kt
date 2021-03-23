@@ -338,7 +338,8 @@ fun ComponentActivity.showDatePicker(
         .setMinTime(minTime)
         .setDefaultTime(defaultTime)
         .setDisplayType(displayType)
-        .setBackGroundModel(R.drawable.shape_bg_dialog_custom)
+        .setBackGroundModel(CardDatePickerDialog.CARD)
+//        .setBackGroundModel(R.drawable.shape_bg_dialog_custom)
         .setOnChoose(positiveText) { millisecond ->
 
             val dateStr = StringUtils.conversionTime(millisecond, dateFormat)

@@ -168,7 +168,7 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
     }
 
-    protected open fun colorStatusBar(@ColorRes color: Int = R.color.colorAccent, view: View, isLightMode: Boolean = false) {
+    protected open fun colorStatusBar(@ColorRes color: Int = R.color.colorOnPrimary, view: View, isLightMode: Boolean = false) {
         BarUtils.setStatusBarColor(this, ContextCompat.getColor(this, color))
         BarUtils.addMarginTopEqualStatusBarHeight(view)
         BarUtils.setStatusBarLightMode(this, isLightMode)

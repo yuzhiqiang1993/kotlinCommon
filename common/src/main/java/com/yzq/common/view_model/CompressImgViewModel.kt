@@ -99,7 +99,7 @@ class CompressImgViewModel : BaseViewModel() {
         val textSize = defaultW / selectBitMap.density * 14
 
         /*添加图片水印*/
-        var watermarkLogo = ImageUtils.getBitmap(R.drawable.ic_launcher)
+        var watermarkLogo = ImageUtils.getBitmap(R.drawable.ic_camera)
 
         val logoW = watermarkLogo.width
         val logoH = watermarkLogo.height

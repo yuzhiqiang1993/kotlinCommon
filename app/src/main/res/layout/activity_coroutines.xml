@@ -7,7 +7,9 @@
     tools:context=".ui.activity.CoroutinesActivity">
 
 
-    <include layout="@layout/toolbar" android:id="@+id/layout_toolbar" />
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -22,7 +24,6 @@
 
     <com.yzq.lib_widget.StateView
         android:id="@+id/state_view"
-        app:no_net_img_res="@drawable/ic_launcher"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

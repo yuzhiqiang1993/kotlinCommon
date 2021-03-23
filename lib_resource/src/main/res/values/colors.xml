@@ -2,9 +2,11 @@
 <resources>
 
 
-    <color name="colorPrimary">#e84e40</color>
-    <color name="colorPrimaryDark">#f06292</color>
-    <color name="colorAccent">#ff5177</color>
+    <color name="colorPrimary">@color/light_blue_700</color>
+    <color name="colorPrimaryVariant">@color/light_blue_700</color>
+    <color name="colorAccent">@color/light_blue_500</color>
+    <color name="colorOnPrimary">@color/light_blue_700</color>
+
     <color name="primary_light">#BBDEFB</color>
     <!--主要文字颜色-->
     <color name="primary_text">#212121</color>
