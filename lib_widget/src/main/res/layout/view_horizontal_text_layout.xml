@@ -11,11 +11,10 @@
         android:id="@+id/icon_start"
         android:layout_width="@dimen/dp_20"
         android:layout_height="@dimen/dp_20"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_pwd"
-        app:tint="@color/primary_icon" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -47,15 +46,12 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/icon_end"
-        android:layout_width="@dimen/dp_24"
-        android:layout_height="wrap_content"
-        android:paddingStart="@dimen/dp_10"
-        android:paddingEnd="@dimen/dp_0"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_right"
-        app:tint="@color/secondary_icon" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

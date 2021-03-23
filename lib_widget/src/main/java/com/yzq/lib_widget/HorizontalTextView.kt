@@ -1,11 +1,14 @@
 package com.yzq.lib_widget
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
 import com.yzq.lib_widget.databinding.ViewHorizontalTextLayoutBinding
 
 
@@ -17,6 +20,7 @@ import com.yzq.lib_widget.databinding.ViewHorizontalTextLayoutBinding
  *
  */
 
+@SuppressLint("ResourceAsColor")
 class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     ConstraintLayout(context, attrs, defStyleAttr) {
 
@@ -25,10 +29,12 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     constructor(context: Context) : this(context, null)
 
     private var startIconRes: Int = -1
+    private var iconTint: Int
     private var titleStr: String?
     private var contentStr: String?
     private var hintStr: String?
     private var endIconRes: Int = -1
+    private var endIconTint: Int
     private var contentLeft = false
     private val binding: ViewHorizontalTextLayoutBinding
 
@@ -41,8 +47,18 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
         try {
             startIconRes = typeArr.getResourceId(R.styleable.HorizontalTextView_horz_tv_icon, -1)
+            iconTint = typeArr.getColor(
+                R.styleable.HorizontalTextView_horz_tv_icon_tint,
+                R.color.primary_icon
+            )
             endIconRes =
                 typeArr.getResourceId(R.styleable.HorizontalTextView_horz_tv_endIcon, -1)
+
+            endIconTint = typeArr.getColor(
+                R.styleable.HorizontalEditView_horz_edit_end_icon_tint,
+                R.color.primary_icon
+            )
+
             titleStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_title)
             contentStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_content)
             hintStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_hint)
@@ -55,30 +71,37 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
 
 
+        with(binding) {
+            iconStart.visibility = View.GONE
 
-        binding.iconStart.visibility = View.GONE
+            iconEnd.visibility = View.GONE
 
-        binding.iconEnd.visibility = View.GONE
+            if (startIconRes != -1) {
+                iconStart.visibility = View.VISIBLE
+                iconStart.setImageResource(startIconRes)
+                iconStart.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                    iconTint, BlendModeCompat.SRC_ATOP
+                )
+            }
+            if (endIconRes != -1) {
+                iconEnd.visibility = View.VISIBLE
+                iconEnd.setImageResource(endIconRes)
+                iconEnd.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                    endIconTint, BlendModeCompat.SRC_ATOP
+                )
+            }
 
-        if (startIconRes != -1) {
-            binding.iconStart.visibility = View.VISIBLE
-            binding.iconStart.setImageResource(startIconRes)
+
+            tvTitle.text = titleStr
+
+            if (contentLeft) {
+
+                tvContent.gravity = Gravity.START
+                tvContent.gravity = Gravity.CENTER_VERTICAL
+            }
+            tvContent.text = contentStr
+            tvContent.hint = hintStr
         }
-        if (endIconRes != -1) {
-            binding.iconEnd.visibility = View.VISIBLE
-            binding.iconEnd.setImageResource(endIconRes)
-        }
-
-
-        binding.tvTitle.text = titleStr
-
-        if (contentLeft) {
-
-            binding.tvContent.gravity = Gravity.START
-            binding.tvContent.gravity = Gravity.CENTER_VERTICAL
-        }
-        binding.tvContent.text = contentStr
-        binding.tvContent.hint = hintStr
 
 
     }

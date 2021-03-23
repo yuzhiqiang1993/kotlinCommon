@@ -5,9 +5,11 @@
     <declare-styleable name="HorizontalEditView">
 
         <attr name="horz_edit_icon" format="reference" />
+        <attr name="horz_edit_icon_tint" format="color" />
         <attr name="horz_edit_title" format="string" />
         <attr name="horz_edit_content" format="string" />
         <attr name="horz_edit_endIcon" format="reference" />
+        <attr name="horz_edit_end_icon_tint" format="color" />
         <attr name="horz_edit_editEnable" format="boolean" />
         <attr name="horz_edit_hint" format="string" />
         <attr name="horz_edit_inputType" format="enum">
@@ -22,9 +24,11 @@
     <declare-styleable name="HorizontalTextView">
 
         <attr name="horz_tv_icon" format="reference" />
+        <attr name="horz_tv_icon_tint" format="color" />
         <attr name="horz_tv_title" format="string" />
         <attr name="horz_tv_content" format="string" />
         <attr name="horz_tv_endIcon" format="reference" />
+        <attr name="horz_tv_endIcon_tint" format="color" />
         <attr name="horz_tv_content_left" format="boolean" />
         <attr name="horz_tv_hint" format="string" />
     </declare-styleable>
