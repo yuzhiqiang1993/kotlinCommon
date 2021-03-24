@@ -13,11 +13,15 @@ import com.huantansheng.easyphotos.setting.Setting
  * @param imageSelected Function1<ArrayList<Photo>, Unit>  回调函数
  */
 fun AppCompatActivity.openCamera(imageSelected: ImageSelected) {
-    EasyPhotos.createCamera(this)
+    EasyPhotos.createCamera(this, false)
         .setFileProviderAuthority("$packageName.provider")
         .start(object : SelectCallback() {
             override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
                 imageSelected(photos)
+            }
+
+            override fun onCancel() {
+
             }
         })
 }
@@ -45,7 +49,7 @@ fun AppCompatActivity.openAlbum(
     imageSelected: ImageSelected
 
 ) {
-    EasyPhotos.createAlbum(this, showCamera, GlideEngine)
+    EasyPhotos.createAlbum(this, showCamera, false, GlideEngine)
         .setCount(count)
         .setMinFileSize(minFileSize)
         .setFileProviderAuthority("$packageName.provider")
@@ -57,6 +61,11 @@ fun AppCompatActivity.openAlbum(
         .start(object : SelectCallback() {
             override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
                 imageSelected(photos)
+            }
+
+            override fun onCancel() {
+
+
             }
 
         })

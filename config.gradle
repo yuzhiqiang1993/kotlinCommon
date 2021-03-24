@@ -18,7 +18,7 @@ ext {
     annotation = "1.1.0"
     multiDexVersion = "2.0.1"
     lifecycle_version = "2.3.0"
-    kotlinx_coroutines = "1.4.2"
+    kotlinx_coroutines = "1.4.3"
     swiperefreshlayout = '1.1.0'
     room_version = '2.2.6'
 
@@ -40,11 +40,11 @@ ext {
     arouter_api = "1.5.1"
     arouter_compiler = "1.5.1"
     walleVersion = "1.1.7"
-    andResGuardVersion = "1.2.20"
-    easyPhotos = "3.0.6"
-    bugly_crashreport_upgrade = '1.5.0'
-    bugly_nativecrashreport = '3.7.800'
-    datepickerVersion = "0.3.0"
+    andResGuardVersion = "1.2.21"
+    easyPhotos = "3.1.1"
+    bugly_crashreport_upgrade = '1.5.1'
+    bugly_nativecrashreport = '3.9.1'
+    datepickerVersion = "0.3.1"
     flexbox = "2.0.1"
     gradle_versions_plugin = "0.36.0"
     zxing_version = "2.2.8"
