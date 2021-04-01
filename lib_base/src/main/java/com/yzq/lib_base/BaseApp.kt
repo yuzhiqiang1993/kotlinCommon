@@ -66,15 +66,15 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
         /*如果 appliedLanguage 和 AppContextLanguage 不一致时  统一语言环境*/
         if (LanguageUtils.isAppliedLanguage() && LanguageUtils.getAppliedLanguage().language != LanguageUtils.getAppContextLanguage().language) {
             LanguageUtils.updateAppContextLanguage(
-                LanguageUtils.getAppliedLanguage(),
-                {
-                    LogUtils.i("统一语言环境")
+                    LanguageUtils.getAppliedLanguage(),
+                    {
+                        LogUtils.i("统一语言环境")
 
-                    LogUtils.i("getAppContextLanguage:${LanguageUtils.getAppContextLanguage().language}")
-                    LogUtils.i("getAppliedLanguage:${LanguageUtils.getAppliedLanguage().language}")
+                        LogUtils.i("getAppContextLanguage:${LanguageUtils.getAppContextLanguage().language}")
+                        LogUtils.i("getAppliedLanguage:${LanguageUtils.getAppliedLanguage().language}")
 
 
-                })
+                    })
         }
 
     }
@@ -102,9 +102,9 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
         Utils.init(this)
         val config = LogUtils.getConfig()
-            .setLogSwitch(BuildConfig.DEBUG)
-            .setGlobalTag(AppUtils.getAppName())
-            .setConsoleSwitch(BuildConfig.DEBUG)
+                .setLogSwitch(BuildConfig.DEBUG)
+                .setGlobalTag(AppUtils.getAppName())
+                .setConsoleSwitch(BuildConfig.DEBUG)
 
         LogUtils.d(config.toString())
 
