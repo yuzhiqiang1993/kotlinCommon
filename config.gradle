@@ -41,7 +41,7 @@ ext {
     arouter_compiler = "1.5.1"
     walleVersion = "1.1.7"
     andResGuardVersion = "1.2.21"
-    easyPhotos = "3.1.1"
+    easyPhotos = "3.1.3"
     bugly_crashreport_upgrade = '1.5.1'
     bugly_nativecrashreport = '3.9.1'
     datepickerVersion = "0.3.1"
