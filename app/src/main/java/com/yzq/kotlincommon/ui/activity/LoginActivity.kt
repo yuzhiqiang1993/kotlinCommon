@@ -51,8 +51,8 @@ class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
 
 
             vm.login(
-                    binding.account!!,
-                    binding.pwd!!
+                binding.account!!,
+                binding.pwd!!
             )
 
 
@@ -70,9 +70,9 @@ class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
     override fun observeViewModel() {
 
         with(vm) {
-            loginLiveData.observe(this@LoginActivity, {
+            loginLiveData.observe(this@LoginActivity) {
                 nav(RoutePath.Main.MAIN)
-            })
+            }
         }
     }
 

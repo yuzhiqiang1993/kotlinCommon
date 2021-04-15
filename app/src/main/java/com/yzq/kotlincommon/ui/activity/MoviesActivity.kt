@@ -58,16 +58,17 @@ class MoviesActivity : BaseVbVmActivity<ActivityMovieListBinding, MovieViewModel
 
 
     override fun observeViewModel() {
-        vm.subjects.observe(this,
-            Observer { t ->
-                LogUtils.i("数据发生变化")
+        vm.subjects.observe(this) { t ->
+            LogUtils.i("数据发生变化")
 
-                if (t.isNotEmpty()) {
-                    showData(t)
-                } else {
-                    showNoData()
-                }
-            })
+            if (t.isNotEmpty()) {
+                showData(t)
+            } else {
+                showNoData()
+            }
+
+
+        }
 
     }
 

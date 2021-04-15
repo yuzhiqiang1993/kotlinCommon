@@ -2,6 +2,7 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.view.MenuItem
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
@@ -35,13 +36,6 @@ class FragmentActivity : BaseVbVmActivity<ActivityFragmentBinding, FragmentViewM
     }
 
     override fun observeViewModel() {
-
-//        vm.tabSelectedPosition.observe(this, object : Observer<Int> {
-//            override fun onChanged(position: Int) {
-//                LogUtils.i("position：${position}")
-//                showFragment(position)
-//            }
-//        })
 
     }
 

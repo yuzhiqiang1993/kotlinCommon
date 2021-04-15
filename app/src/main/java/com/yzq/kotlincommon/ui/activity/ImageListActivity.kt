@@ -86,16 +86,16 @@ class ImageListActivity : BaseVbVmActivity<ActivityImageListBinding, ImgListView
     override fun observeViewModel() {
 
         with(vm) {
-            subjectsLive.observe(this@ImageListActivity, {
+            subjectsLive.observe(this@ImageListActivity) {
 
                 handleDataChanged(it)
-            })
+            }
 
-            subjectsDiffResult.observe(this@ImageListActivity, {
+            subjectsDiffResult.observe(this@ImageListActivity) {
 
                 LogUtils.i("更新数据")
                 imgListAdapter.setDiffNewData(it, vm.subjectsLive.value!!)
-            })
+            }
 
         }
 

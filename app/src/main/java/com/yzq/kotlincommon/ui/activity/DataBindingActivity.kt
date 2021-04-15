@@ -41,10 +41,10 @@ class DataBindingActivity : BaseDbVmActivity<ActivityDataBindingBinding, DataBin
     }
 
     override fun observeViewModel() {
-        vm.dataBindingLiveData.observe(this, {
+        vm.dataBindingLiveData.observe(this) {
             LogUtils.i("数据发生变化了:${it}")
             binding.data = it
-        })
+        }
     }
 
 

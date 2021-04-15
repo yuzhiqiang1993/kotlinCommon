@@ -2,7 +2,6 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.view.View
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DiffUtil
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -82,10 +81,10 @@ class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
     override fun observeViewModel() {
 
         with(vm) {
-            users.observe(this@RoomActivity, Observer {
+            users.observe(this@RoomActivity) {
                 roomAdapter.setDiffNewData(it)
 
-            })
+            }
 
 
         }

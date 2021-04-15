@@ -122,10 +122,14 @@ class TaskActivity : BaseViewBindingActivity<ActivityTaskBinding>(), OnItemChild
 
 
     private fun filterData() {
-        Collections.sort(tasks, kotlin.Comparator { o1, o2 ->
-            return@Comparator o1.type.compareTo(o2.type)
 
-        })
+        tasks.sortBy {
+            it.type
+        }
+//        Collections.sort(tasks, kotlin.Comparator { o1, o2 ->
+//            return@Comparator o1.type.compareTo(o2.type)
+//
+//        })
 
     }
 

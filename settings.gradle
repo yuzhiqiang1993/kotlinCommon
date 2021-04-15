@@ -12,28 +12,28 @@ include ':app',
         ':lib_base_adapter'
 
 
-gradle.buildStarted {
-    print("buildStarted")
-}
+//gradle.buildStarted {
+//    print("buildStarted")
+//}
+//
+//
+//gradle.projectsLoaded {
+//
+//    println("projectsLoaded")
+//}
 
-
-gradle.projectsLoaded {
-
-    println("projectsLoaded")
-}
-
-gradle.getTaskGraph().addTaskExecutionListener(new TaskExecutionListener() {
-    @Override
-    void beforeExecute(Task task) {
-
-        println("beforeExecute:${task.name}")
-
-    }
-
-    @Override
-    void afterExecute(Task task, TaskState state) {
-        println("afterExecute:${task.name}")
-    }
-})
-
-
+//gradle.getTaskGraph().addTaskExecutionListener(new TaskExecutionListener() {
+//    @Override
+//    void beforeExecute(Task task) {
+//
+//        println("beforeExecute:${task.name}")
+//
+//    }
+//
+//    @Override
+//    void afterExecute(Task task, TaskState state) {
+//        println("afterExecute:${task.name}")
+//    }
+//})
+//
+//

@@ -1,6 +1,9 @@
 package com.yzq.kotlincommon.ui.activity
 
-import androidx.lifecycle.*
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenCreated
+import androidx.lifecycle.whenResumed
+import androidx.lifecycle.whenStarted
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
@@ -67,7 +70,6 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
         vm.requestData()
 
 
-
     }
 
 
@@ -75,14 +77,15 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
 
 
         with(vm) {
-            geocoder.observe(this@CoroutinesActivity, Observer {
 
+            geocoder.observe(this@CoroutinesActivity) {
                 LogUtils.i("请求完成")
                 binding.tv.text = it.formattedAddress
 
                 showContent()
 
-            })
+            }
+
         }
 
     }

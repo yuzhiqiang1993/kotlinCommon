@@ -76,10 +76,10 @@ class ImageCompressActivity :
 
     override fun observeViewModel() {
         with(vm) {
-            compressedImgPathLiveData.observe(this@ImageCompressActivity, {
+            compressedImgPathLiveData.observe(this@ImageCompressActivity) {
                 imgPath = it
                 binding.ivImg.load(imgPath)
-            })
+            }
         }
     }
 
