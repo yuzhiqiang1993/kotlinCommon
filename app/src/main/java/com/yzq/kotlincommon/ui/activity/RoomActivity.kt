@@ -2,6 +2,7 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -15,11 +16,13 @@ import com.yzq.kotlincommon.mvvm.view_model.RoomViewModel
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.activity.BaseVbVmActivity
 import com.yzq.lib_materialdialog.showInputDialog
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @Route(path = RoutePath.Main.ROOM)
 class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
-    OnItemChildClickListener {
+        OnItemChildClickListener {
 
 
     override fun getViewBinding() = ActivityRoomBinding.inflate(layoutInflater)
@@ -58,6 +61,10 @@ class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
             vm.insertUser()
         }
 
+        binding.fabDelete.setOnClickListener {
+            vm.clearUser()
+        }
+
     }
 
 
@@ -83,6 +90,23 @@ class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
         with(vm) {
             users.observe(this@RoomActivity) {
                 roomAdapter.setDiffNewData(it)
+
+                /*延时滚动到最底部*/
+                lifecycleScope.launch {
+                    delay(200)
+                    binding.apply {
+                        if (roomAdapter.data.size > 1) {
+
+                            try {
+                                recy.smoothScrollToPosition(roomAdapter.data.size - 1)
+                            } catch (e: Exception) {
+
+                            }
+
+                        }
+                    }
+                }
+
 
             }
 

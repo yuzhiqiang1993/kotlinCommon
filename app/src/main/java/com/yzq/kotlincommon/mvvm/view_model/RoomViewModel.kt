@@ -26,12 +26,17 @@ class RoomViewModel : BaseViewModel() {
         viewModelScope.launch {
 
 
-            val randomName = getRandomStr()
+            val userList = arrayListOf<User>()
+            for (i in 0..5) {
 
-            val user = User(name = randomName)
+                val randomName = getRandomStr()
+                val user = User(name = randomName)
+
+                userList.add(user)
+            }
 
             withContext(Dispatchers.IO) {
-                userDao.insertUser(user)
+                userDao.insertUser(userList)
             }
 
 
@@ -84,6 +89,18 @@ class RoomViewModel : BaseViewModel() {
             stringBuilder.append(str[number])
         }
         return stringBuilder.toString()
+    }
+
+    fun clearUser() {
+
+        launchLoading {
+            withContext(Dispatchers.IO) {
+
+                userDao.clearUser()
+
+            }
+
+        }
     }
 
 
