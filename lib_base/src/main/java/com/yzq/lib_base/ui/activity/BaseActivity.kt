@@ -80,6 +80,7 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
         initContentView()
         initViewModel()
+        initVariable()
         initWidget()
 
         initData()
@@ -105,6 +106,12 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     * 初始化视图
     * */
     protected abstract fun initContentView()
+
+
+    /*初始化变量*/
+    protected open fun initVariable() {
+
+    }
 
     /**
      * 初始化控件

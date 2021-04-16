@@ -40,11 +40,11 @@ class AutodisposeActivity : BaseViewBindingActivity<ActivityAutodisposeBinding>(
 
     private fun startCount() {
         Observable.interval(1, TimeUnit.SECONDS)
-            .transform(this)
-            .subscribe {
-                binding.tvCount.text = "$it"
-                LogUtils.i("startCount-->$it")
-            }
+                .transform(this)
+                .subscribe {
+                    binding.tvCount.text = "$it"
+                    LogUtils.i("startCount-->$it")
+                }
     }
 
 

@@ -28,6 +28,7 @@ class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
     override fun getViewBinding() = ActivityRoomBinding.inflate(layoutInflater)
 
 
+    private var isAdd: Boolean = false
     private val roomAdapter = RoomAdapter(R.layout.item_room, arrayListOf())
 
     private lateinit var operationItem: User
@@ -36,14 +37,8 @@ class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
     override fun getViewModelClass(): Class<RoomViewModel> = RoomViewModel::class.java
 
 
-    override fun initWidget() {
-
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "Room")
-
-        binding.recy.init()
+    override fun initVariable() {
         roomAdapter.addChildClickViewIds(R.id.tv_delete, R.id.tv_user)
-        binding.recy.adapter = roomAdapter
         roomAdapter.setOnItemChildClickListener(this)
         roomAdapter.setDiffCallback(object : DiffUtil.ItemCallback<User>() {
             override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
@@ -56,20 +51,37 @@ class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
 
         })
 
-        binding.fabAdd.setOnClickListener {
+    }
 
-            vm.insertUser()
+    override fun initWidget() {
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        initToolbar(toolbar, "Room")
+
+
+        binding.apply {
+            recy.init()
+
+            recy.adapter = roomAdapter
+
+
+            fabAdd.setOnClickListener {
+                isAdd = true
+                vm.insertUser()
+            }
+
+            fabDelete.setOnClickListener {
+                isAdd = false
+                vm.clearUser()
+            }
         }
 
-        binding.fabDelete.setOnClickListener {
-            vm.clearUser()
-        }
 
     }
 
 
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
-
+        isAdd = false
         operationItem = roomAdapter.data[position]
         when (view.id) {
             R.id.tv_delete -> {
@@ -92,19 +104,9 @@ class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
                 roomAdapter.setDiffNewData(it)
 
                 /*延时滚动到最底部*/
-                lifecycleScope.launch {
-                    delay(200)
-                    binding.apply {
-                        if (roomAdapter.data.size > 1) {
 
-                            try {
-                                recy.smoothScrollToPosition(roomAdapter.data.size - 1)
-                            } catch (e: Exception) {
-
-                            }
-
-                        }
-                    }
+                if (isAdd) {
+                    scrollRecy()
                 }
 
 
@@ -114,6 +116,18 @@ class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
         }
 
 
+    }
+
+    private fun scrollRecy() {
+        lifecycleScope.launch {
+            delay(200)
+            try {
+                binding.recy.smoothScrollToPosition(roomAdapter.data.size - 1)
+            } catch (e: Exception) {
+
+            }
+
+        }
     }
 
 
