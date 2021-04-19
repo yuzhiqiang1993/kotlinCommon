@@ -117,7 +117,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                     .addResponseListener(url, object : ProgressListener {
                         override fun onProgress(progressInfo: ProgressInfo?) {
 
-                            LogUtils.i("下载进度:${progressInfo?.percent}")
+//                            LogUtils.i("下载进度:${progressInfo?.percent}")
 
                             changeProgress(progressInfo!!.percent)
 

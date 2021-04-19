@@ -3,11 +3,12 @@ package com.yzq.kotlincommon.mvvm.view_model
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileIOUtils
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.constants.StoragePath
+import com.blankj.utilcode.util.PathUtils
 import com.yzq.common.net.FileRetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ApiConstants
 import com.yzq.common.net.view_model.ApiServiceViewModel
+import com.yzq.lib_base.AppContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -23,17 +24,22 @@ class DownloadViewModel : ApiServiceViewModel() {
                     .downloadApk()
 
             LogUtils.i("""总长度：${download.contentLength()}""")
-
+//
+//            LogUtils.i("App filesDir:${AppContext.filesDir}")
+//
+//            val path =
+//                    "${AppContext.filesDir}/yzq.apk"
             val path =
-                    StoragePath.externalAppFilePath + "kotlinCommon/yzq.apk"
+                    "${PathUtils.getExternalAppFilesPath()}/yzq.apk"
 
-            LogUtils.i("存储路径：${path}")
 
             val su = withContext(Dispatchers.IO) {
 
                 FileIOUtils.writeFileFromIS(path, download.byteStream())
 
             }
+
+            LogUtils.i("存储路径：${path}")
             LogUtils.i("文件写入完成:${su}")
 
             AppUtils.installApp(path)
