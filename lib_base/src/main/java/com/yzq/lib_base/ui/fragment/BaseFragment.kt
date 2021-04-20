@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.ui.activity.BaseActivity
@@ -28,7 +27,7 @@ import org.greenrobot.eventbus.ThreadMode
  * @time   : 9:49
  *
  */
-abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
+abstract class BaseFragment : androidx.fragment.app.Fragment(), CoroutineScope by MainScope() {
 
     private var stateView: StateView? = null
     private var contentLayout: View? = null
@@ -44,9 +43,9 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
 
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
 
 
@@ -58,20 +57,23 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
     }
 
     abstract fun initRootView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewModel()
+        initVariable()
         initWidget()
         initData()
 
     }
 
     protected open fun initViewModel() {}
+
+    protected open fun initVariable() {}
 
 
     protected open fun initArgs(arguments: Bundle?) {
@@ -190,9 +192,9 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
     }
 
     protected open fun initStateView(
-        stateView: StateView,
-        contentLayout: View,
-        isRefreshLayout: Boolean = false
+            stateView: StateView,
+            contentLayout: View,
+            isRefreshLayout: Boolean = false
     ) {
         this.stateView = stateView
         this.contentLayout = contentLayout
