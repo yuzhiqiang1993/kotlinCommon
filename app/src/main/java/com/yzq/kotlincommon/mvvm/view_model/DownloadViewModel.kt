@@ -24,11 +24,7 @@ class DownloadViewModel : ApiServiceViewModel() {
                     .downloadApk()
 
             LogUtils.i("""总长度：${download.contentLength()}""")
-//
-//            LogUtils.i("App filesDir:${AppContext.filesDir}")
-//
-//            val path =
-//                    "${AppContext.filesDir}/yzq.apk"
+
             val path =
                     "${PathUtils.getExternalAppFilesPath()}/yzq.apk"
 
