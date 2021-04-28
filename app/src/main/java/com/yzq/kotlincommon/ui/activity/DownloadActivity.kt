@@ -19,19 +19,16 @@ class DownloadActivity : BaseVbVmActivity<ActivityDownloadBinding, DownloadViewM
 
     override fun initWidget() {
 
-
         initToolbar(binding.layoutToolbar.toolbar, "网络进度")
-
-        getPermissions(PermissionConstants.STORAGE) {
-
-            LogUtils.i("有以下权限:${it}")
-        }
-
 
         binding.btnDownload
             .setOnClickListener {
+                getPermissions(PermissionConstants.STORAGE) {
 
-                vm.downloadApk()
+                    LogUtils.i("有以下权限:${it}")
+                    vm.downloadApk()
+                }
+
 
             }
 
