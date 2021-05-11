@@ -57,7 +57,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
             } finally {
                 dismissLoadingDialog()
-                cancel()
 
             }
 
@@ -77,7 +76,11 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
             }
 
             try {
-                block()
+
+
+                supervisorScope {
+                    block()
+                }
 
             } catch (e: Exception) {
 
@@ -94,7 +97,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 }
 
             } finally {
-                cancel()
             }
 
 
@@ -156,8 +158,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
             } finally {
                 dismissProgressDialog()
-                cancel()
-
             }
 
 
