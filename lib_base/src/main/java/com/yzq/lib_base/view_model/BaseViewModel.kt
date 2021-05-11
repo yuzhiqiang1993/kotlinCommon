@@ -77,7 +77,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
             try {
 
-
                 supervisorScope {
                     block()
                 }
@@ -140,7 +139,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
             try {
 
                 showProgressDialog(title)
-
                 block()
             } catch (e: Exception) {
                 LogUtils.e("出现异常")
