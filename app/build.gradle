@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'walle'
+//apply plugin: 'walle'
 apply plugin: 'AndResGuard'
 apply plugin: "com.github.ben-manes.versions"
 android {
@@ -61,6 +61,29 @@ android {
         }
     }
 
+    flavorDimensions "Version"
+    productFlavors {
+
+        dev {
+            manifestPlaceholders = [
+                    "APP_NAME": "KotlinCommon-Dev",
+            ]
+        }
+        prd {
+            manifestPlaceholders = [
+                    "APP_NAME": "KotlinCommon-Prd",
+            ]
+        }
+        applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+
+                def date = new Date().format("yyyy-MM-dd HH:mm", TimeZone.getTimeZone("GMT+8"))
+
+                outputFileName = "${defaultConfig.applicationId}-${variant.productFlavors[0].name}_${defaultConfig.versionName}-${date}.apk"
+            }
+        }
+    }
+
     buildFeatures {
         dataBinding true
         viewBinding true
@@ -104,12 +127,12 @@ dependencies {
 
 }
 
-
-walle {
-    apkOutputFolder = new File("${project.buildDir}/outputs/channels")
-    apkFileNameFormat = '${projectName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk'
-    channelFile = new File("${project.getProjectDir()}/channel")
-}
+//
+//walle {
+//    apkOutputFolder = new File("${project.buildDir}/outputs/channels")
+//    apkFileNameFormat = '${projectName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk'
+//    channelFile = new File("${project.getProjectDir()}/channel")
+//}
 
 
 andResGuard {
@@ -146,7 +169,7 @@ andResGuard {
 
 
 afterEvaluate {
-    tasks.getByName("assembleReleaseChannels")
+    tasks.getByName("assembleRelease")
             .dependsOn(resguardRelease)
 
 }
