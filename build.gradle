@@ -1,8 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.5.0-release-764'
-//    ext.kotlin_version = "1.5.0-release-764"
+    ext.kotlin_version = '1.5.0'
     apply from: file("config.gradle")
     repositories {
         google()
@@ -14,8 +13,7 @@ buildscript {
         classpath 'com.android.tools.build:gradle:4.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-        /*多渠道打包*/
-//        classpath "com.meituan.android.walle:plugin:$walleVersion"
+
         /*用于混淆资源文件*/
         classpath "com.tencent.mm:AndResGuard-gradle-plugin:$andResGuardVersion"
         /*用于检测依赖库是否有最新版本*/

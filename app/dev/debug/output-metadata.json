@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.yzq.kotlincommon",
+  "variantName": "devDebug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 10,
+      "versionName": "0.1.0",
+      "outputFile": "com.yzq.kotlincommon-dev_0.1.0-2021-05-15_12-26.apk"
+    }
+  ]
+}
