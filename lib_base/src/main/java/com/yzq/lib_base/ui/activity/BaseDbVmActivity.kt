@@ -46,14 +46,12 @@ abstract class BaseDbVmActivity<DB : ViewDataBinding, VM : BaseViewModel> :
      */
     private fun handleViewState(viewStateBean: ViewStateBean) {
 
-        LogUtils.i("handleViewState${viewStateBean}")
         val content = viewStateBean.message
         when (viewStateBean.state) {
             ViewStateContstants.showLoadingDialog -> {
                 showLoadingDialog(content)
             }
             ViewStateContstants.dismissLoadingDialog -> {
-                LogUtils.i("dismissLoadingDialog")
                 dismissLoadingDialog()
             }
             ViewStateContstants.showErrorDialog -> {
@@ -73,6 +71,9 @@ abstract class BaseDbVmActivity<DB : ViewDataBinding, VM : BaseViewModel> :
             }
             ViewStateContstants.showError -> {
                 showError(content)
+            }
+            ViewStateContstants.showLoading -> {
+                showLoading()
             }
         }
 

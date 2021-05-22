@@ -25,19 +25,19 @@ class LoginViewModel : ApiServiceViewModel() {
             loginBean.account = account
             loginBean.pwd = pwd
 
-
+//
 //            val async = async {
 //                withContext(Dispatchers.IO) {
-//                    throw Exception()
+//                    throw Exception("aaaaaa")
 //                }
 //
 //            }
 //
 //
 //            async.await()
-
+//
 //            withContext(Dispatchers.IO){
-//                throw Exception()
+//                throw Exception("bbbbbbbb")
 //            }
 
 

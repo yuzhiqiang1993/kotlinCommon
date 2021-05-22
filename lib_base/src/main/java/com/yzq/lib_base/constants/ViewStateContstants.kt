@@ -13,6 +13,7 @@ object ViewStateContstants {
     const val showErrorDialog = 5
     const val showNoNet = 6
     const val showError = 7
+    const val showLoading = 8
 
     val NO_NET = StringUtils.getString(R.string.no_net)
     val PARSE_DATA_ERROE = StringUtils.getString(R.string.data_parse_error)

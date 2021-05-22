@@ -25,14 +25,14 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     private val loadingDialogCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
 
-        LogUtils.e("异常了=====>:${e.printStackTrace()}")
+        LogUtils.e("异常了=====>:${e.message}")
+        e.printStackTrace()
+
+        MainScope().launch {
 
 
-//        GlobalScope.launch(Dispatchers.Main) {
-
-
-        /*隐藏弹窗*/
-        dismissLoadingDialog()
+            /*隐藏弹窗*/
+            dismissLoadingDialog()
 
 
 //        val errorMsg = ""
@@ -46,9 +46,12 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 //            showErrorDialog(msg)
 //        }
 
-        val msg =
-            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
-        showErrorDialog(msg)
+            val msg =
+                if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+            showErrorDialog(msg)
+
+
+        }
 //        }
 
 
@@ -56,16 +59,18 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     private val progressDialogCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
 
-        LogUtils.e("异常了=====>:${e.printStackTrace()}")
-//        GlobalScope.launch(Dispatchers.Main) {
-        /*隐藏进度窗*/
-        dismissProgressDialog()
+        LogUtils.e("异常了=====>:${e.message}")
+        e.printStackTrace()
 
-        val msg =
-            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
-        showError(msg)
+        MainScope().launch {
+            /*隐藏进度窗*/
+            dismissProgressDialog()
 
-//        }
+            val msg =
+                if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+            showError(msg)
+
+        }
 
     }
 
@@ -73,10 +78,9 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     /*异常处理*/
     private val loadingCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
 
-        LogUtils.e("异常了=====>:${e.printStackTrace()}")
-
-        GlobalScope.launch(Dispatchers.Main) {
-
+        LogUtils.e("异常了=====>:${e.message}")
+        e.printStackTrace()
+        MainScope().launch(Dispatchers.Main) {
 //        if (e is JSONException || e is JsonParseException) {
 //            showError(ViewStateContstants.PARSE_DATA_ERROE)
 //        } else if (e is SocketTimeoutException) {
@@ -119,13 +123,14 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     fun launchLoading(block: suspend CoroutineScope.() -> Unit) {
 
-
         viewModelScope.launch(loadingCoroutineExceptionHandler) {
             if (!NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
                 return@launch
             }
+
+            showLoading()
 
             supervisorScope(block)
         }
@@ -136,7 +141,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     fun launchProgressDialog(url: String, title: String, block: suspend CoroutineScope.() -> Unit) {
 
-        viewModelScope.launch {
+        viewModelScope.launch(progressDialogCoroutineExceptionHandler) {
             if (!NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
@@ -176,23 +181,28 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     }
 
 
+    private fun showLoading() {
+        viewStateBean.message = ""
+        viewStateBean.state = ViewStateContstants.showLoading
+        loadState.value = viewStateBean
+    }
+
     /**
      * 显示弹窗逻辑
      * @param content String
      */
+
     private fun showloadingDialog(content: String) {
         viewStateBean.message = content
         viewStateBean.state = ViewStateContstants.showLoadingDialog
-
-
         loadState.value = viewStateBean
     }
 
     private fun dismissLoadingDialog() {
 
-        LogUtils.i("dismissLoadingDialog")
         viewStateBean.message = ""
         viewStateBean.state = ViewStateContstants.dismissLoadingDialog
+
         loadState.value = viewStateBean
     }
 
@@ -206,7 +216,12 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     private fun showNoNet() {
         viewStateBean.message = ""
         viewStateBean.state = ViewStateContstants.showNoNet
-        loadState.value = viewStateBean
+        MainScope().launch {
+
+            loadState.value = viewStateBean
+        }
+
+
     }
 
 

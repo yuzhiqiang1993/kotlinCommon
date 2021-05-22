@@ -105,10 +105,8 @@ class ImageListActivity : BaseVbVmActivity<ActivityImageListBinding, ImgListView
 
     override fun initData() {
 
-        if (requestType == httpFirst) {
 
-            showLoading()
-        }
+        requestType = httpFirst
 
         vm.start = 0
 

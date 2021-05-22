@@ -31,7 +31,7 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
         initStateView(binding.stateView, binding.tv)
 
         binding.stateView.retry {
-            showLoading()
+            requestType = httpFirst
             vm.requestData()
         }
 
@@ -68,8 +68,7 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
 
 
     override fun initData() {
-
-        showLoading()
+        requestType = httpFirst
         vm.requestData()
     }
 

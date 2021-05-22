@@ -350,8 +350,12 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      *
      */
     fun showLoading() {
-        stateView?.showLoading()
-        contentLayout?.visibility = View.GONE
+
+        if (requestType == httpFirst) {
+            stateView?.showLoading()
+            contentLayout?.visibility = View.GONE
+        }
+
 
     }
 
