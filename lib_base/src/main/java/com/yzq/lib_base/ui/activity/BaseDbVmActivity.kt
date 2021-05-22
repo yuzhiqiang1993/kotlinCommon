@@ -2,6 +2,7 @@ package com.yzq.lib_base.ui.activity
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
 import com.yzq.lib_base.view_model.BaseViewModel
@@ -29,9 +30,11 @@ abstract class BaseDbVmActivity<DB : ViewDataBinding, VM : BaseViewModel> :
         with(vm) {
             lifecycleOwner = this@BaseDbVmActivity
             lifecycle.addObserver(this)
-            loadState.observe(
-                lifecycleOwner,
-                { viewStateBean -> handleViewState(viewStateBean) })
+            loadState.observe(this@BaseDbVmActivity) { viewStateBean ->
+                handleViewState(
+                    viewStateBean
+                )
+            }
         }
         observeViewModel()
     }
@@ -42,12 +45,15 @@ abstract class BaseDbVmActivity<DB : ViewDataBinding, VM : BaseViewModel> :
      * @param viewStateBean ViewStateBean
      */
     private fun handleViewState(viewStateBean: ViewStateBean) {
+
+        LogUtils.i("handleViewState${viewStateBean}")
         val content = viewStateBean.message
         when (viewStateBean.state) {
             ViewStateContstants.showLoadingDialog -> {
                 showLoadingDialog(content)
             }
             ViewStateContstants.dismissLoadingDialog -> {
+                LogUtils.i("dismissLoadingDialog")
                 dismissLoadingDialog()
             }
             ViewStateContstants.showErrorDialog -> {

@@ -4,15 +4,12 @@ import android.text.TextUtils
 import androidx.lifecycle.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
-import com.google.gson.JsonParseException
 import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
 import kotlinx.coroutines.*
 import me.jessyan.progressmanager.ProgressListener
 import me.jessyan.progressmanager.ProgressManager
 import me.jessyan.progressmanager.body.ProgressInfo
-import org.json.JSONException
-import java.net.SocketTimeoutException
 
 
 /*
@@ -26,13 +23,83 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     private val viewStateBean by lazy { ViewStateBean() }
     val loadState by lazy { MutableLiveData<ViewStateBean>() }
 
+    private val loadingDialogCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
+
+        LogUtils.e("异常了=====>:${e.printStackTrace()}")
+
+
+//        GlobalScope.launch(Dispatchers.Main) {
+
+
+        /*隐藏弹窗*/
+        dismissLoadingDialog()
+
+
+//        val errorMsg = ""
+//        if (e is JSONException || e is JsonParseException) {
+//            showErrorDialog(ViewStateContstants.PARSE_DATA_ERROE)
+//        } else if (e is SocketTimeoutException) {
+//            showErrorDialog(ViewStateContstants.SERVER_TIMEOUT)
+//        } else {
+//            val msg =
+//                if (TextUtils.isEmpty(e.localizedMessage)) ViewStateContstants.UNKONW_ERROR else e.localizedMessage!!
+//            showErrorDialog(msg)
+//        }
+
+        val msg =
+            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+        showErrorDialog(msg)
+//        }
+
+
+    }
+
+    private val progressDialogCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
+
+        LogUtils.e("异常了=====>:${e.printStackTrace()}")
+//        GlobalScope.launch(Dispatchers.Main) {
+        /*隐藏进度窗*/
+        dismissProgressDialog()
+
+        val msg =
+            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+        showError(msg)
+
+//        }
+
+    }
+
+
+    /*异常处理*/
+    private val loadingCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
+
+        LogUtils.e("异常了=====>:${e.printStackTrace()}")
+
+        GlobalScope.launch(Dispatchers.Main) {
+
+//        if (e is JSONException || e is JsonParseException) {
+//            showError(ViewStateContstants.PARSE_DATA_ERROE)
+//        } else if (e is SocketTimeoutException) {
+//            showError(ViewStateContstants.SERVER_TIMEOUT)
+//        } else {
+//            val msg =
+//                if (TextUtils.isEmpty(e.localizedMessage)) ViewStateContstants.UNKONW_ERROR else e.localizedMessage!!
+//            showError(msg)
+//        }
+
+            val msg =
+                if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+            showError(msg)
+        }
+    }
+
 
     fun launchLoadingDialog(
-            loadText: String = ViewStateContstants.LOADING,
-            block: suspend CoroutineScope.() -> Unit
+        loadText: String = ViewStateContstants.LOADING,
+        block: suspend CoroutineScope.() -> Unit
     ) {
 
-        viewModelScope.launch {
+        viewModelScope.launch(loadingDialogCoroutineExceptionHandler) {
             if (!NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
@@ -40,25 +107,9 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
             }
             showloadingDialog(loadText)
 
-            try {
-                block()
-            } catch (e: Exception) {
-                dismissLoadingDialog()
-                e.printStackTrace()
-                if (e is JSONException || e is JsonParseException) {
-                    showErrorDialog(ViewStateContstants.PARSE_DATA_ERROE)
-                } else if (e is SocketTimeoutException) {
-                    showErrorDialog(ViewStateContstants.SERVER_TIMEOUT)
-                } else {
-                    val msg =
-                            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
-                    showErrorDialog(msg)
-                }
+            supervisorScope(block)
 
-            } finally {
-                dismissLoadingDialog()
-
-            }
+            dismissLoadingDialog()
 
         }
 
@@ -68,37 +119,15 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     fun launchLoading(block: suspend CoroutineScope.() -> Unit) {
 
-        viewModelScope.launch {
+
+        viewModelScope.launch(loadingCoroutineExceptionHandler) {
             if (!NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
                 return@launch
             }
 
-            try {
-
-                supervisorScope {
-                    block()
-                }
-
-            } catch (e: Exception) {
-
-                e.printStackTrace()
-
-                if (e is JSONException || e is JsonParseException) {
-                    showError(ViewStateContstants.PARSE_DATA_ERROE)
-                } else if (e is SocketTimeoutException) {
-                    showError(ViewStateContstants.SERVER_TIMEOUT)
-                } else {
-                    val msg =
-                            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
-                    showError(msg)
-                }
-
-            } finally {
-            }
-
-
+            supervisorScope(block)
         }
 
 
@@ -115,48 +144,30 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
             }
 
             ProgressManager.getInstance()
-                    .addResponseListener(url, object : ProgressListener {
-                        override fun onProgress(progressInfo: ProgressInfo?) {
+                .addResponseListener(url, object : ProgressListener {
+                    override fun onProgress(progressInfo: ProgressInfo?) {
 
 //                            LogUtils.i("下载进度:${progressInfo?.percent}")
 
-                            changeProgress(progressInfo!!.percent)
+                        changeProgress(progressInfo!!.percent)
 
-                        }
+                    }
 
-                        override fun onError(id: Long, e: Exception?) {
+                    override fun onError(id: Long, e: Exception?) {
 
-                            LogUtils.i("下载出错：${e?.printStackTrace()}")
+                        LogUtils.i("下载出错：${e?.printStackTrace()}")
 
-                            dismissProgressDialog()
+                        dismissProgressDialog()
 
-                        }
+                    }
 
-                    })
+                })
 
+            showProgressDialog(title)
 
+            supervisorScope(block)
 
-            try {
-
-                showProgressDialog(title)
-                block()
-            } catch (e: Exception) {
-                LogUtils.e("出现异常")
-                e.printStackTrace()
-
-                if (e is JSONException || e is JsonParseException) {
-                    showError(ViewStateContstants.PARSE_DATA_ERROE)
-                } else if (e is SocketTimeoutException) {
-                    showError(ViewStateContstants.SERVER_TIMEOUT)
-                } else {
-                    val msg =
-                            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
-                    showError(msg)
-                }
-
-            } finally {
-                dismissProgressDialog()
-            }
+            dismissProgressDialog()
 
 
         }
@@ -173,10 +184,13 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
         viewStateBean.message = content
         viewStateBean.state = ViewStateContstants.showLoadingDialog
 
+
         loadState.value = viewStateBean
     }
 
     private fun dismissLoadingDialog() {
+
+        LogUtils.i("dismissLoadingDialog")
         viewStateBean.message = ""
         viewStateBean.state = ViewStateContstants.dismissLoadingDialog
         loadState.value = viewStateBean
@@ -206,7 +220,10 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
         viewStateBean.message = title
         viewStateBean.state = ViewStateContstants.showProgressDialog
+
         loadState.value = viewStateBean
+
+
     }
 
     fun dismissProgressDialog() {

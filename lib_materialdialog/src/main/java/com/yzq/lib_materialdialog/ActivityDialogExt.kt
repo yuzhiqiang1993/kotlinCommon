@@ -6,7 +6,6 @@ import com.afollestad.materialdialogs.DialogCallback
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.InputCallback
 import com.afollestad.materialdialogs.input.input
-import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.afollestad.materialdialogs.list.ItemListener
 import com.afollestad.materialdialogs.list.listItems
 import com.loper7.date_time_picker.DateTimeConfig
@@ -18,7 +17,10 @@ import com.loper7.date_time_picker.dialog.CardDatePickerDialog
 fun ComponentActivity.getNewDialog(): MaterialDialog {
 
 
-    return MaterialDialog(this).cancelOnTouchOutside(false).cancelable(false).lifecycleOwner(this)
+    return MaterialDialog(this)
+        .cancelOnTouchOutside(false)
+        .cancelable(false)
+//        .lifecycleOwner(this)
 
 }
 

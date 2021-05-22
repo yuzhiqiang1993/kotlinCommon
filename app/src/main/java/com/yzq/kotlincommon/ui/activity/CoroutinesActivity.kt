@@ -31,8 +31,10 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
         initStateView(binding.stateView, binding.tv)
 
         binding.stateView.retry {
-            initData()
+            showLoading()
+            vm.requestData()
         }
+
 
         launch {
             LogUtils.i("launch 当前线程:${Thread.currentThread().name}")
@@ -64,12 +66,11 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
         }
     }
 
+
     override fun initData() {
-        super.initData()
+
         showLoading()
         vm.requestData()
-
-
     }
 
 

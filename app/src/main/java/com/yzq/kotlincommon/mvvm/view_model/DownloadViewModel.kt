@@ -8,7 +8,6 @@ import com.yzq.common.net.FileRetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ApiConstants
 import com.yzq.common.net.view_model.ApiServiceViewModel
-import com.yzq.lib_base.AppContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -21,12 +20,12 @@ class DownloadViewModel : ApiServiceViewModel() {
         launchProgressDialog(ApiConstants.apk, "下载中...") {
 
             val download = FileRetrofitFactory.instance.getService(ApiService::class.java)
-                    .downloadApk()
+                .downloadApk()
 
             LogUtils.i("""总长度：${download.contentLength()}""")
 
             val path =
-                    "${PathUtils.getExternalAppFilesPath()}/yzq.apk"
+                "${PathUtils.getExternalAppFilesPath()}/yzq.apk"
 
 
             val su = withContext(Dispatchers.IO) {

@@ -15,6 +15,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.lib_base.R
 import com.yzq.lib_base.constants.ViewStateContstants
@@ -149,11 +150,11 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      * @param transparentStatusBar Boolean 是否沉浸式状态栏，默认状态栏透明
      */
     protected open fun initToolbar(
-            toolbar: Toolbar,
-            title: String,
-            displayHome: Boolean = true,
-            showBackHint: Boolean = false,
-            transparentStatusBar: Boolean = true
+        toolbar: Toolbar,
+        title: String,
+        displayHome: Boolean = true,
+        showBackHint: Boolean = false,
+        transparentStatusBar: Boolean = true
     ) {
 
         toolbar.title = title
@@ -175,7 +176,11 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
     }
 
-    protected open fun colorStatusBar(@ColorRes color: Int = R.color.colorOnPrimary, view: View, isLightMode: Boolean = false) {
+    protected open fun colorStatusBar(
+        @ColorRes color: Int = R.color.colorOnPrimary,
+        view: View,
+        isLightMode: Boolean = false
+    ) {
         BarUtils.setStatusBarColor(this, ContextCompat.getColor(this, color))
         BarUtils.addMarginTopEqualStatusBarHeight(view)
         BarUtils.setStatusBarLightMode(this, isLightMode)
@@ -202,10 +207,10 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      * @param showBackHint  点击返回时是否显示返回提示框，默认不显示
      */
     protected fun initHeader(
-            backIv: AppCompatImageView,
-            titleTv: TextView,
-            title: String,
-            showBackHint: Boolean = false
+        backIv: AppCompatImageView,
+        titleTv: TextView,
+        title: String,
+        showBackHint: Boolean = false
     ) {
         titleTv.text = title
         this.showBackHint = showBackHint
@@ -234,11 +239,11 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         intent.putExtra(ImgPreviewActivity.IMG_PATH, path)
 
         val options =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        this,
-                        view,
-                        getString(R.string.img_transition)
-                )
+            ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this,
+                view,
+                getString(R.string.img_transition)
+            )
         startActivity(intent, options.toBundle())
 
     }
@@ -296,6 +301,7 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      *解除加载框
      */
     fun dismissLoadingDialog() {
+        LogUtils.i("dismissLoadingDialog")
         loadingDialog.dismiss()
     }
 
@@ -418,9 +424,9 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      * @param isRefreshLayout  是否是下拉刷新
      */
     protected fun initStateView(
-            stateView: StateView,
-            contentLayout: View,
-            isRefreshLayout: Boolean = false
+        stateView: StateView,
+        contentLayout: View,
+        isRefreshLayout: Boolean = false
     ) {
         this.stateView = stateView
         this.contentLayout = contentLayout

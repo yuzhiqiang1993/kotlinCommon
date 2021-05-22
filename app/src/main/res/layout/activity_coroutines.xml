@@ -15,8 +15,11 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_46"
         android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp_18"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
