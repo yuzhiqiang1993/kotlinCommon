@@ -24,9 +24,9 @@ fun File.getOpenIntent(): Intent {
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
     val uri: Uri = FileProvider.getUriForFile(
-            AppContext,
-            AppUtils.getAppPackageName() + ".provider",
-            FileUtils.getFileByPath(path)
+        AppContext,
+        AppUtils.getAppPackageName() + ".provider",
+        FileUtils.getFileByPath(path)
     )
 
     val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(name)

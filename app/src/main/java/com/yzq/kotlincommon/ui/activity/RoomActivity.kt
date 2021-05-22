@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 
 @Route(path = RoutePath.Main.ROOM)
 class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
-        OnItemChildClickListener {
+    OnItemChildClickListener {
 
 
     override fun getViewBinding() = ActivityRoomBinding.inflate(layoutInflater)

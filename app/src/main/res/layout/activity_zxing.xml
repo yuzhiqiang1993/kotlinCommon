@@ -18,18 +18,18 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_scan"
 
-        android:layout_margin="@dimen/dp_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
         android:text="扫描二维码" />
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_jsoup"
 
-        android:layout_margin="@dimen/dp_10"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
         android:text="扫描提取营业执照信息" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

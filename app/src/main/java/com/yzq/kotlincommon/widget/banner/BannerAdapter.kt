@@ -12,10 +12,10 @@ class BannerAdapter : BaseBannerAdapter<String>() {
     }
 
     override fun bindData(
-            holder: BaseViewHolder<String>,
-            data: String,
-            position: Int,
-            pageSize: Int
+        holder: BaseViewHolder<String>,
+        data: String,
+        position: Int,
+        pageSize: Int
     ) {
 
         val bannerIv = holder.findViewById<RoundedImageView>(R.id.iv_banner)

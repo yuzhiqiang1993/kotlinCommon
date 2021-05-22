@@ -23,13 +23,13 @@ object MapPermissionUtils {
     /*检查定位相关权限*/
     @SuppressLint("CheckResult")
     fun checkLocationPermission(
-            needGps: Boolean = false,
-            activity: BaseActivity,
-            mapPermission: MapPermission
+        needGps: Boolean = false,
+        activity: BaseActivity,
+        mapPermission: MapPermission
     ) {
         activity.getPermissions(
-                PermissionConstants.LOCATION,
-                PermissionConstants.STORAGE
+            PermissionConstants.LOCATION,
+            PermissionConstants.STORAGE
         ) {
             if (needGps) {
 
@@ -37,9 +37,9 @@ object MapPermissionUtils {
                     mapPermission()
                 } else {
                     Toast.makeText(
-                            activity,
-                            "该功能需要获取当前位置信息，请打开GPS",
-                            Toast.LENGTH_LONG
+                        activity,
+                        "该功能需要获取当前位置信息，请打开GPS",
+                        Toast.LENGTH_LONG
                     ).show()
                     LocationUtils.openGpsSettings()
                 }

@@ -27,19 +27,19 @@ object GaoDeNavUtil {
      * @param dname String
      */
     fun openGaoDeNavi(
-            context: Context,
-            dlat: String,
-            dlon: String,
-            dname: String
+        context: Context,
+        dlat: String,
+        dlon: String,
+        dname: String
     ) {
         val uriString: String
         val builder = StringBuilder("amapuri://route/plan?sourceApplication=maxuslife")
 
         builder.append("&dlat=").append(dlat)
-                .append("&dlon=").append(dlon)
-                .append("&dname=").append(dname)
-                .append("&dev=0")
-                .append("&t=2")
+            .append("&dlon=").append(dlon)
+            .append("&dname=").append(dname)
+            .append("&dev=0")
+            .append("&t=2")
         uriString = builder.toString()
         val intent = Intent(Intent.ACTION_VIEW)
         intent.setPackage(packageName)

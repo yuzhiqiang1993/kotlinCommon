@@ -1,7 +1,7 @@
 package com.yzq.common.net.ext
 
-import com.yzq.common.net.constants.ResponseCode
 import com.yzq.common.data.BaseResp
+import com.yzq.common.net.constants.ResponseCode
 
 /*
 * 数据转换

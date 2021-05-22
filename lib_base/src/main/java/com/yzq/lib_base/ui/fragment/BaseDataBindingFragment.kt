@@ -25,7 +25,7 @@ abstract class BaseDataBindingFragment<DB : ViewDataBinding> : BaseFragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(inflater, getContentLayoutId(), container, false);
+        binding = DataBindingUtil.inflate(inflater, getContentLayoutId(), container, false)
         binding.lifecycleOwner = this
         return binding.root
     }

@@ -31,7 +31,7 @@ class RequestEncryptInterceptor : Interceptor {
 
         var charset = Charset.forName("UTF-8")
 
-        val method = request.method.trim().toLowerCase(Locale.ROOT)
+        val method = request.method.trim().lowercase(Locale.ROOT)
 
         LogUtils.i("请求方式：${method}")
 
@@ -116,7 +116,7 @@ class RequestEncryptInterceptor : Interceptor {
                     LogUtils.i("contentType===> type:${contentType.type},subType:${contentType.subtype}")
 
                     /*如果是二进制上传  则不进行加密*/
-                    if (contentType.type.toLowerCase(Locale.ROOT).equals("multipart")) {
+                    if (contentType.type.lowercase(Locale.ROOT).equals("multipart")) {
                         LogUtils.i("上传文件，不加密")
 
                         return chain.proceed(request)

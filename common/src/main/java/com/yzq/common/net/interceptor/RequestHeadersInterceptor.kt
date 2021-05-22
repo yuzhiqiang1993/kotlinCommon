@@ -23,10 +23,10 @@ class RequestHeadersInterceptor : Interceptor {
         val builder = request.newBuilder()
 
         builder.addHeader(ServerConstants.DEVICE_ID, DeviceUtils.getAndroidID())
-                .header("Accept", "*/*")
-                .header("Accept-Encoding", "gzip")
-                .header("Cache-Control", "no-cache")
-                .build()
+            .header("Accept", "*/*")
+            .header("Accept-Encoding", "gzip")
+            .header("Cache-Control", "no-cache")
+            .build()
 
 
         return chain.proceed(builder.build())

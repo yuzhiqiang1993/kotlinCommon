@@ -24,7 +24,7 @@ class ImgListViewModel : ApiServiceViewModel() {
     fun getData() {
         launchLoading {
             val datas = RetrofitFactory.instance.getService(ApiService::class.java)
-                    .getMovies("0b2bdeda43b5688921839c8ecb20399b", start, count)
+                .getMovies("0b2bdeda43b5688921839c8ecb20399b", start, count)
             subjectsLive.value = datas.subjects
             start += datas.subjects.size
         }
@@ -44,8 +44,8 @@ class ImgListViewModel : ApiServiceViewModel() {
 
                 DiffUtil.calculateDiff(object : DiffUtil.Callback() {
                     override fun areItemsTheSame(
-                            oldItemPosition: Int,
-                            newItemPosition: Int
+                        oldItemPosition: Int,
+                        newItemPosition: Int
                     ): Boolean {
                         return oldDatas[oldItemPosition].id.equals(newDatas[newItemPosition].id)
                     }
@@ -59,8 +59,8 @@ class ImgListViewModel : ApiServiceViewModel() {
                     }
 
                     override fun areContentsTheSame(
-                            oldItemPosition: Int,
-                            newItemPosition: Int
+                        oldItemPosition: Int,
+                        newItemPosition: Int
                     ): Boolean {
                         return oldDatas[oldItemPosition] == newDatas[newItemPosition]
                     }

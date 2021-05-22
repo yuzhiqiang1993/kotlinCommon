@@ -25,35 +25,27 @@ import com.yzq.lib_widget.R;
 public class SwipeMenuLayout extends ViewGroup {
     // private static final String TAG = "zxt/SwipeMenuLayout";
 
+    //防止多只手指一起滑我的flag 在每次down里判断， touch事件结束清空
+    private static boolean isTouching;
     private int mScaleTouchSlop;//为了处理单击事件的冲突
     private int mMaxVelocity;//计算滑动速度用
     private int mPointerId;//多点触摸只算第一根手指的速度
     private int mHeight;//自己的高度
     //右侧菜单宽度总和(最大滑动距离)
     private int mRightMenuWidths;
-
     //滑动判定临界值（右侧菜单宽度的40%） 手指抬起时，超过了展开，没超过收起menu
     private int mLimit;
-
     private View mContentView;//2016 11 13 add ，存储contentView(第一个View)
-
     //上一次的xy
     private PointF lastP = new PointF();
-
     //在Intercept函数的up时，判断这个变量，如果仍为true 说明是点击事件，则关闭菜单。
     private boolean isUnMoved = true;
-
     //2016 11 03 add,判断手指起始落点，如果距离属于滑动了，就屏蔽一切点击事件。
     //up-down的坐标，判断是否是滑动，如果是，则屏蔽一切点击事件
     private PointF firstP = new PointF();
     private boolean isUserSwiped;
-
     //存储的是当前正在展开的View
     private SwipeMenuLayout mViewCache;
-
-    //防止多只手指一起滑我的flag 在每次down里判断， touch事件结束清空
-    private static boolean isTouching;
-
     private VelocityTracker mVelocityTracker;//滑动速度变量
 
 
@@ -73,6 +65,11 @@ public class SwipeMenuLayout extends ViewGroup {
      * 左滑右滑的开关,默认左滑打开菜单
      */
     private boolean isLeftSwipe;
+    /**
+     * 平滑展开
+     */
+    private ValueAnimator mExpandAnim, mCloseAnim;
+    private boolean isExpand;//代表当前是否是展开状态 2016 11 03 add
 
     public SwipeMenuLayout(Context context) {
         this(context, null);
@@ -99,7 +96,6 @@ public class SwipeMenuLayout extends ViewGroup {
     public void setSwipeEnable(boolean swipeEnable) {
         isSwipeEnable = swipeEnable;
     }
-
 
     public boolean isIos() {
         return isIos;
@@ -457,13 +453,6 @@ public class SwipeMenuLayout extends ViewGroup {
         }
         return super.onInterceptTouchEvent(ev);
     }
-
-    /**
-     * 平滑展开
-     */
-    private ValueAnimator mExpandAnim, mCloseAnim;
-
-    private boolean isExpand;//代表当前是否是展开状态 2016 11 03 add
 
     public void smoothExpand() {
         //Log.d(TAG, "smoothExpand() called" + this);

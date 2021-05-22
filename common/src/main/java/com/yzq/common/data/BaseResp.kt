@@ -12,4 +12,4 @@ data class BaseResp<T>(
     var message: String = "", // 成功的返回
     var result: T,
     var status: Int = 0 // 0
-)
+) 

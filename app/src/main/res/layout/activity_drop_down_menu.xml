@@ -7,7 +7,9 @@
     android:orientation="vertical"
     tools:context=".ui.activity.DropDownMenuActivity">
 
-    <include layout="@layout/toolbar" android:id="@+id/layout_toolbar" />
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
 
 
     <com.yzq.lib_widget.drop_down_menu.DropDownMenu

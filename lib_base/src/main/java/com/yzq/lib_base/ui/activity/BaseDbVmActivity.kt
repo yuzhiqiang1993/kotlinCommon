@@ -2,7 +2,6 @@ package com.yzq.lib_base.ui.activity
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.data.ViewStateBean
 import com.yzq.lib_base.view_model.BaseViewModel

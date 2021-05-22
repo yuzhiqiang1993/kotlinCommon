@@ -46,6 +46,18 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
      */
     private final int dividerPadding;
     /**
+     * 是否显示列表最后一条分割线
+     */
+    private final boolean dividerIsShowLastDivide;
+    /**
+     * 分割线item的画笔
+     */
+    private final Paint dividerPaint;
+    /**
+     * recyclerView布局方式（水平或者垂直）
+     */
+    private final int orientation;
+    /**
      * 分割线距离左边的距离
      */
     private int dividerPaddingLeft;
@@ -53,7 +65,6 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
      * 分割线距离右边的距离
      */
     private int dividerPaddingRight;
-
     /**
      * 分割线距离上边的距离
      */
@@ -63,26 +74,9 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
      */
     private int dividerPaddingBottom;
     /**
-     * 是否显示列表最后一条分割线
-     */
-    private final boolean dividerIsShowLastDivide;
-
-
-    /**
-     * 分割线item的画笔
-     */
-    private final Paint dividerPaint;
-
-    /**
      * 分割线开始的位置（解决recyclerView添加头布局的时候，要从header下边的position位置算起）
      */
     private int dividerFromPosition = 0;
-
-
-    /**
-     * recyclerView布局方式（水平或者垂直）
-     */
-    private final int orientation;
 
 
     private SuperDividerItemDecoration(Builder builder) {
@@ -106,6 +100,71 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
             dividerPaddingLeft = dividerPaddingRight = dividerPadding;
             dividerPaddingTop = dividerPaddingBottom = dividerPadding;
         }
+    }
+
+    @Override
+    public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+        super.onDraw(c, parent, state);
+
+        if (orientation == VERTICAL) {
+            drawVertical(c, parent);
+        } else {
+            drawHorizontal(c, parent);
+        }
+
+    }
+
+    private void drawVertical(Canvas c, RecyclerView parent) {
+        int count = parent.getChildCount();
+
+        if (count > 0) {
+            int showCount = dividerIsShowLastDivide ? count : count - 1;
+            for (int i = dividerFromPosition; i < showCount; i++) {
+                View view = parent.getChildAt(i);
+                //可见item的底部
+                int itemBottom = view.getBottom();
+
+                c.drawRect(parent.getPaddingLeft() + dividerPaddingLeft,
+                        itemBottom,
+                        parent.getWidth() - parent.getPaddingRight() - dividerPaddingRight,
+                        itemBottom + dividerWidth,
+                        dividerPaint);
+            }
+        }
+    }
+
+    private void drawHorizontal(Canvas c, RecyclerView parent) {
+        int count = parent.getChildCount();
+        if (count > 0) {
+            int showCount = dividerIsShowLastDivide ? count : count - 1;
+            for (int i = dividerFromPosition; i < showCount; i++) {
+                View view = parent.getChildAt(i);
+                //可见item的底部
+                int itemRight = view.getRight();
+
+                c.drawRect(itemRight,
+                        parent.getPaddingTop() + dividerPaddingTop,
+                        itemRight + dividerWidth,
+                        parent.getHeight() - parent.getPaddingBottom() - dividerPaddingBottom,
+                        dividerPaint);
+            }
+        }
+    }
+
+    @Override
+    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+        super.getItemOffsets(outRect, view, parent, state);
+        if (orientation == VERTICAL) {
+            outRect.bottom = dividerWidth;
+        } else {
+            outRect.right = dividerWidth;
+        }
+    }
+
+    private int dp2px(float dpVal) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
+                dpVal, context.getResources().getDisplayMetrics());
+
     }
 
     public static class Builder {
@@ -179,73 +238,6 @@ public class SuperDividerItemDecoration extends RecyclerView.ItemDecoration {
         public SuperDividerItemDecoration build() {
             return new SuperDividerItemDecoration(this);
         }
-    }
-
-    @Override
-    public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        super.onDraw(c, parent, state);
-
-        if (orientation == VERTICAL) {
-            drawVertical(c, parent);
-        } else {
-            drawHorizontal(c, parent);
-        }
-
-    }
-
-
-    private void drawVertical(Canvas c, RecyclerView parent) {
-        int count = parent.getChildCount();
-
-        if (count > 0) {
-            int showCount = dividerIsShowLastDivide ? count : count - 1;
-            for (int i = dividerFromPosition; i < showCount; i++) {
-                View view = parent.getChildAt(i);
-                //可见item的底部
-                int itemBottom = view.getBottom();
-
-                c.drawRect(parent.getPaddingLeft() + dividerPaddingLeft,
-                        itemBottom,
-                        parent.getWidth() - parent.getPaddingRight() - dividerPaddingRight,
-                        itemBottom + dividerWidth,
-                        dividerPaint);
-            }
-        }
-    }
-
-    private void drawHorizontal(Canvas c, RecyclerView parent) {
-        int count = parent.getChildCount();
-        if (count > 0) {
-            int showCount = dividerIsShowLastDivide ? count : count - 1;
-            for (int i = dividerFromPosition; i < showCount; i++) {
-                View view = parent.getChildAt(i);
-                //可见item的底部
-                int itemRight = view.getRight();
-
-                c.drawRect(itemRight,
-                        parent.getPaddingTop() + dividerPaddingTop,
-                        itemRight + dividerWidth,
-                        parent.getHeight() - parent.getPaddingBottom() - dividerPaddingBottom,
-                        dividerPaint);
-            }
-        }
-    }
-
-
-    @Override
-    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-        super.getItemOffsets(outRect, view, parent, state);
-        if (orientation == VERTICAL) {
-            outRect.bottom = dividerWidth;
-        } else {
-            outRect.right = dividerWidth;
-        }
-    }
-
-    private int dp2px(float dpVal) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
-                dpVal, context.getResources().getDisplayMetrics());
-
     }
 
 }

@@ -11,7 +11,7 @@ import com.yzq.lib_img.loadWithThumbnail
 import kotlin.random.Random
 
 class ImgListAdapter(layoutResId: Int, data: MutableList<Subject>) :
-        BaseQuickAdapter<Subject, BaseViewHolder>(layoutResId, data), LoadMoreModule {
+    BaseQuickAdapter<Subject, BaseViewHolder>(layoutResId, data), LoadMoreModule {
 
 
     override fun convert(holder: BaseViewHolder, item: Subject) {

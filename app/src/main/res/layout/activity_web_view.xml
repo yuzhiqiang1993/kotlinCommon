@@ -7,7 +7,9 @@
     tools:context=".ui.activity.WebViewActivity">
 
 
-    <include layout="@layout/toolbar" android:id="@+id/layout_toolbar" />
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
 
 
     <WebView

@@ -15,7 +15,8 @@ import kotlin.reflect.KProperty
  * @time   : 16:04
  *
  */
-class SharedPreference<T>(val name: String, private val defaultVal: T) : ReadWriteProperty<Any?, T> {
+class SharedPreference<T>(val name: String, private val defaultVal: T) :
+    ReadWriteProperty<Any?, T> {
 
 
     private val prfs by lazy {

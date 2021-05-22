@@ -2,7 +2,7 @@ package com.yzq.lib_base
 
 import android.content.ContextWrapper
 
- /**
+/**
  * @description: AppContext
  * @author : yzq
  * @date   : 2019/2/18
@@ -10,4 +10,4 @@ import android.content.ContextWrapper
  *
  */
 
-object AppContext:ContextWrapper(BaseApp.INSTANCE)
+object AppContext : ContextWrapper(BaseApp.INSTANCE)

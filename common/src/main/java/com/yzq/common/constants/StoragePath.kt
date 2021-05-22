@@ -33,13 +33,17 @@ object StoragePath {
     @SuppressLint("UsableSpace")
     fun logPathInfo() {
         LogUtils.i(
-                """
+            """
                 eternalAppDataPath：$eternalAppDataPath,
                 externalAppFilesPath：$externalAppFilesPath,       
                 externalAppPicturesPath：$externalAppPicturesPath,
                 AppContext.filesDir.path.usableSpace: ${AppContext.filesDir.usableSpace}
                 AppContext.cacheDir.path: ${AppContext.cacheDir.path}
-                AppContext.getExternalFilesDir.path.usableSpace: ${AppContext.getExternalFilesDir(null)?.usableSpace}
+                AppContext.getExternalFilesDir.path.usableSpace: ${
+                AppContext.getExternalFilesDir(
+                    null
+                )?.usableSpace
+            }
                 
             """.trimIndent()
         )

@@ -1,13 +1,11 @@
 package com.yzq.common.net.utils;
 
 
-
- /**
- * @description: BASE64工具类
+/**
  * @author : yzq
- * @date   : 2019/3/21
- * @time   : 11:14
- *
+ * @description: BASE64工具类
+ * @date : 2019/3/21
+ * @time : 11:14
  */
 
 public final class Base64 {

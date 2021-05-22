@@ -5,6 +5,7 @@ import androidx.databinding.Bindable
 import com.yzq.common.BR
 
 class LoginBean : BaseObservable() {
+
     @Bindable
     var account: String = ""
         set(value) {

@@ -21,8 +21,8 @@ object GsonConvert {
 
 
     private var gson: Gson = GsonBuilder()
-            .serializeNulls()
-            .create()
+        .serializeNulls()
+        .create()
 
 
     @Throws(JsonIOException::class, JsonSyntaxException::class)

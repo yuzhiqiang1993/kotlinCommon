@@ -8,6 +8,6 @@
         android:id="@+id/menu_fragment"
         android:icon="@drawable/ic_user"
         android:title="Fragment" />
-    
+
 
 </menu>

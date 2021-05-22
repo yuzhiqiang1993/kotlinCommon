@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.TaskActivity">
 
-    <include layout="@layout/toolbar" android:id="@+id/layout_toolbar" />
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
 
 
     <androidx.recyclerview.widget.RecyclerView

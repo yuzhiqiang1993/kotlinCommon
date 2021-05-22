@@ -8,6 +8,6 @@
         android:id="@+id/menu_user"
         android:icon="@drawable/ic_user"
         android:title="用户" />
-    
+
 
 </menu>

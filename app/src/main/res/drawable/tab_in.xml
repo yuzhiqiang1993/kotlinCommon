@@ -5,9 +5,9 @@
         android:width="@dimen/dp_10"
         android:height="@dimen/dp_2" />
 
-<!--    <solid android:color="@color/yellow_500" />-->
-<!--    <stroke-->
-<!--        android:color="@color/yellow_500" />-->
+    <!--    <solid android:color="@color/yellow_500" />-->
+    <!--    <stroke-->
+    <!--        android:color="@color/yellow_500" />-->
     <corners android:radius="2dp" />
 
 

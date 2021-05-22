@@ -8,7 +8,9 @@
     tools:context=".ui.activity.ImageListActivity">
 
 
-    <include layout="@layout/toolbar"  android:id="@+id/layout_toolbar"/>
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/layout_swipe_refresh"

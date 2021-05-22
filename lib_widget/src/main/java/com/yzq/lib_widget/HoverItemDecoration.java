@@ -191,21 +191,20 @@ public class HoverItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
-    public interface BindItemTextCallback {
-        String getItemText(int position);
-    }
-
-
     private int dp2px(int dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 dpVal, context.getResources().getDisplayMetrics());
     }
 
-
     private int sp2px() {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
                 15, context.getResources().getDisplayMetrics());
 
+    }
+
+
+    public interface BindItemTextCallback {
+        String getItemText(int position);
     }
 
 }

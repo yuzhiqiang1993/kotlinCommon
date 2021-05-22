@@ -41,6 +41,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope() {
 
+
     private var lastClickTime: Long = 0//最后一次点击的时间
 
     private val intervalTime = 300//两次点击之间的间隔

@@ -74,8 +74,8 @@ class WebViewActivity : BaseViewBindingActivity<ActivityWebViewBinding>() {
         }
 
         override fun shouldOverrideUrlLoading(
-                view: WebView?,
-                request: WebResourceRequest?
+            view: WebView?,
+            request: WebResourceRequest?
         ): Boolean {
             LogUtils.i("shouldOverrideUrlLoading request:${request!!.url}")
             return super.shouldOverrideUrlLoading(view, request)
@@ -85,9 +85,9 @@ class WebViewActivity : BaseViewBindingActivity<ActivityWebViewBinding>() {
 
         @RequiresApi(Build.VERSION_CODES.M)
         override fun onReceivedError(
-                view: WebView?,
-                request: WebResourceRequest?,
-                error: WebResourceError?
+            view: WebView?,
+            request: WebResourceRequest?,
+            error: WebResourceError?
         ) {
             LogUtils.e("onReceivedError:${request!!.url}")
             LogUtils.e("onReceivedError:${error!!.errorCode}")

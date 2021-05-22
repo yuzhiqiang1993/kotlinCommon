@@ -2,13 +2,13 @@
 <set xmlns:android="http://schemas.android.com/apk/res/android">
 
     <rotate
+        android:duration="1500"
+        android:fillAfter="true"
         android:fromDegrees="0"
-        android:toDegrees="359"
+        android:interpolator="@android:anim/accelerate_interpolator"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:duration="1500"
         android:startOffset="0"
-        android:interpolator="@android:anim/accelerate_interpolator"
-        android:fillAfter="true"/>
+        android:toDegrees="359" />
 
 </set>

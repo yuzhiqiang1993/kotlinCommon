@@ -43,9 +43,9 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), CoroutineScope b
 
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
 
@@ -57,9 +57,9 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), CoroutineScope b
     }
 
     abstract fun initRootView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -192,9 +192,9 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), CoroutineScope b
     }
 
     protected open fun initStateView(
-            stateView: StateView,
-            contentLayout: View,
-            isRefreshLayout: Boolean = false
+        stateView: StateView,
+        contentLayout: View,
+        isRefreshLayout: Boolean = false
     ) {
         this.stateView = stateView
         this.contentLayout = contentLayout

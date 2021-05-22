@@ -6,7 +6,7 @@ import io.reactivex.disposables.Disposable
 /*
 * 只关心OnNext的Observer
 * */
-abstract class NextObserver<T>:Observer<T>{
+abstract class NextObserver<T> : Observer<T> {
 
     override fun onSubscribe(d: Disposable) {
 

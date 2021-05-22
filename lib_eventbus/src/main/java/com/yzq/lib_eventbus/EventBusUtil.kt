@@ -3,8 +3,7 @@ package com.yzq.lib_eventbus
 import org.greenrobot.eventbus.EventBus
 
 
-
- /**
+/**
  * @description: EventBus封装
  * @author : yzq
  * @date   : 2018/7/9
