@@ -101,11 +101,13 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
 
             layoutScrollContent.btnLoading
                 .setOnClickListener {
-                    showLoadingDialog("登录中...")
+
+
+                    stateViewManager.showLoadingDialog("登录中...")
 
                     Observable.timer(3, TimeUnit.SECONDS)
                         .subscribe {
-                            dismissLoadingDialog()
+                            stateViewManager.dismissLoadingDialog()
                         }
                 }
 
@@ -114,7 +116,7 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                 .setOnClickListener {
                     var count = 0
 
-                    showProgressDialog("模拟进度")
+                    stateViewManager.showProgressDialog("模拟进度")
 
 
                     Observable.interval(200, TimeUnit.MILLISECONDS)
@@ -129,10 +131,10 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                                 LogUtils.i(count)
                                 count += 5
                                 if (count <= 100) {
-                                    changeProgress(count)
+                                    stateViewManager.changeProgress(count)
                                 } else {
                                     d.dispose()
-                                    dismissProgressDialog()
+                                    stateViewManager.dismissProgressDialog()
                                 }
                             }
                         })

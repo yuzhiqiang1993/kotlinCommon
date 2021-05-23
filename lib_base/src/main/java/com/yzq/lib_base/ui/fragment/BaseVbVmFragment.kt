@@ -2,8 +2,6 @@ package com.yzq.lib_base.ui.fragment
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import com.yzq.lib_base.constants.ViewStateContstants
-import com.yzq.lib_base.data.ViewStateBean
 import com.yzq.lib_base.view_model.BaseViewModel
 
 
@@ -33,51 +31,11 @@ abstract class BaseVbVmFragment<VB : ViewBinding, VM : BaseViewModel> :
         with(vm) {
             lifecycleOwner = this@BaseVbVmFragment
             lifecycle.addObserver(this)
-            loadState.observe(this@BaseVbVmFragment, { viewStateBean ->
-                handleViewState(viewStateBean)
-            })
+            loadState.observe(this@BaseVbVmFragment) { viewStateBean ->
+                stateViewManager.handleViewState(viewStateBean)
+            }
         }
-
-
         observeViewModel()
-    }
-
-
-    /**
-     * 处理视图UI变化显示逻辑
-     * @param viewStateBean ViewStateBean
-     */
-    private fun handleViewState(viewStateBean: ViewStateBean) {
-        val content = viewStateBean.message
-        when (viewStateBean.state) {
-
-            ViewStateContstants.showLoadingDialog -> {
-                showLoadingDialog(content)
-            }
-            ViewStateContstants.dismissLoadingDialog -> {
-                dismissLoadingDialog()
-            }
-
-            ViewStateContstants.showErrorDialog -> {
-                showErrorDialog(content)
-            }
-            ViewStateContstants.showProgressDialog -> {
-                showProgressDialog(content)
-            }
-            ViewStateContstants.dismissProgressDialog -> {
-                dismissProgressDialog()
-            }
-            ViewStateContstants.changeProgress -> {
-                changeProgress(content.toInt())
-            }
-            ViewStateContstants.showNoNet -> {
-                showNoNet()
-            }
-            ViewStateContstants.showError -> {
-                showError(content)
-            }
-        }
-
     }
 
 

@@ -13,9 +13,6 @@ buildscript {
         classpath 'com.android.tools.build:gradle:4.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-
-        /*用于混淆资源文件*/
-        classpath "com.tencent.mm:AndResGuard-gradle-plugin:$andResGuardVersion"
         /*用于检测依赖库是否有最新版本*/
         classpath "com.github.ben-manes:gradle-versions-plugin:${gradle_versions_plugin}"
 

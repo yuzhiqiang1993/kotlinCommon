@@ -2,17 +2,15 @@ package com.yzq.lib_base.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.yzq.lib_base.constants.ViewStateContstants
+import androidx.fragment.app.Fragment
 import com.yzq.lib_base.ui.activity.BaseActivity
+import com.yzq.lib_base.ui.state_view.StateViewManager
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
-import com.yzq.lib_widget.StateView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -27,14 +25,14 @@ import org.greenrobot.eventbus.ThreadMode
  * @time   : 9:49
  *
  */
-abstract class BaseFragment : androidx.fragment.app.Fragment(), CoroutineScope by MainScope() {
+abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
 
-    private var stateView: StateView? = null
-    private var contentLayout: View? = null
-    private var isRefreshLayout: Boolean = false
+
+    protected val stateViewManager by lazy { StateViewManager(activity = requireActivity() as BaseActivity) }
 
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
     protected var extrasTag = ""
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -120,85 +118,9 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), CoroutineScope b
         EventBusUtil.unregister(this)
     }
 
-    protected open fun onBackPressed(): Boolean {
-
-
+    /*返回键监听*/
+    open fun onBackPressed(): Boolean {
         return false
-
-    }
-
-    protected open fun showLoading() {
-        stateView?.showLoading()
-        contentLayout?.visibility = View.GONE
-
-    }
-
-    protected open fun showContent() {
-        stateView?.hide()
-        contentLayout?.visibility = View.VISIBLE
-
-        if (isRefreshLayout and (contentLayout != null)) {
-            (contentLayout as SwipeRefreshLayout).isRefreshing = false
-        }
-
-
-    }
-
-    protected open fun showNoData() {
-        stateView?.showNoData()
-        contentLayout?.visibility = View.GONE
-
-    }
-
-    protected open fun showNoNet() {
-        stateView?.showNoNet()
-        contentLayout?.visibility = View.GONE
-
-    }
-
-    protected open fun showError(msg: String?) {
-
-        if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(ViewStateContstants.UNKONW_ERROR)
-        } else {
-            stateView?.showError(msg!!)
-        }
-        contentLayout?.visibility = View.GONE
-    }
-
-
-    protected open fun showLoadingDialog(message: String) {
-        (activity as BaseActivity).showLoadingDialog(message)
-    }
-
-    protected open fun dismissLoadingDialog() {
-        (activity as BaseActivity).dismissLoadingDialog()
-    }
-
-    protected open fun showErrorDialog(msg: String?) {
-        (activity as BaseActivity).showErrorDialog(msg)
-    }
-
-    protected open fun showProgressDialog(title: String) {
-        (activity as BaseActivity).showProgressDialog(title)
-    }
-
-    protected open fun changeProgress(percent: Int) {
-        (activity as BaseActivity).changeProgress(percent)
-    }
-
-    protected open fun dismissProgressDialog() {
-        (activity as BaseActivity).dismissProgressDialog()
-    }
-
-    protected open fun initStateView(
-        stateView: StateView,
-        contentLayout: View,
-        isRefreshLayout: Boolean = false
-    ) {
-        this.stateView = stateView
-        this.contentLayout = contentLayout
-        this.isRefreshLayout = isRefreshLayout
     }
 
 

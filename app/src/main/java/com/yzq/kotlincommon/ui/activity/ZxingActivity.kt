@@ -109,7 +109,7 @@ class ZxingActivity : BaseViewBindingActivity<ActivityZxingBinding>() {
     @SuppressLint("SetTextI18n")
     private fun parseData(url: String) {
 
-        showLoadingDialog("正在解析....")
+        stateViewManager.showLoadingDialog("正在解析....")
 
         Observable.create<Document> {
 
@@ -133,7 +133,7 @@ class ZxingActivity : BaseViewBindingActivity<ActivityZxingBinding>() {
             LogUtils.i("法定代表人：$people")
 
             if (TextUtils.isEmpty(code) || TextUtils.isEmpty(name) || TextUtils.isEmpty(people)) {
-                dismissLoadingDialog()
+                stateViewManager.dismissLoadingDialog()
                 showBaseDialog(message = "请扫描营业执照上的二维码！")
                 return@subscribe
             } else {
@@ -142,7 +142,7 @@ class ZxingActivity : BaseViewBindingActivity<ActivityZxingBinding>() {
                             企业名称:${name}
                             法定代表人:${people}
                         """.trimIndent()
-                dismissLoadingDialog()
+                stateViewManager.dismissLoadingDialog()
 
             }
 

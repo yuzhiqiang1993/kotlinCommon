@@ -3,7 +3,6 @@ package com.yzq.lib_base.ui.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView
@@ -13,17 +12,13 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.blankj.utilcode.util.BarUtils
-import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.ToastUtils
 import com.yzq.lib_base.R
-import com.yzq.lib_base.constants.ViewStateContstants
 import com.yzq.lib_base.ui.ImgPreviewActivity
+import com.yzq.lib_base.ui.fragment.BaseFragment
+import com.yzq.lib_base.ui.state_view.StateViewManager
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
-import com.yzq.lib_materialdialog.*
-import com.yzq.lib_widget.StateView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
@@ -47,21 +42,17 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     private val intervalTime = 300//两次点击之间的间隔
     private var allowFastClick = false//是否允许快速点击
 
-    private val loadingDialog by lazy { getLoadingDialog() }//加载框
-    private val progressDialog by lazy { getProgressDialog() } //进度框
 
-    private var stateView: StateView? = null //状态布局
-    private var contentLayout: View? = null//内容布局
-    private var isRefreshLayout: Boolean = false//是否有下拉刷新
-    private var showBackHint = false //是否显示返回提示框
+    /*视图状态管理器*/
+    protected val stateViewManager by lazy { StateViewManager(this) }
+
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
     protected var extrasTag = ""
 
-    protected val httpFirst = 0//首次请求
-    protected val httpRefresh = 1//刷新
-    protected val httpLoadMore = 2//加载更多
 
-    protected var requestType = httpFirst
+    init {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -161,7 +152,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         toolbar.title = title
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(displayHome)
-        this.showBackHint = showBackHint
 
         if (transparentStatusBar) {
             transStatusBar(toolbar)
@@ -214,7 +204,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         showBackHint: Boolean = false
     ) {
         titleTv.text = title
-        this.showBackHint = showBackHint
 
         backIv.setOnClickListener {
             onBackPressed()
@@ -275,167 +264,17 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     @SuppressLint("CheckResult", "AutoDispose")
     override fun onBackPressed() {
 
-        if (showBackHint) {
-            showBackHintDialog(positiveCallback = {
-                finish()
-            })
-        } else {
-            finish()
-        }
+        supportFragmentManager.fragments.forEach {
 
-    }
-
-
-    /**
-     * 显示加载框
-     *
-     * @param message  加载框文本信息
-     */
-    fun showLoadingDialog(message: String) {
-        loadingDialog.setLoadingMessage(message)
-        loadingDialog.show()
-
-    }
-
-    /**
-     *
-     *解除加载框
-     */
-    fun dismissLoadingDialog() {
-        LogUtils.i("dismissLoadingDialog")
-        loadingDialog.dismiss()
-    }
-
-    /**
-     * 显示进度框
-     *
-     * @param title  提示文本
-     */
-    fun showProgressDialog(title: String) {
-        progressDialog.changeTitle(title)
-        progressDialog.show()
-
-
-    }
-
-    /**
-     * 解除进度框
-     *
-     */
-    fun dismissProgressDialog() {
-        progressDialog.dismiss()
-    }
-
-    /**
-     * 修改进度框进度
-     *
-     * @param percent  当前进度
-     */
-    fun changeProgress(percent: Int) {
-        progressDialog.changeProgress(percent)
-
-    }
-
-
-    fun showErrorDialog(msg: String?) {
-        if (TextUtils.isEmpty(msg)) {
-            showBaseDialog(message = ViewStateContstants.UNKONW_ERROR)
-        } else {
-            showBaseDialog(message = msg!!)
-        }
-
-    }
-
-    /**
-     * 显示加载中
-     *
-     */
-    fun showLoading() {
-
-        if (requestType == httpFirst) {
-            stateView?.showLoading()
-            contentLayout?.visibility = View.GONE
-        }
-
-
-    }
-
-    /**
-     * 显示内容布局
-     *
-     */
-    fun showContent() {
-        stateView?.hide()
-        contentLayout?.visibility = View.VISIBLE
-
-        if (isRefreshLayout and (contentLayout != null)) {
-            (contentLayout as SwipeRefreshLayout).isRefreshing = false
-        }
-    }
-
-    /**
-     * 显示无数据
-     *
-     */
-    fun showNoData() {
-        stateView?.showNoData()
-        contentLayout?.visibility = View.GONE
-
-
-    }
-
-    /**
-     * 显示无网络
-     *
-     */
-    fun showNoNet() {
-
-        when (requestType) {
-            httpFirst -> {
-                stateView?.showNoNet()
-                contentLayout?.visibility = View.GONE
-            }
-            httpRefresh -> {
-                (contentLayout as SwipeRefreshLayout).isRefreshing = false
+            if (it is BaseFragment) {
+                if (it.onBackPressed()) {
+                    return
+                }
             }
         }
 
+        super.onBackPressed()
 
-        ToastUtils.showLong(ViewStateContstants.NO_NET)
-
-    }
-
-    /**
-     * 显示错误信息
-     *
-     * @param msg  错误信息
-     */
-    fun showError(msg: String?) {
-
-        if (TextUtils.isEmpty(msg)) {
-            stateView?.showError(ViewStateContstants.UNKONW_ERROR)
-        } else {
-            stateView?.showError(msg!!)
-        }
-        contentLayout?.visibility = View.GONE
-
-    }
-
-    /**
-     * 初始化状态布局
-     *
-     * @param stateView  状态控件
-     * @param contentLayout  内容布局
-     * @param isRefreshLayout  是否是下拉刷新
-     */
-    protected fun initStateView(
-        stateView: StateView,
-        contentLayout: View,
-        isRefreshLayout: Boolean = false
-    ) {
-        this.stateView = stateView
-        this.contentLayout = contentLayout
-        this.isRefreshLayout = isRefreshLayout
     }
 
 
@@ -444,7 +283,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         EventBusUtil.unregister(this)
         cancel()
     }
-
 
 }
 

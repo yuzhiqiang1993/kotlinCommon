@@ -28,10 +28,10 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
 
 
         initToolbar(binding.layoutToolbar.toolbar, "Coroutine 协程")
-        initStateView(binding.stateView, binding.tv)
+        stateViewManager.initStateView(binding.stateView, binding.tv)
 
         binding.stateView.retry {
-            requestType = httpFirst
+            stateViewManager.switchToFirst()
             vm.requestData()
         }
 
@@ -68,7 +68,7 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
 
 
     override fun initData() {
-        requestType = httpFirst
+        stateViewManager.switchToFirst()
         vm.requestData()
     }
 
@@ -82,7 +82,7 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
                 LogUtils.i("请求完成")
                 binding.tv.text = it.formattedAddress
 
-                showContent()
+                stateViewManager.showContent()
 
             }
 

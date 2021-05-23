@@ -44,7 +44,7 @@ class MoviesActivity : BaseVbVmActivity<ActivityMovieListBinding, MovieViewModel
 
         initToolbar(binding.layoutToolbar.toolbar, "电影列表")
         binding.recy.init()
-        initStateView(binding.stateView, binding.recy)
+        stateViewManager.initStateView(binding.stateView, binding.recy)
         binding.stateView.retry {
             initData()
         }
@@ -63,7 +63,7 @@ class MoviesActivity : BaseVbVmActivity<ActivityMovieListBinding, MovieViewModel
             if (t.isNotEmpty()) {
                 showData(t)
             } else {
-                showNoData()
+                stateViewManager.showNoData()
             }
 
 
@@ -79,7 +79,7 @@ class MoviesActivity : BaseVbVmActivity<ActivityMovieListBinding, MovieViewModel
         binding.recy.adapter = movieAdapter
         movieAdapter.setOnItemClickListener(this)
         movieAdapter.setOnItemChildClickListener(this)
-        showContent()
+        stateViewManager.showContent()
     }
 
 

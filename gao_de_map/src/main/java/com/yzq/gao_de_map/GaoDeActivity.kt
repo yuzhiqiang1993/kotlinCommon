@@ -30,7 +30,7 @@ class GaoDeActivity : BaseVbVmActivity<ActivityGaoDeBinding, LocationSignViewMod
         binding.btnLocation.setOnClickListener {
 
             MapPermissionUtils.checkLocationPermission(true, this) {
-                showLoadingDialog("正在获取位置信息")
+                stateViewManager.showLoadingDialog("正在获取位置信息")
                 vm.startLocation()
             }
 
@@ -49,7 +49,7 @@ class GaoDeActivity : BaseVbVmActivity<ActivityGaoDeBinding, LocationSignViewMod
                     binding.tvLocationResult.text = t.locationDetail
                 }
 
-                dismissLoadingDialog()
+                stateViewManager.dismissLoadingDialog()
             })
 
     }

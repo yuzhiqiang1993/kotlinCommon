@@ -1,7 +1,7 @@
-package com.yzq.lib_base.constants
+package com.yzq.lib_base.ui.state_view.constants
 
 import com.blankj.utilcode.util.StringUtils
-import com.yzq.lib_base.R
+import com.yzq.lib_widget.R
 
 /*视图状态常量*/
 object ViewStateContstants {

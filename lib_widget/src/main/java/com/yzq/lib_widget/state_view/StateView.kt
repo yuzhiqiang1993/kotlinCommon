@@ -1,10 +1,11 @@
-package com.yzq.lib_widget
+package com.yzq.lib_widget.state_view
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import com.yzq.lib_widget.R
 import com.yzq.lib_widget.databinding.LayoutStateViewBinding
 
 
@@ -17,7 +18,7 @@ import com.yzq.lib_widget.databinding.LayoutStateViewBinding
  */
 
 
-typealias RetryListener = () -> Unit
+
 
 class StateView(
     context: Context,

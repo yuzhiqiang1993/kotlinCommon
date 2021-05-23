@@ -1,11 +1,11 @@
-package com.yzq.lib_base.data
+package com.yzq.lib_base.ui.state_view.data
 
-import com.yzq.lib_base.constants.ViewStateContstants
+import com.yzq.lib_base.ui.state_view.constants.ViewStateContstants
 
 
 /*
 *
-* 视图状态
+* 视图状态实体类
 * */
 data class ViewStateBean(
     var state: Int = ViewStateContstants.showLoadingDialog,

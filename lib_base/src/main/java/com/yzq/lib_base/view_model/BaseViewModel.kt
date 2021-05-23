@@ -4,8 +4,8 @@ import android.text.TextUtils
 import androidx.lifecycle.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
-import com.yzq.lib_base.constants.ViewStateContstants
-import com.yzq.lib_base.data.ViewStateBean
+import com.yzq.lib_base.ui.state_view.constants.ViewStateContstants
+import com.yzq.lib_base.ui.state_view.data.ViewStateBean
 import kotlinx.coroutines.*
 import me.jessyan.progressmanager.ProgressListener
 import me.jessyan.progressmanager.ProgressManager

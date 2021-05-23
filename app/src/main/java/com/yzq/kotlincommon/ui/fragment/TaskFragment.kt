@@ -27,13 +27,17 @@ class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>()
         LogUtils.i("TaskFragment")
         binding.tvTask.text = "喻志强"
 
-        initStateView(binding.stateView, binding.tvTask)
+
+        stateViewManager.initStateView(binding.stateView, binding.tvTask)
+
+
+        stateViewManager.initStateView(binding.stateView, binding.tvTask)
 
     }
 
     override fun initData() {
 
-        showLoading()
+        stateViewManager.showLoading()
         vm.requestData()
     }
 
@@ -43,7 +47,7 @@ class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>()
             geocoder.observe(this@TaskFragment, Observer {
                 binding.tvTask.text = GsonConvert.toJson(it)
 
-                showContent()
+                stateViewManager.showContent()
             })
         }
 
