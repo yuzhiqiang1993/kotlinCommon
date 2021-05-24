@@ -65,7 +65,7 @@ android {
         applicationVariants.all { variant ->
             variant.outputs.all { output ->
 
-                def date = new Date().format("yyyy-MM-dd HH-mm", TimeZone.getTimeZone("GMT+8"))
+                def date = new Date().format("yyyy-MM-dd_HH-mm", TimeZone.getTimeZone("GMT+8"))
 
                 outputFileName = "${defaultConfig.applicationId}-${variant.productFlavors[0].name}_${defaultConfig.versionName}-${date}.apk"
             }

@@ -18,8 +18,6 @@ import com.yzq.lib_widget.databinding.LayoutStateViewBinding
  */
 
 
-
-
 class StateView(
     context: Context,
     attrs: AttributeSet?,
