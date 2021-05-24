@@ -24,11 +24,11 @@ class StateViewManager(private val activity: BaseActivity) {
     private val loadingDialog by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { activity.getLoadingDialog() }//加载框
     private val progressDialog by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { activity.getProgressDialog() } //进度框
 
-    private val httpFirst = 0//首次请求
-    private val httpRefresh = 1//刷新
-    private val httpLoadMore = 2//加载更多
+    val httpFirst = 0//首次请求
+    val httpRefresh = 1//刷新
+    val httpLoadMore = 2//加载更多
 
-    private var requestType = httpFirst
+    var requestType = httpFirst
 
     private var stateView: StateView? = null
     private var contentLayout: View? = null
@@ -46,11 +46,11 @@ class StateViewManager(private val activity: BaseActivity) {
         this.requestType = httpFirst
     }
 
-    fun chaneLoadMore() {
+    fun switchToLoadMore() {
         this.requestType = httpLoadMore
     }
 
-    fun changeRefresh() {
+    fun switchToRefresh() {
         this.requestType = httpRefresh
     }
 
