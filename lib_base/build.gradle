@@ -63,7 +63,6 @@ dependencies {
     api "androidx.multidex:multidex:$multiDexVersion"
 
     //KTX core
-
     api "androidx.core:core-ktx:$core_ktx"
 
     //ViewModel
