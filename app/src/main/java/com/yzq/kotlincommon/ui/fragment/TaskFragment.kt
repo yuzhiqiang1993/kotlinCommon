@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.net.GsonConvert
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
+import com.yzq.lib_base.gson.GsonConvert
 import com.yzq.lib_base.ui.fragment.BaseVbVmFragment
 
 
