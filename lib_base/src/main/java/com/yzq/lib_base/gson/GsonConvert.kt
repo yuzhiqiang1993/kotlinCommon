@@ -1,4 +1,4 @@
-package com.yzq.lib_base.gson
+package com.yzq.lib_base.json
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -20,6 +20,11 @@ object GsonConvert {
 
     val gson: Gson = GsonBuilder()
         .serializeNulls()
+        .setLenient()
+        .create()
+
+    val prettyGson: Gson = GsonBuilder()
+        .serializeNulls()
         .setPrettyPrinting()
         .setLenient()
         .create()
@@ -34,6 +39,10 @@ object GsonConvert {
     }
 
     fun toJson(src: Any): String {
+        return gson.toJson(src)
+    }
+
+    fun toPrettyJson(src: Any): String {
         return gson.toJson(src)
     }
 
