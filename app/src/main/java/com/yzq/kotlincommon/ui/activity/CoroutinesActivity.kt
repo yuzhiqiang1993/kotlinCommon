@@ -31,7 +31,8 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
         stateViewManager.initStateView(binding.stateView, binding.tv)
 
         binding.stateView.retry {
-            stateViewManager.switchToFirst()
+            stateViewManager.switchToHttpFirst()
+
             vm.requestData()
         }
 
@@ -68,7 +69,7 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
 
 
     override fun initData() {
-        stateViewManager.switchToFirst()
+        stateViewManager.switchToHttpFirst()
         vm.requestData()
     }
 

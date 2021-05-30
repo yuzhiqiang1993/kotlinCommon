@@ -55,7 +55,7 @@ class ImageListActivity : BaseVbVmActivity<ActivityImageListBinding, ImgListView
 
         binding.layoutSwipeRefresh.setOnRefreshListener {
 
-            stateViewManager.switchToRefresh()
+            stateViewManager.switchToHttpRefresh()
 
             initData()
         }
@@ -106,7 +106,7 @@ class ImageListActivity : BaseVbVmActivity<ActivityImageListBinding, ImgListView
     override fun initData() {
 
 
-        stateViewManager.switchToFirst()
+        stateViewManager.switchToHttpFirst()
 
         vm.start = 0
 
@@ -117,7 +117,7 @@ class ImageListActivity : BaseVbVmActivity<ActivityImageListBinding, ImgListView
 
     private fun handleDataChanged(t: List<Subject>) {
 
-        if (stateViewManager.requestType == stateViewManager.httpLoadMore) {
+        if (stateViewManager.isHttpLoadMore()) {
 
             if (t.isEmpty()) {
                 imgListAdapter.loadMoreModule.loadMoreEnd()
@@ -151,7 +151,7 @@ class ImageListActivity : BaseVbVmActivity<ActivityImageListBinding, ImgListView
     override fun onLoadMore() {
         LogUtils.i("onLoadMoreRequested")
         if (vm.start <= 250) {
-            stateViewManager.switchToLoadMore()
+            stateViewManager.switchToHttpLoadMore()
             vm.getData()
         } else {
             imgListAdapter.loadMoreModule.loadMoreEnd()

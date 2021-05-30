@@ -50,10 +50,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     protected var extrasTag = ""
 
 
-    init {
-
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

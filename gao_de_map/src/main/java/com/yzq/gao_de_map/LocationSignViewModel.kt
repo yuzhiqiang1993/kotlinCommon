@@ -42,6 +42,7 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
     /*开始定位*/
 
     fun startLocation() {
+
         locationClient.startLocation()
 
     }

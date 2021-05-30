@@ -24,11 +24,11 @@ class StateViewManager(private val activity: BaseActivity) {
     private val loadingDialog by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { activity.getLoadingDialog() }//加载框
     private val progressDialog by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { activity.getProgressDialog() } //进度框
 
-    val httpFirst = 0//首次请求
-    val httpRefresh = 1//刷新
-    val httpLoadMore = 2//加载更多
+    private val httpFirst = 0//首次请求
+    private val httpRefresh = 1//刷新
+    private val httpLoadMore = 2//加载更多
 
-    var requestType = httpFirst
+    private var requestType = httpFirst
 
     private var stateView: StateView? = null
     private var contentLayout: View? = null
@@ -42,17 +42,30 @@ class StateViewManager(private val activity: BaseActivity) {
         this.contentLayout = contentLayout
     }
 
-    fun switchToFirst() {
+    fun switchToHttpFirst() {
         this.requestType = httpFirst
     }
 
-    fun switchToLoadMore() {
+    fun switchToHttpLoadMore() {
         this.requestType = httpLoadMore
     }
 
-    fun switchToRefresh() {
+    fun switchToHttpRefresh() {
         this.requestType = httpRefresh
     }
+
+    fun isHttpFirst(): Boolean {
+        return requestType == httpFirst
+    }
+
+    fun isHttpRefresh(): Boolean {
+        return requestType == httpRefresh
+    }
+
+    fun isHttpLoadMore(): Boolean {
+        return requestType == httpLoadMore
+    }
+
 
     /**
      * 处理视图UI变化显示逻辑
@@ -180,7 +193,7 @@ class StateViewManager(private val activity: BaseActivity) {
 
 
     /*取消下拉刷新动画*/
-    private fun cancelRefresh() {
+    fun cancelRefresh() {
 
 
         if (requestType == httpRefresh && (contentLayout != null) && contentLayout is SwipeRefreshLayout) {
@@ -227,19 +240,12 @@ class StateViewManager(private val activity: BaseActivity) {
      * @param msg  错误信息
      */
     fun showError(msg: String) {
-
-
         if (requestType == httpLoadMore) {
             ToastUtils.showShort(msg)
-
         } else {
-
             stateView?.showError(msg)
-
             contentLayout?.visibility = View.GONE
-
             cancelRefresh()
-
         }
 
 

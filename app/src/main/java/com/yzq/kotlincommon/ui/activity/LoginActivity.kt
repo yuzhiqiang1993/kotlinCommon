@@ -73,6 +73,7 @@ class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
             loginLiveData.observe(this@LoginActivity) {
                 nav(RoutePath.Main.MAIN)
             }
+
         }
     }
 

@@ -2,12 +2,12 @@ package com.yzq.kotlincommon.ui.fragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
 import com.yzq.lib_base.gson.GsonConvert
 import com.yzq.lib_base.ui.fragment.BaseVbVmFragment
+import com.yzq.lib_base.utils.GsonUtil
 
 
 class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>() {
@@ -27,25 +27,19 @@ class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>()
         LogUtils.i("TaskFragment")
         binding.tvTask.text = "喻志强"
 
-
-        stateViewManager.initStateView(binding.stateView, binding.tvTask)
-
-
         stateViewManager.initStateView(binding.stateView, binding.tvTask)
 
     }
 
     override fun initData() {
-
-        stateViewManager.showLoading()
         vm.requestData()
     }
 
     override fun observeViewModel() {
 
         with(vm) {
-            geocoder.observe(this@TaskFragment, Observer {
-                binding.tvTask.text = GsonConvert.toJson(it)
+            geocoder.observe(this@TaskFragment, {
+                binding.tvTask.text = GsonUtil.toJson(it)
 
                 stateViewManager.showContent()
             })

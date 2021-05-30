@@ -31,6 +31,7 @@ class GaoDeActivity : BaseVbVmActivity<ActivityGaoDeBinding, LocationSignViewMod
 
             MapPermissionUtils.checkLocationPermission(true, this) {
                 stateViewManager.showLoadingDialog("正在获取位置信息")
+
                 vm.startLocation()
             }
 

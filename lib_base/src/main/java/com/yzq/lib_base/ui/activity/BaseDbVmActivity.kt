@@ -2,6 +2,7 @@ package com.yzq.lib_base.ui.activity
 
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.lib_base.view_model.BaseViewModel
 
 
@@ -28,6 +29,7 @@ abstract class BaseDbVmActivity<DB : ViewDataBinding, VM : BaseViewModel> :
             lifecycleOwner = this@BaseDbVmActivity
             lifecycle.addObserver(this)
             loadState.observe(this@BaseDbVmActivity) { viewStateBean ->
+                LogUtils.i("BaseDbVmActivity loadState:${viewStateBean}")
                 stateViewManager.handleViewState(
                     viewStateBean
                 )
