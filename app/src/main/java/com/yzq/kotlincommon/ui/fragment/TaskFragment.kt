@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
-import com.yzq.lib_base.gson.GsonConvert
 import com.yzq.lib_base.ui.fragment.BaseVbVmFragment
 import com.yzq.lib_base.utils.GsonUtil
 
