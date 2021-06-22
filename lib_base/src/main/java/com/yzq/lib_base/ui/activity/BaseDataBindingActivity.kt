@@ -11,10 +11,10 @@ import androidx.databinding.ViewDataBinding
  * @time   : 18:28
  */
 
-abstract class BaseDataBindingActivity<DB : ViewDataBinding> : BaseActivity() {
+abstract class BaseDataBindingActivity<VDB : ViewDataBinding> : BaseActivity() {
 
 
-    protected lateinit var binding: DB
+    protected lateinit var binding: VDB
 
     override fun initContentView() {
         binding = DataBindingUtil.setContentView(this, getContentLayoutId())

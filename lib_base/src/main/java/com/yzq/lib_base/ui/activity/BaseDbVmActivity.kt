@@ -13,8 +13,8 @@ import com.yzq.lib_base.view_model.BaseViewModel
  * @time   : 18:29
  */
 
-abstract class BaseDbVmActivity<DB : ViewDataBinding, VM : BaseViewModel> :
-    BaseDataBindingActivity<DB>() {
+abstract class BaseDbVmActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
+    BaseDataBindingActivity<VDB>() {
 
     lateinit var vm: VM
 
