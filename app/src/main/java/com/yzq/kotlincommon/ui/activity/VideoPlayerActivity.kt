@@ -78,22 +78,22 @@ class VideoPlayerActivity : BaseViewBindingActivity<ActivityVideoPlayerBinding>(
                     super.onQuitFullscreen(url, *objects)
                     orientationUtils.backToProtVideo()
                 }
-            }).setLockClickListener({ view, lock ->
+            }).setLockClickListener { view, lock ->
 
                 orientationUtils.isEnable = !lock
 
-            }).build(binding.videoPlayer)
+            }.build(binding.videoPlayer)
 
 
 
 
         binding.videoPlayer.fullscreenButton
-            .setOnClickListener({
+            .setOnClickListener {
                 //直接横屏
                 orientationUtils.resolveByClick()
                 //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar
                 binding.videoPlayer.startWindowFullscreen(this, true, true)
-            })
+            }
 
     }
 

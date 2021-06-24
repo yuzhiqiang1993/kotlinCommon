@@ -33,8 +33,8 @@ class ImgListViewModel : ApiServiceViewModel() {
 
     /**
      * 计算旧数据和新数据之间的差异值
-     * @param oldData List<Subject>
-     * @param newData List<Subject>
+     * @param oldDatas List<Subject>
+     * @param newDatas List<Subject>
      */
     fun calculateDiff(oldDatas: List<Subject>, newDatas: List<Subject>) {
 

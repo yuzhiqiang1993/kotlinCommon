@@ -154,7 +154,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
         return true
     }
 
-    var lastBackTimeMillis: Long = 0
+    private var lastBackTimeMillis: Long = 0
     override fun onBackPressed() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {

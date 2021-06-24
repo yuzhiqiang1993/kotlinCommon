@@ -45,7 +45,7 @@ class WebViewActivity : BaseViewBindingActivity<ActivityWebViewBinding>() {
     }
 
 
-    val webViewClient = object : WebViewClient() {
+    private val webViewClient = object : WebViewClient() {
 
 
         /*加载页面资源时调用  每个资源被加载时都会调用*/

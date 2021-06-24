@@ -70,14 +70,11 @@ class RetrofitFactory private constructor() {
     * */
     private fun initLogInterceptor(): HttpLoggingInterceptor {
 
-        val interceptor = HttpLoggingInterceptor(object : HttpLoggingInterceptor.Logger {
-            override fun log(message: String) {
-
-                if (BuildConfig.DEBUG) {
-                    Log.i("Retrofit", message)
-                }
+        val interceptor = HttpLoggingInterceptor { message ->
+            if (BuildConfig.DEBUG) {
+                Log.i("Retrofit", message)
             }
-        })
+        }
 
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 

@@ -250,8 +250,6 @@ fun ComponentActivity.getLoadingDialog(): MaterialDialog {
 
 /**
  * 进度框
- *
- * @param title  标题
  */
 fun ComponentActivity.getProgressDialog(): MaterialDialog {
 

@@ -25,7 +25,7 @@ class ViewPager2Activity : BaseViewBindingActivity<ActivityViewPager2Binding>(),
 
     private val viewPagerFragment = ViewPagerFragment()
     private val viewPagerWithFragment = ViewPagerWithFragment()
-    val fragmentList = arrayListOf<BaseFragment>()
+    private val fragmentList = arrayListOf<BaseFragment>()
 
 
     override fun getViewBinding() = ActivityViewPager2Binding.inflate(layoutInflater)

@@ -249,7 +249,6 @@ fun Fragment.getLoadingDialog(): MaterialDialog {
 /**
  * 进度框
  *
- * @param title  标题
  */
 fun Fragment.getProgressDialog(): MaterialDialog {
 
