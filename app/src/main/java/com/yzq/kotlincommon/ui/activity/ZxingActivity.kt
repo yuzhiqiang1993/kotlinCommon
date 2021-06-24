@@ -3,6 +3,8 @@ package com.yzq.kotlincommon.ui.activity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.text.TextUtils
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.constant.PermissionConstants
@@ -34,6 +36,9 @@ import org.jsoup.nodes.Document
 
 @Route(path = RoutePath.Main.ZXING)
 class ZxingActivity : BaseViewBindingActivity<ActivityZxingBinding>() {
+    private lateinit var licenseInfoActivityResult: ActivityResultLauncher<Intent>
+    private lateinit var qrCodeActivityResult: ActivityResultLauncher<Intent>
+
     override fun getViewBinding() = ActivityZxingBinding.inflate(layoutInflater)
     override fun initWidget() {
         super.initWidget()
@@ -47,44 +52,19 @@ class ZxingActivity : BaseViewBindingActivity<ActivityZxingBinding>() {
             getLicenseInfo()
         }
 
-    }
-
-    private val requestLicenseCode = 666
-    private fun getLicenseInfo() {
-        getPermissions(PermissionConstants.CAMERA, PermissionConstants.STORAGE) {
-
-            val intent = Intent(this, CaptureActivity::class.java)
-            startActivityForResult(intent, requestLicenseCode)
-        }
-
-
-    }
-
-    private val requestCodeScan = 555
-    private fun excuteZxing() =
-        getPermissions(PermissionConstants.CAMERA, PermissionConstants.STORAGE) {
-            val intent = Intent(this, CaptureActivity::class.java)
-            val zxingConfig = ZxingConfig()
-            zxingConfig.isFullScreenScan = false
-            intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig)
-            startActivityForResult(intent, requestCodeScan)
-        }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        when (requestCode) {
-            requestCodeScan -> {
+        qrCodeActivityResult =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                val data = it.data
                 if (data != null) {
                     val content = data.getStringExtra(Constant.CODED_CONTENT)
                     binding.tvResult.text = content
                 }
 
-
             }
 
-            requestLicenseCode -> {
+        licenseInfoActivityResult =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                val data = it.data
 
                 if (data != null) {
                     val content = data.getStringExtra(Constant.CODED_CONTENT)
@@ -100,10 +80,29 @@ class ZxingActivity : BaseViewBindingActivity<ActivityZxingBinding>() {
                     }
                 }
 
-
             }
-        }
+
+
     }
+
+    private fun getLicenseInfo() {
+        getPermissions(PermissionConstants.CAMERA, PermissionConstants.STORAGE) {
+            val intent = Intent(this, CaptureActivity::class.java)
+            licenseInfoActivityResult.launch(intent)
+
+        }
+
+    }
+
+    private fun excuteZxing() =
+        getPermissions(PermissionConstants.CAMERA, PermissionConstants.STORAGE) {
+            val intent = Intent(this, CaptureActivity::class.java)
+            val zxingConfig = ZxingConfig()
+            zxingConfig.isFullScreenScan = false
+            intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig)
+            qrCodeActivityResult.launch(intent)
+        }
+
 
     /*开始提取数据*/
     @SuppressLint("SetTextI18n")

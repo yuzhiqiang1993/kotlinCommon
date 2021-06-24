@@ -15,9 +15,9 @@ object ViewStateContstants {
     const val showError = 7
     const val showLoading = 8
 
-    val NO_NET = StringUtils.getString(R.string.no_net)
-    val PARSE_DATA_ERROE = StringUtils.getString(R.string.data_parse_error)
-    val SERVER_TIMEOUT = StringUtils.getString(R.string.timeout)
-    val LOADING = StringUtils.getString(R.string.loading)
-    val UNKONW_ERROR = StringUtils.getString(R.string.unknown_exception)
+    val NO_NET = StringUtils.getString(R.string.no_net)!!
+    val PARSE_DATA_ERROE = StringUtils.getString(R.string.data_parse_error)!!
+    val SERVER_TIMEOUT = StringUtils.getString(R.string.timeout)!!
+    val LOADING = StringUtils.getString(R.string.loading)!!
+    val UNKONW_ERROR = StringUtils.getString(R.string.unknown_exception)!!
 }

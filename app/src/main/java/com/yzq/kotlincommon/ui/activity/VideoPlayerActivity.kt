@@ -1,13 +1,11 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.content.res.Configuration
-import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder
 import com.shuyu.gsyvideoplayer.listener.GSYSampleCallBack
-import com.shuyu.gsyvideoplayer.listener.LockClickListener
 import com.shuyu.gsyvideoplayer.player.PlayerFactory
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import com.yzq.common.constants.RoutePath
@@ -80,7 +78,7 @@ class VideoPlayerActivity : BaseViewBindingActivity<ActivityVideoPlayerBinding>(
                     super.onQuitFullscreen(url, *objects)
                     orientationUtils.backToProtVideo()
                 }
-            }).setLockClickListener(LockClickListener { view, lock ->
+            }).setLockClickListener({ view, lock ->
 
                 orientationUtils.isEnable = !lock
 
@@ -90,7 +88,7 @@ class VideoPlayerActivity : BaseViewBindingActivity<ActivityVideoPlayerBinding>(
 
 
         binding.videoPlayer.fullscreenButton
-            .setOnClickListener(View.OnClickListener {
+            .setOnClickListener({
                 //直接横屏
                 orientationUtils.resolveByClick()
                 //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar

@@ -110,12 +110,7 @@ public class DropDownMenu extends LinearLayout {
         maskView = new View(getContext());
         maskView.setLayoutParams(new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT));
         maskView.setBackgroundColor(maskColor);
-        maskView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closeMenu();
-            }
-        });
+        maskView.setOnClickListener(v -> closeMenu());
         containerView.addView(maskView, 1);
         maskView.setVisibility(GONE);
         if (containerView.getChildAt(2) != null) {
@@ -143,13 +138,7 @@ public class DropDownMenu extends LinearLayout {
         tabItem.setTitle(titleStr);
         tabItem.setLayoutParams(new LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f));
 
-        tabItem.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                switchMenu(tabItem);
-            }
-        });
+        tabItem.setOnClickListener(v -> switchMenu(tabItem));
         tabMenuView.addView(tabItem);
 
     }

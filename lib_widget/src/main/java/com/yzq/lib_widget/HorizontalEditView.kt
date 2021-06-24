@@ -39,11 +39,10 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     private var inputType: String?
 
 
-    private val binding: ViewHorizontalEditLayoutBinding
+    private val binding: ViewHorizontalEditLayoutBinding =
+        ViewHorizontalEditLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
-
-        binding = ViewHorizontalEditLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
 
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalEditView)

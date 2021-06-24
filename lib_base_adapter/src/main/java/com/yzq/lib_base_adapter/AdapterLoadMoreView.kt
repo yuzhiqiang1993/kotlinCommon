@@ -34,5 +34,5 @@ open class AdapterLoadMoreView : BaseLoadMoreView() {
     }
 
     override fun getRootView(parent: ViewGroup) =
-        LayoutInflater.from(parent.context).inflate(R.layout.layout_load_more, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.layout_load_more, parent, false)!!
 }

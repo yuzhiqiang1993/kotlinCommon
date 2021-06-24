@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon
+package com.yzq.kotlincommon.ui.hybrid
 
 import android.webkit.JavascriptInterface
 import com.blankj.utilcode.util.LogUtils

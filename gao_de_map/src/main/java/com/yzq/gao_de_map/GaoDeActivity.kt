@@ -2,9 +2,7 @@ package com.yzq.gao_de_map
 
 import android.annotation.SuppressLint
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.amap.api.location.AMapLocation
 import com.yzq.gao_de_map.databinding.ActivityGaoDeBinding
 import com.yzq.gao_de_map.utils.MapPermissionUtils
 import com.yzq.lib_base.ui.activity.BaseVbVmActivity
@@ -43,7 +41,7 @@ class GaoDeActivity : BaseVbVmActivity<ActivityGaoDeBinding, LocationSignViewMod
 
     override fun observeViewModel() {
         vm.locationData.observe(this,
-            Observer<AMapLocation> { t ->
+            { t ->
                 if (t.errorCode == 0) {
                     binding.tvLocationResult.text = t.address
                 } else {

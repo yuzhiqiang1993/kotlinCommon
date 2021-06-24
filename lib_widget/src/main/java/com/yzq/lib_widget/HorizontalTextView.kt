@@ -36,11 +36,10 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     private var endIconRes: Int = -1
     private var endIconTint: Int
     private var contentLeft = false
-    private val binding: ViewHorizontalTextLayoutBinding
+    private val binding: ViewHorizontalTextLayoutBinding =
+        ViewHorizontalTextLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
-
-        binding = ViewHorizontalTextLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
 
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalTextView)

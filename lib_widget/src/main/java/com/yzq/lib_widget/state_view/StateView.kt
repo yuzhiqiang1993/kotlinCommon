@@ -39,11 +39,11 @@ class StateView(
     /*出现错误图片*/
     private var errorImgRes = R.drawable.ic_error
 
-    private val binding: LayoutStateViewBinding
+    private val binding: LayoutStateViewBinding =
+        LayoutStateViewBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
 
-        binding = LayoutStateViewBinding.inflate(LayoutInflater.from(context), this, true)
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.StateView)
 
         try {

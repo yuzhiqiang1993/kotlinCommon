@@ -8,7 +8,7 @@ import androidx.annotation.RequiresApi
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
-import com.yzq.kotlincommon.JsBridge
+import com.yzq.kotlincommon.ui.hybrid.JsBridge
 import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
 import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 
