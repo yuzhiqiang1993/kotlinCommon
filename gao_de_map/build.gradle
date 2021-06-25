@@ -7,7 +7,6 @@ if (isModule.toBoolean()) {
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
-
 android {
     compileSdkVersion compile_sdk_version
 
