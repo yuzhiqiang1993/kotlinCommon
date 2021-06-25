@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: "com.github.ben-manes.versions"
+
 
 android {
     compileSdkVersion compile_sdk_version
@@ -102,7 +102,6 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
     implementation "com.github.yuzhiqiang1993:zxing:${zxing_version}"
     implementation "org.jsoup:jsoup:${jsoup_version}"
-    implementation "com.meituan.android.walle:library:${walleVersion}"
     kapt "androidx.room:room-compiler:$room_version"
 
     implementation 'com.shuyu:GSYVideoPlayer:8.1.2'
