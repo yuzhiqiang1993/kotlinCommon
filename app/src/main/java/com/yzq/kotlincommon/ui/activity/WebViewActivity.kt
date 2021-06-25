@@ -8,8 +8,9 @@ import androidx.annotation.RequiresApi
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
-import com.yzq.kotlincommon.ui.hybrid.JsBridge
 import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
+import com.yzq.kotlincommon.hybrid.AndroidBug5497Workaround
+import com.yzq.kotlincommon.ui.hybrid.JsBridge
 import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 
 
@@ -38,22 +39,29 @@ class WebViewActivity : BaseViewBindingActivity<ActivityWebViewBinding>() {
         binding.webview.webViewClient = webViewClient
         binding.webview.addJavascriptInterface(JsBridge, "Android")
 
-        val url = "http://192.168.8.121:4200"
+//        val url = "http://192.168.8.121:4200"
+
+        val url = "http://ng.mobile.ant.design/#/kitchen-sink?lang=zh-CN"
         binding.webview.loadUrl(url)
 
 
     }
 
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        LogUtils.i("====onWindowFocusChanged====")
+
+        val height = resources.displayMetrics.heightPixels //屏幕高度
+
+        /*解决H5 页面输入框弹出异常的问题*/
+        AndroidBug5497Workaround.assistActivity(this, height)
+    }
+
     private val webViewClient = object : WebViewClient() {
 
 
         /*加载页面资源时调用  每个资源被加载时都会调用*/
-
-        /*页面开始加载时调用 */
-
-
-        /*页面加载完毕时调用 */
 
         override fun onPageFinished(view: WebView?, url: String?) {
             super.onPageFinished(view, url)
