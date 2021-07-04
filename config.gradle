@@ -17,7 +17,7 @@ ext {
     constraintlayout = "2.0.4"
     annotation = "1.2.0"
     multiDexVersion = "2.0.1"
-    core_ktx = '1.5.0'
+    core_ktx = '1.6.0'
     lifecycle_ktx = "2.3.1"
     collection_ktx = "1.1.0"
     kotlinx_coroutines = '1.5.0'

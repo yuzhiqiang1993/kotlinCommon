@@ -51,7 +51,7 @@ class RequestEncryptInterceptor : Interceptor {
         }
 
 
-        if (method.equals("get") || method.equals("delete")) {
+        if (method == "get" || method == "delete") {
 
             if (url.encodedQuery != null) {
                 try {
@@ -116,7 +116,7 @@ class RequestEncryptInterceptor : Interceptor {
                     LogUtils.i("contentType===> type:${contentType.type},subType:${contentType.subtype}")
 
                     /*如果是二进制上传  则不进行加密*/
-                    if (contentType.type.lowercase(Locale.ROOT).equals("multipart")) {
+                    if (contentType.type.lowercase(Locale.ROOT) == "multipart") {
                         LogUtils.i("上传文件，不加密")
 
                         return chain.proceed(request)

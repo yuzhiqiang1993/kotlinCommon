@@ -42,11 +42,11 @@ class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
         roomAdapter.setOnItemChildClickListener(this)
         roomAdapter.setDiffCallback(object : DiffUtil.ItemCallback<User>() {
             override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-                return oldItem.id.equals(newItem.id)
+                return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-                return oldItem.name.equals(newItem.name)
+                return oldItem.name == newItem.name
             }
 
         })

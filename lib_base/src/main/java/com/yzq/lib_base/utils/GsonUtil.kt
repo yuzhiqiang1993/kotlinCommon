@@ -20,7 +20,7 @@ object GsonUtil {
         .setLenient()
         .create()
 
-    val prettyGson: Gson = GsonBuilder()
+    private val prettyGson: Gson = GsonBuilder()
         .serializeNulls()
         .setPrettyPrinting()
         .setLenient()

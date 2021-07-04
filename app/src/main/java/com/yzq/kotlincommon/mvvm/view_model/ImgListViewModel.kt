@@ -47,7 +47,7 @@ class ImgListViewModel : ApiServiceViewModel() {
                         oldItemPosition: Int,
                         newItemPosition: Int
                     ): Boolean {
-                        return oldDatas[oldItemPosition].id.equals(newDatas[newItemPosition].id)
+                        return oldDatas[oldItemPosition].id == newDatas[newItemPosition].id
                     }
 
                     override fun getOldListSize(): Int {
