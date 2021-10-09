@@ -49,7 +49,7 @@ ext {
     flexbox = "2.0.1"
     gradle_versions_plugin = "v0.39.0"
     zxing_version = "2.2.9"
-    jsoup_version = '1.14.2'
+    jsoup_version = '1.14.3'
     leakcanary_android = "2.7"
     bannerViewPager = "3.5.2"
     viewpager2 = '1.1.0-alpha01'
