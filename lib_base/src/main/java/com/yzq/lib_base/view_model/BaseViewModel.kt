@@ -23,95 +23,35 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     private val viewStateBean by lazy { ViewStateBean() }
     val loadState by lazy { MutableLiveData<ViewStateBean>() }
 
-    private val loadingDialogCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
 
-        LogUtils.e("异常了=====>:${e.message}")
-        e.printStackTrace()
-
-        MainScope().launch {
-
-
+    private val loadingDialogCoroutineExceptionHandler =
+        CoroutineExceptionHandler { coroutineContext, throwable ->
+            LogUtils.e("loadingDialogCoroutineExceptionHandler=====>:${throwable.message}")
+            throwable.printStackTrace()
             /*隐藏弹窗*/
             dismissLoadingDialog()
-
-
-//        val errorMsg = ""
-//        if (e is JSONException || e is JsonParseException) {
-//            showErrorDialog(ViewStateContstants.PARSE_DATA_ERROE)
-//        } else if (e is SocketTimeoutException) {
-//            showErrorDialog(ViewStateContstants.SERVER_TIMEOUT)
-//        } else {
-//            val msg =
-//                if (TextUtils.isEmpty(e.localizedMessage)) ViewStateContstants.UNKONW_ERROR else e.localizedMessage!!
-//            showErrorDialog(msg)
-//        }
-
             val msg =
-                if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+                if (TextUtils.isEmpty(throwable.message)) ViewStateContstants.UNKONW_ERROR else throwable.message!!
             showErrorDialog(msg)
-
-
         }
-//        }
-
-
-    }
-
-    private val progressDialogCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
-
-        LogUtils.e("异常了=====>:${e.message}")
-        e.printStackTrace()
-
-        MainScope().launch {
-            /*隐藏进度窗*/
-            dismissProgressDialog()
-
-            val msg =
-                if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
-            showError(msg)
-
-        }
-
-    }
-
-
-    /*异常处理*/
-    private val loadingCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
-
-        LogUtils.e("异常了=====>:${e.message}")
-        e.printStackTrace()
-        MainScope().launch(Dispatchers.Main) {
-//        if (e is JSONException || e is JsonParseException) {
-//            showError(ViewStateContstants.PARSE_DATA_ERROE)
-//        } else if (e is SocketTimeoutException) {
-//            showError(ViewStateContstants.SERVER_TIMEOUT)
-//        } else {
-//            val msg =
-//                if (TextUtils.isEmpty(e.localizedMessage)) ViewStateContstants.UNKONW_ERROR else e.localizedMessage!!
-//            showError(msg)
-//        }
-
-            val msg =
-                if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
-            showError(msg)
-        }
-    }
-
 
     fun launchLoadingDialog(
         loadText: String = ViewStateContstants.LOADING,
+        checkNetWork: Boolean = true,
+        exceptionHandler: CoroutineExceptionHandler = loadingDialogCoroutineExceptionHandler,
         block: suspend CoroutineScope.() -> Unit
     ) {
 
-        viewModelScope.launch(loadingDialogCoroutineExceptionHandler) {
-            if (!NetworkUtils.isConnected()) {
+        viewModelScope.launch(exceptionHandler) {
+
+            if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
                 return@launch
             }
             showloadingDialog(loadText)
 
-            supervisorScope(block)
+            block()
 
             dismissLoadingDialog()
 
@@ -120,11 +60,26 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     }
 
+    /*异常处理*/
+    private val loadingCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
 
-    fun launchLoading(block: suspend CoroutineScope.() -> Unit) {
+        LogUtils.e("异常了=====>:${e.message}")
+        e.printStackTrace()
 
-        viewModelScope.launch(loadingCoroutineExceptionHandler) {
-            if (!NetworkUtils.isConnected()) {
+        val msg =
+            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+        showError(msg)
+    }
+
+
+    fun launchLoading(
+        checkNetWork: Boolean = true,
+        exceptionHandler: CoroutineExceptionHandler = loadingCoroutineExceptionHandler,
+        block: suspend CoroutineScope.() -> Unit
+    ) {
+
+        viewModelScope.launch(exceptionHandler) {
+            if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
                 return@launch
@@ -132,17 +87,33 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
             showLoading()
 
-            supervisorScope(block)
+            block()
         }
 
 
     }
 
+    private val progressDialogCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
 
-    fun launchProgressDialog(url: String, title: String, block: suspend CoroutineScope.() -> Unit) {
+        LogUtils.e("progressDialogCoroutineExceptionHandler=====>:${e.message}")
+        e.printStackTrace()
+        /*隐藏进度窗*/
+        dismissProgressDialog()
+        val msg =
+            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
+        showError(msg)
+    }
 
-        viewModelScope.launch(progressDialogCoroutineExceptionHandler) {
-            if (!NetworkUtils.isConnected()) {
+    fun launchProgressDialog(
+        url: String,
+        title: String,
+        checkNetWork: Boolean = true,
+        exceptionHandler: CoroutineExceptionHandler = progressDialogCoroutineExceptionHandler,
+        block: suspend CoroutineScope.() -> Unit
+    ) {
+
+        viewModelScope.launch(exceptionHandler) {
+            if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
                 return@launch
@@ -169,14 +140,40 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
                 })
 
             showProgressDialog(title)
-
-            supervisorScope(block)
-
+            block()
             dismissProgressDialog()
-
 
         }
 
+
+    }
+
+
+    private val supervisorExceptionHandler =
+        CoroutineExceptionHandler { coroutineContext, throwable ->
+            LogUtils.i("supervisorExceptionHandler 捕获到异常了：${throwable}")
+        }
+
+    /**
+     * 用来请求一个跟页面状态没啥关系同时不需要对异常进行特殊处理的接口
+     * @param checkNetWork Boolean
+     * @param exceptionHandler CoroutineExceptionHandler
+     * @param block [@kotlin.ExtensionFunctionType] SuspendFunction1<CoroutineScope, Unit>
+     */
+    fun launchHttpWithSupervisor(
+        checkNetWork: Boolean = true,
+        exceptionHandler: CoroutineExceptionHandler = supervisorExceptionHandler,
+        block: suspend CoroutineScope.() -> Unit
+    ) {
+
+        viewModelScope.launch(exceptionHandler) {
+            if (checkNetWork && !NetworkUtils.isConnected()) {
+                showNoNet()
+                cancel()
+                return@launch
+            }
+            supervisorScope(block)
+        }
 
     }
 
@@ -195,29 +192,35 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     private fun showloadingDialog(content: String) {
         viewStateBean.message = content
         viewStateBean.state = ViewStateContstants.showLoadingDialog
-        loadState.value = viewStateBean
+        viewModelScope.launch(Dispatchers.Main) {
+            loadState.value = viewStateBean
+        }
+
     }
 
     private fun dismissLoadingDialog() {
 
         viewStateBean.message = ""
         viewStateBean.state = ViewStateContstants.dismissLoadingDialog
+        viewModelScope.launch(Dispatchers.Main) {
+            loadState.value = viewStateBean
+        }
 
-        loadState.value = viewStateBean
     }
 
 
     private fun showErrorDialog(content: String) {
         viewStateBean.message = content
         viewStateBean.state = ViewStateContstants.showErrorDialog
-        loadState.value = viewStateBean
+        viewModelScope.launch(Dispatchers.Main) {
+            loadState.value = viewStateBean
+        }
     }
 
     private fun showNoNet() {
         viewStateBean.message = ""
         viewStateBean.state = ViewStateContstants.showNoNet
-        MainScope().launch {
-
+        viewModelScope.launch(Dispatchers.Main) {
             loadState.value = viewStateBean
         }
 
@@ -228,15 +231,18 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     private fun showError(content: String) {
         viewStateBean.message = content
         viewStateBean.state = ViewStateContstants.showError
-        loadState.value = viewStateBean
+        viewModelScope.launch(Dispatchers.Main) {
+            loadState.value = viewStateBean
+        }
     }
 
     fun showProgressDialog(title: String) {
 
         viewStateBean.message = title
         viewStateBean.state = ViewStateContstants.showProgressDialog
-
-        loadState.value = viewStateBean
+        viewModelScope.launch(Dispatchers.Main) {
+            loadState.value = viewStateBean
+        }
 
 
     }
@@ -244,13 +250,17 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
     fun dismissProgressDialog() {
         viewStateBean.message = ""
         viewStateBean.state = ViewStateContstants.dismissProgressDialog
-        loadState.value = viewStateBean
+        viewModelScope.launch(Dispatchers.Main) {
+            loadState.value = viewStateBean
+        }
     }
 
     fun changeProgress(percent: Int) {
         viewStateBean.message = percent.toString()
         viewStateBean.state = ViewStateContstants.changeProgress
-        loadState.value = viewStateBean
+        viewModelScope.launch(Dispatchers.Main) {
+            loadState.value = viewStateBean
+        }
 
 
     }

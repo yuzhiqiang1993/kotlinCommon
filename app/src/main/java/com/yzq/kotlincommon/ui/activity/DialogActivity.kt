@@ -17,6 +17,9 @@ import com.yzq.lib_rx.NextObserver
 import com.yzq.lib_rx.transform
 import io.reactivex.Observable
 import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.*
 import java.util.concurrent.TimeUnit
 
 
@@ -40,16 +43,11 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
         with(binding) {
             initToolbar(layoutToolbar.toolbar, "弹窗", true)
 
-
-
             layoutScrollContent.btnBase.setOnClickListener {
                 showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
             }
 
-
-
             layoutScrollContent.btnOnlyPositiveCallback.setOnClickListener {
-
                 showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作") {
                     ToastUtils.showShort("点击了确定")
                 }
@@ -102,13 +100,17 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
             layoutScrollContent.btnLoading
                 .setOnClickListener {
 
-
                     stateViewManager.showLoadingDialog("登录中...")
 
-                    Observable.timer(3, TimeUnit.SECONDS)
-                        .subscribe {
-                            stateViewManager.dismissLoadingDialog()
-                        }
+                    launch {
+                        delay(3000)
+                        stateViewManager.dismissLoadingDialog()
+                    }
+
+//                    Observable.timer(3, TimeUnit.SECONDS)
+//                        .subscribe {
+//                            stateViewManager.dismissLoadingDialog()
+//                        }
                 }
 
 
@@ -117,6 +119,7 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                     var count = 0
 
                     stateViewManager.showProgressDialog("模拟进度")
+
 
 
                     Observable.interval(200, TimeUnit.MILLISECONDS)

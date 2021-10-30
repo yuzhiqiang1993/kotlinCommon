@@ -194,8 +194,6 @@ class StateViewManager(private val activity: BaseActivity) {
 
     /*取消下拉刷新动画*/
     fun cancelRefresh() {
-
-
         if (requestType == httpRefresh && (contentLayout != null) && contentLayout is SwipeRefreshLayout) {
             (contentLayout as SwipeRefreshLayout).isRefreshing = false
         }
