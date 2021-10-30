@@ -6,7 +6,7 @@ include ':app',
         ':lib_resource',
         ':lib_eventbus',
         ':lib_materialdialog',
-        ':lib_rx',
+//        ':lib_rx',
         ':lib_widget',
         ':lib_permission',
         ':lib_base_adapter'

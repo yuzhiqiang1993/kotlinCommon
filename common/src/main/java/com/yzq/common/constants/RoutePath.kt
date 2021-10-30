@@ -20,7 +20,6 @@ object RoutePath {
         const val DIALOG = "/main/dialog"
         const val ZXING = "/main/zxing"
         const val LOGIN = "/main/login"
-        const val AUTODISPOSE = "/main/autodispose"
         const val DROP_DOWN_MENU = "/main/dropDownMenu"
 
         const val FLEX_BOX = "/main/flexBox"

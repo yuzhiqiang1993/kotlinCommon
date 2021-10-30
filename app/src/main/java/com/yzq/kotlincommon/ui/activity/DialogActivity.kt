@@ -13,14 +13,10 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
 import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 import com.yzq.lib_materialdialog.*
-import com.yzq.lib_rx.NextObserver
-import com.yzq.lib_rx.transform
-import io.reactivex.Observable
-import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
-import java.util.concurrent.TimeUnit
 
 
 /**
@@ -107,10 +103,6 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                         stateViewManager.dismissLoadingDialog()
                     }
 
-//                    Observable.timer(3, TimeUnit.SECONDS)
-//                        .subscribe {
-//                            stateViewManager.dismissLoadingDialog()
-//                        }
                 }
 
 
@@ -120,27 +112,31 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
 
                     stateViewManager.showProgressDialog("模拟进度")
 
+                    val timerTask = object : TimerTask() {
+                        override fun run() {
 
+                            LogUtils.i("当前线程：${Thread.currentThread().name}")
+                            count += 5
+                            if (count <= 100) {
 
-                    Observable.interval(200, TimeUnit.MILLISECONDS)
-                        .transform(this@DialogActivity)
-                        .subscribe(object : NextObserver<Long>() {
-                            lateinit var d: Disposable
-                            override fun onSubscribe(d: Disposable) {
-                                this.d = d
-                            }
-
-                            override fun onNext(t: Long) {
-                                LogUtils.i(count)
-                                count += 5
-                                if (count <= 100) {
+                                MainScope().launch {
                                     stateViewManager.changeProgress(count)
-                                } else {
-                                    d.dispose()
+                                }
+
+                            } else {
+                                cancel()
+                                MainScope().launch {
                                     stateViewManager.dismissProgressDialog()
                                 }
+
                             }
-                        })
+                        }
+
+                    }
+
+                    Timer().schedule(
+                        timerTask, 0, 200
+                    )
 
 
                 }
