@@ -177,6 +177,17 @@ abstract class BaseViewModel : ViewModel(), LifecycleObserver {
 
     }
 
+    fun launchWithSupervisor(
+        exceptionHandler: CoroutineExceptionHandler = supervisorExceptionHandler,
+        block: suspend CoroutineScope.() -> Unit
+    ) {
+
+        viewModelScope.launch(exceptionHandler) {
+            supervisorScope { block() }
+        }
+
+    }
+
 
     private fun showLoading() {
         viewStateBean.message = ""
