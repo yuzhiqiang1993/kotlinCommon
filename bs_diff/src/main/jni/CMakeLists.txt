@@ -12,6 +12,11 @@ cmake_minimum_required(VERSION 3.10.2)
 
 #file(GLOB bzip_c bzip2/*.c)
 
+include_directories(${CMAKE_SOURCE_DIR}/bzip2)
+
+aux_source_directory(${CMAKE_SOURCE_DIR}/bzip2/ bzip2_src)
+
+
 add_library( # Sets the name of the library.
         xeon_bs_diff
 
@@ -22,6 +27,7 @@ add_library( # Sets the name of the library.
         #        ${bzip_c}
         bsdiff.c
         bspatch.c
+        ${bzip2_src}
         )
 
 # Searches for a specified prebuilt library and stores the path as a

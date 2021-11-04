@@ -298,7 +298,7 @@ MaybeUInt64 bEnd   [BZ_MAX_HANDLED_BLOCKS];
 MaybeUInt64 rbStart[BZ_MAX_HANDLED_BLOCKS];
 MaybeUInt64 rbEnd  [BZ_MAX_HANDLED_BLOCKS];
 
-Int32 main ( Int32 argc, Char** argv )
+Int32 bzip2recover_main ( Int32 argc, Char** argv )
 {
    FILE*       inFile;
    FILE*       outFile;

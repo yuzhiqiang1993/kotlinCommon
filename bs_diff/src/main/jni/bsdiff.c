@@ -30,16 +30,10 @@ __FBSDID("$FreeBSD: src/usr.bin/bsdiff/bsdiff/bsdiff.c,v 1.1 2005/08/06 01:59:05
 
 //引入我们自己生成的头文件
 #include "com_xeon_bsdiff_BsDiffUtil.h"
+#include "bzip2/bzlib.h"
 
 #include <sys/types.h>
 
-#include "bzip2/bzlib.c"
-#include "bzip2/crctable.c"
-#include "bzip2/compress.c"
-#include "bzip2/decompress.c"
-#include "bzip2/randtable.c"
-#include "bzip2/blocksort.c"
-#include "bzip2/huffman.c"
 
 #include <err.h>
 #include <fcntl.h>

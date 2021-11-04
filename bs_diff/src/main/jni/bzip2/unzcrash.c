@@ -71,7 +71,7 @@ void flip_bit ( int bit )
    zbuf[byteno] ^= mask;
 }
 
-int main ( int argc, char** argv )
+int unzcrash_main ( int argc, char** argv )
 {
    FILE* f;
    int   r;

@@ -66,7 +66,7 @@ void usage(void)
    puts("usage: minibz2 [-d] [-{1,2,..9}] [[srcfilename] destfilename]");
 }
 
-int main(int argc,char *argv[])
+int dlltest_main(int argc,char *argv[])
 {
    int decompress = 0;
    int level = 9;

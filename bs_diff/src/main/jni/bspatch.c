@@ -29,14 +29,7 @@ __FBSDID("$FreeBSD: src/usr.bin/bsdiff/bspatch/bspatch.c,v 1.1 2005/08/06 01:59:
 #endif
 //引入我们自己生成的头文件
 #include "com_xeon_bsdiff_BsDiffUtil.h"
-
-#include "bzip2/bzlib.c"
-#include "bzip2/crctable.c"
-#include "bzip2/compress.c"
-#include "bzip2/decompress.c"
-#include "bzip2/randtable.c"
-#include "bzip2/blocksort.c"
-#include "bzip2/huffman.c"
+#include "bzip2/bzlib.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -223,36 +216,35 @@ int applyPatch(int argc, char *argv[]) {
 
 jint JNICALL
 Java_com_xeon_bsdiff_BsDiffUtil_fileCombine
-(JNIEnv
-*env,
-jclass clazz, jstring
-old,
-jstring new, jstring
-patch)
-{
-int argc = 4;
-char *argv[argc];
-argv[0] = "bspatch";
-argv[1] = (char *)((*env) ->
-GetStringUTFChars(env, old,
-0));
-argv[2] = (char *)((*env) ->
-GetStringUTFChars(env, new,
-0));
-argv[3] = (char *)((*env) ->
-GetStringUTFChars(env, patch,
-0));
-int result = applyPatch(argc, argv);
+        (JNIEnv
+         *env,
+         jclass clazz, jstring
+         old,
+         jstring new, jstring
+         patch) {
+    int argc = 4;
+    char *argv[argc];
+    argv[0] = "bspatch";
+    argv[1] = (char *) ((*env)->
+            GetStringUTFChars(env, old,
+                              0));
+    argv[2] = (char *) ((*env)->
+            GetStringUTFChars(env, new,
+                              0));
+    argv[3] = (char *) ((*env)->
+            GetStringUTFChars(env, patch,
+                              0));
+    int result = applyPatch(argc, argv);
 //释放资源
-(*env) ->
-ReleaseStringUTFChars(env, old, argv[1]
-);
-(*env) ->
-ReleaseStringUTFChars(env, new, argv[2]
-);
-(*env) ->
-ReleaseStringUTFChars(env, patch, argv[3]
-);
-return
-result;
+    (*env)->
+            ReleaseStringUTFChars(env, old, argv[1]
+    );
+    (*env)->
+            ReleaseStringUTFChars(env, new, argv[2]
+    );
+    (*env)->
+            ReleaseStringUTFChars(env, patch, argv[3]
+    );
+    return
+            result;
 }

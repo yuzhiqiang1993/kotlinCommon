@@ -24,8 +24,7 @@ object BsDiffUtil {
 
     init {
         try {
-            System.loadLibrary("bsdiff")
-            System.loadLibrary("bspatch")
+            System.loadLibrary("xeon_bs_diff")
         } catch (e: Throwable) {
             e.printStackTrace()
             LogUtils.e("load so error")
