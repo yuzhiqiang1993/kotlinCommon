@@ -121,42 +121,35 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
         }
     }
-
-
-    override fun onActivityCreated(activity: Activity?, p1: Bundle?) {
-        activityStack.add(activity)
+    
+    override fun onActivityCreated(p0: Activity, p1: Bundle?) {
+        
     }
 
-    override fun onActivityPaused(p0: Activity?) {
-
+    override fun onActivityStarted(p0: Activity) {
+        
     }
 
-    override fun onActivityResumed(p0: Activity?) {
-
+    override fun onActivityResumed(p0: Activity) {
+        
     }
 
-    override fun onActivitySaveInstanceState(p0: Activity?, p1: Bundle?) {
-
-
+    override fun onActivityPaused(p0: Activity) {
+        
     }
 
-    override fun onActivityStarted(p0: Activity?) {
-
-
+    override fun onActivityStopped(p0: Activity) {
+        
     }
 
-    override fun onActivityStopped(p0: Activity?) {
-
-
+    override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) {
+        
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
-
+    override fun onActivityDestroyed(activity: Activity) {
         if (activityStack.contains(activity)) {
             activityStack.remove(activity)
         }
-
     }
-
 
 }

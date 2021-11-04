@@ -1,6 +1,5 @@
 package com.yzq.common.constants
 
-
 /**
  * @description: 路由path
  * @author : yzq
@@ -27,6 +26,7 @@ object RoutePath {
         const val IMG_LIST = "/main/imgList"
         const val FRAGMENT = "/main/fragment"
         const val COROUTINE = "/main/coroutine"
+        const val BS_DIFF = "/main/bsDiff"
         const val ROOM = "/main/room"
         const val DOWNLOAD = "/main/download"
         const val EXO_PLAYER = "/main/exoPlayer"
@@ -36,7 +36,6 @@ object RoutePath {
         const val VIEW_BINDING: String = "/main/viewBinding"
 
     }
-
 
     object GaoDe {
         const val GAO_DE = "/gaoDe/gaoDeMap"

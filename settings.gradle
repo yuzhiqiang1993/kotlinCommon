@@ -37,3 +37,4 @@ include ':app',
 //})
 //
 //
+include ':bs_diff'

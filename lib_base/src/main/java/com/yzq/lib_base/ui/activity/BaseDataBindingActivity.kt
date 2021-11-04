@@ -18,7 +18,6 @@ abstract class BaseDataBindingActivity<VDB : ViewDataBinding> : BaseActivity() {
 
     override fun initContentView() {
         binding = DataBindingUtil.setContentView(this, getContentLayoutId())
-        binding.lifecycleOwner = this
     }
 
     abstract fun getContentLayoutId(): Int

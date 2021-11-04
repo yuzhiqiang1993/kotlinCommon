@@ -54,5 +54,7 @@
     <string name="nav_header_desc">yzq</string>
     <string name="select_year">选择年份</string>
     <string name="click">click</string>
+    <string name="generate_diff_file">生成差分包</string>
+    <string name="combine_diff_file">合并差分包</string>
 
 </resources>

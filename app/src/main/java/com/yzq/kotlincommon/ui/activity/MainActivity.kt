@@ -39,23 +39,17 @@ import kotlinx.coroutines.withContext
 class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
     NavigationView.OnNavigationItemSelectedListener, OnItemClickListener {
 
-
     private var items = arrayListOf<NaviItem>()
-
 
     private lateinit var mainAdapter: MainAdapter
 
-
     override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
 
-
     override fun initWidget() {
-
 
         initToolbar(binding.layoutMain.toolbar, "kotlin common", displayHome = false)
 
         binding.layoutMain.recy.init()
-
 
         val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
@@ -80,7 +74,6 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
         }
     }
 
-
     override fun initData() {
 
         items.add(NaviItem("电影列表", RoutePath.Main.MOVIES))
@@ -88,6 +81,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
         items.add(NaviItem("图片页面（选择压缩）", RoutePath.Main.IMG_COMPRESS))
         items.add(NaviItem("弹窗", RoutePath.Main.DIALOG))
         items.add(NaviItem("Zxing", RoutePath.Main.ZXING))
+        items.add(NaviItem("BsDiff", RoutePath.Main.BS_DIFF))
         items.add(NaviItem("登录页面（SharedPreference）", RoutePath.Main.LOGIN))
         items.add(NaviItem("下拉菜单", RoutePath.Main.DROP_DOWN_MENU))
         items.add(NaviItem("高德定位", RoutePath.GaoDe.GAO_DE))
@@ -113,9 +107,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
         mainAdapter.setOnItemClickListener(this)
         recy.adapter = mainAdapter
 
-
     }
-
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
         val clickItem = mainAdapter.data[position]
@@ -127,7 +119,6 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
 
         ARouter.getInstance().build(path).navigation(this)
     }
-
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
@@ -170,6 +161,5 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
             }
         }
     }
-
 
 }
