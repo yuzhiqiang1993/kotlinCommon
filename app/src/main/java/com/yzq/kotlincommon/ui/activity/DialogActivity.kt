@@ -11,23 +11,12 @@ import com.loper7.date_time_picker.DateTimeConfig
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
-import com.yzq.lib_base.extend.setOnThrottleTimeClick
 import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 import com.yzq.lib_materialdialog.*
-<<<<<<< HEAD
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
-=======
-import com.yzq.lib_rx.NextObserver
-import com.yzq.lib_rx.transform
-import io.reactivex.Observable
-import io.reactivex.disposables.Disposable
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import java.util.concurrent.TimeUnit
->>>>>>> b64e12042bea21b42271863007803e942424a513
 
 /**
  * @description: 弹窗
@@ -46,23 +35,11 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
         with(binding) {
             initToolbar(layoutToolbar.toolbar, "弹窗", true)
 
-<<<<<<< HEAD
             layoutScrollContent.btnBase.setOnClickListener {
                 showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
             }
 
             layoutScrollContent.btnOnlyPositiveCallback.setOnClickListener {
-=======
-
-
-            layoutScrollContent.btnBase.setOnThrottleTimeClick {
-                showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
-            }
-
-
-
-            layoutScrollContent.btnOnlyPositiveCallback.setOnThrottleTimeClick {
->>>>>>> b64e12042bea21b42271863007803e942424a513
                 showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作") {
                     ToastUtils.showShort("点击了确定")
                 }
@@ -108,7 +85,6 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
 
             layoutScrollContent.btnLoading
                 .setOnClickListener {
-<<<<<<< HEAD
 
                     stateViewManager.showLoadingDialog("登录中...")
 
@@ -117,14 +93,6 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                         stateViewManager.dismissLoadingDialog()
                     }
 
-=======
-                    stateViewManager.showLoadingDialog("登录中...")
-
-                    launch {
-                        delay(2000)
-                        stateViewManager.dismissLoadingDialog()
-                    }
->>>>>>> b64e12042bea21b42271863007803e942424a513
                 }
 
 
@@ -152,7 +120,6 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                                 }
 
                             }
-<<<<<<< HEAD
                         }
 
                     }
@@ -162,9 +129,6 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                     )
 
 
-=======
-                        })
->>>>>>> b64e12042bea21b42271863007803e942424a513
                 }
 
             layoutScrollContent.btnSelectYear

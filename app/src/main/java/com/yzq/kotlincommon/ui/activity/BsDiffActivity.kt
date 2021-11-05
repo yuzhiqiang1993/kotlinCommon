@@ -1,9 +1,9 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.widget.Toast
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.amap.api.mapcore.util.it
-import com.blankj.utilcode.util.*
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.PathUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.xeon.bsdiff.BsDiffUtil
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBsDiffBinding
@@ -41,9 +41,9 @@ class BsDiffActivity : BaseViewBindingActivity<ActivityBsDiffBinding>() {
 
     private fun combineFile() {
 
-        var oldFile = File(PathUtils.getExternalAppCachePath(), "old.zip")
-        var newFile = File(PathUtils.getExternalAppCachePath(), "combine.zip")
-        var patchFile = File(PathUtils.getExternalAppCachePath(), "patch.zip")
+        val oldFile = File(PathUtils.getExternalAppCachePath(), "old.zip")
+        val newFile = File(PathUtils.getExternalAppCachePath(), "combine.zip")
+        val patchFile = File(PathUtils.getExternalAppCachePath(), "patch.zip")
         if (!oldFile.exists()) {
             ToastUtils.showShort("旧文件不存在")
             return
@@ -54,7 +54,11 @@ class BsDiffActivity : BaseViewBindingActivity<ActivityBsDiffBinding>() {
         }
 
         try {
-            val fileCombine = BsDiffUtil.fileCombine(oldFile.absolutePath, newFile.absolutePath, patchFile.absolutePath)
+            val fileCombine = BsDiffUtil.fileCombine(
+                oldFile.absolutePath,
+                newFile.absolutePath,
+                patchFile.absolutePath
+            )
 
             ToastUtils.showShort("合并差分包：${fileCombine}")
         } catch (e: Throwable) {
@@ -76,7 +80,11 @@ class BsDiffActivity : BaseViewBindingActivity<ActivityBsDiffBinding>() {
 
         try {
 
-            val fileDiff = BsDiffUtil.fileDiff(oldFile.absolutePath, newFile.absolutePath, patchFile.absolutePath)
+            val fileDiff = BsDiffUtil.fileDiff(
+                oldFile.absolutePath,
+                newFile.absolutePath,
+                patchFile.absolutePath
+            )
 
             ToastUtils.showShort("生成差分包：${fileDiff}")
         } catch (e: Throwable) {

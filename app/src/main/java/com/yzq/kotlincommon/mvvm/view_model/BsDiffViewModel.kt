@@ -15,10 +15,10 @@ class BsDiffViewModel : BaseViewModel() {
      * 生成差分包
      */
     suspend fun createDiffFile() {
-        launchLoadingDialog() {
+
+        launchLoadingDialog(checkNetWork = false) {
 
         }
-
     }
 
 }
