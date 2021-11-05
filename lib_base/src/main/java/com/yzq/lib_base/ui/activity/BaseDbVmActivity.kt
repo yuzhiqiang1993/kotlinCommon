@@ -26,8 +26,6 @@ abstract class BaseDbVmActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
     override fun initViewModel() {
         vm = ViewModelProvider(this).get(getViewModelClass())
         with(vm) {
-            lifecycleOwner = this@BaseDbVmActivity
-            lifecycle.addObserver(this)
             loadState.observe(this@BaseDbVmActivity) { viewStateBean ->
                 LogUtils.i("BaseDbVmActivity loadState:${viewStateBean}")
                 stateViewManager.handleViewState(

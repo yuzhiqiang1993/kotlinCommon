@@ -11,13 +11,23 @@ import com.loper7.date_time_picker.DateTimeConfig
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
+import com.yzq.lib_base.extend.setOnThrottleTimeClick
 import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 import com.yzq.lib_materialdialog.*
+<<<<<<< HEAD
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
-
+=======
+import com.yzq.lib_rx.NextObserver
+import com.yzq.lib_rx.transform
+import io.reactivex.Observable
+import io.reactivex.disposables.Disposable
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
+>>>>>>> b64e12042bea21b42271863007803e942424a513
 
 /**
  * @description: 弹窗
@@ -26,24 +36,33 @@ import java.util.*
  * @time   : 13:38
  *
  */
-
 @Route(path = RoutePath.Main.DIALOG)
 class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
-
     override fun getViewBinding() = ActivityDialogBinding.inflate(layoutInflater)
-
 
     @SuppressLint("AutoDispose")
     override fun initWidget() {
-
+//        allowFastClick()
         with(binding) {
             initToolbar(layoutToolbar.toolbar, "弹窗", true)
 
+<<<<<<< HEAD
             layoutScrollContent.btnBase.setOnClickListener {
                 showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
             }
 
             layoutScrollContent.btnOnlyPositiveCallback.setOnClickListener {
+=======
+
+
+            layoutScrollContent.btnBase.setOnThrottleTimeClick {
+                showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
+            }
+
+
+
+            layoutScrollContent.btnOnlyPositiveCallback.setOnThrottleTimeClick {
+>>>>>>> b64e12042bea21b42271863007803e942424a513
                 showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作") {
                     ToastUtils.showShort("点击了确定")
                 }
@@ -52,12 +71,10 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                 showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作") {
                     ToastUtils.showShort("点击了确定")
                 }
-
             }
 
 
             layoutScrollContent.btnCallback.setOnClickListener {
-
                 showCallbackDialog(message = "双选项双回调",
                     positiveCallback = {
                         ToastUtils.showShort("点击了确定")
@@ -72,11 +89,9 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
 
             layoutScrollContent.btnSingleSelect
                 .setOnClickListener {
-
                     val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
 
                     showSingleSelectList(title = "语言", items = datas) { dialog, index, text ->
-
                         ToastUtils.showShort(text.toString())
                     }
                 }
@@ -85,16 +100,15 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
 
             layoutScrollContent.btnInput
                 .setOnClickListener {
-
                     showInputDialog(positiveText = "完成") { materialDialog, charSequence ->
                         ToastUtils.showShort(charSequence.toString())
                     }
-
                 }
 
 
             layoutScrollContent.btnLoading
                 .setOnClickListener {
+<<<<<<< HEAD
 
                     stateViewManager.showLoadingDialog("登录中...")
 
@@ -103,6 +117,14 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                         stateViewManager.dismissLoadingDialog()
                     }
 
+=======
+                    stateViewManager.showLoadingDialog("登录中...")
+
+                    launch {
+                        delay(2000)
+                        stateViewManager.dismissLoadingDialog()
+                    }
+>>>>>>> b64e12042bea21b42271863007803e942424a513
                 }
 
 
@@ -130,6 +152,7 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                                 }
 
                             }
+<<<<<<< HEAD
                         }
 
                     }
@@ -139,20 +162,19 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                     )
 
 
+=======
+                        })
+>>>>>>> b64e12042bea21b42271863007803e942424a513
                 }
 
             layoutScrollContent.btnSelectYear
                 .setOnClickListener {
-
-
                     selectYear { millisecond, dateStr ->
                         ToastUtils.showLong(dateStr)
                     }
-
                 }
             layoutScrollContent.btnSelectDate
                 .setOnClickListener {
-
                     val dateFormat = "yyyy-MM-dd"
                     val displayType =
                         arrayListOf(DateTimeConfig.YEAR, DateTimeConfig.MONTH, DateTimeConfig.DAY)
@@ -164,7 +186,6 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                     ) { millisecond, dateStr ->
                         ToastUtils.showLong(dateStr)
                     }
-
                 }
             layoutScrollContent.btnSelectTime
                 .setOnClickListener {
@@ -177,11 +198,9 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
 
                     showDatePicker(
                         title = "选择时分秒", displayType = displayType, dateFormat = dateFormat
-
                     ) { millisecond, dateStr ->
                         ToastUtils.showLong(dateStr)
                     }
-
                 }
 
 
@@ -194,14 +213,8 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
                             message(text = "bottom sheet")
                             positiveButton(text = "确定")
                             negativeButton(text = "取消")
-
                         }
                 }
-
         }
-
-
     }
-
-
 }
