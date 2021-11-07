@@ -1,6 +1,14 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
+import androidx.lifecycle.MutableLiveData
+import com.blankj.utilcode.util.PathUtils
+import com.blankj.utilcode.util.ToastUtils
+import com.xeon.bsdiff.BsDiffUtil
 import com.yzq.lib_base.view_model.BaseViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.io.File
+import kotlin.system.measureTimeMillis
 
 /**
  * @description: BsDiff ViewModel
@@ -11,14 +19,83 @@ import com.yzq.lib_base.view_model.BaseViewModel
 
 class BsDiffViewModel : BaseViewModel() {
 
+    val showMD5LiveData by lazy { MutableLiveData<Boolean>() }
+
     /**
-     * 生成差分包
+     * 生成差分包,非常的耗时且占用内存，一般来京要放到服务端做
      */
-    suspend fun createDiffFile() {
+    fun createDiffFile() {
 
-        launchLoadingDialog(checkNetWork = false) {
+        launchLoadingDialog(loadText = "正在生成差分包，请稍后...", checkNetWork = false) {
 
+            val measureTimeMillis = measureTimeMillis {
+                withContext(Dispatchers.IO) {
+
+
+                    val oldFile = File(PathUtils.getExternalAppCachePath(), "old.txt")
+                    val newFile = File(PathUtils.getExternalAppCachePath(), "new.txt")
+                    val patchFile = File(PathUtils.getExternalAppCachePath(), "patch.txt")
+
+                    if (!oldFile.exists() || !newFile.exists()) {
+                        ToastUtils.showShort("对比包缺失")
+                        return@withContext
+                    }
+
+                    val fileDiff = BsDiffUtil.fileDiff(
+                        oldFile.absolutePath,
+                        newFile.absolutePath,
+                        patchFile.absolutePath
+                    )
+
+                }
+            }
+
+
+            ToastUtils.showLong("差分包生成成功，耗时${measureTimeMillis}")
         }
     }
+
+
+    /*合并差分包*/
+    fun combineFile() {
+
+        launchLoadingDialog(loadText = "正在合并差分包，请稍后...", checkNetWork = false) {
+
+            val measureTimeMillis = measureTimeMillis {
+                withContext(Dispatchers.IO) {
+
+                    val oldFile = File(PathUtils.getExternalAppCachePath(), "old.txt")
+
+                    val combineFile = File(PathUtils.getExternalAppCachePath(), "combine.txt")
+                    val patchFile = File(PathUtils.getExternalAppCachePath(), "patch.txt")
+                    if (!oldFile.exists()) {
+                        ToastUtils.showShort("旧文件不存在")
+                        return@withContext
+                    }
+                    if (!patchFile.exists()) {
+                        ToastUtils.showShort("差分包不存在")
+                        return@withContext
+                    }
+
+                    BsDiffUtil.fileCombine(
+                        oldFile.absolutePath,
+                        combineFile.absolutePath,
+                        patchFile.absolutePath
+                    )
+
+                }
+
+                showMD5LiveData.value = true
+
+            }
+
+            ToastUtils.showLong("差分包合并完成，耗时:${measureTimeMillis}")
+
+
+        }
+
+
+    }
+
 
 }
