@@ -44,9 +44,14 @@ class BsDiffActivity : BaseVbVmActivity<ActivityBsDiffBinding, BsDiffViewModel>(
 
         vm.apply {
 
-            showMD5LiveData.observe(this@BsDiffActivity) {
-
+            newFileMD5LiveData.observe(this@BsDiffActivity) {
+                binding.htvNewFileMd5.setContent(it)
             }
+            combineFileMD5LiveData.observe(this@BsDiffActivity) {
+                binding.htvCombineFileMd5.setContent(it)
+            }
+
+
         }
 
 
