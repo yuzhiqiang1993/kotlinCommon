@@ -106,7 +106,6 @@ dependencies {
     api project(path: ':lib_materialdialog')
     api project(path: ':lib_permission')
     api project(path: ':lib_resource')
-//    api project(path: ':lib_rx')
     api project(path: ':lib_widget')
 
 
