@@ -1,19 +1,18 @@
-
-
-
 /*当前文件用来配置所有子工程公用的配置*/
 
 println("我是根目录下的build.gradle")
-
+/*应用脚本插件*/
+apply from: file("config.gradle")
 
 buildscript {
-    apply from: file("config.gradle")
+
     repositories {
         google()
         mavenCentral()
 
     }
     dependencies {
+        /*二进制插件*/
         classpath 'com.android.tools.build:gradle:7.0.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
 

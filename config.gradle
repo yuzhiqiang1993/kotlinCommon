@@ -1,3 +1,7 @@
+/*脚本插件*/
+
+println "config.gradle"
+
 ext {
 
     /*defaultConfig*/
@@ -9,8 +13,6 @@ ext {
     multiDexEnabled = true
 
     /*dependencies*/
-
-    /*AndroidX*/ 
     appcompat = '1.3.1'
     material = '1.4.0'
     vectordrawable = "1.1.0"
