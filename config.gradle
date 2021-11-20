@@ -46,14 +46,13 @@ ext {
     bugly_crashreport_upgrade = '1.5.23'
     bugly_nativecrashreport = '3.9.2'
     datepickerVersion = "0.3.1"
-    flexbox = "2.0.1"
+    flexbox_layout = "3.0.0"
     gradle_versions_plugin = "v0.39.0"
     zxing_version = "2.2.9"
     jsoup_version = '1.14.3'
     leakcanary_android = "2.7"
     bannerViewPager = "3.5.2"
     viewpager2 = '1.1.0-beta01'
-    roundedImageView = "0.8.4"
     signConfigs = [
             storeFilePath: "kotlinCommon",
             storePwd     : "123456",

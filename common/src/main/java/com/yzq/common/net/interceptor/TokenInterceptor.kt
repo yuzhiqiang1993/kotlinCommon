@@ -2,7 +2,6 @@ package com.yzq.common.net.interceptor
 
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.utils.LocalSpUtils
-import kotlinx.coroutines.InternalCoroutinesApi
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -15,7 +14,6 @@ import okhttp3.Response
  */
 
 class TokenInterceptor : Interceptor {
-    @InternalCoroutinesApi
     override fun intercept(chain: Interceptor.Chain): Response {
 
         val request = chain.request()

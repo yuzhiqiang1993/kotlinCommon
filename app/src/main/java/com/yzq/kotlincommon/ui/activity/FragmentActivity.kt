@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.view.MenuItem
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFragmentBinding
@@ -13,7 +13,7 @@ import com.yzq.lib_base.ui.fragment.BaseFragment
 
 @Route(path = RoutePath.Main.FRAGMENT)
 class FragmentActivity : BaseVbVmActivity<ActivityFragmentBinding, FragmentViewModel>(),
-    BottomNavigationView.OnNavigationItemSelectedListener {
+    NavigationBarView.OnItemSelectedListener {
 
     override fun getViewBinding() = ActivityFragmentBinding.inflate(layoutInflater)
 
@@ -26,8 +26,7 @@ class FragmentActivity : BaseVbVmActivity<ActivityFragmentBinding, FragmentViewM
         initToolbar(binding.layoutToolbar.toolbar, "Fragment")
 
 
-        binding.bottomNavigation.setOnNavigationItemSelectedListener(this)
-
+        binding.bottomNavigation.setOnItemSelectedListener(this)
 
         showFragment(vm.taskFragment)
 

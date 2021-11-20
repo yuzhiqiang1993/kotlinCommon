@@ -34,7 +34,6 @@ class WebViewActivity : BaseViewBindingActivity<ActivityWebViewBinding>() {
         settings.javaScriptEnabled = true
         settings.javaScriptCanOpenWindowsAutomatically = true
         settings.domStorageEnabled = true
-        settings.setAppCacheEnabled(false)
         settings.cacheMode = WebSettings.LOAD_NO_CACHE
         binding.webview.webViewClient = webViewClient
         binding.webview.addJavascriptInterface(JsBridge, "Android")

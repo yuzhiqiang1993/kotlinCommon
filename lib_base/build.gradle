@@ -97,9 +97,7 @@ dependencies {
     api "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
 
     /*progressmanager*/
-    api "me.jessyan:progressmanager:$progressmanager_version"
-
-
+    api "com.github.JessYanCoding:ProgressManager:$progressmanager_version"
     api project(path: ':lib_base_adapter')
     api project(path: ':lib_eventbus')
     api project(path: ':lib_img')

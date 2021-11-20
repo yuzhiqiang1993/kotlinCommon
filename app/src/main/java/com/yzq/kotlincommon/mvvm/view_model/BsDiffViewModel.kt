@@ -22,12 +22,10 @@ class BsDiffViewModel : BaseViewModel() {
 
     val newFileMD5LiveData by lazy { MutableLiveData<String>() }
     val combineFileMD5LiveData by lazy { MutableLiveData<String>() }
-
-
     val suffix = "apk"
 
     /**
-     * 生成差分包,非常的耗时且占用内存，一般来京要放到服务端做
+     * 生成差分包,非常的耗时且占用内存，一般都是在服务端进行
      */
     fun createDiffFile() {
 

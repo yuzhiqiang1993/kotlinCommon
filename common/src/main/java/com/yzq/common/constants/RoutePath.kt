@@ -28,7 +28,6 @@ object RoutePath {
         const val BS_DIFF = "/main/bsDiff"
         const val ROOM = "/main/room"
         const val DOWNLOAD = "/main/download"
-        const val EXO_PLAYER = "/main/exoPlayer"
         const val VIEW_PAGER: String = "/main/viewPager"
         const val WEB_VIEW: String = "/main/webView"
         const val DATA_BINDING: String = "/main/dataBinding"

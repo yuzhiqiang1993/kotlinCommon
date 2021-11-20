@@ -1,6 +1,6 @@
 package com.yzq.kotlincommon.widget.banner
 
-import com.rishabhharit.roundedimageview.RoundedImageView
+import androidx.appcompat.widget.AppCompatImageView
 import com.yzq.kotlincommon.R
 import com.yzq.lib_img.load
 import com.zhpan.bannerview.BaseBannerAdapter
@@ -18,7 +18,7 @@ class BannerAdapter : BaseBannerAdapter<String>() {
         pageSize: Int
     ) {
 
-        val bannerIv = holder.findViewById<RoundedImageView>(R.id.iv_banner)
+        val bannerIv = holder.findViewById<AppCompatImageView>(R.id.iv_banner)
         bannerIv.load(data)
 
     }

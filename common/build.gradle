@@ -74,7 +74,7 @@ dependencies {
     api "com.tencent.bugly:crashreport_upgrade:$bugly_crashreport_upgrade"
     api "com.tencent.bugly:nativecrashreport:$bugly_nativecrashreport"
     /*flexbox*/
-    api "com.google.android:flexbox:$flexbox"
+    api "com.github.google:flexbox-layout:${flexbox_layout}"
 
 
     /*内存泄漏检测 leakcanary*/

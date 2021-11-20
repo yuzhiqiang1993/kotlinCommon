@@ -51,7 +51,6 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
 
         binding.layoutMain.recy.init()
 
-        val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
             this,
             binding.drawerLayout,
@@ -91,7 +90,6 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
         items.add(NaviItem("coroutine(协程)", RoutePath.Main.COROUTINE))
         items.add(NaviItem("room(数据库)", RoutePath.Main.ROOM))
         items.add(NaviItem("下载进度", RoutePath.Main.DOWNLOAD))
-        items.add(NaviItem("视频播放", RoutePath.Main.EXO_PLAYER))
         items.add(NaviItem("ViewPager", RoutePath.Main.VIEW_PAGER))
         items.add(NaviItem("WebView", RoutePath.Main.WEB_VIEW))
         items.add(NaviItem("DataBinding", RoutePath.Main.DATA_BINDING))
