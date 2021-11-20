@@ -1,3 +1,21 @@
+/*用来声明当前工程都包含哪些子工程*/
+
+
+/*Gradle 的生命周期
+* 分为三个阶段  初始化阶段  配置阶段 执行阶段
+*
+* 初始化阶段：对应settings.gradle
+* 配置阶段:对应各个module下的build.gradle
+* 执行阶段：把配置阶段生成的依赖图执行一下  主要是task(重点)
+*
+*
+* */
+
+
+/**
+ * settings.gradle 运行在初始化阶段
+ */
+
 include ':app',
         ':common',
         ':gao_de_map',
@@ -12,29 +30,35 @@ include ':app',
         ':bs_diff'
 
 
-//gradle.buildStarted {
-//    print("buildStarted")
-//}
-//
-//
-//gradle.projectsLoaded {
-//
-//    println("projectsLoaded")
-//}
+/*settings.gradle里的代码会在初始化回调之前执行*/
+println("我是settings.gradle")
 
-//gradle.getTaskGraph().addTaskExecutionListener(new TaskExecutionListener() {
-//    @Override
-//    void beforeExecute(Task task) {
-//
-//        println("beforeExecute:${task.name}")
-//
-//    }
-//
-//    @Override
-//    void afterExecute(Task task, TaskState state) {
-//        println("afterExecute:${task.name}")
-//    }
-//})
-//
-//
 
+println "rootProjectName:${rootProject.getName()}"
+
+
+/*gradle的生命周期回调*/
+gradle.addBuildListener(new BuildAdapter() {
+    @Override
+    void settingsEvaluated(Settings settings) {
+        super.settingsEvaluated(settings)
+        println("初始化阶段完成")
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+        super.projectsEvaluated(gradle)
+        println("配置阶段完成")
+
+
+        rootProject.children.forEach(it -> {
+            println "子工程名称是：${it.name},；路径是：${it.getProjectDir()}"
+        })
+    }
+
+    @Override
+    void buildFinished(BuildResult result) {
+        super.buildFinished(result)
+        println("构建阶段完成")
+    }
+})

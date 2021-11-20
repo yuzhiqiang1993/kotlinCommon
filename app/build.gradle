@@ -124,3 +124,31 @@ dependencies {
 
 
 }
+
+
+task testTask() {
+
+
+    doFirst {
+        println "testTask执行 doFirst"
+    }
+
+    doLast {
+        println "testTask执行 doLast"
+    }
+
+}
+
+/*自定义一个task*/
+task testTask1() {
+    dependsOn testTask
+    doLast {
+        println("testTask1执行")
+    }
+
+
+}
+
+/*project表示当前module的项目*/
+println "我是App工程，${project.name},我的路径是:${project.projectDir}"
+
