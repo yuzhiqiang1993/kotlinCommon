@@ -117,7 +117,7 @@ dependencies {
     implementation "com.github.zhpanvip:BannerViewPager:${bannerViewPager}"
 
     implementation project(':common')
-    implementation project(':bs_diff')
+    implementation "io.github.yuzhiqiang1993:xeon_bsdiff:1.0.0"
     if (isModule.toBoolean()) {
         implementation project(':gao_de_map')
     }
