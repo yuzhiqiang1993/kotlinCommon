@@ -53,7 +53,7 @@ class BsDiffViewModel : BaseViewModel() {
                         return@withContext
                     }
 
-                    val fileDiff = XeonBsDiffUtil.diff(
+                    val fileDiff = XeonBsDiffUtil.bsdiff(
                         newFile.absolutePath,
                         oldFile.absolutePath,
                         patchFile.absolutePath
@@ -85,7 +85,7 @@ class BsDiffViewModel : BaseViewModel() {
                         return@withContext
                     }
 
-                    XeonBsDiffUtil.patch(
+                    XeonBsDiffUtil.bspatch(
                         oldFile.absolutePath,
                         patchFile.absolutePath,
                         combineFile.absolutePath
