@@ -15,7 +15,8 @@ buildscript {
         /*二进制插件*/
         classpath 'com.android.tools.build:gradle:7.0.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
-
+        /*加这个能减少ARouter初始化时间*/
+        classpath "com.alibaba:arouter-register:1.0.2"
     }
 
 

@@ -3,14 +3,16 @@ package com.yzq.lib_base
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import android.os.Trace
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.os.TraceCompat
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LanguageUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
+import kotlinx.coroutines.*
 import java.util.*
-
 
 /**
  * @description: Application入口
@@ -21,7 +23,6 @@ import java.util.*
  */
 
 open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
-
 
     private val activityStack: Stack<Activity> = Stack()
 
@@ -39,22 +40,22 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
     override fun onCreate() {
         super.onCreate()
 
+
         INSTANCE = this
 
         /*初始化Utils*/
         initUtils()
         /*初始化ARouter*/
+        Trace.beginSection("initARouter")
         initARouter()
+        Trace.endSection()
 
         registerActivityLifecycleCallbacks(this)
 
-
         initLanguage()
-
     }
 
     private fun initLanguage() {
-
 
         /*语言*/
         val localLanguage = LanguageUtils.getSystemLanguage()
@@ -73,12 +74,10 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
                 LogUtils.i("getAppContextLanguage:${LanguageUtils.getAppContextLanguage().language}")
                 LogUtils.i("getAppliedLanguage:${LanguageUtils.getAppliedLanguage().language}")
 
-
             }
         }
 
     }
-
 
     private fun initARouter() {
         if (BuildConfig.DEBUG) {
@@ -89,7 +88,6 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
         ARouter.init(this)
 
-
     }
 
     /**
@@ -98,7 +96,6 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
      */
 
     private fun initUtils() {
-
 
         Utils.init(this)
         val config = LogUtils.getConfig()
@@ -110,7 +107,6 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
     }
 
-
     /**
      * 退出App
      *
@@ -121,29 +117,29 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
         }
     }
-    
+
     override fun onActivityCreated(p0: Activity, p1: Bundle?) {
-        
+
     }
 
     override fun onActivityStarted(p0: Activity) {
-        
+
     }
 
     override fun onActivityResumed(p0: Activity) {
-        
+
     }
 
     override fun onActivityPaused(p0: Activity) {
-        
+
     }
 
     override fun onActivityStopped(p0: Activity) {
-        
+
     }
 
     override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) {
-        
+
     }
 
     override fun onActivityDestroyed(activity: Activity) {

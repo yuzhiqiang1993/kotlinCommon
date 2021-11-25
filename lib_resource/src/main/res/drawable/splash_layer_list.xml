@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+    <!--layer-list是一个图层  后面的会覆盖在前面的之上-->
+    <item>
+
+        <color android:color="@color/white" />
+
+        <!--        <shape android:shape="rectangle">-->
+        <!--            <gradient-->
+        <!--                android:centerColor="@color/white"-->
+        <!--                android:endColor="@color/white"-->
+        <!--                android:startColor="@color/white"-->
+        <!--                android:type="linear" />-->
+
+        <!--        </shape>-->
+    </item>
+
+
+    <item android:top="68dp">
+
+        <bitmap
+            android:antialias="true"
+            android:dither="true"
+            android:filter="true"
+            android:gravity="top"
+            android:src="@drawable/ic_launcher" />
+    </item>
+
+
+</layer-list>

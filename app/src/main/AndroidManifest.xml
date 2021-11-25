@@ -21,6 +21,16 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,andrpod:label">
         <activity
+            android:name=".ui.activity.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.activity.BsDiffActivity"
             android:exported="false" />
         <activity
@@ -39,9 +49,6 @@
             android:name=".ui.activity.ViewPager2Activity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.VideoPlayerActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".ui.activity.DownloadActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -91,17 +98,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.activity.AutodisposeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity

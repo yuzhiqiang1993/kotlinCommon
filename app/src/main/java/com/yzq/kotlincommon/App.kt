@@ -1,11 +1,15 @@
 package com.yzq.kotlincommon
 
+import android.content.Context
+import android.os.Trace
+import com.blankj.utilcode.util.LogUtils
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.StoragePath
 import com.yzq.kotlincommon.ui.activity.MainActivity
 import com.yzq.lib_base.BaseApp
-
+import kotlinx.coroutines.delay
+import java.util.concurrent.TimeUnit
 
 /**
  * @description: Application基类
@@ -17,16 +21,19 @@ import com.yzq.lib_base.BaseApp
 
 class App : BaseApp() {
 
-
     override fun onCreate() {
+        LogUtils.i("onCreate")
+        Trace.beginSection("BaseAppInit")
         super.onCreate()
+
+        Trace.beginSection("initBugly")
         initBugly()
+        Trace.endSection()
 
         StoragePath.logPathInfo()
-
+        Trace.endSection()
 
     }
-
 
     /**
      * 初始化bugly
@@ -41,5 +48,9 @@ class App : BaseApp() {
 
     }
 
+    override fun attachBaseContext(base: Context?) {
+        super.attachBaseContext(base)
+
+    }
 
 }
