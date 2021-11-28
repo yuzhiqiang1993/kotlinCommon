@@ -51,24 +51,22 @@ android {
         }
     }
 
-    flavorDimensions "Version"
+    flavorDimensions "channel"
     productFlavors {
 
-        dev {
+        wandoujia {
             manifestPlaceholders = [
-                    "APP_NAME": "KotlinCommon-Dev",
+                    "APP_NAME"     : "KotlinCommon-wandoujia",
+                    "META_CHANNEL_VALUE": "wandoujia"
             ]
         }
-        prd {
+        yingyongbao {
             manifestPlaceholders = [
-                    "APP_NAME": "KotlinCommon-Prd",
+                    "APP_NAME"     : "KotlinCommon-yingyongbao",
+                    "META_CHANNEL_VALUE": "yingyongbao"
             ]
         }
-        yzq {
-            manifestPlaceholders = [
-                    "APP_NAME": "KotlinCommon-Prd",
-            ]
-        }
+
         applicationVariants.all { variant ->
             variant.outputs.all { output ->
 

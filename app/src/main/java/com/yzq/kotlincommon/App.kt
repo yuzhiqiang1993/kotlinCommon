@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon
 
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Trace
 import com.blankj.utilcode.util.LogUtils
 import com.tencent.bugly.Bugly
@@ -8,8 +9,6 @@ import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.StoragePath
 import com.yzq.kotlincommon.ui.activity.MainActivity
 import com.yzq.lib_base.BaseApp
-import kotlinx.coroutines.delay
-import java.util.concurrent.TimeUnit
 
 /**
  * @description: Application基类
@@ -25,6 +24,16 @@ class App : BaseApp() {
         LogUtils.i("onCreate")
         Trace.beginSection("BaseAppInit")
         super.onCreate()
+
+        /*读取Manifest.xml中的 META_DATA */
+
+        val applicationInfo = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
+
+        val metaData = applicationInfo.metaData
+        val metaChannelValue = metaData.getString("META_CHANNEL")
+
+        LogUtils.i("metaChannelValue=${metaChannelValue}")
+
 
         Trace.beginSection("initBugly")
         initBugly()

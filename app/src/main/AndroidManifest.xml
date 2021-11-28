@@ -20,6 +20,11 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,andrpod:label">
+        <!--自定义一些元数据-->
+        <meta-data
+            android:name="META_CHANNEL"
+            android:value="${META_CHANNEL_VALUE}" />
+
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="true"
