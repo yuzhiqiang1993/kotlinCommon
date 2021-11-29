@@ -3,13 +3,14 @@ package com.yzq.kotlincommon
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Trace
-import com.blankj.utilcode.util.LogUtils
+import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.*
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import com.yzq.common.constants.StoragePath
 import com.yzq.kotlincommon.ui.activity.MainActivity
 import com.yzq.lib_base.BaseApp
+import com.yzq.lib_base.BuildConfig
 import java.lang.reflect.InvocationTargetException
 
 /**
@@ -23,10 +24,20 @@ import java.lang.reflect.InvocationTargetException
 class App : BaseApp() {
 
     override fun onCreate() {
-        LogUtils.i("onCreate")
-        Trace.beginSection("BaseAppInit")
         super.onCreate()
 
+        readMetaData()
+        initBugly()
+        /*初始化Utils*/
+        initUtils()
+        /*初始化ARouter*/
+        initARouter()
+        initLanguage()
+        StoragePath.logPathInfo()
+
+    }
+
+    private fun readMetaData() {
         /*读取Manifest.xml中的 META_DATA */
 
         val applicationInfo = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
@@ -35,14 +46,57 @@ class App : BaseApp() {
         val metaChannelValue = metaData.getString("META_CHANNEL")
 
         LogUtils.i("metaChannelValue=${metaChannelValue}")
+    }
 
+    private fun initLanguage() {
 
-        Trace.beginSection("initBugly")
-        initBugly()
-        Trace.endSection()
+        /*语言*/
+        val localLanguage = LanguageUtils.getSystemLanguage()
+        LogUtils.i("当前系统语言:${localLanguage.language}")
+        if (LanguageUtils.isAppliedLanguage()) {
+            LogUtils.i("appliedLanguage语言:${LanguageUtils.getAppliedLanguage().language}")
+        }
 
-        StoragePath.logPathInfo()
-        Trace.endSection()
+        /*如果 appliedLanguage 和 AppContextLanguage 不一致时  统一语言环境*/
+        if (LanguageUtils.isAppliedLanguage() && LanguageUtils.getAppliedLanguage().language != LanguageUtils.getAppContextLanguage().language) {
+            LanguageUtils.updateAppContextLanguage(
+                LanguageUtils.getAppliedLanguage()
+            ) {
+                LogUtils.i("统一语言环境")
+
+                LogUtils.i("getAppContextLanguage:${LanguageUtils.getAppContextLanguage().language}")
+                LogUtils.i("getAppliedLanguage:${LanguageUtils.getAppliedLanguage().language}")
+
+            }
+        }
+
+    }
+
+    private fun initARouter() {
+        if (BuildConfig.DEBUG) {
+            ARouter.openLog() // 开启日志
+            ARouter.openDebug() // 使用InstantRun的时候，需要打开该开关，上线之后关闭，否则有安全风险
+            ARouter.printStackTrace() // 打印日志的时候打印线程堆栈
+        }
+
+        ARouter.init(this)
+
+    }
+
+    /**
+     * 初始化util工具类
+     *
+     */
+
+    private fun initUtils() {
+
+        Utils.init(this)
+        val config = LogUtils.getConfig()
+            .setLogSwitch(BuildConfig.DEBUG)
+            .setGlobalTag(AppUtils.getAppName())
+            .setConsoleSwitch(BuildConfig.DEBUG)
+
+        LogUtils.d(config.toString())
 
     }
 

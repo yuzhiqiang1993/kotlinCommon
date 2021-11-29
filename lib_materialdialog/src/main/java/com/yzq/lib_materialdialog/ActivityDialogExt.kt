@@ -6,24 +6,22 @@ import com.afollestad.materialdialogs.DialogCallback
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.input.InputCallback
 import com.afollestad.materialdialogs.input.input
+import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.afollestad.materialdialogs.list.ItemListener
 import com.afollestad.materialdialogs.list.listItems
 import com.loper7.date_time_picker.DateTimeConfig
 import com.loper7.date_time_picker.StringUtils
 import com.loper7.date_time_picker.dialog.CardDatePickerDialog
 
-
 /*获取一个新的Dialog实例*/
 fun ComponentActivity.getNewDialog(): MaterialDialog {
-
 
     return MaterialDialog(this)
         .cancelOnTouchOutside(false)
         .cancelable(false)
-//        .lifecycleOwner(this)
+        .lifecycleOwner(this)
 
 }
-
 
 /**
  * 基础弹窗  没有任何回调  只有确定按钮
@@ -48,7 +46,6 @@ fun ComponentActivity.showBaseDialog(
 
 }
 
-
 /**
  * 显示一个只有确定按钮的弹窗
  *
@@ -69,9 +66,7 @@ fun ComponentActivity.showOnlyPostiveCallBackDialog(
         positiveButton(text = positiveText, click = callback)
     }
 
-
 }
-
 
 /**
  *
@@ -90,19 +85,15 @@ fun ComponentActivity.showPositiveCallbackDialog(
     positiveCallback: DialogCallback
 ) {
 
-
     getNewDialog().show {
         title(text = title)
         message(text = message)
         positiveButton(text = positiveText, click = positiveCallback)
         negativeButton(text = negativeText)
 
-
     }
 
-
 }
-
 
 /**
  * 带有确定和取消回调的弹窗
@@ -121,7 +112,6 @@ fun ComponentActivity.showCallbackDialog(
     negativeCallback: DialogCallback
 ) {
 
-
     getNewDialog().show {
         title(text = title)
         message(text = message)
@@ -129,9 +119,7 @@ fun ComponentActivity.showCallbackDialog(
         negativeButton(text = negativeText, click = negativeCallback)
     }
 
-
 }
-
 
 /**
  * 返回页面提示弹窗
@@ -149,7 +137,6 @@ fun ComponentActivity.showBackHintDialog(
     negativeText: String = CANCLE
 ) {
 
-
     getNewDialog().show {
 
         title(text = title)
@@ -157,12 +144,9 @@ fun ComponentActivity.showBackHintDialog(
         positiveButton(text = positiveText)
         negativeButton(text = negativeText, click = positiveCallback)
 
-
     }
 
-
 }
-
 
 /**
  * 单选列表弹窗
@@ -185,11 +169,9 @@ fun ComponentActivity.showSingleSelectList(
         }
         listItems(items = items, selection = listListener)
 
-
     }
 
 }
-
 
 /**
  * 带输入框的弹窗
@@ -203,7 +185,6 @@ fun ComponentActivity.showSingleSelectList(
  * @param inputType  输入类型
  * @param allowEmptyInput  是否允许输入空
  */
-
 
 fun ComponentActivity.showInputDialog(
     title: String = HINT,
@@ -235,7 +216,6 @@ fun ComponentActivity.showInputDialog(
             callback = inputCallback
         )
 
-
     }
 
 }
@@ -256,7 +236,6 @@ fun ComponentActivity.getProgressDialog(): MaterialDialog {
     return getNewDialog().progress().cancelOnTouchOutside(false).cancelable(false)
 
 }
-
 
 /**
  * 选择年份
@@ -306,7 +285,6 @@ fun ComponentActivity.selectYear(
 
 }
 
-
 fun ComponentActivity.showDatePicker(
     displayType: MutableList<Int> = arrayListOf(
         DateTimeConfig.YEAR,
@@ -347,6 +325,5 @@ fun ComponentActivity.showDatePicker(
             datePickerListener(millisecond, dateStr)
 
         }.setOnCancel(negativeText).build().show()
-
 
 }

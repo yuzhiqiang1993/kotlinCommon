@@ -55,8 +55,6 @@ dependencies {
     /*日期选择*/
     api "com.github.loperSeven:DateTimePicker:${datepickerVersion}"
 
-    /*Datepicker*/
-//    api "com.ycuwq.widgets:datepicker:$datepickerVersion"
     implementation project(path: ':lib_resource')
 
 

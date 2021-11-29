@@ -2,10 +2,15 @@ println "=========bytex.gradle========="
 
 
 apply plugin: 'bytex'
+
+
+/*debug 是否可用总开关*/
+def enableDebug = false
+
 /*ByteX 总开关*/
 ByteX {
     enable true
-    enableInDebug true
+    enableInDebug enableDebug
     logLevel "DEBUG"
 }
 
@@ -26,7 +31,7 @@ ByteX {
 apply plugin: 'bytex.access_inline'
 access_inline {
     enable true
-    enableInDebug true
+    enableInDebug enableDebug
     logLevel "DEBUG"
     whiteList = [
             "com/vivo/identifier/*",
@@ -46,7 +51,7 @@ access_inline {
 apply plugin: 'bytex.const_inline'
 const_inline {
     enable true
-    enableInDebug true
+    enableInDebug enableInDebug
     logLevel "INFO"
     autoFilterReflectionField = true  //使用插件内置的反射检查过滤掉可能的反射常量，建议为true
     //supposesReflectionWithString = false //使用插件内置字符串匹配可能反射常量，建议为false
@@ -77,13 +82,11 @@ const_inline {
 apply plugin: 'bytex.shrink_r_class'
 shrinkR {
     enable true
-    enableInDebug true
+    enableInDebug enableDebug
     logLevel "DEBUG"
     keepList = [
             // keep android.support.constraint.R里所有id
             "android.support.constraint.R.id",
-            // keep 所有以im_e为前缀的drawable字段
-            "R.drawable.im_e+",
     ]
     resCheck {
         enable true // 无用资源检查的开关
@@ -115,7 +118,7 @@ shrinkR {
 apply plugin: 'bytex.method_call_opt'
 method_call_opt {
     enable true
-    enableInDebug true//建议开发模式关闭
+    enableInDebug enableDebug//建议开发模式关闭
     logLevel "DEBUG"
     //是否在log中显示删除方法调用指令后的方法指令，一般调试时使用
     showAfterOptInsLog true

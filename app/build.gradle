@@ -54,23 +54,33 @@ android {
         }
     }
 
-    flavorDimensions "channel"
+    flavorDimensions "channel","env"
     productFlavors {
 
-        dev{
+        dev {
+            dimension "env"
             manifestPlaceholders = [
                     "APP_NAME"          : "KotlinCommon-dev",
-                    "META_CHANNEL_VALUE": "dev"
+                    "META_CHANNEL_VALUE": "app"
+            ]
+        }
+        prd {
+            dimension "env"
+            manifestPlaceholders = [
+                    "APP_NAME"          : "KotlinCommon",
+                    "META_CHANNEL_VALUE": "app"
             ]
         }
 
         wandoujia {
+            dimension "channel"
             manifestPlaceholders = [
                     "APP_NAME"          : "KotlinCommon-wandoujia",
                     "META_CHANNEL_VALUE": "wandoujia"
             ]
         }
         yingyongbao {
+            dimension "channel"
             manifestPlaceholders = [
                     "APP_NAME"          : "KotlinCommon-yingyongbao",
                     "META_CHANNEL_VALUE": "yingyongbao"
