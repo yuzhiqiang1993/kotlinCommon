@@ -1,9 +1,7 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
-import com.blankj.utilcode.util.FileUtils
-import com.blankj.utilcode.util.PathUtils
-import com.blankj.utilcode.util.ToastUtils
+import com.blankj.utilcode.util.*
 import com.xeon.bsdiff.utils.XeonBsDiffUtil
 import com.yzq.lib_base.view_model.BaseViewModel
 import kotlinx.coroutines.Dispatchers
@@ -36,7 +34,6 @@ class BsDiffViewModel : BaseViewModel() {
     /*生成的补丁文件*/
     private val patchFile = File(PathUtils.getExternalAppCachePath(), "patch.${suffix}")
 
-
     /**
      * 生成差分包,非常的耗时且占用内存，一般都是在服务端进行
      */
@@ -46,7 +43,6 @@ class BsDiffViewModel : BaseViewModel() {
 
             val measureTimeMillis = measureTimeMillis {
                 withContext(Dispatchers.IO) {
-
 
                     if (!oldFile.exists() || !newFile.exists()) {
                         ToastUtils.showShort("对比包缺失")
@@ -66,7 +62,6 @@ class BsDiffViewModel : BaseViewModel() {
             ToastUtils.showLong("差分包生成成功，耗时${measureTimeMillis}")
         }
     }
-
 
     /*合并差分包*/
     fun combineFile() {
@@ -89,11 +84,9 @@ class BsDiffViewModel : BaseViewModel() {
                         oldFile.absolutePath,
                         patchFile.absolutePath,
                         combineFile.absolutePath
-
                     )
 
                 }
-
 
                 /*计算md5值*/
 
@@ -103,11 +96,8 @@ class BsDiffViewModel : BaseViewModel() {
 
             ToastUtils.showLong("差分包合并完成，耗时:${measureTimeMillis}")
 
-
         }
 
-
     }
-
 
 }

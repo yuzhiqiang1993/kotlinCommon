@@ -1,14 +1,10 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.databinding.ActivitySplashBinding
 import com.yzq.lib_base.extend.navFinish
-import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
-import kotlinx.coroutines.*
 
 /**
  * @description: 闪屏页
@@ -23,12 +19,8 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_splash)
+        navFinish(RoutePath.Main.LOGIN)
 
-        MainScope().launch {
-
-            delay(1000)
-            navFinish(RoutePath.Main.LOGIN)
-        }
     }
 
 }

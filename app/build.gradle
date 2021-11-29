@@ -140,6 +140,9 @@ dependencies {
         implementation project(':gao_de_map')
     }
 
+    implementation 'com.github.aiceking:AppStartFaster:2.0.0'
+
+
 
 }
 
