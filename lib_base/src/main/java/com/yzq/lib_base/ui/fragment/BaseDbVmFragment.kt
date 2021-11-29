@@ -27,7 +27,6 @@ abstract class BaseDbVmFragment<DB : ViewDataBinding, VM : BaseViewModel> :
         vm = ViewModelProvider(this).get(getViewModelClass())
 
         with(vm) {
-            lifecycleOwner = this@BaseDbVmFragment
             lifecycle.addObserver(this)
             loadState.observe(this@BaseDbVmFragment) { viewStateBean ->
                 stateViewManager.handleViewState(viewStateBean)

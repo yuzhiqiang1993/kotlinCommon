@@ -55,6 +55,7 @@ ext {
     leakcanary_android = "2.7"
     bannerViewPager = "3.5.2"
     viewpager2 = '1.1.0-beta01'
+    bytex_plugin_version = "0.3.0"
     signConfigs = [
             storeFilePath: "kotlinCommon",
             storePwd     : "123456",

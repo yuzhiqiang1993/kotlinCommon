@@ -1,11 +1,10 @@
 package com.yzq.gao_de_map
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import com.amap.api.location.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
 import com.yzq.lib_base.view_model.BaseViewModel
-
 
 /**
  * @description: 定位模块,签到模式
@@ -19,16 +18,13 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
     private var locationClient: AMapLocationClient = AMapLocationClient(com.yzq.lib_base.AppContext)
 
-
     var locationData = MutableLiveData<AMapLocation>()
-
 
     init {
         /*初始化定位*/
         locationClient.setLocationOption(initOption())
         locationClient.setLocationListener(this)
     }
-
 
     /*签到场景配置*/
     private fun initOption(): AMapLocationClientOption {
@@ -47,9 +43,7 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
     }
 
-
     override fun onLocationChanged(location: AMapLocation) {
-
 
         val sb = StringBuffer()
         //errCode等于0代表定位成功，其他的为定位失败，具体的可以参照官网定位错误码说明
@@ -77,14 +71,12 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
             //定位完成的时间
             sb.append("定位时间: " + TimeUtils.millis2String(location.time) + "\n")
 
-
         } else {
             //定位失败
             sb.append("定位失败" + "\n")
             sb.append("错误码:" + location.errorCode + "\n")
             sb.append("错误信息:" + location.errorInfo + "\n")
             sb.append("错误描述:" + location.locationDetail + "\n")
-
 
         }
         sb.append("***定位质量报告***").append("\n")
@@ -104,9 +96,7 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
         locationData.value = location
 
-
     }
-
 
     /**
      * 获取GPS状态的字符串
@@ -128,13 +118,20 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
         return str
     }
 
+    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+        super.onStateChanged(source, event)
 
-    override fun onDestory() {
-        super.onDestory()
-        LogUtils.i("onDestroy")
-        locationClient.stopLocation()
-        locationClient.onDestroy()
+        when (event.targetState) {
+            Lifecycle.State.DESTROYED -> {
+                locationClient.stopLocation()
+                locationClient.onDestroy()
+            }
+            else -> {
+
+            }
+
+        }
+
     }
-
 
 }

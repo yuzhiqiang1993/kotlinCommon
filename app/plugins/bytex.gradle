@@ -1,0 +1,157 @@
+println "=========bytex.gradle========="
+
+
+apply plugin: 'bytex'
+/*ByteX 总开关*/
+ByteX {
+    enable true
+    enableInDebug true
+    logLevel "DEBUG"
+}
+
+
+/**
+ * access方法内联 https://github.com/bytedance/ByteX/blob/master/access-inline-plugin/README-zh.md
+ * 编译器生成的桥接方法内联插件，启用后 dex 数量可明显减低
+ *
+ * access_inline 与  const_inline 同时开启的时候
+ * 需要保证 access_inline 先执行
+ *
+ * 如果 const_inline 先执行，会出现如下异常：
+ * 如果一个字段 real ，可以内联，同时也有内部类调用情况，会生成一个 access$xx 方法 间接持有字段的引用 描述为 access$xx -> real
+ * const_inline 执行后，real 被消除 ，理论上 access$xx -> 应该指向 real 实际的值 ；
+ * 但是 const_inline 插件不知道（也许是插件bug，也许是由于 access$xx 是虚拟机自己生成自己保存的索引表，无法修改），
+ * access$xx 对应的索引依旧是 -> real ，但 real 已经没有了  产生异常
+ */
+apply plugin: 'bytex.access_inline'
+access_inline {
+    enable true
+    enableInDebug true
+    logLevel "DEBUG"
+    whiteList = [
+            "com/vivo/identifier/*",
+            "com/samsung/android/deviceidservice/*",
+            "com/meizu/flyme/openidsdk/*",
+            "com/huawei/hms/ads/identifier/*",
+            "com/heytap/openid/*",
+            "com/coolpad/deviceidsupport/*",
+            "com/bun/lib/*",
+            "com/asus/msa/sdid/*",
+            "com/android/creator/*"
+    ]
+}
+
+
+/*常量内联： https://github.com/bytedance/ByteX/blob/master/const-inline-plugin/README-zh.md*/
+apply plugin: 'bytex.const_inline'
+const_inline {
+    enable true
+    enableInDebug true
+    logLevel "INFO"
+    autoFilterReflectionField = true  //使用插件内置的反射检查过滤掉可能的反射常量，建议为true
+    //supposesReflectionWithString = false //使用插件内置字符串匹配可能反射常量，建议为false
+    skipWithRuntimeAnnotation true //过滤掉带有运行时注解的常量，推荐true
+    skipWithAnnotations = [
+            //过滤掉被注解注释过的常量，包含class
+            "android/support/annotation/Keep",
+    ]
+    whiteList = [
+            //跳过优化的名单
+            "com/meizu/cloud/*",
+            "com/vivo/identifier/*",
+            "com/samsung/android/deviceidservice/*",
+            "com/meizu/flyme/openidsdk/*",
+            "com/huawei/hms/ads/identifier/*",
+            "com/heytap/openid/*",
+            "com/coolpad/deviceidsupport/*",
+            "com/bun/lib/*",
+            "com/asus/msa/sdid/*",
+            "com/android/creator/*",
+    ]
+}
+
+
+/**
+ * R文件常量内联，R文件瘦身: https://github.com/bytedance/ByteX/blob/master/shrink-r-plugin/README-zh.md
+ */
+apply plugin: 'bytex.shrink_r_class'
+shrinkR {
+    enable true
+    enableInDebug true
+    logLevel "DEBUG"
+    keepList = [
+            // keep android.support.constraint.R里所有id
+            "android.support.constraint.R.id",
+            // keep 所有以im_e为前缀的drawable字段
+            "R.drawable.im_e+",
+    ]
+    resCheck {
+        enable true // 无用资源检查的开关
+        // 根据资源所在的路径做模糊匹配（因为第三方库用到的冗余资源没法手动删）
+        onlyCheck = [
+                // 只检查主工程里的资源
+                "app/build"
+        ]
+        // 检查白名单。这些资源就算是冗余资源也不会report出来
+        keepRes = [
+        ]
+    }
+
+    assetsCheck {
+        enable true // 冗余assets资源检查开关
+        keepBySuffix = [
+
+        ]
+        keepAssets = [
+
+        ]
+    }
+}
+
+
+/**
+ * 无用方法删除： https://github.com/bytedance/ByteX/blob/master/method-call-opt-plugin/README-zh.md
+ */
+apply plugin: 'bytex.method_call_opt'
+method_call_opt {
+    enable true
+    enableInDebug true//建议开发模式关闭
+    logLevel "DEBUG"
+    //是否在log中显示删除方法调用指令后的方法指令，一般调试时使用
+    showAfterOptInsLog true
+    //需要删除的方法配置
+    methodList = [
+            //下面的每一项配置必须严格按照数据配置，一个地方不对这一项不生效。
+            //class#method#desc
+            "android/util/Log#v#(Ljava/lang/String;Ljava/lang/String;)I",
+            "android/util/Log#v#(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I",
+            "android/util/Log#d#(Ljava/lang/String;Ljava/lang/String;)I",
+            "android/util/Log#d#(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I",
+            "android/util/Log#i#(Ljava/lang/String;Ljava/lang/String;)I",
+            "android/util/Log#i#(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I",
+            "android/util/Log#w#(Ljava/lang/String;Ljava/lang/String;)I",
+            "android/util/Log#w#(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I",
+            "android/util/Log#e#(Ljava/lang/String;Ljava/lang/String;)I",
+            "android/util/Log#e#(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I",
+            "android/util/Log#println#(ILjava/lang/String;Ljava/lang/String;)I",
+
+            "java/lang/Throwable#printStackTrace#()V",
+            "com/google/devtools/build/android/desugar/runtime/ThrowableExtension#printStackTrace#(Ljava/lang/Throwable;)V",
+
+            //还有自己项目中封装的Logger方法 先用字节码插件看下方法的信息  在填写 以免写错
+            "com/blankj/utilcode/util/LogUtils#i#([Ljava/lang/Object;)V",
+
+
+            /*移除 allowSysTraceInDebug */
+            "com/yzq/kotlincommon/App#allowSysTraceInDebug#()V"
+
+    ]
+    onlyCheckList = [
+            /*一般只对自己的包做处理*/
+            "com/yzq/*"
+    ]
+
+    whiteList = [
+
+    ]
+}

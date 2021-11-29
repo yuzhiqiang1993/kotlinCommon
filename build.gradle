@@ -1,14 +1,16 @@
 /*当前文件用来配置所有子工程公用的配置*/
 
 println("我是根目录下的build.gradle")
-/*应用脚本插件*/
-apply from: file("config.gradle")
 
 buildscript {
+    apply from: file("config.gradle")
 
     repositories {
         google()
         mavenCentral()
+        maven {
+            url "https://artifact.bytedance.com/repository/byteX/"
+        }
 
     }
     dependencies {
@@ -17,6 +19,13 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
         /*加这个能减少ARouter初始化时间*/
         classpath "com.alibaba:arouter-register:1.0.2"
+
+        /*byteX*/
+        classpath "com.bytedance.android.byteX:base-plugin:${bytex_plugin_version}"
+        classpath "com.bytedance.android.byteX:access-inline-plugin:${bytex_plugin_version}"
+        classpath "com.bytedance.android.byteX:const-inline-plugin:${bytex_plugin_version}"
+        classpath "com.bytedance.android.byteX:shrink-r-plugin:${bytex_plugin_version}"
+        classpath "com.bytedance.android.byteX:method-call-opt-plugin:${bytex_plugin_version}"
     }
 
 

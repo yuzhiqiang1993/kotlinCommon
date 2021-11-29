@@ -29,7 +29,6 @@ abstract class BaseVbVmFragment<VB : ViewBinding, VM : BaseViewModel> :
         vm = ViewModelProvider(this).get(getViewModelClass())
 
         with(vm) {
-            lifecycleOwner = this@BaseVbVmFragment
             lifecycle.addObserver(this)
             loadState.observe(this@BaseVbVmFragment) { viewStateBean ->
                 stateViewManager.handleViewState(viewStateBean)

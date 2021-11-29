@@ -5,13 +5,8 @@ import android.app.Application
 import android.os.Bundle
 import android.os.Trace
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.os.TraceCompat
 import com.alibaba.android.arouter.launcher.ARouter
-import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.LanguageUtils
-import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.Utils
-import kotlinx.coroutines.*
+import com.blankj.utilcode.util.*
 import java.util.*
 
 /**
@@ -28,13 +23,10 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
     init {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
-
     }
 
     companion object {
-
         lateinit var INSTANCE: BaseApp
-
     }
 
     override fun onCreate() {
