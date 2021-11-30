@@ -4,8 +4,9 @@ plugins {
     id 'kotlin-kapt'
 }
 
+println "getRootDir():${getRootDir()}"
 
-apply from: file("plugins/bytex.gradle")
+apply from: file("${getRootDir()}/gradle_script/bytex.gradle")
 
 android {
 
@@ -54,7 +55,7 @@ android {
         }
     }
 
-    flavorDimensions "channel","env"
+    flavorDimensions "channel", "env"
     productFlavors {
 
         dev {
@@ -143,7 +144,6 @@ dependencies {
     implementation 'com.github.aiceking:AppStartFaster:2.0.0'
 
 
-
 }
 
 
@@ -172,4 +172,5 @@ task testTask1() {
 
 /*project表示当前module的项目*/
 println "我是App工程，${project.name},我的路径是:${project.projectDir}"
+
 
