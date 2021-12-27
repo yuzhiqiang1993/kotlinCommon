@@ -7,7 +7,7 @@ ext {
     /*defaultConfig*/
     compile_sdk_version = 31
     min_sdk_version = 21
-    target_sdk_version = 29
+    target_sdk_version = 31
     version_code = 10  //eg:1->0.0.1  10->0.1.0  100->1.0.0
     version_name = "0.1.0"
     multiDexEnabled = true
@@ -22,7 +22,7 @@ ext {
     core_ktx = '1.7.0'
     lifecycle_ktx = '2.4.0'
     collection_ktx = '1.2.0'
-    kotlinx_coroutines = '1.5.2-native-mt'
+    kotlinx_coroutines = '1.6.0-native-mt'
     swiperefreshlayout = '1.1.0'
     room_version = '2.4.0'
 
