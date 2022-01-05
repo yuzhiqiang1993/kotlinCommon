@@ -1,15 +1,18 @@
 /*用来声明当前工程都包含哪些子工程*/
 
 
-/*Gradle 的生命周期
-* 分为三个阶段  初始化阶段  配置阶段 执行阶段
-*
-* 初始化阶段：对应settings.gradle
-* 配置阶段:对应各个module下的build.gradle
-* 执行阶段：把配置阶段生成的依赖图执行一下  主要是task(重点)
-*
-*
-* */
+/**
+ *
+ * gradle 中两个重要的概念
+ * 1.project:表示一个项目，例如app module,其他子module。
+ * 2.task:表示一个具体要执行的任务 例如：assembleRelease
+ *
+ *
+ * gradle 生命周期（三个阶段）
+ * 1. 初始化阶段（settingsEvaluated）  执行的就是setting.gradle中的代码，主要是看include了哪些模块，生成任务依赖图
+ * 2. 配置阶段（projectsLoaded，projectsEvaluated）    执行的各个模块中的build.gradle中的代码
+ * 3. 构建阶段（buildFinished）    把配置阶段中生成好的任务依赖图执行，主要是执行task
+ */
 
 
 /**
