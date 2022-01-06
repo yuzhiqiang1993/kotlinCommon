@@ -2,14 +2,14 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.text.TextUtils
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.utils.LocalSpUtils
+import com.yzq.common.utils.MMKVUtil
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.mvvm.view_model.LoginViewModel
 import com.yzq.lib_base.extend.nav
 import com.yzq.lib_base.ui.activity.BaseDbVmActivity
-
 
 /**
  * @description: SharedPreference相关
@@ -26,14 +26,12 @@ class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
 
     override fun getViewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
 
-
     override fun initWidget() {
         super.initWidget()
 
         colorStatusBar(R.color.white, binding.layoutContainer, true)
 
         binding.btnLogin.setOnClickListener {
-
 
             if (TextUtils.isEmpty(binding.account)) {
                 binding.inputLayoutAccount.error = "账号不能为空，请检查"
@@ -55,17 +53,19 @@ class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
                 binding.pwd!!
             )
 
-
         }
     }
 
     override fun initData() {
 
-        binding.account = LocalSpUtils.account
-        binding.pwd = LocalSpUtils.pwd
+        LogUtils.i("initData")
+        LogUtils.i("MMKVUtil.account = ${MMKVUtil.account}")
+        LogUtils.i("MMKVUtil.pwd = ${MMKVUtil.pwd}")
+
+        binding.account = MMKVUtil.account
+        binding.pwd = MMKVUtil.pwd
 
     }
-
 
     override fun observeViewModel() {
 
@@ -76,6 +76,5 @@ class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
 
         }
     }
-
 
 }

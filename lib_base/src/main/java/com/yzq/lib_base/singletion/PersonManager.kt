@@ -7,3 +7,7 @@ class PersonManager private constructor(name: String) {
     }
 
 }
+
+fun main() {
+    PersonManager.getInstance("test")
+}

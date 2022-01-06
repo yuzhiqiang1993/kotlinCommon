@@ -19,12 +19,14 @@
 
     <item android:top="68dp">
 
+
         <bitmap
             android:antialias="true"
             android:dither="true"
+            android:autoMirrored="true"
             android:filter="true"
             android:gravity="top"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_launcher_round" />
     </item>
 
 

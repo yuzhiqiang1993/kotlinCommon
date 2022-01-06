@@ -7,7 +7,6 @@ import com.yzq.lib_base.AppContext
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-
 /**
  * @description: SharedPreferences扩展函数
  * @author : yzq
@@ -18,16 +17,13 @@ import kotlin.reflect.KProperty
 class SharedPreference<T>(val name: String, private val defaultVal: T) :
     ReadWriteProperty<Any?, T> {
 
-
     private val prfs by lazy {
-
         AppContext.getSharedPreferences(AppUtils.getAppPackageName(), Context.MODE_PRIVATE)
     }
 
     override fun getValue(thisRef: Any?, property: KProperty<*>): T {
         return getPreference(name)
     }
-
 
     @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY")
     private fun getPreference(key: String): T {
@@ -42,15 +38,12 @@ class SharedPreference<T>(val name: String, private val defaultVal: T) :
             } as T
         }
 
-
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-
         putPreference(name, value)
 
     }
-
 
     @SuppressLint("CommitPrefEdits")
     private fun putPreference(key: String, value: T) {
@@ -66,6 +59,5 @@ class SharedPreference<T>(val name: String, private val defaultVal: T) :
             }
         }.apply()
     }
-
 
 }

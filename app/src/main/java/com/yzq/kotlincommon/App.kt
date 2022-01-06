@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Trace
 import com.aice.appstartfaster.dispatcher.AppStartTaskDispatcher
 import com.blankj.utilcode.util.LogUtils
+import com.tencent.mmkv.MMKV
 import com.yzq.common.constants.StoragePath
 import com.yzq.kotlincommon.task.*
 import com.yzq.kotlincommon.task.test.*
@@ -29,6 +30,8 @@ class App : BaseApp() {
         StoragePath.logPathInfo()
 
         Trace.beginSection("BaseApp_AppInit")
+
+        MMKV.initialize(this)
 
 
         AppStartTaskDispatcher

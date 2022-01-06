@@ -4,21 +4,22 @@ import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.data.LoginBean
 import com.yzq.common.net.view_model.ApiServiceViewModel
-import com.yzq.common.utils.LocalSpUtils
+import com.yzq.common.utils.MMKVUtil
 import kotlinx.coroutines.delay
 
 class LoginViewModel : ApiServiceViewModel() {
-
 
     val loginLiveData by lazy { MutableLiveData<LoginBean>() }
 
     fun login(account: String, pwd: String) {
         launchLoadingDialog {
 
-            LocalSpUtils.account = account
-            LocalSpUtils.pwd = pwd
+            MMKVUtil.account = account
+            MMKVUtil.pwd = pwd
 
-            LogUtils.i("account:${account},pwd:${pwd}")
+            LogUtils.i("MMKVUtil.account = ${MMKVUtil.account}")
+            LogUtils.i("MMKVUtil.account = ${MMKVUtil.pwd}")
+
             delay(1000)
 
             val loginBean = LoginBean()
@@ -39,7 +40,6 @@ class LoginViewModel : ApiServiceViewModel() {
 //            withContext(Dispatchers.IO){
 //                throw Exception("bbbbbbbb")
 //            }
-
 
             loginLiveData.value = loginBean
         }
