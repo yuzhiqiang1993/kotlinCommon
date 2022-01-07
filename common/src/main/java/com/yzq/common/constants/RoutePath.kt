@@ -20,6 +20,7 @@ object RoutePath {
         const val ZXING = "/main/zxing"
         const val LOGIN = "/main/login"
         const val DROP_DOWN_MENU = "/main/dropDownMenu"
+        const val EMAS = "/main/emas"
 
         const val FLEX_BOX = "/main/flexBox"
         const val IMG_LIST = "/main/imgList"

@@ -22,10 +22,7 @@ import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.lib_base.BaseApp
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 /**
  * @description: 导航页面
@@ -94,6 +91,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
         items.add(NaviItem("WebView", RoutePath.Main.WEB_VIEW))
         items.add(NaviItem("DataBinding", RoutePath.Main.DATA_BINDING))
         items.add(NaviItem("ViewBinding", RoutePath.Main.VIEW_BINDING))
+        items.add(NaviItem("ALi EMAS", RoutePath.Main.EMAS))
 
 
         setData()
