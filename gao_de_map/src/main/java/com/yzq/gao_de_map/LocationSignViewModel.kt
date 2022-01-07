@@ -17,7 +17,13 @@ import com.yzq.lib_base.view_model.BaseViewModel
 
 class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
-    private var locationClient: AMapLocationClient = AMapLocationClient(AppContext)
+    private val locationClient by lazy {
+        /*要先调用隐私合规方法  否则必崩*/
+        AMapLocationClient.updatePrivacyShow(AppContext, true, true);
+        AMapLocationClient.updatePrivacyAgree(AppContext, true);
+        AMapLocationClient(AppContext)
+
+    }
 
     var locationData = MutableLiveData<AMapLocation>()
 

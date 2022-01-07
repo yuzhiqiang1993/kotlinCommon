@@ -81,8 +81,7 @@ dependencies {
     /*utils*/
     api "com.blankj:utilcodex:$utilcode"
     /*代替sp*/
-    api 'com.tencent:mmkv:1.2.11'
-
+    api "com.tencent:mmkv:${mmkv}"
     /*Gson*/
     api "com.google.code.gson:gson:$gson"
     /*ARouter*/
@@ -106,8 +105,6 @@ dependencies {
     api project(path: ':lib_permission')
     api project(path: ':lib_resource')
     api project(path: ':lib_widget')
-
-
 
 
 }

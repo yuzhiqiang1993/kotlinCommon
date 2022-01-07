@@ -9,6 +9,9 @@ buildscript {
         google()
         mavenCentral()
         maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
+        maven {
             url "https://artifact.bytedance.com/repository/byteX/"
         }
 
@@ -16,6 +19,9 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:7.0.4'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
+        // 添加emas-services插件
+        classpath 'com.aliyun.ams:emas-services:1.0.2'
+
         /*加这个能减少ARouter初始化时间*/
         classpath "com.alibaba:arouter-register:1.0.2"
         /*byteX 基础*/
@@ -40,9 +46,13 @@ allprojects {
         google()
         mavenCentral()
         maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
+        maven {
             url "https://jitpack.io"
             credentials { username authToken }
         }
+
 
     }
 }

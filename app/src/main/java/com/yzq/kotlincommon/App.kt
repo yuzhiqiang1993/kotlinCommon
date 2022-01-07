@@ -8,8 +8,9 @@ import com.aice.appstartfaster.dispatcher.AppStartTaskDispatcher
 import com.blankj.utilcode.util.LogUtils
 import com.tencent.mmkv.MMKV
 import com.yzq.common.constants.StoragePath
-import com.yzq.kotlincommon.task.*
-import com.yzq.kotlincommon.task.test.*
+import com.yzq.kotlincommon.task.main_thread_task.InitAPMTask
+import com.yzq.kotlincommon.task.work_thread_task.InitARouterTask
+import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 import com.yzq.lib_base.BaseApp
 import java.lang.reflect.InvocationTargetException
 
@@ -37,34 +38,9 @@ class App : BaseApp() {
         AppStartTaskDispatcher
             .create()
             .setShowLog(true)
-            .addAppStartTask(InitUtilsTask())
             .addAppStartTask(InitARouterTask())
-            .addAppStartTask(InitBuglyTask())
-            .addAppStartTask(InitLanguageTask())
-            /*下面是测试的启动task*/
-            .addAppStartTask(BuglyTask())
-            .addAppStartTask(HeinerTask())
-            .addAppStartTask(MainShortTask())
-            .addAppStartTask(DuPumpTask())
-            .addAppStartTask(APMTasK())
-            .addAppStartTask(BPMTasK())
-            .addAppStartTask(YeezyTask())
-            .addAppStartTask(SmAntiTask())
-            .addAppStartTask(PoizonAnalyzeTask())
-            .addAppStartTask(InitTask())
-            .addAppStartTask(PoizonImageTask())
-            .addAppStartTask(ASynInitTask())
-            .addAppStartTask(OaidTask())
-            .addAppStartTask(DataCollectTask())
-            .addAppStartTask(WebViewTask())
-            .addAppStartTask(RestClientTask())
-            .addAppStartTask(AccountTask())
-            .addAppStartTask(UiUtilTask())
-            .addAppStartTask(ABTestTask())
-            .addAppStartTask(PushInitTask())
-            .addAppStartTask(DiskCacheTask())
-            .addAppStartTask(HybridInitTask())
-            .addAppStartTask(DuStepServiceTask())
+            .addAppStartTask(InitUtilsTask())
+            .addAppStartTask(InitAPMTask())
             .start()
             .await()
 

@@ -1,7 +1,7 @@
-package com.yzq.kotlincommon.task
+package com.yzq.kotlincommon.task.work_thread_task
 
-import com.aice.appstartfaster.task.AppStartTask
 import com.blankj.utilcode.util.*
+import com.yzq.kotlincommon.task.base.WorkThreadTask
 import com.yzq.lib_base.BaseApp
 import com.yzq.lib_base.BuildConfig
 
@@ -12,8 +12,8 @@ import com.yzq.lib_base.BuildConfig
  * @time   : 8:14 下午
  */
 
-class InitUtilsTask : AppStartTask() {
-    override fun run() {
+class InitUtilsTask : WorkThreadTask() {
+    override fun taskRun() {
         Utils.init(BaseApp.INSTANCE)
         val config = LogUtils.getConfig()
             .setLogSwitch(BuildConfig.DEBUG)
@@ -23,7 +23,4 @@ class InitUtilsTask : AppStartTask() {
         LogUtils.d(config.toString())
     }
 
-    override fun needWait() = true
-
-    override fun isRunOnMainThread() = false
 }

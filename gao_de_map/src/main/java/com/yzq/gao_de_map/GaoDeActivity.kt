@@ -25,6 +25,7 @@ class GaoDeActivity : BaseVbVmActivity<ActivityGaoDeBinding, LocationSignViewMod
 
         initToolbar(toolbar, "高德")
 
+
         binding.btnLocation.setOnClickListener {
 
             MapPermissionUtils.checkLocationPermission(true, this) {

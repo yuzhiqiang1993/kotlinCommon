@@ -37,7 +37,8 @@ ext {
     autodispose_version = "1.2.0"
     gson = '2.8.9'
     material_dialogs = "3.3.0"
-    baseRecyclerViewAdapterHelper = "3.0.6"
+    baseRecyclerViewAdapterHelper = "3.0.7"
+    mmkv = "1.2.11"
     photoview = "2.3.0"
     objectboxVersion = "2.3.4"
     utilcode = '1.31.0'
@@ -52,7 +53,7 @@ ext {
     gradle_versions_plugin = "v0.39.0"
     zxing_version = "2.2.9"
     jsoup_version = '1.14.3'
-    leakcanary_android = "2.7"
+    leakcanary_android = '2.8.1'
     bannerViewPager = "3.5.2"
     viewpager2 = '1.1.0-beta01'
     bytex_plugin_version = "0.3.0"
