@@ -1,6 +1,8 @@
 package com.yzq.gao_de_map
 
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.MutableLiveData
 import com.amap.api.location.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
@@ -19,8 +21,8 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
     private val locationClient by lazy {
         /*要先调用隐私合规方法  否则必崩*/
-        AMapLocationClient.updatePrivacyShow(AppContext, true, true);
-        AMapLocationClient.updatePrivacyAgree(AppContext, true);
+        AMapLocationClient.updatePrivacyShow(AppContext, true, true)
+        AMapLocationClient.updatePrivacyAgree(AppContext, true)
         AMapLocationClient(AppContext)
 
     }
@@ -37,7 +39,6 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
     private fun initOption(): AMapLocationClientOption {
         val mOption = AMapLocationClientOption()
         mOption.locationPurpose = AMapLocationClientOption.AMapLocationPurpose.SignIn
-
         return mOption
 
     }
@@ -45,7 +46,6 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
     /*开始定位*/
 
     fun startLocation() {
-
         locationClient.startLocation()
 
     }
