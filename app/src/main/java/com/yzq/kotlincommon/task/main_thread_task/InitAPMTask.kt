@@ -19,8 +19,6 @@ class InitAPMTask : MainThreadTask() {
         config.defaultConfig(AliEMASConfig.appmonitorRsaSecret)
         /*性能分析 https://help.aliyun.com/document_detail/164719.htm?spm=a2c4g.11186623.0.0.227d186a2dMjha*/
         AliHaAdapter.getInstance().addPlugin(Plugin.apm)
-        /*崩溃日志  https://help.aliyun.com/document_detail/93932.htm*/
-        AliHaAdapter.getInstance().addPlugin(Plugin.crashreporter)
         AliHaAdapter.getInstance().start(config)
     }
 

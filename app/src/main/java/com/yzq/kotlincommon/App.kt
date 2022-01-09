@@ -35,6 +35,7 @@ class App : BaseApp() {
         MMKV.initialize(this)
 
 
+
         AppStartTaskDispatcher
             .create()
             .setShowLog(true)
@@ -43,6 +44,7 @@ class App : BaseApp() {
             .addAppStartTask(InitAPMTask())
             .addAppStartTask(InitTlogTask())
             .addAppStartTask(InitCrashReportTask())
+            .addAppStartTask(InitAliPushTask())
             .start()
             .await()
 

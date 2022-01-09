@@ -144,6 +144,11 @@ dependencies {
     /*阿里崩溃分析 必须要手动依赖下 不然启动必定崩溃*/
     implementation 'com.aliyun.ams:alicloud-android-ha-crashreporter:1.2.5'
 
+    /*阿里云 移动分析  埋点*/
+//    implementation 'com.aliyun.ams:alicloud-android-man:1.2.6'
+
+    /*阿里推送*/
+    implementation 'com.aliyun.ams:alicloud-android-push:3.7.3'
 
 }
 

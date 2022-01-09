@@ -1,4 +1,4 @@
-#keep crashreporter
+#keep crashreporter (异常上报)
 -keep class com.alibaba.motu.crashreporter.**{ *;}
 -keep class com.uc.crashsdk.**{*;}
 -keep interface com.ut.mini.crashhandler.*{*;}
