@@ -13,3 +13,9 @@
 -keep class com.facebook.drawee.drawable.FadeDrawable{*;}
 -keep class androidx.fragment.app.Fragment{*;}
 -keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
+
+
+#远程日志
+#-keep class com.taobao.tao.log.**{*;}
+-keep public class * extends com.taobao.android.tlog.protocol.model.request.base.FileInfo{*;}
+-keepattributes Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod

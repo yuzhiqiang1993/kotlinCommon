@@ -2,6 +2,7 @@ package com.yzq.kotlincommon.ui.activity
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.ha.adapter.AliHaAdapter
+import com.alibaba.ha.adapter.service.tlog.TLogService
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityAliEmasactiviyBinding
@@ -19,6 +20,7 @@ class AliEMASActiviy : BaseViewBindingActivity<ActivityAliEmasactiviyBinding>() 
     override fun getViewBinding() = ActivityAliEmasactiviyBinding.inflate(layoutInflater)
 
     override fun initWidget() {
+        TLogService.logi("APP", "AliEMASActiviy", "initWidget")
 
         binding.apply {
 

@@ -13,6 +13,8 @@ import com.blankj.utilcode.util.LogUtils
 
 abstract class BaseAppStartTask : AppStartTask() {
     override fun run() {
+
+        var time = System.currentTimeMillis()
         val methordName = Thread.currentThread().getStackTrace()[2].getMethodName();
 
         LogUtils.i("methordName:${methordName}")
@@ -20,6 +22,10 @@ abstract class BaseAppStartTask : AppStartTask() {
         Trace.beginSection("${javaClass.canonicalName}.${methordName}")
         LogUtils.i(Thread.currentThread().name)
         taskRun()
+
+        time = System.currentTimeMillis() - time
+
+        LogUtils.e("${javaClass.canonicalName}.${methordName} 耗时 time = ${time}")
         Trace.endSection()
     }
 

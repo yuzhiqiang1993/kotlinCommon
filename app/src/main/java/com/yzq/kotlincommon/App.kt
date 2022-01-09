@@ -8,7 +8,7 @@ import com.aice.appstartfaster.dispatcher.AppStartTaskDispatcher
 import com.blankj.utilcode.util.LogUtils
 import com.tencent.mmkv.MMKV
 import com.yzq.common.constants.StoragePath
-import com.yzq.kotlincommon.task.main_thread_task.InitEMASTask
+import com.yzq.kotlincommon.task.main_thread_task.*
 import com.yzq.kotlincommon.task.work_thread_task.InitARouterTask
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 import com.yzq.lib_base.BaseApp
@@ -40,7 +40,9 @@ class App : BaseApp() {
             .setShowLog(true)
             .addAppStartTask(InitARouterTask())
             .addAppStartTask(InitUtilsTask())
-            .addAppStartTask(InitEMASTask())
+            .addAppStartTask(InitAPMTask())
+            .addAppStartTask(InitTlogTask())
+            .addAppStartTask(InitCrashReportTask())
             .start()
             .await()
 
