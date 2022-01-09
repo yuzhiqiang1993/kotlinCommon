@@ -22,6 +22,7 @@ class InitAliPushTask : MainThreadTask() {
 
     private val TAG = javaClass.canonicalName
     override fun taskRun() {
+        /*https://help.aliyun.com/document_detail/195006.html*/
 
         val config = PushInitConfig.Builder().application(BaseApp.INSTANCE)
             .appKey(AliEMASConfig.appKey)

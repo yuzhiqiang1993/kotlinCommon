@@ -2,7 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'com.aliyun.ams.emas-services'
+//    id 'com.aliyun.ams.emas-services'
 }
 
 println "getRootDir():${getRootDir()}"
@@ -141,14 +141,23 @@ dependencies {
 
     implementation 'com.github.aiceking:AppStartFaster:2.0.0'
 
-    /*阿里崩溃分析 必须要手动依赖下 不然启动必定崩溃*/
+    //崩溃分析
     implementation 'com.aliyun.ams:alicloud-android-ha-crashreporter:1.2.5'
-
-    /*阿里云 移动分析  埋点*/
+    //移动日志
+    implementation('com.aliyun.ams:alicloud-android-tlog:1.1.4.1-open')
+    //性能监控
+    implementation('com.aliyun.ams:alicloud-android-apm:1.0.10.0-open')
+    //移动分析  埋点
 //    implementation 'com.aliyun.ams:alicloud-android-man:1.2.6'
-
-    /*阿里推送*/
+    //推送
     implementation 'com.aliyun.ams:alicloud-android-push:3.7.3'
+    //公共依赖库
+//    implementation 'com.aliyun.ams:alicloud-android-utdid:2.5.2'
+//    implementation 'com.aliyun.ams:alicloud-android-utils:2.0.0'
+//    implementation 'com.aliyun.ams:alicloud-android-ut:5.4.4'
+//    implementation 'com.aliyun.ams:alicloud-android-beacon:1.0.7'
+    implementation('com.aliyun.ams:alicloud-android-ha-adapter:1.1.5.1-open')
+
 
 }
 
