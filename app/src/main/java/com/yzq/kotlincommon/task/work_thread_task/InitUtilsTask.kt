@@ -1,9 +1,9 @@
 package com.yzq.kotlincommon.task.work_thread_task
 
 import com.blankj.utilcode.util.*
-import com.yzq.kotlincommon.task.base.WorkThreadTask
 import com.yzq.lib_base.BaseApp
 import com.yzq.lib_base.BuildConfig
+import com.yzq.lib_base.startup.base.WorkThreadTask
 
 /**
  * @description: 初始化 Utils

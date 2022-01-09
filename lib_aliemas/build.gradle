@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk compile_sdk_version
+
+    defaultConfig {
+        minSdk min_sdk_version
+        targetSdk target_sdk_version
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+
+    }
+
+
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "com.blankj:utilcodex:$utilcode"
+    //崩溃分析
+    api 'com.aliyun.ams:alicloud-android-ha-crashreporter:1.2.5'
+    //移动日志
+    api('com.aliyun.ams:alicloud-android-tlog:1.1.4.1-open')
+    //性能监控
+    api('com.aliyun.ams:alicloud-android-apm:1.0.10.0-open')
+    //移动分析  埋点
+    api 'com.aliyun.ams:alicloud-android-man:1.2.5'
+    //推送
+    api 'com.aliyun.ams:alicloud-android-push:3.7.3'
+    //公共依赖库
+    api 'com.aliyun.ams:alicloud-android-utdid:2.5.2'
+    api 'com.aliyun.ams:alicloud-android-utils:2.0.0'
+    api 'com.aliyun.ams:alicloud-android-ut:5.4.4'
+    api 'com.aliyun.ams:alicloud-android-beacon:1.0.7'
+    api('com.aliyun.ams:alicloud-android-ha-adapter:1.1.5.1-open')
+
+}

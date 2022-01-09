@@ -45,6 +45,7 @@ class App : BaseApp() {
             .addAppStartTask(InitTlogTask())
             .addAppStartTask(InitCrashReportTask())
             .addAppStartTask(InitAliPushTask())
+            .addAppStartTask(InitMobileAnalyticsTask())
             .start()
             .await()
 

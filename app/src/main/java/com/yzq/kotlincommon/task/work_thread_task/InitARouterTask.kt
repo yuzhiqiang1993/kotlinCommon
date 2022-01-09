@@ -2,9 +2,9 @@ package com.yzq.kotlincommon.task.work_thread_task
 
 import com.aice.appstartfaster.task.AppStartTask
 import com.alibaba.android.arouter.launcher.ARouter
-import com.yzq.kotlincommon.task.base.WorkThreadTask
 import com.yzq.lib_base.BaseApp
 import com.yzq.lib_base.BuildConfig
+import com.yzq.lib_base.startup.base.WorkThreadTask
 import java.util.*
 
 /**

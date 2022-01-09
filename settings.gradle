@@ -64,3 +64,4 @@ gradle.addBuildListener(new BuildAdapter() {
         println("构建阶段完成")
     }
 })
+include ':lib_aliemas'

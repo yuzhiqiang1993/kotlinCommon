@@ -12,6 +12,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
+import com.alibaba.sdk.android.man.MANServiceProvider
 import com.blankj.utilcode.util.BarUtils
 import com.yzq.lib_base.R
 import com.yzq.lib_base.ui.ImgPreviewActivity
@@ -19,12 +20,9 @@ import com.yzq.lib_base.ui.fragment.BaseFragment
 import com.yzq.lib_base.ui.state_view.StateViewManager
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
+import kotlinx.coroutines.*
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
-
 
 /**
  * @Description: Activity基类
@@ -36,19 +34,16 @@ import org.greenrobot.eventbus.ThreadMode
 
 abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope() {
 
-
     private var lastClickTime: Long = 0//最后一次点击的时间
 
     private val intervalTime = 300//两次点击之间的间隔
     private var allowFastClick = false//是否允许快速点击
-
 
     /*视图状态管理器*/
     protected val stateViewManager by lazy { StateViewManager(this) }
 
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
     protected var extrasTag = ""
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,9 +69,14 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
         initData()
 
-
     }
 
+    override fun onResume() {
+        super.onResume()
+        /*行为埋点*/
+        val manService = MANServiceProvider.getService()
+        manService.manPageHitHelper.pageAppear(this)
+    }
 
     /**
      * 初始化参数
@@ -87,15 +87,12 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
     }
 
-
     protected open fun initViewModel() {}
-
 
     /*
     * 初始化视图
     * */
     protected abstract fun initContentView()
-
 
     /*初始化变量*/
     protected open fun initVariable() {
@@ -117,7 +114,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEventMainThread(eventMsg: EventMsg) {
 
-
     }
 
     /**
@@ -125,7 +121,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
      *
      */
     protected open fun initData() {
-
 
     }
 
@@ -155,7 +150,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         }
     }
 
-
     protected open fun transStatusBar(view: View, isLightMode: Boolean = false) {
         BarUtils.transparentStatusBar(this)
         BarUtils.addMarginTopEqualStatusBarHeight(view)
@@ -173,7 +167,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         BarUtils.setStatusBarLightMode(this, isLightMode)
     }
 
-
     /**
      * Toolbar的返回按钮
      *
@@ -183,7 +176,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         onBackPressed()
         return super.onSupportNavigateUp()
     }
-
 
     /**
      * 初始化Header
@@ -214,7 +206,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         this.allowFastClick = true
     }
 
-
     /**
      *
      * @param path String  图片路径
@@ -234,13 +225,11 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
     }
 
-
     /**
      * 事件分发
      * @param ev
      */
     override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-
 
         if (!allowFastClick) {
             if (ev?.action == MotionEvent.ACTION_DOWN) {
@@ -255,7 +244,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
         return super.dispatchTouchEvent(ev)
     }
-
 
     @SuppressLint("CheckResult", "AutoDispose")
     override fun onBackPressed() {
@@ -273,6 +261,11 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
     }
 
+    override fun onPause() {
+        super.onPause()
+        val manService = MANServiceProvider.getService()
+        manService.manPageHitHelper.pageDisAppear(this)
+    }
 
     override fun onDestroy() {
         super.onDestroy()

@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.task.base
+package com.yzq.lib_base.startup.base
 
 import android.os.Trace
 import com.aice.appstartfaster.task.AppStartTask

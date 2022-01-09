@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.task.base
+package com.yzq.lib_base.startup.base
 
 /**
  * @description: 在子线程初始化的任务

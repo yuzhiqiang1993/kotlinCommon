@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.receiver
+package com.yzq.lib_aliemas.push
 
 import android.content.Context
 import com.alibaba.sdk.android.push.MessageReceiver
