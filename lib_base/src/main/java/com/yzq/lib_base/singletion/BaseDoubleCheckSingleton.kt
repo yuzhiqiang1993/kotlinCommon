@@ -12,7 +12,11 @@ abstract class BaseDoubleCheckSingleton<in P, out T> {
     @Volatile
     private var instance: T? = null
 
-    protected abstract fun create(param: P): T
+    /*普通写法*/
+    protected abstract fun createFun(p: P): T
+
+    /*高阶函数写法 就是作为参数或者返回值的函数*/
+    protected abstract val create: (P) -> T
 
     fun getInstance(param: P): T = instance ?: synchronized(this) {
         instance ?: create(param).also { instance = it }

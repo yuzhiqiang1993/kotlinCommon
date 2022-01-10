@@ -1,13 +1,23 @@
 package com.yzq.lib_base.singletion
 
-class PersonManager private constructor(name: String) {
+class PersonManager private constructor(val name: String) {
 
     companion object : BaseDoubleCheckSingleton<String, PersonManager>() {
-        override fun create(param: String): PersonManager = PersonManager(name = param)
+
+        /*高阶函数写法
+        * 接收的类型是(String)->PersonManager
+        * 这里把构造函数的引用传过去就好
+        * */
+        override val create = ::PersonManager
+
+        /*普通写法*/
+        override fun createFun(p: String) = PersonManager(p)
+
     }
 
 }
 
 fun main() {
-    PersonManager.getInstance("test")
+    val instance = PersonManager.getInstance("test")
+    println("instance.name = ${instance.name}")
 }
