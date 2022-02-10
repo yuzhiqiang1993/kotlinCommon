@@ -1,6 +1,5 @@
 package com.yzq.lib_base.singletion
 
-import okhttp3.internal.threadName
 
 /**
  * @description: 需要传参双重判空单例
