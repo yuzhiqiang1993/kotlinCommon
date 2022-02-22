@@ -31,11 +31,11 @@ ext {
     glide = '4.13.0'
     retrofit = "2.9.0"
     progressmanager_version = "1.5.0"
-    ok_http = '5.0.0-alpha.4'
+    ok_http = '5.0.0-alpha.5'
     rx_android = "2.1.1"
     rx_kotlin = "2.4.0"
     autodispose_version = "1.2.0"
-    gson = '2.8.9'
+    gson = '2.9.0'
     material_dialogs = "3.3.0"
     baseRecyclerViewAdapterHelper = "3.0.7"
     mmkv = '1.2.12'
