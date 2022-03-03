@@ -92,6 +92,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
         items.add(NaviItem("DataBinding", RoutePath.Main.DATA_BINDING))
         items.add(NaviItem("ViewBinding", RoutePath.Main.VIEW_BINDING))
         items.add(NaviItem("ALi EMAS", RoutePath.Main.EMAS))
+        items.add(NaviItem("Channel", RoutePath.Main.CHANNEL))
 
 
         setData()

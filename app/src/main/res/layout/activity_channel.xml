@@ -4,19 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.AliEMASActiviy">
+    tools:context=".ui.activity.ChannelActivity">
 
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
-
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_custom_report"
+        android:id="@+id/btn_test_channel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_10"
-        android:text="测试自定义上报异常信息" />
+        android:text="test channel" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_test_channel_unlimited"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:text="test_channel_unlimited" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -119,6 +119,9 @@ kapt {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
 
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
     implementation "com.github.yuzhiqiang1993:zxing:${zxing_version}"
@@ -135,9 +138,7 @@ dependencies {
     if (isModule.toBoolean()) {
         implementation project(':gao_de_map')
     }
-
-
-
+    
 }
 
 

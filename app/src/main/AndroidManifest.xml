@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yzq.kotlincommon">
 
-
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -17,9 +16,11 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,andrpod:label">
         <activity
-            android:name=".ui.activity.AliEMASActiviy"
+            android:name=".ui.activity.ChannelActivity"
             android:exported="false" />
-        <!-- 自定义一些元数据 -->
+        <activity
+            android:name=".ui.activity.AliEMASActiviy"
+            android:exported="false" /> <!-- 自定义一些元数据 -->
         <meta-data
             android:name="META_CHANNEL"
             android:value="${META_CHANNEL_VALUE}" />
@@ -108,9 +109,7 @@
         <activity
             android:name=".ui.activity.DropDownMenuActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" />
-
-        <!-- 消息接收监听器 -->
+            android:screenOrientation="portrait" /> <!-- 消息接收监听器 -->
         <receiver
             android:name="com.yzq.lib_aliemas.push.AliPushReceiver"
             android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
@@ -124,7 +123,6 @@
                 <action android:name="com.alibaba.sdk.android.push.RECEIVE" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
