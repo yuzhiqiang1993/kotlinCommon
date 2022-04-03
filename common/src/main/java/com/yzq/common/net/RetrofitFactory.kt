@@ -8,9 +8,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
-
 
 /**
  * @description: RetrofitFactory
@@ -24,7 +23,6 @@ class RetrofitFactory private constructor() {
 
     private val retrofit: Retrofit
 
-
     init {
 
         val gson = Gson().newBuilder()
@@ -35,12 +33,11 @@ class RetrofitFactory private constructor() {
         retrofit = Retrofit.Builder()
             .baseUrl(ServerConstants.apiUrl)
             .client(initOkhttpClient())
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(MoshiConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
 
     }
-
 
     /*线程安全的懒汉式单例*/
     companion object {
@@ -49,7 +46,6 @@ class RetrofitFactory private constructor() {
         }
 
     }
-
 
     private fun initOkhttpClient(): OkHttpClient {
 
@@ -63,7 +59,6 @@ class RetrofitFactory private constructor() {
 
         return okHttpBuilder.build()
     }
-
 
     /*
     * 日志拦截器
@@ -80,7 +75,6 @@ class RetrofitFactory private constructor() {
 
         return interceptor
     }
-
 
     /*
     * 具体服务实例化

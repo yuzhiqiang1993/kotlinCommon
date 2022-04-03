@@ -16,6 +16,11 @@ import kotlinx.coroutines.launch
 
 class ChannelViewModel : BaseViewModel() {
 
+    /**
+     * channel：管道的意思，有上下游的概念，本质上就是生产者和消费者模式。相当于把一个生产者，一个消费者，中间弄一个集合存储数据这种代码非封装了一下。、
+     * channel本身是一个顶层函数，
+     */
+
     /*这里可以避免暴露_channel*/
     val channel by ::_channel
 
