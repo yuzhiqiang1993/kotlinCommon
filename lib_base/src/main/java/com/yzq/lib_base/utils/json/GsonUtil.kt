@@ -1,4 +1,4 @@
-package com.yzq.lib_base.utils
+package com.yzq.lib_base.utils.json
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
