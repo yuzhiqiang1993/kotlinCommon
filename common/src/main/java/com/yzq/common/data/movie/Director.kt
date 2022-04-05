@@ -1,11 +1,11 @@
 package com.yzq.common.data.movie
 
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class Director(
     var avatars: Avatars = Avatars(),
-    @SerializedName("name_en")
+    @Json(name = "name_en")
     var nameEn: String = "",
     var name: String = "",
     var alt: String = "",

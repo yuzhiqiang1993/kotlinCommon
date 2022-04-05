@@ -2,6 +2,7 @@ package com.yzq.common.net.api
 
 import com.yzq.common.data.BaseResp
 import com.yzq.common.data.gaode.Geocoder
+import com.yzq.common.data.github.UserInfo
 import com.yzq.common.data.movie.MovieBean
 import com.yzq.common.net.constants.ApiConstants
 import com.yzq.common.net.constants.ParamConstants
@@ -31,9 +32,11 @@ interface ApiService {
 
 
     /*下载安装包*/
-
-
     @Streaming
     @GET(ApiConstants.apk)
     suspend fun downloadApk(): ResponseBody
+
+
+    @GET("https://api.github.com/users/yuzhiqiang1993")
+    suspend fun userInfo(): UserInfo
 }

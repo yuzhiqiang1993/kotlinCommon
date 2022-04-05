@@ -14,6 +14,8 @@ class CoroutineViewModel : BaseViewModel() {
     fun requestData() {
 
         launchLoading {
+
+//            RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
             geocoder.value =
                 RetrofitFactory.instance.getService(ApiService::class.java).geocoder()
                     .dataConvert()

@@ -1,10 +1,10 @@
 package com.yzq.common.data.gaode
 
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class PoiRegion(
-    @SerializedName("direction_desc")
+    @Json(name = "direction_desc")
     var directionDesc: String = "",
     var name: String = "",
     var tag: String = "",

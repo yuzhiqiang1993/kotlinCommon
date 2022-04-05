@@ -1,4 +1,4 @@
-package com.yzq.lib_base.utils.json
+package com.yzq.lib_base.utils
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
@@ -13,16 +13,16 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 object MoshiUtils {
 
-    val builder = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
+    val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
-    fun toJson(src: Any): String {
-        return builder.adapter(Any::class.java).toJson(src)
+    fun toJson(src: Any, indent: String = " "): String {
+        return moshi.adapter(Any::class.java).indent(indent).toJson(src)
     }
 
-    inline fun <reified T> toJsonObject(jsonStr: String): T? {
+    inline fun <reified T> fromJson(jsonStr: String): T? {
 
         try {
-            val fromJson = builder.adapter<T>(T::class.java).fromJson(jsonStr)
+            val fromJson = moshi.adapter<T>(T::class.java).fromJson(jsonStr)
             return fromJson
         } catch (e: Exception) {
             e.printStackTrace()
@@ -30,22 +30,15 @@ object MoshiUtils {
         return null
     }
 
-    inline fun <reified T> toJsonList(jsonStr: String): List<T>? {
+    inline fun <reified T> fromJsonArr(jsonStr: String): List<T>? {
         try {
             val parameterizedType = Types.newParameterizedType(List::class.java, T::class.java)
-            return builder.adapter<List<T>>(parameterizedType).fromJson(jsonStr)
+            return moshi.adapter<List<T>>(parameterizedType).fromJson(jsonStr)
         } catch (e: Exception) {
-            println("jsonToList 异常")
             e.printStackTrace()
         }
         return null
     }
-
-
-    inline fun <reified T> fromJson(jsonStr: String): T? {
-        return builder.adapter<T>(T::class.java).fromJson(jsonStr)
-    }
-
 
 }
 

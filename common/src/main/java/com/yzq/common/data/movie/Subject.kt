@@ -1,7 +1,7 @@
 package com.yzq.common.data.movie
 
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class Subject(
     var rating: Rating = Rating(),
@@ -9,13 +9,13 @@ data class Subject(
     var title: String = "",
     var casts: List<Cast> = listOf(),
     var durations: List<String> = listOf(),
-    @SerializedName("collect_count")
+    @Json(name = "collect_count")
     var collectCount: Int = 0,
-    @SerializedName("mainland_pubdate")
+    @Json(name = "mainland_pubdate")
     var mainlandPubdate: String = "",
-    @SerializedName("has_video")
+    @Json(name = "has_video")
     var hasVideo: Boolean = false,
-    @SerializedName("original_title")
+    @Json(name = "original_title")
     var originalTitle: String = "",
     var subtype: String = "",
     var directors: List<Director> = listOf(),

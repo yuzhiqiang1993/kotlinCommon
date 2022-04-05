@@ -1,13 +1,12 @@
 package com.yzq.common.net
 
 import android.util.Log
-import com.google.gson.Gson
 import com.yzq.common.BuildConfig
 import com.yzq.common.net.constants.ServerConstants
+import com.yzq.lib_base.utils.MoshiUtils
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -25,16 +24,10 @@ class RetrofitFactory private constructor() {
 
     init {
 
-        val gson = Gson().newBuilder()
-            .setLenient()
-            .serializeNulls()
-            .create()
-
         retrofit = Retrofit.Builder()
             .baseUrl(ServerConstants.apiUrl)
             .client(initOkhttpClient())
-            .addConverterFactory(MoshiConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(MoshiUtils.moshi))
             .build()
 
     }

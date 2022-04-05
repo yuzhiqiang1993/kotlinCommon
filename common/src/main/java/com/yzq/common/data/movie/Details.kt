@@ -1,17 +1,17 @@
 package com.yzq.common.data.movie
 
+import com.squareup.moshi.Json
 
-import com.google.gson.annotations.SerializedName
 
 data class Details(
-    @SerializedName("1")
+    @Json(name = "1")
     var x1: Double = 0.0,
-    @SerializedName("3")
+    @Json(name = "3")
     var x3: Double = 0.0,
-    @SerializedName("2")
+    @Json(name = "2")
     var x2: Double = 0.0,
-    @SerializedName("5")
+    @Json(name = "5")
     var x5: Double = 0.0,
-    @SerializedName("4")
+    @Json(name = "4")
     var x4: Double = 0.0
 )

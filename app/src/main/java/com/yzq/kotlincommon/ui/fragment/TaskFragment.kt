@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
 import com.yzq.lib_base.ui.fragment.BaseVbVmFragment
-import com.yzq.lib_base.utils.json.GsonUtil
+import com.yzq.lib_base.utils.MoshiUtils
 
 
 class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>() {
@@ -38,7 +38,7 @@ class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>()
 
         with(vm) {
             geocoder.observe(this@TaskFragment, {
-                binding.tvTask.text = GsonUtil.toPrettyJson(it)
+                binding.tvTask.text = MoshiUtils.toJson(it)
 
                 stateViewManager.showContent()
             })

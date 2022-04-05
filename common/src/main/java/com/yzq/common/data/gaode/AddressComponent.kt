@@ -1,25 +1,25 @@
 package com.yzq.common.data.gaode
 
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class AddressComponent(
     var country: String = "",
-    @SerializedName("country_code")
+    @Json(name = "country_code")
     var countryCode: Int = 0,
-    @SerializedName("country_code_iso")
+    @Json(name = "country_code_iso")
     var countryCodeIso: String = "",
-    @SerializedName("country_code_iso2")
+    @Json(name = "country_code_iso2")
     var countryCodeIso2: String = "",
     var province: String = "",
     var city: String = "",
-    @SerializedName("city_level")
+    @Json(name = "city_level")
     var cityLevel: Int = 0,
     var district: String = "",
     var town: String = "",
     var adcode: String = "",
     var street: String = "",
-    @SerializedName("street_number")
+    @Json(name = "street_number")
     var streetNumber: String = "",
     var direction: String = "",
     var distance: String = ""
