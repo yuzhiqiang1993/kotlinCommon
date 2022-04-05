@@ -1,5 +1,7 @@
 package com.yzq.common.data
 
+import com.yzq.common.net.constants.ResponseCode
+
 
 /**
  * @Description: 服务端返回数据基类
@@ -9,7 +11,7 @@ package com.yzq.common.data
  *
  */
 data class BaseResp<T>(
+    var code: Int = ResponseCode.SUCCESS, // 0
+    var data: T,
     var message: String = "", // 成功的返回
-    var result: T,
-    var status: Int = 0 // 0
-) 
+)

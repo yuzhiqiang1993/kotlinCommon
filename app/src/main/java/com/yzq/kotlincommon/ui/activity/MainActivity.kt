@@ -22,7 +22,10 @@ import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.lib_base.BaseApp
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * @description: 导航页面
@@ -93,6 +96,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
         items.add(NaviItem("ViewBinding", RoutePath.Main.VIEW_BINDING))
         items.add(NaviItem("ALi EMAS", RoutePath.Main.EMAS))
         items.add(NaviItem("Channel", RoutePath.Main.CHANNEL))
+        items.add(NaviItem("Moshi", RoutePath.Main.MOSHI))
 
 
         setData()

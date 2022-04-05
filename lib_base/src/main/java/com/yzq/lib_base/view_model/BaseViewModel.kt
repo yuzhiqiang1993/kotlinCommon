@@ -132,7 +132,8 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
 
     private val supervisorExceptionHandler =
         CoroutineExceptionHandler { coroutineContext, throwable ->
-            LogUtils.i("supervisorExceptionHandler 捕获到异常了：${throwable}")
+            LogUtils.e("supervisorExceptionHandler 捕获到异常了：${throwable}")
+            throwable.printStackTrace()
         }
 
     /**
