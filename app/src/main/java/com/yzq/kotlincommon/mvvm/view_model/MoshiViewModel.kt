@@ -3,7 +3,9 @@ package com.yzq.kotlincommon.mvvm.view_model
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.data.BaseResp
 import com.yzq.common.data.moshi.User
-import com.yzq.common.ext.*
+import com.yzq.common.ext.dataConvert
+import com.yzq.common.ext.toBaseRespList
+import com.yzq.common.ext.toJson
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ResponseCode

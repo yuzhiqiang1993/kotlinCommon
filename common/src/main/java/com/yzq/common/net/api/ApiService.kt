@@ -8,7 +8,9 @@ import com.yzq.common.data.movie.MovieBean
 import com.yzq.common.net.constants.ApiConstants
 import com.yzq.common.net.constants.ParamConstants
 import okhttp3.ResponseBody
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Query
+import retrofit2.http.Streaming
 
 interface ApiService {
 
@@ -35,6 +37,6 @@ interface ApiService {
     @GET("https://api.github.com/users/yuzhiqiang1993")
     suspend fun userInfo(): GithubUserInfo
 
-    @GET("http://localhost:8888/user/userList")
+    @GET("http://192.168.1.184:8888/user/userList")
     suspend fun listLocalUser(): BaseResp<List<LocalUser>>
 }
