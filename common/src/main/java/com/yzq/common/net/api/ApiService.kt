@@ -2,17 +2,15 @@ package com.yzq.common.net.api
 
 import com.yzq.common.data.BaseResp
 import com.yzq.common.data.gaode.Geocoder
-import com.yzq.common.data.github.UserInfo
+import com.yzq.common.data.github.GithubUserInfo
+import com.yzq.common.data.moshi.LocalUser
 import com.yzq.common.data.movie.MovieBean
 import com.yzq.common.net.constants.ApiConstants
 import com.yzq.common.net.constants.ParamConstants
 import okhttp3.ResponseBody
-import retrofit2.http.GET
-import retrofit2.http.Query
-import retrofit2.http.Streaming
+import retrofit2.http.*
 
 interface ApiService {
-
 
     @GET(ApiConstants.top250)
     suspend fun getMovies(
@@ -20,7 +18,6 @@ interface ApiService {
             ParamConstants.start
         ) start: Int = 0, @Query(ParamConstants.count) count: Int = 10
     ): MovieBean
-
 
     @GET("https://api.map.baidu.com/geocoder/v2/")
     suspend fun geocoder(
@@ -30,13 +27,14 @@ interface ApiService {
         @Query("latest_admin") latest_admin: String = "1"
     ): BaseResp<Geocoder>
 
-
     /*下载安装包*/
     @Streaming
     @GET(ApiConstants.apk)
     suspend fun downloadApk(): ResponseBody
 
-
     @GET("https://api.github.com/users/yuzhiqiang1993")
-    suspend fun userInfo(): UserInfo
+    suspend fun userInfo(): GithubUserInfo
+
+    @GET("http://localhost:8888/user/userList")
+    suspend fun listLocalUser(): BaseResp<List<LocalUser>>
 }

@@ -3,7 +3,7 @@ package com.yzq.common.data.github
 
 import com.squareup.moshi.Json
 
-data class UserInfo(
+data class GithubUserInfo(
     @Json(name = "avatar_url")
     val avatarUrl: String, // https://avatars.githubusercontent.com/u/18605757?v=4
     val bio: String, // Android

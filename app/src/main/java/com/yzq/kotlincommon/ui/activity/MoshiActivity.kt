@@ -31,6 +31,10 @@ class MoshiActivity : BaseVbVmActivity<ActivityMoshiBinding, MoshiViewModel>() {
             btnDeserialize.setOnThrottleTimeClick {
                 vm.deserialize()
             }
+
+            btnApi.setOnThrottleTimeClick {
+                vm.requestData()
+            }
         }
     }
 

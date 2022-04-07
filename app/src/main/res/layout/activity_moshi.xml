@@ -24,4 +24,12 @@
         android:layout_margin="@dimen/dp_10"
         android:text="反序列化" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_api"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:text="接口请求" />
+
+
 </androidx.appcompat.widget.LinearLayoutCompat>
