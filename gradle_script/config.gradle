@@ -22,7 +22,7 @@ ext {
     core_ktx = '1.7.0'
     lifecycle_ktx = '2.4.1'
     collection_ktx = '1.2.0'
-    kotlinx_coroutines = '1.6.0-native-mt'
+    kotlinx_coroutines = '1.6.1-native-mt'
     swiperefreshlayout = '1.1.0'
     room_version = '2.4.2'
 
@@ -31,14 +31,14 @@ ext {
     glide = '4.13.1'
     retrofit = "2.9.0"
     progressmanager_version = "1.5.0"
-    ok_http = '5.0.0-alpha.5'
+    ok_http = '5.0.0-alpha.7'
     rx_android = "2.1.1"
     rx_kotlin = "2.4.0"
     autodispose_version = "1.2.0"
     gson = '2.9.0'
     material_dialogs = "3.3.0"
     baseRecyclerViewAdapterHelper = "3.0.7"
-    mmkv = '1.2.12'
+    mmkv = '1.2.13'
     photoview = "2.3.0"
     objectboxVersion = "2.3.4"
     utilcode = '1.31.0'
@@ -53,7 +53,7 @@ ext {
     gradle_versions_plugin = "v0.39.0"
     zxing_version = "2.2.9"
     jsoup_version = '1.14.3'
-    leakcanary_android = '2.8.1'
+    leakcanary_android = '2.9.1'
     bannerViewPager = "3.5.2"
     viewpager2 = '1.1.0-beta01'
     bytex_plugin_version = "0.3.0"
