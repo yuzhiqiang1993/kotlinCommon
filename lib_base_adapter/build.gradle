@@ -19,9 +19,6 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
-    lintOptions {
-        abortOnError false
-    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -36,6 +33,10 @@ android {
         }
 
     }
+    lint {
+        abortOnError false
+    }
+    namespace 'com.yzq.lib_base_adapter'
 
 
 }

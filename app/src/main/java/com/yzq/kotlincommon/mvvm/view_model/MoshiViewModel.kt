@@ -4,8 +4,6 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.data.BaseResp
 import com.yzq.common.data.moshi.User
 import com.yzq.common.ext.dataConvert
-import com.yzq.common.ext.toBaseRespList
-import com.yzq.common.ext.toJson
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ResponseCode
@@ -26,7 +24,7 @@ class MoshiViewModel : BaseViewModel() {
             }
 
             val baseResp = BaseResp<List<User>>(ResponseCode.SUCCESS, userList, "ok")
-            jsonStr = baseResp.toJson(" ")
+            jsonStr = MoshiUtils.toJson(baseResp)
             LogUtils.i(jsonStr)
         }
     }
@@ -35,7 +33,7 @@ class MoshiViewModel : BaseViewModel() {
         launchWithSupervisor {
 
             if (jsonStr.isNotEmpty()) {
-                val userList = jsonStr.toBaseRespList<User>().dataConvert()
+                val userList = MoshiUtils.fromJson<BaseResp<List<User>>>(jsonStr).dataConvert()
                 userList.forEach {
                     LogUtils.i(MoshiUtils.toJson(it, "  "))
                 }
@@ -47,7 +45,9 @@ class MoshiViewModel : BaseViewModel() {
     fun requestData() {
         launchLoading {
 
-            val userList = RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser().dataConvert()
+            val userList =
+                RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
+                    .dataConvert()
             userList.forEach {
                 LogUtils.i("${it.name}--${it.age}")
             }
