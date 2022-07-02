@@ -22,7 +22,7 @@ ext {
     core_ktx = '1.8.0'
     lifecycle_ktx = '2.4.1'
     collection_ktx = '1.2.0'
-    kotlinx_coroutines = '1.6.2'
+    kotlinx_coroutines = '1.6.3'
     swiperefreshlayout = '1.1.0'
     room_version = '2.4.2'
 
