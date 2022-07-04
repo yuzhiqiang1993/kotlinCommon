@@ -8,9 +8,7 @@ import com.yzq.common.data.movie.MovieBean
 import com.yzq.common.net.constants.ApiConstants
 import com.yzq.common.net.constants.ParamConstants
 import okhttp3.ResponseBody
-import retrofit2.http.GET
-import retrofit2.http.Query
-import retrofit2.http.Streaming
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -27,7 +25,7 @@ interface ApiService {
         @Query("ak") ak: String = "RFVByxDyRXlNDpKGKybtFkz0pEw6mQn0",
         @Query("output") output: String = "json",
         @Query("latest_admin") latest_admin: String = "1"
-    ): BaseResp<Geocoder>
+    ): Geocoder
 
     /*下载安装包*/
     @Streaming

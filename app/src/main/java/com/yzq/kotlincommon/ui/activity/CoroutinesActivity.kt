@@ -1,18 +1,16 @@
 package com.yzq.kotlincommon.ui.activity
 
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenCreated
-import androidx.lifecycle.whenResumed
-import androidx.lifecycle.whenStarted
+import androidx.lifecycle.*
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
+import com.yzq.lib_base.extend.launchCollect
 import com.yzq.lib_base.ui.activity.BaseVbVmActivity
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
-
 
 @Route(path = RoutePath.Main.COROUTINE)
 class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, CoroutineViewModel>() {
@@ -20,7 +18,6 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
     override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
 
     override fun getViewBinding() = ActivityCoroutinesBinding.inflate(layoutInflater)
-
 
     override fun initWidget() {
         super.initWidget()
@@ -63,34 +60,49 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
                 LogUtils.i("lifecycleScope whenResumed")
             }
 
-
         }
     }
-
 
     override fun initData() {
         stateViewManager.switchToHttpFirst()
         vm.requestData()
     }
 
-
     override fun observeViewModel() {
 
-
         with(vm) {
-
-            geocoder.observe(this@CoroutinesActivity) {
+            geocoder.observe(this@CoroutinesActivity, Observer {
                 LogUtils.i("请求完成")
-                binding.tv.text = it.formattedAddress
+                binding.tv.text = it.result.formatted_address
 
                 stateViewManager.showContent()
+            })
 
-            }
+            geocoderFlow.filter { it != null }
+                .launchCollect(this@CoroutinesActivity) {//扩展方法
+                    binding.tv.text = it!!.result.formatted_address
+                    stateViewManager.showContent()
+                }
 
         }
 
-    }
+        /**
+         * 监听stateFlow
+         * 1.collect 是一个挂起函数，必须运行在协程作用域中
+         * 2.要保证页面可见时再响应数据
+         */
+//        lifecycleScope.launch {
+//            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+//                vm.geocoderFlow.filter {
+//                    it != null
+//                }.collect {
+//                    binding.tv.text = it!!.result.formatted_address
+//                    stateViewManager.showContent()
+//                }
+//            }
+//        }
 
+    }
 
 }
 

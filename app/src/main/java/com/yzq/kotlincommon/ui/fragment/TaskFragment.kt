@@ -8,15 +8,12 @@ import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
 import com.yzq.lib_base.ui.fragment.BaseVbVmFragment
 import com.yzq.lib_base.utils.MoshiUtils
 
-
 class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>() {
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> TaskFragmentBinding
         get() = TaskFragmentBinding::inflate
 
-
     override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
-
 
     companion object {
         fun newInstance() = TaskFragment()
@@ -45,6 +42,5 @@ class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>()
         }
 
     }
-
 
 }
