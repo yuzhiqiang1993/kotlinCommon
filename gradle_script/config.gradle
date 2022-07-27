@@ -22,7 +22,7 @@ ext {
     core_ktx = '1.8.0'
     lifecycle_ktx = '2.5.0'
     collection_ktx = '1.2.0'
-    kotlinx_coroutines = '1.6.3'
+    kotlinx_coroutines = '1.6.4'
     swiperefreshlayout = '1.1.0'
     room_version = '2.4.2'
 
@@ -52,7 +52,7 @@ ext {
     flexbox_layout = "3.0.0"
     gradle_versions_plugin = "v0.39.0"
     zxing_version = "2.2.9"
-    jsoup_version = '1.15.1'
+    jsoup_version = '1.15.2'
     leakcanary_android = '2.9.1'
     bannerViewPager = "3.5.2"
     viewpager2 = '1.1.0-beta01'
