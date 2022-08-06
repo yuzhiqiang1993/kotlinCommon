@@ -17,7 +17,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.1'
+        classpath 'com.android.tools.build:gradle:7.2.2'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10'
         // 添加emas-services插件
 //        classpath 'com.aliyun.ams:emas-services:1.0.2'
