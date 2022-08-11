@@ -15,7 +15,7 @@ abstract class BaseAppStartTask : AppStartTask() {
     override fun run() {
 
         var time = System.currentTimeMillis()
-        val methordName = Thread.currentThread().getStackTrace()[2].getMethodName();
+        val methordName = Thread.currentThread().stackTrace[2].methodName
 
 //        LogUtils.i("methordName:${methordName}")
 //        LogUtils.i("javaClass.canonicalName:${javaClass.canonicalName}")

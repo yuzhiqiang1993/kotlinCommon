@@ -30,7 +30,12 @@ class InitMobileAnalyticsTask : MainThreadTask() {
 
         // MAN另一初始化方法，手动指定appKey和appSecret
 
-        manService.getMANAnalytics().init(BaseApp.INSTANCE, AppContext, AliEMASConfig.appKey, AliEMASConfig.appSecret);
+        manService.manAnalytics.init(
+            BaseApp.INSTANCE,
+            AppContext,
+            AliEMASConfig.appKey,
+            AliEMASConfig.appSecret
+        )
 
         // 若需要关闭 SDK 的自动异常捕获功能可进行如下操作,详见文档5.4
 //        manService.manAnalytics.turnOffCrashReporter()

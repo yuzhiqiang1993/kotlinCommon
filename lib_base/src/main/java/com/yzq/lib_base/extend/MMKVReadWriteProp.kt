@@ -13,10 +13,17 @@ import kotlin.reflect.KProperty
  * @time   : 2:42 下午
  */
 
-class MMKVReadWriteProp<T>(val key: String, private val defauleVal: T, mmapID: String = "") : ReadWriteProperty<Any?, T> {
+class MMKVReadWriteProp<T>(
+    private val key: String,
+    private val defauleVal: T,
+    mmapID: String = ""
+) : ReadWriteProperty<Any?, T> {
 
     private val mmkv by lazy {
-        if (TextUtils.isEmpty(mmapID)) MMKV.defaultMMKV(MMKV.MULTI_PROCESS_MODE, null) else MMKV.mmkvWithID(
+        if (TextUtils.isEmpty(mmapID)) MMKV.defaultMMKV(
+            MMKV.MULTI_PROCESS_MODE,
+            null
+        ) else MMKV.mmkvWithID(
             mmapID,
             MMKV.MULTI_PROCESS_MODE,
             null
@@ -49,7 +56,7 @@ class MMKVReadWriteProp<T>(val key: String, private val defauleVal: T, mmapID: S
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
-        encodeval(key, value);
+        encodeval(key, value)
     }
 
     /**

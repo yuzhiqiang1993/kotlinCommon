@@ -5,9 +5,7 @@ import com.yzq.kotlincommon.ui.fragment.UserFragment
 import com.yzq.lib_base.ui.fragment.BaseFragment
 import com.yzq.lib_base.view_model.BaseViewModel
 
-
 class FragmentViewModel : BaseViewModel() {
-
 
     val taskFragment by lazy {
         TaskFragment.newInstance()
@@ -17,7 +15,6 @@ class FragmentViewModel : BaseViewModel() {
     }
 
     val fragmentList = arrayListOf<BaseFragment>()
-
 
 }
 

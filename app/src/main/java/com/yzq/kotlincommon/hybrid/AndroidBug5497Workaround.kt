@@ -5,7 +5,6 @@ import android.graphics.Rect
 import android.view.View
 import android.widget.FrameLayout
 
-
 /**
  * @description: 网上找的方案  https://github.com/Mightted/AndroidBug5497WorkaroundKt
  *使用方式如下
@@ -48,7 +47,6 @@ class AndroidBug5497Workaround(activity: Activity, height: Int, hideBar: Boolean
         }
         frameLayoutParams = mChildOfContent.layoutParams as FrameLayout.LayoutParams
     }
-
 
     private fun possiblyResizeChildOfContent() {
         val usableHeightNow = computeUsableHeight()

@@ -11,9 +11,7 @@ import com.yzq.common.net.view_model.ApiServiceViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-
 class DownloadViewModel : ApiServiceViewModel() {
-
 
     fun downloadApk() {
 
@@ -27,7 +25,6 @@ class DownloadViewModel : ApiServiceViewModel() {
             val path =
                 "${PathUtils.getExternalAppFilesPath()}/yzq.apk"
 
-
             val su = withContext(Dispatchers.IO) {
 
                 FileIOUtils.writeFileFromIS(path, download.byteStream())
@@ -40,8 +37,6 @@ class DownloadViewModel : ApiServiceViewModel() {
             AppUtils.installApp(path)
         }
 
-
     }
-
 
 }

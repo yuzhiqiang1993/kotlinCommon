@@ -19,10 +19,10 @@ object MMKVUtil {
     var token: String by MMKVReadWriteProp("token", "")
 
     private fun getMMKV(mmapID: String = ""): MMKV {
-        if (TextUtils.isEmpty(mmapID)) {
-            return MMKV.defaultMMKV(MMKV.MULTI_PROCESS_MODE, null)
+        return if (TextUtils.isEmpty(mmapID)) {
+            MMKV.defaultMMKV(MMKV.MULTI_PROCESS_MODE, null)
         } else {
-            return MMKV.mmkvWithID(mmapID, MMKV.MULTI_PROCESS_MODE, null)
+            MMKV.mmkvWithID(mmapID, MMKV.MULTI_PROCESS_MODE, null)
         }
     }
 

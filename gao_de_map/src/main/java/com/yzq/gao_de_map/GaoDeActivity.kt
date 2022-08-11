@@ -41,16 +41,17 @@ class GaoDeActivity : BaseVbVmActivity<ActivityGaoDeBinding, LocationSignViewMod
 
 
     override fun observeViewModel() {
-        vm.locationData.observe(this,
-            { t ->
-                if (t.errorCode == 0) {
-                    binding.tvLocationResult.text = t.address
-                } else {
-                    binding.tvLocationResult.text = t.locationDetail
-                }
+        vm.locationData.observe(
+            this
+        ) { t ->
+            if (t.errorCode == 0) {
+                binding.tvLocationResult.text = t.address
+            } else {
+                binding.tvLocationResult.text = t.locationDetail
+            }
 
-                stateViewManager.dismissLoadingDialog()
-            })
+            stateViewManager.dismissLoadingDialog()
+        }
 
     }
 

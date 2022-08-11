@@ -15,7 +15,7 @@ import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
  * @time   : 6:30 下午
  */
 @Route(path = RoutePath.Main.EMAS)
-class AliEMASActiviy : BaseViewBindingActivity<ActivityAliEmasactiviyBinding>() {
+class AliEMASActivity : BaseViewBindingActivity<ActivityAliEmasactiviyBinding>() {
 
     override fun getViewBinding() = ActivityAliEmasactiviyBinding.inflate(layoutInflater)
 

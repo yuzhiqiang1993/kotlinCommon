@@ -1,19 +1,13 @@
 package com.yzq.common.view_model
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.Matrix
+import android.graphics.*
 import androidx.exifinterface.media.ExifInterface
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.blankj.utilcode.util.*
 import com.yzq.common.R
 import com.yzq.common.constants.StoragePath
 import com.yzq.lib_base.view_model.BaseViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import java.io.IOException
 
 /**
@@ -28,9 +22,9 @@ class CompressImgViewModel : BaseViewModel() {
     private val timeWaterMark = "YZQ:" + TimeUtils.getNowString()
     private val rootImgName = AppUtils.getAppPackageName() + "_"
 
+    private val _compressedLiveData by lazy { MutableLiveData<String>() }
 
-    var compressedImgPathLiveData = MutableLiveData<String>()
-
+    val compressedImgPathLiveData: LiveData<String> = _compressedLiveData
 
     fun compressImg(
         path: String,
@@ -40,22 +34,17 @@ class CompressImgViewModel : BaseViewModel() {
 
         viewModelScope.launch {
 
-            compressedImgPathLiveData.value = withContext(Dispatchers.IO) {
-
+            _compressedLiveData.value = withContext(Dispatchers.IO) {
                 if (needWatermark) {
                     compressImgWithWatermark(path, waterMarkArr)
                 } else {
                     compressImg(path)
                 }
-
             }
-
 
         }
 
-
     }
-
 
     /*压缩图片保存路径*/
     private fun compressImgWithWatermark(
@@ -63,9 +52,7 @@ class CompressImgViewModel : BaseViewModel() {
         waterMarkArr: ArrayList<String>
     ): String {
 
-
         LogUtils.i("压缩前图片大小：" + FileUtils.getFileLength(path))
-
 
         /*获取图片旋转的角度*/
         val degree = readPictureDegree(path)
@@ -115,7 +102,6 @@ class CompressImgViewModel : BaseViewModel() {
             (logoH / logoRatio).toInt()
         )
 
-
         val offsetX = defaultW / 2 - watermarkLogo.width / 2
         val offsetY = defaultH / 2 - watermarkLogo.height / 2
 
@@ -150,7 +136,6 @@ class CompressImgViewModel : BaseViewModel() {
             )
         }
 
-
         val ratio = getRatioSize(defaultW, defaultH)
         LogUtils.i("缩放比例$ratio")
         /*先按比例压缩*/
@@ -175,8 +160,6 @@ class CompressImgViewModel : BaseViewModel() {
         /*保存并返回图片路径*/
         return if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
             /*返回保存后的路径*/
-
-
             LogUtils.i("压缩后图片大小：" + FileUtils.getFileLength(savedImgPath))
             savedImgPath
         } else {
@@ -186,9 +169,7 @@ class CompressImgViewModel : BaseViewModel() {
 
         }
 
-
     }
-
 
     /*只压缩图片*/
     private fun compressImg(path: String): String {
@@ -214,7 +195,6 @@ class CompressImgViewModel : BaseViewModel() {
                 )
 
         }
-
 
         val defaultW = selectBitMap.width
         val defaultH = selectBitMap.height
@@ -242,20 +222,15 @@ class CompressImgViewModel : BaseViewModel() {
         /*保存并返回图片路径*/
         return if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
             /*返回保存后的路径*/
-
-
             LogUtils.i("压缩后图片大小：" + FileUtils.getFileLength(savedImgPath))
             savedImgPath
         } else {
             /*返回原路径*/
-
             LogUtils.i("压缩失败，返回原图")
             path
         }
 
-
     }
-
 
     /*图片的旋转角度*/
     private fun readPictureDegree(path: String): Int {
@@ -284,7 +259,6 @@ class CompressImgViewModel : BaseViewModel() {
 
         return degree
 
-
     }
 
     /*计算缩放比例*/
@@ -303,6 +277,5 @@ class CompressImgViewModel : BaseViewModel() {
         }
         return ratio
     }
-
 
 }

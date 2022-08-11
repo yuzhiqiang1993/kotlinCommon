@@ -1,6 +1,5 @@
 package com.yzq.common.net.interceptor
 
-
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.net.constants.ServerConstants
 import com.yzq.common.net.utils.AESUtil
@@ -20,11 +19,9 @@ import java.nio.charset.Charset
 
 class ResponseDecryptInterceptor : Interceptor {
 
-
     override fun intercept(chain: Interceptor.Chain): Response {
 
         LogUtils.i("开始处理服务端响应的数据----------------------")
-
 
         val request = chain.request()
         // val mediaType = MediaType.parse("application/json; charset=utf-8")
@@ -40,8 +37,7 @@ class ResponseDecryptInterceptor : Interceptor {
 
             LogUtils.i("响应头中的AESKey:${aesKey}")
 
-            if (aesKey != null && responseBody != null) {
-
+            if (aesKey != null) {
 
                 /*开始解密*/
                 try {
@@ -54,7 +50,7 @@ class ResponseDecryptInterceptor : Interceptor {
 
                     val source = responseBody.source()
                     source.request(java.lang.Long.MAX_VALUE) // Buffer the entire body.
-                    val buffer = source.buffer
+                    val buffer = source.buffer()
                     var charset = Charset.forName("UTF-8")
 
                     val contentType = responseBody.contentType()
@@ -87,6 +83,5 @@ class ResponseDecryptInterceptor : Interceptor {
         return response
 
     }
-
 
 }

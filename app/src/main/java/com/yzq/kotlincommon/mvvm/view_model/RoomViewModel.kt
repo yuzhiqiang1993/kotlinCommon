@@ -5,26 +5,20 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.data.data_base.User
 import com.yzq.common.data.data_base.UserDao
 import com.yzq.common.data.data_base.UserDataBase
-
 import com.yzq.lib_base.view_model.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
 class RoomViewModel : BaseViewModel() {
-
 
     val users by lazy { userDao.getAllUsers() }
     private var userDao: UserDao = UserDataBase.instance.userDao()
 
-
     /*增*/
     fun insertUser() {
 
-
         viewModelScope.launch {
-
 
             val userList = arrayListOf<User>()
             for (i in 0..5) {
@@ -43,12 +37,9 @@ class RoomViewModel : BaseViewModel() {
 
             LogUtils.i("插入成功")
 
-
         }
 
-
     }
-
 
     /*删*/
     fun deleteUser(user: User) {
@@ -60,14 +51,11 @@ class RoomViewModel : BaseViewModel() {
 
             }
 
-
         }
     }
 
-
     /*改*/
     fun updateUser(id: Int, name: String) {
-
 
         viewModelScope.launch {
 
@@ -102,6 +90,5 @@ class RoomViewModel : BaseViewModel() {
 
         }
     }
-
 
 }

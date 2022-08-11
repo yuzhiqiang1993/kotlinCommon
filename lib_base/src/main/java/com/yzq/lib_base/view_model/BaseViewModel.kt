@@ -1,5 +1,6 @@
 package com.yzq.lib_base.view_model
 
+import android.annotation.SuppressLint
 import android.text.TextUtils
 import androidx.lifecycle.*
 import com.blankj.utilcode.util.LogUtils
@@ -14,6 +15,7 @@ import me.jessyan.progressmanager.body.ProgressInfo
 /*
 * 封装的BaseViewModel
 * */
+@SuppressLint("MissingPermission")
 abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
     private val viewStateBean by lazy { ViewStateBean() }
     val loadState by lazy { MutableLiveData<ViewStateBean>() }
@@ -222,7 +224,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         }
     }
 
-    fun showProgressDialog(title: String) {
+    private fun showProgressDialog(title: String) {
         viewStateBean.message = title
         viewStateBean.state = ViewStateContstants.showProgressDialog
         viewModelScope.launch(Dispatchers.Main) {

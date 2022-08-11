@@ -141,7 +141,7 @@ method_call_opt {
             "java/lang/Throwable#printStackTrace#()V",
             "com/google/devtools/build/android/desugar/runtime/ThrowableExtension#printStackTrace#(Ljava/lang/Throwable;)V",
 
-            //还有自己项目中封装的Logger方法 先用字节码插件看下方法的信息  在填写 以免写错
+            //还有自己项目中封装的Logger方法 先用字节码插件看下方法的信息  再填写 以免写错
             "com/blankj/utilcode/util/LogUtils#i#([Ljava/lang/Object;)V",
 
 

@@ -13,13 +13,11 @@ import kotlinx.coroutines.withContext
 
 class ImgListViewModel : ApiServiceViewModel() {
 
-
     var start = 0
     private val count = 50
 
     val subjectsLive by lazy { MutableLiveData<MutableList<Subject>>() }
     val subjectsDiffResult by lazy { MutableLiveData<DiffUtil.DiffResult>() }
-
 
     fun getData() {
         launchLoading {
@@ -29,7 +27,6 @@ class ImgListViewModel : ApiServiceViewModel() {
             start += datas.subjects.size
         }
     }
-
 
     /**
      * 计算旧数据和新数据之间的差异值
@@ -65,13 +62,10 @@ class ImgListViewModel : ApiServiceViewModel() {
                         return oldDatas[oldItemPosition] == newDatas[newItemPosition]
                     }
 
-
                 })
-
 
             }
         }
-
 
     }
 }

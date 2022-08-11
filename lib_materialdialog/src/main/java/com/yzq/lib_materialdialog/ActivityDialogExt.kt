@@ -81,7 +81,7 @@ fun ComponentActivity.showPositiveCallbackDialog(
     title: String = HINT,
     message: String,
     positiveText: String = SURE,
-    negativeText: String = CANCLE,
+    negativeText: String = CANCEL,
     positiveCallback: DialogCallback
 ) {
 
@@ -107,7 +107,7 @@ fun ComponentActivity.showCallbackDialog(
     title: String = HINT,
     message: String,
     positiveText: String = SURE,
-    negativeText: String = CANCLE,
+    negativeText: String = CANCEL,
     positiveCallback: DialogCallback,
     negativeCallback: DialogCallback
 ) {
@@ -134,7 +134,7 @@ fun ComponentActivity.showBackHintDialog(
     message: String = BACK_HINT,
     positiveText: String = SURE,
     positiveCallback: DialogCallback,
-    negativeText: String = CANCLE
+    negativeText: String = CANCEL
 ) {
 
     getNewDialog().show {
@@ -189,7 +189,7 @@ fun ComponentActivity.showSingleSelectList(
 fun ComponentActivity.showInputDialog(
     title: String = HINT,
     positiveText: String = SURE,
-    negativeText: String = CANCLE,
+    negativeText: String = CANCEL,
     message: String = "",
     inputHint: String = "",
     prefill: String = "",
@@ -264,7 +264,7 @@ fun ComponentActivity.selectYear(
     defaultTime: Long = 0,
     dateFormat: String = "yyyy",
     positiveText: String = SURE,
-    negativeText: String = CANCLE,
+    negativeText: String = CANCEL,
     datePickerListener: DatePickerListener
 ) {
 
@@ -303,7 +303,7 @@ fun ComponentActivity.showDatePicker(
     defaultTime: Long = 0,
     dateFormat: String = "yyyy-MM-dd HH:mm:ss",
     positiveText: String = SURE,
-    negativeText: String = CANCLE,
+    negativeText: String = CANCEL,
     datePickerListener: DatePickerListener
 ) {
 

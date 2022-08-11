@@ -20,7 +20,7 @@ class BsDiffViewModel : BaseViewModel() {
 
     val newFileMD5LiveData by lazy { MutableLiveData<String>() }
     val combineFileMD5LiveData by lazy { MutableLiveData<String>() }
-    val suffix = "apk"
+    private val suffix = "apk"
 
     /*新文件*/
     private val newFile = File(PathUtils.getExternalAppCachePath(), "new.${suffix}")

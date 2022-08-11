@@ -11,7 +11,6 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 
-
 /**
  * @description: 基于Glide对ImageView的扩展
  * @author : yzq
@@ -20,14 +19,12 @@ import com.bumptech.glide.request.target.Target
  *
  */
 
-
 val options = RequestOptions()
     .diskCacheStrategy(DiskCacheStrategy.ALL)
     .format(DecodeFormat.PREFER_RGB_565)
     .placeholder(R.color.gray_100)
     .error(R.color.gray_100)
     .skipMemoryCache(true)
-
 
 interface ImgRequestListener : RequestListener<Drawable> {
     override fun onLoadFailed(
@@ -68,7 +65,6 @@ fun ImageView.load(path: String): ImageView {
     return this
 }
 
-
 /**
  * 加载时先用缩略图
  * @receiver ImageView
@@ -79,7 +75,6 @@ fun ImageView.loadWithThumbnail(path: String): ImageView {
 
     Glide.with(context)
         .load(path.trim())
-        .thumbnail(0.8f)
         .apply(options)
         .override(this.width, this.height)
         .into(this)

@@ -7,9 +7,7 @@ import com.yzq.lib_base.view_model.BaseViewModel
 
 class DataBindingViewModel : BaseViewModel() {
 
-
     val dataBindingLiveData by lazy { MutableLiveData<DataBindingBean>() }
-
 
     fun resetData() {
 

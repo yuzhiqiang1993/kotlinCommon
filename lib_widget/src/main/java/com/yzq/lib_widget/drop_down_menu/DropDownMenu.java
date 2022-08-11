@@ -43,7 +43,7 @@ public class DropDownMenu extends LinearLayout {
     //tab未选中图标
     private int menuUnselectedIcon;
 
-    private float menuHeighPercent = 0.5f;
+    private float menuHeightPercent = 0.5f;
 
 
     public DropDownMenu(Context context) {
@@ -72,7 +72,7 @@ public class DropDownMenu extends LinearLayout {
         menuTextSize = a.getDimensionPixelSize(R.styleable.DropDownMenu_menuTextSize, menuTextSize);
         menuSelectedIcon = a.getResourceId(R.styleable.DropDownMenu_menuSelectedIcon, menuSelectedIcon);
         menuUnselectedIcon = a.getResourceId(R.styleable.DropDownMenu_menuUnselectedIcon, menuUnselectedIcon);
-        menuHeighPercent = a.getFloat(R.styleable.DropDownMenu_menuMenuHeightPercent, menuHeighPercent);
+        menuHeightPercent = a.getFloat(R.styleable.DropDownMenu_menuMenuHeightPercent, menuHeightPercent);
         a.recycle();
 
         //初始化tabMenuView并添加到tabMenuView
@@ -119,7 +119,7 @@ public class DropDownMenu extends LinearLayout {
 
         popupMenuViews = new FrameLayout(getContext());
 
-        popupMenuViews.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (DeviceUtils.getSceenHeight(getContext()) * menuHeighPercent)));
+        popupMenuViews.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (DeviceUtils.getScreenHeight(getContext()) * menuHeightPercent)));
 
 
         popupMenuViews.setVisibility(GONE);

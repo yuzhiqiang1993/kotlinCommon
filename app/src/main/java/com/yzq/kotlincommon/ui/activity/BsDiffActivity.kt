@@ -39,7 +39,6 @@ class BsDiffActivity : BaseVbVmActivity<ActivityBsDiffBinding, BsDiffViewModel>(
         }
     }
 
-
     override fun observeViewModel() {
 
         vm.apply {
@@ -51,11 +50,8 @@ class BsDiffActivity : BaseVbVmActivity<ActivityBsDiffBinding, BsDiffViewModel>(
                 binding.htvCombineFileMd5.setContent(it)
             }
 
-
         }
 
-
     }
-
 
 }

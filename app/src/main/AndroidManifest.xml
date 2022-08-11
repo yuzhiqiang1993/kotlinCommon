@@ -4,7 +4,6 @@
 
     <application
         android:name=".App"
-        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="${APP_NAME}"
         android:largeHeap="true"
@@ -21,7 +20,7 @@
             android:name=".ui.activity.ChannelActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.AliEMASActiviy"
+            android:name=".ui.activity.AliEMASActivity"
             android:exported="false" /> <!-- 自定义一些元数据 -->
         <meta-data
             android:name="META_CHANNEL"

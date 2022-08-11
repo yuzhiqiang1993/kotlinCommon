@@ -84,7 +84,7 @@ fun Fragment.showPositiveCallbackDialog(
     title: String = HINT,
     message: String,
     positiveText: String = SURE,
-    negativeText: String = CANCLE,
+    negativeText: String = CANCEL,
     positiveCallback: DialogCallback
 ) {
 
@@ -114,7 +114,7 @@ fun Fragment.showCallbackDialog(
     title: String = HINT,
     message: String,
     positiveText: String = SURE,
-    negativeText: String = CANCLE,
+    negativeText: String = CANCEL,
     positiveCallback: DialogCallback,
     negativeCallback: DialogCallback
 ) {
@@ -144,7 +144,7 @@ fun Fragment.showBackHintDialog(
     message: String = BACK_HINT,
     positiveText: String = SURE,
     positiveCallback: DialogCallback,
-    negativeText: String = CANCLE
+    negativeText: String = CANCEL
 ) {
 
 
@@ -206,7 +206,7 @@ fun Fragment.showSingleSelectList(
 fun Fragment.showInputDialog(
     title: String = HINT,
     positiveText: String = SURE,
-    negativeText: String = CANCLE,
+    negativeText: String = CANCEL,
     message: String = "",
     inputHint: String = "",
     prefill: String = "",
@@ -275,7 +275,7 @@ fun Fragment.showDatePicker(
     defaultTime: Long = 0,
     dateFormat: String = "yyyy-MM-dd HH:mm:ss",
     positiveText: String = SURE,
-    negativeText: String = CANCLE,
+    negativeText: String = CANCEL,
     datePickerListener: DatePickerListener
 ) {
 

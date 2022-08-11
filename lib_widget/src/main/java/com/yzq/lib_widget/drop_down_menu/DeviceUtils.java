@@ -1,10 +1,7 @@
 package com.yzq.lib_widget.drop_down_menu;
 
-
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Point;
-import android.os.Build;
 import android.view.WindowManager;
 
 /**
@@ -16,8 +13,7 @@ public class DeviceUtils {
      * 获取屏幕尺寸
      */
 
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
-    public static int getSceenHeight(Context context) {
+    public static int getScreenHeight(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
         if (wm == null) {

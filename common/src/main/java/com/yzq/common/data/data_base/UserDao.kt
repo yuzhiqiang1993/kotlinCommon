@@ -4,10 +4,8 @@ import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 import androidx.room.*
 
-
 @Dao
 interface UserDao {
-
 
     @Query("select * from user order by id ")
     @WorkerThread
@@ -31,6 +29,5 @@ interface UserDao {
     @Query("delete from user")
     @WorkerThread
     fun clearUser()
-
 
 }
