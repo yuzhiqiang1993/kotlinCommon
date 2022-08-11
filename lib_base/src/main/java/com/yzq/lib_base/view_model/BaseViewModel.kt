@@ -251,7 +251,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
     }
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-        LogUtils.i("onStateChanged ${source} === ${event.targetState}")
+        LogUtils.i("onStateChanged $source === ${event.targetState}")
     }
 
 }

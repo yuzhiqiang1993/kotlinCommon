@@ -5,26 +5,26 @@ println "config.gradle"
 ext {
 
     /*defaultConfig*/
-    compile_sdk_version = 31
-    min_sdk_version = 21
-    target_sdk_version = 31
+    compile_sdk_version = 32
+    min_sdk_version = 22
+    target_sdk_version = 32
     version_code = 10  //eg:1->0.0.1  10->0.1.0  100->1.0.0
     version_name = "0.1.0"
     multiDexEnabled = true
 
     /*dependencies*/
-    appcompat = '1.4.2'
+    appcompat = '1.5.0'
     material = '1.6.1'
     vectordrawable = "1.1.0"
     constraintlayout = '2.1.4'
     annotation = '1.4.0'
     multiDexVersion = "2.0.1"
     core_ktx = '1.8.0'
-    lifecycle_ktx = '2.5.0'
+    lifecycle_ktx = '2.5.1'
     collection_ktx = '1.2.0'
     kotlinx_coroutines = '1.6.4'
     swiperefreshlayout = '1.1.0'
-    room_version = '2.4.2'
+    room_version = '2.4.3'
 
     /*third party*/
     eventbus = '3.3.1'

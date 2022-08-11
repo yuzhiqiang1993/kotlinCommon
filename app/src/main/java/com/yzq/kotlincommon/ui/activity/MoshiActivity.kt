@@ -13,10 +13,6 @@ class MoshiActivity : BaseVbVmActivity<ActivityMoshiBinding, MoshiViewModel>() {
     override fun getViewModelClass() = MoshiViewModel::class.java
 
     override fun observeViewModel() {
-        with(vm) {
-
-
-        }
     }
 
     override fun initWidget() {

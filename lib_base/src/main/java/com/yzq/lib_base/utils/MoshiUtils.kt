@@ -16,7 +16,7 @@ object MoshiUtils {
 
     abstract class MoshiTypeReference<T> // 自定义的类，用来包装泛型
 
-    val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
+    val moshi: Moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
     inline fun <reified T> toJson(src: T, indent: String = ""): String {
         try {

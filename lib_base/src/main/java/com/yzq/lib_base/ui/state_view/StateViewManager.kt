@@ -156,7 +156,7 @@ class StateViewManager(private val activity: BaseActivity) {
     }
 
 
-    fun showErrorDialog(msg: String?) {
+    private fun showErrorDialog(msg: String?) {
         if (TextUtils.isEmpty(msg)) {
             activity.showBaseDialog(message = ViewStateContstants.UNKONW_ERROR)
         } else {
@@ -170,7 +170,7 @@ class StateViewManager(private val activity: BaseActivity) {
      * 显示加载中
      *
      */
-    fun showLoading() {
+    private fun showLoading() {
 
         if (requestType == httpFirst) {
             stateView?.showLoading()
@@ -193,7 +193,7 @@ class StateViewManager(private val activity: BaseActivity) {
 
 
     /*取消下拉刷新动画*/
-    fun cancelRefresh() {
+    private fun cancelRefresh() {
         if (requestType == httpRefresh && (contentLayout != null) && contentLayout is SwipeRefreshLayout) {
             (contentLayout as SwipeRefreshLayout).isRefreshing = false
         }
@@ -218,7 +218,7 @@ class StateViewManager(private val activity: BaseActivity) {
      * 显示无网络
      *
      */
-    fun showNoNet() {
+    private fun showNoNet() {
 
         if (requestType == httpLoadMore) {
             ToastUtils.showLong(ViewStateContstants.NO_NET)
@@ -237,7 +237,7 @@ class StateViewManager(private val activity: BaseActivity) {
      *
      * @param msg  错误信息
      */
-    fun showError(msg: String) {
+    private fun showError(msg: String) {
         if (requestType == httpLoadMore) {
             ToastUtils.showShort(msg)
         } else {

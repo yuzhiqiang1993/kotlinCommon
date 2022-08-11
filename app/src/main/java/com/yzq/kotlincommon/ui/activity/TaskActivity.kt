@@ -15,7 +15,6 @@ import com.yzq.kotlincommon.databinding.ActivityTaskBinding
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 import com.yzq.lib_widget.HoverItemDecoration
-import java.util.*
 
 
 /**
@@ -115,7 +114,6 @@ class TaskActivity : BaseViewBindingActivity<ActivityTaskBinding>(), OnItemChild
 
                 tasks.remove(operationItem)
                 taskAdapter.notifyDataSetChanged()
-
             }
         }
     }
@@ -134,7 +132,7 @@ class TaskActivity : BaseViewBindingActivity<ActivityTaskBinding>(), OnItemChild
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.activity_task, menu)
 
         return super.onCreateOptionsMenu(menu)

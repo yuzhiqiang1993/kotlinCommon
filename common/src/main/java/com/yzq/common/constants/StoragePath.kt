@@ -18,10 +18,10 @@ object StoragePath {
 
 
     /*项目路径 /storage/emulated/0/Android/data/com.yzq.kotlincommon*/
-    val eternalAppDataPath = "${PathUtils.getExternalAppDataPath()}${File.separator}"
+    private val eternalAppDataPath = "${PathUtils.getExternalAppDataPath()}${File.separator}"
 
     /*项目文件路径  /storage/emulated/0/Android/data/com.yzq.kotlincommon/files */
-    val externalAppFilesPath = "${PathUtils.getExternalAppFilesPath()}${File.separator}"
+    private val externalAppFilesPath = "${PathUtils.getExternalAppFilesPath()}${File.separator}"
 
     /*项目图片路径  /storage/emulated/0/Android/data/com.yzq.kotlincommon/files/Pictures/ */
     val externalAppPicturesPath = "${PathUtils.getExternalAppPicturesPath()}${File.separator}"
