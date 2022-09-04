@@ -38,7 +38,7 @@ ext {
     gson = '2.9.0'
     material_dialogs = "3.3.0"
     baseRecyclerViewAdapterHelper = "3.0.7"
-    mmkv = '1.2.13'
+    mmkv = '1.2.14'
     photoview = "2.3.0"
     objectboxVersion = "2.3.4"
     utilcode = '1.31.0'
@@ -52,7 +52,7 @@ ext {
     flexbox_layout = "3.0.0"
     gradle_versions_plugin = "v0.39.0"
     zxing_version = "2.2.9"
-    jsoup_version = '1.15.2'
+    jsoup_version = '1.15.3'
     leakcanary_android = '2.9.1'
     bannerViewPager = "3.5.2"
     viewpager2 = '1.1.0-beta01'
