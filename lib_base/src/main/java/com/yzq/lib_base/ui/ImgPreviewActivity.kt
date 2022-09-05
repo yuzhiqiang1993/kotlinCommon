@@ -1,7 +1,6 @@
 package com.yzq.lib_base.ui
 
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import com.blankj.utilcode.util.BarUtils
 import com.bumptech.glide.Glide
@@ -49,11 +48,7 @@ class ImgPreviewActivity : BaseViewBindingActivity<ActivityImgPreviewBinding>() 
     }
 
     override fun onBackPressed() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            finishAfterTransition()
-        } else {
-            finish()
-        }
+        finishAfterTransition()
     }
 
 
