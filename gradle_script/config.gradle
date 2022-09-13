@@ -5,7 +5,7 @@ println "config.gradle"
 ext {
 
     /*defaultConfig*/
-    compile_sdk_version = 32
+    compile_sdk_version = 33
     min_sdk_version = 22
     target_sdk_version = 32
     version_code = 10  //eg:1->0.0.1  10->0.1.0  100->1.0.0
@@ -13,13 +13,13 @@ ext {
     multiDexEnabled = true
 
     /*dependencies*/
-    appcompat = '1.5.0'
+    appcompat = '1.5.1'
     material = '1.6.1'
     vectordrawable = "1.1.0"
     constraintlayout = '2.1.4'
     annotation = '1.4.0'
     multiDexVersion = "2.0.1"
-    core_ktx = '1.8.0'
+    core_ktx = '1.9.0'
     lifecycle_ktx = '2.5.1'
     collection_ktx = '1.2.0'
     kotlinx_coroutines = '1.6.4'

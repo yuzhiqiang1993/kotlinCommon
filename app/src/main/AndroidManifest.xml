@@ -13,7 +13,7 @@
         android:theme="@style/Theme.XeonYuTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
-        tools:replace="android:allowBackup,andrpod:label">
+        tools:replace="android:allowBackup,android:label">
         <activity
             android:name=".ui.activity.MoshiActivity"
             android:exported="false" />
