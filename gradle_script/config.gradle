@@ -65,4 +65,7 @@ ext {
             keypwd       : "123456"
     ]
 
+    debugValue = "debugValue"
+    releaseValue = "releaseValue"
+
 }

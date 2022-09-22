@@ -3,6 +3,7 @@ package com.yzq.kotlincommon
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Trace
 import com.aice.appstartfaster.dispatcher.AppStartTaskDispatcher
 import com.blankj.utilcode.util.LogUtils
@@ -54,11 +55,30 @@ class App : BaseApp() {
     }
 
     private fun readMetaData() {
+
+        LogUtils.i("Build.VERSION.SDK_INT = ${Build.VERSION.SDK_INT}")
+
         /*读取Manifest.xml中的 META_DATA */
-        val applicationInfo = packageManager.getApplicationInfo(packageName, PackageManager.GET_META_DATA)
+        val applicationInfo =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                packageManager.getApplicationInfo(
+                    packageName,
+                    PackageManager.ApplicationInfoFlags.of(PackageManager.GET_META_DATA.toLong())
+                )
+            } else {
+                packageManager.getApplicationInfo(
+                    packageName,
+                    PackageManager.GET_META_DATA
+                )
+            }
+
         val metaData = applicationInfo.metaData
         val metaChannelValue = metaData.getString("META_CHANNEL")
         LogUtils.i("metaChannelValue=${metaChannelValue}")
+
+        /*读取BuildConfig中的变量*/
+        LogUtils.i("BuildConfig.BASE_URL = ${BuildConfig.BASE_URL}")
+        LogUtils.i("BuildConfig.LOG_DEBUG = ${BuildConfig.LOG_DEBUG}")
     }
 
     override fun attachBaseContext(base: Context?) {
@@ -74,7 +94,8 @@ class App : BaseApp() {
     private fun allowSysTraceInDebug() {
         try {
             val trace = Class.forName("android.os.Trace")
-            val setAppTracingAllowed = trace.getDeclaredMethod("setAppTracingAllowed", Boolean::class.javaPrimitiveType)
+            val setAppTracingAllowed =
+                trace.getDeclaredMethod("setAppTracingAllowed", Boolean::class.javaPrimitiveType)
             setAppTracingAllowed.invoke(null, true)
         } catch (e: IllegalAccessException) {
             e.printStackTrace()

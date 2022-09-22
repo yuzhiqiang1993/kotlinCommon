@@ -25,7 +25,7 @@ abstract class BaseAppStartTask : AppStartTask() {
 
         time = System.currentTimeMillis() - time
 
-        LogUtils.e("${javaClass.canonicalName}.${methordName} 耗时 time = $time")
+        LogUtils.i("${javaClass.canonicalName}.${methordName} 耗时 time = $time")
         Trace.endSection()
     }
 
