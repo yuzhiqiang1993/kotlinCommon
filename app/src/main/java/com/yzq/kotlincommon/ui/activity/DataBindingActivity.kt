@@ -3,6 +3,8 @@ package com.yzq.kotlincommon.ui.activity
 import com.afollestad.materialdialogs.utils.MDUtil.textChanged
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.NetworkUtils
+import com.blankj.utilcode.util.NetworkUtils.OnNetworkStatusChangedListener
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
@@ -32,6 +34,19 @@ class DataBindingActivity : BaseDbVmActivity<ActivityDataBindingBinding, DataBin
         binding.etContent.textChanged {
             ToastUtils.showShort(it)
         }
+
+        NetworkUtils.registerNetworkStatusChangedListener(object : OnNetworkStatusChangedListener {
+            override fun onDisconnected() {
+                LogUtils.i("网络连接断开")
+                ToastUtils.showShort("网络断开连接")
+            }
+
+            override fun onConnected(networkType: NetworkUtils.NetworkType?) {
+                LogUtils.i("网络已连接：${networkType?.name}")
+                ToastUtils.showShort("网络连接:${networkType?.name}")
+            }
+
+        })
 
     }
 
