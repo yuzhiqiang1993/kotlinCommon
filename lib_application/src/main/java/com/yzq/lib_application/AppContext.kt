@@ -1,4 +1,4 @@
-package com.yzq.lib_base
+package com.yzq.lib_application
 
 import android.content.ContextWrapper
 

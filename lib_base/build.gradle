@@ -102,6 +102,8 @@ dependencies {
 
     api 'com.github.aiceking:AppStartFaster:2.0.0'
 
+    api project(path: ':lib_application')
+    api project(path: ':lib_network')
     api project(path: ':lib_base_adapter')
     api project(path: ':lib_eventbus')
     api project(path: ':lib_img')

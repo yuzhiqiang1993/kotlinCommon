@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.amap.api.location.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
-import com.yzq.lib_base.AppContext
+import com.yzq.lib_application.AppContext
 import com.yzq.lib_base.view_model.BaseViewModel
 
 /**

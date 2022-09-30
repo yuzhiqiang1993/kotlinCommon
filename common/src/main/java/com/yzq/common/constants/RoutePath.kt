@@ -23,6 +23,7 @@ object RoutePath {
         const val EMAS = "/main/emas"
         const val CHANNEL = "/main/channel"
         const val MOSHI = "/main/moshi"
+        const val NETWORK = "/main/network"
         const val FLEX_BOX = "/main/flexBox"
         const val IMG_LIST = "/main/imgList"
         const val FRAGMENT = "/main/fragment"

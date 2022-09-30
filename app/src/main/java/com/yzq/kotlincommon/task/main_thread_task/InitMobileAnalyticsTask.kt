@@ -3,8 +3,8 @@ package com.yzq.kotlincommon.task.main_thread_task
 import com.alibaba.sdk.android.man.MANServiceProvider
 import com.blankj.utilcode.util.AppUtils
 import com.yzq.kotlincommon.config.AliEMASConfig
-import com.yzq.lib_base.AppContext
-import com.yzq.lib_base.BaseApp
+import com.yzq.lib_application.AppContext
+import com.yzq.lib_application.BaseApp
 import com.yzq.lib_base.startup.base.MainThreadTask
 
 /**

@@ -13,7 +13,7 @@ import com.yzq.common.constants.StoragePath
 import com.yzq.kotlincommon.task.main_thread_task.*
 import com.yzq.kotlincommon.task.work_thread_task.InitARouterTask
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
-import com.yzq.lib_base.BaseApp
+import com.yzq.lib_application.BaseApp
 import java.lang.reflect.InvocationTargetException
 
 /**

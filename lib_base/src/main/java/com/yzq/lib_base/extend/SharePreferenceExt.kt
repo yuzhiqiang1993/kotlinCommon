@@ -3,7 +3,7 @@ package com.yzq.lib_base.extend
 import android.annotation.SuppressLint
 import android.content.Context
 import com.blankj.utilcode.util.AppUtils
-import com.yzq.lib_base.AppContext
+import com.yzq.lib_application.AppContext
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 

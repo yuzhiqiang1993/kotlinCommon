@@ -3,8 +3,8 @@ package com.yzq.kotlincommon.ext
 import com.alibaba.ha.adapter.AliHaConfig
 import com.blankj.utilcode.util.AppUtils
 import com.yzq.kotlincommon.config.AliEMASConfig
-import com.yzq.lib_base.AppContext
-import com.yzq.lib_base.BaseApp
+import com.yzq.lib_application.AppContext
+import com.yzq.lib_application.BaseApp
 
 /**
  * @description: AliConfig的默认配置

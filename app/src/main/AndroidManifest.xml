@@ -15,6 +15,9 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label">
         <activity
+            android:name=".ui.activity.NetworkActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.MoshiActivity"
             android:exported="false" />
         <activity

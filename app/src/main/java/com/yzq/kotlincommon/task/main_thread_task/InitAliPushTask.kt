@@ -7,8 +7,8 @@ import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.kotlincommon.BuildConfig
 import com.yzq.kotlincommon.config.AliEMASConfig
-import com.yzq.lib_base.AppContext
-import com.yzq.lib_base.BaseApp
+import com.yzq.lib_application.AppContext
+import com.yzq.lib_application.BaseApp
 import com.yzq.lib_base.startup.base.MainThreadTask
 
 /**

@@ -1,4 +1,4 @@
-package com.yzq.lib_base
+package com.yzq.lib_application
 
 import android.app.Activity
 import android.app.Application
@@ -6,12 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import java.util.*
 
+
 /**
- * @description: BaseApplication
- * @author : yzq
- * @date   : 2019/3/18
- * @time   : 11:29
- *
+ * @description Application基类
+ * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date    2022/9/30
+ * @time    11:02
  */
 
 open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {

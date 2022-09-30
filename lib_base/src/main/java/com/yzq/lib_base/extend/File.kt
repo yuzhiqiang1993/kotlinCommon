@@ -7,7 +7,7 @@ import androidx.core.content.FileProvider
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.lib_base.AppContext
+import com.yzq.lib_application.AppContext
 import java.io.File
 
 
@@ -24,7 +24,7 @@ fun File.getOpenIntent(): Intent {
     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
     val uri: Uri = FileProvider.getUriForFile(
-        AppContext,
+        AppContext.applicationContext,
         AppUtils.getAppPackageName() + ".provider",
         FileUtils.getFileByPath(path)
     )

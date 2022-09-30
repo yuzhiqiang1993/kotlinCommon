@@ -19,7 +19,7 @@ import com.yzq.common.data.NaviItem
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
-import com.yzq.lib_base.BaseApp
+import com.yzq.lib_application.BaseApp
 import com.yzq.lib_base.extend.init
 import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 import kotlinx.coroutines.Dispatchers
@@ -97,6 +97,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
         items.add(NaviItem("ALi EMAS", RoutePath.Main.EMAS))
         items.add(NaviItem("Channel", RoutePath.Main.CHANNEL))
         items.add(NaviItem("Moshi", RoutePath.Main.MOSHI))
+        items.add(NaviItem("Network", RoutePath.Main.NETWORK))
 
 
         setData()
@@ -147,6 +148,8 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
     }
 
     private var lastBackTimeMillis: Long = 0
+
+
     override fun onBackPressed() {
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {

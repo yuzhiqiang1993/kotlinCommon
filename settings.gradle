@@ -65,3 +65,5 @@ gradle.addBuildListener(new BuildAdapter() {
     }
 })
 include ':lib_aliemas'
+include ':lib_network'
+include ':lib_application'
