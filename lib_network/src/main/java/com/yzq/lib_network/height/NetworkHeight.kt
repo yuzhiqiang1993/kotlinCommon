@@ -11,7 +11,7 @@ import androidx.annotation.RequiresPermission
 import com.yzq.lib_application.AppContext
 import com.yzq.lib_network.NetworkType
 import com.yzq.lib_network.OnNetworkStatusChangedListener
-import com.yzq.lib_network.common.INetworkStaus
+import com.yzq.lib_network.common.INetworkStatus
 import com.yzq.lib_network.common.MobileNetworkType
 
 
@@ -22,7 +22,7 @@ import com.yzq.lib_network.common.MobileNetworkType
  * @time   : 15:15
  */
 
-internal object NetworkHeight : INetworkStaus {
+internal object NetworkHeight : INetworkStatus {
 
     /**
      * 获取网络信息

@@ -11,7 +11,7 @@ import com.yzq.lib_network.OnNetworkStatusChangedListener
  * @time   : 17:58
  */
 
-internal interface INetworkStaus {
+internal interface INetworkStatus {
     /**
      * 网络是否链接
      * @return Boolean

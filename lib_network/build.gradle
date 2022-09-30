@@ -42,6 +42,8 @@ dependencies {
     /*utils*/
     implementation "com.blankj:utilcodex:$utilcode"
     implementation "androidx.annotation:annotation:${annotation}"
+    //Lifecycles only (without ViewModel or LiveData)
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_ktx"
     implementation project(path: ':lib_application')
     implementation project(path: ':lib_resource')
 

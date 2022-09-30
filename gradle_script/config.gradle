@@ -5,9 +5,9 @@ println "config.gradle"
 ext {
 
     /*defaultConfig*/
-    compile_sdk_version = 33
-    min_sdk_version = 23 //Android 6.0
-    target_sdk_version = 32
+    compile_sdk_version = 33  //按照指定sdk版本进行编译  不影响实际运行  一般就写最新的就行
+    min_sdk_version = 23 //Android 6.0  限制最低的设备版本
+    target_sdk_version = 30  //目标版本 启用该版本特性 主要做兼容处理 低于该版本的设备按照实际版本运行  高于该版本的设备按照该版本特性运行  例如
     version_code = 10  //eg:1->0.0.1  10->0.1.0  100->1.0.0
     version_name = "0.1.0"
     multiDexEnabled = true

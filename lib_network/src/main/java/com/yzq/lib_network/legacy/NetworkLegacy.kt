@@ -9,7 +9,7 @@ import android.telephony.TelephonyManager
 import androidx.annotation.RequiresPermission
 import com.yzq.lib_application.AppContext
 import com.yzq.lib_network.*
-import com.yzq.lib_network.common.INetworkStaus
+import com.yzq.lib_network.common.INetworkStatus
 import com.yzq.lib_network.common.MobileNetworkType
 
 
@@ -19,7 +19,7 @@ import com.yzq.lib_network.common.MobileNetworkType
  * @date   : 2022/9/27
  * @time   : 14:49
  */
-internal object NetworkLegacy : INetworkStaus {
+internal object NetworkLegacy : INetworkStatus {
 
 
     /**

@@ -3,7 +3,7 @@ package com.yzq.lib_network
 import android.Manifest
 import android.os.Build
 import androidx.annotation.RequiresPermission
-import com.yzq.lib_network.common.INetworkStaus
+import com.yzq.lib_network.common.INetworkStatus
 import com.yzq.lib_network.height.NetworkHeight
 import com.yzq.lib_network.legacy.NetworkLegacy
 
@@ -14,7 +14,7 @@ import com.yzq.lib_network.legacy.NetworkLegacy
  * @date   : 2022/9/26
  * @time   : 16:40
  */
-object NetworkUtil : INetworkStaus {
+object NetworkUtil : INetworkStatus {
 
     /**
      * 网络是否连接
