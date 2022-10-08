@@ -39,29 +39,29 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
     fun exitApp() {
         activityStack.forEach {
             it.finish()
-
         }
     }
 
-    override fun onActivityCreated(activity: Activity, bundle: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         activityStack.add(activity)
     }
 
-    override fun onActivityStarted(p0: Activity) {
+    override fun onActivityStarted(activity: Activity) {
 
     }
 
-    override fun onActivityResumed(p0: Activity) {
+    override fun onActivityResumed(activity: Activity) {
     }
 
-    override fun onActivityPaused(p0: Activity) {
+    override fun onActivityPaused(activity: Activity) {
     }
 
-    override fun onActivityStopped(p0: Activity) {
+    override fun onActivityStopped(activity: Activity) {
     }
 
-    override fun onActivitySaveInstanceState(p0: Activity, p1: Bundle) {
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
     }
+
 
     override fun onActivityDestroyed(activity: Activity) {
         if (activityStack.contains(activity)) {
