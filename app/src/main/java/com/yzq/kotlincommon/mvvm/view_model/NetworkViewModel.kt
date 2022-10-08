@@ -27,10 +27,10 @@ class NetworkViewModel : BaseViewModel(), OnNetworkStatusChangedListener {
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         LogUtils.i("onStateChanged:$event")
-        if (event == Lifecycle.Event.ON_RESUME) {
+        if (event == Lifecycle.Event.ON_CREATE) {
             LogUtils.i("注册")
             NetworkUtil.registerNetworkStatusChangedListener(this)
-        } else if (event == Lifecycle.Event.ON_STOP) {
+        } else if (event == Lifecycle.Event.ON_DESTROY) {
             LogUtils.i("解绑")
             NetworkUtil.unRegisterNetworkStatusChangedListener(this)
         }
