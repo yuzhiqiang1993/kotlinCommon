@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.NetworkActivity">
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_network_status"
