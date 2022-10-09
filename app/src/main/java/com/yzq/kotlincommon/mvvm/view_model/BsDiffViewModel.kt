@@ -1,7 +1,9 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
-import com.blankj.utilcode.util.*
+import com.blankj.utilcode.util.FileUtils
+import com.blankj.utilcode.util.PathUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.xeon.bsdiff.utils.XeonBsDiffUtil
 import com.yzq.lib_base.view_model.BaseViewModel
 import kotlinx.coroutines.Dispatchers
@@ -42,8 +44,7 @@ class BsDiffViewModel : BaseViewModel() {
         launchLoadingDialog(loadText = "正在生成差分包，请稍后...", checkNetWork = false) {
 
             val measureTimeMillis = measureTimeMillis {
-                withContext(Dispatchers.IO) {
-
+                withContext(Dispatchers.Default) {
                     if (!oldFile.exists() || !newFile.exists()) {
                         ToastUtils.showShort("对比包缺失")
                         return@withContext
@@ -69,7 +70,8 @@ class BsDiffViewModel : BaseViewModel() {
         launchLoadingDialog(loadText = "正在合并差分包，请稍后...", checkNetWork = false) {
 
             val measureTimeMillis = measureTimeMillis {
-                withContext(Dispatchers.IO) {
+                /*合并差分包是一个cpu密集型的任务*/
+                withContext(Dispatchers.Default) {
 
                     if (!oldFile.exists()) {
                         ToastUtils.showShort("旧文件不存在")

@@ -81,7 +81,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
         items.add(NaviItem("弹窗", RoutePath.Main.DIALOG))
         items.add(NaviItem("Zxing", RoutePath.Main.ZXING))
         items.add(NaviItem("BsDiff", RoutePath.Main.BS_DIFF))
-        items.add(NaviItem("登录页面（SharedPreference）", RoutePath.Main.LOGIN))
+        items.add(NaviItem("登录页面", RoutePath.Main.LOGIN))
         items.add(NaviItem("下拉菜单", RoutePath.Main.DROP_DOWN_MENU))
         items.add(NaviItem("高德定位", RoutePath.GaoDe.GAO_DE))
         items.add(NaviItem("FlexBoxLayout", RoutePath.Main.FLEX_BOX))
@@ -158,7 +158,6 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
             if (System.currentTimeMillis() - lastBackTimeMillis > 2000) {
                 Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show()
                 lastBackTimeMillis = System.currentTimeMillis()
-
             } else {
                 BaseApp.INSTANCE.exitApp()
 
