@@ -100,19 +100,13 @@ class DropDownMenuActivity : BaseViewBindingActivity<ActivityDropDownMenuBinding
 
         when (adapter) {
             is DropDownMenuFoodTypeAdapter -> {
-
                 foodType = dropDownMenuFoodTypeAdapter.data[position]
-
                 binding.dropdownMenu.setTabText(foodType)
                 tvFilter.text = "$foodType--$filter"
-
                 binding.dropdownMenu.closeMenu()
-
             }
-
             is DropDownMenuFilterAdapter -> {
                 filter = dropDownMenuFiltersAdapter.data[position]
-
                 binding.dropdownMenu.setTabText(filter)
                 tvFilter.text = "$foodType--$filter"
                 binding.dropdownMenu.closeMenu()

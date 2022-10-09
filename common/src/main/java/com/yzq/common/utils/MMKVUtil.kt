@@ -27,42 +27,42 @@ object MMKVUtil {
     }
 
     private fun put(key: String, value: Any, mmkvID: String = "") {
-        val mmkv = getMMKV(mmkvID)
 
-        when (value) {
-            is String -> {
-                mmkv.putString(key, value)
-            }
-            is Int -> {
-                mmkv.putInt(key, value)
-            }
-            is Long -> {
-                mmkv.putLong(key, value)
-            }
-            is Boolean -> {
-                mmkv.putBoolean(key, value)
-            }
-            is Float -> {
-                mmkv.putFloat(key, value)
-            }
-            is Double -> {
-                mmkv.encode(key, value)
-            }
-            is Parcelable -> {
-                mmkv.encode(key, value)
-            }
-            else -> {
-                throw IllegalArgumentException("不支持的参数类型")
+        getMMKV(mmkvID).run {
+            when (value) {
+                is String -> {
+                    putString(key, value)
+                }
+                is Int -> {
+                    putInt(key, value)
+                }
+                is Long -> {
+                    putLong(key, value)
+                }
+                is Boolean -> {
+                    putBoolean(key, value)
+                }
+                is Float -> {
+                    putFloat(key, value)
+                }
+                is Double -> {
+                    encode(key, value)
+                }
+                is Parcelable -> {
+                    encode(key, value)
+                }
+                else -> {
+                    throw IllegalArgumentException("不支持的参数类型")
+                }
             }
         }
+
 
     }
 
     @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY")
     private fun <T> get(key: String, defaultValue: T, mmapID: String = ""): T {
-        val mmkv = getMMKV(mmapID)
-
-        return mmkv.run {
+        return getMMKV(mmapID).run {
             when (defaultValue) {
                 is String -> {
                     decodeString(key, defaultValue)
