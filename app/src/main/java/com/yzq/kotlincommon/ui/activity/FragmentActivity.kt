@@ -40,7 +40,7 @@ class FragmentActivity : BaseVbVmActivity<ActivityFragmentBinding, FragmentViewM
 
     private fun showFragment(fragment: BaseFragment) {
 
-        with(supportFragmentManager.beginTransaction()) {
+        supportFragmentManager.beginTransaction().run {
             if (!fragment.isAdded) {
                 add(R.id.layout_fragment, fragment)
             }
@@ -56,7 +56,6 @@ class FragmentActivity : BaseVbVmActivity<ActivityFragmentBinding, FragmentViewM
                 }
 
             }
-
             show(fragment).commit()
         }
 

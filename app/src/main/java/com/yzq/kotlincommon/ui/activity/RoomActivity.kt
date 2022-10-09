@@ -99,7 +99,7 @@ class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
 
     override fun observeViewModel() {
 
-        with(vm) {
+        vm.run {
             users.observe(this@RoomActivity) {
                 roomAdapter.setDiffNewData(it)
 

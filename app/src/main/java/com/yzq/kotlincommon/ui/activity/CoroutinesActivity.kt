@@ -70,7 +70,7 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
 
     override fun observeViewModel() {
 
-        with(vm) {
+        vm.run {
             geocoder.observe(this@CoroutinesActivity, Observer {
                 LogUtils.i("请求完成")
                 binding.tv.text = it.result.formatted_address

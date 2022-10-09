@@ -41,7 +41,7 @@ class MMKVReadWriteProp<T>(
      */
     @Suppress("UNCHECKED_CAST")
     private fun decodeVal(key: String): T {
-        return with(mmkv) {
+        return mmkv.run {
             when (defauleVal) {
                 is String -> mmkv.decodeString(key, defauleVal)
                 is Int -> mmkv.decodeInt(key, defauleVal)
@@ -65,7 +65,7 @@ class MMKVReadWriteProp<T>(
      * @param value T
      */
     private fun encodeval(key: String, value: T) {
-        mmkv.apply {
+        mmkv.run {
             when (value) {
                 is String -> encode(key, value)
                 is Int -> encode(key, value)

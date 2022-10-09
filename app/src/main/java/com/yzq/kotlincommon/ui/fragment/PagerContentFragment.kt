@@ -36,7 +36,7 @@ class PagerContentFragment(var content: String) :
         super.initWidget()
 
 
-        with(binding) {
+        binding.run {
             bannerViewPager
                 .setAutoPlay(true)
                 .setAdapter(BannerAdapter())

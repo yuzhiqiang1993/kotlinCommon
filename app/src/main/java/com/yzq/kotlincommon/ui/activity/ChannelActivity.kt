@@ -28,7 +28,7 @@ class ChannelActivity : BaseVbVmActivity<ActivityChannelBinding, ChannelViewMode
 
     override fun initWidget() {
 
-        with(binding) {
+        binding.run {
 
             initToolbar(toolbar = toolbar.toolbar, "Channel")
             btnTestChannel.setOnThrottleTimeClick {

@@ -14,6 +14,7 @@ import kotlin.reflect.KProperty
  * @time   : 16:04
  *
  */
+
 class SharedPreference<T>(val name: String, private val defaultVal: T) :
     ReadWriteProperty<Any?, T> {
 
@@ -25,9 +26,9 @@ class SharedPreference<T>(val name: String, private val defaultVal: T) :
         return getPreference(name)
     }
 
-    @Suppress("UNCHECKED_CAST", "IMPLICIT_CAST_TO_ANY")
+    @Suppress("UNCHECKED_CAST")
     private fun getPreference(key: String): T {
-        return with(prfs) {
+        return prfs.run {
             when (defaultVal) {
                 is String -> getString(key, defaultVal)
                 is Int -> getInt(key, defaultVal)
@@ -48,7 +49,7 @@ class SharedPreference<T>(val name: String, private val defaultVal: T) :
     @SuppressLint("CommitPrefEdits")
     private fun putPreference(key: String, value: T) {
 
-        with(prfs.edit()) {
+        prfs.edit().run {
             when (value) {
                 is String -> putString(key, value)
                 is Int -> putInt(key, value)

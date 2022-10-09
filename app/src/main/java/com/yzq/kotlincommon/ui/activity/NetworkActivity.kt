@@ -44,7 +44,7 @@ class NetworkActivity : BaseVbVmActivity<ActivityNetworkBinding, NetworkViewMode
 
     @SuppressLint("SetTextI18n")
     override fun observeViewModel() {
-        with(vm) {
+        vm.run {
             networkStatusLiveData.observe(this@NetworkActivity) {
                 binding.tvNetworkStatus.text = "${it.code}--${it.desc}"
             }

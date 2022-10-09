@@ -17,7 +17,7 @@ class MoshiActivity : BaseVbVmActivity<ActivityMoshiBinding, MoshiViewModel>() {
 
     override fun initWidget() {
 
-        with(binding) {
+        binding.run {
 
             initToolbar(toolbar = toolbar.toolbar, "Moshi")
             btnSerialize.setOnThrottleTimeClick {

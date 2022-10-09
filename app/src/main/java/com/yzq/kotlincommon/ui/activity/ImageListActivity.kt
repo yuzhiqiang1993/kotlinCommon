@@ -85,7 +85,7 @@ class ImageListActivity : BaseVbVmActivity<ActivityImageListBinding, ImgListView
 
     override fun observeViewModel() {
 
-        with(vm) {
+        vm.run {
             subjectsLive.observe(this@ImageListActivity) {
 
                 handleDataChanged(it)

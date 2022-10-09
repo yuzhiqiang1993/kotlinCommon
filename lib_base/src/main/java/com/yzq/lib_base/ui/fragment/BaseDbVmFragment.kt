@@ -26,7 +26,7 @@ abstract class BaseDbVmFragment<DB : ViewDataBinding, VM : BaseViewModel> :
     override fun initViewModel() {
         vm = ViewModelProvider(this).get(getViewModelClass())
 
-        with(vm) {
+        vm.run {
             lifecycle.addObserver(this)
             loadState.observe(this@BaseDbVmFragment) { viewStateBean ->
                 stateViewManager.handleViewState(viewStateBean)

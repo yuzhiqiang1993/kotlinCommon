@@ -72,7 +72,7 @@ class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: I
         }
 
 
-        with(binding) {
+        binding.run {
             /*默认隐藏图标*/
 
             iconStart.visibility = View.GONE

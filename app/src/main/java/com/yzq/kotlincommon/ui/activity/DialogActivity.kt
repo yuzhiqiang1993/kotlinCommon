@@ -32,7 +32,7 @@ class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
     @SuppressLint("AutoDispose")
     override fun initWidget() {
 //        allowFastClick()
-        with(binding) {
+        binding.run {
             initToolbar(layoutToolbar.toolbar, "弹窗", true)
 
             layoutScrollContent.btnBase.setOnClickListener {

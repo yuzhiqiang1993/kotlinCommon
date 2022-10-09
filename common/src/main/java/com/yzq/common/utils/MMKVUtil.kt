@@ -62,7 +62,7 @@ object MMKVUtil {
     private fun <T> get(key: String, defaultValue: T, mmapID: String = ""): T {
         val mmkv = getMMKV(mmapID)
 
-        return with(mmkv) {
+        return mmkv.run {
             when (defaultValue) {
                 is String -> {
                     decodeString(key, defaultValue)

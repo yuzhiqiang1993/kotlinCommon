@@ -15,13 +15,10 @@ class MovieAdapter(layoutResId: Int, data: MutableList<Subject>) :
     override fun convert(holder: BaseViewHolder, item: Subject) {
 
 
-        with(holder) {
+        holder.apply {
             setText(R.id.tv_title, item.title)
-
-
             itemView.findViewById<AppCompatImageView>(R.id.iv_img)
                 .loadWithThumbnail(item.images.small)
-
         }
 
     }

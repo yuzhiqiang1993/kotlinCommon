@@ -70,7 +70,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
 
 
 
-        with(binding) {
+        binding.run {
             iconStart.visibility = View.GONE
 
             iconEnd.visibility = View.GONE

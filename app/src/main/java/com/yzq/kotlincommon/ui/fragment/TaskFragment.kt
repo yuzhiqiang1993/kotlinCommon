@@ -33,7 +33,7 @@ class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>()
 
     override fun observeViewModel() {
 
-        with(vm) {
+        vm.run {
             geocoder.observe(this@TaskFragment) {
                 binding.tvTask.text = MoshiUtils.toJson(it, "  ")
 

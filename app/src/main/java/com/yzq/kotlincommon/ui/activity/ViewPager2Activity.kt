@@ -40,8 +40,7 @@ class ViewPager2Activity : BaseViewBindingActivity<ActivityViewPager2Binding>(),
     }
 
     private fun showFragment(fragment: BaseFragment) {
-
-        with(supportFragmentManager.beginTransaction()) {
+        supportFragmentManager.beginTransaction().run {
             if (!fragment.isAdded) {
                 add(R.id.layout_fragment, fragment)
             }
