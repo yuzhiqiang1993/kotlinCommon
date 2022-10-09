@@ -22,9 +22,7 @@ class StateView(
     context: Context,
     attrs: AttributeSet?,
     defStyleAttr: Int
-) :
-    LinearLayout(context, attrs, defStyleAttr) {
-
+) : LinearLayout(context, attrs, defStyleAttr) {
 
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context) : this(context, null)
@@ -43,11 +41,8 @@ class StateView(
         LayoutStateViewBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
-
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.StateView)
-
         try {
-
             noNetImgRes =
                 typeArr.getResourceId(R.styleable.StateView_no_net_img_res, R.drawable.ic_no_net)
             noDataImgRes =
@@ -59,33 +54,22 @@ class StateView(
             typeArr.recycle()
         }
 
-
-
-
         showLoading()
     }
 
 
     fun showLoading() {
-
-
         binding.root.visibility = View.VISIBLE
-
         binding.loadingLayout.visibility = View.VISIBLE
-
-
         binding.abnormaLayout.visibility = View.GONE
     }
 
 
     fun showNoData() {
-
         binding.root.visibility = View.VISIBLE
         binding.loadingLayout.visibility = View.GONE
         binding.abnormaLayout.visibility = View.VISIBLE
-
         binding.ivHint.setImageResource(noDataImgRes)
-
         binding.tvHint.text = resources.getString(R.string.no_data)
     }
 
@@ -102,9 +86,7 @@ class StateView(
         binding.root.visibility = View.VISIBLE
         binding.loadingLayout.visibility = View.GONE
         binding.abnormaLayout.visibility = View.VISIBLE
-
         binding.ivHint.setImageResource(errorImgRes)
-
         binding.tvHint.text = errorMsg
     }
 

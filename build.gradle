@@ -3,7 +3,8 @@
 println("我是根目录下的build.gradle")
 
 buildscript {
-    apply from: file("gradle_script/config.gradle")
+
+    apply from: "gradle_script/config.gradle"
 
     repositories {
         google()

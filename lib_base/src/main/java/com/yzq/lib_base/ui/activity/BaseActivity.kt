@@ -1,6 +1,5 @@
 package com.yzq.lib_base.ui.activity
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
@@ -12,6 +11,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import com.alibaba.sdk.android.man.MANServiceProvider
 import com.blankj.utilcode.util.BarUtils
 import com.yzq.lib_base.R
@@ -20,7 +20,9 @@ import com.yzq.lib_base.ui.fragment.BaseFragment
 import com.yzq.lib_base.ui.state_view.StateViewManager
 import com.yzq.lib_eventbus.EventBusUtil
 import com.yzq.lib_eventbus.EventMsg
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.cancel
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -140,13 +142,13 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         transparentStatusBar: Boolean = true
     ) {
 
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         toolbar.title = title
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(displayHome)
 
         if (transparentStatusBar) {
             transStatusBar(toolbar)
-
         }
     }
 
@@ -154,7 +156,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         BarUtils.transparentStatusBar(this)
         BarUtils.addMarginTopEqualStatusBarHeight(view)
         BarUtils.setStatusBarLightMode(this, isLightMode)
-
     }
 
     protected open fun colorStatusBar(
@@ -240,14 +241,10 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
                 }
             }
         }
-
-
         return super.dispatchTouchEvent(ev)
     }
 
-    @SuppressLint("CheckResult", "AutoDispose")
     override fun onBackPressed() {
-
         supportFragmentManager.fragments.forEach {
 
             if (it is BaseFragment) {
@@ -256,7 +253,6 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
                 }
             }
         }
-
         super.onBackPressed()
 
     }
