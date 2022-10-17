@@ -14,7 +14,6 @@ import com.yzq.kotlincommon.task.main_thread_task.*
 import com.yzq.kotlincommon.task.work_thread_task.InitARouterTask
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 import com.yzq.lib_application.BaseApp
-import java.lang.reflect.InvocationTargetException
 
 /**
  * @description: Application基类
@@ -99,19 +98,11 @@ class App : BaseApp() {
      */
     @SuppressLint("DiscouragedPrivateApi")
     private fun allowSysTraceInDebug() {
-        try {
+        runCatching {
             val trace = Class.forName("android.os.Trace")
             val setAppTracingAllowed =
                 trace.getDeclaredMethod("setAppTracingAllowed", Boolean::class.javaPrimitiveType)
             setAppTracingAllowed.invoke(null, true)
-        } catch (e: IllegalAccessException) {
-            e.printStackTrace()
-        } catch (e: ClassNotFoundException) {
-            e.printStackTrace()
-        } catch (e: InvocationTargetException) {
-            e.printStackTrace()
-        } catch (e: NoSuchMethodException) {
-            e.printStackTrace()
         }
     }
 

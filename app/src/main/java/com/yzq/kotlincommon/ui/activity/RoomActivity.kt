@@ -102,31 +102,20 @@ class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
         vm.run {
             users.observe(this@RoomActivity) {
                 roomAdapter.setDiffNewData(it)
-
                 /*延时滚动到最底部*/
-
                 if (isAdd) {
                     scrollRecy()
                 }
-
-
             }
-
-
         }
-
-
     }
 
     private fun scrollRecy() {
         lifecycleScope.launch {
             delay(200)
-            try {
+            runCatching {
                 binding.recy.smoothScrollToPosition(roomAdapter.data.size - 1)
-            } catch (e: Exception) {
-
             }
-
         }
     }
 

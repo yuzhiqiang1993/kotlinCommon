@@ -50,6 +50,7 @@ class RetrofitFactory private constructor() {
             .addInterceptor(initLogInterceptor())
 //            .addInterceptor(ResponseDecryptInterceptor())
 
+
         return okHttpBuilder.build()
     }
 

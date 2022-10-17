@@ -58,10 +58,7 @@ object AESUtil {
      * @return 加密后的数据(Base64编码)
      * @throws Exception
      */
-    @Throws(Exception::class)
     fun encrypt(data: String, key: String): String {
-
-
         val raw = key.toByteArray()
         val skeySpec = SecretKeySpec(raw, "AES")
         val cipher = Cipher.getInstance(cipherMode)
@@ -78,7 +75,6 @@ object AESUtil {
      * @return 解密后的数据
      * @throws Exception
      */
-    @Throws(Exception::class)
     fun decrypt(data: String, key: String): String {
 
         val raw = key.toByteArray()
