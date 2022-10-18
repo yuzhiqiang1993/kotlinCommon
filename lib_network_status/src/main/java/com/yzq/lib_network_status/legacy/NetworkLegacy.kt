@@ -1,4 +1,4 @@
-package com.yzq.lib_network.legacy
+package com.yzq.lib_network_status.legacy
 
 import android.Manifest
 import android.content.Context
@@ -8,9 +8,9 @@ import android.net.wifi.WifiManager
 import android.telephony.TelephonyManager
 import androidx.annotation.RequiresPermission
 import com.yzq.lib_application.AppContext
-import com.yzq.lib_network.*
-import com.yzq.lib_network.common.INetworkStatus
-import com.yzq.lib_network.common.MobileNetworkType
+import com.yzq.lib_network_status.*
+import com.yzq.lib_network_status.common.INetworkStatus
+import com.yzq.lib_network_status.common.MobileNetworkType
 
 
 /**

@@ -9,7 +9,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityNetworkBinding
 import com.yzq.kotlincommon.mvvm.view_model.NetworkViewModel
 import com.yzq.lib_base.ui.activity.BaseVbVmActivity
-import com.yzq.lib_network.NetworkUtil
+import com.yzq.lib_network_status.NetworkUtil
 import com.yzq.lib_permission.getPermissions
 
 @Route(path = RoutePath.Main.NETWORK)

@@ -61,7 +61,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     /*处理图片方向*/
-    implementation 'androidx.exifinterface:exifinterface:1.3.3'
+    implementation 'androidx.exifinterface:exifinterface:1.3.4'
 
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
 
@@ -75,6 +75,8 @@ dependencies {
     api "com.tencent.bugly:nativecrashreport:$bugly_nativecrashreport"
     /*flexbox*/
     api "com.github.google:flexbox-layout:${flexbox_layout}"
+    /*okhttp请求插件查看*/
+    implementation 'com.localebro:okhttpprofiler:1.0.8'
 
     /*内存泄漏检测 leakcanary*/
     debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakcanary_android}"

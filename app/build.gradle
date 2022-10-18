@@ -140,6 +140,7 @@ dependencies {
     implementation project(':common')
     implementation "io.github.yuzhiqiang1993:xeon_bsdiff:1.0.1"
 
+
     if (isModule.toBoolean()) {
         implementation project(':gao_de_map')
     }

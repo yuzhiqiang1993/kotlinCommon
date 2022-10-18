@@ -1,7 +1,7 @@
-package com.yzq.lib_network.common
+package com.yzq.lib_network_status.common
 
-import com.yzq.lib_network.NetworkType
-import com.yzq.lib_network.OnNetworkStatusChangedListener
+import com.yzq.lib_network_status.NetworkType
+import com.yzq.lib_network_status.OnNetworkStatusChangedListener
 
 
 /**

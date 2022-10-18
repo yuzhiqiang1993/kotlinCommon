@@ -1,4 +1,4 @@
-package com.yzq.lib_network.legacy
+package com.yzq.lib_network_status.legacy
 
 import android.Manifest
 import android.content.BroadcastReceiver
@@ -9,8 +9,8 @@ import android.net.ConnectivityManager
 import androidx.annotation.RequiresPermission
 import com.yzq.lib_application.AppContext
 import com.yzq.lib_application.BaseApp
-import com.yzq.lib_network.NetworkType
-import com.yzq.lib_network.OnNetworkStatusChangedListener
+import com.yzq.lib_network_status.NetworkType
+import com.yzq.lib_network_status.OnNetworkStatusChangedListener
 
 
 /**

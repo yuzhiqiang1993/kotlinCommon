@@ -1,4 +1,4 @@
-package com.yzq.lib_network.height
+package com.yzq.lib_network_status.height
 
 import android.Manifest
 import android.content.Context
@@ -12,9 +12,9 @@ import android.os.Looper
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.yzq.lib_application.AppContext
-import com.yzq.lib_network.NetworkType
-import com.yzq.lib_network.NetworkUtil
-import com.yzq.lib_network.OnNetworkStatusChangedListener
+import com.yzq.lib_network_status.NetworkType
+import com.yzq.lib_network_status.NetworkUtil
+import com.yzq.lib_network_status.OnNetworkStatusChangedListener
 
 /**
  * @description: 网路状态变更管理类，使用于Android 7.0及以上的设备

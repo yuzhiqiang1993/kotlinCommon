@@ -1,7 +1,7 @@
-package com.yzq.lib_network.common
+package com.yzq.lib_network_status.common
 
 import android.telephony.TelephonyManager
-import com.yzq.lib_network.NetworkType
+import com.yzq.lib_network_status.NetworkType
 
 
 /**

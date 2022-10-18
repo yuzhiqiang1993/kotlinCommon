@@ -9,6 +9,7 @@ import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ResponseCode
 import com.yzq.lib_base.utils.MoshiUtils
 import com.yzq.lib_base.view_model.BaseViewModel
+import kotlinx.coroutines.launch
 
 class MoshiViewModel : BaseViewModel() {
 
@@ -43,14 +44,24 @@ class MoshiViewModel : BaseViewModel() {
     }
 
     fun requestData() {
-        launchLoading {
+        launchHttpWithSupervisor {
 
-            val userList =
-                RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
-                    .dataConvert()
-            userList.forEach {
-                LogUtils.i("${it.name}--${it.age}")
+            launch {
+                val userList =
+                    RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
+                        .dataConvert()
+                userList.forEach {
+                    LogUtils.i("${it.name}--${it.age}")
+                }
             }
+
+            launch {
+                val userInfo =
+                    RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
+                LogUtils.i("userInfo:$userInfo")
+            }
+
+
         }
 
     }

@@ -1,11 +1,11 @@
-package com.yzq.lib_network
+package com.yzq.lib_network_status
 
 import android.Manifest
 import android.os.Build
 import androidx.annotation.RequiresPermission
-import com.yzq.lib_network.common.INetworkStatus
-import com.yzq.lib_network.height.NetworkHeight
-import com.yzq.lib_network.legacy.NetworkLegacy
+import com.yzq.lib_network_status.common.INetworkStatus
+import com.yzq.lib_network_status.height.NetworkHeight
+import com.yzq.lib_network_status.legacy.NetworkLegacy
 
 
 /**

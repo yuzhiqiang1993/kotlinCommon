@@ -1,6 +1,7 @@
 package com.yzq.common.net
 
 import android.util.Log
+import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
 import com.yzq.common.BuildConfig
 import com.yzq.common.net.constants.ServerConstants
 import com.yzq.lib_base.utils.MoshiUtils
@@ -48,11 +49,16 @@ class RetrofitFactory private constructor() {
 //            .addInterceptor(RequestHeadersInterceptor())
 //            .addInterceptor(RequestEncryptInterceptor())
             .addInterceptor(initLogInterceptor())
+
+        if (BuildConfig.DEBUG) {
+            okHttpBuilder.addInterceptor(OkHttpProfilerInterceptor())
+        }
 //            .addInterceptor(ResponseDecryptInterceptor())
 
 
         return okHttpBuilder.build()
     }
+
 
     /*
     * 日志拦截器

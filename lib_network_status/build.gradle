@@ -33,7 +33,7 @@ android {
     lint {
         abortOnError false
     }
-    namespace 'com.yzq.lib_network'
+    namespace 'com.yzq.lib_network_status'
 }
 
 

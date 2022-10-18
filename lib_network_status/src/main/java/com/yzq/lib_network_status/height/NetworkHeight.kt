@@ -1,4 +1,4 @@
-package com.yzq.lib_network.height
+package com.yzq.lib_network_status.height
 
 import android.Manifest
 import android.content.Context
@@ -9,10 +9,10 @@ import android.telephony.TelephonyManager
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
 import com.yzq.lib_application.AppContext
-import com.yzq.lib_network.NetworkType
-import com.yzq.lib_network.OnNetworkStatusChangedListener
-import com.yzq.lib_network.common.INetworkStatus
-import com.yzq.lib_network.common.MobileNetworkType
+import com.yzq.lib_network_status.NetworkType
+import com.yzq.lib_network_status.OnNetworkStatusChangedListener
+import com.yzq.lib_network_status.common.INetworkStatus
+import com.yzq.lib_network_status.common.MobileNetworkType
 
 
 /**

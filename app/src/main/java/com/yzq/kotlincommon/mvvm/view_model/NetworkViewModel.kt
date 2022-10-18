@@ -6,9 +6,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.lib_base.view_model.BaseViewModel
-import com.yzq.lib_network.NetworkType
-import com.yzq.lib_network.NetworkUtil
-import com.yzq.lib_network.OnNetworkStatusChangedListener
+import com.yzq.lib_network_status.NetworkType
+import com.yzq.lib_network_status.NetworkUtil
+import com.yzq.lib_network_status.OnNetworkStatusChangedListener
 
 
 /**
