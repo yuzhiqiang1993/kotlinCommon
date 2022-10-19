@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.XeonYuTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Primary brand color. -->
@@ -11,7 +11,7 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
 
 
     </style>
@@ -37,6 +37,21 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <!--androidx.core:core-splashscreen Android 12的启动屏适配 兼容低版本-->
+    <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
+        <item name="android:windowFullscreen">true</item>
+        <!--设备背景颜色-->
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <!--设置动画或图片-->
+        <item name="windowSplashScreenAnimatedIcon">
+            @drawable/splash_screen_news_avd_preview
+        </item>
+        <!--动画执行时间-->
+        <!--        <item name="windowSplashScreenAnimationDuration">1000</item>-->
+        <item name="postSplashScreenTheme">@style/Theme.XeonYuTheme</item>
+
     </style>
 
     <!--透明无标题-->

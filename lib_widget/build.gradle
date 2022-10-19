@@ -14,7 +14,6 @@ android {
     defaultConfig {
         minSdk min_sdk_version
         targetSdk target_sdk_version
-        multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -54,7 +53,6 @@ dependencies {
     implementation "androidx.vectordrawable:vectordrawable:$vectordrawable"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
     implementation "androidx.annotation:annotation:$annotation"
-    implementation "androidx.multidex:multidex:$multiDexVersion"
     /*utils*/
     implementation "com.blankj:utilcodex:$utilcode"
 
