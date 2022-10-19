@@ -6,7 +6,6 @@ import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
-import com.yzq.kotlincommon.R
 import com.yzq.lib_base.extend.navFinish
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -30,11 +29,11 @@ class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
         val splashScreen = installSplashScreen()
         /*设置保持住当前splash*/
         splashScreen.setKeepOnScreenCondition(this)
-        setContentView(R.layout.activity_splash)
+//        setContentView(R.layout.activity_splash)
 
         MainScope().launch {
             LogUtils.i("模拟广告耗时")
-            delay(2000)
+            delay(1000)
             notReady = false
             LogUtils.i("跳转")
             navFinish(RoutePath.Main.LOGIN)
