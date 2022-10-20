@@ -24,7 +24,7 @@ object MapPermissionUtils {
     @SuppressLint("CheckResult")
     fun checkLocationPermission(
         needGps: Boolean = false,
-        activity: BaseActivity,
+        activity: BaseActivity<*>,
         mapPermission: MapPermission
     ) {
         activity.getPermissions(

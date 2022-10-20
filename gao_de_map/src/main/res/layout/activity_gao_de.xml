@@ -7,7 +7,9 @@
     tools:context=".GaoDeActivity">
 
 
-    <include layout="@layout/toolbar" />
+    <include
+        android:id="@+id/included_toolbar"
+        layout="@layout/toolbar" />
 
 
     <com.google.android.material.button.MaterialButton

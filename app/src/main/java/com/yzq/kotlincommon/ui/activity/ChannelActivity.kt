@@ -5,7 +5,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityChannelBinding
 import com.yzq.kotlincommon.mvvm.view_model.ChannelViewModel
 import com.yzq.lib_base.extend.setOnThrottleTimeClick
-import com.yzq.lib_base.ui.activity.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 
 
 /**
@@ -16,17 +16,19 @@ import com.yzq.lib_base.ui.activity.BaseVbVmActivity
  */
 
 @Route(path = RoutePath.Main.CHANNEL)
-class ChannelActivity : BaseVbVmActivity<ActivityChannelBinding, ChannelViewModel>() {
+class ChannelActivity : BaseVmActivity<ActivityChannelBinding, ChannelViewModel>() {
+
+
+    override fun createBinding() = ActivityChannelBinding.inflate(layoutInflater)
 
     override fun getViewModelClass() = ChannelViewModel::class.java
 
     override fun observeViewModel() {
     }
 
-    override fun getViewBinding(): ActivityChannelBinding =
-        ActivityChannelBinding.inflate(layoutInflater)
 
     override fun initWidget() {
+
 
         binding.run {
 
@@ -42,6 +44,7 @@ class ChannelActivity : BaseVbVmActivity<ActivityChannelBinding, ChannelViewMode
     }
 
     override fun initData() {
-
     }
+
+
 }

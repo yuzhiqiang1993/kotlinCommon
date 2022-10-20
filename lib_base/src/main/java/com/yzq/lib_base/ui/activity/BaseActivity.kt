@@ -12,7 +12,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-import com.alibaba.sdk.android.man.MANServiceProvider
+import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.BarUtils
 import com.yzq.lib_base.R
 import com.yzq.lib_base.ui.ImgPreviewActivity
@@ -34,7 +35,10 @@ import org.greenrobot.eventbus.ThreadMode
  *
  */
 
-abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope() {
+abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity(),
+    CoroutineScope by MainScope() {
+
+    lateinit var binding: Binding
 
     private var lastClickTime: Long = 0//最后一次点击的时间
 
@@ -61,11 +65,15 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
         }
 
 
+        binding = createBinding()
+        if (binding !is ViewDataBinding) {
+            setContentView(binding.root)
+        }
+
         EventBusUtil.register(this)
 
         initArgs(intent.extras)
 
-        initContentView()
         initViewModel()
         initVariable()
         initWidget()
@@ -74,11 +82,12 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
     }
 
+
     override fun onResume() {
         super.onResume()
         /*行为埋点*/
-        val manService = MANServiceProvider.getService()
-        manService.manPageHitHelper.pageAppear(this)
+//        val manService = MANServiceProvider.getService()
+//        manService.manPageHitHelper.pageAppear(this)
     }
 
     /**
@@ -95,7 +104,7 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
     /*
     * 初始化视图
     * */
-    protected abstract fun initContentView()
+    protected abstract fun createBinding(): Binding
 
     /*初始化变量*/
     protected open fun initVariable() {
@@ -260,8 +269,8 @@ abstract class BaseActivity : AppCompatActivity(), CoroutineScope by MainScope()
 
     override fun onPause() {
         super.onPause()
-        val manService = MANServiceProvider.getService()
-        manService.manPageHitHelper.pageDisAppear(this)
+//        val manService = MANServiceProvider.getService()
+//        manService.manPageHitHelper.pageDisAppear(this)
     }
 
     override fun onDestroy() {

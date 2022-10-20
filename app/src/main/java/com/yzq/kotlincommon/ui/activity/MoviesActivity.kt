@@ -15,7 +15,7 @@ import com.yzq.kotlincommon.adapter.MovieAdapter
 import com.yzq.kotlincommon.databinding.ActivityMovieListBinding
 import com.yzq.kotlincommon.mvvm.view_model.MovieViewModel
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.activity.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 
 
 /**
@@ -27,11 +27,11 @@ import com.yzq.lib_base.ui.activity.BaseVbVmActivity
  */
 
 @Route(path = RoutePath.Main.MOVIES)
-class MoviesActivity : BaseVbVmActivity<ActivityMovieListBinding, MovieViewModel>(),
+class MoviesActivity : BaseVmActivity<ActivityMovieListBinding, MovieViewModel>(),
     OnItemClickListener,
     OnItemChildClickListener {
 
-    override fun getViewBinding() = ActivityMovieListBinding.inflate(layoutInflater)
+    override fun createBinding() = ActivityMovieListBinding.inflate(layoutInflater)
 
     override fun getViewModelClass(): Class<MovieViewModel> = MovieViewModel::class.java
 

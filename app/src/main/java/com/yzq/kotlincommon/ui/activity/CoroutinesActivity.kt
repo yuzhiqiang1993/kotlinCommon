@@ -7,18 +7,17 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
 import com.yzq.lib_base.extend.launchCollect
-import com.yzq.lib_base.ui.activity.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 
 @Route(path = RoutePath.Main.COROUTINE)
-class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, CoroutineViewModel>() {
+class CoroutinesActivity : BaseVmActivity<ActivityCoroutinesBinding, CoroutineViewModel>() {
 
     override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
 
-    override fun getViewBinding() = ActivityCoroutinesBinding.inflate(layoutInflater)
-
+    override fun createBinding() = ActivityCoroutinesBinding.inflate(layoutInflater)
     override fun initWidget() {
         super.initWidget()
 
@@ -47,6 +46,7 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
         launch(Dispatchers.Unconfined) {
             LogUtils.i("Unconfined 当前线程:${Thread.currentThread().name}")
         }
+
 
 
         lifecycleScope.launchWhenCreated {
@@ -103,6 +103,7 @@ class CoroutinesActivity : BaseVbVmActivity<ActivityCoroutinesBinding, Coroutine
 //        }
 
     }
+
 
 }
 

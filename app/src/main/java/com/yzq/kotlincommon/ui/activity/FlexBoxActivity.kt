@@ -12,7 +12,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TagAdapter
 import com.yzq.kotlincommon.databinding.ActivityFlexBoxBinding
-import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseActivity
 
 
 /**
@@ -24,11 +24,11 @@ import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
  */
 
 @Route(path = RoutePath.Main.FLEX_BOX)
-class FlexBoxActivity : BaseViewBindingActivity<ActivityFlexBoxBinding>(), OnItemClickListener {
+class FlexBoxActivity : BaseActivity<ActivityFlexBoxBinding>(), OnItemClickListener {
 
     private lateinit var tagAdapter: TagAdapter
 
-    override fun getViewBinding() = ActivityFlexBoxBinding.inflate(layoutInflater)
+    override fun createBinding() = ActivityFlexBoxBinding.inflate(layoutInflater)
 
 
     override fun initWidget() {

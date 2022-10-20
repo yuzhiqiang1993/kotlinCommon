@@ -1,7 +1,7 @@
 package com.yzq.lib_base.ui.activity
 
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.lib_base.view_model.BaseViewModel
 
@@ -13,10 +13,11 @@ import com.yzq.lib_base.view_model.BaseViewModel
  * @time   : 18:29
  */
 
-abstract class BaseDbVmActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
-    BaseDataBindingActivity<VDB>() {
+abstract class BaseVmActivity<Binding : ViewBinding, VM : BaseViewModel> :
+    BaseActivity<Binding>() {
 
     lateinit var vm: VM
+
 
     abstract fun getViewModelClass(): Class<VM>
 
@@ -26,8 +27,8 @@ abstract class BaseDbVmActivity<VDB : ViewDataBinding, VM : BaseViewModel> :
     override fun initViewModel() {
         vm = ViewModelProvider(this)[getViewModelClass()]
         vm.run {
-            loadState.observe(this@BaseDbVmActivity) { viewStateBean ->
-                LogUtils.i("BaseDbVmActivity loadState:${viewStateBean}")
+            loadState.observe(this@BaseVmActivity) { viewStateBean ->
+                LogUtils.i("BaseVmActivity loadState:${viewStateBean}")
                 stateViewManager.handleViewState(
                     viewStateBean
                 )

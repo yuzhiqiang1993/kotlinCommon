@@ -3,13 +3,11 @@ package com.yzq.kotlincommon.ui.activity
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.constant.PermissionConstants
 import com.yzq.common.constants.RoutePath
-import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityZxingBinding
-import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseActivity
 import com.yzq.lib_permission.getPermissions
 import com.yzq.zxinglibrary.android.CaptureActivity
 import com.yzq.zxinglibrary.bean.ZxingConfig
@@ -25,15 +23,13 @@ import com.yzq.zxinglibrary.common.Constant
  */
 
 @Route(path = RoutePath.Main.ZXING)
-class ZxingActivity : BaseViewBindingActivity<ActivityZxingBinding>() {
+class ZxingActivity : BaseActivity<ActivityZxingBinding>() {
     private lateinit var qrCodeActivityResult: ActivityResultLauncher<Intent>
 
-    override fun getViewBinding() = ActivityZxingBinding.inflate(layoutInflater)
+    override fun createBinding() = ActivityZxingBinding.inflate(layoutInflater)
     override fun initWidget() {
-        super.initWidget()
 
-        val toolbar = this.findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "Zxing")
+        initToolbar(binding.includedToolbar.toolbar, "Zxing")
 
         binding.btnScan.setOnClickListener { excuteZxing() }
 

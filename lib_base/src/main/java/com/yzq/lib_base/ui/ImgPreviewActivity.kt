@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.blankj.utilcode.util.BarUtils
 import com.bumptech.glide.Glide
 import com.yzq.lib_base.databinding.ActivityImgPreviewBinding
-import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseActivity
 
 
 /**
@@ -16,12 +16,13 @@ import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
  *
  */
 
-class ImgPreviewActivity : BaseViewBindingActivity<ActivityImgPreviewBinding>() {
+class ImgPreviewActivity : BaseActivity<ActivityImgPreviewBinding>() {
 
 
     private lateinit var imagePath: String
 
-    override fun getViewBinding() = ActivityImgPreviewBinding.inflate(layoutInflater)
+    override fun createBinding(): ActivityImgPreviewBinding =
+        ActivityImgPreviewBinding.inflate(layoutInflater)
 
     companion object {
         const val IMG_PATH = "imgPath"

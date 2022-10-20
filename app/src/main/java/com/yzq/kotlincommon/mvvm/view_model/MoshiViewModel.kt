@@ -34,6 +34,8 @@ class MoshiViewModel : BaseViewModel() {
         launchWithSupervisor {
 
             if (jsonStr.isNotEmpty()) {
+                val genericType = MoshiUtils.getGenericType<BaseResp<List<User>>>()
+                LogUtils.i("genericType==========:$genericType")
                 val userList = MoshiUtils.fromJson<BaseResp<List<User>>>(jsonStr).dataConvert()
                 userList.forEach {
                     LogUtils.i(MoshiUtils.toJson(it, "  "))

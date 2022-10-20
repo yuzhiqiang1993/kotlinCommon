@@ -5,7 +5,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBsDiffBinding
 import com.yzq.kotlincommon.mvvm.view_model.BsDiffViewModel
 import com.yzq.lib_base.extend.setOnThrottleTimeClick
-import com.yzq.lib_base.ui.activity.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 
 /**
  * @description: bsdiff 增量更新示例
@@ -15,10 +15,10 @@ import com.yzq.lib_base.ui.activity.BaseVbVmActivity
  */
 
 @Route(path = RoutePath.Main.BS_DIFF)
-class BsDiffActivity : BaseVbVmActivity<ActivityBsDiffBinding, BsDiffViewModel>() {
-
-    override fun getViewBinding() = ActivityBsDiffBinding.inflate(layoutInflater)
+class BsDiffActivity : BaseVmActivity<ActivityBsDiffBinding, BsDiffViewModel>() {
+    override fun createBinding() = ActivityBsDiffBinding.inflate(layoutInflater)
     override fun getViewModelClass() = BsDiffViewModel::class.java
+
 
     override fun initWidget() {
 
@@ -53,5 +53,6 @@ class BsDiffActivity : BaseVbVmActivity<ActivityBsDiffBinding, BsDiffViewModel>(
         }
 
     }
+
 
 }

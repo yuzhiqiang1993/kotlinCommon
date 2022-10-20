@@ -1,17 +1,17 @@
 package com.yzq.gao_de_map
 
 import android.annotation.SuppressLint
-import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.gao_de_map.databinding.ActivityGaoDeBinding
 import com.yzq.gao_de_map.utils.MapPermissionUtils
-import com.yzq.lib_base.ui.activity.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 
 @Route(path = com.yzq.common.constants.RoutePath.GaoDe.GAO_DE)
-class GaoDeActivity : BaseVbVmActivity<ActivityGaoDeBinding, LocationSignViewModel>() {
+class GaoDeActivity : BaseVmActivity<ActivityGaoDeBinding, LocationSignViewModel>() {
 
 
-    override fun getViewBinding() = ActivityGaoDeBinding.inflate(layoutInflater)
+    override fun createBinding(): ActivityGaoDeBinding =
+        ActivityGaoDeBinding.inflate(layoutInflater)
 
 
     override fun getViewModelClass(): Class<LocationSignViewModel> =
@@ -21,9 +21,8 @@ class GaoDeActivity : BaseVbVmActivity<ActivityGaoDeBinding, LocationSignViewMod
     @SuppressLint("AutoDispose")
     override fun initWidget() {
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
 
-        initToolbar(toolbar, "高德")
+        initToolbar(binding.includedToolbar.toolbar, "高德")
 
 
         binding.btnLocation.setOnClickListener {

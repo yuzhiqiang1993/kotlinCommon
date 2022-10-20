@@ -8,13 +8,13 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityNetworkBinding
 import com.yzq.kotlincommon.mvvm.view_model.NetworkViewModel
-import com.yzq.lib_base.ui.activity.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 import com.yzq.lib_network_status.NetworkUtil
 import com.yzq.lib_permission.getPermissions
 
 @Route(path = RoutePath.Main.NETWORK)
-class NetworkActivity : BaseVbVmActivity<ActivityNetworkBinding, NetworkViewModel>() {
-    override fun getViewBinding() = ActivityNetworkBinding.inflate(layoutInflater)
+class NetworkActivity : BaseVmActivity<ActivityNetworkBinding, NetworkViewModel>() {
+    override fun createBinding() = ActivityNetworkBinding.inflate(layoutInflater)
 
     override fun initWidget() {
 

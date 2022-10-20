@@ -6,7 +6,7 @@ import com.alibaba.ha.adapter.service.tlog.TLogService
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityAliEmasactiviyBinding
-import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseActivity
 
 /**
  * @description: 阿里EMAS测试页面
@@ -15,9 +15,8 @@ import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
  * @time   : 6:30 下午
  */
 @Route(path = RoutePath.Main.EMAS)
-class AliEMASActivity : BaseViewBindingActivity<ActivityAliEmasactiviyBinding>() {
+class AliEMASActivity : BaseActivity<ActivityAliEmasactiviyBinding>() {
 
-    override fun getViewBinding() = ActivityAliEmasactiviyBinding.inflate(layoutInflater)
 
     override fun initWidget() {
         TLogService.logi("APP", "AliEMASActiviy", "initWidget")
@@ -35,4 +34,10 @@ class AliEMASActivity : BaseViewBindingActivity<ActivityAliEmasactiviyBinding>()
 
         }
     }
+
+    override fun createBinding(): ActivityAliEmasactiviyBinding {
+        return ActivityAliEmasactiviyBinding.inflate(layoutInflater)
+    }
+
+
 }

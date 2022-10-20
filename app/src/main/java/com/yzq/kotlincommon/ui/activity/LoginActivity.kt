@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.text.TextUtils
+import androidx.databinding.DataBindingUtil
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
@@ -9,7 +10,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.mvvm.view_model.LoginViewModel
 import com.yzq.lib_base.extend.nav
-import com.yzq.lib_base.ui.activity.BaseDbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 
 /**
  * @description: SharedPreference相关
@@ -20,9 +21,11 @@ import com.yzq.lib_base.ui.activity.BaseDbVmActivity
  */
 
 @Route(path = RoutePath.Main.LOGIN)
-class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
+class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>() {
 
-    override fun getContentLayoutId() = R.layout.activity_login
+    override fun createBinding(): ActivityLoginBinding =
+        DataBindingUtil.setContentView(this, R.layout.activity_login)
+
 
     override fun getViewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
 
@@ -76,5 +79,6 @@ class LoginActivity : BaseDbVmActivity<ActivityLoginBinding, LoginViewModel>() {
 
         }
     }
+
 
 }

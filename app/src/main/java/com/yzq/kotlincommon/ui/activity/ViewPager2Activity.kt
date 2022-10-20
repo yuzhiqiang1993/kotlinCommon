@@ -8,7 +8,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityViewPager2Binding
 import com.yzq.kotlincommon.ui.fragment.ViewPagerFragment
 import com.yzq.kotlincommon.ui.fragment.ViewPagerWithFragment
-import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseActivity
 import com.yzq.lib_base.ui.fragment.BaseFragment
 
 /**
@@ -19,14 +19,14 @@ import com.yzq.lib_base.ui.fragment.BaseFragment
  */
 
 @Route(path = RoutePath.Main.VIEW_PAGER)
-class ViewPager2Activity : BaseViewBindingActivity<ActivityViewPager2Binding>(),
+class ViewPager2Activity : BaseActivity<ActivityViewPager2Binding>(),
     NavigationBarView.OnItemSelectedListener {
 
     private val viewPagerFragment = ViewPagerFragment()
     private val viewPagerWithFragment = ViewPagerWithFragment()
     private val fragmentList = arrayListOf<BaseFragment>()
 
-    override fun getViewBinding() = ActivityViewPager2Binding.inflate(layoutInflater)
+    override fun createBinding() = ActivityViewPager2Binding.inflate(layoutInflater)
 
     override fun initWidget() {
         super.initWidget()

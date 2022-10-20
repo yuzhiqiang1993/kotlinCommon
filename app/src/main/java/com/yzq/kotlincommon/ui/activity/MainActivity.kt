@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.LogUtils
@@ -21,7 +20,7 @@ import com.yzq.kotlincommon.adapter.MainAdapter
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.lib_application.BaseApp
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -36,25 +35,25 @@ import kotlinx.coroutines.withContext
  */
 
 @Route(path = RoutePath.Main.MAIN)
-class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
+class MainActivity : BaseActivity<ActivityMainBinding>(),
     NavigationView.OnNavigationItemSelectedListener, OnItemClickListener {
 
     private var items = arrayListOf<NaviItem>()
 
     private lateinit var mainAdapter: MainAdapter
 
-    override fun getViewBinding() = ActivityMainBinding.inflate(layoutInflater)
+    override fun createBinding() = ActivityMainBinding.inflate(layoutInflater)
 
     override fun initWidget() {
 
-        initToolbar(binding.layoutMain.toolbar, "kotlin common", displayHome = false)
+        initToolbar(binding.includedAppbarMain.toolbar, "kotlin common", displayHome = false)
 
-        binding.layoutMain.recy.init()
+        binding.includedAppbarMain.recy.init()
 
         val toggle = ActionBarDrawerToggle(
             this,
             binding.drawerLayout,
-            binding.layoutMain.toolbar,
+            binding.includedAppbarMain.toolbar,
             R.string.navigation_drawer_open,
             R.string.navigation_drawer_close
         )
@@ -104,10 +103,10 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
     }
 
     private fun setData() {
-        val recy = findViewById<RecyclerView>(R.id.recy)
+//        val recy = findViewById<RecyclerView>(R.id.recy)
         mainAdapter = MainAdapter(R.layout.item_main_layout, items)
         mainAdapter.setOnItemClickListener(this)
-        recy.adapter = mainAdapter
+        binding.includedAppbarMain.recy.adapter = mainAdapter
 
     }
 
@@ -142,8 +141,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
             }
 
         }
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
-        drawerLayout.closeDrawer(GravityCompat.START)
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
@@ -151,7 +149,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>(),
 
 
     override fun onBackPressed() {
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        val drawerLayout: DrawerLayout = binding.drawerLayout
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {

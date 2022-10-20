@@ -8,7 +8,7 @@ import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.view_model.CompressImgViewModel
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
-import com.yzq.lib_base.ui.activity.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 import com.yzq.lib_img.load
 import com.yzq.lib_img.openAlbum
 import com.yzq.lib_img.openCamera
@@ -24,7 +24,7 @@ import com.yzq.lib_img.openCamera
 
 @Route(path = RoutePath.Main.IMG_COMPRESS)
 class ImageCompressActivity :
-    BaseVbVmActivity<ActivityImageCompressBinding, CompressImgViewModel>() {
+    BaseVmActivity<ActivityImageCompressBinding, CompressImgViewModel>() {
 
 
     private lateinit var compressImgViewModel: CompressImgViewModel
@@ -33,7 +33,7 @@ class ImageCompressActivity :
 
     private lateinit var imgPath: String
 
-    override fun getViewBinding() = ActivityImageCompressBinding.inflate(layoutInflater)
+    override fun createBinding() = ActivityImageCompressBinding.inflate(layoutInflater)
 
     override fun getViewModelClass() = CompressImgViewModel::class.java
 

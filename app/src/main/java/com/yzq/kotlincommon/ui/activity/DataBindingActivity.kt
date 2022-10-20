@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
+import androidx.databinding.DataBindingUtil
 import com.afollestad.materialdialogs.utils.MDUtil.textChanged
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
@@ -8,7 +9,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDataBindingBinding
 import com.yzq.kotlincommon.mvvm.view_model.DataBindingViewModel
-import com.yzq.lib_base.ui.activity.BaseDbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 
 
 /**
@@ -19,9 +20,11 @@ import com.yzq.lib_base.ui.activity.BaseDbVmActivity
  */
 
 @Route(path = RoutePath.Main.DATA_BINDING)
-class DataBindingActivity : BaseDbVmActivity<ActivityDataBindingBinding, DataBindingViewModel>() {
+class DataBindingActivity : BaseVmActivity<ActivityDataBindingBinding, DataBindingViewModel>() {
 
-    override fun getContentLayoutId() = R.layout.activity_data_binding
+    override fun createBinding(): ActivityDataBindingBinding =
+        DataBindingUtil.setContentView(this, R.layout.activity_data_binding)
+
 
     override fun getViewModelClass() = DataBindingViewModel::class.java
 

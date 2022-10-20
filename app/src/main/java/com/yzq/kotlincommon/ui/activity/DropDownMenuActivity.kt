@@ -13,7 +13,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.DropDownMenuFilterAdapter
 import com.yzq.kotlincommon.adapter.DropDownMenuFoodTypeAdapter
 import com.yzq.kotlincommon.databinding.ActivityDropDownMenuBinding
-import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseActivity
 
 
 /**
@@ -25,7 +25,7 @@ import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
  */
 
 @Route(path = RoutePath.Main.DROP_DOWN_MENU)
-class DropDownMenuActivity : BaseViewBindingActivity<ActivityDropDownMenuBinding>(),
+class DropDownMenuActivity : BaseActivity<ActivityDropDownMenuBinding>(),
     OnItemClickListener {
 
 
@@ -48,14 +48,14 @@ class DropDownMenuActivity : BaseViewBindingActivity<ActivityDropDownMenuBinding
     private lateinit var foodTypeRecy: RecyclerView
     private lateinit var filtersRecy: RecyclerView
 
-    override fun getViewBinding() = ActivityDropDownMenuBinding.inflate(layoutInflater)
+    override fun createBinding() = ActivityDropDownMenuBinding.inflate(layoutInflater)
 
 
     @SuppressLint("SetTextI18n")
     override fun initWidget() {
 
 
-        initToolbar(binding.layoutToolbar.toolbar, "下拉菜单")
+        initToolbar(binding.includedToolbar.toolbar, "下拉菜单")
 
 
         val contentLayout = layoutInflater.inflate(R.layout.drop_down_menu_content, null)
@@ -115,6 +115,5 @@ class DropDownMenuActivity : BaseViewBindingActivity<ActivityDropDownMenuBinding
 
 
     }
-
 
 }

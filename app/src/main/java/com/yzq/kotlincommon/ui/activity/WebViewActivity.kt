@@ -11,14 +11,14 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
 import com.yzq.kotlincommon.hybrid.AndroidBug5497Workaround
 import com.yzq.kotlincommon.ui.hybrid.JsBridge
-import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseActivity
 
 
 @Route(path = RoutePath.Main.WEB_VIEW)
-class WebViewActivity : BaseViewBindingActivity<ActivityWebViewBinding>() {
+class WebViewActivity : BaseActivity<ActivityWebViewBinding>() {
 
 
-    override fun getViewBinding() = ActivityWebViewBinding.inflate(layoutInflater)
+    override fun createBinding() = ActivityWebViewBinding.inflate(layoutInflater)
 
 
     @SuppressLint("SetJavaScriptEnabled")

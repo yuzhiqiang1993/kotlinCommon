@@ -11,7 +11,7 @@ import com.loper7.date_time_picker.DateTimeConfig
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
-import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseActivity
 import com.yzq.lib_materialdialog.*
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -26,8 +26,8 @@ import java.util.*
  *
  */
 @Route(path = RoutePath.Main.DIALOG)
-class DialogActivity : BaseViewBindingActivity<ActivityDialogBinding>() {
-    override fun getViewBinding() = ActivityDialogBinding.inflate(layoutInflater)
+class DialogActivity : BaseActivity<ActivityDialogBinding>() {
+    override fun createBinding() = ActivityDialogBinding.inflate(layoutInflater)
 
     @SuppressLint("AutoDispose")
     override fun initWidget() {

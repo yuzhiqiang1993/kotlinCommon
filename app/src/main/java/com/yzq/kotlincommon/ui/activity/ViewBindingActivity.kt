@@ -4,7 +4,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityViewBindingBinding
-import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
+import com.yzq.lib_base.ui.activity.BaseActivity
 
 
 /**
@@ -16,9 +16,9 @@ import com.yzq.lib_base.ui.activity.BaseViewBindingActivity
 
 
 @Route(path = RoutePath.Main.VIEW_BINDING)
-class ViewBindingActivity : BaseViewBindingActivity<ActivityViewBindingBinding>() {
+class ViewBindingActivity : BaseActivity<ActivityViewBindingBinding>() {
 
-    override fun getViewBinding(): ActivityViewBindingBinding {
+    override fun createBinding(): ActivityViewBindingBinding {
         return ActivityViewBindingBinding.inflate(layoutInflater)
     }
 

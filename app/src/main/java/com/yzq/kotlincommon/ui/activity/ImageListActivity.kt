@@ -15,7 +15,7 @@ import com.yzq.kotlincommon.adapter.ImgListAdapter
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding
 import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.activity.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 import com.yzq.lib_base_adapter.AdapterLoadMoreView
 
 
@@ -28,10 +28,10 @@ import com.yzq.lib_base_adapter.AdapterLoadMoreView
  */
 
 @Route(path = RoutePath.Main.IMG_LIST)
-class ImageListActivity : BaseVbVmActivity<ActivityImageListBinding, ImgListViewModel>(),
+class ImageListActivity : BaseVmActivity<ActivityImageListBinding, ImgListViewModel>(),
     OnItemClickListener, OnLoadMoreListener {
 
-    override fun getViewBinding() = ActivityImageListBinding.inflate(layoutInflater)
+    override fun createBinding() = ActivityImageListBinding.inflate(layoutInflater)
 
     override fun getViewModelClass(): Class<ImgListViewModel> = ImgListViewModel::class.java
 

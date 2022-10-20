@@ -24,7 +24,6 @@ class RetrofitFactory private constructor() {
     private val retrofit: Retrofit
 
     init {
-
         retrofit = Retrofit.Builder()
             .baseUrl(ServerConstants.apiUrl)
             .client(initOkhttpClient())

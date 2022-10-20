@@ -14,18 +14,18 @@ import com.yzq.kotlincommon.adapter.RoomAdapter
 import com.yzq.kotlincommon.databinding.ActivityRoomBinding
 import com.yzq.kotlincommon.mvvm.view_model.RoomViewModel
 import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.activity.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 import com.yzq.lib_materialdialog.showInputDialog
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
 @Route(path = RoutePath.Main.ROOM)
-class RoomActivity : BaseVbVmActivity<ActivityRoomBinding, RoomViewModel>(),
+class RoomActivity : BaseVmActivity<ActivityRoomBinding, RoomViewModel>(),
     OnItemChildClickListener {
 
 
-    override fun getViewBinding() = ActivityRoomBinding.inflate(layoutInflater)
+    override fun createBinding() = ActivityRoomBinding.inflate(layoutInflater)
 
 
     private var isAdd: Boolean = false

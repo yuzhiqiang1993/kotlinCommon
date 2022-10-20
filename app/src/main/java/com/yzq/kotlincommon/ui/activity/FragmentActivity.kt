@@ -7,15 +7,15 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFragmentBinding
 import com.yzq.kotlincommon.mvvm.view_model.FragmentViewModel
-import com.yzq.lib_base.ui.activity.BaseVbVmActivity
+import com.yzq.lib_base.ui.activity.BaseVmActivity
 import com.yzq.lib_base.ui.fragment.BaseFragment
 
 
 @Route(path = RoutePath.Main.FRAGMENT)
-class FragmentActivity : BaseVbVmActivity<ActivityFragmentBinding, FragmentViewModel>(),
+class FragmentActivity : BaseVmActivity<ActivityFragmentBinding, FragmentViewModel>(),
     NavigationBarView.OnItemSelectedListener {
 
-    override fun getViewBinding() = ActivityFragmentBinding.inflate(layoutInflater)
+    override fun createBinding() = ActivityFragmentBinding.inflate(layoutInflater)
 
     override fun getViewModelClass(): Class<FragmentViewModel> = FragmentViewModel::class.java
 
