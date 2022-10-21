@@ -26,7 +26,7 @@ abstract class BaseVbVmFragment<VB : ViewBinding, VM : BaseViewModel> :
 
 
     override fun initViewModel() {
-        vm = ViewModelProvider(this).get(getViewModelClass())
+        vm = ViewModelProvider(this)[getViewModelClass()]
 
         vm.run {
             lifecycle.addObserver(this)

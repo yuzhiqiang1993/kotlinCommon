@@ -38,6 +38,7 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
         super.onAttach(context)
         initArgs(arguments)
     }
+    
 
 
     override fun onCreateView(
