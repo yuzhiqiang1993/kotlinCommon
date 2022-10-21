@@ -57,5 +57,6 @@
     <string name="click">click</string>
     <string name="generate_diff_file">生成差分包</string>
     <string name="combine_diff_file">合并差分包</string>
+    <string name="test">测试</string>
 
 </resources>

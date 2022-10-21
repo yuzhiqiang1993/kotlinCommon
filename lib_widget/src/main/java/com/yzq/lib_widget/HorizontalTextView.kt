@@ -7,7 +7,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.res.getStringOrThrow
 import androidx.core.content.withStyledAttributes
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
@@ -58,9 +57,9 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
                 R.color.primary_icon
             )
 
-            titleStr = getStringOrThrow(R.styleable.HorizontalTextView_horz_tv_title)
-            contentStr = getStringOrThrow(R.styleable.HorizontalTextView_horz_tv_content)
-            hintStr = getStringOrThrow(R.styleable.HorizontalTextView_horz_tv_hint)
+            titleStr = getString(R.styleable.HorizontalTextView_horz_tv_title) ?: ""
+            contentStr = getString(R.styleable.HorizontalTextView_horz_tv_content) ?: ""
+            hintStr = getString(R.styleable.HorizontalTextView_horz_tv_hint) ?: ""
             contentLeft =
                 getBoolean(R.styleable.HorizontalTextView_horz_tv_content_left, false)
         }

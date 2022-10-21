@@ -56,5 +56,6 @@
     <string name="click">click</string>
     <string name="generate_diff_file">Diff File</string>
     <string name="combine_diff_file">Patch File</string>
+    <string name="test">Test</string>
 
 </resources>

@@ -97,6 +97,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
         items.add(NaviItem("Channel", RoutePath.Main.CHANNEL))
         items.add(NaviItem("Moshi", RoutePath.Main.MOSHI))
         items.add(NaviItem("Network", RoutePath.Main.NETWORK))
+        items.add(NaviItem("BindingDelegate", RoutePath.Main.VIEW_BINDING_DELEGATE))
 
 
         setData()

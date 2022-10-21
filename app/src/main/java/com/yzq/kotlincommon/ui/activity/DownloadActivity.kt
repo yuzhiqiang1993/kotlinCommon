@@ -19,7 +19,7 @@ class DownloadActivity : BaseVmActivity<ActivityDownloadBinding, DownloadViewMod
 
     override fun initWidget() {
 
-        initToolbar(binding.layoutToolbar.toolbar, "网络进度")
+        initToolbar(binding.includedToolbar.toolbar, "网络进度")
 
         binding.btnDownload
             .setOnClickListener {

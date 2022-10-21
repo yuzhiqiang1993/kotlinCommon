@@ -4,27 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.activity.DownloadActivity">
-
+    tools:context=".ui.activity.BindingDelegateActivity">
 
     <include
         android:id="@+id/included_toolbar"
         layout="@layout/toolbar" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_download"
+        android:id="@+id/btn_test"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_16"
-        android:text="@string/download" />
-
-
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/progress_bar"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp_16"
-        android:max="100" />
+        android:text="@string/test" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
