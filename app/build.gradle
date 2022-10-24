@@ -1,3 +1,5 @@
+import com.yzq.plugin.AndroidDefaultConfig
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
@@ -11,14 +13,14 @@ apply from: file("${getRootDir()}/gradle_script/bytex.gradle")
 
 android {
 
-    compileSdk compile_sdk_version
+    compileSdk AndroidDefaultConfig.compileSdkVersion
     defaultConfig {
         applicationId "com.yzq.kotlincommon"
-        minSdk min_sdk_version
-        targetSdk target_sdk_version
-        versionCode version_code
-        versionName version_name
-        multiDexEnabled true
+        minSdk AndroidDefaultConfig.minSdkVersion
+        targetSdk AndroidDefaultConfig.targetSdkVersion
+        versionCode AndroidDefaultConfig.versionCode
+        versionName AndroidDefaultConfig.versionName
+        multiDexEnabled AndroidDefaultConfig.multiDexEnabled
         vectorDrawables.useSupportLibrary = true
         resConfigs 'zh'
         ndk {
@@ -129,6 +131,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     kapt "com.alibaba:arouter-compiler:$arouter_compiler"
+
     implementation "com.github.yuzhiqiang1993:zxing:${zxing_version}"
     implementation "org.jsoup:jsoup:${jsoup_version}"
     kapt "androidx.room:room-compiler:$room_version"

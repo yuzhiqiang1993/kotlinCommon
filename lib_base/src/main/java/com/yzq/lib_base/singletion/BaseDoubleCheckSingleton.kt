@@ -18,7 +18,17 @@ abstract class BaseDoubleCheckSingleton<in P, out T> {
     /*高阶函数写法 就是作为参数或者返回值的函数*/
     protected abstract val create: (P) -> T
 
-    fun getInstance(param: P): T = instance ?: synchronized(this) {
-        instance ?: create(param).also { instance = it }
-    }
+    fun getInstance(param: P): T =
+        instance ?: synchronized(this) { instance ?: create(param).also { instance = it } }
+
+//    fun getInstance1(param: P): T {
+//        if (instance == null) {
+//            synchronized(this) {
+//                if (instance == null) {
+//                    instance = create(param)
+//                }
+//            }
+//        }
+//        return instance!!
+//    }
 }

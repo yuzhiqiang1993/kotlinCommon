@@ -4,7 +4,8 @@ class PersonManager private constructor(val name: String) {
 
     companion object : BaseDoubleCheckSingleton<String, PersonManager>() {
 
-        /*高阶函数写法
+        /*
+        * 高阶函数写法
         * 接收的类型是(String)->PersonManager
         * 这里把构造函数的引用传过去就好
         * */

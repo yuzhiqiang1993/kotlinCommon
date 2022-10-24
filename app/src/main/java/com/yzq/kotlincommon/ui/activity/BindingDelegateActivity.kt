@@ -6,12 +6,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBindingDelegateBinding
-import com.yzq.lib_base.ui.delegate.ActivityViewBindingProp
+import viewbind
 
 @Route(path = RoutePath.Main.VIEW_BINDING_DELEGATE)
 class BindingDelegateActivity : AppCompatActivity() {
 
-    private val binding by ActivityViewBindingProp(ActivityBindingDelegateBinding::inflate)
+    private val binding by viewbind(ActivityBindingDelegateBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -99,7 +99,7 @@ dependencies {
 
     /*progressmanager*/
     api "com.github.JessYanCoding:ProgressManager:$progressmanager_version"
-
+    /*启动器*/
     api 'com.github.aiceking:AppStartFaster:2.1.0'
 
     api project(path: ':lib_application')

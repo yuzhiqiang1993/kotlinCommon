@@ -10,6 +10,7 @@ package com.yzq.lib_base.singletion
 
 class UserManager private constructor(name: String) {
 
+
     companion object {
 
         @Volatile private var INSTANCE: UserManager? = null

@@ -273,11 +273,13 @@ abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity(),
 //        manService.manPageHitHelper.pageDisAppear(this)
     }
 
+
     override fun onDestroy() {
         super.onDestroy()
         EventBusUtil.unregister(this)
         cancel()
     }
+
 
 }
 
