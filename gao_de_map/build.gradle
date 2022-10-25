@@ -1,22 +1,20 @@
-if (isModule.toBoolean()) {
-    apply plugin: 'com.android.library'
-} else {
-    apply plugin: 'com.android.application'
+import com.yzq.dependency_manager_plugin.ARouter
+import com.yzq.dependency_manager_plugin.AndroidConfig
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.yzq.dependency-manager'
 }
 
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-
 android {
-    compileSdk compile_sdk_version
+    compileSdk AndroidConfig.compileSdkVersion
 
     defaultConfig {
-        minSdk min_sdk_version
-        targetSdk target_sdk_version
-        versionCode version_code
-        versionName version_name
+        minSdk AndroidConfig.minSdkVersion
+        targetSdk AndroidConfig.targetSdkVersion
         multiDexEnabled true
-
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -72,8 +70,8 @@ kapt {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    kapt "com.alibaba:arouter-compiler:$arouter_compiler"
 
+    kapt ARouter.arouterCompiler
 
     implementation project(':common')
 

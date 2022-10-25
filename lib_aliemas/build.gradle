@@ -1,17 +1,22 @@
+import com.yzq.dependency_manager_plugin.AndroidConfig
+import com.yzq.dependency_manager_plugin.ThirdParty
+
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'com.yzq.dependency-manager'
 }
 
+
 android {
-    compileSdk compile_sdk_version
+    compileSdk AndroidConfig.compileSdkVersion
 
     defaultConfig {
-        minSdk min_sdk_version
-        targetSdk target_sdk_version
-        multiDexEnabled true
+        minSdk AndroidConfig.minSdkVersion
+        targetSdk AndroidConfig.targetSdkVersion
+        multiDexEnabled AndroidConfig.multiDexEnabled
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -41,7 +46,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "com.blankj:utilcodex:$utilcode"
+    implementation ThirdParty.utilcode
     //崩溃分析
     api 'com.aliyun.ams:alicloud-android-ha-crashreporter:1.2.5'
     //移动日志

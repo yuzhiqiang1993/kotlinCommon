@@ -1,6 +1,11 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+import com.yzq.dependency_manager_plugin.*
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.yzq.dependency-manager'
+}
 
 
 kapt {
@@ -10,12 +15,12 @@ kapt {
 }
 
 android {
-    compileSdk compile_sdk_version
+    compileSdk AndroidConfig.compileSdkVersion
 
     defaultConfig {
-        minSdk min_sdk_version
-        targetSdk target_sdk_version
-        multiDexEnabled true
+        minSdk AndroidConfig.minSdkVersion
+        targetSdk AndroidConfig.targetSdkVersion
+        multiDexEnabled AndroidConfig.multiDexEnabled
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -51,56 +56,43 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    api "androidx.appcompat:appcompat:$appcompat"
-    api "com.google.android.material:material:$material"
-    api "androidx.vectordrawable:vectordrawable:$vectordrawable"
-    api "androidx.constraintlayout:constraintlayout:$constraintlayout"
-
-    api "androidx.annotation:annotation:$annotation"
-    api "androidx.multidex:multidex:$multiDexVersion"
-
-    //KTX core
-    api "androidx.core:core-ktx:$core_ktx"
-
-    //ViewModel
-    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_ktx"
-    //LiveData
-    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_ktx"
-    //Lifecycles only (without ViewModel or LiveData)
-    api "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_ktx"
-    /*collection*/
-    api "androidx.collection:collection-ktx:$collection_ktx"
+    api AndroidOfficial.appcompat
+    api AndroidOfficial.material
+    api AndroidOfficial.vectordrawable
+    api AndroidOfficial.constraintlayout
+    api AndroidOfficial.annotationLib
+    api AndroidOfficial.multiDex
 
 
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinx_coroutines"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinx_coroutines"
+    api AndroidOfficial.corektx
+    api AndroidOfficial.viewModel
+    api AndroidOfficial.lifecycle
+    api AndroidOfficial.liveData
+    api AndroidOfficial.collection
+    api AndroidOfficial.swiperefreshlayout
 
 
-    /*下拉刷新*/
-    api "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayout"
+    api Kotlinx.coroutinesCore
+    api Kotlinx.coroutineAndroid
 
-    /*utils*/
-    api "com.blankj:utilcodex:$utilcode"
-    /*代替sp*/
-    api "com.tencent:mmkv:${mmkv}"
+    api ThirdParty.utilcode
+    api ThirdParty.mmkv
+    api ThirdParty.moshiKotlin
 
-    api('com.squareup.moshi:moshi-kotlin:1.14.0')
-
-    /*ARouter*/
-    api "com.alibaba:arouter-api:$arouter_api"
-    kapt "com.alibaba:arouter-compiler:$arouter_compiler"
+    api ARouter.arouterApi
+    kapt ARouter.arouterCompiler
 
 
     /*retrofit*/
-    api "com.squareup.okhttp3:okhttp:$ok_http"
-    api "com.squareup.retrofit2:retrofit:$retrofit"
-    api "com.squareup.okhttp3:logging-interceptor:$ok_http"
-    api "com.squareup.retrofit2:converter-moshi:$retrofit"
+    api Retrofit.okhttp
+    api Retrofit.okhttpLogInterceptor
+    api Retrofit.retrofit
+    api Retrofit.moshiConverter
 
     /*progressmanager*/
-    api "com.github.JessYanCoding:ProgressManager:$progressmanager_version"
-    /*启动器*/
-    api 'com.github.aiceking:AppStartFaster:2.1.0'
+    api ThirdParty.appStartFaster
+    api ThirdParty.progressManager
+
 
     api project(path: ':lib_application')
     api project(path: ':lib_network_status')

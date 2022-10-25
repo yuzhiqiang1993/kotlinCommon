@@ -1,26 +1,29 @@
-import com.yzq.plugin.AndroidDefaultConfig
+import com.yzq.dependency_manager_plugin.ARouter
+import com.yzq.dependency_manager_plugin.AndroidConfig
+import com.yzq.dependency_manager_plugin.AndroidOfficial
+import com.yzq.dependency_manager_plugin.ThirdParty
 
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
 //    id 'com.aliyun.ams.emas-services'
+    id 'com.yzq.dependency-manager'
 }
-
 println "getRootDir():${getRootDir()}"
 
 apply from: file("${getRootDir()}/gradle_script/bytex.gradle")
 
 android {
 
-    compileSdk AndroidDefaultConfig.compileSdkVersion
+    compileSdk AndroidConfig.compileSdkVersion
     defaultConfig {
         applicationId "com.yzq.kotlincommon"
-        minSdk AndroidDefaultConfig.minSdkVersion
-        targetSdk AndroidDefaultConfig.targetSdkVersion
-        versionCode AndroidDefaultConfig.versionCode
-        versionName AndroidDefaultConfig.versionName
-        multiDexEnabled AndroidDefaultConfig.multiDexEnabled
+        minSdk AndroidConfig.minSdkVersion
+        targetSdk AndroidConfig.targetSdkVersion
+        versionCode AndroidConfig.versionCode
+        versionName AndroidConfig.versionName
+        multiDexEnabled AndroidConfig.multiDexEnabled
         vectorDrawables.useSupportLibrary = true
         resConfigs 'zh'
         ndk {
@@ -130,24 +133,23 @@ kapt {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    kapt "com.alibaba:arouter-compiler:$arouter_compiler"
+    kapt ARouter.arouterCompiler
+    kapt AndroidOfficial.roomCompiler
 
-    implementation "com.github.yuzhiqiang1993:zxing:${zxing_version}"
-    implementation "org.jsoup:jsoup:${jsoup_version}"
-    kapt "androidx.room:room-compiler:$room_version"
+    implementation ThirdParty.zxingYzq
+    implementation ThirdParty.jsoup
+    implementation AndroidOfficial.viewpager2
+    implementation ThirdParty.bannerViewPager
 
-    implementation "androidx.viewpager2:viewpager2:${viewpager2}"
 
-    implementation "com.github.zhpanvip:BannerViewPager:${bannerViewPager}"
-
-    implementation project(':common')
-    implementation "io.github.yuzhiqiang1993:xeon_bsdiff:1.0.1"
+    implementation ThirdParty.xeonBsDiff
 
 
     if (isModule.toBoolean()) {
         implementation project(':gao_de_map')
     }
 
+    implementation project(':common')
 }
 
 

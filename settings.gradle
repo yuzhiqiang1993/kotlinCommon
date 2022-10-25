@@ -41,13 +41,11 @@ println "rootProjectName:${rootProject.getName()}"
 
 /*gradle的生命周期回调*/
 gradle.addBuildListener(new BuildAdapter() {
-    @Override
     void settingsEvaluated(Settings settings) {
         super.settingsEvaluated(settings)
         println("初始化阶段完成")
     }
 
-    @Override
     void projectsEvaluated(Gradle gradle) {
         super.projectsEvaluated(gradle)
         println("配置阶段完成")
@@ -58,7 +56,6 @@ gradle.addBuildListener(new BuildAdapter() {
         })
     }
 
-    @Override
     void buildFinished(BuildResult result) {
         super.buildFinished(result)
         println("构建阶段完成")
@@ -67,3 +64,4 @@ gradle.addBuildListener(new BuildAdapter() {
 include ':lib_aliemas'
 include ':lib_network_status'
 include ':lib_application'
+includeBuild("dependency-manager-plugin")

@@ -1,20 +1,23 @@
+import com.yzq.dependency_manager_plugin.AndroidConfig
+import com.yzq.dependency_manager_plugin.AndroidOfficial
+import com.yzq.dependency_manager_plugin.ThirdParty
+
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'com.yzq.dependency-manager'
 }
 
 
-
-
 android {
-    compileSdk compile_sdk_version
+    compileSdk AndroidConfig.compileSdkVersion
 
     defaultConfig {
-        minSdk min_sdk_version
-        targetSdk target_sdk_version
-        multiDexEnabled true
+        minSdk AndroidConfig.minSdkVersion
+        targetSdk AndroidConfig.targetSdkVersion
+        multiDexEnabled AndroidConfig.multiDexEnabled
         vectorDrawables.useSupportLibrary = true
     }
 
@@ -44,17 +47,20 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "androidx.appcompat:appcompat:$appcompat"
-    implementation "com.google.android.material:material:$material"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    implementation AndroidOfficial.appcompat
+    implementation AndroidOfficial.material
+    implementation AndroidOfficial.constraintlayout
+
+
     /*dialog*/
-    api "com.afollestad.material-dialogs:core:$material_dialogs"
-    api "com.afollestad.material-dialogs:input:$material_dialogs"
-    api "com.afollestad.material-dialogs:bottomsheets:$material_dialogs"
-    api "com.afollestad.material-dialogs:lifecycle:$material_dialogs"
+    api ThirdParty.materialDialogsCore
+    api ThirdParty.materialDialogsInput
+    api ThirdParty.materialDialogsBottomsheets
+    api ThirdParty.materialDialogsLifecycle
+
 
     /*日期选择*/
-    api "com.github.loperSeven:DateTimePicker:${datepickerVersion}"
+    api ThirdParty.dateTimePicker
 
     implementation project(path: ':lib_resource')
 

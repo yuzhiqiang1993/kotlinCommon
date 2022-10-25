@@ -1,14 +1,14 @@
-package com.yzq.plugin
+package com.yzq.dependency_manager_plugin
 
 
 /**
- * @description Android Default Config 相关的配置
+ * @description Android 相关配置
  * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
  * @date    2022/10/24
- * @time    11:41
+ * @time    16:42
  */
 
-object AndroidDefaultConfig {
+object AndroidConfig {
     /**
      * Compile sdk version
      * 按照指定sdk版本进行编译  不影响实际运行  一般就写最新的就行
