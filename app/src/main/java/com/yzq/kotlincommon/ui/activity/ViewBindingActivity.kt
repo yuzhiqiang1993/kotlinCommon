@@ -2,9 +2,9 @@ package com.yzq.kotlincommon.ui.activity
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityViewBindingBinding
-import com.yzq.lib_base.ui.activity.BaseActivity
 
 
 /**

@@ -2,10 +2,10 @@ package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.data.gaode.Geocoder
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
-import com.yzq.lib_base.view_model.BaseViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 

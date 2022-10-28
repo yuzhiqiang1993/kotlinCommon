@@ -1,11 +1,11 @@
 package com.yzq.kotlincommon.ui.activity
 
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.yzq.base.extend.setOnThrottleTimeClick
+import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityMoshiBinding
 import com.yzq.kotlincommon.mvvm.view_model.MoshiViewModel
-import com.yzq.lib_base.extend.setOnThrottleTimeClick
-import com.yzq.lib_base.ui.activity.BaseVmActivity
 
 @Route(path = RoutePath.Main.MOSHI)
 class MoshiActivity : BaseVmActivity<ActivityMoshiBinding, MoshiViewModel>() {

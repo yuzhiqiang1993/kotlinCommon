@@ -13,14 +13,14 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.google.android.material.navigation.NavigationView
 import com.tencent.bugly.beta.Beta
+import com.yzq.application.BaseApp
+import com.yzq.base.extend.init
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.NaviItem
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
-import com.yzq.lib_application.BaseApp
-import com.yzq.lib_base.extend.init
-import com.yzq.lib_base.ui.activity.BaseActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

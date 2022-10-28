@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.DropDownMenuFilterAdapter
 import com.yzq.kotlincommon.adapter.DropDownMenuFoodTypeAdapter
 import com.yzq.kotlincommon.databinding.ActivityDropDownMenuBinding
-import com.yzq.lib_base.ui.activity.BaseActivity
 
 
 /**

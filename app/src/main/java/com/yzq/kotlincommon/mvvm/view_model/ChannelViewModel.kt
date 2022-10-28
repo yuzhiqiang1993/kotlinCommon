@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.lib_base.view_model.BaseViewModel
+import com.yzq.base.view_model.BaseViewModel
 import kotlinx.coroutines.channels.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

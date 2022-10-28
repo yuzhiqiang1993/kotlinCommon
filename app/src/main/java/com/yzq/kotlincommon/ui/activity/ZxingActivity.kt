@@ -5,10 +5,10 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.constant.PermissionConstants
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityZxingBinding
-import com.yzq.lib_base.ui.activity.BaseActivity
-import com.yzq.lib_permission.getPermissions
+import com.yzq.permission.getPermissions
 import com.yzq.zxinglibrary.android.CaptureActivity
 import com.yzq.zxinglibrary.bean.ZxingConfig
 import com.yzq.zxinglibrary.common.Constant

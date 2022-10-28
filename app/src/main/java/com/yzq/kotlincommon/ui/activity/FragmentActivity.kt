@@ -3,12 +3,12 @@ package com.yzq.kotlincommon.ui.activity
 import android.view.MenuItem
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.navigation.NavigationBarView
+import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFragmentBinding
 import com.yzq.kotlincommon.mvvm.view_model.FragmentViewModel
-import com.yzq.lib_base.ui.activity.BaseVmActivity
-import com.yzq.lib_base.ui.fragment.BaseFragment
 
 
 @Route(path = RoutePath.Main.FRAGMENT)

@@ -4,10 +4,10 @@ package com.yzq.kotlincommon.ui.fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.google.android.material.tabs.TabLayoutMediator
+import com.yzq.base.ui.fragment.BaseViewBindingFragment
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ViewPagerAdapter
 import com.yzq.kotlincommon.databinding.FragmentViewPagerBinding
-import com.yzq.lib_base.ui.fragment.BaseViewBindingFragment
 
 
 /**

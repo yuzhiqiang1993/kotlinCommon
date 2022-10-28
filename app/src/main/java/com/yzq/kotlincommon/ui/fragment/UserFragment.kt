@@ -5,11 +5,11 @@ import android.view.ViewGroup
 import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.yzq.base.ui.fragment.BaseViewBindingFragment
+import com.yzq.img.openAlbum
 import com.yzq.kotlincommon.databinding.FragmentUserBinding
-import com.yzq.lib_base.ui.fragment.BaseViewBindingFragment
-import com.yzq.lib_img.openAlbum
-import com.yzq.lib_materialdialog.showCallbackDialog
-import com.yzq.lib_permission.getPermissions
+import com.yzq.materialdialog.showCallbackDialog
+import com.yzq.permission.getPermissions
 
 class UserFragment : BaseViewBindingFragment<FragmentUserBinding>() {
 

@@ -3,11 +3,11 @@ package com.yzq.kotlincommon.ui.activity
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
 import com.yzq.kotlincommon.mvvm.view_model.DownloadViewModel
-import com.yzq.lib_base.ui.activity.BaseVmActivity
-import com.yzq.lib_permission.getPermissions
+import com.yzq.permission.getPermissions
 
 @Route(path = RoutePath.Main.DOWNLOAD)
 class DownloadActivity : BaseVmActivity<ActivityDownloadBinding, DownloadViewModel>() {

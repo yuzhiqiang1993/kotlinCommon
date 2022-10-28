@@ -10,9 +10,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.yzq.base.ui.fragment.BaseViewBindingFragment
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentViewPagerWithBinding
-import com.yzq.lib_base.ui.fragment.BaseViewBindingFragment
 
 
 class ViewPagerWithFragment : BaseViewBindingFragment<FragmentViewPagerWithBinding>() {

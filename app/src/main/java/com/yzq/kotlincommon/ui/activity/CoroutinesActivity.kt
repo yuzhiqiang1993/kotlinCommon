@@ -3,11 +3,11 @@ package com.yzq.kotlincommon.ui.activity
 import androidx.lifecycle.*
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.base.extend.launchCollect
+import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
-import com.yzq.lib_base.extend.launchCollect
-import com.yzq.lib_base.ui.activity.BaseVmActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch

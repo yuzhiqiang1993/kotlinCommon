@@ -3,10 +3,10 @@ package com.yzq.kotlincommon.ui.fragment
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.base.ui.fragment.BaseVbVmFragment
+import com.yzq.base.utils.MoshiUtils
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
-import com.yzq.lib_base.ui.fragment.BaseVbVmFragment
-import com.yzq.lib_base.utils.MoshiUtils
 
 class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>() {
 

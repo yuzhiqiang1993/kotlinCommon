@@ -4,9 +4,9 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.ha.adapter.AliHaAdapter
 import com.alibaba.ha.adapter.service.tlog.TLogService
 import com.blankj.utilcode.util.ToastUtils
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityAliEmasactiviyBinding
-import com.yzq.lib_base.ui.activity.BaseActivity
 
 /**
  * @description: 阿里EMAS测试页面

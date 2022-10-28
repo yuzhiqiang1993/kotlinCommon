@@ -3,13 +3,13 @@ package com.yzq.kotlincommon.ui.activity
 import android.view.MenuItem
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.navigation.NavigationBarView
+import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityViewPager2Binding
 import com.yzq.kotlincommon.ui.fragment.ViewPagerFragment
 import com.yzq.kotlincommon.ui.fragment.ViewPagerWithFragment
-import com.yzq.lib_base.ui.activity.BaseActivity
-import com.yzq.lib_base.ui.fragment.BaseFragment
 
 /**
  * @description: ViewPager2

@@ -1,0 +1,110 @@
+import com.yzq.dependency_manager_plugin.*
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.yzq.dependency-manager'
+}
+
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+    compileSdk AndroidConfig.compileSdkVersion
+
+    defaultConfig {
+        minSdk AndroidConfig.minSdkVersion
+        targetSdk AndroidConfig.targetSdkVersion
+        multiDexEnabled AndroidConfig.multiDexEnabled
+        vectorDrawables.useSupportLibrary = true
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+
+    }
+
+
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+    lint {
+        abortOnError false
+    }
+    namespace 'com.yzq.base'
+
+
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    api AndroidOfficial.appcompat
+    api AndroidOfficial.material
+    api AndroidOfficial.vectordrawable
+    api AndroidOfficial.constraintlayout
+    api AndroidOfficial.annotationLib
+    api AndroidOfficial.multiDex
+
+
+    api AndroidOfficial.corektx
+    api AndroidOfficial.viewModel
+    api AndroidOfficial.lifecycle
+    api AndroidOfficial.liveData
+    api AndroidOfficial.collection
+    api AndroidOfficial.swiperefreshlayout
+
+
+    api Kotlinx.coroutinesCore
+    api Kotlinx.coroutineAndroid
+
+    api ThirdParty.utilcode
+    api ThirdParty.mmkv
+    api ThirdParty.moshiKotlin
+
+    api ARouter.arouterApi
+    kapt ARouter.arouterCompiler
+
+
+    /*retrofit*/
+    api Retrofit.okhttp
+    api Retrofit.okhttpLogInterceptor
+    api Retrofit.retrofit
+    api Retrofit.moshiConverter
+
+    /*progressmanager*/
+    api ThirdParty.appStartFaster
+    api ThirdParty.progressManager
+    api project(path: ':application')
+    api project(path: ':network-status')
+
+
+    api project(path: ':recycleview-adapter')
+    api project(path: ':eventbus')
+    api project(path: ':img')
+    api project(path: ':materialdialog')
+    api project(path: ':permission')
+    api project(path: ':resource')
+    api project(path: ':widget')
+    api project(path: ':aliemas')
+
+
+}
+

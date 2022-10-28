@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@id/layout_toolbar" />
 
 
-    <com.yzq.lib_widget.state_view.StateView
+    <com.yzq.widget.state_view.StateView
         android:id="@+id/state_view"
         android:layout_width="0dp"
         android:layout_height="0dp"

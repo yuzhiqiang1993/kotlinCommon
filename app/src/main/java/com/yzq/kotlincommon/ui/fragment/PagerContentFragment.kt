@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.yzq.base.ui.fragment.BaseViewBindingFragment
 import com.yzq.kotlincommon.databinding.FragmentPagerContentBinding
 import com.yzq.kotlincommon.widget.banner.BannerAdapter
-import com.yzq.lib_base.ui.fragment.BaseViewBindingFragment
 
 
 /**

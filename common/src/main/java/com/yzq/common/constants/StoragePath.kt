@@ -3,7 +3,7 @@ package com.yzq.common.constants
 import android.annotation.SuppressLint
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.PathUtils
-import com.yzq.lib_application.AppContext
+import com.yzq.application.AppContext
 import java.io.File
 
 /**

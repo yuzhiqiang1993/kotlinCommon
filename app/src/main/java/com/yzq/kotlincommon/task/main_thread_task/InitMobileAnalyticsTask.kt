@@ -2,10 +2,10 @@ package com.yzq.kotlincommon.task.main_thread_task
 
 import com.alibaba.sdk.android.man.MANServiceProvider
 import com.blankj.utilcode.util.AppUtils
+import com.yzq.application.AppContext
+import com.yzq.application.BaseApp
+import com.yzq.base.startup.base.MainThreadTask
 import com.yzq.kotlincommon.config.AliEMASConfig
-import com.yzq.lib_application.AppContext
-import com.yzq.lib_application.BaseApp
-import com.yzq.lib_base.startup.base.MainThreadTask
 
 /**
  * @description: 移动分析

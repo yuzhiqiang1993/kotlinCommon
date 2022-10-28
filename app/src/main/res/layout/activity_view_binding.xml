@@ -24,7 +24,7 @@
             android:text="@string/click" />
 
 
-        <com.yzq.lib_widget.HorizontalEditView
+        <com.yzq.widget.HorizontalEditView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:horz_edit_endIcon="@drawable/ic_camera"
@@ -33,7 +33,7 @@
             app:horz_edit_icon_tint="@color/red_600"
             app:horz_edit_title="标题" />
 
-        <com.yzq.lib_widget.HorizontalTextView
+        <com.yzq.widget.HorizontalTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:horz_tv_endIcon="@drawable/ic_menu_manage"

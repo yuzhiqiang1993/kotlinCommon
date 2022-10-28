@@ -8,11 +8,11 @@ import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TagAdapter
 import com.yzq.kotlincommon.databinding.ActivityFlexBoxBinding
-import com.yzq.lib_base.ui.activity.BaseActivity
 
 
 /**

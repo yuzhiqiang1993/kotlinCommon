@@ -3,9 +3,9 @@ package com.yzq.kotlincommon.task.work_thread_task
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
-import com.yzq.lib_application.BaseApp
-import com.yzq.lib_base.BuildConfig
-import com.yzq.lib_base.startup.base.WorkThreadTask
+import com.yzq.application.BaseApp
+import com.yzq.base.BuildConfig
+import com.yzq.base.startup.base.WorkThreadTask
 
 /**
  * @description: 初始化 Utils

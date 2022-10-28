@@ -1,14 +1,14 @@
 package com.yzq.kotlincommon.mvvm.view_model
 
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.base.utils.MoshiUtils
+import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.data.BaseResp
 import com.yzq.common.data.moshi.User
 import com.yzq.common.ext.dataConvert
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ResponseCode
-import com.yzq.lib_base.utils.MoshiUtils
-import com.yzq.lib_base.view_model.BaseViewModel
 import kotlinx.coroutines.launch
 
 class MoshiViewModel : BaseViewModel() {

@@ -5,11 +5,11 @@ import com.alibaba.sdk.android.push.CommonCallback
 import com.alibaba.sdk.android.push.noonesdk.PushInitConfig
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.application.AppContext
+import com.yzq.application.BaseApp
+import com.yzq.base.startup.base.MainThreadTask
 import com.yzq.kotlincommon.BuildConfig
 import com.yzq.kotlincommon.config.AliEMASConfig
-import com.yzq.lib_application.AppContext
-import com.yzq.lib_application.BaseApp
-import com.yzq.lib_base.startup.base.MainThreadTask
 
 /**
  * @description: 初始化阿里推送

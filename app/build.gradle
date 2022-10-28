@@ -145,9 +145,7 @@ dependencies {
     implementation ThirdParty.xeonBsDiff
 
 
-    if (isModule.toBoolean()) {
-        implementation project(':gao_de_map')
-    }
+    implementation project(':gao-de-map')
 
     implementation project(':common')
 }

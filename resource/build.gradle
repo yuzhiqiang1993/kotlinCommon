@@ -1,0 +1,55 @@
+import com.yzq.dependency_manager_plugin.AndroidConfig
+import com.yzq.dependency_manager_plugin.AndroidOfficial
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+    id 'com.yzq.dependency-manager'
+}
+
+
+android {
+    compileSdk AndroidConfig.compileSdkVersion
+
+    defaultConfig {
+        minSdk AndroidConfig.minSdkVersion
+        targetSdk AndroidConfig.targetSdkVersion
+        vectorDrawables.useSupportLibrary = true
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+
+    }
+    lint {
+        abortOnError false
+    }
+    namespace 'com.yzq.resource'
+
+
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation(AndroidOfficial.appcompat)
+    implementation(AndroidOfficial.material)
+    implementation(AndroidOfficial.vectordrawable)
+    implementation(AndroidOfficial.constraintlayout)
+    implementation(AndroidOfficial.annotationLib)
+
+    api AndroidOfficial.splashscreen
+}

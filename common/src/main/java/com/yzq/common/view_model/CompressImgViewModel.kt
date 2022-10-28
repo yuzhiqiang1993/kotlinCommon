@@ -1,13 +1,20 @@
 package com.yzq.common.view_model
 
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.Matrix
 import androidx.exifinterface.media.ExifInterface
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.*
+import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.R
 import com.yzq.common.constants.StoragePath
-import com.yzq.lib_base.view_model.BaseViewModel
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.IOException
 
 /**

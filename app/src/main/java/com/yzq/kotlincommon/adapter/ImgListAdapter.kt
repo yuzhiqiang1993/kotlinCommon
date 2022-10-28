@@ -6,8 +6,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.yzq.common.data.movie.Subject
+import com.yzq.img.loadWithThumbnail
 import com.yzq.kotlincommon.R
-import com.yzq.lib_img.loadWithThumbnail
 import kotlin.random.Random
 
 class ImgListAdapter(layoutResId: Int, data: MutableList<Subject>) :

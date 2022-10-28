@@ -2,9 +2,9 @@ package com.yzq.common.net
 
 import android.util.Log
 import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
+import com.yzq.base.utils.MoshiUtils
 import com.yzq.common.BuildConfig
 import com.yzq.common.net.constants.ServerConstants
-import com.yzq.lib_base.utils.MoshiUtils
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

@@ -19,18 +19,6 @@
  * settings.gradle 运行在初始化阶段
  */
 
-include ':app',
-        ':common',
-        ':gao_de_map',
-        ':lib_base',
-        ':lib_img',
-        ':lib_resource',
-        ':lib_eventbus',
-        ':lib_materialdialog',
-        ':lib_widget',
-        ':lib_permission',
-        ':lib_base_adapter'
-
 
 /*settings.gradle里的代码会在初始化回调之前执行*/
 println("我是settings.gradle")
@@ -61,7 +49,21 @@ gradle.addBuildListener(new BuildAdapter() {
         println("构建阶段完成")
     }
 })
-include ':lib_aliemas'
-include ':lib_network_status'
-include ':lib_application'
+
+
+include ':app',
+        ':common',
+        ':gao-de-map',
+        ':base',
+        ':img',
+        ':resource',
+        ':eventbus',
+        ':materialdialog',
+        ':widget',
+        ':permission',
+        ':recycleview-adapter',
+        ':aliemas',
+        ':network-status',
+        ':application'
+
 includeBuild("dependency-manager-plugin")

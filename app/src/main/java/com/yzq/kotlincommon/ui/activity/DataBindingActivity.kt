@@ -5,11 +5,11 @@ import com.afollestad.materialdialogs.utils.MDUtil.textChanged
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDataBindingBinding
 import com.yzq.kotlincommon.mvvm.view_model.DataBindingViewModel
-import com.yzq.lib_base.ui.activity.BaseVmActivity
 
 
 /**

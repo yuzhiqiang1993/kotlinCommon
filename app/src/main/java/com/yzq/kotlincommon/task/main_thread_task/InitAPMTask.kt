@@ -1,9 +1,11 @@
 package com.yzq.kotlincommon.task.main_thread_task
 
-import com.alibaba.ha.adapter.*
+import com.alibaba.ha.adapter.AliHaAdapter
+import com.alibaba.ha.adapter.AliHaConfig
+import com.alibaba.ha.adapter.Plugin
+import com.yzq.base.startup.base.MainThreadTask
 import com.yzq.kotlincommon.config.AliEMASConfig
 import com.yzq.kotlincommon.ext.defaultConfig
-import com.yzq.lib_base.startup.base.MainThreadTask
 
 /**
  * @description: 阿里 EMAS 性能分析

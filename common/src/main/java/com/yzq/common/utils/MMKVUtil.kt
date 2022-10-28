@@ -3,7 +3,7 @@ package com.yzq.common.utils
 import android.os.Parcelable
 import android.text.TextUtils
 import com.tencent.mmkv.MMKV
-import com.yzq.lib_base.delegate.MMKVReadWriteProp
+import com.yzq.base.delegate.MMKVReadWriteProp
 
 /**
  * @description: MMKV 工具类

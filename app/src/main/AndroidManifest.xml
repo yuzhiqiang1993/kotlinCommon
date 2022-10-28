@@ -120,7 +120,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" /> <!-- 消息接收监听器 -->
         <receiver
-            android:name="com.yzq.lib_aliemas.push.AliPushReceiver"
+            android:name="com.yzq.aliemas.push.AliPushReceiver"
             android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
             <intent-filter>
                 <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED" />

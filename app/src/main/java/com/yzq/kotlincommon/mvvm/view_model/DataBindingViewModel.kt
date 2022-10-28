@@ -2,8 +2,8 @@ package com.yzq.kotlincommon.mvvm.view_model
 
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.ToastUtils
+import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.data.DataBindingBean
-import com.yzq.lib_base.view_model.BaseViewModel
 
 class DataBindingViewModel : BaseViewModel() {
 

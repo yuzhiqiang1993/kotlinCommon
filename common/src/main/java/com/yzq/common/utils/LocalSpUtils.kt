@@ -1,6 +1,6 @@
 package com.yzq.common.utils
 
-import com.yzq.lib_base.extend.SharedPreference
+import com.yzq.base.extend.SharedPreference
 
 
 /**

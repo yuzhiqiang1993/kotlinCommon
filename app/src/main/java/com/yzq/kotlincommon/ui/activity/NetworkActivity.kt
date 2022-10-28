@@ -5,12 +5,12 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityNetworkBinding
 import com.yzq.kotlincommon.mvvm.view_model.NetworkViewModel
-import com.yzq.lib_base.ui.activity.BaseVmActivity
-import com.yzq.lib_network_status.NetworkUtil
-import com.yzq.lib_permission.getPermissions
+import com.yzq.network_status.NetworkUtil
+import com.yzq.permission.getPermissions
 
 @Route(path = RoutePath.Main.NETWORK)
 class NetworkActivity : BaseVmActivity<ActivityNetworkBinding, NetworkViewModel>() {

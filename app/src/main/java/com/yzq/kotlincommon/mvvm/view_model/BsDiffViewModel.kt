@@ -5,7 +5,7 @@ import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.PathUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.xeon.bsdiff.utils.XeonBsDiffUtil
-import com.yzq.lib_base.view_model.BaseViewModel
+import com.yzq.base.view_model.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File

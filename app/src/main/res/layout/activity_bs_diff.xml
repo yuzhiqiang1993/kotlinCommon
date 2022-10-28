@@ -26,14 +26,14 @@
 
 
     <!--MD5-->
-    <com.yzq.lib_widget.HorizontalTextView
+    <com.yzq.widget.HorizontalTextView
         android:id="@+id/htv_new_file_md5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:horz_tv_title="新包MD5" />
 
     <!--MD5-->
-    <com.yzq.lib_widget.HorizontalTextView
+    <com.yzq.widget.HorizontalTextView
         android:id="@+id/htv_combine_file_md5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

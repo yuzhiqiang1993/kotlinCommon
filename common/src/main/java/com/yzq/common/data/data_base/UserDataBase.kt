@@ -3,7 +3,7 @@ package com.yzq.common.data.data_base
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.yzq.lib_application.AppContext
+import com.yzq.application.AppContext
 
 
 @Database(entities = [User::class], version = 1)
