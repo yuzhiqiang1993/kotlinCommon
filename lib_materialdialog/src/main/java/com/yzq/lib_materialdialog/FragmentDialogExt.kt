@@ -1,6 +1,7 @@
 package com.yzq.lib_materialdialog
 
 import android.text.TextUtils
+import android.text.format.DateFormat
 import androidx.fragment.app.Fragment
 import com.afollestad.materialdialogs.DialogCallback
 import com.afollestad.materialdialogs.MaterialDialog
@@ -10,7 +11,6 @@ import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.afollestad.materialdialogs.list.ItemListener
 import com.afollestad.materialdialogs.list.listItems
 import com.loper7.date_time_picker.DateTimeConfig
-import com.loper7.date_time_picker.StringUtils
 import com.loper7.date_time_picker.dialog.CardDatePickerDialog
 
 
@@ -291,7 +291,7 @@ fun Fragment.showDatePicker(
         .setBackGroundModel(R.drawable.shape_bg_dialog_custom)
         .setOnChoose(positiveText) { millisecond ->
 
-            val dateStr = StringUtils.conversionTime(millisecond, dateFormat)
+            val dateStr = DateFormat.format(dateFormat, millisecond).toString()
 
             datePickerListener(millisecond, dateStr)
 

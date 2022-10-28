@@ -129,5 +129,7 @@ object ThirdParty {
         "com.afollestad.material-dialogs:bottomsheets:$materialDialog"
     const val materialDialogsLifecycle = "com.afollestad.material-dialogs:lifecycle:$materialDialog"
 
-    const val dateTimePicker = "com.github.loperSeven:DateTimePicker:0.3.1"
+    const val dateTimePicker = "com.github.loperSeven:DateTimePicker:0.6.0"
+
+
 }

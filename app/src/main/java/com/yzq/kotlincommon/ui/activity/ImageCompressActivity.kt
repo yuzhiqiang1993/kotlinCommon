@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
@@ -38,7 +37,6 @@ class ImageCompressActivity :
     override fun getViewModelClass() = CompressImgViewModel::class.java
 
 
-    @SuppressLint("AutoDispose")
     override fun initWidget() {
         super.initWidget()
 

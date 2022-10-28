@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.annotation.SuppressLint
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
@@ -29,7 +28,6 @@ import java.util.*
 class DialogActivity : BaseActivity<ActivityDialogBinding>() {
     override fun createBinding() = ActivityDialogBinding.inflate(layoutInflater)
 
-    @SuppressLint("AutoDispose")
     override fun initWidget() {
 //        allowFastClick()
         binding.run {

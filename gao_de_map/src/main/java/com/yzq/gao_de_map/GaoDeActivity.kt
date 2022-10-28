@@ -1,6 +1,5 @@
 package com.yzq.gao_de_map
 
-import android.annotation.SuppressLint
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.gao_de_map.databinding.ActivityGaoDeBinding
 import com.yzq.gao_de_map.utils.MapPermissionUtils
@@ -18,7 +17,6 @@ class GaoDeActivity : BaseVmActivity<ActivityGaoDeBinding, LocationSignViewModel
         LocationSignViewModel::class.java
 
 
-    @SuppressLint("AutoDispose")
     override fun initWidget() {
 
 

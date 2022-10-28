@@ -9,7 +9,7 @@ def enableDebug = false
 
 /*ByteX 总开关*/
 ByteX {
-    enable true
+    enable false
     enableInDebug enableDebug
     logLevel "DEBUG"
 }

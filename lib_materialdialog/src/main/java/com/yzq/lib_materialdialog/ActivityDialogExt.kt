@@ -1,6 +1,7 @@
 package com.yzq.lib_materialdialog
 
 import android.text.TextUtils
+import android.text.format.DateFormat
 import androidx.core.app.ComponentActivity
 import com.afollestad.materialdialogs.DialogCallback
 import com.afollestad.materialdialogs.MaterialDialog
@@ -10,7 +11,6 @@ import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.afollestad.materialdialogs.list.ItemListener
 import com.afollestad.materialdialogs.list.listItems
 import com.loper7.date_time_picker.DateTimeConfig
-import com.loper7.date_time_picker.StringUtils
 import com.loper7.date_time_picker.dialog.CardDatePickerDialog
 
 /*获取一个新的Dialog实例*/
@@ -285,6 +285,22 @@ fun ComponentActivity.selectYear(
 
 }
 
+/**
+ * Show date picker
+ *
+ * @param displayType 显示类型
+ * @param title  //标题
+ * @param showBackNow //是否显示回到现在按钮
+ * @param showFocusDateInfo  //是否显示选中日期信息
+ * @param showDateLabel
+ * @param maxTime   最大时间
+ * @param minTime   最小时间
+ * @param defaultTime
+ * @param dateFormat
+ * @param positiveText
+ * @param negativeText
+ * @param datePickerListener
+ */
 fun ComponentActivity.showDatePicker(
     displayType: MutableList<Int> = arrayListOf(
         DateTimeConfig.YEAR,
@@ -317,13 +333,11 @@ fun ComponentActivity.showDatePicker(
         .setDefaultTime(defaultTime)
         .setDisplayType(displayType)
         .setBackGroundModel(CardDatePickerDialog.CARD)
+        .setChooseDateModel(DateTimeConfig.GLOBAL_CHINA)
 //        .setBackGroundModel(R.drawable.shape_bg_dialog_custom)
         .setOnChoose(positiveText) { millisecond ->
-
-            val dateStr = StringUtils.conversionTime(millisecond, dateFormat)
-
+            val dateStr = DateFormat.format(dateFormat, millisecond).toString()
             datePickerListener(millisecond, dateStr)
-
         }.setOnCancel(negativeText).build().show()
 
 }
