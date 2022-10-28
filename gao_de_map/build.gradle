@@ -76,6 +76,5 @@ dependencies {
     implementation project(':common')
 
     api 'com.amap.api:location:6.1.0'
-    api 'com.amap.api:3dmap:9.1.0'
 
 }
