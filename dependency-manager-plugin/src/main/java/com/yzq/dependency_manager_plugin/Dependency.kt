@@ -6,7 +6,7 @@ package com.yzq.dependency_manager_plugin
  * @constructor Create empty Android official
  */
 object AndroidOfficial {
-    const val material = "com.google.android.material:material:1.6.1"
+    const val material = "com.google.android.material:material:1.7.0"
 
     const val appcompat = "androidx.appcompat:appcompat:1.5.1"
     const val vectordrawable =
@@ -44,7 +44,7 @@ object AndroidOfficial {
     const val roomCompiler = "androidx.room:room-compiler:$room"
     const val roomKtx = "androidx.room:room-ktx:$room"
 
-    const val exifinterface = "androidx.exifinterface:exifinterface:1.3.4"
+    const val exifinterface = "androidx.exifinterface:exifinterface:1.3.5"
 
     const val splashscreen = "androidx.core:core-splashscreen:1.0.0"
 
@@ -96,7 +96,7 @@ object ThirdParty {
 
     const val zxingYzq = "com.github.yuzhiqiang1993:zxing:2.2.9"
 
-    const val bannerViewPager = "com.github.zhpanvip:BannerViewPager:3.5.2"
+    const val bannerViewPager = "com.github.zhpanvip:BannerViewPager:3.5.7"
 
     const val jsoup = "org.jsoup:jsoup:1.15.3"
 
@@ -120,7 +120,7 @@ object ThirdParty {
     /*photoView*/
     const val photoview = "com.github.chrisbanes:PhotoView:2.3.0"
 
-    const val easyPhotos = "com.github.HuanTanSheng:EasyPhotos:3.1.3"
+    const val easyPhotos = "com.github.HuanTanSheng:EasyPhotos:3.1.5"
 
     private const val materialDialog = "3.3.0"
     const val materialDialogsCore = "com.afollestad.material-dialogs:core:${materialDialog}"
