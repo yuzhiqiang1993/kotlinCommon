@@ -6,6 +6,10 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.launchCollect
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.common.constants.RoutePath
+import com.yzq.common.data.api.ApiResult
+import com.yzq.common.ext.apiCall
+import com.yzq.common.net.RetrofitFactory
+import com.yzq.common.net.api.ApiService
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +33,9 @@ class CoroutinesActivity : BaseVmActivity<ActivityCoroutinesBinding, CoroutineVi
         binding.stateView.retry {
             stateViewManager.switchToHttpFirst()
 
-            vm.requestData()
+            requestData()
+//            vm.requestData()
+
         }
 
 
@@ -63,9 +69,41 @@ class CoroutinesActivity : BaseVmActivity<ActivityCoroutinesBinding, CoroutineVi
         }
     }
 
+    private fun requestData() {
+        launch {
+            val apiResult = apiCall {
+                RetrofitFactory.instance.getService(ApiService::class.java).geocoder()
+            }
+            when (apiResult) {
+                is ApiResult.Error -> {}
+                is ApiResult.Exception -> {}
+                is ApiResult.Success -> {
+                    binding.tv.text = apiResult.data!!.result.formatted_address
+                    stateViewManager.showContent()
+                }
+            }
+
+//            apiResult.onSuccess {
+//                binding.tv.text = it!!.result.formatted_address
+//                stateViewManager.showContent()
+//            }
+//
+//            apiResult.onFailed { code, message ->
+//
+//            }
+//
+//            apiResult.onException {
+//
+//            }
+        }
+
+
+    }
+
     override fun initData() {
         stateViewManager.switchToHttpFirst()
-        vm.requestData()
+//        vm.requestData()
+        requestData()
     }
 
     override fun observeViewModel() {

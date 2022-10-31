@@ -1,173 +1,147 @@
 package com.yzq.base.view_model
 
-import android.annotation.SuppressLint
-import android.text.TextUtils
 import androidx.lifecycle.*
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.yzq.base.ui.state_view.constants.ViewStateContstants
 import com.yzq.base.ui.state_view.data.ViewStateBean
+import com.yzq.viewmodel.launchFullLife
+import com.yzq.viewmodel.launchSupervisor
 import kotlinx.coroutines.*
 import me.jessyan.progressmanager.ProgressListener
 import me.jessyan.progressmanager.ProgressManager
 import me.jessyan.progressmanager.body.ProgressInfo
 
-/*
-* 封装的BaseViewModel
-* */
-@SuppressLint("MissingPermission")
+
+/**
+ * @description BaseViewModel
+ * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date    2022/10/31
+ * @time    10:01
+ */
+
 abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
     private val viewStateBean by lazy { ViewStateBean() }
     val loadState by lazy { MutableLiveData<ViewStateBean>() }
 
-    private val loadingDialogCoroutineExceptionHandler =
-        CoroutineExceptionHandler { coroutineContext, throwable ->
-            LogUtils.e("loadingDialogCoroutineExceptionHandler=====>:${throwable.message}")
-            throwable.printStackTrace()
-            /*隐藏弹窗*/
-            dismissLoadingDialog()
-            val msg =
-                if (TextUtils.isEmpty(throwable.message)) ViewStateContstants.UNKONW_ERROR else throwable.message!!
-            showErrorDialog(msg)
-        }
 
+    /**
+     * Launch loading dialog
+     *
+     * @param loadText
+     * @param checkNetWork
+     * @param onException
+     * @param block
+     * @receiver
+     * @receiver
+     */
     fun launchLoadingDialog(
         loadText: String = ViewStateContstants.LOADING,
-        checkNetWork: Boolean = true,
-        exceptionHandler: CoroutineExceptionHandler = loadingDialogCoroutineExceptionHandler,
+        checkNetWork: Boolean = false,
+        onException: (t: Throwable) -> Unit = {},
         block: suspend CoroutineScope.() -> Unit
     ) {
 
-        viewModelScope.launch(exceptionHandler) {
-
+        launchFullLife(onException = onException, onFinish = { dismissLoadingDialog() }) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
-                return@launch
+                return@launchFullLife
             }
             showloadingDialog(loadText)
-
+            delay(1500)
             block()
-
-            dismissLoadingDialog()
 
         }
 
+
     }
 
-    /*异常处理*/
-    private val loadingCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
-        LogUtils.e("异常了=====>:${e.message}")
-        e.printStackTrace()
-
-        val msg =
-            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
-        showError(msg)
-    }
 
     fun launchLoading(
-        checkNetWork: Boolean = true,
-        exceptionHandler: CoroutineExceptionHandler = loadingCoroutineExceptionHandler,
+        checkNetWork: Boolean = false,
+        onException: (t: Throwable) -> Unit = {},
         block: suspend CoroutineScope.() -> Unit
     ) {
 
-        viewModelScope.launch(exceptionHandler) {
+        launchFullLife(block = {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
-                return@launch
+                return@launchFullLife
             }
-
             showLoading()
-
             block()
-        }
+        }, onException = {
+            LogUtils.i("异常了")
+            showError(it.message ?: "未知异常")
+        },
+            onFinish = {
+                LogUtils.i("结束了...")
+            }
+        )
+
+
     }
 
-    private val progressDialogCoroutineExceptionHandler = CoroutineExceptionHandler { _, e ->
-
-        LogUtils.e("progressDialogCoroutineExceptionHandler=====>:${e.message}")
-        e.printStackTrace()
-        /*隐藏进度窗*/
-        dismissProgressDialog()
-        val msg =
-            if (TextUtils.isEmpty(e.message)) ViewStateContstants.UNKONW_ERROR else e.message!!
-        showError(msg)
-    }
 
     fun launchProgressDialog(
         url: String,
         title: String,
         checkNetWork: Boolean = true,
-        exceptionHandler: CoroutineExceptionHandler = progressDialogCoroutineExceptionHandler,
+        onException: (t: Throwable) -> Unit = {},
+        onProgressException: (id: Long, t: Throwable?) -> Unit = { id: Long, throwable: Throwable? -> },
         block: suspend CoroutineScope.() -> Unit
     ) {
 
-        viewModelScope.launch(exceptionHandler) {
+
+        launchFullLife(
+            onException = onException,
+            onFinish = { dismissProgressDialog() }) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
-                return@launch
+                return@launchFullLife
             }
 
             ProgressManager.getInstance()
                 .addResponseListener(url, object : ProgressListener {
                     override fun onProgress(progressInfo: ProgressInfo?) {
-//                            LogUtils.i("下载进度:${progressInfo?.percent}")
                         changeProgress(progressInfo!!.percent)
                     }
 
                     override fun onError(id: Long, e: Exception?) {
-                        LogUtils.i("下载出错：${e?.printStackTrace()}")
 
                         dismissProgressDialog()
+                        onProgressException(id, e)
+
                     }
                 })
 
             showProgressDialog(title)
             block()
-            dismissProgressDialog()
 
         }
+
 
     }
 
-    private val supervisorExceptionHandler =
-        CoroutineExceptionHandler { coroutineContext, throwable ->
-            LogUtils.e("supervisorExceptionHandler 捕获到异常了：${throwable}")
-            throwable.printStackTrace()
-        }
 
-    /**
-     * 用来请求一个跟页面状态没啥关系同时不需要对异常进行特殊处理的接口
-     * @param checkNetWork Boolean
-     * @param exceptionHandler CoroutineExceptionHandler
-     * @param block [@kotlin.ExtensionFunctionType] SuspendFunction1<CoroutineScope, Unit>
-     */
-    fun launchHttpWithSupervisor(
-        checkNetWork: Boolean = true,
-        exceptionHandler: CoroutineExceptionHandler = supervisorExceptionHandler,
+    fun launchHttpSupervisor(
+        checkNetWork: Boolean = false,
+        onException: (t: Throwable) -> Unit = {},
         block: suspend CoroutineScope.() -> Unit
     ) {
 
-        viewModelScope.launch(exceptionHandler) {
+        launchSupervisor(onException = onException) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
-                return@launch
+                return@launchSupervisor
             }
-            supervisorScope(block)
-        }
 
-    }
+            block()
 
-    fun launchWithSupervisor(
-        exceptionHandler: CoroutineExceptionHandler = supervisorExceptionHandler,
-        block: suspend CoroutineScope.() -> Unit
-    ) {
-
-        viewModelScope.launch(exceptionHandler) {
-            supervisorScope { block() }
         }
 
     }

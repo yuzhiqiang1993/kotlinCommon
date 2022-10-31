@@ -20,13 +20,13 @@ class DownloadViewModel : ApiServiceViewModel() {
             val download = FileRetrofitFactory.instance.getService(ApiService::class.java)
                 .downloadApk()
 
+
             LogUtils.i("""总长度：${download.contentLength()}""")
 
             val path =
                 "${PathUtils.getExternalAppFilesPath()}/yzq.apk"
 
             val su = withContext(Dispatchers.IO) {
-
                 FileIOUtils.writeFileFromIS(path, download.byteStream())
 
             }

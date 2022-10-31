@@ -1,15 +1,24 @@
 package com.yzq.common.ext
 
-import com.yzq.common.data.BaseResp
+import com.yzq.common.data.api.ApiExecption
+import com.yzq.common.data.api.BaseResp
 import com.yzq.common.net.constants.ResponseCode
 
-fun <T> BaseResp<T>?.dataConvert(): T {
+
+/**
+ * @description 接口数据转换
+ * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date    2022/10/29
+ * @time    17:36
+ */
+
+fun <T> BaseResp<T>?.dataConvert(): T? {
     if (this == null) {
         throw Exception("BaseResp can not be null")
     }
     if (code == ResponseCode.SUCCESS) {
         return data
     } else {
-        throw Exception(message)
+        throw ApiExecption(code, message)
     }
 }

@@ -222,7 +222,6 @@ class StateViewManager(private val activity: BaseActivity<*>) {
 
         if (requestType == httpLoadMore) {
             ToastUtils.showLong(ViewStateContstants.NO_NET)
-
         } else {
             stateView?.showNoNet()
             contentLayout?.visibility = View.GONE

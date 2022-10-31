@@ -104,6 +104,7 @@ dependencies {
     api project(path: ':resource')
     api project(path: ':widget')
     api project(path: ':aliemas')
+    api project(path: ':viewmodel')
 
 
 }

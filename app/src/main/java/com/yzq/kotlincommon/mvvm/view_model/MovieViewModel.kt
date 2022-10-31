@@ -15,7 +15,6 @@ class MovieViewModel : ApiServiceViewModel() {
 
         launchLoading {
             subjects.value = apiServiceModel.getData(start, count).subjects
-
         }
 
     }

@@ -1,6 +1,6 @@
 package com.yzq.common.net.api
 
-import com.yzq.common.data.BaseResp
+import com.yzq.common.data.api.BaseResp
 import com.yzq.common.data.gaode.Geocoder
 import com.yzq.common.data.github.GithubUserInfo
 import com.yzq.common.data.moshi.LocalUser
@@ -8,6 +8,7 @@ import com.yzq.common.data.movie.MovieBean
 import com.yzq.common.net.constants.ApiConstants
 import com.yzq.common.net.constants.ParamConstants
 import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
@@ -25,7 +26,7 @@ interface ApiService {
         @Query("ak") ak: String = "RFVByxDyRXlNDpKGKybtFkz0pEw6mQn0",
         @Query("output") output: String = "json",
         @Query("latest_admin") latest_admin: String = "1"
-    ): Geocoder
+    ): Response<Geocoder>
 
     /*下载安装包*/
     @Streaming

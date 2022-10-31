@@ -67,3 +67,4 @@ include ':app',
         ':application'
 
 includeBuild("dependency-manager-plugin")
+include ':viewmodel'

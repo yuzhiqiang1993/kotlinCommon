@@ -1,4 +1,4 @@
-package com.yzq.common.data
+package com.yzq.common.data.api
 
 import com.yzq.common.net.constants.ResponseCode
 
@@ -12,6 +12,6 @@ import com.yzq.common.net.constants.ResponseCode
  */
 data class BaseResp<T>(
     var code: Int = ResponseCode.SUCCESS, // 0
-    var data: T,
+    var data: T? = null,
     var message: String = "", // 成功的返回
 )
