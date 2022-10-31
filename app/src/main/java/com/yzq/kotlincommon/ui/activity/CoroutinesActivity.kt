@@ -33,8 +33,8 @@ class CoroutinesActivity : BaseVmActivity<ActivityCoroutinesBinding, CoroutineVi
         binding.stateView.retry {
             stateViewManager.switchToHttpFirst()
 
-            requestData()
-//            vm.requestData()
+//            requestData()
+            vm.requestData()
 
         }
 
@@ -70,6 +70,7 @@ class CoroutinesActivity : BaseVmActivity<ActivityCoroutinesBinding, CoroutineVi
     }
 
     private fun requestData() {
+
         launch {
             val apiResult = apiCall {
                 RetrofitFactory.instance.getService(ApiService::class.java).geocoder()

@@ -36,6 +36,7 @@ class CoroutineViewModel : BaseViewModel() {
     /*请求数据*/
     fun requestData() {
 
+
         viewModelScope.launch {
             val response = apiCall {
                 RetrofitFactory.instance.getService(ApiService::class.java).geocoder()

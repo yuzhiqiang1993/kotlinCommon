@@ -5,7 +5,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.yzq.base.ui.state_view.constants.ViewStateContstants
 import com.yzq.base.ui.state_view.data.ViewStateBean
-import com.yzq.viewmodel.launchFullLife
+import com.yzq.viewmodel.launchLife
 import com.yzq.viewmodel.launchSupervisor
 import kotlinx.coroutines.*
 import me.jessyan.progressmanager.ProgressListener
@@ -42,11 +42,11 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         block: suspend CoroutineScope.() -> Unit
     ) {
 
-        launchFullLife(onException = onException, onFinish = { dismissLoadingDialog() }) {
+        launchLife(onException = onException, onFinish = { dismissLoadingDialog() }) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
-                return@launchFullLife
+                return@launchLife
             }
             showloadingDialog(loadText)
             delay(1500)
@@ -64,22 +64,24 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         block: suspend CoroutineScope.() -> Unit
     ) {
 
-        launchFullLife(block = {
-            if (checkNetWork && !NetworkUtils.isConnected()) {
-                showNoNet()
-                cancel()
-                return@launchFullLife
-            }
-            showLoading()
-            block()
-        }, onException = {
-            LogUtils.i("异常了")
-            showError(it.message ?: "未知异常")
-        },
+        launchLife(
+            onException = {
+                LogUtils.i("异常了")
+                showError(it.message ?: "未知异常")
+                onException(it)
+            },
             onFinish = {
                 LogUtils.i("结束了...")
             }
-        )
+        ) {
+            if (checkNetWork && !NetworkUtils.isConnected()) {
+                showNoNet()
+                cancel()
+                return@launchLife
+            }
+            showLoading()
+            block()
+        }
 
 
     }
@@ -95,13 +97,13 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
     ) {
 
 
-        launchFullLife(
+        launchLife(
             onException = onException,
             onFinish = { dismissProgressDialog() }) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
-                return@launchFullLife
+                return@launchLife
             }
 
             ProgressManager.getInstance()
