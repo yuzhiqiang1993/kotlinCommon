@@ -68,3 +68,4 @@ include ':app',
 
 includeBuild("dependency-manager-plugin")
 include ':viewmodel'
+include ':coroutine'

@@ -1,5 +1,6 @@
 import com.yzq.dependency_manager_plugin.AndroidConfig
 import com.yzq.dependency_manager_plugin.AndroidOfficial
+import com.yzq.dependency_manager_plugin.Kotlinx
 
 plugins {
     id 'com.android.library'
@@ -8,12 +9,13 @@ plugins {
 }
 
 android {
-    namespace 'com.yzq.viewmodel'
+    namespace 'com.yzq.coroutine'
     compileSdk AndroidConfig.compileSdkVersion
 
     defaultConfig {
         minSdk AndroidConfig.minSdkVersion
         targetSdk AndroidConfig.targetSdkVersion
+
     }
 
     buildTypes {
@@ -33,7 +35,8 @@ android {
 
 dependencies {
 
-    api(AndroidOfficial.viewModel)
+    api(Kotlinx.coroutinesCore)
+    api(Kotlinx.coroutineAndroid)
 
-
+    api(AndroidOfficial.lifecycle)
 }

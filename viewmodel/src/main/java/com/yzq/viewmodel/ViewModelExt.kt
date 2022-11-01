@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
 
 
 /**
@@ -18,7 +18,7 @@ import kotlinx.coroutines.supervisorScope
  * @receiver
  * @receiver
  */
-inline fun ViewModel.launchLife(
+inline fun ViewModel.launchScope(
     crossinline onException: (t: Throwable) -> Unit = {},
     crossinline onFinish: () -> Unit = {},
     crossinline block: suspend CoroutineScope.() -> Unit,
@@ -26,6 +26,7 @@ inline fun ViewModel.launchLife(
     viewModelScope.launch(CoroutineExceptionHandler { _, throwable -> onException(throwable) }) {
         block()
     }.invokeOnCompletion {
+        /*invokeOnCompletion:监听协程的结束事件，取消以及完成都会执行*/
         onFinish()
     }
 }
@@ -47,10 +48,15 @@ inline fun ViewModel.launchSupervisor(
     crossinline block: suspend CoroutineScope.() -> Unit,
 ) {
 
-    viewModelScope.launch(CoroutineExceptionHandler { _, throwable -> onException(throwable) }) {
-        supervisorScope { block() }
+    viewModelScope.launch(SupervisorJob() + CoroutineExceptionHandler { _, throwable ->
+        onException(throwable)
+    }) {
+        block()
     }.invokeOnCompletion {
         onFinish()
     }
 
+
 }
+
+

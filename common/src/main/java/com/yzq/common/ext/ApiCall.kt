@@ -1,5 +1,6 @@
 package com.yzq.common.ext
 
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.data.api.ApiResult
 import com.yzq.common.data.api.BaseResp
 import com.yzq.common.net.constants.ResponseCode
@@ -32,8 +33,11 @@ suspend inline fun <T> baseRespApiCall(crossinline requestMethod: suspend () -> 
  * @date    2022/10/28
  * @time    16:20
  */
-suspend inline fun <T> apiCall(crossinline requestMethod: suspend () -> Response<T>): ApiResult<T> {
+suspend inline fun <T> apiCall(
+    crossinline requestMethod: suspend () -> Response<T>
+): ApiResult<T> {
     return try {
+        LogUtils.i("apiCall===")
         val resp = requestMethod.invoke()
         if (resp.isSuccessful) {
             if (resp.body() == null) {

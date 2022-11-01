@@ -5,7 +5,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.yzq.base.ui.state_view.constants.ViewStateContstants
 import com.yzq.base.ui.state_view.data.ViewStateBean
-import com.yzq.viewmodel.launchLife
+import com.yzq.viewmodel.launchScope
 import com.yzq.viewmodel.launchSupervisor
 import kotlinx.coroutines.*
 import me.jessyan.progressmanager.ProgressListener
@@ -42,11 +42,11 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         block: suspend CoroutineScope.() -> Unit
     ) {
 
-        launchLife(onException = onException, onFinish = { dismissLoadingDialog() }) {
+        launchScope(onException = onException, onFinish = { dismissLoadingDialog() }) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
-                return@launchLife
+                return@launchScope
             }
             showloadingDialog(loadText)
             delay(1500)
@@ -64,7 +64,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         block: suspend CoroutineScope.() -> Unit
     ) {
 
-        launchLife(
+        launchScope(
             onException = {
                 LogUtils.i("异常了")
                 showError(it.message ?: "未知异常")
@@ -77,7 +77,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
-                return@launchLife
+                return@launchScope
             }
             showLoading()
             block()
@@ -97,13 +97,13 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
     ) {
 
 
-        launchLife(
+        launchScope(
             onException = onException,
             onFinish = { dismissProgressDialog() }) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
-                return@launchLife
+                return@launchScope
             }
 
             ProgressManager.getInstance()

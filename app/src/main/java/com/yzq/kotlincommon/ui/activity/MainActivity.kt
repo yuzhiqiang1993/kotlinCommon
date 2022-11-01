@@ -18,12 +18,12 @@ import com.yzq.base.extend.init
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.NaviItem
+import com.yzq.coroutine.scope.lifeScope
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 /**
@@ -62,8 +62,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(),
 
         binding.navView.setNavigationItemSelectedListener(this)
 
-        launch {
-
+        lifeScope {
             delay(1000)
             withContext(Dispatchers.IO) {
                 LogUtils.i("检查更新")

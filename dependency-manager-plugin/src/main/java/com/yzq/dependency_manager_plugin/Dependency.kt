@@ -6,7 +6,7 @@ package com.yzq.dependency_manager_plugin
  * @constructor Create empty Android official
  */
 object AndroidOfficial {
-    const val material = "com.google.android.material:material:1.7.0"
+    const val material = "com.google.android.material:material:1.6.1"
 
     const val appcompat = "androidx.appcompat:appcompat:1.5.1"
     const val vectordrawable =

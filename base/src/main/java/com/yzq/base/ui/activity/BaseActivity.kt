@@ -21,9 +21,6 @@ import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.ui.state_view.StateViewManager
 import com.yzq.eventbus.EventBusUtil
 import com.yzq.eventbus.EventMsg
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -35,8 +32,12 @@ import org.greenrobot.eventbus.ThreadMode
  *
  */
 
-abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity(),
-    CoroutineScope by MainScope() {
+abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity() {
+
+    /**
+     * Life scope 具备生命周期感知能力的写成作用域
+     */
+//    protected val lifeScope by lazy { AndroidScope(this) }
 
     lateinit var binding: Binding
 
@@ -277,7 +278,6 @@ abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity(),
     override fun onDestroy() {
         super.onDestroy()
         EventBusUtil.unregister(this)
-        cancel()
     }
 
 

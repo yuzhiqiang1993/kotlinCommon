@@ -9,6 +9,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.loper7.date_time_picker.DateTimeConfig
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.common.constants.RoutePath
+import com.yzq.coroutine.scope.lifeScope
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
 import com.yzq.materialdialog.*
@@ -86,7 +87,7 @@ class DialogActivity : BaseActivity<ActivityDialogBinding>() {
 
                     stateViewManager.showLoadingDialog("登录中...")
 
-                    launch {
+                    lifeScope {
                         delay(3000)
                         stateViewManager.dismissLoadingDialog()
                     }
