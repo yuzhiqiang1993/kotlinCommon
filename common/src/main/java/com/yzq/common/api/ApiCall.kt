@@ -1,8 +1,7 @@
 package com.yzq.common.ext
 
-import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.data.api.ApiResult
-import com.yzq.common.data.api.BaseResp
+import com.yzq.common.api.ApiResult
+import com.yzq.common.api.BaseResp
 import com.yzq.common.net.constants.ResponseCode
 import retrofit2.Response
 
@@ -37,7 +36,6 @@ suspend inline fun <T> apiCall(
     crossinline requestMethod: suspend () -> Response<T>
 ): ApiResult<T> {
     return try {
-        LogUtils.i("apiCall===")
         val resp = requestMethod.invoke()
         if (resp.isSuccessful) {
             if (resp.body() == null) {

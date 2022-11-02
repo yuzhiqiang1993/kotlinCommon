@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.ApiCallActivity">
+
+    <include
+        android:id="@+id/included_toolbar"
+        layout="@layout/toolbar" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_apiCall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginTop="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_16"
+        android:text="apiCall方式请求" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_lifeScope"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_16"
+        android:text="在封装的scope中直接请求" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_concurrent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_16"
+        android:text="并发请求" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_viewmodel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_16"
+        android:text="viewModel中请求" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

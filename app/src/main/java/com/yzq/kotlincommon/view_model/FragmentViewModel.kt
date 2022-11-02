@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.mvvm.view_model
+package com.yzq.kotlincommon.view_model
 
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.view_model.BaseViewModel

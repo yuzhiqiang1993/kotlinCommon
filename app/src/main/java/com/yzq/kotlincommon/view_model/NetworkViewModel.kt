@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.mvvm.view_model
+package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner

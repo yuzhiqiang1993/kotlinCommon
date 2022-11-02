@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.ui.fragment.BaseVbVmFragment
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
-import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
+import com.yzq.kotlincommon.view_model.CoroutineViewModel
 
 class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>() {
 

@@ -1,4 +1,4 @@
-package com.yzq.common.data.api
+package com.yzq.common.api
 
 
 /**
@@ -8,4 +8,4 @@ package com.yzq.common.data.api
  * @time    16:38
  */
 
-class ApiExecption(val code: Int, msg: String) : Throwable(msg)
+class ApiThrowable(val code: Int, msg: String) : Throwable(msg)

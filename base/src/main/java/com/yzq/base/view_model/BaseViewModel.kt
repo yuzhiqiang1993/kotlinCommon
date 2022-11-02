@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.NetworkUtils
 import com.yzq.base.ui.state_view.constants.ViewStateContstants
 import com.yzq.base.ui.state_view.data.ViewStateBean
 import com.yzq.viewmodel.launchScope
-import com.yzq.viewmodel.launchSupervisor
+import com.yzq.viewmodel.launchSupervisorScope
 import kotlinx.coroutines.*
 import me.jessyan.progressmanager.ProgressListener
 import me.jessyan.progressmanager.ProgressManager
@@ -42,7 +42,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         block: suspend CoroutineScope.() -> Unit
     ) {
 
-        launchScope(onException = onException, onFinish = { dismissLoadingDialog() }) {
+        launchScope(onException = onException) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
@@ -52,6 +52,8 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
             delay(1500)
             block()
 
+        }.invokeOnCompletion {
+            dismissLoadingDialog()
         }
 
 
@@ -69,9 +71,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
                 LogUtils.i("异常了")
                 showError(it.message ?: "未知异常")
                 onException(it)
-            },
-            onFinish = {
-                LogUtils.i("结束了...")
             }
         ) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
@@ -81,6 +80,8 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
             }
             showLoading()
             block()
+        }.invokeOnCompletion {
+            LogUtils.i("结束了...")
         }
 
 
@@ -97,9 +98,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
     ) {
 
 
-        launchScope(
-            onException = onException,
-            onFinish = { dismissProgressDialog() }) {
+        launchScope(onException = onException) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
@@ -123,23 +122,26 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
             showProgressDialog(title)
             block()
 
+        }.invokeOnCompletion {
+            dismissProgressDialog()
         }
 
 
     }
 
 
-    fun launchHttpSupervisor(
+    fun launchSupervisor(
         checkNetWork: Boolean = false,
         onException: (t: Throwable) -> Unit = {},
         block: suspend CoroutineScope.() -> Unit
     ) {
 
-        launchSupervisor(onException = onException) {
+
+        launchSupervisorScope(onException = onException) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
                 showNoNet()
                 cancel()
-                return@launchSupervisor
+                return@launchSupervisorScope
             }
 
             block()

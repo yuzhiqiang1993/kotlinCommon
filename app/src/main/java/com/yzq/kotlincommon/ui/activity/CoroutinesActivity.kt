@@ -1,21 +1,17 @@
 package com.yzq.kotlincommon.ui.activity
 
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.launchCollect
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.data.api.ApiResult
-import com.yzq.common.ext.apiCall
-import com.yzq.common.ext.dataConvert
-import com.yzq.common.net.RetrofitFactory
-import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.scope.lifeScope
+import com.yzq.coroutine.withDefault
+import com.yzq.coroutine.withIO
+import com.yzq.coroutine.withUnconfined
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
-import com.yzq.kotlincommon.mvvm.view_model.CoroutineViewModel
-import kotlinx.coroutines.CancellationException
-import kotlinx.coroutines.delay
+import com.yzq.kotlincommon.view_model.CoroutineViewModel
 import kotlinx.coroutines.flow.filter
 
 @Route(path = RoutePath.Main.COROUTINE)
@@ -35,120 +31,53 @@ class CoroutinesActivity : BaseVmActivity<ActivityCoroutinesBinding, CoroutineVi
         binding.stateView.retry {
             stateViewManager.switchToHttpFirst()
 
-//            requestData()
             vm.requestData()
 
         }
 
 
-//        lifeScope {
-//            LogUtils.i("launch 当前线程:${Thread.currentThread().name}")
-//        }
-//
-
-//        lifeScope {
-//            withIO {
-//                LogUtils.i("IO 当前线程:${Thread.currentThread().name}")
-//            }
-//        }
-//
-//        lifeScope {
-//            withDefault {
-//                LogUtils.i("Default 当前线程:${Thread.currentThread().name}")
-//            }
-//        }
-//
-//        lifeScope {
-//            withUnconfined {
-//                LogUtils.i("Unconfined 当前线程:${Thread.currentThread().name}")
-//            }
-//        }
-
-
-//        lifecycleScope.launchWhenCreated {
-//            whenCreated {
-//                LogUtils.i("lifecycleScope whenCreated")
-//            }
-//            whenStarted {
-//                LogUtils.i("lifecycleScope whenStarted")
-//            }
-//            whenResumed {
-//                LogUtils.i("lifecycleScope whenResumed")
-//            }
-//
-//        }
-    }
-
-    private fun requestData() {
-
-
         lifeScope {
-            /*apicall 内部处理了异常*/
-            val apiResult = apiCall {
-//                throw Exception("自定义的异常，apiCall代码块里的异常会被apiCall内部处理掉，所以不会走到外部的catch代码中")
-                delay(2000)
-                RetrofitFactory.instance.getService(ApiService::class.java).geocoder()
-            }
-
-            when (apiResult) {
-                is ApiResult.Error -> {
-                    LogUtils.i("ApiResult.Error")
-                    LogUtils.i("apiResult = ${apiResult.code},${apiResult.message}")
-                }
-                is ApiResult.Exception -> {
-                    LogUtils.i("这里处理异常信息，ApiResult.Exception")
-                    apiResult.t.printStackTrace()
-                    if (apiResult.t is CancellationException) {
-                        LogUtils.i("被取消了")
-                    } else {
-                        LogUtils.i("其他异常")
-                    }
-
-
-                }
-                is ApiResult.Success -> {
-                    binding.tv.text = apiResult.data!!.result.formatted_address
-                    stateViewManager.showContent()
-                }
-            }
-
-//            apiResult.onSuccess {
-//                binding.tv.text = it!!.result.formatted_address
-//                stateViewManager.showContent()
-//            }
-//
-//            apiResult.onFailed { code, message ->
-//
-//            }
-//
-//            apiResult.onException {
-//
-//            }
+            LogUtils.i("launch 当前线程:${Thread.currentThread().name}")
         }
 
 
+        lifeScope {
+            withIO {
+                LogUtils.i("IO 当前线程:${Thread.currentThread().name}")
+            }
+        }
 
         lifeScope {
-            val listLocalUser =
-                RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
-                    .dataConvert()
-            listLocalUser?.forEach { it ->
-                LogUtils.i("it:$it")
+            withDefault {
+                LogUtils.i("Default 当前线程:${Thread.currentThread().name}")
             }
-        }.catch {
-            LogUtils.i("异常了")
-            it.printStackTrace()
-        }.finally {
-            LogUtils.i("结束了")
+        }
+
+        lifeScope {
+            withUnconfined {
+                LogUtils.i("Unconfined 当前线程:${Thread.currentThread().name}")
+            }
         }
 
 
+        lifecycleScope.launchWhenCreated {
+            whenCreated {
+                LogUtils.i("lifecycleScope whenCreated")
+            }
+            whenStarted {
+                LogUtils.i("lifecycleScope whenStarted")
+            }
+            whenResumed {
+                LogUtils.i("lifecycleScope whenResumed")
+            }
+
+        }
     }
+
 
     override fun initData() {
         stateViewManager.switchToHttpFirst()
-//        vm.requestData()
-        requestData()
+        vm.requestData()
     }
 
     override fun observeViewModel() {

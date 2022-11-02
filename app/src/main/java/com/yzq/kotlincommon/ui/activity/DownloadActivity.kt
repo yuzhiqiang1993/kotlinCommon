@@ -6,7 +6,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
-import com.yzq.kotlincommon.mvvm.view_model.DownloadViewModel
+import com.yzq.kotlincommon.view_model.DownloadViewModel
 import com.yzq.permission.getPermissions
 
 @Route(path = RoutePath.Main.DOWNLOAD)

@@ -14,7 +14,7 @@ import com.yzq.common.data.data_base.User
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.RoomAdapter
 import com.yzq.kotlincommon.databinding.ActivityRoomBinding
-import com.yzq.kotlincommon.mvvm.view_model.RoomViewModel
+import com.yzq.kotlincommon.view_model.RoomViewModel
 import com.yzq.materialdialog.showInputDialog
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

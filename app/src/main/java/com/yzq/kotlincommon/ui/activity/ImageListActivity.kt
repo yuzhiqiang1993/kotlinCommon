@@ -15,7 +15,7 @@ import com.yzq.common.data.movie.Subject
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ImgListAdapter
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding
-import com.yzq.kotlincommon.mvvm.view_model.ImgListViewModel
+import com.yzq.kotlincommon.view_model.ImgListViewModel
 import com.yzq.recycleview_adapter.AdapterLoadMoreView
 
 

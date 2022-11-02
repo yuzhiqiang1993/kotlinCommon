@@ -1,7 +1,7 @@
 package com.yzq.common.ext
 
-import com.yzq.common.data.api.ApiExecption
-import com.yzq.common.data.api.BaseResp
+import com.yzq.common.api.ApiThrowable
+import com.yzq.common.api.BaseResp
 import com.yzq.common.net.constants.ResponseCode
 
 
@@ -19,6 +19,6 @@ fun <T> BaseResp<T>?.dataConvert(): T? {
     if (code == ResponseCode.SUCCESS) {
         return data
     } else {
-        throw ApiExecption(code, message)
+        throw ApiThrowable(code, message)
     }
 }

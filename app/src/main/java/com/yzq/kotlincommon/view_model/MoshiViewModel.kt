@@ -1,15 +1,15 @@
-package com.yzq.kotlincommon.mvvm.view_model
+package com.yzq.kotlincommon.view_model
 
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.base.view_model.BaseViewModel
-import com.yzq.common.data.api.BaseResp
+import com.yzq.common.api.BaseResp
 import com.yzq.common.data.moshi.User
 import com.yzq.common.ext.dataConvert
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ResponseCode
-import com.yzq.viewmodel.launchSupervisor
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MoshiViewModel : BaseViewModel() {
@@ -47,9 +47,11 @@ class MoshiViewModel : BaseViewModel() {
     }
 
     fun requestData() {
-        launchSupervisor {
 
+
+        launchSupervisor {
             launch {
+
                 val userList =
                     RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
                         .dataConvert()
@@ -59,6 +61,7 @@ class MoshiViewModel : BaseViewModel() {
             }
 
             launch {
+                delay(4000)
                 val userInfo =
                     RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
                 LogUtils.i("userInfo:$userInfo")

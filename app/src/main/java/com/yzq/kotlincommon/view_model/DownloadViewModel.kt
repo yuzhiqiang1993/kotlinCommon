@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.mvvm.view_model
+package com.yzq.kotlincommon.view_model
 
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileIOUtils

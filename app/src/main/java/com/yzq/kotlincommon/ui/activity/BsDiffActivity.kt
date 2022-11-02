@@ -5,7 +5,7 @@ import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBsDiffBinding
-import com.yzq.kotlincommon.mvvm.view_model.BsDiffViewModel
+import com.yzq.kotlincommon.view_model.BsDiffViewModel
 
 /**
  * @description: bsdiff 增量更新示例

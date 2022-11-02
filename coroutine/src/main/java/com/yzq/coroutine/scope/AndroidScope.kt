@@ -18,10 +18,11 @@ import kotlin.coroutines.CoroutineContext
 open class AndroidScope(
     lifecycleOwner: LifecycleOwner? = null,
     lifeEvent: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    val dispatcher: CoroutineDispatcher = Dispatchers.Main
+    dispatcher: CoroutineDispatcher = Dispatchers.Main
 ) : CoroutineScope, Closeable {
 
     init {
+
         runMain {
             lifecycleOwner?.lifecycle?.addObserver(object : LifecycleEventObserver {
                 override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
@@ -53,7 +54,8 @@ open class AndroidScope(
         dispatcher + exceptionHandler + SupervisorJob()
 
 
-    open fun launch(block: suspend CoroutineScope.() -> Unit): AndroidScope {
+    open fun doLaunch(block: suspend CoroutineScope.() -> Unit): AndroidScope {
+
         launch(coroutineContext) {
             block()
         }.invokeOnCompletion {
@@ -83,6 +85,7 @@ open class AndroidScope(
 
     /**
      * 无论正常或者异常结束都将最终执行
+     * 如果出现异常会携带异常信息 正常执行则为null
      */
     open fun finally(block: AndroidScope.(Throwable?) -> Unit = {}): AndroidScope {
         this.finally = block

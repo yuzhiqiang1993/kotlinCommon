@@ -36,6 +36,7 @@ object RoutePath {
         const val DATA_BINDING: String = "/main/dataBinding"
         const val VIEW_BINDING: String = "/main/viewBinding"
         const val VIEW_BINDING_DELEGATE: String = "/main/viewBindingDelegate"
+        const val API_CALL: String = "/main/apiCall"
 
     }
 

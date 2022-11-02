@@ -34,10 +34,6 @@ import org.greenrobot.eventbus.ThreadMode
 
 abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity() {
 
-    /**
-     * Life scope 具备生命周期感知能力的写成作用域
-     */
-//    protected val lifeScope by lazy { AndroidScope(this) }
 
     lateinit var binding: Binding
 

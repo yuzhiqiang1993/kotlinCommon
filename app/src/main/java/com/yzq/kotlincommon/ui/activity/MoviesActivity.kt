@@ -15,7 +15,7 @@ import com.yzq.common.data.movie.Subject
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MovieAdapter
 import com.yzq.kotlincommon.databinding.ActivityMovieListBinding
-import com.yzq.kotlincommon.mvvm.view_model.MovieViewModel
+import com.yzq.kotlincommon.view_model.MovieViewModel
 
 
 /**

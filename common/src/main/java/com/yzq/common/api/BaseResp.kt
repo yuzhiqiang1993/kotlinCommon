@@ -1,4 +1,4 @@
-package com.yzq.common.data.api
+package com.yzq.common.api
 
 import com.yzq.common.net.constants.ResponseCode
 

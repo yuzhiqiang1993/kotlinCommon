@@ -9,7 +9,7 @@ import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDataBindingBinding
-import com.yzq.kotlincommon.mvvm.view_model.DataBindingViewModel
+import com.yzq.kotlincommon.view_model.DataBindingViewModel
 
 
 /**

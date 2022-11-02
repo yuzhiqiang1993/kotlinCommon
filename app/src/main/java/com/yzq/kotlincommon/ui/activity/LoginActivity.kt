@@ -10,7 +10,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.common.utils.MMKVUtil
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
-import com.yzq.kotlincommon.mvvm.view_model.LoginViewModel
+import com.yzq.kotlincommon.view_model.LoginViewModel
 
 /**
  * @description: SharedPreference相关

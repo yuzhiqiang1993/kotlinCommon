@@ -1,11 +1,10 @@
-package com.yzq.kotlincommon.mvvm.view_model
+package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.common.data.LoginBean
 import com.yzq.common.net.view_model.ApiServiceViewModel
 import com.yzq.common.utils.MMKVUtil
-import kotlinx.coroutines.delay
 
 class LoginViewModel : ApiServiceViewModel() {
 
@@ -20,7 +19,6 @@ class LoginViewModel : ApiServiceViewModel() {
             LogUtils.i("MMKVUtil.account = ${MMKVUtil.account}")
             LogUtils.i("MMKVUtil.account = ${MMKVUtil.pwd}")
 
-            delay(1000)
 
             val loginBean = LoginBean()
             loginBean.account = account

@@ -19,4 +19,4 @@ fun LifecycleOwner.lifeScope(
     lifeEvent: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
     dispatcher: CoroutineDispatcher = Dispatchers.Main,
     block: suspend CoroutineScope.() -> Unit
-) = AndroidScope(this, lifeEvent, dispatcher).launch(block)
+) = AndroidScope(this, lifeEvent, dispatcher).doLaunch(block)

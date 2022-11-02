@@ -1,6 +1,6 @@
 package com.yzq.common.net.api
 
-import com.yzq.common.data.api.BaseResp
+import com.yzq.common.api.BaseResp
 import com.yzq.common.data.gaode.Geocoder
 import com.yzq.common.data.github.GithubUserInfo
 import com.yzq.common.data.moshi.LocalUser

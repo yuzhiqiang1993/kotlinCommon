@@ -1,4 +1,4 @@
-package com.yzq.common.data.api
+package com.yzq.common.api
 
 import com.tencent.bugly.proguard.T
 
@@ -47,7 +47,7 @@ inline fun <reified T> ApiResult<T>.onSuccess(success: (T?) -> Unit) {
     }
 }
 
-inline fun <T> ApiResult<T>.onFailed(error: (code: Int, message: String) -> Unit) {
+inline fun <T> ApiResult<T>.onError(error: (code: Int, message: String) -> Unit) {
     if (this is ApiResult.Error) {
         error(code, message)
     }
