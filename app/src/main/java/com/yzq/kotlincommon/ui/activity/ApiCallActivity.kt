@@ -1,10 +1,12 @@
 package com.yzq.kotlincommon.ui.activity
 
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.common.api.ApiResult
+import com.yzq.common.api.onSuccess
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.ext.apiCall
 import com.yzq.common.ext.baseRespApiCall
@@ -100,12 +102,19 @@ class ApiCallActivity : BaseVmActivity<ActivityApiCallBinding, ApiCallViewModel>
 
     private fun requestByApiCall() {
 
-        lifeScope {
+        /*使用apicall时可以直接使用官方提供的 lifecycleScope，具备取消功能*/
+        lifecycleScope.launch {
             LogUtils.i("准备请求")
             /*响应数据为BaseResp类型的请求*/
-            baseRespApiCall {
+            val baseRespApiCall = baseRespApiCall {
                 RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
             }
+            baseRespApiCall.onSuccess {
+                it?.forEach {
+                    LogUtils.i("it:$it")
+                }
+            }
+
             /*响应数据为Response类型的请求*/
             val apiResult = apiCall {
                 RetrofitFactory.instance.getService(ApiService::class.java).geocoder()
@@ -135,16 +144,6 @@ class ApiCallActivity : BaseVmActivity<ActivityApiCallBinding, ApiCallViewModel>
 //                LogUtils.i("onException:$it")
 //            }
 
-        }.catch {
-            LogUtils.i("异常了:$it")
-            it.printStackTrace()
-        }.finally {
-            if (it != null) {
-                it.printStackTrace()
-                LogUtils.i("结束了,但是有异常，${it}")
-            } else {
-                LogUtils.i("正常结束了")
-            }
         }
 
     }
@@ -152,7 +151,7 @@ class ApiCallActivity : BaseVmActivity<ActivityApiCallBinding, ApiCallViewModel>
     private fun requestByLifeScope() {
         /**
          * 请求方式二
-         * 直接请求 lifeScope对异常也做了处理
+         * 直接请求，lifeScope对异常也做了处理
          */
         lifeScope {
             LogUtils.i("准备请求")
