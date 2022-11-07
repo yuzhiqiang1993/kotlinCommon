@@ -133,12 +133,15 @@ kapt {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    implementation AndroidOfficial.viewpager2
+    implementation(AndroidOfficial.coordinatorlayout)
+
     kapt ARouter.arouterCompiler
     kapt AndroidOfficial.roomCompiler
 
     implementation ThirdParty.zxingYzq
     implementation ThirdParty.jsoup
-    implementation AndroidOfficial.viewpager2
+
     implementation ThirdParty.bannerViewPager
 
 

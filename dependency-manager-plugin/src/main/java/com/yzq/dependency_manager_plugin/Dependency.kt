@@ -48,6 +48,8 @@ object AndroidOfficial {
 
     const val splashscreen = "androidx.core:core-splashscreen:1.0.0"
 
+    const val coordinatorlayout = "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+
 }
 
 

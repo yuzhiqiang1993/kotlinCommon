@@ -16,6 +16,8 @@
         tools:replace="android:allowBackup,android:label">
         <activity
             android:name=".ui.activity.ApiCallActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -23,18 +25,28 @@
         </activity>
         <activity
             android:name=".ui.activity.BindingDelegateActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activity.NetworkActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activity.MoshiActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activity.ChannelActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.activity.AliEMASActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
             android:exported="false" /> <!-- 自定义一些元数据 -->
         <meta-data
             android:name="META_CHANNEL"
