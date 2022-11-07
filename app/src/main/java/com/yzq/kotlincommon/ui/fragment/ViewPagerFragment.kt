@@ -37,11 +37,7 @@ class ViewPagerFragment : BaseViewBindingFragment<FragmentViewPagerBinding>() {
 
     override fun initWidget() {
         super.initWidget()
-
-
         binding.viewPager.adapter = viewPagerAdapter
-
-
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
 
             tab.text = viewPagerAdapter.data[position]

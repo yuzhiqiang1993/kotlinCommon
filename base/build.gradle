@@ -63,12 +63,16 @@ dependencies {
     api AndroidOfficial.annotationLib
     api AndroidOfficial.multiDex
 
-
+    /*ktx*/
     api AndroidOfficial.corektx
+    api(AndroidOfficial.activityKtx)
+    api(AndroidOfficial.fragmentKtx)
+    api(AndroidOfficial.collectionKtx)
+    api AndroidOfficial.collectionKtx
+
 //    api AndroidOfficial.viewModel
     api AndroidOfficial.lifecycle
     api AndroidOfficial.liveData
-    api AndroidOfficial.collection
     api AndroidOfficial.swiperefreshlayout
 
 

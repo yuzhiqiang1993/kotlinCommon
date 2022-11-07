@@ -46,7 +46,6 @@ abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity() {
     protected val stateViewManager by lazy { StateViewManager(this) }
 
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
-    protected var extrasTag = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

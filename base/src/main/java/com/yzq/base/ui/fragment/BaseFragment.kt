@@ -25,7 +25,7 @@ import org.greenrobot.eventbus.ThreadMode
  * @time   : 9:49
  *
  */
-abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
+abstract class BaseFragment() : Fragment(), CoroutineScope by MainScope() {
 
 
     protected val stateViewManager by lazy { StateViewManager(activity = requireActivity() as BaseActivity<*>) }
@@ -38,7 +38,6 @@ abstract class BaseFragment : Fragment(), CoroutineScope by MainScope() {
         super.onAttach(context)
         initArgs(arguments)
     }
-    
 
 
     override fun onCreateView(

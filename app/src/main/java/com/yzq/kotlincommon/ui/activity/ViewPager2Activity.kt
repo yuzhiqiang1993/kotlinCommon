@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.view.MenuItem
+import androidx.fragment.app.commit
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.navigation.NavigationBarView
 import com.yzq.base.ui.activity.BaseActivity
@@ -22,8 +23,8 @@ import com.yzq.kotlincommon.ui.fragment.ViewPagerWithFragment
 class ViewPager2Activity : BaseActivity<ActivityViewPager2Binding>(),
     NavigationBarView.OnItemSelectedListener {
 
-    private val viewPagerFragment = ViewPagerFragment()
-    private val viewPagerWithFragment = ViewPagerWithFragment()
+    private val viewPagerFragment by lazy { ViewPagerFragment() }
+    private val viewPagerWithFragment by lazy { ViewPagerWithFragment() }
     private val fragmentList = arrayListOf<BaseFragment>()
 
     override fun createBinding() = ActivityViewPager2Binding.inflate(layoutInflater)
@@ -40,25 +41,21 @@ class ViewPager2Activity : BaseActivity<ActivityViewPager2Binding>(),
     }
 
     private fun showFragment(fragment: BaseFragment) {
-        supportFragmentManager.beginTransaction().run {
+        supportFragmentManager.commit {
+            /*优化事务操作*/
+            setReorderingAllowed(true)
             if (!fragment.isAdded) {
-                add(R.id.layout_fragment, fragment)
+                add(R.id.fragment_container_view, fragment)
             }
-
             if (!fragmentList.contains(fragment)) {
                 fragmentList.add(fragment)
             }
-
-
             fragmentList.forEach {
-
                 if (fragment != it) {
                     hide(it)
                 }
-
             }
-
-            show(fragment).commit()
+            show(fragment)
         }
 
     }

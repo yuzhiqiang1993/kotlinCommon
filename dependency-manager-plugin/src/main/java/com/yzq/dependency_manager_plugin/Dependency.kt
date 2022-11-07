@@ -9,16 +9,10 @@ object AndroidOfficial {
     const val material = "com.google.android.material:material:1.6.1"
 
     const val appcompat = "androidx.appcompat:appcompat:1.5.1"
-    const val vectordrawable =
-        "androidx.vectordrawable:vectordrawable:1.1.0"
-    const val constraintlayout =
-        "androidx.constraintlayout:constraintlayout:2.1.4"
-    const val annotationLib = "androidx.annotation:annotation:1.5.0"
-    const val multiDex = "androidx.multidex:multidex:2.0.1"
 
-    //KTX core
-    const val corektx = "androidx.core:core-ktx:1.9.0"
-
+    const val activityKtx = "androidx.activity:activity-ktx:1.6.1"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.3"
+    const val collectionKtx = "androidx.collection:collection-ktx:1.2.0"
     private const val lifecycleKtx = "2.5.1"
 
     //ViewModel
@@ -30,8 +24,16 @@ object AndroidOfficial {
     //Lifecycles only (without ViewModel or LiveData)
     const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleKtx}"
 
-    /*collection*/
-    const val collection = "androidx.collection:collection-ktx:1.2.0"
+    const val vectordrawable =
+        "androidx.vectordrawable:vectordrawable:1.1.0"
+    const val constraintlayout =
+        "androidx.constraintlayout:constraintlayout:2.1.4"
+    const val annotationLib = "androidx.annotation:annotation:1.5.0"
+    const val multiDex = "androidx.multidex:multidex:2.0.1"
+
+    //KTX core
+    const val corektx = "androidx.core:core-ktx:1.9.0"
+
 
     /*下拉刷新*/
     const val swiperefreshlayout =

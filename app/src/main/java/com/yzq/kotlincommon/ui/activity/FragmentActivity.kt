@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.view.MenuItem
+import androidx.fragment.app.commit
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.navigation.NavigationBarView
 import com.yzq.base.ui.activity.BaseVmActivity
@@ -25,7 +26,6 @@ class FragmentActivity : BaseVmActivity<ActivityFragmentBinding, FragmentViewMod
 
         initToolbar(binding.layoutToolbar.toolbar, "Fragment")
 
-
         binding.bottomNavigation.setOnItemSelectedListener(this)
 
         showFragment(vm.taskFragment)
@@ -40,23 +40,22 @@ class FragmentActivity : BaseVmActivity<ActivityFragmentBinding, FragmentViewMod
 
     private fun showFragment(fragment: BaseFragment) {
 
-        supportFragmentManager.beginTransaction().run {
+        supportFragmentManager.commit {
+            /*优化事务操作*/
+            setReorderingAllowed(true)
             if (!fragment.isAdded) {
-                add(R.id.layout_fragment, fragment)
+                add(R.id.fragment_container_view, fragment)
             }
-
             if (!vm.fragmentList.contains(fragment)) {
                 vm.fragmentList.add(fragment)
             }
-
             vm.fragmentList.forEach {
-
                 if (fragment != it) {
                     hide(it)
                 }
-
             }
-            show(fragment).commit()
+
+            show(fragment)
         }
 
 

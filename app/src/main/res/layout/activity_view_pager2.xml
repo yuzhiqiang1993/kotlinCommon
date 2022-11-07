@@ -11,8 +11,8 @@
         android:id="@+id/layout_toolbar"
         layout="@layout/toolbar" />
 
-    <FrameLayout
-        android:id="@+id/layout_fragment"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragment_container_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
