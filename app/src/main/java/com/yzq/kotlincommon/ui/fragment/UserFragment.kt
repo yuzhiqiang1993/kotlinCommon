@@ -1,26 +1,23 @@
 package com.yzq.kotlincommon.ui.fragment
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.base.ui.fragment.BaseViewBindingFragment
 import com.yzq.img.openAlbum
+import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentUserBinding
 import com.yzq.materialdialog.showCallbackDialog
 import com.yzq.permission.getPermissions
 
-class UserFragment : BaseViewBindingFragment<FragmentUserBinding>() {
+class UserFragment : BaseViewBindingFragment<FragmentUserBinding>(R.layout.fragment_user) {
 
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentUserBinding
-        get() = FragmentUserBinding::inflate
+    override val bindingBind = FragmentUserBinding::bind
 
     companion object {
         fun newInstance() = UserFragment()
     }
-
 
     override fun initWidget() {
 

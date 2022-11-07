@@ -2,18 +2,14 @@ package com.yzq.base.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.base.ui.state_view.StateViewManager
 import com.yzq.eventbus.EventBusUtil
 import com.yzq.eventbus.EventMsg
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.cancel
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -25,7 +21,7 @@ import org.greenrobot.eventbus.ThreadMode
  * @time   : 9:49
  *
  */
-abstract class BaseFragment() : Fragment(), CoroutineScope by MainScope() {
+abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
 
     protected val stateViewManager by lazy { StateViewManager(activity = requireActivity() as BaseActivity<*>) }
@@ -40,28 +36,10 @@ abstract class BaseFragment() : Fragment(), CoroutineScope by MainScope() {
     }
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-
-        EventBusUtil.register(this)
-
-        return initRootView(inflater, container, savedInstanceState)
-
-
-    }
-
-    abstract fun initRootView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initBinding(view)
+        EventBusUtil.register(this)
         initViewModel()
         initVariable()
         initWidget()
@@ -79,6 +57,8 @@ abstract class BaseFragment() : Fragment(), CoroutineScope by MainScope() {
 
     }
 
+
+    protected abstract fun initBinding(view: View)
 
     /*初始化数据*/
     protected open fun initData() {
@@ -121,11 +101,5 @@ abstract class BaseFragment() : Fragment(), CoroutineScope by MainScope() {
     /*返回键监听*/
     open fun onBackPressed(): Boolean {
         return false
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-        cancel()
     }
 }

@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen
@@ -18,6 +19,7 @@ import kotlinx.coroutines.launch
  * @time   : 6:25 下午
  */
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
 
     private var notReady = true

@@ -6,6 +6,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.ColorRes
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
@@ -32,7 +33,11 @@ import org.greenrobot.eventbus.ThreadMode
  *
  */
 
-abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<Binding : ViewBinding> :
+    AppCompatActivity {
+
+    constructor() : super()
+    constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
 
     lateinit var binding: Binding

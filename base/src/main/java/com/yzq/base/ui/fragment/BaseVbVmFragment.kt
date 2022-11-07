@@ -1,5 +1,6 @@
 package com.yzq.base.ui.fragment
 
+import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.yzq.base.view_model.BaseViewModel
@@ -14,8 +15,8 @@ import com.yzq.base.view_model.BaseViewModel
  */
 
 
-abstract class BaseVbVmFragment<VB : ViewBinding, VM : BaseViewModel> :
-    BaseViewBindingFragment<VB>() {
+abstract class BaseVbVmFragment<VB : ViewBinding, VM : BaseViewModel>(@LayoutRes contentLayoutId: Int) :
+    BaseViewBindingFragment<VB>(contentLayoutId) {
 
 
     protected lateinit var vm: VM

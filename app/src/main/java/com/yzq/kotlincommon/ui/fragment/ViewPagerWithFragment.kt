@@ -1,8 +1,6 @@
 package com.yzq.kotlincommon.ui.fragment
 
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -15,7 +13,8 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentViewPagerWithBinding
 
 
-class ViewPagerWithFragment : BaseViewBindingFragment<FragmentViewPagerWithBinding>() {
+class ViewPagerWithFragment :
+    BaseViewBindingFragment<FragmentViewPagerWithBinding>(R.layout.fragment_view_pager_with) {
 
 
     private val tabs = arrayListOf<TabLayout.Tab>()
@@ -32,8 +31,7 @@ class ViewPagerWithFragment : BaseViewBindingFragment<FragmentViewPagerWithBindi
         "软件"
     )
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentViewPagerWithBinding
-        get() = FragmentViewPagerWithBinding::inflate
+    override val bindingBind = FragmentViewPagerWithBinding::bind
 
     override fun initWidget() {
         super.initWidget()

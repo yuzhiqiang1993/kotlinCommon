@@ -1,11 +1,10 @@
 package com.yzq.kotlincommon.ui.fragment
 
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.base.ui.fragment.BaseViewBindingFragment
+import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentPagerContentBinding
 import com.yzq.kotlincommon.widget.banner.BannerAdapter
 
@@ -18,11 +17,10 @@ import com.yzq.kotlincommon.widget.banner.BannerAdapter
  */
 
 class PagerContentFragment(var content: String) :
-    BaseViewBindingFragment<FragmentPagerContentBinding>() {
+    BaseViewBindingFragment<FragmentPagerContentBinding>(R.layout.fragment_pager_content) {
 
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentPagerContentBinding
-        get() = FragmentPagerContentBinding::inflate
+    override val bindingBind = FragmentPagerContentBinding::bind
 
 
     private val bannerImgs = arrayListOf(

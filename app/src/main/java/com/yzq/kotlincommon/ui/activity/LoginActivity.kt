@@ -21,7 +21,8 @@ import com.yzq.kotlincommon.view_model.LoginViewModel
  */
 
 @Route(path = RoutePath.Main.LOGIN)
-class LoginActivity : BaseVmActivity<ActivityLoginBinding, LoginViewModel>() {
+class LoginActivity :
+    BaseVmActivity<ActivityLoginBinding, LoginViewModel>() {
 
     override fun createBinding(): ActivityLoginBinding =
         DataBindingUtil.setContentView(this, R.layout.activity_login)

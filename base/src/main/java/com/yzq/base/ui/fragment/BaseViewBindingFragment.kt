@@ -1,9 +1,7 @@
 package com.yzq.base.ui.fragment
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
 
 
@@ -14,20 +12,23 @@ import androidx.viewbinding.ViewBinding
  * @time   : 22:12
  */
 
-abstract class BaseViewBindingFragment<VB : ViewBinding> : BaseFragment() {
+abstract class BaseViewBindingFragment<VB : ViewBinding>(@LayoutRes contentLayoutId: Int) :
+    BaseFragment(contentLayoutId) {
 
+    private var _binding: VB? = null
     protected lateinit var binding: VB
 
-    abstract val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> VB
+    abstract val bindingBind: (View) -> VB
+
+    override fun initBinding(view: View) {
+        binding = bindingBind(view)
+        _binding = binding
+    }
 
 
-    override fun initRootView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = bindingInflater.invoke(inflater, container, false)
-        return binding.root
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
 

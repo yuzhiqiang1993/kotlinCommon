@@ -35,7 +35,7 @@ import kotlinx.coroutines.withContext
  */
 
 @Route(path = RoutePath.Main.MAIN)
-class MainActivity : BaseActivity<ActivityMainBinding>(),
+class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main),
     NavigationView.OnNavigationItemSelectedListener, OnItemClickListener {
 
     private var items = arrayListOf<NaviItem>()

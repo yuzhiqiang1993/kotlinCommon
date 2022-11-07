@@ -1,5 +1,6 @@
 package com.yzq.base.ui.activity
 
+import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.LogUtils
@@ -14,7 +15,9 @@ import com.yzq.base.view_model.BaseViewModel
  */
 
 abstract class BaseVmActivity<Binding : ViewBinding, VM : BaseViewModel> :
-    BaseActivity<Binding>() {
+    BaseActivity<Binding> {
+    constructor() : super()
+    constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
     lateinit var vm: VM
 

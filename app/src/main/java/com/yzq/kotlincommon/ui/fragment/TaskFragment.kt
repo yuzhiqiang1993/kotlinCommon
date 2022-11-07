@@ -1,17 +1,16 @@
 package com.yzq.kotlincommon.ui.fragment
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.ui.fragment.BaseVbVmFragment
 import com.yzq.base.utils.MoshiUtils
+import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel
 
-class TaskFragment : BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>() {
+class TaskFragment :
+    BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>(R.layout.task_fragment) {
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> TaskFragmentBinding
-        get() = TaskFragmentBinding::inflate
+    override val bindingBind = TaskFragmentBinding::bind
 
     override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
 

@@ -1,8 +1,6 @@
 package com.yzq.kotlincommon.ui.fragment
 
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yzq.base.ui.fragment.BaseViewBindingFragment
 import com.yzq.kotlincommon.R
@@ -18,11 +16,11 @@ import com.yzq.kotlincommon.databinding.FragmentViewPagerBinding
  */
 
 
-class ViewPagerFragment : BaseViewBindingFragment<FragmentViewPagerBinding>() {
+class ViewPagerFragment :
+    BaseViewBindingFragment<FragmentViewPagerBinding>(R.layout.fragment_view_pager) {
 
 
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentViewPagerBinding
-        get() = FragmentViewPagerBinding::inflate
+    override val bindingBind = FragmentViewPagerBinding::bind
 
     private val viewPagerAdapter =
         ViewPagerAdapter(
