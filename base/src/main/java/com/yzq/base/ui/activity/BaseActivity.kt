@@ -13,8 +13,6 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
-import androidx.databinding.ViewDataBinding
-import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.BarUtils
 import com.yzq.base.R
 import com.yzq.base.ui.ImgPreviewActivity
@@ -33,14 +31,11 @@ import org.greenrobot.eventbus.ThreadMode
  *
  */
 
-abstract class BaseActivity<Binding : ViewBinding> :
-    AppCompatActivity {
+abstract class BaseActivity : AppCompatActivity {
 
     constructor() : super()
     constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
-
-    lateinit var binding: Binding
 
     private var lastClickTime: Long = 0//最后一次点击的时间
 
@@ -63,12 +58,6 @@ abstract class BaseActivity<Binding : ViewBinding> :
                     return
                 }
             }
-        }
-
-
-        binding = createBinding()
-        if (binding !is ViewDataBinding) {
-            setContentView(binding.root)
         }
 
         EventBusUtil.register(this)
@@ -101,11 +90,6 @@ abstract class BaseActivity<Binding : ViewBinding> :
     }
 
     protected open fun initViewModel() {}
-
-    /*
-    * 初始化视图
-    * */
-    protected abstract fun createBinding(): Binding
 
     /*初始化变量*/
     protected open fun initVariable() {

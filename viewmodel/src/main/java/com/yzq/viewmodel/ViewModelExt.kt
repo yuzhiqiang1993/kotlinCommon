@@ -36,7 +36,7 @@ inline fun ViewModel.launchScope(
 inline fun ViewModel.launchSupervisorScope(
     crossinline onException: (t: Throwable) -> Unit = {},
     crossinline block: suspend CoroutineScope.() -> Unit,
-) = viewModelScope.launch(SupervisorJob() + CoroutineExceptionHandler { _, throwable ->
+) = viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
     onException(throwable)
 }) {
 

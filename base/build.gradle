@@ -110,6 +110,7 @@ dependencies {
     api project(path: ':aliemas')
     api project(path: ':viewmodel')
     api project(path: ':coroutine')
+    api project(path: ':binding')
 
 
 }

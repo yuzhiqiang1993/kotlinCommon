@@ -3,6 +3,7 @@ package com.yzq.kotlincommon.ui.activity
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityChannelBinding
 import com.yzq.kotlincommon.view_model.ChannelViewModel
@@ -16,10 +17,10 @@ import com.yzq.kotlincommon.view_model.ChannelViewModel
  */
 
 @Route(path = RoutePath.Main.CHANNEL)
-class ChannelActivity : BaseVmActivity<ActivityChannelBinding, ChannelViewModel>() {
+class ChannelActivity : BaseVmActivity<ChannelViewModel>() {
 
+    private val binding by viewbind(ActivityChannelBinding::inflate)
 
-    override fun createBinding() = ActivityChannelBinding.inflate(layoutInflater)
 
     override fun getViewModelClass() = ChannelViewModel::class.java
 

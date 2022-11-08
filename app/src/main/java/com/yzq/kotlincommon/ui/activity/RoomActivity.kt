@@ -1,7 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.view.View
-import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -9,6 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.yzq.base.extend.init
 import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.data_base.User
 import com.yzq.kotlincommon.R
@@ -21,12 +21,10 @@ import kotlinx.coroutines.launch
 
 
 @Route(path = RoutePath.Main.ROOM)
-class RoomActivity : BaseVmActivity<ActivityRoomBinding, RoomViewModel>(),
+class RoomActivity : BaseVmActivity<RoomViewModel>(),
     OnItemChildClickListener {
 
-
-    override fun createBinding() = ActivityRoomBinding.inflate(layoutInflater)
-
+    private val binding by viewbind(ActivityRoomBinding::inflate)
 
     private var isAdd: Boolean = false
     private val roomAdapter = RoomAdapter(R.layout.item_room, arrayListOf())
@@ -55,9 +53,7 @@ class RoomActivity : BaseVmActivity<ActivityRoomBinding, RoomViewModel>(),
 
     override fun initWidget() {
 
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        initToolbar(toolbar, "Room")
-
+        initToolbar(binding.includedToolbar.toolbar, "Room")
 
         binding.apply {
             recy.init()

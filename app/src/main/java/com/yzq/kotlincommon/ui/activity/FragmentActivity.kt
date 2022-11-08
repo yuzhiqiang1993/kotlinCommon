@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.navigation.NavigationBarView
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.base.ui.fragment.BaseFragment
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFragmentBinding
@@ -13,10 +14,10 @@ import com.yzq.kotlincommon.view_model.FragmentViewModel
 
 
 @Route(path = RoutePath.Main.FRAGMENT)
-class FragmentActivity : BaseVmActivity<ActivityFragmentBinding, FragmentViewModel>(),
+class FragmentActivity : BaseVmActivity<FragmentViewModel>(),
     NavigationBarView.OnItemSelectedListener {
 
-    override fun createBinding() = ActivityFragmentBinding.inflate(layoutInflater)
+    private val binding by viewbind(ActivityFragmentBinding::inflate)
 
     override fun getViewModelClass(): Class<FragmentViewModel> = FragmentViewModel::class.java
 

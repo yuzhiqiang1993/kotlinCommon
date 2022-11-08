@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.loper7.date_time_picker.DateTimeConfig
 import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.scope.lifeScope
 import com.yzq.kotlincommon.R
@@ -26,8 +27,9 @@ import java.util.*
  *
  */
 @Route(path = RoutePath.Main.DIALOG)
-class DialogActivity : BaseActivity<ActivityDialogBinding>() {
-    override fun createBinding() = ActivityDialogBinding.inflate(layoutInflater)
+class DialogActivity : BaseActivity() {
+
+    private val binding by viewbind(ActivityDialogBinding::inflate)
 
     override fun initWidget() {
 //        allowFastClick()

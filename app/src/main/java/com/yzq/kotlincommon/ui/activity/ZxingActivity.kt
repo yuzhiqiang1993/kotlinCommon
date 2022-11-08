@@ -5,7 +5,10 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.constant.PermissionConstants
+import com.blankj.utilcode.util.ClipboardUtils
+import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityZxingBinding
 import com.yzq.permission.getPermissions
@@ -23,15 +26,28 @@ import com.yzq.zxinglibrary.common.Constant
  */
 
 @Route(path = RoutePath.Main.ZXING)
-class ZxingActivity : BaseActivity<ActivityZxingBinding>() {
+class ZxingActivity : BaseActivity() {
     private lateinit var qrCodeActivityResult: ActivityResultLauncher<Intent>
 
-    override fun createBinding() = ActivityZxingBinding.inflate(layoutInflater)
+    private val binding by viewbind(ActivityZxingBinding::inflate)
+
     override fun initWidget() {
 
         initToolbar(binding.includedToolbar.toolbar, "Zxing")
 
-        binding.btnScan.setOnClickListener { excuteZxing() }
+
+        binding.run {
+            btnScan.setOnThrottleTimeClick {
+                excuteZxing()
+            }
+
+            tvResult.setOnLongClickListener {
+                ClipboardUtils.copyText(tvResult.text)
+                true
+            }
+
+
+        }
 
 
         qrCodeActivityResult =

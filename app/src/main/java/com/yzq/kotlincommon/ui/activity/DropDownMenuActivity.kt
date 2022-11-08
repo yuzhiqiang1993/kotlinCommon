@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.DropDownMenuFilterAdapter
@@ -25,9 +26,10 @@ import com.yzq.kotlincommon.databinding.ActivityDropDownMenuBinding
  */
 
 @Route(path = RoutePath.Main.DROP_DOWN_MENU)
-class DropDownMenuActivity : BaseActivity<ActivityDropDownMenuBinding>(),
+class DropDownMenuActivity : BaseActivity(),
     OnItemClickListener {
 
+    private val binding by viewbind(ActivityDropDownMenuBinding::inflate)
 
     private lateinit var tvFilter: AppCompatTextView
 
@@ -48,7 +50,6 @@ class DropDownMenuActivity : BaseActivity<ActivityDropDownMenuBinding>(),
     private lateinit var foodTypeRecy: RecyclerView
     private lateinit var filtersRecy: RecyclerView
 
-    override fun createBinding() = ActivityDropDownMenuBinding.inflate(layoutInflater)
 
 
     @SuppressLint("SetTextI18n")

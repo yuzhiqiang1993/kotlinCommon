@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
 import com.yzq.kotlincommon.hybrid.AndroidBug5497Workaround
@@ -15,11 +16,9 @@ import com.yzq.kotlincommon.ui.hybrid.JsBridge
 
 
 @Route(path = RoutePath.Main.WEB_VIEW)
-class WebViewActivity : BaseActivity<ActivityWebViewBinding>() {
+class WebViewActivity : BaseActivity() {
 
-
-    override fun createBinding() = ActivityWebViewBinding.inflate(layoutInflater)
-
+    private val binding by viewbind(ActivityWebViewBinding::inflate)
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initWidget() {
@@ -27,7 +26,6 @@ class WebViewActivity : BaseActivity<ActivityWebViewBinding>() {
 
 
         initToolbar(binding.layoutToolbar.toolbar, "WebView")
-
 
         binding.webview.webViewClient = WebViewClient()
         val settings = binding.webview.settings

@@ -12,7 +12,7 @@ import androidx.viewbinding.ViewBinding
  * @time   : 22:12
  */
 
-abstract class BaseViewBindingFragment<VB : ViewBinding>(@LayoutRes contentLayoutId: Int) :
+abstract class BaseBindingFragment<VB : ViewBinding>(@LayoutRes contentLayoutId: Int) :
     BaseFragment(contentLayoutId) {
 
     private var _binding: VB? = null

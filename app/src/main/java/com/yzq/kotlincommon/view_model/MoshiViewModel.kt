@@ -48,7 +48,6 @@ class MoshiViewModel : BaseViewModel() {
 
     fun requestData() {
 
-
         launchSupervisor {
             launch {
 
@@ -66,9 +65,8 @@ class MoshiViewModel : BaseViewModel() {
                     RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
                 LogUtils.i("userInfo:$userInfo")
             }
-
-
         }
+
 
     }
 }

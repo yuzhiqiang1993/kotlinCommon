@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.ui.fragment
 
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.yzq.base.ui.fragment.BaseViewBindingFragment
+import com.yzq.base.ui.fragment.BaseBindingFragment
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentPagerContentBinding
 import com.yzq.kotlincommon.widget.banner.BannerAdapter
@@ -17,7 +17,7 @@ import com.yzq.kotlincommon.widget.banner.BannerAdapter
  */
 
 class PagerContentFragment(var content: String) :
-    BaseViewBindingFragment<FragmentPagerContentBinding>(R.layout.fragment_pager_content) {
+    BaseBindingFragment<FragmentPagerContentBinding>(R.layout.fragment_pager_content) {
 
 
     override val bindingBind = FragmentPagerContentBinding::bind

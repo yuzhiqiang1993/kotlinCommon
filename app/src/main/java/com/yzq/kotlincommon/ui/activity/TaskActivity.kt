@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.yzq.base.extend.init
 import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.task.TaskBean
 import com.yzq.kotlincommon.R
@@ -26,16 +27,12 @@ import com.yzq.widget.HoverItemDecoration
  */
 
 @Route(path = RoutePath.Main.TASK)
-class TaskActivity : BaseActivity<ActivityTaskBinding>(), OnItemChildClickListener {
+class TaskActivity : BaseActivity(), OnItemChildClickListener {
 
-
+    private val binding by viewbind(ActivityTaskBinding::inflate)
     private var tasks = arrayListOf<TaskBean>()
     private var type: Int = 0
     private lateinit var taskAdapter: TaskAdapter
-
-
-    override fun createBinding() = ActivityTaskBinding.inflate(layoutInflater)
-
 
     override fun initWidget() {
         super.initWidget()

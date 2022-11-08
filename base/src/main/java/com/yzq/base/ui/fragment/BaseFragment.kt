@@ -24,7 +24,7 @@ import org.greenrobot.eventbus.ThreadMode
 abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
 
-    protected val stateViewManager by lazy { StateViewManager(activity = requireActivity() as BaseActivity<*>) }
+    protected val stateViewManager by lazy { StateViewManager(activity = requireActivity() as BaseActivity) }
 
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
     protected var extrasTag = ""
@@ -51,14 +51,22 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     protected open fun initVariable() {}
 
-
+    /**
+     * Init args
+     *
+     * @param arguments
+     */
     protected open fun initArgs(arguments: Bundle?) {
 
 
     }
 
-
-    protected abstract fun initBinding(view: View)
+    /**
+     * Init binding
+     *
+     * @param view
+     */
+    protected open fun initBinding(view: View) {}
 
     /*初始化数据*/
     protected open fun initData() {
@@ -67,10 +75,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
 
     /*初始化View*/
-    protected open fun initWidget() {
-
-
-    }
+    protected open fun initWidget() {}
 
 
     /**
@@ -82,8 +87,8 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
      */
     protected open fun initToolbar(toolbar: Toolbar, title: String, displayHome: Boolean = false) {
         toolbar.title = title
-        (activity as BaseActivity<*>).setSupportActionBar(toolbar)
-        (activity as BaseActivity<*>).supportActionBar!!.setDisplayHomeAsUpEnabled(displayHome)
+        (activity as BaseActivity).setSupportActionBar(toolbar)
+        (activity as BaseActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(displayHome)
 
     }
 

@@ -5,6 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.view_model.CompressImgViewModel
 import com.yzq.img.load
@@ -23,8 +24,9 @@ import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
 
 @Route(path = RoutePath.Main.IMG_COMPRESS)
 class ImageCompressActivity :
-    BaseVmActivity<ActivityImageCompressBinding, CompressImgViewModel>() {
+    BaseVmActivity<CompressImgViewModel>() {
 
+    private val binding by viewbind(ActivityImageCompressBinding::inflate)
 
     private lateinit var compressImgViewModel: CompressImgViewModel
 
@@ -32,7 +34,6 @@ class ImageCompressActivity :
 
     private lateinit var imgPath: String
 
-    override fun createBinding() = ActivityImageCompressBinding.inflate(layoutInflater)
 
     override fun getViewModelClass() = CompressImgViewModel::class.java
 

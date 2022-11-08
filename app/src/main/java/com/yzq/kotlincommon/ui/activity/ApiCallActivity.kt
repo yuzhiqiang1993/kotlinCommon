@@ -5,6 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.api.ApiResult
 import com.yzq.common.api.onSuccess
 import com.yzq.common.constants.RoutePath
@@ -29,11 +30,10 @@ import kotlinx.coroutines.supervisorScope
  */
 
 @Route(path = RoutePath.Main.API_CALL)
-class ApiCallActivity : BaseVmActivity<ActivityApiCallBinding, ApiCallViewModel>() {
+class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
 
-    override fun createBinding(): ActivityApiCallBinding =
-        ActivityApiCallBinding.inflate(layoutInflater)
 
+    private val binding by viewbind(ActivityApiCallBinding::inflate)
 
     override fun initWidget() {
 

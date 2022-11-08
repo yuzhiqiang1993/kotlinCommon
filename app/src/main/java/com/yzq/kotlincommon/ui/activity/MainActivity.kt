@@ -8,23 +8,18 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.google.android.material.navigation.NavigationView
-import com.tencent.bugly.beta.Beta
 import com.yzq.application.BaseApp
 import com.yzq.base.extend.init
 import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.NaviItem
-import com.yzq.coroutine.scope.lifeScope
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.MainAdapter
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
 
 /**
  * @description: 导航页面
@@ -35,14 +30,13 @@ import kotlinx.coroutines.withContext
  */
 
 @Route(path = RoutePath.Main.MAIN)
-class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main),
+class MainActivity : BaseActivity(R.layout.activity_main),
     NavigationView.OnNavigationItemSelectedListener, OnItemClickListener {
-
+    private val binding by viewbind(ActivityMainBinding::inflate)
     private var items = arrayListOf<NaviItem>()
 
     private lateinit var mainAdapter: MainAdapter
 
-    override fun createBinding() = ActivityMainBinding.inflate(layoutInflater)
 
     override fun initWidget() {
 
@@ -62,13 +56,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main),
 
         binding.navView.setNavigationItemSelectedListener(this)
 
-        lifeScope {
-            delay(1000)
-            withContext(Dispatchers.IO) {
-                LogUtils.i("检查更新")
-                Beta.checkUpgrade()
-            }
-        }
     }
 
     override fun initData() {

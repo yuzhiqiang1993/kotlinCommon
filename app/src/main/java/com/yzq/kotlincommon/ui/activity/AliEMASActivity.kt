@@ -5,6 +5,7 @@ import com.alibaba.ha.adapter.AliHaAdapter
 import com.alibaba.ha.adapter.service.tlog.TLogService
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityAliEmasactiviyBinding
 
@@ -15,8 +16,9 @@ import com.yzq.kotlincommon.databinding.ActivityAliEmasactiviyBinding
  * @time   : 6:30 下午
  */
 @Route(path = RoutePath.Main.EMAS)
-class AliEMASActivity : BaseActivity<ActivityAliEmasactiviyBinding>() {
+class AliEMASActivity : BaseActivity() {
 
+    private val binding by viewbind(ActivityAliEmasactiviyBinding::inflate)
 
     override fun initWidget() {
         TLogService.logi("APP", "AliEMASActiviy", "initWidget")
@@ -33,10 +35,6 @@ class AliEMASActivity : BaseActivity<ActivityAliEmasactiviyBinding>() {
             }
 
         }
-    }
-
-    override fun createBinding(): ActivityAliEmasactiviyBinding {
-        return ActivityAliEmasactiviyBinding.inflate(layoutInflater)
     }
 
 

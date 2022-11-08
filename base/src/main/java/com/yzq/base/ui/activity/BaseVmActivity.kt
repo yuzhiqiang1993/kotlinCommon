@@ -2,7 +2,6 @@ package com.yzq.base.ui.activity
 
 import androidx.annotation.LayoutRes
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 
@@ -14,8 +13,8 @@ import com.yzq.base.view_model.BaseViewModel
  * @time   : 18:29
  */
 
-abstract class BaseVmActivity<Binding : ViewBinding, VM : BaseViewModel> :
-    BaseActivity<Binding> {
+abstract class BaseVmActivity<VM : BaseViewModel> :
+    BaseActivity {
     constructor() : super()
     constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 

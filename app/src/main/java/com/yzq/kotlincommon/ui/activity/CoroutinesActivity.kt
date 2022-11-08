@@ -5,6 +5,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.launchCollect
 import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.scope.lifeScope
 import com.yzq.coroutine.withDefault
@@ -15,15 +16,14 @@ import com.yzq.kotlincommon.view_model.CoroutineViewModel
 import kotlinx.coroutines.flow.filter
 
 @Route(path = RoutePath.Main.COROUTINE)
-class CoroutinesActivity : BaseVmActivity<ActivityCoroutinesBinding, CoroutineViewModel>() {
+class CoroutinesActivity : BaseVmActivity<CoroutineViewModel>() {
 
     override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
 
-    override fun createBinding() = ActivityCoroutinesBinding.inflate(layoutInflater)
+    private val binding by viewbind(ActivityCoroutinesBinding::inflate)
+
     override fun initWidget() {
         super.initWidget()
-
-
 
         initToolbar(binding.layoutToolbar.toolbar, "Coroutine 协程")
         stateViewManager.initStateView(binding.stateView, binding.tv)

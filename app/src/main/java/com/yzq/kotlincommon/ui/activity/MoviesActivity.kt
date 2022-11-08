@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.yzq.base.extend.init
 import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.movie.Subject
 import com.yzq.kotlincommon.R
@@ -27,11 +28,10 @@ import com.yzq.kotlincommon.view_model.MovieViewModel
  */
 
 @Route(path = RoutePath.Main.MOVIES)
-class MoviesActivity : BaseVmActivity<ActivityMovieListBinding, MovieViewModel>(),
+class MoviesActivity : BaseVmActivity<MovieViewModel>(),
     OnItemClickListener,
     OnItemChildClickListener {
-
-    override fun createBinding() = ActivityMovieListBinding.inflate(layoutInflater)
+    private val binding by viewbind(ActivityMovieListBinding::inflate)
 
     override fun getViewModelClass(): Class<MovieViewModel> = MovieViewModel::class.java
 

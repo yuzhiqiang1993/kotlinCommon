@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.navigation.NavigationBarView
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.base.ui.fragment.BaseFragment
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityViewPager2Binding
@@ -20,14 +21,13 @@ import com.yzq.kotlincommon.ui.fragment.ViewPagerWithFragment
  */
 
 @Route(path = RoutePath.Main.VIEW_PAGER)
-class ViewPager2Activity : BaseActivity<ActivityViewPager2Binding>(),
+class ViewPager2Activity : BaseActivity(),
     NavigationBarView.OnItemSelectedListener {
 
+    private val binding by viewbind(ActivityViewPager2Binding::inflate)
     private val viewPagerFragment by lazy { ViewPagerFragment() }
     private val viewPagerWithFragment by lazy { ViewPagerWithFragment() }
     private val fragmentList = arrayListOf<BaseFragment>()
-
-    override fun createBinding() = ActivityViewPager2Binding.inflate(layoutInflater)
 
     override fun initWidget() {
         super.initWidget()

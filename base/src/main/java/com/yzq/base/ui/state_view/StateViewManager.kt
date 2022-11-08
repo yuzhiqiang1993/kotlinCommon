@@ -19,7 +19,7 @@ import com.yzq.widget.state_view.StateView
  * @time   : 21:02
  */
 
-class StateViewManager(private val activity: BaseActivity<*>) {
+class StateViewManager(private val activity: BaseActivity) {
 
     private val loadingDialog by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { activity.getLoadingDialog() }//加载框
     private val progressDialog by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { activity.getProgressDialog() } //进度框

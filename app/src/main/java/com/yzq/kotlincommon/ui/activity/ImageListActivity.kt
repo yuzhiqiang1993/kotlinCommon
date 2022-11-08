@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.chad.library.adapter.base.listener.OnLoadMoreListener
 import com.yzq.base.extend.init
 import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.movie.Subject
 import com.yzq.kotlincommon.R
@@ -28,10 +29,9 @@ import com.yzq.recycleview_adapter.AdapterLoadMoreView
  */
 
 @Route(path = RoutePath.Main.IMG_LIST)
-class ImageListActivity : BaseVmActivity<ActivityImageListBinding, ImgListViewModel>(),
+class ImageListActivity : BaseVmActivity<ImgListViewModel>(),
     OnItemClickListener, OnLoadMoreListener {
-
-    override fun createBinding() = ActivityImageListBinding.inflate(layoutInflater)
+    private val binding by viewbind(ActivityImageListBinding::inflate)
 
     override fun getViewModelClass(): Class<ImgListViewModel> = ImgListViewModel::class.java
 

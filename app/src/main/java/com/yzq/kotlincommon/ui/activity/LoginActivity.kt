@@ -1,11 +1,12 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.text.TextUtils
-import androidx.databinding.DataBindingUtil
+import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.nav
 import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.binding.databind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.utils.MMKVUtil
 import com.yzq.kotlincommon.R
@@ -21,12 +22,12 @@ import com.yzq.kotlincommon.view_model.LoginViewModel
  */
 
 @Route(path = RoutePath.Main.LOGIN)
-class LoginActivity :
-    BaseVmActivity<ActivityLoginBinding, LoginViewModel>() {
+class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
-    override fun createBinding(): ActivityLoginBinding =
-        DataBindingUtil.setContentView(this, R.layout.activity_login)
 
+    private val binding by databind<ActivityLoginBinding>(R.layout.activity_login)
+
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun getViewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
 

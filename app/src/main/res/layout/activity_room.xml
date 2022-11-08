@@ -8,7 +8,9 @@
     tools:context=".ui.activity.RoomActivity">
 
 
-    <include layout="@layout/toolbar" />
+    <include
+        android:id="@+id/included_toolbar"
+        layout="@layout/toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -16,7 +16,7 @@ import com.yzq.base.view_model.BaseViewModel
 
 
 abstract class BaseVbVmFragment<VB : ViewBinding, VM : BaseViewModel>(@LayoutRes contentLayoutId: Int) :
-    BaseViewBindingFragment<VB>(contentLayoutId) {
+    BaseBindingFragment<VB>(contentLayoutId) {
 
 
     protected lateinit var vm: VM

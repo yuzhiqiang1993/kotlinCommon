@@ -9,6 +9,7 @@ import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TagAdapter
@@ -24,12 +25,11 @@ import com.yzq.kotlincommon.databinding.ActivityFlexBoxBinding
  */
 
 @Route(path = RoutePath.Main.FLEX_BOX)
-class FlexBoxActivity : BaseActivity<ActivityFlexBoxBinding>(), OnItemClickListener {
+class FlexBoxActivity : BaseActivity(), OnItemClickListener {
 
     private lateinit var tagAdapter: TagAdapter
 
-    override fun createBinding() = ActivityFlexBoxBinding.inflate(layoutInflater)
-
+    private val binding by viewbind(ActivityFlexBoxBinding::inflate)
 
     override fun initWidget() {
         super.initWidget()

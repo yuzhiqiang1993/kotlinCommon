@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityNetworkBinding
 import com.yzq.kotlincommon.view_model.NetworkViewModel
@@ -13,8 +14,9 @@ import com.yzq.network_status.NetworkUtil
 import com.yzq.permission.getPermissions
 
 @Route(path = RoutePath.Main.NETWORK)
-class NetworkActivity : BaseVmActivity<ActivityNetworkBinding, NetworkViewModel>() {
-    override fun createBinding() = ActivityNetworkBinding.inflate(layoutInflater)
+class NetworkActivity : BaseVmActivity<NetworkViewModel>() {
+
+    private val binding by viewbind(ActivityNetworkBinding::inflate)
 
     override fun initWidget() {
 
