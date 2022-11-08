@@ -1,9 +1,11 @@
 package com.yzq.binding
 
 import android.view.LayoutInflater
+import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.core.app.ComponentActivity
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 
 
@@ -15,8 +17,8 @@ import androidx.viewbinding.ViewBinding
  * @receiver
  */
 fun <VB : ViewBinding> ComponentActivity.viewbind(
-    inflate: (layoutInflater: LayoutInflater) -> VB
-) = ActivityViewBindingDelegate<ComponentActivity, VB>(inflate)
+    inflate: (LayoutInflater) -> VB
+) = ActivityViewBindingDelegate(inflate)
 
 
 /**
@@ -26,4 +28,12 @@ fun <VB : ViewBinding> ComponentActivity.viewbind(
  * @param contentLayoutId
  */
 fun <DB : ViewDataBinding> ComponentActivity.databind(@LayoutRes contentLayoutId: Int) =
-    ActivityDataBindingDelegate<ComponentActivity, DB>(contentLayoutId)
+    ActivityDataBindingDelegate<DB>(contentLayoutId)
+
+
+fun <VB : ViewBinding> Fragment.viewbind(bind: (View) -> VB) =
+    FragmentViewBindingDelegate(this, bind)
+
+
+fun <VDB : ViewDataBinding> Fragment.databind(@LayoutRes contentLayoutId: Int) =
+    FragmentDataBindingDelegate<VDB>(this, contentLayoutId)

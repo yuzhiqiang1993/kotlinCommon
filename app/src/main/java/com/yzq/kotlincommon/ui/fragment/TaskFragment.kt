@@ -1,16 +1,15 @@
 package com.yzq.kotlincommon.ui.fragment
 
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.base.ui.fragment.BaseVbVmFragment
+import com.yzq.base.ui.fragment.BaseVmFragment
 import com.yzq.base.utils.MoshiUtils
+import com.yzq.binding.viewbind
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel
 
-class TaskFragment :
-    BaseVbVmFragment<TaskFragmentBinding, CoroutineViewModel>(R.layout.task_fragment) {
-
-    override val bindingBind = TaskFragmentBinding::bind
+class TaskFragment : BaseVmFragment<CoroutineViewModel>(R.layout.task_fragment) {
+    private val binding by viewbind(TaskFragmentBinding::bind)
 
     override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
 

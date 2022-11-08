@@ -38,7 +38,6 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initBinding(view)
         EventBusUtil.register(this)
         initViewModel()
         initVariable()
@@ -61,12 +60,6 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     }
 
-    /**
-     * Init binding
-     *
-     * @param view
-     */
-    protected open fun initBinding(view: View) {}
 
     /*初始化数据*/
     protected open fun initData() {

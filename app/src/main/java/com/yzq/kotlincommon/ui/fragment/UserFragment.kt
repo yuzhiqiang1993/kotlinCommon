@@ -3,17 +3,19 @@ package com.yzq.kotlincommon.ui.fragment
 import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.yzq.base.ui.fragment.BaseBindingFragment
+import com.yzq.base.ui.fragment.BaseFragment
+import com.yzq.binding.viewbind
 import com.yzq.img.openAlbum
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentUserBinding
 import com.yzq.materialdialog.showCallbackDialog
 import com.yzq.permission.getPermissions
 
-class UserFragment : BaseBindingFragment<FragmentUserBinding>(R.layout.fragment_user) {
+class UserFragment : BaseFragment(R.layout.fragment_user) {
 
 
-    override val bindingBind = FragmentUserBinding::bind
+    private val binding by viewbind(FragmentUserBinding::bind)
+
 
     companion object {
         fun newInstance() = UserFragment()

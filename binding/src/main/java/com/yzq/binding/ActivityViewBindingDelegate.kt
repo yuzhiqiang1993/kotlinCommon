@@ -17,15 +17,15 @@ import kotlin.reflect.KProperty
  * @time    15:20
  */
 
-class ActivityViewBindingDelegate<in A : ComponentActivity, VB : ViewBinding>(
-    private val inflate: (layoutInflater: LayoutInflater) -> VB
-) : ReadOnlyProperty<A, VB> {
+class ActivityViewBindingDelegate<VB : ViewBinding>(
+    private val inflate: (LayoutInflater) -> VB
+) : ReadOnlyProperty<ComponentActivity, VB> {
 
     private var _viewBinding: VB? = null
 
 
     @SuppressLint("RestrictedApi")
-    override operator fun getValue(thisRef: A, property: KProperty<*>): VB {
+    override operator fun getValue(thisRef: ComponentActivity, property: KProperty<*>): VB {
         _viewBinding?.let { return it }
         /**
          * 本质上就是在Activity中把他的 inflate(layoutInflater) 方法的引用传过来，在这里调用一下

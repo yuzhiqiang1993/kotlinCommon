@@ -1,30 +1,31 @@
 package com.yzq.binding
 
-import android.view.View
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
-import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
 
 /**
- * @description Fragment 的 viewbinding 代理
+ * @description Fragment DataBinding代理
  * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date    2022/11/7
- * @time    17:56
+ * @date    2022/11/8
+ * @time    13:31
  */
 
-class FragmentViewBindingDelegate<VB : ViewBinding>(
+class FragmentDataBindingDelegate<VDB : ViewDataBinding>(
     fragment: Fragment,
-    val bind: (View) -> VB
+    @LayoutRes contentLayoutId: Int
 ) :
-    ReadOnlyProperty<Fragment, VB> {
+    ReadOnlyProperty<Fragment, VDB> {
 
 
-    private var _viewBinding: VB? = null
+    private var _dataBinding: VDB? = null
 
 
     init {
@@ -38,7 +39,7 @@ class FragmentViewBindingDelegate<VB : ViewBinding>(
 
                     viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
                         override fun onDestroy(owner: LifecycleOwner) {
-                            _viewBinding = null
+                            _dataBinding = null
                         }
                     })
                 }
@@ -57,13 +58,13 @@ class FragmentViewBindingDelegate<VB : ViewBinding>(
         })
     }
 
-    override fun getValue(thisRef: Fragment, property: KProperty<*>): VB {
-        if (_viewBinding != null) {
-            return _viewBinding!!
+    override fun getValue(thisRef: Fragment, property: KProperty<*>): VDB {
+        if (_dataBinding != null) {
+            return _dataBinding!!
         }
-        val binding = bind.invoke(thisRef.requireView())
-        _viewBinding = binding
-        return binding
+        val binding = DataBindingUtil.bind<VDB>(thisRef.requireView())
+        _dataBinding = binding
+        return binding!!
     }
 
 

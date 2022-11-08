@@ -18,14 +18,14 @@ import kotlin.reflect.KProperty
  * @time    15:20
  */
 
-class ActivityDataBindingDelegate<in A : ComponentActivity, VDB : ViewDataBinding>(@LayoutRes val contentLayoutId: Int) :
-    ReadOnlyProperty<A, VDB> {
+class ActivityDataBindingDelegate<VDB : ViewDataBinding>(@LayoutRes val contentLayoutId: Int) :
+    ReadOnlyProperty<ComponentActivity, VDB> {
 
     private var _dataBinding: VDB? = null
 
 
     @SuppressLint("RestrictedApi")
-    override operator fun getValue(thisRef: A, property: KProperty<*>): VDB {
+    override operator fun getValue(thisRef: ComponentActivity, property: KProperty<*>): VDB {
         _dataBinding?.let { return it }
 
         val dataBinding = DataBindingUtil.setContentView<VDB>(thisRef, contentLayoutId)

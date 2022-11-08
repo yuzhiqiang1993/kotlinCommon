@@ -8,14 +8,15 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.yzq.base.ui.fragment.BaseBindingFragment
+import com.yzq.base.ui.fragment.BaseFragment
+import com.yzq.binding.viewbind
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentViewPagerWithBinding
 
 
 class ViewPagerWithFragment :
-    BaseBindingFragment<FragmentViewPagerWithBinding>(R.layout.fragment_view_pager_with) {
-
+    BaseFragment(R.layout.fragment_view_pager_with) {
+    private val binding by viewbind(FragmentViewPagerWithBinding::bind)
 
     private val tabs = arrayListOf<TabLayout.Tab>()
 
@@ -30,8 +31,6 @@ class ViewPagerWithFragment :
         "探索",
         "软件"
     )
-
-    override val bindingBind = FragmentViewPagerWithBinding::bind
 
     override fun initWidget() {
         super.initWidget()
