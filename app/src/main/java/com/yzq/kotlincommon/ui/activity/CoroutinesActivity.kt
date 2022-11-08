@@ -90,7 +90,8 @@ class CoroutinesActivity : BaseVmActivity<CoroutineViewModel>() {
                 stateViewManager.showContent()
             })
 
-            geocoderFlow.filter { it != null }
+            geocoderFlow
+                .filter { it != null }
                 .launchCollect(this@CoroutinesActivity) {//扩展方法
                     binding.tv.text = it!!.result.formatted_address
                     stateViewManager.showContent()

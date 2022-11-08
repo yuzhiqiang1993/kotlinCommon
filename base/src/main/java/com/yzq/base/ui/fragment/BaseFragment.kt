@@ -23,11 +23,9 @@ import org.greenrobot.eventbus.ThreadMode
  */
 abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
-
     protected val stateViewManager by lazy { StateViewManager(activity = requireActivity() as BaseActivity) }
 
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
-    protected var extrasTag = ""
 
 
     override fun onAttach(context: Context) {
@@ -82,7 +80,6 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
         toolbar.title = title
         (activity as BaseActivity).setSupportActionBar(toolbar)
         (activity as BaseActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(displayHome)
-
     }
 
 
