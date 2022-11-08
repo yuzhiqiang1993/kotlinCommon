@@ -1,4 +1,4 @@
-package com.yzq.binding
+package com.yzq.binding.databinding
 
 import android.annotation.SuppressLint
 import androidx.annotation.LayoutRes
@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import kotlin.properties.ReadOnlyProperty
+import com.yzq.binding.base.ActivityBindingDelegate
 import kotlin.reflect.KProperty
 
 
@@ -18,11 +18,19 @@ import kotlin.reflect.KProperty
  * @time    15:20
  */
 
-class ActivityDataBindingDelegate<VDB : ViewDataBinding>(@LayoutRes val contentLayoutId: Int) :
-    ReadOnlyProperty<ComponentActivity, VDB> {
+@SuppressLint("RestrictedApi")
+class ActivityDataBindingDelegate<VDB : ViewDataBinding>(
+    activity: ComponentActivity,
+    @LayoutRes val contentLayoutId: Int
+) : ActivityBindingDelegate<VDB>(activity) {
 
     private var _dataBinding: VDB? = null
 
+
+    init {
+        activity.lifecycle.addObserver(BindingLifecycleObserver())
+
+    }
 
     @SuppressLint("RestrictedApi")
     override operator fun getValue(thisRef: ComponentActivity, property: KProperty<*>): VDB {
@@ -30,11 +38,10 @@ class ActivityDataBindingDelegate<VDB : ViewDataBinding>(@LayoutRes val contentL
 
         val dataBinding = DataBindingUtil.setContentView<VDB>(thisRef, contentLayoutId)
 
-        this._dataBinding = dataBinding
+        _dataBinding = dataBinding
+        _dataBinding?.lifecycleOwner = thisRef
 
-        thisRef.lifecycle.addObserver(BindingLifecycleObserver())
-
-        return dataBinding
+        return _dataBinding as VDB
     }
 
 

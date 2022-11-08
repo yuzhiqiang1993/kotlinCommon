@@ -37,7 +37,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     private var endIconRes = -1
     private var endIconTint = R.color.primary_icon
     private var contentLeft = false
-    private val binding: ViewHorizontalTextLayoutBinding =
+    private val binding =
         ViewHorizontalTextLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {

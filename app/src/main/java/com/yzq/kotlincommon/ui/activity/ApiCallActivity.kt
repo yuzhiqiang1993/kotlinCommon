@@ -37,6 +37,8 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
 
     override fun initWidget() {
 
+        ActivityApiCallBinding.inflate(layoutInflater)
+
         binding.run {
 
             initToolbar(includedToolbar.toolbar, "接口请求")
