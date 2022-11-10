@@ -73,13 +73,6 @@ abstract class BaseActivity : AppCompatActivity {
     }
 
 
-    override fun onResume() {
-        super.onResume()
-        /*行为埋点*/
-//        val manService = MANServiceProvider.getService()
-//        manService.manPageHitHelper.pageAppear(this)
-    }
-
     /**
      * 初始化参数
      *
@@ -250,12 +243,6 @@ abstract class BaseActivity : AppCompatActivity {
         }
         super.onBackPressed()
 
-    }
-
-    override fun onPause() {
-        super.onPause()
-//        val manService = MANServiceProvider.getService()
-//        manService.manPageHitHelper.pageDisAppear(this)
     }
 
 

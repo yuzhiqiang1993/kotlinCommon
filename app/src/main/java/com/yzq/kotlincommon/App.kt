@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Build.SUPPORTED_ABIS
 import android.os.Trace
 import com.aice.appstartfaster.dispatcher.AppStartTaskDispatcher
+import com.blankj.utilcode.util.ArrayUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ProcessUtils
 import com.tencent.mmkv.MMKV
@@ -63,6 +65,9 @@ class App : BaseApp() {
     private fun readMetaData() {
 
         LogUtils.i("Build.VERSION.SDK_INT = ${Build.VERSION.SDK_INT}")
+
+        val supportedAbis = SUPPORTED_ABIS
+        LogUtils.i("支持的指令集:${ArrayUtils.toString(supportedAbis)}")
 
         /*读取Manifest.xml中的 META_DATA */
         val applicationInfo =

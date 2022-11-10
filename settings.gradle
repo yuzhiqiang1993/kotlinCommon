@@ -29,11 +29,27 @@ println "rootProjectName:${rootProject.getName()}"
 
 /*gradle的生命周期回调*/
 gradle.addBuildListener(new BuildAdapter() {
+
+    @Override
+    void beforeSettings(Settings settings) {
+        super.beforeSettings(settings)
+        project("初始化阶段：" + settings)
+
+    }
+
+    @Override
     void settingsEvaluated(Settings settings) {
         super.settingsEvaluated(settings)
         println("初始化阶段完成")
     }
 
+    @Override
+    void projectsLoaded(Gradle gradle) {
+        super.projectsLoaded(gradle)
+        println("projectsLoaded")
+    }
+
+    @Override
     void projectsEvaluated(Gradle gradle) {
         super.projectsEvaluated(gradle)
         println("配置阶段完成")
@@ -44,10 +60,7 @@ gradle.addBuildListener(new BuildAdapter() {
         })
     }
 
-    void buildFinished(BuildResult result) {
-        super.buildFinished(result)
-        println("构建阶段完成")
-    }
+
 })
 
 
