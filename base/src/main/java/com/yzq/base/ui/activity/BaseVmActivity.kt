@@ -28,6 +28,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> :
 
     override fun initViewModel() {
         vm = ViewModelProvider(this)[getViewModelClass()]
+
         vm.run {
             loadState.observe(this@BaseVmActivity) { viewStateBean ->
                 LogUtils.i("BaseVmActivity loadState:${viewStateBean}")

@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.annotation.SuppressLint
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -51,15 +50,13 @@ class DropDownMenuActivity : BaseActivity(),
     private lateinit var filtersRecy: RecyclerView
 
 
-
-    @SuppressLint("SetTextI18n")
     override fun initWidget() {
 
 
         initToolbar(binding.includedToolbar.toolbar, "下拉菜单")
 
 
-        val contentLayout = layoutInflater.inflate(R.layout.drop_down_menu_content, null)
+        val contentLayout = View.inflate(this, R.layout.drop_down_menu_content, null)
         tvFilter = contentLayout.findViewById(R.id.tv_filter)
 
 
@@ -75,7 +72,11 @@ class DropDownMenuActivity : BaseActivity(),
 
         binding.dropdownMenu.setDropDownMenu(tabs, popupViews, contentLayout)
 
-        tvFilter.text = "$foodType--$filter"
+        tvFilter.text = buildString {
+            append(foodType)
+            append("--")
+            append(filter)
+        }
         setData()
     }
 
@@ -96,20 +97,27 @@ class DropDownMenuActivity : BaseActivity(),
     }
 
 
-    @SuppressLint("SetTextI18n")
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
         when (adapter) {
             is DropDownMenuFoodTypeAdapter -> {
                 foodType = dropDownMenuFoodTypeAdapter.data[position]
                 binding.dropdownMenu.setTabText(foodType)
-                tvFilter.text = "$foodType--$filter"
+                tvFilter.text = buildString {
+                    append(foodType)
+                    append("--")
+                    append(filter)
+                }
                 binding.dropdownMenu.closeMenu()
             }
             is DropDownMenuFilterAdapter -> {
                 filter = dropDownMenuFiltersAdapter.data[position]
                 binding.dropdownMenu.setTabText(filter)
-                tvFilter.text = "$foodType--$filter"
+                tvFilter.text = buildString {
+                    append(foodType)
+                    append("--")
+                    append(filter)
+                }
                 binding.dropdownMenu.closeMenu()
             }
         }

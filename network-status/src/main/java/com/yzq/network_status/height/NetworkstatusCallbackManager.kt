@@ -11,6 +11,10 @@ import android.os.Handler
 import android.os.Looper
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.application.AppContext
 import com.yzq.network_status.NetworkType
 import com.yzq.network_status.NetworkUtil
@@ -38,7 +42,8 @@ object NetworkstatusCallbackManager : NetworkCallback() {
      */
     @RequiresApi(Build.VERSION_CODES.N)
     fun registerListener(
-        onNetworkStatusChangedListener: OnNetworkStatusChangedListener
+        onNetworkStatusChangedListener: OnNetworkStatusChangedListener,
+        lifecycleOwner: LifecycleOwner?
     ) {
 
         if (!listenersSet.contains(onNetworkStatusChangedListener)) {
@@ -49,6 +54,18 @@ object NetworkstatusCallbackManager : NetworkCallback() {
                 connectivityManager.registerDefaultNetworkCallback(this)
                 registered = true
             }
+
+            lifecycleOwner?.run {
+                lifecycle.addObserver(object : LifecycleEventObserver {
+                    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+                        if (event == Lifecycle.Event.ON_DESTROY) {
+                            unRegisterListener(onNetworkStatusChangedListener)
+                        }
+                    }
+
+                })
+            }
+
         }
     }
 
@@ -59,6 +76,7 @@ object NetworkstatusCallbackManager : NetworkCallback() {
      */
     fun unRegisterListener(onNetworkStatusChangedListener: OnNetworkStatusChangedListener) {
         if (listenersSet.contains(onNetworkStatusChangedListener)) {
+            LogUtils.i("移除")
             listenersSet.remove(onNetworkStatusChangedListener)
             if (listenersSet.size == 0) {
                 /*没有监听器了 取消注册*/

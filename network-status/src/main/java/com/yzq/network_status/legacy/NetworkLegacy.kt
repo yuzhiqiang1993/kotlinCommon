@@ -7,6 +7,7 @@ import android.net.NetworkInfo
 import android.net.wifi.WifiManager
 import android.telephony.TelephonyManager
 import androidx.annotation.RequiresPermission
+import androidx.lifecycle.LifecycleOwner
 import com.yzq.application.AppContext
 import com.yzq.network_status.*
 import com.yzq.network_status.common.INetworkStatus
@@ -134,8 +135,11 @@ internal object NetworkLegacy : INetworkStatus {
      * 注册监听
      * @param listener OnNetworkStatusChangedListener
      */
-    override fun registerNetworkStatusChangedListener(listener: OnNetworkStatusChangedListener) {
-        NetworkChangedReceiver.registerListener(listener)
+    override fun registerNetworkStatusChangedListener(
+        listener: OnNetworkStatusChangedListener,
+        lifecycleOwner: LifecycleOwner?
+    ) {
+        NetworkChangedReceiver.registerListener(listener, lifecycleOwner)
     }
 
     /**

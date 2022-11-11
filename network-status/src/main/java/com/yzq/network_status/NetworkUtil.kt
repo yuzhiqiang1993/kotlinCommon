@@ -3,6 +3,7 @@ package com.yzq.network_status
 import android.Manifest
 import android.os.Build
 import androidx.annotation.RequiresPermission
+import androidx.lifecycle.LifecycleOwner
 import com.yzq.network_status.common.INetworkStatus
 import com.yzq.network_status.height.NetworkHeight
 import com.yzq.network_status.legacy.NetworkLegacy
@@ -81,12 +82,13 @@ object NetworkUtil : INetworkStatus {
      * @param listener OnNetworkStatusChangedListener
      */
     override fun registerNetworkStatusChangedListener(
-        listener: OnNetworkStatusChangedListener
+        listener: OnNetworkStatusChangedListener,
+        lifecycleOwner: LifecycleOwner?
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            NetworkHeight.registerNetworkStatusChangedListener(listener)
+            NetworkHeight.registerNetworkStatusChangedListener(listener, lifecycleOwner)
         } else {
-            NetworkLegacy.registerNetworkStatusChangedListener(listener)
+            NetworkLegacy.registerNetworkStatusChangedListener(listener, lifecycleOwner)
         }
     }
 

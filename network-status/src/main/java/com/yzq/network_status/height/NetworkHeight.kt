@@ -8,6 +8,7 @@ import android.os.Build
 import android.telephony.TelephonyManager
 import androidx.annotation.RequiresApi
 import androidx.annotation.RequiresPermission
+import androidx.lifecycle.LifecycleOwner
 import com.yzq.application.AppContext
 import com.yzq.network_status.NetworkType
 import com.yzq.network_status.OnNetworkStatusChangedListener
@@ -148,9 +149,10 @@ internal object NetworkHeight : INetworkStatus {
      */
     @RequiresApi(Build.VERSION_CODES.N)
     override fun registerNetworkStatusChangedListener(
-        listener: OnNetworkStatusChangedListener
+        listener: OnNetworkStatusChangedListener,
+        lifecycleOwner: LifecycleOwner?
     ) {
-        NetworkstatusCallbackManager.registerListener(listener)
+        NetworkstatusCallbackManager.registerListener(listener, lifecycleOwner)
     }
 
     /**

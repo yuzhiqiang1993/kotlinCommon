@@ -62,12 +62,17 @@ abstract class BaseActivity : AppCompatActivity {
 
         EventBusUtil.register(this)
 
+        /*参数初始化，intent携带的值*/
         initArgs(intent.extras)
-
+        /*viewmodel的初始化*/
         initViewModel()
+        /*变量初始化*/
         initVariable()
+        /*控件的初始化，例如绑定点击时间之类的*/
         initWidget()
-
+        /*一些监听的初始化，*/
+        initListener()
+        /*初始化数据*/
         initData()
 
     }
@@ -95,6 +100,11 @@ abstract class BaseActivity : AppCompatActivity {
      */
     protected open fun initWidget() {
     }
+
+    protected open fun initListener() {
+
+    }
+
 
     /**
      * 处理Eventbus

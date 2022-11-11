@@ -1,5 +1,6 @@
 package com.yzq.network_status.common
 
+import androidx.lifecycle.LifecycleOwner
 import com.yzq.network_status.NetworkType
 import com.yzq.network_status.OnNetworkStatusChangedListener
 
@@ -43,7 +44,8 @@ internal interface INetworkStatus {
      * @param listener OnNetworkStatusChangedListener  监听器
      */
     fun registerNetworkStatusChangedListener(
-        listener: OnNetworkStatusChangedListener
+        listener: OnNetworkStatusChangedListener,
+        lifecycleOwner: LifecycleOwner? = null
     )
 
     /**

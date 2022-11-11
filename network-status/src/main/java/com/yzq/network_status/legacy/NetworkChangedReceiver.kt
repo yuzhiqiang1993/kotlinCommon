@@ -7,10 +7,14 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import androidx.annotation.RequiresPermission
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import com.yzq.application.AppContext
 import com.yzq.application.BaseApp
 import com.yzq.network_status.NetworkType
 import com.yzq.network_status.OnNetworkStatusChangedListener
+import com.yzq.network_status.height.NetworkstatusCallbackManager
 
 
 /**
@@ -34,7 +38,8 @@ object NetworkChangedReceiver : BroadcastReceiver() {
      * @param onNetworkStatusChangedListener OnNetworkStatusChangedListener
      */
     fun registerListener(
-        onNetworkStatusChangedListener: OnNetworkStatusChangedListener
+        onNetworkStatusChangedListener: OnNetworkStatusChangedListener,
+        lifecycleOwner: LifecycleOwner? = null
     ) {
         listenersSet.add(onNetworkStatusChangedListener)
         if (!registered) {
@@ -42,6 +47,20 @@ object NetworkChangedReceiver : BroadcastReceiver() {
             BaseApp.INSTANCE.registerReceiver(this, intentFilter)
             registered = true
         }
+
+        lifecycleOwner?.run {
+            lifecycle.addObserver(object : LifecycleEventObserver {
+                override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+                    if (event == Lifecycle.Event.ON_DESTROY) {
+                        NetworkstatusCallbackManager.unRegisterListener(
+                            onNetworkStatusChangedListener
+                        )
+                    }
+                }
+
+            })
+        }
+
 
     }
 
