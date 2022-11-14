@@ -11,7 +11,6 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.scope.lifeScope
-import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
 import com.yzq.materialdialog.*
 import kotlinx.coroutines.MainScope
@@ -174,7 +173,7 @@ class DialogActivity : BaseActivity() {
                 .setOnClickListener {
                     MaterialDialog(this@DialogActivity, BottomSheet(LayoutMode.WRAP_CONTENT))
                         .show {
-                            title(R.string.hint)
+                            title(com.yzq.resource.R.string.hint)
                             message(text = "bottom sheet")
                             positiveButton(text = "确定")
                             negativeButton(text = "取消")

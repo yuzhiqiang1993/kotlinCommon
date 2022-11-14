@@ -28,17 +28,17 @@ buildscript {
         /*加这个能减少ARouter初始化时间*/
         classpath "com.alibaba:arouter-register:1.0.2"
 
-        def bytex_plugin_version = "0.3.0"
-        /*byteX 基础*/
-        classpath "com.bytedance.android.byteX:base-plugin:${bytex_plugin_version}"
-        /*方法内联*/
-        classpath "com.bytedance.android.byteX:access-inline-plugin:${bytex_plugin_version}"
-        /*常量内联*/
-        classpath "com.bytedance.android.byteX:const-inline-plugin:${bytex_plugin_version}"
-        /*资源优化*/
-        classpath "com.bytedance.android.byteX:shrink-r-plugin:${bytex_plugin_version}"
-        /*方法移除*/
-        classpath "com.bytedance.android.byteX:method-call-opt-plugin:${bytex_plugin_version}"
+//        def bytex_plugin_version = "0.3.0"
+//        /*byteX 基础*/
+//        classpath "com.bytedance.android.byteX:base-plugin:${bytex_plugin_version}"
+//        /*方法内联*/
+//        classpath "com.bytedance.android.byteX:access-inline-plugin:${bytex_plugin_version}"
+//        /*常量内联*/
+//        classpath "com.bytedance.android.byteX:const-inline-plugin:${bytex_plugin_version}"
+//        /*资源优化*/
+//        classpath "com.bytedance.android.byteX:shrink-r-plugin:${bytex_plugin_version}"
+//        /*方法移除*/
+//        classpath "com.bytedance.android.byteX:method-call-opt-plugin:${bytex_plugin_version}"
     }
 
 
@@ -65,5 +65,19 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+/**
+ * 检测不支持Jetifier的库
+ * 通过运行./gradlew checkJetifierAll就可以打印出所有module的Jetifier使用情况
+ */
+task checkJetifierAll(group: "verification") {}
+
+subprojects { project ->
+    project.tasks.whenTaskAdded { task ->
+        if (task.name == "checkJetifier") {
+            checkJetifierAll.dependsOn(task)
+        }
+    }
 }
 

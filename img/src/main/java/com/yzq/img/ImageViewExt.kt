@@ -22,8 +22,8 @@ import com.bumptech.glide.request.target.Target
 val options = RequestOptions()
     .diskCacheStrategy(DiskCacheStrategy.ALL)
     .format(DecodeFormat.PREFER_RGB_565)
-    .placeholder(R.color.gray_100)
-    .error(R.color.gray_100)
+    .placeholder(com.yzq.resource.R.color.gray_100)
+    .error(com.yzq.resource.R.color.gray_100)
     .skipMemoryCache(true)
 
 interface ImgRequestListener : RequestListener<Drawable> {

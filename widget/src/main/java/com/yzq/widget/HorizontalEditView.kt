@@ -29,12 +29,12 @@ class HorizontalEditView @JvmOverloads constructor(
     ConstraintLayout(context, attrs, defStyleAttr) {
 
     private var iconRes: Int
-    private var iconTint: Int = R.color.primary_icon
+    private var iconTint: Int = com.yzq.resource.R.color.primary_icon
     private var titleStr: String?
     private var contentStr: String?
     private var hint: String?
     private var endIconRes: Int
-    private var endIconTint: Int = R.color.primary_icon
+    private var endIconTint: Int = com.yzq.resource.R.color.primary_icon
     private var editEnable = true
     private var inputType: String?
 
@@ -51,7 +51,7 @@ class HorizontalEditView @JvmOverloads constructor(
             iconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_icon, -1)
             iconTint = typeArr.getColor(
                 R.styleable.HorizontalEditView_horz_edit_icon_tint,
-                R.color.primary_icon
+                com.yzq.resource.R.color.primary_icon
             )
             inputType =
                 typeArr.getString(R.styleable.HorizontalEditView_horz_edit_inputType)
@@ -61,7 +61,7 @@ class HorizontalEditView @JvmOverloads constructor(
 
             endIconTint = typeArr.getColor(
                 R.styleable.HorizontalEditView_horz_edit_end_icon_tint,
-                R.color.primary_icon
+                com.yzq.resource.R.color.primary_icon
             )
             titleStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_title)
             contentStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_content)

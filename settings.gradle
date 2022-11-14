@@ -28,40 +28,40 @@ println "rootProjectName:${rootProject.getName()}"
 
 
 /*gradle的生命周期回调*/
-gradle.addBuildListener(new BuildAdapter() {
-
-    @Override
-    void beforeSettings(Settings settings) {
-        super.beforeSettings(settings)
-        project("初始化阶段：" + settings)
-
-    }
-
-    @Override
-    void settingsEvaluated(Settings settings) {
-        super.settingsEvaluated(settings)
-        println("初始化阶段完成")
-    }
-
-    @Override
-    void projectsLoaded(Gradle gradle) {
-        super.projectsLoaded(gradle)
-        println("projectsLoaded")
-    }
-
-    @Override
-    void projectsEvaluated(Gradle gradle) {
-        super.projectsEvaluated(gradle)
-        println("配置阶段完成")
-
-
-        rootProject.children.forEach(it -> {
-            println "子工程名称是：${it.name},；路径是：${it.getProjectDir()}"
-        })
-    }
-
-
-})
+//gradle.addBuildListener(new BuildAdapter() {
+//
+//    @Override
+//    void beforeSettings(Settings settings) {
+//        super.beforeSettings(settings)
+//        project("初始化阶段：" + settings)
+//
+//    }
+//
+//    @Override
+//    void settingsEvaluated(Settings settings) {
+//        super.settingsEvaluated(settings)
+//        println("初始化阶段完成")
+//    }
+//
+//    @Override
+//    void projectsLoaded(Gradle gradle) {
+//        super.projectsLoaded(gradle)
+//        println("projectsLoaded")
+//    }
+//
+//    @Override
+//    void projectsEvaluated(Gradle gradle) {
+//        super.projectsEvaluated(gradle)
+//        println("配置阶段完成")
+//
+//
+//        rootProject.children.forEach(it -> {
+//            println "子工程名称是：${it.name},；路径是：${it.getProjectDir()}"
+//        })
+//    }
+//
+//
+//})
 
 
 include ':app',

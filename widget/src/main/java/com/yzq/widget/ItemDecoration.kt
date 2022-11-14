@@ -16,7 +16,7 @@ object ItemDecoration {
 
     fun baseItemDecoration(context: Context): SuperDividerItemDecoration {
         return SuperDividerItemDecoration.Builder(context)
-            .setDividerColor(ContextCompat.getColor(context, R.color.gray_300))
+            .setDividerColor(ContextCompat.getColor(context, com.yzq.resource.R.color.gray_300))
             .setDividerWidth(1)
             .build()
 

@@ -67,7 +67,7 @@ class StateView @JvmOverloads constructor(
         binding.loadingLayout.visibility = View.GONE
         binding.abnormaLayout.visibility = View.VISIBLE
         binding.ivHint.setImageResource(noDataImgRes)
-        binding.tvHint.text = resources.getString(R.string.no_data)
+        binding.tvHint.text = resources.getString(com.yzq.resource.R.string.no_data)
     }
 
     fun showNoNet() {
@@ -76,7 +76,7 @@ class StateView @JvmOverloads constructor(
         binding.abnormaLayout.visibility = View.VISIBLE
         binding.ivHint.setImageResource(noNetImgRes)
         // ImageLoader.getInstance().load(context, R.drawable.ic_no_net, hintImg);
-        binding.tvHint.text = resources.getString(R.string.no_net)
+        binding.tvHint.text = resources.getString(com.yzq.resource.R.string.no_net)
     }
 
     fun showError(errorMsg: String) {

@@ -255,7 +255,7 @@ fun ComponentActivity.getProgressDialog(): MaterialDialog {
  */
 fun ComponentActivity.selectYear(
     displayType: MutableList<Int> = arrayListOf(DateTimeConfig.YEAR),
-    title: String = getString(R.string.select_year),
+    title: String = getString(com.yzq.resource.R.string.select_year),
     showBackNow: Boolean = false,
     showFocusDateInfo: Boolean = true,
     showDateLabel: Boolean = true,

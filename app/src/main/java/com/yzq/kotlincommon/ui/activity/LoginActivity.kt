@@ -34,7 +34,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
     override fun initWidget() {
         super.initWidget()
 
-        colorStatusBar(R.color.white, binding.layoutContainer, true)
+        colorStatusBar(com.yzq.resource.R.color.white, binding.layoutContainer, true)
 
         binding.btnLogin.setOnClickListener {
 

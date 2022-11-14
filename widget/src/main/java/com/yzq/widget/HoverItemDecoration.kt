@@ -62,7 +62,7 @@ class HoverItemDecoration(
         /*
           分组item的颜色
          */
-        val itemHoverPaintColor = ContextCompat.getColor(context, R.color.gray_300)
+        val itemHoverPaintColor = ContextCompat.getColor(context, com.yzq.resource.R.color.gray_300)
         itemPaint.color = itemHoverPaintColor
         itemHoverPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         itemHoverPaint.color = itemHoverPaintColor
@@ -73,7 +73,7 @@ class HoverItemDecoration(
         /*
           分组文字的颜色
          */
-        val textPaintColor = ContextCompat.getColor(context, R.color.black)
+        val textPaintColor = ContextCompat.getColor(context, com.yzq.resource.R.color.black)
         textPaint.color = textPaintColor
         textPaint.textSize = sp2px().toFloat()
     }

@@ -12,7 +12,7 @@ plugins {
 }
 println "getRootDir():${getRootDir()}"
 
-apply from: file("${getRootDir()}/gradle_script/bytex.gradle")
+//apply from: file("${getRootDir()}/gradle_script/bytex.gradle")
 
 android {
 

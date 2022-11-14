@@ -89,11 +89,21 @@ class ViewPagerWithFragment :
 
             if (position == index) {
                 tabTv.textSize = 18f
-                tabTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                tabTv.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        com.yzq.resource.R.color.black
+                    )
+                )
 
             } else {
                 tabTv.textSize = 14f
-                tabTv.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_600))
+                tabTv.setTextColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        com.yzq.resource.R.color.gray_600
+                    )
+                )
             }
 
 

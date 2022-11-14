@@ -10,7 +10,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.*
 import com.yzq.base.view_model.BaseViewModel
-import com.yzq.common.R
 import com.yzq.common.constants.StoragePath
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -93,7 +92,7 @@ class CompressImgViewModel : BaseViewModel() {
         val textSize = defaultW / selectBitMap.density * 14
 
         /*添加图片水印*/
-        var watermarkLogo = ImageUtils.getBitmap(R.drawable.ic_camera)
+        var watermarkLogo = ImageUtils.getBitmap(com.yzq.resource.R.drawable.ic_camera)
 
         val logoW = watermarkLogo.width
         val logoH = watermarkLogo.height

@@ -31,12 +31,12 @@ class HorizontalTextView @JvmOverloads constructor(
 
 
     private var startIconRes = -1
-    private var iconTint = R.color.primary_icon
+    private var iconTint = com.yzq.resource.R.color.primary_icon
     private var titleStr = ""
     private var contentStr = ""
     private var hintStr = ""
     private var endIconRes = -1
-    private var endIconTint = R.color.primary_icon
+    private var endIconTint = com.yzq.resource.R.color.primary_icon
     private var contentLeft = false
     private val binding =
 
@@ -49,14 +49,14 @@ class HorizontalTextView @JvmOverloads constructor(
             startIconRes = getResourceId(R.styleable.HorizontalTextView_horz_tv_icon, -1)
             iconTint = getColor(
                 R.styleable.HorizontalTextView_horz_tv_icon_tint,
-                R.color.primary_icon
+                com.yzq.resource.R.color.primary_icon
             )
             endIconRes =
                 getResourceId(R.styleable.HorizontalTextView_horz_tv_endIcon, -1)
 
             endIconTint = getColor(
                 R.styleable.HorizontalEditView_horz_edit_end_icon_tint,
-                R.color.primary_icon
+                com.yzq.resource.R.color.primary_icon
             )
 
             titleStr = getString(R.styleable.HorizontalTextView_horz_tv_title) ?: ""
