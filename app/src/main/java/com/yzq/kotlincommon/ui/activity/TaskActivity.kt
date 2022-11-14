@@ -37,7 +37,7 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
     override fun initWidget() {
         super.initWidget()
 
-        initToolbar(binding.layoutToolbar.toolbar, "任务")
+        initToolbar(binding.includedToolbar.toolbar, "任务")
         binding.recy.init()
 
     }
@@ -74,18 +74,18 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
         taskAdapter.addChildClickViewIds(R.id.tv_name, R.id.tv_delete)
         taskAdapter.setOnItemChildClickListener(this)
 
-        val hoverItemDecoration = HoverItemDecoration(
-            this,
-            HoverItemDecoration.BindItemTextCallback {
+        val hoverItemDecoration =
+            HoverItemDecoration(this) {
+                if (it < 0) {
+                    return@HoverItemDecoration ""
+                }
                 val taskBean = tasks[it]
-
-                return@BindItemTextCallback if (taskBean.type == 0) {
+                if (taskBean.type == 0) {
                     "巡查"
                 } else {
                     "急查"
                 }
-
-            })
+            }
         binding.recy.addItemDecoration(hoverItemDecoration)
 
 
@@ -110,7 +110,7 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
             R.id.tv_delete -> {
 
                 tasks.remove(operationItem)
-                taskAdapter.notifyDataSetChanged()
+                taskAdapter.notifyItemRemoved(operationPosition)
             }
         }
     }

@@ -18,14 +18,11 @@ import com.yzq.widget.databinding.LayoutStateViewBinding
  */
 
 
-class StateView(
+class StateView @JvmOverloads constructor(
     context: Context,
-    attrs: AttributeSet?,
-    defStyleAttr: Int
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
-    constructor(context: Context) : this(context, null)
 
 
     /*无网络图片*/

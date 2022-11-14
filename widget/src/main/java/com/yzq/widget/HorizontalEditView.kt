@@ -21,12 +21,12 @@ import com.yzq.widget.databinding.ViewHorizontalEditLayoutBinding
  */
 
 @SuppressLint("ResourceAsColor")
-class HorizontalEditView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+class HorizontalEditView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) :
     ConstraintLayout(context, attrs, defStyleAttr) {
-
-
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
-    constructor(context: Context) : this(context, null)
 
     private var iconRes: Int
     private var iconTint: Int = R.color.primary_icon

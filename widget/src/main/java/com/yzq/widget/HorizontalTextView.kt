@@ -22,12 +22,13 @@ import com.yzq.widget.databinding.ViewHorizontalTextLayoutBinding
  */
 
 @SuppressLint("ResourceAsColor")
-class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+class HorizontalTextView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) :
     ConstraintLayout(context, attrs, defStyleAttr) {
 
-
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
-    constructor(context: Context) : this(context, null)
 
     private var startIconRes = -1
     private var iconTint = R.color.primary_icon
@@ -38,6 +39,7 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
     private var endIconTint = R.color.primary_icon
     private var contentLeft = false
     private val binding =
+
         ViewHorizontalTextLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
@@ -63,34 +65,6 @@ class HorizontalTextView(context: Context, attrs: AttributeSet?, defStyleAttr: I
             contentLeft =
                 getBoolean(R.styleable.HorizontalTextView_horz_tv_content_left, false)
         }
-
-//        val typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalTextView)
-//
-//        try {
-//            startIconRes = typeArr.getResourceId(R.styleable.HorizontalTextView_horz_tv_icon, -1)
-//            iconTint = typeArr.getColor(
-//                R.styleable.HorizontalTextView_horz_tv_icon_tint,
-//                R.color.primary_icon
-//            )
-//            endIconRes =
-//                typeArr.getResourceId(R.styleable.HorizontalTextView_horz_tv_endIcon, -1)
-//
-//            endIconTint = typeArr.getColor(
-//                R.styleable.HorizontalEditView_horz_edit_end_icon_tint,
-//                R.color.primary_icon
-//            )
-//
-//            titleStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_title)
-//            contentStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_content)
-//            hintStr = typeArr.getString(R.styleable.HorizontalTextView_horz_tv_hint)
-//            contentLeft =
-//                typeArr.getBoolean(R.styleable.HorizontalTextView_horz_tv_content_left, false)
-//
-//        } finally {
-//            typeArr.recycle()
-//        }
-//
-//
 
 
         binding.run {
