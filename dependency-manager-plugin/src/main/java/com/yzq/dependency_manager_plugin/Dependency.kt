@@ -34,7 +34,6 @@ object AndroidOfficial {
     //KTX core
     const val corektx = "androidx.core:core-ktx:1.9.0"
 
-
     /*下拉刷新*/
     const val swiperefreshlayout =
         "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
@@ -61,6 +60,13 @@ object Kotlinx {
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinxCoroutine}"
     const val coroutineAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${kotlinxCoroutine}"
+
+    private const val kotlinVersion = "1.7.20"
+    const val kotlinStdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+    /*jdk8内部依赖了jdk7 jdk7内部又依赖了kotlin-stdlib 所以一般只需要依赖jdk8即可*/
+//    const val kotlinStdlibJdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}"
+
+
 }
 
 object Retrofit {

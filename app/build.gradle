@@ -1,7 +1,4 @@
-import com.yzq.dependency_manager_plugin.ARouter
-import com.yzq.dependency_manager_plugin.AndroidConfig
-import com.yzq.dependency_manager_plugin.AndroidOfficial
-import com.yzq.dependency_manager_plugin.ThirdParty
+import com.yzq.dependency_manager_plugin.*
 
 plugins {
     id 'com.android.application'
@@ -134,6 +131,7 @@ kapt {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    implementation(Kotlinx.kotlinStdlibJdk8)
     implementation AndroidOfficial.viewpager2
     implementation(AndroidOfficial.coordinatorlayout)
 
