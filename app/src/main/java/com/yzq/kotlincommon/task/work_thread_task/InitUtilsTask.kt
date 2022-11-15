@@ -16,7 +16,7 @@ import com.yzq.base.startup.base.WorkThreadTask
 
 class InitUtilsTask : WorkThreadTask() {
     override fun taskRun() {
-        Utils.init(BaseApp.INSTANCE)
+        Utils.init(BaseApp.getInstance())
         val config = LogUtils.getConfig()
             .setLogSwitch(BuildConfig.DEBUG)
             .setGlobalTag(AppUtils.getAppName())

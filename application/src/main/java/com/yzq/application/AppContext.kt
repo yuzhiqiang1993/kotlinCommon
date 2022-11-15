@@ -10,4 +10,4 @@ import android.content.ContextWrapper
  *
  */
 
-object AppContext : ContextWrapper(BaseApp.INSTANCE)
+object AppContext : ContextWrapper(BaseApp.getInstance())

@@ -24,7 +24,7 @@ class InitAliPushTask : MainThreadTask() {
     override fun taskRun() {
         /*https://help.aliyun.com/document_detail/195006.html*/
 
-        val config = PushInitConfig.Builder().application(BaseApp.INSTANCE)
+        val config = PushInitConfig.Builder().application(BaseApp.getInstance())
             .appKey(AliEMASConfig.appKey)
             .appSecret(AliEMASConfig.appSecret)
             .build()

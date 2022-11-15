@@ -18,17 +18,24 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
     private val activityStack: Stack<Activity> = Stack()
 
+
     init {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
 
+
     companion object {
-        lateinit var INSTANCE: BaseApp
+        private lateinit var instance: BaseApp
+
+        fun getInstance(): BaseApp {
+            return instance
+        }
     }
+
 
     override fun onCreate() {
         super.onCreate()
-        INSTANCE = this
+        instance = this
         registerActivityLifecycleCallbacks(this)
     }
 

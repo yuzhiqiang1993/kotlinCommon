@@ -145,7 +145,7 @@ class MainActivity : BaseActivity(R.layout.activity_main),
                 Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show()
                 lastBackTimeMillis = System.currentTimeMillis()
             } else {
-                BaseApp.INSTANCE.exitApp()
+                BaseApp.getInstance().exitApp()
 
             }
         }

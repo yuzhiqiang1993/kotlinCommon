@@ -31,7 +31,7 @@ class InitMobileAnalyticsTask : MainThreadTask() {
         // MAN另一初始化方法，手动指定appKey和appSecret
 
         manService.manAnalytics.init(
-            BaseApp.INSTANCE,
+            BaseApp.getInstance(),
             AppContext,
             AliEMASConfig.appKey,
             AliEMASConfig.appSecret

@@ -13,8 +13,7 @@ import com.yzq.base.view_model.BaseViewModel
  * @time   : 18:29
  */
 
-abstract class BaseVmActivity<VM : BaseViewModel> :
-    BaseActivity {
+abstract class BaseVmActivity<VM : BaseViewModel> : BaseActivity {
     constructor() : super()
     constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 

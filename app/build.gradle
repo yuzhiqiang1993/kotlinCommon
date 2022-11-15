@@ -172,8 +172,6 @@ task testTask1() {
     doLast {
         println("testTask1执行")
     }
-
-
 }
 
 /*project表示当前module的项目*/

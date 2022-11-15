@@ -20,7 +20,7 @@ fun AliHaConfig.defaultConfig(rsaPublicKey: String = "") {
     appSecret = AliEMASConfig.appSecret
     channel = "testChannel" //渠道
     userNick = null //用户昵称
-    application = BaseApp.INSTANCE
+    application = BaseApp.getInstance()
     context = AppContext
     isAliyunos = false //是否是是阿里云os
     if (rsaPublicKey.isNotEmpty()) {

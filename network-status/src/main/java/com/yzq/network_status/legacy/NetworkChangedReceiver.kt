@@ -44,7 +44,7 @@ object NetworkChangedReceiver : BroadcastReceiver() {
         listenersSet.add(onNetworkStatusChangedListener)
         if (!registered) {
             val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-            BaseApp.INSTANCE.registerReceiver(this, intentFilter)
+            BaseApp.getInstance().registerReceiver(this, intentFilter)
             registered = true
         }
 

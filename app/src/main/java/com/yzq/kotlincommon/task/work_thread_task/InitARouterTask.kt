@@ -21,7 +21,7 @@ class InitARouterTask : WorkThreadTask() {
             ARouter.openDebug() // 使用InstantRun的时候，需要打开该开关，上线之后关闭，否则有安全风险
             ARouter.printStackTrace() // 打印日志的时候打印线程堆栈
         }
-        ARouter.init(BaseApp.INSTANCE)
+        ARouter.init(BaseApp.getInstance())
     }
 
     override fun getDependsTaskList(): MutableList<Class<out AppStartTask>> {
