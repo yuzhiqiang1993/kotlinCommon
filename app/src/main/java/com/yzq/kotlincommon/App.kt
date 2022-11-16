@@ -20,8 +20,8 @@ import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 /**
  * @description: Application基类
  * @author : yzq
- * @date   : 2019/3/18
- * @time   : 11:28
+ * @date : 2019/3/18
+ * @time : 11:28
  *
  */
 
@@ -58,8 +58,6 @@ class App : BaseApp() {
         } else {
             LogUtils.i("非主进程")
         }
-
-
     }
 
     private fun readMetaData() {
@@ -85,7 +83,7 @@ class App : BaseApp() {
 
         val metaData = applicationInfo.metaData
         val metaChannelValue = metaData.getString("META_CHANNEL")
-        LogUtils.i("metaChannelValue=${metaChannelValue}")
+        LogUtils.i("metaChannelValue=$metaChannelValue")
 
         /*读取BuildConfig中的变量*/
         LogUtils.i("BuildConfig.BASE_URL = ${BuildConfig.BASE_URL}")
@@ -110,5 +108,4 @@ class App : BaseApp() {
             setAppTracingAllowed.invoke(null, true)
         }
     }
-
 }

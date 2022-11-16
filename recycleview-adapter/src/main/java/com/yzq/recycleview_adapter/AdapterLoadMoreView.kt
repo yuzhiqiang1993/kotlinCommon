@@ -7,12 +7,11 @@ import com.chad.library.adapter.base.loadmore.BaseLoadMoreView
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.yzq.base_adapter.R
 
-
 /**
  * @description: Adapter加载更多布局
  * @author : yzq
- * @date   : 2019/5/23
- * @time   : 10:31
+ * @date : 2019/5/23
+ * @time : 10:31
  *
  */
 
@@ -24,7 +23,6 @@ open class AdapterLoadMoreView : BaseLoadMoreView() {
     override fun getLoadEndView(holder: BaseViewHolder): View {
         return holder.getView(R.id.tv_load_more_end)
     }
-
 
     override fun getLoadFailView(holder: BaseViewHolder): View {
         return holder.getView(R.id.tv_load_more_failed)

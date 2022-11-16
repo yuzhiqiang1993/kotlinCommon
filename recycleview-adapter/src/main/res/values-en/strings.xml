@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KotlinCommon</string>
+    <string name="loading">Loading…</string>
+    <string name="loading_more">Loading More…</string>
+    <string name="load_more_fail">Load More Failed…</string>
+    <string name="load_more_complete">Load More Complete…</string>
+    <string name="load_more_end">Load More End…</string>
+
+</resources>
