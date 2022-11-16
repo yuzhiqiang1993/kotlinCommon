@@ -7,11 +7,11 @@ import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.view_model.CompressImgViewModel
 import com.yzq.img.load
 import com.yzq.img.openAlbum
 import com.yzq.img.openCamera
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
+import com.yzq.kotlincommon.view_model.CompressImgViewModel
 
 /**
  * @description: 图片相关

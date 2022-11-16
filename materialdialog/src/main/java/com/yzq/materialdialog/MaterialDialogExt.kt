@@ -57,5 +57,4 @@ fun MaterialDialog.changeProgress(percent: Int): MaterialDialog {
     currentProgress.text = "$percent"
 
     return this
-
 }

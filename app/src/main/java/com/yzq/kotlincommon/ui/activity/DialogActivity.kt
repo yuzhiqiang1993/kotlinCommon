@@ -159,7 +159,7 @@ class DialogActivity : BaseActivity() {
                 .setOnClickListener {
                     MaterialDialog(this@DialogActivity, BottomSheet(LayoutMode.WRAP_CONTENT))
                         .show {
-                            title(com.yzq.resource.R.string.hint)
+                            title(com.yzq.kotlincommon.R.string.hint)
                             message(text = "bottom sheet")
                             positiveButton(text = "确定")
                             negativeButton(text = "取消")

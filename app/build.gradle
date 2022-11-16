@@ -2,7 +2,7 @@ import com.yzq.dependency_manager_plugin.*
 
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
 //    id 'com.aliyun.ams.emas-services'
     id 'com.yzq.dependency-manager'
@@ -134,6 +134,7 @@ dependencies {
     implementation(Kotlinx.kotlinStdlibJdk8)
     implementation AndroidOfficial.viewpager2
     implementation(AndroidOfficial.coordinatorlayout)
+    implementation(AndroidOfficial.splashscreen)
 
     kapt ARouter.arouterCompiler
     kapt AndroidOfficial.roomCompiler
@@ -142,7 +143,6 @@ dependencies {
     implementation ThirdParty.jsoup
 
     implementation ThirdParty.bannerViewPager
-
 
     implementation ThirdParty.xeonBsDiff
 

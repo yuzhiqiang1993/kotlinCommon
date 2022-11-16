@@ -2,12 +2,11 @@ package com.yzq.eventbus
 
 import org.greenrobot.eventbus.EventBus
 
-
 /**
  * @description: EventBus封装
  * @author : yzq
- * @date   : 2018/7/9
- * @time   : 11:20
+ * @date : 2018/7/9
+ * @time : 11:20
  *
  */
 
@@ -23,7 +22,6 @@ class EventBusUtil private constructor() {
             }
         }
 
-
         /*
         * 取消注册
         * */
@@ -32,14 +30,12 @@ class EventBusUtil private constructor() {
             if (EventBus.getDefault().isRegistered(subscriber)) {
                 EventBus.getDefault().unregister(subscriber)
             }
-
         }
 
         /*发送消息*/
         fun post(eventMsg: EventMsg) {
             EventBus.getDefault().post(eventMsg)
         }
-
 
         /**
          * 粘性广播
@@ -76,7 +72,5 @@ class EventBusUtil private constructor() {
         fun cancelEventDelivery(event: Any) {
             EventBus.getDefault().cancelEventDelivery(event)
         }
-
     }
-
 }

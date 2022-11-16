@@ -16,7 +16,7 @@ import kotlin.reflect.KProperty
 class MMKVReadWriteProp<V>(
     private val key: String,
     private val defauleVal: V,
-    mmapID: String = ""
+    mmapID: String = "",
 ) : ReadWriteProperty<Any?, V> {
 
     private val mmkv by lazy {

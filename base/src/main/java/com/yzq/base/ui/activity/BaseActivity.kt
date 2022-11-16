@@ -14,6 +14,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import com.blankj.utilcode.util.BarUtils
+import com.yzq.base.R
 import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.ui.state_view.StateViewManager
@@ -127,7 +128,7 @@ abstract class BaseActivity : AppCompatActivity {
         title: String,
         displayHome: Boolean = true,
         showBackHint: Boolean = false,
-        transparentStatusBar: Boolean = true
+        transparentStatusBar: Boolean = true,
     ) {
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -147,9 +148,9 @@ abstract class BaseActivity : AppCompatActivity {
     }
 
     protected open fun colorStatusBar(
-        @ColorRes color: Int = com.yzq.resource.R.color.colorOnPrimary,
+        @ColorRes color: Int = R.color.colorOnPrimary,
         view: View,
-        isLightMode: Boolean = false
+        isLightMode: Boolean = false,
     ) {
         BarUtils.setStatusBarColor(this, ContextCompat.getColor(this, color))
         BarUtils.addMarginTopEqualStatusBarHeight(view)
@@ -178,7 +179,7 @@ abstract class BaseActivity : AppCompatActivity {
         backIv: AppCompatImageView,
         titleTv: TextView,
         title: String,
-        showBackHint: Boolean = false
+        showBackHint: Boolean = false,
     ) {
         titleTv.text = title
 
@@ -207,7 +208,7 @@ abstract class BaseActivity : AppCompatActivity {
             ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this,
                 view,
-                getString(com.yzq.resource.R.string.img_transition)
+                getString(R.string.img_transition)
             )
         startActivity(intent, options.toBundle())
     }

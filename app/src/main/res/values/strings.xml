@@ -1,5 +1,61 @@
 <resources>
-    <string name="app_name">kotlinCommon</string>
+    <string name="app_name">KotlinCommon</string>
+    <string name="loading">加载中…</string>
+    <string name="data_parse_error">数据解析错</string>
+    <string name="unknown_exception">未知异常</string>
+    <string name="loading_more">正在加载更多…</string>
+    <string name="load_more_complete">加载完成</string>
+    <string name="load_more_end">我是有底线的…</string>
+    <string name="load_more_fail">加载失败…</string>
+    <string name="timeout">请求超时，请稍后再试</string>
+    <string name="no_data">暂无数据</string>
+    <string name="retry">重试</string>
+    <string name="no_net">网络无链接，请检查</string>
+    <string name="add">添加</string>
+    <string name="upload">上传</string>
+    <string name="login">登录</string>
+    <string name="change_pwd">修改密码</string>
+    <string name="input_account_hint">请输入账号</string>
+    <string name="input_pwd_hint">请输入密码</string>
+    <string name="input_old_pwd_hint">请输入原密码</string>
+    <string name="input_new_pwd_hint">请输入新密码</string>
+    <string name="input_pwd_again_hint">请再次输入新密码</string>
+    <string name="the_user_name_cannot_be_empty">用户名不能为空</string>
+    <string name="the_password_cannot_be_empty">密码不能为空</string>
+    <string name="version_updade">版本更新</string>
+    <string name="logout">退出登录</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="hint">提示</string>
+    <string name="has_new_version">有新版本</string>
+    <string name="sure_update">确定更新</string>
+    <string name="not_update">暂不更新</string>
+
+    <string name="img_transition">img_transition</string>
+    <string name="download">下载</string>
+    <string name="start_location">开始定位</string>
+    <string name="start_count">开始计数</string>
+    <string name="menu_map">地图</string>
+    <string name="menu_gallery">相册</string>
+    <string name="menu_slideshow">幻灯片</string>
+    <string name="menu_tools">工具</string>
+    <string name="menu_share">分享</string>
+    <string name="title">标题</string>
+    <string name="camera">拍照</string>
+    <string name="gallery">相册</string>
+
+
+    <!--App-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Kotlin Common</string>
+    <string name="nav_header_subtitle">www.yzq.name</string>
+    <string name="nav_header_desc">yzq</string>
+    <string name="select_year">选择年份</string>
+    <string name="click">click</string>
+    <string name="generate_diff_file">生成差分包</string>
+    <string name="combine_diff_file">合并差分包</string>
+    <string name="test">测试</string>
 
 
 </resources>

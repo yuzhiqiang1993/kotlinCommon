@@ -49,8 +49,8 @@ class MainActivity :
             this,
             binding.drawerLayout,
             binding.includedAppbarMain.toolbar,
-            com.yzq.resource.R.string.navigation_drawer_open,
-            com.yzq.resource.R.string.navigation_drawer_close
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
         binding.drawerLayout.addDrawerListener(toggle)
         toggle.syncState()

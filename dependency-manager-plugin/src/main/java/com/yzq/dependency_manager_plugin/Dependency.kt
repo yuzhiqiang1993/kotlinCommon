@@ -15,14 +15,14 @@ object AndroidOfficial {
     const val collectionKtx = "androidx.collection:collection-ktx:1.2.0"
     private const val lifecycleKtx = "2.5.1"
 
-    //ViewModel
-    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycleKtx}"
+    // ViewModel
+    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleKtx"
 
-    //LiveData
-    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycleKtx}"
+    // LiveData
+    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleKtx"
 
-    //Lifecycles only (without ViewModel or LiveData)
-    const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycleKtx}"
+    // Lifecycles only (without ViewModel or LiveData)
+    const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleKtx"
 
     const val vectordrawable =
         "androidx.vectordrawable:vectordrawable:1.1.0"
@@ -31,7 +31,7 @@ object AndroidOfficial {
     const val annotationLib = "androidx.annotation:annotation:1.5.0"
     const val multiDex = "androidx.multidex:multidex:2.0.1"
 
-    //KTX core
+    // KTX core
     const val corektx = "androidx.core:core-ktx:1.9.0"
 
     /*下拉刷新*/
@@ -50,38 +50,34 @@ object AndroidOfficial {
     const val splashscreen = "androidx.core:core-splashscreen:1.0.0"
 
     const val coordinatorlayout = "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
-
 }
-
 
 object Kotlinx {
     private const val kotlinxCoroutine = "1.6.4"
     const val coroutinesCore =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${kotlinxCoroutine}"
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutine"
     const val coroutineAndroid =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${kotlinxCoroutine}"
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutine"
 
     private const val kotlinVersion = "1.7.20"
 
     /*一些官方库或者三方库依赖了 jdk7或者jdk8 所以最好在app中显示的依赖一下保证版本统一*/
-    const val kotlinStdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}"
+    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    const val kotlinStdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     /*jdk8内部依赖了jdk7 jdk7内部又依赖了kotlin-stdlib 所以一般只需要依赖jdk8即可*/
 //    const val kotlinStdlibJdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}"
-
-
 }
 
 object Retrofit {
     private const val okHttpVersion = "5.0.0-alpha.9"
-    const val okhttp = "com.squareup.okhttp3:okhttp:${okHttpVersion}"
-    const val okhttpLogInterceptor = "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+    const val okhttp = "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    const val okhttpLogInterceptor = "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
     const val okhttpprofiler = "com.localebro:okhttpprofiler:1.0.8"
 
     private const val retrofitVersion = "2.9.0"
-    const val retrofit = "com.squareup.retrofit2:retrofit:${retrofitVersion}"
-    const val moshiConverter = "com.squareup.retrofit2:converter-moshi:${retrofitVersion}"
-
+    const val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    const val moshiConverter = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 }
 
 object ARouter {
@@ -89,7 +85,6 @@ object ARouter {
     const val arouterApi = "com.alibaba:arouter-api:$arouter"
     const val arouterCompiler = "com.alibaba:arouter-compiler:$arouter"
 }
-
 
 object ThirdParty {
     const val utilcode = "com.blankj:utilcodex:1.31.1"
@@ -123,11 +118,9 @@ object ThirdParty {
 
     const val eventBus = "org.greenrobot:eventbus:3.3.1"
 
-
     private const val glideVersion = "4.14.2"
     const val glide = "com.github.bumptech.glide:glide:$glideVersion"
     const val glideCompiler = "com.github.bumptech.glide:compiler:$glideVersion"
-
 
     /*photoView*/
     const val photoview = "com.github.chrisbanes:PhotoView:2.3.0"
@@ -135,13 +128,11 @@ object ThirdParty {
     const val easyPhotos = "com.github.HuanTanSheng:EasyPhotos:3.1.5"
 
     private const val materialDialog = "3.3.0"
-    const val materialDialogsCore = "com.afollestad.material-dialogs:core:${materialDialog}"
+    const val materialDialogsCore = "com.afollestad.material-dialogs:core:$materialDialog"
     const val materialDialogsInput = "com.afollestad.material-dialogs:input:$materialDialog"
     const val materialDialogsBottomsheets =
         "com.afollestad.material-dialogs:bottomsheets:$materialDialog"
     const val materialDialogsLifecycle = "com.afollestad.material-dialogs:lifecycle:$materialDialog"
 
     const val dateTimePicker = "com.github.loperSeven:DateTimePicker:0.6.0"
-
-
 }
