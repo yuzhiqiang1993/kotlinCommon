@@ -11,19 +11,17 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDataBindingBinding
 import com.yzq.kotlincommon.view_model.DataBindingViewModel
 
-
 /**
  * @description: DataBinding
  * @author : XeonYu
- * @date   : 2020/11/14
- * @time   : 18:44
+ * @date : 2020/11/14
+ * @time : 18:44
  */
 
 @Route(path = RoutePath.Main.DATA_BINDING)
 class DataBindingActivity : BaseVmActivity<DataBindingViewModel>() {
 
     private val binding: ActivityDataBindingBinding by databind(R.layout.activity_data_binding)
-
 
     override fun getViewModelClass() = DataBindingViewModel::class.java
 
@@ -34,8 +32,6 @@ class DataBindingActivity : BaseVmActivity<DataBindingViewModel>() {
         binding.etContent.textChanged {
             ToastUtils.showShort(it)
         }
-
-
     }
 
     override fun initData() {
@@ -45,10 +41,8 @@ class DataBindingActivity : BaseVmActivity<DataBindingViewModel>() {
 
     override fun observeViewModel() {
         vm.dataBindingLiveData.observe(this) {
-            LogUtils.i("数据发生变化了:${it}")
+            LogUtils.i("数据发生变化了:$it")
             binding.data = it
         }
     }
-
-
 }

@@ -23,8 +23,8 @@ import com.yzq.network_status.OnNetworkStatusChangedListener
 /**
  * @description: 网路状态变更管理类，使用于Android 7.0及以上的设备
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/9/28
- * @time   : 18:08
+ * @date : 2022/9/28
+ * @time : 18:08
  */
 
 @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -32,7 +32,7 @@ object NetworkstatusCallbackManager : NetworkCallback() {
 
     private val listenersSet by lazy { mutableSetOf<OnNetworkStatusChangedListener>() }
 
-    private var registered: Boolean = false//是否注册过callback
+    private var registered: Boolean = false // 是否注册过callback
     private var networkType: NetworkType = NetworkType.NETWORK_UNKONW
     private val handler = Handler(Looper.getMainLooper())
 
@@ -43,7 +43,7 @@ object NetworkstatusCallbackManager : NetworkCallback() {
     @RequiresApi(Build.VERSION_CODES.N)
     fun registerListener(
         onNetworkStatusChangedListener: OnNetworkStatusChangedListener,
-        lifecycleOwner: LifecycleOwner?
+        lifecycleOwner: LifecycleOwner?,
     ) {
 
         if (!listenersSet.contains(onNetworkStatusChangedListener)) {
@@ -62,13 +62,10 @@ object NetworkstatusCallbackManager : NetworkCallback() {
                             unRegisterListener(onNetworkStatusChangedListener)
                         }
                     }
-
                 })
             }
-
         }
     }
-
 
     /**
      * 移除监听
@@ -86,8 +83,6 @@ object NetworkstatusCallbackManager : NetworkCallback() {
                 registered = false
             }
         }
-
-
     }
 
     /**
@@ -135,8 +130,6 @@ object NetworkstatusCallbackManager : NetworkCallback() {
                 }
             }
         }
-
-
     }
 
     /**

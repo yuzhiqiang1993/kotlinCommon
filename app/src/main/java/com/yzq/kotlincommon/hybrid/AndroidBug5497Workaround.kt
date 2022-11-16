@@ -14,8 +14,8 @@ import android.widget.FrameLayout
  *      AndroidBug5497Workaround.assistActivity(this,height)
  *}
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2021/6/24
- * @time   : 15:22
+ * @date : 2021/6/24
+ * @time : 15:22
  */
 
 class AndroidBug5497Workaround(activity: Activity, height: Int, hideBar: Boolean) {
@@ -75,14 +75,14 @@ class AndroidBug5497Workaround(activity: Activity, height: Int, hideBar: Boolean
     private fun getStatusBarHeight(activity: Activity): Int {
 
         return activity.resources.run {
-            //获取status_bar_height资源的ID
+            // 获取status_bar_height资源的ID
             val resourceId = getIdentifier(
                 "status_bar_height",
-                "dimen",
-                "android"
+                "android",
+                "dimen"
             )
             if (resourceId > 0) {
-                //根据资源ID获取响应的尺寸值
+                // 根据资源ID获取响应的尺寸值
                 getDimensionPixelSize(resourceId)
             } else {
                 0

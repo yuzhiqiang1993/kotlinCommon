@@ -9,8 +9,8 @@ import com.yzq.base.startup.base.WorkThreadTask
 /**
  * @description: 初始化ARouter
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2021/11/29
- * @time   : 8:12 下午
+ * @date : 2021/11/29
+ * @time : 8:12 下午
  */
 
 class InitARouterTask : WorkThreadTask() {
@@ -30,5 +30,4 @@ class InitARouterTask : WorkThreadTask() {
 
         return dependsTaskList
     }
-
 }

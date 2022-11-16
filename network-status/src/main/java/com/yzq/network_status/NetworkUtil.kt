@@ -8,12 +8,11 @@ import com.yzq.network_status.common.INetworkStatus
 import com.yzq.network_status.height.NetworkHeight
 import com.yzq.network_status.legacy.NetworkLegacy
 
-
 /**
  * @description: 网络相关的工具类
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/9/26
- * @time   : 16:40
+ * @date : 2022/9/26
+ * @time : 16:40
  */
 object NetworkUtil : INetworkStatus {
 
@@ -31,7 +30,6 @@ object NetworkUtil : INetworkStatus {
             NetworkLegacy.isConnected()
         }
     }
-
 
     /**
      * 是否是移动流量
@@ -61,7 +59,6 @@ object NetworkUtil : INetworkStatus {
         }
     }
 
-
     /**
      * 获取网络类型
      * 需要申请动态权限  `Manifest.permission.READ_PHONE_STATE`
@@ -74,7 +71,6 @@ object NetworkUtil : INetworkStatus {
         } else {
             return NetworkLegacy.getNetworkType()
         }
-
     }
 
     /**
@@ -114,6 +110,4 @@ object NetworkUtil : INetworkStatus {
             NetworkLegacy.clearNetworkStatusChangedListener()
         }
     }
-
-
 }

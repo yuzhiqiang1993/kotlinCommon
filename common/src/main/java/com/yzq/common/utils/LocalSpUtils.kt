@@ -1,6 +1,6 @@
 package com.yzq.common.utils
 
-import com.yzq.base.extend.SharedPreference
+import com.yzq.base.extend.SharedPreferenceProp
 
 
 /**
@@ -12,7 +12,7 @@ import com.yzq.base.extend.SharedPreference
  */
 
 object LocalSpUtils {
-    var account: String by SharedPreference("account", "")
-    var pwd: String by SharedPreference("pwd", "")
-    var token: String by SharedPreference("token", "")
+    var account: String by SharedPreferenceProp("account", "")
+    var pwd: String by SharedPreferenceProp("pwd", "")
+    var token: String by SharedPreferenceProp("token", "")
 }

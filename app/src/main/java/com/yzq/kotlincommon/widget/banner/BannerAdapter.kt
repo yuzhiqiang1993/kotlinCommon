@@ -20,8 +20,5 @@ class BannerAdapter : BaseBannerAdapter<String>() {
 
         val bannerIv = holder.findViewById<AppCompatImageView>(R.id.iv_banner)
         bannerIv.load(data)
-
     }
-
-
 }

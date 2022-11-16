@@ -1,11 +1,10 @@
 package com.yzq.network_status
 
-
 /**
  * @description: 网络状态发生变化监听接口
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/9/28
- * @time   : 09:47
+ * @date : 2022/9/28
+ * @time : 09:47
  */
 
 interface OnNetworkStatusChangedListener {
@@ -15,11 +14,8 @@ interface OnNetworkStatusChangedListener {
      */
     fun onConnect(networkType: NetworkType)
 
-
     /**
      * 网络断开连接
      */
     fun onDisconnected(networkType: NetworkType)
-
-
 }

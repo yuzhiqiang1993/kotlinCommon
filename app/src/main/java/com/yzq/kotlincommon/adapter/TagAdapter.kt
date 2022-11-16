@@ -9,7 +9,5 @@ class TagAdapter(layoutResId: Int, data: ArrayList<String>) :
     override fun convert(holder: BaseViewHolder, item: String) {
 
         holder.setText(R.id.tv_tag_name, item)
-
-
     }
 }

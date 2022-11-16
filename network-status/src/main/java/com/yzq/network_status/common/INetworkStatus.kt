@@ -4,12 +4,11 @@ import androidx.lifecycle.LifecycleOwner
 import com.yzq.network_status.NetworkType
 import com.yzq.network_status.OnNetworkStatusChangedListener
 
-
 /**
  * @description: 网络状态接口
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/9/28
- * @time   : 17:58
+ * @date : 2022/9/28
+ * @time : 17:58
  */
 
 internal interface INetworkStatus {

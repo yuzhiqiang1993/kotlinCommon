@@ -13,12 +13,11 @@ import com.yzq.eventbus.EventMsg
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-
 /**
  * @description: fragment基类
  * @author : yzq
- * @date   : 2018/7/11
- * @time   : 9:49
+ * @date : 2018/7/11
+ * @time : 9:49
  *
  */
 abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
@@ -27,12 +26,10 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         initArgs(arguments)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,7 +38,6 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
         initVariable()
         initWidget()
         initData()
-
     }
 
     protected open fun initViewModel() {}
@@ -54,20 +50,14 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
      * @param arguments
      */
     protected open fun initArgs(arguments: Bundle?) {
-
-
     }
-
 
     /*初始化数据*/
     protected open fun initData() {
-
     }
-
 
     /*初始化View*/
     protected open fun initWidget() {}
-
 
     /**
      * 初始化Fragment中的Toolbar
@@ -82,11 +72,9 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
         (activity as BaseActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(displayHome)
     }
 
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEventMainThread(msg: EventMsg) {
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

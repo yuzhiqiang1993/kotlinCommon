@@ -13,12 +13,11 @@ import com.yzq.img.openAlbum
 import com.yzq.img.openCamera
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
 
-
 /**
  * @description: 图片相关
  * @author : yzq
- * @date   : 2019/4/30
- * @time   : 13:38
+ * @date : 2019/4/30
+ * @time : 13:38
  *
  */
 
@@ -34,15 +33,12 @@ class ImageCompressActivity :
 
     private lateinit var imgPath: String
 
-
     override fun getViewModelClass() = CompressImgViewModel::class.java
-
 
     override fun initWidget() {
         super.initWidget()
 
         compressImgViewModel = ViewModelProvider(this).get(CompressImgViewModel::class.java)
-
 
         initToolbar(binding.layoutToolbar.toolbar, "图片")
         binding.fabCamera.setOnClickListener {
@@ -54,7 +50,6 @@ class ImageCompressActivity :
 
         binding.fabAlbum.setOnClickListener {
 
-
             openAlbum(count = 5, selectedPhotos = selectedPhotos) {
                 selectedPhotos.clear()
                 selectedPhotos.addAll(it)
@@ -64,14 +59,10 @@ class ImageCompressActivity :
             }
         }
 
-
         binding.ivImg.setOnClickListener {
             preViewImg(imgPath, it)
         }
-
-
     }
-
 
     override fun observeViewModel() {
         vm.run {
@@ -81,6 +72,4 @@ class ImageCompressActivity :
             }
         }
     }
-
-
 }

@@ -18,7 +18,6 @@ class NetworkActivity : BaseActivity(), OnNetworkStatusChangedListener {
 
     private val binding by viewbind(ActivityNetworkBinding::inflate)
 
-
     override fun initListener() {
         NetworkUtil.registerNetworkStatusChangedListener(this, this)
     }
@@ -26,7 +25,6 @@ class NetworkActivity : BaseActivity(), OnNetworkStatusChangedListener {
     override fun initWidget() {
         initToolbar(binding.toolbar.toolbar, "网络状态", showBackHint = true)
     }
-
 
     override fun initData() {
 
@@ -43,13 +41,8 @@ class NetworkActivity : BaseActivity(), OnNetworkStatusChangedListener {
                     append(networkType.desc)
                 }
             }
-
-
         }
-
-
     }
-
 
     override fun onConnect(networkType: NetworkType) {
         binding.tvNetworkStatus.text = buildString {

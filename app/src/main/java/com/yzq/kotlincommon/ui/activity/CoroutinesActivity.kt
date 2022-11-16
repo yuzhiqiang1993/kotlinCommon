@@ -32,14 +32,11 @@ class CoroutinesActivity : BaseVmActivity<CoroutineViewModel>() {
             stateViewManager.switchToHttpFirst()
 
             vm.requestData()
-
         }
-
 
         lifeScope {
             LogUtils.i("launch 当前线程:${Thread.currentThread().name}")
         }
-
 
         lifeScope {
             withIO {
@@ -59,7 +56,6 @@ class CoroutinesActivity : BaseVmActivity<CoroutineViewModel>() {
             }
         }
 
-
         lifecycleScope.launchWhenCreated {
             whenCreated {
                 LogUtils.i("lifecycleScope whenCreated")
@@ -70,10 +66,8 @@ class CoroutinesActivity : BaseVmActivity<CoroutineViewModel>() {
             whenResumed {
                 LogUtils.i("lifecycleScope whenResumed")
             }
-
         }
     }
-
 
     override fun initData() {
         stateViewManager.switchToHttpFirst()
@@ -83,20 +77,22 @@ class CoroutinesActivity : BaseVmActivity<CoroutineViewModel>() {
     override fun observeViewModel() {
 
         vm.run {
-            geocoder.observe(this@CoroutinesActivity, Observer {
-                LogUtils.i("请求完成")
-                binding.tv.text = it.result.formatted_address
+            geocoder.observe(
+                this@CoroutinesActivity,
+                Observer {
+                    LogUtils.i("请求完成")
+                    binding.tv.text = it.result.formatted_address
 
-                stateViewManager.showContent()
-            })
+                    stateViewManager.showContent()
+                }
+            )
 
             geocoderFlow
                 .filter { it != null }
-                .launchCollect(this@CoroutinesActivity) {//扩展方法
+                .launchCollect(this@CoroutinesActivity) { // 扩展方法
                     binding.tv.text = it!!.result.formatted_address
                     stateViewManager.showContent()
                 }
-
         }
 
         /**
@@ -114,9 +110,5 @@ class CoroutinesActivity : BaseVmActivity<CoroutineViewModel>() {
 //                }
 //            }
 //        }
-
     }
-
-
 }
-

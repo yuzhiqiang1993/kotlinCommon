@@ -24,7 +24,6 @@ class TaskFragment : BaseVmFragment<CoroutineViewModel>(R.layout.task_fragment) 
         binding.tvTask.text = "喻志强"
 
         stateViewManager.initStateView(binding.stateView, binding.tvTask)
-
     }
 
     override fun initData() {
@@ -40,16 +39,12 @@ class TaskFragment : BaseVmFragment<CoroutineViewModel>(R.layout.task_fragment) 
                 stateViewManager.showContent()
             }
 
-
             geocoderFlow
                 .filter { it != null }
-                .launchCollect(this@TaskFragment.viewLifecycleOwner) {//扩展方法
+                .launchCollect(this@TaskFragment.viewLifecycleOwner) { // 扩展方法
                     binding.tvTask.text = it!!.result.formatted_address
                     stateViewManager.showContent()
                 }
-
         }
-
     }
-
 }

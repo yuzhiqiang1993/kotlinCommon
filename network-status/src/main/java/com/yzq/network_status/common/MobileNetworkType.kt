@@ -3,12 +3,11 @@ package com.yzq.network_status.common
 import android.telephony.TelephonyManager
 import com.yzq.network_status.NetworkType
 
-
 /**
  * @description: 移动网络类型转换
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/9/28
- * @time   : 14:18
+ * @date : 2022/9/28
+ * @time : 14:18
  */
 
 internal object MobileNetworkType {
@@ -52,5 +51,4 @@ internal object MobileNetworkType {
             }
         }
     }
-
 }

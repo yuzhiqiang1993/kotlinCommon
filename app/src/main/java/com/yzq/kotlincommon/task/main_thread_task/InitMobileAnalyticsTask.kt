@@ -10,8 +10,8 @@ import com.yzq.kotlincommon.config.AliEMASConfig
 /**
  * @description: 移动分析
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/1/9
- * @time   : 1:45 下午
+ * @date : 2022/1/9
+ * @time : 1:45 下午
  */
 
 class InitMobileAnalyticsTask : MainThreadTask() {
@@ -41,7 +41,7 @@ class InitMobileAnalyticsTask : MainThreadTask() {
 //        manService.manAnalytics.turnOffCrashReporter()
 
         // 通过此接口关闭页面自动打点功能，详见文档4.2
-        //manService.getMANAnalytics().turnOffAutoPageTrack();
+        // manService.getMANAnalytics().turnOffAutoPageTrack();
         // 设置渠道（用以标记该app的分发渠道名称），如果不关心可以不设置即不调用该接口，渠道设置将影响控制台【渠道分析】栏目的报表展现。如果文档3.3章节更能满足您渠道配置的需求，就不要调用此方法，按照3.3进行配置即可
 //        manService.manAnalytics.setChannel("某渠道")
 

@@ -6,23 +6,20 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import java.util.*
 
-
 /**
  * @description Application基类
- * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date    2022/9/30
- * @time    11:02
+ * @author yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date 2022/9/30
+ * @time 11:02
  */
 
 open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
     private val activityStack: Stack<Activity> = Stack()
 
-
     init {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
-
 
     companion object {
         private lateinit var instance: BaseApp
@@ -31,7 +28,6 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
             return instance
         }
     }
-
 
     override fun onCreate() {
         super.onCreate()
@@ -54,7 +50,6 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityStarted(activity: Activity) {
-
     }
 
     override fun onActivityResumed(activity: Activity) {
@@ -69,11 +64,9 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
     }
 
-
     override fun onActivityDestroyed(activity: Activity) {
         if (activityStack.contains(activity)) {
             activityStack.remove(activity)
         }
     }
-
 }

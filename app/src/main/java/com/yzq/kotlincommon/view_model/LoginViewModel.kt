@@ -19,7 +19,6 @@ class LoginViewModel : ApiServiceViewModel() {
             LogUtils.i("MMKVUtil.account = ${MMKVUtil.account}")
             LogUtils.i("MMKVUtil.account = ${MMKVUtil.pwd}")
 
-
             val loginBean = LoginBean()
             loginBean.account = account
             loginBean.pwd = pwd

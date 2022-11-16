@@ -7,28 +7,30 @@ import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.facade.callback.NavCallback
 import com.alibaba.android.arouter.launcher.ARouter
 
-
 /**
  * @description: 跳转完成后直接关闭当前Activity
  * @author : yzq
- * @date   : 2019/2/22
- * @time   : 16:00
+ * @date : 2019/2/22
+ * @time : 16:00
  *
  */
 
 fun Postcard.navFinish(activity: FragmentActivity) {
-    navigation(activity, object : NavCallback() {
-        override fun onArrival(postcard: Postcard?) {
-            activity.finish()
+    navigation(
+        activity,
+        object : NavCallback() {
+            override fun onArrival(postcard: Postcard?) {
+                activity.finish()
+            }
         }
-    })
+    )
 }
 
 /**
  * @description: 清除之前所有页面并跳转到新页面
  * @author : yzq
- * @date   : 2019/2/22
- * @time   : 16:21
+ * @date : 2019/2/22
+ * @time : 16:21
  *
  */
 
@@ -42,7 +44,6 @@ fun FragmentActivity.nav(path: String) {
         .navigation(this)
 }
 
-
 fun FragmentActivity.navFinish(path: String) {
     ARouter.getInstance().build(path)
         .navFinish(this)
@@ -53,10 +54,8 @@ fun FragmentActivity.navClear(path: String) {
         .navClear(this)
 }
 
-
 fun Fragment.nav(path: String) {
     ARouter.getInstance().build(path).navigation(requireActivity())
-
 }
 
 fun Fragment.navFinish(path: String) {

@@ -16,12 +16,11 @@ import com.yzq.zxinglibrary.android.CaptureActivity
 import com.yzq.zxinglibrary.bean.ZxingConfig
 import com.yzq.zxinglibrary.common.Constant
 
-
 /**
  * @description: 二维码扫描
  * @author : yzq
- * @date   : 2018/12/5
- * @time   : 10:05
+ * @date : 2018/12/5
+ * @time : 10:05
  *
  */
 
@@ -35,7 +34,6 @@ class ZxingActivity : BaseActivity() {
 
         initToolbar(binding.includedToolbar.toolbar, "Zxing")
 
-
         binding.run {
             btnScan.setOnThrottleTimeClick {
                 excuteZxing()
@@ -45,10 +43,7 @@ class ZxingActivity : BaseActivity() {
                 ClipboardUtils.copyText(tvResult.text)
                 true
             }
-
-
         }
-
 
         qrCodeActivityResult =
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -57,10 +52,8 @@ class ZxingActivity : BaseActivity() {
                     val content = data.getStringExtra(Constant.CODED_CONTENT)
                     binding.tvResult.text = content
                 }
-
             }
     }
-
 
     private fun excuteZxing() =
         getPermissions(PermissionConstants.CAMERA, PermissionConstants.STORAGE) {
@@ -70,6 +63,4 @@ class ZxingActivity : BaseActivity() {
             intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig)
             qrCodeActivityResult.launch(intent)
         }
-
-
 }

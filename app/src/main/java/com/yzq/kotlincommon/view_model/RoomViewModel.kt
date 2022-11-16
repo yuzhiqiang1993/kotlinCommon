@@ -33,12 +33,8 @@ class RoomViewModel : BaseViewModel() {
                 userDao.insertUser(userList)
             }
 
-
-
             LogUtils.i("插入成功")
-
         }
-
     }
 
     /*删*/
@@ -48,9 +44,7 @@ class RoomViewModel : BaseViewModel() {
             withContext(Dispatchers.IO) {
 
                 userDao.deleteUser(user)
-
             }
-
         }
     }
 
@@ -63,9 +57,7 @@ class RoomViewModel : BaseViewModel() {
                 val user = User(id, name)
                 userDao.updateUser(user)
             }
-
         }
-
     }
 
     private fun getRandomStr(): String {
@@ -85,10 +77,7 @@ class RoomViewModel : BaseViewModel() {
             withContext(Dispatchers.IO) {
 
                 userDao.clearUser()
-
             }
-
         }
     }
-
 }

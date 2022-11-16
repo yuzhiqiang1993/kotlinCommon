@@ -19,4 +19,3 @@ fun <T> Flow<T>.launchCollect(
         }
     }
 }
-

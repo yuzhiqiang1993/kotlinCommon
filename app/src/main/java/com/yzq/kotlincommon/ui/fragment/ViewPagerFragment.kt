@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.fragment
 
-
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
@@ -8,14 +7,12 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ViewPagerAdapter
 import com.yzq.kotlincommon.databinding.FragmentViewPagerBinding
 
-
 /**
  * @description: 常规ViewPager
  * @author : yzq
- * @date   : 2019/11/28
- * @time   : 11:00
+ * @date : 2019/11/28
+ * @time : 11:00
  */
-
 
 class ViewPagerFragment : BaseFragment(R.layout.fragment_view_pager) {
 
@@ -38,10 +35,6 @@ class ViewPagerFragment : BaseFragment(R.layout.fragment_view_pager) {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
 
             tab.text = viewPagerAdapter.data[position]
-
         }.attach()
-
-
     }
-
 }

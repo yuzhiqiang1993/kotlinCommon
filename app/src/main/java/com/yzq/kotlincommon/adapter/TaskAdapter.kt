@@ -10,6 +10,5 @@ class TaskAdapter(layoutResId: Int, data: MutableList<TaskBean>) :
     override fun convert(holder: BaseViewHolder, item: TaskBean) {
 
         holder.setText(R.id.tv_name, item.name)
-
     }
 }

@@ -16,20 +16,18 @@ import com.yzq.network_status.NetworkType
 import com.yzq.network_status.OnNetworkStatusChangedListener
 import com.yzq.network_status.height.NetworkstatusCallbackManager
 
-
 /**
  * @description: 网络状态变更广播(兼容Android 6.0以下设备)
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/9/28
- * @time   : 11:15
+ * @date : 2022/9/28
+ * @time : 11:15
  */
-
 
 object NetworkChangedReceiver : BroadcastReceiver() {
 
     private val listenersSet by lazy { mutableSetOf<OnNetworkStatusChangedListener>() }
 
-    private var registered: Boolean = false//广播是否处于注册状态
+    private var registered: Boolean = false // 广播是否处于注册状态
 
     private var networkType: NetworkType = NetworkType.NETWORK_UNKONW
 
@@ -39,7 +37,7 @@ object NetworkChangedReceiver : BroadcastReceiver() {
      */
     fun registerListener(
         onNetworkStatusChangedListener: OnNetworkStatusChangedListener,
-        lifecycleOwner: LifecycleOwner? = null
+        lifecycleOwner: LifecycleOwner? = null,
     ) {
         listenersSet.add(onNetworkStatusChangedListener)
         if (!registered) {
@@ -57,11 +55,8 @@ object NetworkChangedReceiver : BroadcastReceiver() {
                         )
                     }
                 }
-
             })
         }
-
-
     }
 
     /**
@@ -89,7 +84,6 @@ object NetworkChangedReceiver : BroadcastReceiver() {
             }
         }
     }
-
 
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     override fun onReceive(context: Context, intent: Intent) {

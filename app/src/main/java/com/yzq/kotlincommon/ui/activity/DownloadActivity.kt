@@ -13,11 +13,9 @@ import com.yzq.permission.getPermissions
 @Route(path = RoutePath.Main.DOWNLOAD)
 class DownloadActivity : BaseVmActivity<DownloadViewModel>() {
 
-
     private val binding by viewbind(ActivityDownloadBinding::inflate)
 
     override fun getViewModelClass(): Class<DownloadViewModel> = DownloadViewModel::class.java
-
 
     override fun initWidget() {
 
@@ -30,16 +28,9 @@ class DownloadActivity : BaseVmActivity<DownloadViewModel>() {
                     LogUtils.i("有以下权限:$it")
                     vm.downloadApk()
                 }
-
-
             }
-
     }
 
     override fun observeViewModel() {
-
-
     }
-
-
 }

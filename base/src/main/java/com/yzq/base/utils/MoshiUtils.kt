@@ -8,8 +8,8 @@ import java.lang.reflect.Type
 /**
  * @description: 基于moshi的json转换封装
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/3/13
- * @time   : 6:29 下午
+ * @date : 2022/3/13
+ * @time : 6:29 下午
  */
 
 object MoshiUtils {
@@ -27,7 +27,6 @@ object MoshiUtils {
             e.printStackTrace()
         }
         return ""
-
     }
 
     inline fun <reified T> fromJson(jsonStr: String): T? {
@@ -40,7 +39,6 @@ object MoshiUtils {
         return null
     }
 
-
     inline fun <reified T> getGenericType(): Type {
 
         return object :
@@ -49,8 +47,5 @@ object MoshiUtils {
             .let { it as ParameterizedType }
             .actualTypeArguments
             .first()
-
     }
-
 }
-

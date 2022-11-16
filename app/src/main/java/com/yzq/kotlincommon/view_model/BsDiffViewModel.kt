@@ -14,8 +14,8 @@ import kotlin.system.measureTimeMillis
 /**
  * @description: BsDiff ViewModel
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2021/11/4
- * @time   : 3:34 下午
+ * @date : 2021/11/4
+ * @time : 3:34 下午
  */
 
 class BsDiffViewModel : BaseViewModel() {
@@ -25,16 +25,16 @@ class BsDiffViewModel : BaseViewModel() {
     private val suffix = "apk"
 
     /*新文件*/
-    private val newFile = File(PathUtils.getExternalAppCachePath(), "new.${suffix}")
+    private val newFile = File(PathUtils.getExternalAppCachePath(), "new.$suffix")
 
     /*旧文件*/
-    private val oldFile = File(PathUtils.getExternalAppCachePath(), "old.${suffix}")
+    private val oldFile = File(PathUtils.getExternalAppCachePath(), "old.$suffix")
 
     /*合并后的文件*/
-    private val combineFile = File(PathUtils.getExternalAppCachePath(), "combine.${suffix}")
+    private val combineFile = File(PathUtils.getExternalAppCachePath(), "combine.$suffix")
 
     /*生成的补丁文件*/
-    private val patchFile = File(PathUtils.getExternalAppCachePath(), "patch.${suffix}")
+    private val patchFile = File(PathUtils.getExternalAppCachePath(), "patch.$suffix")
 
     /**
      * 生成差分包,非常的耗时且占用内存，一般都是在服务端进行
@@ -55,12 +55,10 @@ class BsDiffViewModel : BaseViewModel() {
                         oldFile.absolutePath,
                         patchFile.absolutePath
                     )
-
                 }
             }
 
-
-            ToastUtils.showLong("差分包生成成功，耗时${measureTimeMillis}")
+            ToastUtils.showLong("差分包生成成功，耗时$measureTimeMillis")
         }
     }
 
@@ -87,7 +85,6 @@ class BsDiffViewModel : BaseViewModel() {
                         patchFile.absolutePath,
                         combineFile.absolutePath
                     )
-
                 }
 
                 /*计算md5值*/
@@ -96,10 +93,7 @@ class BsDiffViewModel : BaseViewModel() {
                 combineFileMD5LiveData.value = FileUtils.getFileMD5ToString(combineFile)
             }
 
-            ToastUtils.showLong("差分包合并完成，耗时:${measureTimeMillis}")
-
+            ToastUtils.showLong("差分包合并完成，耗时:$measureTimeMillis")
         }
-
     }
-
 }

@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.fragment
 
-
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -13,13 +12,11 @@ import com.yzq.binding.viewbind
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentViewPagerWithBinding
 
-
 class ViewPagerWithFragment :
     BaseFragment(R.layout.fragment_view_pager_with) {
     private val binding by viewbind(FragmentViewPagerWithBinding::bind)
 
     private val tabs = arrayListOf<TabLayout.Tab>()
-
 
     private val tabTitles = arrayListOf(
         "首页",
@@ -46,7 +43,6 @@ class ViewPagerWithFragment :
             }
         }
 
-
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
 
             tab.setCustomView(R.layout.layout_custom_tab)
@@ -55,12 +51,7 @@ class ViewPagerWithFragment :
                 tabTitles[position]
 
             tabs.add(tab)
-
-
         }.attach()
-
-
-
 
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
 
@@ -68,20 +59,12 @@ class ViewPagerWithFragment :
                 super.onPageSelected(position)
 
                 changeTabsText(position)
-
-
             }
-
-
         })
-
-
     }
-
 
     /*更改选中文字样式*/
     private fun changeTabsText(position: Int) {
-
 
         tabs.forEachIndexed { index, tab ->
             val tabTv =
@@ -95,7 +78,6 @@ class ViewPagerWithFragment :
                         com.yzq.resource.R.color.black
                     )
                 )
-
             } else {
                 tabTv.textSize = 14f
                 tabTv.setTextColor(
@@ -105,10 +87,6 @@ class ViewPagerWithFragment :
                     )
                 )
             }
-
-
         }
     }
-
-
 }

@@ -18,27 +18,25 @@ import com.yzq.kotlincommon.adapter.MovieAdapter
 import com.yzq.kotlincommon.databinding.ActivityMovieListBinding
 import com.yzq.kotlincommon.view_model.MovieViewModel
 
-
 /**
  * @description: 电影列表页面
  * @author : yzq
- * @date   : 2019/4/30
- * @time   : 13:40
+ * @date : 2019/4/30
+ * @time : 13:40
  *
  */
 
 @Route(path = RoutePath.Main.MOVIES)
-class MoviesActivity : BaseVmActivity<MovieViewModel>(),
+class MoviesActivity :
+    BaseVmActivity<MovieViewModel>(),
     OnItemClickListener,
     OnItemChildClickListener {
     private val binding by viewbind(ActivityMovieListBinding::inflate)
 
     override fun getViewModelClass(): Class<MovieViewModel> = MovieViewModel::class.java
 
-
     private lateinit var movieAdapter: MovieAdapter
     private lateinit var operationItem: Subject
-
 
     override fun initWidget() {
 
@@ -50,11 +48,9 @@ class MoviesActivity : BaseVmActivity<MovieViewModel>(),
         }
     }
 
-
     override fun initData() {
         vm.requestData()
     }
-
 
     override fun observeViewModel() {
         vm.subjects.observe(this) { t ->
@@ -65,12 +61,8 @@ class MoviesActivity : BaseVmActivity<MovieViewModel>(),
             } else {
                 stateViewManager.showNoData()
             }
-
-
         }
-
     }
-
 
     private fun showData(data: MutableList<Subject>) {
 
@@ -82,13 +74,11 @@ class MoviesActivity : BaseVmActivity<MovieViewModel>(),
         stateViewManager.showContent()
     }
 
-
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
         operationItem = movieAdapter.data[position]
 
         ToastUtils.showShort(operationItem.title)
     }
-
 
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
@@ -101,8 +91,5 @@ class MoviesActivity : BaseVmActivity<MovieViewModel>(),
                 preViewImg(operationItem.images.large, imgView)
             }
         }
-
     }
-
-
 }

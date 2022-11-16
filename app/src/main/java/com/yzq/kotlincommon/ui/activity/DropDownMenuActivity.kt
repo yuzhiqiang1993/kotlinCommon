@@ -15,17 +15,17 @@ import com.yzq.kotlincommon.adapter.DropDownMenuFilterAdapter
 import com.yzq.kotlincommon.adapter.DropDownMenuFoodTypeAdapter
 import com.yzq.kotlincommon.databinding.ActivityDropDownMenuBinding
 
-
 /**
  * @description: 下拉菜单
  * @author : yzq
- * @date   : 2019/4/30
- * @time   : 13:38
+ * @date : 2019/4/30
+ * @time : 13:38
  *
  */
 
 @Route(path = RoutePath.Main.DROP_DOWN_MENU)
-class DropDownMenuActivity : BaseActivity(),
+class DropDownMenuActivity :
+    BaseActivity(),
     OnItemClickListener {
 
     private val binding by viewbind(ActivityDropDownMenuBinding::inflate)
@@ -38,28 +38,21 @@ class DropDownMenuActivity : BaseActivity(),
     private var foodType: String = "全部美食"
     private var filter: String = "智能排序"
 
-
     private val foodTypes = arrayListOf("全部美食", "福建菜", "江浙菜", "川菜")
     private val filters = arrayListOf("智能排序", "离我最近", "好评优先", "人气最高")
 
     private val tabs = arrayListOf("全部美食", "智能排序")
     private val popupViews = arrayListOf<View>()
 
-
     private lateinit var foodTypeRecy: RecyclerView
     private lateinit var filtersRecy: RecyclerView
 
-
     override fun initWidget() {
-
 
         initToolbar(binding.includedToolbar.toolbar, "下拉菜单")
 
-
         val contentLayout = View.inflate(this, R.layout.drop_down_menu_content, null)
         tvFilter = contentLayout.findViewById(R.id.tv_filter)
-
-
 
         foodTypeRecy = RecyclerView(this)
         foodTypeRecy.layoutManager = LinearLayoutManager(this)
@@ -92,10 +85,7 @@ class DropDownMenuActivity : BaseActivity(),
 
         foodTypeRecy.adapter = dropDownMenuFoodTypeAdapter
         filtersRecy.adapter = dropDownMenuFiltersAdapter
-
-
     }
-
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
@@ -121,8 +111,5 @@ class DropDownMenuActivity : BaseActivity(),
                 binding.dropdownMenu.closeMenu()
             }
         }
-
-
     }
-
 }

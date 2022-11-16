@@ -12,32 +12,26 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFragmentBinding
 import com.yzq.kotlincommon.view_model.FragmentViewModel
 
-
 @Route(path = RoutePath.Main.FRAGMENT)
-class FragmentActivity : BaseVmActivity<FragmentViewModel>(),
+class FragmentActivity :
+    BaseVmActivity<FragmentViewModel>(),
     NavigationBarView.OnItemSelectedListener {
 
     private val binding by viewbind(ActivityFragmentBinding::inflate)
 
     override fun getViewModelClass(): Class<FragmentViewModel> = FragmentViewModel::class.java
 
-
     override fun initWidget() {
-
 
         initToolbar(binding.layoutToolbar.toolbar, "Fragment")
 
         binding.bottomNavigation.setOnItemSelectedListener(this)
 
         showFragment(vm.taskFragment)
-
-
     }
 
     override fun observeViewModel() {
-
     }
-
 
     private fun showFragment(fragment: BaseFragment) {
 
@@ -58,24 +52,16 @@ class FragmentActivity : BaseVmActivity<FragmentViewModel>(),
 
             show(fragment)
         }
-
-
     }
 
     override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
-
 
         if (!menuItem.isChecked) {
             when (menuItem.itemId) {
                 R.id.menu_task -> showFragment(vm.taskFragment)
                 R.id.menu_user -> showFragment(vm.userFragment)
-
             }
-
         }
         return true
-
     }
-
-
 }

@@ -19,25 +19,24 @@ import com.yzq.kotlincommon.databinding.ActivityImageListBinding
 import com.yzq.kotlincommon.view_model.ImgListViewModel
 import com.yzq.recycleview_adapter.AdapterLoadMoreView
 
-
 /**
  * @description: 图片瀑布流
  * @author : yzq
- * @date   : 2019/5/23
- * @time   : 13:35
+ * @date : 2019/5/23
+ * @time : 13:35
  *
  */
 
 @Route(path = RoutePath.Main.IMG_LIST)
-class ImageListActivity : BaseVmActivity<ImgListViewModel>(),
-    OnItemClickListener, OnLoadMoreListener {
+class ImageListActivity :
+    BaseVmActivity<ImgListViewModel>(),
+    OnItemClickListener,
+    OnLoadMoreListener {
     private val binding by viewbind(ActivityImageListBinding::inflate)
 
     override fun getViewModelClass(): Class<ImgListViewModel> = ImgListViewModel::class.java
 
-
     private var imgListAdapter = ImgListAdapter(R.layout.item_img_list, arrayListOf())
-
 
     override fun initWidget() {
 
@@ -45,13 +44,11 @@ class ImageListActivity : BaseVmActivity<ImgListViewModel>(),
 
         initRecy()
 
-
         stateViewManager.initStateView(binding.stateView, binding.layoutSwipeRefresh)
 
         binding.stateView.retry {
             initData()
         }
-
 
         binding.layoutSwipeRefresh.setOnRefreshListener {
 
@@ -61,26 +58,21 @@ class ImageListActivity : BaseVmActivity<ImgListViewModel>(),
         }
     }
 
-
     private fun initRecy() {
 
         val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
         //   val layoutManager = GridLayoutManager(this, 2)
         /*防止回到顶部时重新布局可能导致item跳跃*/
-        //layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+        // layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
 
         binding.recy.init(layoutManager, false)
-
 
         imgListAdapter.setOnItemClickListener(this)
 
         imgListAdapter.loadMoreModule.setOnLoadMoreListener(this)
         imgListAdapter.loadMoreModule.loadMoreView = AdapterLoadMoreView()
 
-
         binding.recy.adapter = imgListAdapter
-
-
     }
 
     override fun observeViewModel() {
@@ -96,23 +88,16 @@ class ImageListActivity : BaseVmActivity<ImgListViewModel>(),
                 LogUtils.i("更新数据")
                 imgListAdapter.setDiffNewData(it, vm.subjectsLive.value!!)
             }
-
         }
-
-
     }
 
-
     override fun initData() {
-
 
         stateViewManager.switchToHttpFirst()
 
         vm.start = 0
 
         vm.getData()
-
-
     }
 
     private fun handleDataChanged(t: List<Subject>) {
@@ -125,18 +110,13 @@ class ImageListActivity : BaseVmActivity<ImgListViewModel>(),
                 imgListAdapter.addData(t)
                 imgListAdapter.loadMoreModule.loadMoreComplete()
             }
-
-
         } else {
             /*异步计算出需要更新的数据*/
             vm.calculateDiff(imgListAdapter.data, t)
         }
 
         stateViewManager.showContent()
-
-
     }
-
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
@@ -144,9 +124,7 @@ class ImageListActivity : BaseVmActivity<ImgListViewModel>(),
             binding.recy.layoutManager!!.findViewByPosition(position)!!
                 .findViewById<AppCompatImageView>(R.id.iv_img)
         preViewImg(imgListAdapter.data[position].images.large, imgView)
-
     }
-
 
     override fun onLoadMore() {
         LogUtils.i("onLoadMoreRequested")
@@ -156,9 +134,5 @@ class ImageListActivity : BaseVmActivity<ImgListViewModel>(),
         } else {
             imgListAdapter.loadMoreModule.loadMoreEnd()
         }
-
-
     }
-
-
 }

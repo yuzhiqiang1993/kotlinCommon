@@ -24,19 +24,20 @@ import com.yzq.kotlincommon.databinding.ActivityMainBinding
 /**
  * @description: 导航页面
  * @author : yzq
- * @date   : 2018/11/26
- * @time   : 10:48
+ * @date : 2018/11/26
+ * @time : 10:48
  *
  */
 
 @Route(path = RoutePath.Main.MAIN)
-class MainActivity : BaseActivity(R.layout.activity_main),
-    NavigationView.OnNavigationItemSelectedListener, OnItemClickListener {
+class MainActivity :
+    BaseActivity(R.layout.activity_main),
+    NavigationView.OnNavigationItemSelectedListener,
+    OnItemClickListener {
     private val binding by viewbind(ActivityMainBinding::inflate)
     private var items = arrayListOf<NaviItem>()
 
     private lateinit var mainAdapter: MainAdapter
-
 
     override fun initWidget() {
 
@@ -55,7 +56,6 @@ class MainActivity : BaseActivity(R.layout.activity_main),
         toggle.syncState()
 
         binding.navView.setNavigationItemSelectedListener(this)
-
     }
 
     override fun initData() {
@@ -86,7 +86,6 @@ class MainActivity : BaseActivity(R.layout.activity_main),
         items.add(NaviItem("BindingDelegate", RoutePath.Main.VIEW_BINDING_DELEGATE))
         items.add(NaviItem("接口请求", RoutePath.Main.API_CALL))
 
-
         setData()
     }
 
@@ -95,7 +94,6 @@ class MainActivity : BaseActivity(R.layout.activity_main),
         mainAdapter = MainAdapter(R.layout.item_main_layout, items)
         mainAdapter.setOnItemClickListener(this)
         binding.includedAppbarMain.recy.adapter = mainAdapter
-
     }
 
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
@@ -113,28 +111,21 @@ class MainActivity : BaseActivity(R.layout.activity_main),
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_map -> {
-
             }
             R.id.nav_gallery -> {
-
             }
             R.id.nav_slideshow -> {
-
             }
             R.id.nav_tools -> {
-
             }
             R.id.nav_share -> {
-
             }
-
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
     private var lastBackTimeMillis: Long = 0
-
 
     override fun onBackPressed() {
         val drawerLayout: DrawerLayout = binding.drawerLayout
@@ -146,9 +137,7 @@ class MainActivity : BaseActivity(R.layout.activity_main),
                 lastBackTimeMillis = System.currentTimeMillis()
             } else {
                 BaseApp.getInstance().exitApp()
-
             }
         }
     }
-
 }

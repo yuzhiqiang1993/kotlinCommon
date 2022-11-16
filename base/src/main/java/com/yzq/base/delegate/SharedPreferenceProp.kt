@@ -10,12 +10,12 @@ import kotlin.reflect.KProperty
 /**
  * @description: SharedPreferences扩展函数
  * @author : yzq
- * @date   : 2018/12/20
- * @time   : 16:04
+ * @date : 2018/12/20
+ * @time : 16:04
  *
  */
 
-class SharedPreference<T>(val name: String, private val defaultVal: T) :
+class SharedPreferenceProp<T>(val name: String, private val defaultVal: T) :
     ReadWriteProperty<Any?, T> {
 
     private val prfs by lazy {
@@ -35,15 +35,13 @@ class SharedPreference<T>(val name: String, private val defaultVal: T) :
                 is Boolean -> getBoolean(key, defaultVal)
                 is Float -> getFloat(key, defaultVal)
                 is Long -> getLong(key, defaultVal)
-                else -> throw  IllegalArgumentException("unsupported type")
+                else -> throw IllegalArgumentException("unsupported type")
             } as T
         }
-
     }
 
     override fun setValue(thisRef: Any?, property: KProperty<*>, value: T) {
         putPreference(name, value)
-
     }
 
     @SuppressLint("CommitPrefEdits")
@@ -56,9 +54,8 @@ class SharedPreference<T>(val name: String, private val defaultVal: T) :
                 is Boolean -> putBoolean(key, value)
                 is Float -> putFloat(key, value)
                 is Long -> putLong(key, value)
-                else -> throw  IllegalArgumentException("unsupported type")
+                else -> throw IllegalArgumentException("unsupported type")
             }
         }.apply()
     }
-
 }

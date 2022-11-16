@@ -8,12 +8,11 @@ import com.yzq.base.databinding.ActivityImgPreviewBinding
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 
-
 /**
  * @description: 图片查看界面（看大图）
  * @author : yzq
- * @date   : 2018/7/19
- * @time   : 15:01
+ * @date : 2018/7/19
+ * @time : 15:01
  *
  */
 
@@ -24,7 +23,6 @@ class ImgPreviewActivity : BaseActivity() {
 
     companion object {
         const val IMG_PATH = "imgPath"
-
     }
 
     override fun initArgs(extras: Bundle?) {
@@ -43,12 +41,9 @@ class ImgPreviewActivity : BaseActivity() {
             onBackPressed()
         }
         Glide.with(this).load(imagePath).into(binding.photoView)
-
     }
 
     override fun onBackPressed() {
         finishAfterTransition()
     }
-
-
 }

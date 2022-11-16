@@ -14,8 +14,8 @@ import com.yzq.kotlincommon.config.AliEMASConfig
 /**
  * @description: 初始化阿里推送
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/1/9
- * @time   : 2:57 下午
+ * @date : 2022/1/9
+ * @time : 2:57 下午
  */
 
 class InitAliPushTask : MainThreadTask() {
@@ -35,15 +35,17 @@ class InitAliPushTask : MainThreadTask() {
         }
 
         /*该操作会获取用户信息  所以建议在获取相关权限后再初始化 同时还能提升一些启动速度*/
-        pushService.register(AppContext, object : CommonCallback {
-            override fun onSuccess(response: String?) {
-                LogUtils.i("init cloudchannel success")
-            }
+        pushService.register(
+            AppContext,
+            object : CommonCallback {
+                override fun onSuccess(response: String?) {
+                    LogUtils.i("init cloudchannel success")
+                }
 
-            override fun onFailed(errorCode: String, errorMessage: String) {
-                LogUtils.i("init cloudchannel failed -- errorcode:$errorCode -- errorMessage:$errorMessage")
+                override fun onFailed(errorCode: String, errorMessage: String) {
+                    LogUtils.i("init cloudchannel failed -- errorcode:$errorCode -- errorMessage:$errorMessage")
+                }
             }
-        })
-
+        )
     }
 }

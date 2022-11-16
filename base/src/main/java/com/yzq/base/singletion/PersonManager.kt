@@ -13,9 +13,7 @@ class PersonManager private constructor(val name: String) {
 
         /*普通写法*/
         override fun createFun(p: String) = PersonManager(p)
-
     }
-
 }
 
 fun main() {

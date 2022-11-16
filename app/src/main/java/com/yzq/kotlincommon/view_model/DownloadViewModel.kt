@@ -20,7 +20,6 @@ class DownloadViewModel : ApiServiceViewModel() {
             val download = FileRetrofitFactory.instance.getService(ApiService::class.java)
                 .downloadApk()
 
-
             LogUtils.i("""总长度：${download.contentLength()}""")
 
             val path =
@@ -28,15 +27,12 @@ class DownloadViewModel : ApiServiceViewModel() {
 
             val su = withContext(Dispatchers.IO) {
                 FileIOUtils.writeFileFromIS(path, download.byteStream())
-
             }
 
-            LogUtils.i("存储路径：${path}")
-            LogUtils.i("文件写入完成:${su}")
+            LogUtils.i("存储路径：$path")
+            LogUtils.i("文件写入完成:$su")
 
             AppUtils.installApp(path)
         }
-
     }
-
 }

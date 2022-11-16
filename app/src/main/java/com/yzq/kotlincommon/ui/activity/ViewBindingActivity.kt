@@ -7,14 +7,12 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityViewBindingBinding
 
-
 /**
  * @description: ViewBinding 示例
  * @author : XeonYu
- * @date   : 2020/12/6
- * @time   : 12:51
+ * @date : 2020/12/6
+ * @time : 12:51
  */
-
 
 @Route(path = RoutePath.Main.VIEW_BINDING)
 class ViewBindingActivity : BaseActivity() {
@@ -30,6 +28,4 @@ class ViewBindingActivity : BaseActivity() {
             ToastUtils.showShort("点击了按钮")
         }
     }
-
-
 }

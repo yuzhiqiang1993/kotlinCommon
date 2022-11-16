@@ -11,28 +11,26 @@ import com.yzq.base.ui.state_view.data.ViewStateBean
 import com.yzq.materialdialog.*
 import com.yzq.widget.state_view.StateView
 
-
 /**
  * @description: 状态视图管理器
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2021/5/23
- * @time   : 21:02
+ * @date : 2021/5/23
+ * @time : 21:02
  */
 
 class StateViewManager(private val activity: BaseActivity) {
 
-    private val loadingDialog by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { activity.getLoadingDialog() }//加载框
-    private val progressDialog by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { activity.getProgressDialog() } //进度框
+    private val loadingDialog by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { activity.getLoadingDialog() } // 加载框
+    private val progressDialog by lazy(LazyThreadSafetyMode.SYNCHRONIZED) { activity.getProgressDialog() } // 进度框
 
-    private val httpFirst = 0//首次请求
-    private val httpRefresh = 1//刷新
-    private val httpLoadMore = 2//加载更多
+    private val httpFirst = 0 // 首次请求
+    private val httpRefresh = 1 // 刷新
+    private val httpLoadMore = 2 // 加载更多
 
     private var requestType = httpFirst
 
     private var stateView: StateView? = null
     private var contentLayout: View? = null
-
 
     fun initStateView(
         stateView: StateView,
@@ -65,7 +63,6 @@ class StateViewManager(private val activity: BaseActivity) {
     fun isHttpLoadMore(): Boolean {
         return requestType == httpLoadMore
     }
-
 
     /**
      * 处理视图UI变化显示逻辑
@@ -102,9 +99,7 @@ class StateViewManager(private val activity: BaseActivity) {
                 showLoading()
             }
         }
-
     }
-
 
     /**
      * 显示加载框
@@ -133,8 +128,6 @@ class StateViewManager(private val activity: BaseActivity) {
     fun showProgressDialog(title: String) {
         progressDialog.changeTitle(title)
         progressDialog.show()
-
-
     }
 
     /**
@@ -152,9 +145,7 @@ class StateViewManager(private val activity: BaseActivity) {
      */
     fun changeProgress(percent: Int) {
         progressDialog.changeProgress(percent)
-
     }
-
 
     private fun showErrorDialog(msg: String?) {
         if (TextUtils.isEmpty(msg)) {
@@ -162,9 +153,7 @@ class StateViewManager(private val activity: BaseActivity) {
         } else {
             activity.showBaseDialog(message = msg!!)
         }
-
     }
-
 
     /**
      * 显示加载中
@@ -176,8 +165,6 @@ class StateViewManager(private val activity: BaseActivity) {
             stateView?.showLoading()
             contentLayout?.visibility = View.GONE
         }
-
-
     }
 
     /**
@@ -190,7 +177,6 @@ class StateViewManager(private val activity: BaseActivity) {
 
         cancelRefresh()
     }
-
 
     /*取消下拉刷新动画*/
     private fun cancelRefresh() {
@@ -210,8 +196,6 @@ class StateViewManager(private val activity: BaseActivity) {
             contentLayout?.visibility = View.GONE
             cancelRefresh()
         }
-
-
     }
 
     /**
@@ -227,8 +211,6 @@ class StateViewManager(private val activity: BaseActivity) {
             contentLayout?.visibility = View.GONE
             cancelRefresh()
         }
-
-
     }
 
     /**
@@ -244,9 +226,5 @@ class StateViewManager(private val activity: BaseActivity) {
             contentLayout?.visibility = View.GONE
             cancelRefresh()
         }
-
-
     }
-
-
 }

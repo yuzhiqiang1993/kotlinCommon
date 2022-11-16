@@ -10,8 +10,8 @@ import com.yzq.kotlincommon.ext.defaultConfig
 /**
  * @description: 阿里 EMAS 性能分析
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/1/7
- * @time   : 4:46 下午
+ * @date : 2022/1/7
+ * @time : 4:46 下午
  */
 
 class InitAPMTask : MainThreadTask() {
@@ -23,5 +23,4 @@ class InitAPMTask : MainThreadTask() {
         AliHaAdapter.getInstance().addPlugin(Plugin.apm)
         AliHaAdapter.getInstance().start(config)
     }
-
 }

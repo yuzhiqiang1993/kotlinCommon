@@ -9,19 +9,18 @@ import android.telephony.TelephonyManager
 import androidx.annotation.RequiresPermission
 import androidx.lifecycle.LifecycleOwner
 import com.yzq.application.AppContext
-import com.yzq.network_status.*
+import com.yzq.network_status.NetworkType
+import com.yzq.network_status.OnNetworkStatusChangedListener
 import com.yzq.network_status.common.INetworkStatus
 import com.yzq.network_status.common.MobileNetworkType
-
 
 /**
  * @description: 兼容老版本的api(Android 6.0以下的设备)
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/9/27
- * @time   : 14:49
+ * @date : 2022/9/27
+ * @time : 14:49
  */
 internal object NetworkLegacy : INetworkStatus {
-
 
     /**
      * 获取网络信息  API 29(Android 10) 已弃用
@@ -36,7 +35,6 @@ internal object NetworkLegacy : INetworkStatus {
         return connectivityManager.activeNetworkInfo
     }
 
-
     /**
      * 网络是否连接
      * 需要权限：`<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />`
@@ -46,9 +44,7 @@ internal object NetworkLegacy : INetworkStatus {
     override fun isConnected(): Boolean {
         val activeNetworkInfo = getActiveNetworkInfo() ?: return false
         return activeNetworkInfo.isConnected
-
     }
-
 
     /**
      * 是否启用了wifi
@@ -60,7 +56,6 @@ internal object NetworkLegacy : INetworkStatus {
             .getSystemService(Context.WIFI_SERVICE) as WifiManager
         return wifiManager.isWifiEnabled
     }
-
 
     /**
      * 启用/禁用 wifi  Android 10以下版本才能用 不建议通过代码去操作用户的网络 给个提示引导用户开启wifi比较好
@@ -77,7 +72,6 @@ internal object NetworkLegacy : INetworkStatus {
 //        }
 //    }
 
-
     /**
      * 是否是移动数据(卡流量)
      * 需要权限： `<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />`
@@ -88,7 +82,6 @@ internal object NetworkLegacy : INetworkStatus {
         val networkInfo: NetworkInfo = getActiveNetworkInfo() ?: return false
         return (networkInfo.isAvailable && networkInfo.type == ConnectivityManager.TYPE_MOBILE)
     }
-
 
     /**
      * 是否是wifi链接
@@ -101,7 +94,6 @@ internal object NetworkLegacy : INetworkStatus {
         return activeNetworkInfo.type == ConnectivityManager.TYPE_WIFI
     }
 
-
     @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     override fun getNetworkType(): NetworkType {
         val activeNetworkInfo = getActiveNetworkInfo() ?: return NetworkType.NETWORK_NO
@@ -112,7 +104,6 @@ internal object NetworkLegacy : INetworkStatus {
             ConnectivityManager.TYPE_MOBILE -> getMobileNetWorkType()
             else -> NetworkType.NETWORK_UNKONW
         }
-
     }
 
     /**
@@ -127,8 +118,6 @@ internal object NetworkLegacy : INetworkStatus {
                 .getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         val networkType = telephonyManager.networkType
         return MobileNetworkType.convertToNetworkType(networkType)
-
-
     }
 
     /**
@@ -156,6 +145,4 @@ internal object NetworkLegacy : INetworkStatus {
     override fun clearNetworkStatusChangedListener() {
         NetworkChangedReceiver.clearNetworkStatusChangedListener()
     }
-
-
 }

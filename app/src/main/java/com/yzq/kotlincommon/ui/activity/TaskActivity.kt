@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.activity
 
-
 import android.view.Menu
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -17,12 +16,11 @@ import com.yzq.kotlincommon.adapter.TaskAdapter
 import com.yzq.kotlincommon.databinding.ActivityTaskBinding
 import com.yzq.widget.HoverItemDecoration
 
-
 /**
  * @description: 任务页面，主要演示粘性头部
  * @author : yzq
- * @date   : 2019/4/30
- * @time   : 13:41
+ * @date : 2019/4/30
+ * @time : 13:41
  *
  */
 
@@ -39,9 +37,7 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
 
         initToolbar(binding.includedToolbar.toolbar, "任务")
         binding.recy.init()
-
     }
-
 
     override fun initData() {
         super.initData()
@@ -52,23 +48,18 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
             } else {
                 0
             }
-            val taskBean = TaskBean("任务${i}", type)
+            val taskBean = TaskBean("任务$i", type)
             tasks.add(taskBean)
         }
-
 
         /*将数据根据类型分组*/
 
         filterData()
 
-
         showData()
-
-
     }
 
     private fun showData() {
-
 
         taskAdapter = TaskAdapter(R.layout.item_task_swipe_layout, tasks)
         taskAdapter.addChildClickViewIds(R.id.tv_name, R.id.tv_delete)
@@ -88,12 +79,8 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
             }
         binding.recy.addItemDecoration(hoverItemDecoration)
 
-
         binding.recy.adapter = taskAdapter
-
-
     }
-
 
     private lateinit var operationItem: TaskBean
 
@@ -115,7 +102,6 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
         }
     }
 
-
     private fun filterData() {
 
         tasks.sortBy {
@@ -125,15 +111,10 @@ class TaskActivity : BaseActivity(), OnItemChildClickListener {
 //            return@Comparator o1.type.compareTo(o2.type)
 //
 //        })
-
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.activity_task, menu)
-
         return super.onCreateOptionsMenu(menu)
     }
-
-
 }

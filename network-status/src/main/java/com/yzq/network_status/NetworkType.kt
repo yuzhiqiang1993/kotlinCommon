@@ -1,11 +1,10 @@
 package com.yzq.network_status
 
-
 /**
  * @description: 网络类型
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/9/28
- * @time   : 10:11
+ * @date : 2022/9/28
+ * @time : 10:11
  */
 
 enum class NetworkType(val code: Int, val desc: String) {

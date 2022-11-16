@@ -15,12 +15,11 @@ import com.yzq.network_status.OnNetworkStatusChangedListener
 import com.yzq.network_status.common.INetworkStatus
 import com.yzq.network_status.common.MobileNetworkType
 
-
 /**
  * @description: 网络状态相关,适用于Android 6.0 以上的设备
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/9/27
- * @time   : 15:15
+ * @date : 2022/9/27
+ * @time : 15:15
  */
 
 internal object NetworkHeight : INetworkStatus {
@@ -40,7 +39,6 @@ internal object NetworkHeight : INetworkStatus {
         return capabilities
     }
 
-
     /**
      * 网络是否连接(连网了但网络不一定可用)
      * 需要权限：`<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />`
@@ -54,7 +52,6 @@ internal object NetworkHeight : INetworkStatus {
         return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
 
-
     /**
      * 网络是否可用
      * @return Boolean
@@ -66,7 +63,6 @@ internal object NetworkHeight : INetworkStatus {
             getNetworkCapabilities(AppContext) ?: return false
         return capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
     }
-
 
     /**
      * 是否是移动数据(手机流量)
@@ -122,10 +118,7 @@ internal object NetworkHeight : INetworkStatus {
                 else -> NetworkType.NETWORK_UNKONW
             }
         }
-
-
     }
-
 
     /**
      * 获取蜂窝网的具体类型
@@ -141,7 +134,6 @@ internal object NetworkHeight : INetworkStatus {
         val dataNetworkType = telephonyManager.dataNetworkType
         return MobileNetworkType.convertToNetworkType(dataNetworkType)
     }
-
 
     /**
      * 注册网络状态监听
@@ -171,5 +163,4 @@ internal object NetworkHeight : INetworkStatus {
     override fun clearNetworkStatusChangedListener() {
         NetworkstatusCallbackManager.clearNetworkStatusChangedListener()
     }
-
 }

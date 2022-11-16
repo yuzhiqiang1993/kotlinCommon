@@ -21,8 +21,14 @@ class MoshiViewModel : BaseViewModel() {
 
         launchLoadingDialog {
             val userList = mutableListOf<User>()
-            (1..3).forEach {
-                userList.add(User("喻志强${it}", it, arrayListOf(User.Hobby("type${it}", "爱好${it}"))))
+            for (it in 1..3) {
+                userList.add(
+                    User(
+                        "喻志强$it",
+                        it,
+                        arrayListOf(User.Hobby("type$it", "爱好$it"))
+                    )
+                )
             }
 
             val baseResp = BaseResp<List<User>>(ResponseCode.SUCCESS, userList, "ok")
@@ -41,7 +47,6 @@ class MoshiViewModel : BaseViewModel() {
                 userList?.forEach {
                     LogUtils.i(MoshiUtils.toJson(it, "  "))
                 }
-
             }
         }
     }
@@ -66,7 +71,5 @@ class MoshiViewModel : BaseViewModel() {
                 LogUtils.i("userInfo:$userInfo")
             }
         }
-
-
     }
 }

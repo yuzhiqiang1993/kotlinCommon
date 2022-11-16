@@ -14,7 +14,6 @@ import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
 import com.yzq.kotlincommon.hybrid.AndroidBug5497Workaround
 import com.yzq.kotlincommon.ui.hybrid.JsBridge
 
-
 @Route(path = RoutePath.Main.WEB_VIEW)
 class WebViewActivity : BaseActivity() {
 
@@ -23,7 +22,6 @@ class WebViewActivity : BaseActivity() {
     @SuppressLint("SetJavaScriptEnabled")
     override fun initWidget() {
         super.initWidget()
-
 
         initToolbar(binding.layoutToolbar.toolbar, "WebView")
 
@@ -40,23 +38,19 @@ class WebViewActivity : BaseActivity() {
 
         val url = "http://ng.mobile.ant.design/#/kitchen-sink?lang=zh-CN"
         binding.webview.loadUrl(url)
-
-
     }
-
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
         LogUtils.i("====onWindowFocusChanged====")
 
-        val height = resources.displayMetrics.heightPixels //屏幕高度
+        val height = resources.displayMetrics.heightPixels // 屏幕高度
 
         /*解决H5 页面输入框弹出异常的问题*/
         AndroidBug5497Workaround.assistActivity(this, height)
     }
 
     private val webViewClient = object : WebViewClient() {
-
 
         /*加载页面资源时调用  每个资源被加载时都会调用*/
 
@@ -75,7 +69,6 @@ class WebViewActivity : BaseActivity() {
             binding.webview.loadUrl("javascript:window.test()")
             binding.webview.loadUrl("javascript:test()")
             binding.webview.loadUrl("javascript:window.webFun()")
-
         }
 
         override fun shouldOverrideUrlLoading(
@@ -98,10 +91,7 @@ class WebViewActivity : BaseActivity() {
             LogUtils.e("onReceivedError:${error!!.errorCode}")
             super.onReceivedError(view, request, error)
         }
-
-
     }
-
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -114,13 +104,10 @@ class WebViewActivity : BaseActivity() {
         return super.onKeyDown(keyCode, event)
     }
 
-
     override fun onDestroy() {
         binding.webview.clearHistory()
         binding.webview.clearCache(true)
         binding.webview.destroy()
         super.onDestroy()
     }
-
-
 }

@@ -15,12 +15,10 @@ class DataBindingViewModel : BaseViewModel() {
         dataBindingBean.content = "init"
 
         dataBindingLiveData.value = dataBindingBean
-
     }
 
     fun getData() {
 
         ToastUtils.showShort("当前值:${dataBindingLiveData.value?.content}")
     }
-
 }

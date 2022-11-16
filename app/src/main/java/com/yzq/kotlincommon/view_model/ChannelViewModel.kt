@@ -10,8 +10,8 @@ import kotlinx.coroutines.launch
 /**
  * @description: Channel
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/3/3
- * @time   : 4:58 下午
+ * @date : 2022/3/3
+ * @time : 4:58 下午
  */
 
 class ChannelViewModel : BaseViewModel() {
@@ -34,21 +34,18 @@ class ChannelViewModel : BaseViewModel() {
         viewModelScope.launch {
             (1..10).forEach {
                 _channel.send(it)
-                LogUtils.i("send:${it}")
+                LogUtils.i("send:$it")
                 delay(200)
-
             }
 
             _channel.close()
         }
 
-
         viewModelScope.launch {
             for (i in _channel) {
-                LogUtils.i("receive:${i}")
+                LogUtils.i("receive:$i")
             }
         }
-
     }
 
     fun testChannelUnlimited() {
@@ -60,9 +57,9 @@ class ChannelViewModel : BaseViewModel() {
              * produce 会在数据执行完毕后自动关闭，不用下个channel手动去调close
              */
             val produce = produce(capacity = Channel.UNLIMITED) {
-                (1..5).forEach {
+                for (it in 1..5) {
                     send(it)
-                    LogUtils.i("send:${it}")
+                    LogUtils.i("send:$it")
                 }
             }
 
@@ -75,9 +72,8 @@ class ChannelViewModel : BaseViewModel() {
              * 推荐直接对channel进行for循环或者使用 consumeEach 对数据进行消费，避免close导致的异常
              */
             produce.consumeEach {
-                LogUtils.i("receive:${it}")
+                LogUtils.i("receive:$it")
             }
-
         }
     }
 }

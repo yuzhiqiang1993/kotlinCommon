@@ -16,12 +16,13 @@ import com.yzq.kotlincommon.ui.fragment.ViewPagerWithFragment
 /**
  * @description: ViewPager2
  * @author : yzq
- * @date   : 2019/11/27
- * @time   : 13:21
+ * @date : 2019/11/27
+ * @time : 13:21
  */
 
 @Route(path = RoutePath.Main.VIEW_PAGER)
-class ViewPager2Activity : BaseActivity(),
+class ViewPager2Activity :
+    BaseActivity(),
     NavigationBarView.OnItemSelectedListener {
 
     private val binding by viewbind(ActivityViewPager2Binding::inflate)
@@ -37,7 +38,6 @@ class ViewPager2Activity : BaseActivity(),
         binding.bottomNavigation.setOnItemSelectedListener(this)
 
         showFragment(viewPagerFragment)
-
     }
 
     private fun showFragment(fragment: BaseFragment) {
@@ -57,7 +57,6 @@ class ViewPager2Activity : BaseActivity(),
             }
             show(fragment)
         }
-
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -74,10 +73,6 @@ class ViewPager2Activity : BaseActivity(),
             }
         }
 
-
-
         return true
-
     }
-
 }

@@ -4,7 +4,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.yzq.widget.ItemDecoration
 
-
 /*
 * 列表初始化
 * */

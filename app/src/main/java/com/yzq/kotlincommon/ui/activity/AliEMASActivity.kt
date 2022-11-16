@@ -12,8 +12,8 @@ import com.yzq.kotlincommon.databinding.ActivityAliEmasactiviyBinding
 /**
  * @description: 阿里EMAS测试页面
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/1/7
- * @time   : 6:30 下午
+ * @date : 2022/1/7
+ * @time : 6:30 下午
  */
 @Route(path = RoutePath.Main.EMAS)
 class AliEMASActivity : BaseActivity() {
@@ -31,11 +31,7 @@ class AliEMASActivity : BaseActivity() {
                 /*自定义崩溃上报*/
                 AliHaAdapter.getInstance().reportCustomError(Exception("test exception"))
                 ToastUtils.showLong("已上报")
-
             }
-
         }
     }
-
-
 }

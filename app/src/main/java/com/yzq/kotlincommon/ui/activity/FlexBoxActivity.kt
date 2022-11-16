@@ -15,12 +15,11 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.TagAdapter
 import com.yzq.kotlincommon.databinding.ActivityFlexBoxBinding
 
-
 /**
  * @description: 弹性布局
  * @author : yzq
- * @date   : 2019/4/30
- * @time   : 13:38
+ * @date : 2019/4/30
+ * @time : 13:38
  *
  */
 
@@ -40,10 +39,7 @@ class FlexBoxActivity : BaseActivity(), OnItemClickListener {
         flexManager.flexWrap = FlexWrap.WRAP
         flexManager.alignItems = AlignItems.FLEX_START
         binding.recy.layoutManager = flexManager
-
-
     }
-
 
     private lateinit var tags: ArrayList<String>
 
@@ -60,9 +56,5 @@ class FlexBoxActivity : BaseActivity(), OnItemClickListener {
     override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
 
         ToastUtils.showShort(tags[position])
-
-
     }
-
-
 }

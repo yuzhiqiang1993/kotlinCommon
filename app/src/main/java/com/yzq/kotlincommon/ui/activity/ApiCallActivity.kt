@@ -21,17 +21,15 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 
-
 /**
  * @description 网络请求的示例
- * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date    2022/11/2
- * @time    15:39
+ * @author yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date 2022/11/2
+ * @time 15:39
  */
 
 @Route(path = RoutePath.Main.API_CALL)
 class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
-
 
     private val binding by viewbind(ActivityApiCallBinding::inflate)
 
@@ -58,9 +56,7 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
             btnViewmodel.setOnThrottleTimeClick {
                 vm.requestData()
             }
-
         }
-
     }
 
     private fun concurrentRequest() {
@@ -82,11 +78,8 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
 
                     delay(4000)
                     RetrofitFactory.instance.getService(ApiService::class.java).geocoder()
-
                 }
-
             }
-
         }.catch {
 
             LogUtils.i("异常了:$it")
@@ -96,11 +89,8 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
             if (it != null) {
                 LogUtils.i("有异常:$it")
             }
-
         }
-
     }
-
 
     private fun requestByApiCall() {
 
@@ -145,9 +135,7 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
 //                it.printStackTrace()
 //                LogUtils.i("onException:$it")
 //            }
-
         }
-
     }
 
     private fun requestByLifeScope() {
@@ -168,7 +156,7 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
         }.finally {
             if (it != null) {
                 it.printStackTrace()
-                LogUtils.i("结束了,但是有异常，${it}")
+                LogUtils.i("结束了,但是有异常，$it")
             } else {
                 LogUtils.i("正常结束了")
             }
@@ -179,9 +167,6 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
 
     override fun observeViewModel() {
         vm.run {
-
         }
     }
-
-
 }

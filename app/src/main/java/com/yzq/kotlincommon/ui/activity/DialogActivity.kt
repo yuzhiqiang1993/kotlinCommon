@@ -21,8 +21,8 @@ import java.util.*
 /**
  * @description: 弹窗
  * @author : yzq
- * @date   : 2019/4/30
- * @time   : 13:38
+ * @date : 2019/4/30
+ * @time : 13:38
  *
  */
 @Route(path = RoutePath.Main.DIALOG)
@@ -50,9 +50,9 @@ class DialogActivity : BaseActivity() {
                 }
             }
 
-
             layoutScrollContent.btnCallback.setOnClickListener {
-                showCallbackDialog(message = "双选项双回调",
+                showCallbackDialog(
+                    message = "双选项双回调",
                     positiveCallback = {
                         ToastUtils.showShort("点击了确定")
                     },
@@ -61,8 +61,6 @@ class DialogActivity : BaseActivity() {
                     }
                 )
             }
-
-
 
             layoutScrollContent.btnSingleSelect
                 .setOnClickListener {
@@ -73,15 +71,12 @@ class DialogActivity : BaseActivity() {
                     }
                 }
 
-
-
             layoutScrollContent.btnInput
                 .setOnClickListener {
                     showInputDialog(positiveText = "完成") { materialDialog, charSequence ->
                         ToastUtils.showShort(charSequence.toString())
                     }
                 }
-
 
             layoutScrollContent.btnLoading
                 .setOnClickListener {
@@ -92,9 +87,7 @@ class DialogActivity : BaseActivity() {
                         delay(3000)
                         stateViewManager.dismissLoadingDialog()
                     }
-
                 }
-
 
             layoutScrollContent.btnProgress
                 .setOnClickListener {
@@ -112,23 +105,18 @@ class DialogActivity : BaseActivity() {
                                 MainScope().launch {
                                     stateViewManager.changeProgress(count)
                                 }
-
                             } else {
                                 cancel()
                                 MainScope().launch {
                                     stateViewManager.dismissProgressDialog()
                                 }
-
                             }
                         }
-
                     }
 
                     Timer().schedule(
                         timerTask, 0, 200
                     )
-
-
                 }
 
             layoutScrollContent.btnSelectYear
@@ -166,8 +154,6 @@ class DialogActivity : BaseActivity() {
                         ToastUtils.showLong(dateStr)
                     }
                 }
-
-
 
             layoutScrollContent.btnBottomDialog
                 .setOnClickListener {

@@ -12,18 +12,16 @@ import me.jessyan.progressmanager.ProgressListener
 import me.jessyan.progressmanager.ProgressManager
 import me.jessyan.progressmanager.body.ProgressInfo
 
-
 /**
  * @description BaseViewModel
- * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date    2022/10/31
- * @time    10:01
+ * @author yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date 2022/10/31
+ * @time 10:01
  */
 
 abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
     private val viewStateBean by lazy { ViewStateBean() }
     val loadState by lazy { MutableLiveData<ViewStateBean>() }
-
 
     /**
      * Launch loading dialog
@@ -39,7 +37,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         loadText: String = ViewStateContstants.LOADING,
         checkNetWork: Boolean = false,
         onException: (t: Throwable) -> Unit = {},
-        block: suspend CoroutineScope.() -> Unit
+        block: suspend CoroutineScope.() -> Unit,
     ) {
 
         launchScope(onException = onException) {
@@ -51,19 +49,15 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
             showloadingDialog(loadText)
             delay(1500)
             block()
-
         }.invokeOnCompletion {
             dismissLoadingDialog()
         }
-
-
     }
-
 
     fun launchLoading(
         checkNetWork: Boolean = false,
         onException: (t: Throwable) -> Unit = {},
-        block: suspend CoroutineScope.() -> Unit
+        block: suspend CoroutineScope.() -> Unit,
     ) {
 
         launchScope(
@@ -83,20 +77,17 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         }.invokeOnCompletion {
             LogUtils.i("结束了...")
         }
-
-
     }
 
-
+    @JvmOverloads
     fun launchProgressDialog(
         url: String,
         title: String,
         checkNetWork: Boolean = true,
         onException: (t: Throwable) -> Unit = {},
         onProgressException: (id: Long, t: Throwable?) -> Unit = { id: Long, throwable: Throwable? -> },
-        block: suspend CoroutineScope.() -> Unit
+        block: suspend CoroutineScope.() -> Unit,
     ) {
-
 
         launchScope(onException = onException) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
@@ -106,36 +97,33 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
             }
 
             ProgressManager.getInstance()
-                .addResponseListener(url, object : ProgressListener {
-                    override fun onProgress(progressInfo: ProgressInfo?) {
-                        changeProgress(progressInfo!!.percent)
+                .addResponseListener(
+                    url,
+                    object : ProgressListener {
+                        override fun onProgress(progressInfo: ProgressInfo?) {
+                            changeProgress(progressInfo!!.percent)
+                        }
+
+                        override fun onError(id: Long, e: Exception?) {
+
+                            dismissProgressDialog()
+                            onProgressException(id, e)
+                        }
                     }
-
-                    override fun onError(id: Long, e: Exception?) {
-
-                        dismissProgressDialog()
-                        onProgressException(id, e)
-
-                    }
-                })
+                )
 
             showProgressDialog(title)
             block()
-
         }.invokeOnCompletion {
             dismissProgressDialog()
         }
-
-
     }
-
 
     fun launchSupervisor(
         checkNetWork: Boolean = false,
         onException: (t: Throwable) -> Unit = {},
-        block: suspend CoroutineScope.() -> Unit
+        block: suspend CoroutineScope.() -> Unit,
     ) {
-
 
         launchSupervisorScope(onException = onException) {
             if (checkNetWork && !NetworkUtils.isConnected()) {
@@ -145,9 +133,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
             }
 
             block()
-
         }
-
     }
 
     private fun showLoading() {
@@ -166,7 +152,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         viewModelScope.launch(Dispatchers.Main) {
             loadState.value = viewStateBean
         }
-
     }
 
     private fun dismissLoadingDialog() {
@@ -175,7 +160,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         viewModelScope.launch(Dispatchers.Main) {
             loadState.value = viewStateBean
         }
-
     }
 
     private fun showErrorDialog(content: String) {
@@ -208,7 +192,6 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         viewModelScope.launch(Dispatchers.Main) {
             loadState.value = viewStateBean
         }
-
     }
 
     fun dismissProgressDialog() {
@@ -225,11 +208,9 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
         viewModelScope.launch(Dispatchers.Main) {
             loadState.value = viewStateBean
         }
-
     }
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         LogUtils.i("onStateChanged $source === ${event.targetState}")
     }
-
 }

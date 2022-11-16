@@ -15,6 +15,4 @@ class FragmentViewModel : BaseViewModel() {
     }
 
     val fragmentList = arrayListOf<BaseFragment>()
-
 }
-

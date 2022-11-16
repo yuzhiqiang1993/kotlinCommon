@@ -19,9 +19,9 @@ import com.yzq.materialdialog.showInputDialog
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
 @Route(path = RoutePath.Main.ROOM)
-class RoomActivity : BaseVmActivity<RoomViewModel>(),
+class RoomActivity :
+    BaseVmActivity<RoomViewModel>(),
     OnItemChildClickListener {
 
     private val binding by viewbind(ActivityRoomBinding::inflate)
@@ -31,9 +31,7 @@ class RoomActivity : BaseVmActivity<RoomViewModel>(),
 
     private lateinit var operationItem: User
 
-
     override fun getViewModelClass(): Class<RoomViewModel> = RoomViewModel::class.java
-
 
     override fun initVariable() {
         roomAdapter.addChildClickViewIds(R.id.tv_delete, R.id.tv_user)
@@ -46,9 +44,7 @@ class RoomActivity : BaseVmActivity<RoomViewModel>(),
             override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
                 return oldItem.name == newItem.name
             }
-
         })
-
     }
 
     override fun initWidget() {
@@ -60,7 +56,6 @@ class RoomActivity : BaseVmActivity<RoomViewModel>(),
 
             recy.adapter = roomAdapter
 
-
             fabAdd.setOnClickListener {
                 isAdd = true
                 vm.insertUser()
@@ -71,10 +66,7 @@ class RoomActivity : BaseVmActivity<RoomViewModel>(),
                 vm.clearUser()
             }
         }
-
-
     }
-
 
     override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
         isAdd = false
@@ -91,7 +83,6 @@ class RoomActivity : BaseVmActivity<RoomViewModel>(),
             }
         }
     }
-
 
     override fun observeViewModel() {
 
@@ -114,6 +105,4 @@ class RoomActivity : BaseVmActivity<RoomViewModel>(),
             }
         }
     }
-
-
 }

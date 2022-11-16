@@ -13,9 +13,7 @@ import com.yzq.permission.getPermissions
 
 class UserFragment : BaseFragment(R.layout.fragment_user) {
 
-
     private val binding by viewbind(FragmentUserBinding::bind)
-
 
     companion object {
         fun newInstance() = UserFragment()
@@ -24,7 +22,6 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
     override fun initWidget() {
 
         LogUtils.i("UserFragment")
-
 
         binding.btnShowDialog.setOnClickListener {
 
@@ -47,16 +44,11 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
             }
         }
 
-
         binding.btnPermission.setOnClickListener {
 
             getPermissions(PermissionConstants.STORAGE) {
                 ToastUtils.showShort("获取了权限：$it")
             }
-
         }
-
-
     }
-
 }

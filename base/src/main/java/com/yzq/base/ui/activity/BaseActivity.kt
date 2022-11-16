@@ -25,8 +25,8 @@ import org.greenrobot.eventbus.ThreadMode
 /**
  * @Description: Activity基类
  * @author : yzq
- * @date   : 2018/7/2
- * @time   : 13:55
+ * @date : 2018/7/2
+ * @time : 13:55
  *
  */
 
@@ -35,11 +35,10 @@ abstract class BaseActivity : AppCompatActivity {
     constructor() : super()
     constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
+    private var lastClickTime: Long = 0 // 最后一次点击的时间
 
-    private var lastClickTime: Long = 0//最后一次点击的时间
-
-    private val intervalTime = 300//两次点击之间的间隔
-    private var allowFastClick = false//是否允许快速点击
+    private val intervalTime = 300 // 两次点击之间的间隔
+    private var allowFastClick = false // 是否允许快速点击
 
     /*视图状态管理器*/
     protected val stateViewManager by lazy { StateViewManager(this) }
@@ -73,9 +72,7 @@ abstract class BaseActivity : AppCompatActivity {
         initListener()
         /*初始化数据*/
         initData()
-
     }
-
 
     /**
      * 初始化参数
@@ -83,14 +80,12 @@ abstract class BaseActivity : AppCompatActivity {
      * @param extras  传递的参数对象
      */
     protected open fun initArgs(extras: Bundle?) {
-
     }
 
     protected open fun initViewModel() {}
 
     /*初始化变量*/
     protected open fun initVariable() {
-
     }
 
     /**
@@ -101,9 +96,7 @@ abstract class BaseActivity : AppCompatActivity {
     }
 
     protected open fun initListener() {
-
     }
-
 
     /**
      * 处理Eventbus
@@ -112,7 +105,6 @@ abstract class BaseActivity : AppCompatActivity {
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
     open fun onEventMainThread(eventMsg: EventMsg) {
-
     }
 
     /**
@@ -120,7 +112,6 @@ abstract class BaseActivity : AppCompatActivity {
      *
      */
     protected open fun initData() {
-
     }
 
     /**
@@ -194,7 +185,6 @@ abstract class BaseActivity : AppCompatActivity {
         backIv.setOnClickListener {
             onBackPressed()
         }
-
     }
 
     /**
@@ -220,7 +210,6 @@ abstract class BaseActivity : AppCompatActivity {
                 getString(com.yzq.resource.R.string.img_transition)
             )
         startActivity(intent, options.toBundle())
-
     }
 
     /**
@@ -251,15 +240,11 @@ abstract class BaseActivity : AppCompatActivity {
             }
         }
         super.onBackPressed()
-
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
         EventBusUtil.unregister(this)
     }
 
-
 }
-

@@ -9,8 +9,8 @@ import kotlin.reflect.KProperty
 /**
  * @description: mmkv 读写属性委托
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/1/6
- * @time   : 2:42 下午
+ * @date : 2022/1/6
+ * @time : 2:42 下午
  */
 
 class MMKVReadWriteProp<V>(
@@ -50,7 +50,7 @@ class MMKVReadWriteProp<V>(
                 is Float -> mmkv.decodeFloat(key, defauleVal)
                 is Double -> mmkv.decodeDouble(key, defauleVal)
                 is Parcelable -> decodeParcelable(key, defauleVal.javaClass)
-                else -> throw  IllegalArgumentException("MMKVReadWriteProp 不支持的类型")
+                else -> throw IllegalArgumentException("MMKVReadWriteProp 不支持的类型")
             }
         } as V
     }
@@ -78,5 +78,4 @@ class MMKVReadWriteProp<V>(
             }
         }
     }
-
 }

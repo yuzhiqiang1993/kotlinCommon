@@ -15,8 +15,8 @@ import kotlinx.coroutines.launch
 /**
  * @description: 闪屏页
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2021/11/25
- * @time   : 6:25 下午
+ * @date : 2021/11/25
+ * @time : 6:25 下午
  */
 
 @SuppressLint("CustomSplashScreen")
@@ -40,12 +40,9 @@ class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
             LogUtils.i("跳转")
             navFinish(RoutePath.Main.LOGIN)
         }
-
-
     }
 
     override fun shouldKeepOnScreen(): Boolean {
         return notReady
     }
-
 }

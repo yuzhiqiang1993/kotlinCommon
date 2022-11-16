@@ -61,11 +61,8 @@ class ImgListViewModel : ApiServiceViewModel() {
                     ): Boolean {
                         return oldDatas[oldItemPosition] == newDatas[newItemPosition]
                     }
-
                 })
-
             }
         }
-
     }
 }

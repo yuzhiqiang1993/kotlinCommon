@@ -10,12 +10,11 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.application.AppContext
 import java.io.File
 
-
 /**
  * @description: 获取文件打开的intent
  * @author : XeonYu
- * @date   : 2020/9/20
- * @time   : 12:52
+ * @date : 2020/9/20
+ * @time : 12:52
  */
 
 fun File.getOpenIntent(): Intent {
@@ -30,13 +29,8 @@ fun File.getOpenIntent(): Intent {
     )
 
     val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(name)
-    LogUtils.i("mimeType:${mimeType}")
+    LogUtils.i("mimeType:$mimeType")
     intent.setDataAndType(uri, mimeType)
 
     return intent
-
 }
-
-
-
-
