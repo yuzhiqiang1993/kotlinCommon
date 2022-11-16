@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.hybrid
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Rect
 import android.view.View
@@ -72,14 +73,15 @@ class AndroidBug5497Workaround(activity: Activity, height: Int, hideBar: Boolean
         return (r.bottom - r.top)
     }
 
+    @SuppressLint("DiscouragedApi")
     private fun getStatusBarHeight(activity: Activity): Int {
 
         return activity.resources.run {
             // 获取status_bar_height资源的ID
             val resourceId = getIdentifier(
                 "status_bar_height",
+                "dimen",
                 "android",
-                "dimen"
             )
             if (resourceId > 0) {
                 // 根据资源ID获取响应的尺寸值

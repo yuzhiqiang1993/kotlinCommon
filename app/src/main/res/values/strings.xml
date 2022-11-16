@@ -33,7 +33,6 @@
 
     <string name="img_transition">img_transition</string>
     <string name="download">下载</string>
-    <string name="start_location">开始定位</string>
     <string name="start_count">开始计数</string>
     <string name="menu_map">地图</string>
     <string name="menu_gallery">相册</string>
@@ -56,6 +55,9 @@
     <string name="generate_diff_file">生成差分包</string>
     <string name="combine_diff_file">合并差分包</string>
     <string name="test">测试</string>
+    <string name="zero">0</string>
+    <string name="hundred">100</string>
+    <string name="start_location">开始定位</string>
 
 
 </resources>

@@ -115,6 +115,11 @@ android {
         jvmTarget = "11"
     }
 
+    /*不加打包的时候有报错提示  但不影响*/
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
+
     namespace 'com.yzq.kotlincommon'
 
 

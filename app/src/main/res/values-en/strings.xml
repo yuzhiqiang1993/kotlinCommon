@@ -34,7 +34,6 @@
     <string name="hundred">100</string>
     <string name="img_transition">Img_Transition</string>
     <string name="download">Download</string>
-    <string name="start_location">Start Location</string>
     <string name="start_count">Start Count</string>
     <string name="menu_map">Map</string>
     <string name="menu_gallery">Album</string>
@@ -57,5 +56,6 @@
     <string name="generate_diff_file">Diff File</string>
     <string name="combine_diff_file">Patch File</string>
     <string name="test">Test</string>
+    <string name="start_location">Start Location</string>
 
 </resources>

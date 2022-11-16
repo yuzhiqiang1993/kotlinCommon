@@ -8,8 +8,8 @@ import com.blankj.utilcode.util.LogUtils
 /**
  * @description: 推送广播接收器
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2022/1/9
- * @time   : 2:56 下午
+ * @date : 2022/1/9
+ * @time : 2:56 下午
  */
 
 class AliPushReceiver : MessageReceiver() {
@@ -26,15 +26,35 @@ class AliPushReceiver : MessageReceiver() {
         )
     }
 
-    override fun onNotificationOpened(context: Context?, title: String, summary: String, extraMap: String) {
-        LogUtils.e("MyMessageReceiver", "onNotificationOpened, title: $title, summary: $summary, extraMap:$extraMap")
+    override fun onNotificationOpened(
+        context: Context?,
+        title: String,
+        summary: String,
+        extraMap: String,
+    ) {
+        LogUtils.e("MyMessageReceiver",
+            "onNotificationOpened, title: $title, summary: $summary, extraMap:$extraMap")
     }
 
-    override fun onNotificationClickedWithNoAction(context: Context?, title: String, summary: String, extraMap: String) {
-        LogUtils.e("MyMessageReceiver", "onNotificationClickedWithNoAction, title: $title, summary: $summary, extraMap:$extraMap")
+    override fun onNotificationClickedWithNoAction(
+        context: Context?,
+        title: String,
+        summary: String,
+        extraMap: String,
+    ) {
+        LogUtils.e("MyMessageReceiver",
+            "onNotificationClickedWithNoAction, title: $title, summary: $summary, extraMap:$extraMap")
     }
 
-    override fun onNotificationReceivedInApp(context: Context?, title: String, summary: String, extraMap: Map<String?, String?>, openType: Int, openActivity: String, openUrl: String) {
+    override fun onNotificationReceivedInApp(
+        context: Context?,
+        title: String,
+        summary: String,
+        extraMap: Map<String?, String?>,
+        openType: Int,
+        openActivity: String,
+        openUrl: String,
+    ) {
         LogUtils.e(
             "onNotificationReceivedInApp, title: $title, summary: $summary, extraMap:$extraMap, openType:$openType, openActivity:$openActivity, openUrl:$openUrl"
         )

@@ -11,7 +11,6 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
-import com.yzq.kotlincommon.hybrid.AndroidBug5497Workaround
 import com.yzq.kotlincommon.ui.hybrid.JsBridge
 
 @Route(path = RoutePath.Main.WEB_VIEW)
@@ -23,7 +22,7 @@ class WebViewActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
-        initToolbar(binding.layoutToolbar.toolbar, "WebView")
+        initToolbar(binding.includedToolbar.toolbar, "WebView")
 
         binding.webview.webViewClient = WebViewClient()
         val settings = binding.webview.settings
@@ -40,15 +39,15 @@ class WebViewActivity : BaseActivity() {
         binding.webview.loadUrl(url)
     }
 
-    override fun onWindowFocusChanged(hasFocus: Boolean) {
-        super.onWindowFocusChanged(hasFocus)
-        LogUtils.i("====onWindowFocusChanged====")
-
-        val height = resources.displayMetrics.heightPixels // 屏幕高度
-
-        /*解决H5 页面输入框弹出异常的问题*/
-        AndroidBug5497Workaround.assistActivity(this, height)
-    }
+//    override fun onWindowFocusChanged(hasFocus: Boolean) {
+//        super.onWindowFocusChanged(hasFocus)
+//        LogUtils.i("====onWindowFocusChanged====")
+//
+//        val height = resources.displayMetrics.heightPixels // 屏幕高度
+//
+//        /*解决H5 页面输入框弹出异常的问题*/
+//        AndroidBug5497Workaround.assistActivity(this, height)
+//    }
 
     private val webViewClient = object : WebViewClient() {
 
@@ -73,7 +72,7 @@ class WebViewActivity : BaseActivity() {
 
         override fun shouldOverrideUrlLoading(
             view: WebView?,
-            request: WebResourceRequest?
+            request: WebResourceRequest?,
         ): Boolean {
             LogUtils.i("shouldOverrideUrlLoading request:${request!!.url}")
             return super.shouldOverrideUrlLoading(view, request)
@@ -85,7 +84,7 @@ class WebViewActivity : BaseActivity() {
         override fun onReceivedError(
             view: WebView?,
             request: WebResourceRequest?,
-            error: WebResourceError?
+            error: WebResourceError?,
         ) {
             LogUtils.e("onReceivedError:${request!!.url}")
             LogUtils.e("onReceivedError:${error!!.errorCode}")
