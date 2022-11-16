@@ -58,7 +58,6 @@ dependencies {
 
     /*utils*/
     implementation ThirdParty.utilcode
-    implementation project(path: ':resource')
 
 
 }

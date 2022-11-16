@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.huantansheng.easyphotos.engine.ImageEngine
 
-
 /**
  *Glide图片加载引擎
  */
@@ -31,5 +30,4 @@ object GlideEngine : ImageEngine {
     override fun loadGifAsBitmap(context: Context, gifUri: Uri, imageView: ImageView) {
         Glide.with(context).asBitmap().load(gifUri).into(imageView)
     }
-
 }

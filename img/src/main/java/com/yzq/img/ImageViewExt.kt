@@ -14,16 +14,16 @@ import com.bumptech.glide.request.target.Target
 /**
  * @description: 基于Glide对ImageView的扩展
  * @author : yzq
- * @date   : 2019/5/23
- * @time   : 15:48
+ * @date : 2019/5/23
+ * @time : 15:48
  *
  */
 
 val options = RequestOptions()
     .diskCacheStrategy(DiskCacheStrategy.ALL)
     .format(DecodeFormat.PREFER_RGB_565)
-    .placeholder(com.yzq.resource.R.color.gray_100)
-    .error(com.yzq.resource.R.color.gray_100)
+    .placeholder(R.color.gray_100)
+    .error(R.color.gray_100)
     .skipMemoryCache(true)
 
 interface ImgRequestListener : RequestListener<Drawable> {
@@ -31,7 +31,7 @@ interface ImgRequestListener : RequestListener<Drawable> {
         e: GlideException?,
         model: Any?,
         target: Target<Drawable>?,
-        isFirstResource: Boolean
+        isFirstResource: Boolean,
     ): Boolean {
 
         return false
@@ -42,11 +42,10 @@ interface ImgRequestListener : RequestListener<Drawable> {
         model: Any?,
         target: Target<Drawable>?,
         dataSource: DataSource?,
-        isFirstResource: Boolean
+        isFirstResource: Boolean,
     ): Boolean {
         return false
     }
-
 }
 
 /**
@@ -81,4 +80,3 @@ fun ImageView.loadWithThumbnail(path: String): ImageView {
 
     return this
 }
-

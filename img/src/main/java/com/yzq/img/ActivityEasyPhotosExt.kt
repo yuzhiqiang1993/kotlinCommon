@@ -2,10 +2,8 @@ package com.yzq.img
 
 import androidx.appcompat.app.AppCompatActivity
 import com.huantansheng.easyphotos.EasyPhotos
-import com.huantansheng.easyphotos.callback.SelectCallback
 import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.huantansheng.easyphotos.setting.Setting
-
 
 /**
  * 打开相机
@@ -15,13 +13,9 @@ import com.huantansheng.easyphotos.setting.Setting
 fun AppCompatActivity.openCamera(imageSelected: ImageSelected) {
     EasyPhotos.createCamera(this, false)
         .setFileProviderAuthority("$packageName.provider")
-        .start(object : SelectCallback() {
+        .start(object : OnResultCallback() {
             override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
                 imageSelected(photos)
-            }
-
-            override fun onCancel() {
-
             }
         })
 }
@@ -46,9 +40,9 @@ fun AppCompatActivity.openAlbum(
     showPuzzle: Boolean = false,
     showClearMenu: Boolean = false,
     selectedPhotos: ArrayList<Photo> = arrayListOf(),
-    imageSelected: ImageSelected
+    imageSelected: ImageSelected,
 
-) {
+    ) {
     EasyPhotos.createAlbum(this, showCamera, false, GlideEngine)
         .setCount(count)
         .setMinFileSize(minFileSize)
@@ -58,18 +52,9 @@ fun AppCompatActivity.openAlbum(
         .setCleanMenu(showClearMenu)
         .setCameraLocation(Setting.LIST_FIRST)
         .setSelectedPhotos(selectedPhotos)
-        .start(object : SelectCallback() {
+        .start(object : OnResultCallback() {
             override fun onResult(photos: ArrayList<Photo>, isOriginal: Boolean) {
                 imageSelected(photos)
             }
-
-            override fun onCancel() {
-
-
-            }
-
         })
-
-
 }
-

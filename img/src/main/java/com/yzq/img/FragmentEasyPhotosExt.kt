@@ -6,7 +6,6 @@ import com.huantansheng.easyphotos.callback.SelectCallback
 import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.huantansheng.easyphotos.setting.Setting
 
-
 /**
  * 打开相机
  * @receiver AppCompatActivity
@@ -21,8 +20,6 @@ fun Fragment.openCamera(imageSelected: ImageSelected) {
             }
 
             override fun onCancel() {
-
-
             }
         })
 }
@@ -65,14 +62,6 @@ fun Fragment.openAlbum(
             }
 
             override fun onCancel() {
-
-
             }
-
         })
-
-
 }
-
-
-
