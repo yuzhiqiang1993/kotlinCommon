@@ -30,8 +30,7 @@
     <string name="has_new_version">有新版本</string>
     <string name="sure_update">确定更新</string>
     <string name="not_update">暂不更新</string>
-    <string name="zero">0</string>
-    <string name="hundred">100</string>
+
     <string name="img_transition">img_transition</string>
     <string name="download">下载</string>
     <string name="start_location">开始定位</string>

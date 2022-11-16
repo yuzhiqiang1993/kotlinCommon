@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:ignore="MissingDefaultResource">
     <corners
-        android:topLeftRadius="@dimen/radius"
-        android:topRightRadius="@dimen/radius" />
+        android:topLeftRadius="@dimen/dp_4"
+        android:topRightRadius="@dimen/dp_4" />
     <gradient
         android:angle="225"
         android:endColor="@color/light_blue_50"

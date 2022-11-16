@@ -20,7 +20,6 @@ fun ComponentActivity.getNewDialog(): MaterialDialog {
         .cancelOnTouchOutside(false)
         .cancelable(false)
         .lifecycleOwner(this)
-
 }
 
 /**
@@ -34,16 +33,14 @@ fun ComponentActivity.getNewDialog(): MaterialDialog {
 fun ComponentActivity.showBaseDialog(
     title: String = HINT,
     message: String,
-    positiveText: String = SURE
+    positiveText: String = SURE,
 ) {
 
     getNewDialog().show {
         title(text = title)
         message(text = message)
         positiveButton(text = positiveText)
-
     }
-
 }
 
 /**
@@ -57,7 +54,7 @@ fun ComponentActivity.showOnlyPostiveCallBackDialog(
     title: String = HINT,
     message: String,
     positiveText: String = SURE,
-    callback: DialogCallback
+    callback: DialogCallback,
 ) {
 
     getNewDialog().show {
@@ -65,7 +62,6 @@ fun ComponentActivity.showOnlyPostiveCallBackDialog(
         message(text = message)
         positiveButton(text = positiveText, click = callback)
     }
-
 }
 
 /**
@@ -82,7 +78,7 @@ fun ComponentActivity.showPositiveCallbackDialog(
     message: String,
     positiveText: String = SURE,
     negativeText: String = CANCEL,
-    positiveCallback: DialogCallback
+    positiveCallback: DialogCallback,
 ) {
 
     getNewDialog().show {
@@ -90,9 +86,7 @@ fun ComponentActivity.showPositiveCallbackDialog(
         message(text = message)
         positiveButton(text = positiveText, click = positiveCallback)
         negativeButton(text = negativeText)
-
     }
-
 }
 
 /**
@@ -109,7 +103,7 @@ fun ComponentActivity.showCallbackDialog(
     positiveText: String = SURE,
     negativeText: String = CANCEL,
     positiveCallback: DialogCallback,
-    negativeCallback: DialogCallback
+    negativeCallback: DialogCallback,
 ) {
 
     getNewDialog().show {
@@ -118,7 +112,6 @@ fun ComponentActivity.showCallbackDialog(
         positiveButton(text = positiveText, click = positiveCallback)
         negativeButton(text = negativeText, click = negativeCallback)
     }
-
 }
 
 /**
@@ -134,7 +127,7 @@ fun ComponentActivity.showBackHintDialog(
     message: String = BACK_HINT,
     positiveText: String = SURE,
     positiveCallback: DialogCallback,
-    negativeText: String = CANCEL
+    negativeText: String = CANCEL,
 ) {
 
     getNewDialog().show {
@@ -143,9 +136,7 @@ fun ComponentActivity.showBackHintDialog(
         message(text = message)
         positiveButton(text = positiveText)
         negativeButton(text = negativeText, click = positiveCallback)
-
     }
-
 }
 
 /**
@@ -159,18 +150,16 @@ fun ComponentActivity.showSingleSelectList(
     title: String = HINT,
     message: String = "",
     items: List<String>,
-    listListener: ItemListener
+    listListener: ItemListener,
 
-) {
+    ) {
     getNewDialog().show {
         title(text = title)
         if (!TextUtils.isEmpty(message)) {
             message(text = message)
         }
         listItems(items = items, selection = listListener)
-
     }
-
 }
 
 /**
@@ -196,7 +185,7 @@ fun ComponentActivity.showInputDialog(
     inputType: Int = android.text.InputType.TYPE_CLASS_TEXT,
     allowEmptyInput: Boolean = false,
     waitForPositiveButton: Boolean = true,
-    inputCallback: InputCallback
+    inputCallback: InputCallback,
 ) {
     getNewDialog().show {
 
@@ -215,9 +204,7 @@ fun ComponentActivity.showInputDialog(
             waitForPositiveButton = waitForPositiveButton,
             callback = inputCallback
         )
-
     }
-
 }
 
 /**
@@ -234,7 +221,6 @@ fun ComponentActivity.getLoadingDialog(): MaterialDialog {
 fun ComponentActivity.getProgressDialog(): MaterialDialog {
 
     return getNewDialog().progress().cancelOnTouchOutside(false).cancelable(false)
-
 }
 
 /**
@@ -255,7 +241,7 @@ fun ComponentActivity.getProgressDialog(): MaterialDialog {
  */
 fun ComponentActivity.selectYear(
     displayType: MutableList<Int> = arrayListOf(DateTimeConfig.YEAR),
-    title: String = getString(com.yzq.resource.R.string.select_year),
+    title: String = getString(R.string.select_year),
     showBackNow: Boolean = false,
     showFocusDateInfo: Boolean = true,
     showDateLabel: Boolean = true,
@@ -265,7 +251,7 @@ fun ComponentActivity.selectYear(
     dateFormat: String = "yyyy",
     positiveText: String = SURE,
     negativeText: String = CANCEL,
-    datePickerListener: DatePickerListener
+    datePickerListener: DatePickerListener,
 ) {
 
     showDatePicker(
@@ -282,7 +268,6 @@ fun ComponentActivity.selectYear(
         negativeText,
         datePickerListener
     )
-
 }
 
 /**
@@ -320,7 +305,7 @@ fun ComponentActivity.showDatePicker(
     dateFormat: String = "yyyy-MM-dd HH:mm:ss",
     positiveText: String = SURE,
     negativeText: String = CANCEL,
-    datePickerListener: DatePickerListener
+    datePickerListener: DatePickerListener,
 ) {
 
     CardDatePickerDialog.builder(this)
@@ -339,5 +324,4 @@ fun ComponentActivity.showDatePicker(
             val dateStr = DateFormat.format(dateFormat, millisecond).toString()
             datePickerListener(millisecond, dateStr)
         }.setOnCancel(negativeText).build().show()
-
 }

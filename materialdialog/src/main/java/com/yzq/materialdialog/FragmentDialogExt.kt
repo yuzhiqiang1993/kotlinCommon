@@ -13,15 +13,12 @@ import com.afollestad.materialdialogs.list.listItems
 import com.loper7.date_time_picker.DateTimeConfig
 import com.loper7.date_time_picker.dialog.CardDatePickerDialog
 
-
 /*获取一个新的Dialog实例*/
 fun Fragment.getNewDialog(): MaterialDialog {
-
 
     return MaterialDialog(requireActivity()).cancelOnTouchOutside(false).cancelable(false)
         .lifecycleOwner(this)
 }
-
 
 /**
  * 基础弹窗  没有任何回调  只有确定按钮
@@ -41,11 +38,8 @@ fun Fragment.showBaseDialog(
         title(text = title)
         message(text = message)
         positiveButton(text = positiveText)
-
     }
-
 }
-
 
 /**
  * 显示一个只有确定按钮的弹窗
@@ -66,10 +60,7 @@ fun Fragment.showOnlyPostiveCallBackDialog(
         message(text = message)
         positiveButton(text = positiveText, click = callback)
     }
-
-
 }
-
 
 /**
  *
@@ -88,19 +79,13 @@ fun Fragment.showPositiveCallbackDialog(
     positiveCallback: DialogCallback
 ) {
 
-
     getNewDialog().show {
         title(text = title)
         message(text = message)
         positiveButton(text = positiveText, click = positiveCallback)
         negativeButton(text = negativeText)
-
-
     }
-
-
 }
-
 
 /**
  * 带有确定和取消回调的弹窗
@@ -119,17 +104,13 @@ fun Fragment.showCallbackDialog(
     negativeCallback: DialogCallback
 ) {
 
-
     getNewDialog().show {
         title(text = title)
         message(text = message)
         positiveButton(text = positiveText, click = positiveCallback)
         negativeButton(text = negativeText, click = negativeCallback)
     }
-
-
 }
-
 
 /**
  * 返回页面提示弹窗
@@ -147,20 +128,14 @@ fun Fragment.showBackHintDialog(
     negativeText: String = CANCEL
 ) {
 
-
     getNewDialog().show {
 
         title(text = title)
         message(text = message)
         positiveButton(text = positiveText)
         negativeButton(text = negativeText, click = positiveCallback)
-
-
     }
-
-
 }
-
 
 /**
  * 单选列表弹窗
@@ -182,12 +157,8 @@ fun Fragment.showSingleSelectList(
             message(text = message)
         }
         listItems(items = items, selection = listListener)
-
-
     }
-
 }
-
 
 /**
  * 带输入框的弹窗
@@ -201,7 +172,6 @@ fun Fragment.showSingleSelectList(
  * @param inputType  输入类型
  * @param allowEmptyInput  是否允许输入空
  */
-
 
 fun Fragment.showInputDialog(
     title: String = HINT,
@@ -232,10 +202,7 @@ fun Fragment.showInputDialog(
             waitForPositiveButton = waitForPositiveButton,
             callback = inputCallback
         )
-
-
     }
-
 }
 
 /**
@@ -253,9 +220,7 @@ fun Fragment.getLoadingDialog(): MaterialDialog {
 fun Fragment.getProgressDialog(): MaterialDialog {
 
     return getNewDialog().progress().cancelOnTouchOutside(false).cancelable(false)
-
 }
-
 
 fun Fragment.showDatePicker(
     displayType: MutableList<Int> = arrayListOf(
@@ -294,11 +259,5 @@ fun Fragment.showDatePicker(
             val dateStr = DateFormat.format(dateFormat, millisecond).toString()
 
             datePickerListener(millisecond, dateStr)
-
         }.setOnCancel(negativeText).build().show()
-
-
 }
-
-
-
