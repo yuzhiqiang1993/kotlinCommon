@@ -5,7 +5,6 @@ import android.graphics.Point
 import android.view.WindowManager
 import com.blankj.utilcode.util.Utils
 
-
 object DeviceUtils {
     /**
      * 获取屏幕尺寸
@@ -17,6 +16,5 @@ object DeviceUtils {
         val point = Point()
         wm.defaultDisplay.getRealSize(point)
         return point.y
-
     }
 }

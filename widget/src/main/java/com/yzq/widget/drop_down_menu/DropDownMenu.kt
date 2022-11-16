@@ -13,12 +13,11 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.widget.R
 import com.yzq.widget.drop_down_menu.DeviceUtils.getScreenHeight
 
-
 /**
  * @description 下拉菜单
- * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date    2022/11/11
- * @time    18:26
+ * @author yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date 2022/11/11
+ * @time 18:26
  */
 
 class DropDownMenu @JvmOverloads constructor(
@@ -31,37 +30,37 @@ class DropDownMenu @JvmOverloads constructor(
         attrs,
         defStyleAttr
     ) {
-    //顶部菜单布局
+    // 顶部菜单布局
     private var tabMenuContainer: LinearLayout
 
-    //底部容器，包含popupMenuViews，maskView
+    // 底部容器，包含popupMenuViews，maskView
     private var contentContainer: FrameLayout
 
-    //弹出菜单父布局
+    // 弹出菜单父布局
     private lateinit var popupMenuContainer: FrameLayout
 
-    //遮罩半透明View，点击可关闭DropDownMenu
+    // 遮罩半透明View，点击可关闭DropDownMenu
     private lateinit var maskView: View
 
-    //tabMenuView里面选中的tab位置，-1表示未选中
+    // tabMenuView里面选中的tab位置，-1表示未选中
     private var currentTabPosition = -1
 
-    //tab选中时文字的颜色
+    // tab选中时文字的颜色
     private var textSelectedColor = Color.BLACK
 
-    //tab未选中颜色
+    // tab未选中颜色
     private var textUnselectedColor = Color.DKGRAY
 
-    //遮罩颜色
+    // 遮罩颜色
     private var maskColor = Color.LTGRAY
 
-    //tab字体大小
+    // tab字体大小
     private var menuTextSize = 14
 
-    //tab选中图标
+    // tab选中图标
     private var menuSelectedIcon = 0
 
-    //tab未选中图标
+    // tab未选中图标
     private var menuUnselectedIcon = 0
 
     /*内容高度百分比*/
@@ -69,7 +68,6 @@ class DropDownMenu @JvmOverloads constructor(
 
     /*menu的背景颜色*/
     private var menuBackgroundColor = Color.WHITE
-
 
     init {
         /*垂直排列*/
@@ -92,7 +90,7 @@ class DropDownMenu @JvmOverloads constructor(
                 getFloat(R.styleable.DropDownMenu_menuMenuHeightPercent, menuHeightPercent)
         }
 
-        //创建一个Linnerlayout存放tabItem
+        // 创建一个Linnerlayout存放tabItem
         tabMenuContainer = LinearLayout(context)
         val params =
             LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -169,7 +167,6 @@ class DropDownMenu @JvmOverloads constructor(
             )
             popupMenuContainer.addView(it)
         }
-
     }
 
     private fun addTabItem(titleStr: String) {
@@ -229,7 +226,6 @@ class DropDownMenu @JvmOverloads constructor(
      */
     val isShowing: Boolean
         get() = currentTabPosition != -1
-
 
     /**
      * 切换菜单

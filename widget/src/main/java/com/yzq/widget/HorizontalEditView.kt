@@ -11,12 +11,11 @@ import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import com.yzq.widget.databinding.ViewHorizontalEditLayoutBinding
 
-
 /**
  * @description: 水平ItemView，输入框
  * @author : yzq
- * @date   : 2018/9/1
- * @time   : 14:05
+ * @date : 2018/9/1
+ * @time : 14:05
  *
  */
 
@@ -29,21 +28,19 @@ class HorizontalEditView @JvmOverloads constructor(
     ConstraintLayout(context, attrs, defStyleAttr) {
 
     private var iconRes: Int
-    private var iconTint: Int = com.yzq.resource.R.color.primary_icon
+    private var iconTint: Int = R.color.primary_icon
     private var titleStr: String?
     private var contentStr: String?
     private var hint: String?
     private var endIconRes: Int
-    private var endIconTint: Int = com.yzq.resource.R.color.primary_icon
+    private var endIconTint: Int = R.color.primary_icon
     private var editEnable = true
     private var inputType: String?
-
 
     private val binding: ViewHorizontalEditLayoutBinding =
         ViewHorizontalEditLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
-
 
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalEditView)
 
@@ -51,7 +48,7 @@ class HorizontalEditView @JvmOverloads constructor(
             iconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_icon, -1)
             iconTint = typeArr.getColor(
                 R.styleable.HorizontalEditView_horz_edit_icon_tint,
-                com.yzq.resource.R.color.primary_icon
+                R.color.primary_icon
             )
             inputType =
                 typeArr.getString(R.styleable.HorizontalEditView_horz_edit_inputType)
@@ -61,16 +58,14 @@ class HorizontalEditView @JvmOverloads constructor(
 
             endIconTint = typeArr.getColor(
                 R.styleable.HorizontalEditView_horz_edit_end_icon_tint,
-                com.yzq.resource.R.color.primary_icon
+                R.color.primary_icon
             )
             titleStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_title)
             contentStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_content)
             hint = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_hint)
-
         } finally {
             typeArr.recycle()
         }
-
 
         binding.run {
             /*默认隐藏图标*/
@@ -88,7 +83,6 @@ class HorizontalEditView @JvmOverloads constructor(
                     iconTint, BlendModeCompat.SRC_ATOP
                 )
             }
-
 
             /*显示后面的图标*/
             if (endIconRes != -1) {
@@ -113,10 +107,7 @@ class HorizontalEditView @JvmOverloads constructor(
             inputContent.setText(contentStr)
             inputContent.isEnabled = editEnable
         }
-
-
     }
-
 
     /**
      * 更改内容
@@ -159,5 +150,4 @@ class HorizontalEditView @JvmOverloads constructor(
     fun setEditEnable(b: Boolean) {
         binding.inputContent.isEnabled = b
     }
-
 }

@@ -8,22 +8,19 @@ import android.widget.LinearLayout
 import com.yzq.widget.R
 import com.yzq.widget.databinding.LayoutStateViewBinding
 
-
 /**
  * @description: 自定义的状态布局
  * @author : yzq
- * @date   : 2018/7/13
- * @time   : 13:43
+ * @date : 2018/7/13
+ * @time : 13:43
  *
  */
-
 
 class StateView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : LinearLayout(context, attrs, defStyleAttr) {
-
 
     /*无网络图片*/
     private var noNetImgRes = R.drawable.ic_no_net
@@ -46,7 +43,6 @@ class StateView @JvmOverloads constructor(
                 typeArr.getResourceId(R.styleable.StateView_no_data_img_res, R.drawable.ic_no_data)
             errorImgRes =
                 typeArr.getResourceId(R.styleable.StateView_error_img_res, R.drawable.ic_error)
-
         } finally {
             typeArr.recycle()
         }
@@ -54,20 +50,18 @@ class StateView @JvmOverloads constructor(
         showLoading()
     }
 
-
     fun showLoading() {
         binding.root.visibility = View.VISIBLE
         binding.loadingLayout.visibility = View.VISIBLE
         binding.abnormaLayout.visibility = View.GONE
     }
 
-
     fun showNoData() {
         binding.root.visibility = View.VISIBLE
         binding.loadingLayout.visibility = View.GONE
         binding.abnormaLayout.visibility = View.VISIBLE
         binding.ivHint.setImageResource(noDataImgRes)
-        binding.tvHint.text = resources.getString(com.yzq.resource.R.string.no_data)
+        binding.tvHint.text = resources.getString(R.string.no_data)
     }
 
     fun showNoNet() {
@@ -76,7 +70,7 @@ class StateView @JvmOverloads constructor(
         binding.abnormaLayout.visibility = View.VISIBLE
         binding.ivHint.setImageResource(noNetImgRes)
         // ImageLoader.getInstance().load(context, R.drawable.ic_no_net, hintImg);
-        binding.tvHint.text = resources.getString(com.yzq.resource.R.string.no_net)
+        binding.tvHint.text = resources.getString(R.string.no_net)
     }
 
     fun showError(errorMsg: String) {
@@ -95,13 +89,10 @@ class StateView @JvmOverloads constructor(
         binding.root.visibility = View.GONE
     }
 
-
     fun retry(retry: RetryListener) {
         binding.btnRetry.setOnClickListener {
             showLoading()
             retry()
         }
-
     }
-
 }

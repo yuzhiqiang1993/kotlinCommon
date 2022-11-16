@@ -12,12 +12,11 @@ import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import com.yzq.widget.databinding.ViewHorizontalTextLayoutBinding
 
-
 /**
  * @description: 水平ItemView，文本框
  * @author : yzq
- * @date   : 2018/9/1
- * @time   : 14:05
+ * @date : 2018/9/1
+ * @time : 14:05
  *
  */
 
@@ -29,14 +28,13 @@ class HorizontalTextView @JvmOverloads constructor(
 ) :
     ConstraintLayout(context, attrs, defStyleAttr) {
 
-
     private var startIconRes = -1
-    private var iconTint = com.yzq.resource.R.color.primary_icon
+    private var iconTint = R.color.primary_icon
     private var titleStr = ""
     private var contentStr = ""
     private var hintStr = ""
     private var endIconRes = -1
-    private var endIconTint = com.yzq.resource.R.color.primary_icon
+    private var endIconTint = R.color.primary_icon
     private var contentLeft = false
     private val binding =
 
@@ -49,14 +47,14 @@ class HorizontalTextView @JvmOverloads constructor(
             startIconRes = getResourceId(R.styleable.HorizontalTextView_horz_tv_icon, -1)
             iconTint = getColor(
                 R.styleable.HorizontalTextView_horz_tv_icon_tint,
-                com.yzq.resource.R.color.primary_icon
+                R.color.primary_icon
             )
             endIconRes =
                 getResourceId(R.styleable.HorizontalTextView_horz_tv_endIcon, -1)
 
             endIconTint = getColor(
                 R.styleable.HorizontalEditView_horz_edit_end_icon_tint,
-                com.yzq.resource.R.color.primary_icon
+                R.color.primary_icon
             )
 
             titleStr = getString(R.styleable.HorizontalTextView_horz_tv_title) ?: ""
@@ -65,7 +63,6 @@ class HorizontalTextView @JvmOverloads constructor(
             contentLeft =
                 getBoolean(R.styleable.HorizontalTextView_horz_tv_content_left, false)
         }
-
 
         binding.run {
             iconStart.visibility = View.GONE
@@ -87,7 +84,6 @@ class HorizontalTextView @JvmOverloads constructor(
                 )
             }
 
-
             tvTitle.text = titleStr
 
             if (contentLeft) {
@@ -98,10 +94,7 @@ class HorizontalTextView @JvmOverloads constructor(
             tvContent.text = contentStr
             tvContent.hint = hintStr
         }
-
-
     }
-
 
     /**
      * 更改内容
@@ -111,7 +104,6 @@ class HorizontalTextView @JvmOverloads constructor(
         this.contentStr = content
         binding.tvContent.text = contentStr
     }
-
 
     /**
      * 更改标题
@@ -129,5 +121,4 @@ class HorizontalTextView @JvmOverloads constructor(
     fun setEndIconOnClick(listener: OnClickListener) {
         binding.tvContent.setOnClickListener(listener)
     }
-
 }
