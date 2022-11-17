@@ -13,16 +13,16 @@ object AndroidOfficial {
     const val activityKtx = "androidx.activity:activity-ktx:1.6.1"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.3"
     const val collectionKtx = "androidx.collection:collection-ktx:1.2.0"
-    private const val lifecycleKtx = "2.5.1"
+    private const val lifecycleKtxVersion = "2.5.1"
 
     // ViewModel
-    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleKtx"
+    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleKtxVersion"
 
     // LiveData
-    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleKtx"
+    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleKtxVersion"
 
     // Lifecycles only (without ViewModel or LiveData)
-    const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleKtx"
+    const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleKtxVersion"
 
     const val vectordrawable =
         "androidx.vectordrawable:vectordrawable:1.1.0"
@@ -40,10 +40,10 @@ object AndroidOfficial {
 
     const val viewpager2 = "androidx.viewpager2:viewpager2:1.1.0-beta01"
 
-    private const val room = "2.4.3"
-    const val roomRuntime = "androidx.room:room-runtime:$room"
-    const val roomCompiler = "androidx.room:room-compiler:$room"
-    const val roomKtx = "androidx.room:room-ktx:$room"
+    private const val roomVersion = "2.4.3"
+    const val roomRuntime = "androidx.room:room-runtime:$roomVersion"
+    const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
+    const val roomKtx = "androidx.room:room-ktx:$roomVersion"
 
     const val exifinterface = "androidx.exifinterface:exifinterface:1.3.5"
 
@@ -53,11 +53,11 @@ object AndroidOfficial {
 }
 
 object Kotlinx {
-    private const val kotlinxCoroutine = "1.6.4"
+    private const val kotlinxCoroutineVersion = "1.6.4"
     const val coroutinesCore =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutine"
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinxCoroutineVersion"
     const val coroutineAndroid =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutine"
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutineVersion"
 
     private const val kotlinVersion = "1.7.20"
 
@@ -81,9 +81,9 @@ object Retrofit {
 }
 
 object ARouter {
-    private const val arouter = "1.5.2"
-    const val arouterApi = "com.alibaba:arouter-api:$arouter"
-    const val arouterCompiler = "com.alibaba:arouter-compiler:$arouter"
+    private const val arouterVersion = "1.5.2"
+    const val arouterApi = "com.alibaba:arouter-api:$arouterVersion"
+    const val arouterCompiler = "com.alibaba:arouter-compiler:$arouterVersion"
 }
 
 object ThirdParty {

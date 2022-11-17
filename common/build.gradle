@@ -86,6 +86,7 @@ dependencies {
     /*内存泄漏检测 leakcanary*/
     debugImplementation ThirdParty.leakcanaryAndroid
     api project(path: ':base')
+    api project(path: ':mmkv')
 
 
 }

@@ -80,7 +80,6 @@ dependencies {
 //    api Kotlinx.coroutineAndroid
 
     api ThirdParty.utilcode
-    api ThirdParty.mmkv
     api ThirdParty.moshiKotlin
 
     api ARouter.arouterApi

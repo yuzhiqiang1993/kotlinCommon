@@ -4,6 +4,7 @@ import android.text.TextUtils
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.nav
+import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.binding.databind
 import com.yzq.common.constants.RoutePath
@@ -31,6 +32,11 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
         super.initWidget()
 
         colorStatusBar(R.color.white, binding.layoutContainer, true)
+
+        binding.btnClearMmkv.setOnThrottleTimeClick {
+            MMKVUtil.clear()
+            initData()
+        }
 
         binding.btnLogin.setOnClickListener {
 

@@ -58,6 +58,7 @@
     <string name="zero">0</string>
     <string name="hundred">100</string>
     <string name="start_location">开始定位</string>
+    <string name="mmkv">清除mmkv</string>
 
 
 </resources>

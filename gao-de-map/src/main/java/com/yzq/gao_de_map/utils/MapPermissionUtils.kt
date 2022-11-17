@@ -7,12 +7,11 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.common.utils.LocationUtils
 import com.yzq.permission.getPermissions
 
-
 /**
  * @description: 定位权限
  * @author : yzq
- * @date   : 2018/12/19
- * @time   : 16:04
+ * @date : 2018/12/19
+ * @time : 16:04
  *
  */
 
@@ -43,14 +42,9 @@ object MapPermissionUtils {
                     ).show()
                     LocationUtils.openGpsSettings()
                 }
-
             } else {
                 mapPermission()
             }
         }
-
-
     }
-
-
 }
