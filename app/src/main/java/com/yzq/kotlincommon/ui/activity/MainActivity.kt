@@ -1,25 +1,24 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemClickListener
+import com.drake.brv.utils.divider
+import com.drake.brv.utils.linear
+import com.drake.brv.utils.setup
 import com.google.android.material.navigation.NavigationView
 import com.yzq.application.BaseApp
-import com.yzq.base.extend.init
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.NaviItem
 import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.adapter.MainAdapter
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
+import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
 
 /**
  * @description: 导航页面
@@ -32,30 +31,26 @@ import com.yzq.kotlincommon.databinding.ActivityMainBinding
 @Route(path = RoutePath.Main.MAIN)
 class MainActivity :
     BaseActivity(R.layout.activity_main),
-    NavigationView.OnNavigationItemSelectedListener,
-    OnItemClickListener {
+    NavigationView.OnNavigationItemSelectedListener {
     private val binding by viewbind(ActivityMainBinding::inflate)
     private var items = arrayListOf<NaviItem>()
 
-    private lateinit var mainAdapter: MainAdapter
-
     override fun initWidget() {
 
-        initToolbar(binding.includedAppbarMain.toolbar, "kotlin common", displayHome = false)
+        binding.run {
+            initToolbar(binding.includedAppbarMain.toolbar, "kotlin common", displayHome = false)
 
-        binding.includedAppbarMain.recy.init()
-
-        val toggle = ActionBarDrawerToggle(
-            this,
-            binding.drawerLayout,
-            binding.includedAppbarMain.toolbar,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        )
-        binding.drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-
-        binding.navView.setNavigationItemSelectedListener(this)
+            val toggle = ActionBarDrawerToggle(
+                this@MainActivity,
+                drawerLayout,
+                includedAppbarMain.toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close
+            )
+            drawerLayout.addDrawerListener(toggle)
+            toggle.syncState()
+            navView.setNavigationItemSelectedListener(this@MainActivity)
+        }
     }
 
     override fun initData() {
@@ -90,20 +85,22 @@ class MainActivity :
     }
 
     private fun setData() {
-//        val recy = findViewById<RecyclerView>(R.id.recy)
-        mainAdapter = MainAdapter(R.layout.item_main_layout, items)
-        mainAdapter.setOnItemClickListener(this)
-        binding.includedAppbarMain.recy.adapter = mainAdapter
-    }
-
-    override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
-        val clickItem = mainAdapter.data[position]
-
-        skip(clickItem.path)
+        binding.includedAppbarMain.recy
+            .linear()
+            .divider(R.drawable.item_divider)
+            .setup {
+                addType<NaviItem>(R.layout.item_main_layout)
+                onBind {
+                    val itemBinding = getBinding<ItemMainLayoutBinding>()
+                    itemBinding.mainItem.setTitle(getModel<NaviItem>().title)
+                }
+                R.id.mainItem.onClick {
+                    skip(getModel<NaviItem>().path)
+                }
+            }.models = items
     }
 
     private fun skip(path: String) {
-
         ARouter.getInstance().build(path).navigation(this)
     }
 

@@ -33,7 +33,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
         colorStatusBar(R.color.white, binding.layoutContainer, true)
 
-        binding.btnClearMmkv.setOnThrottleTimeClick {
+        binding.tvClearMmkv.setOnThrottleTimeClick {
             MMKVUtil.clear()
             initData()
         }

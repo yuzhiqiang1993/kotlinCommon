@@ -18,11 +18,10 @@ import kotlin.coroutines.CoroutineContext
 open class AndroidScope(
     lifecycleOwner: LifecycleOwner? = null,
     lifeEvent: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
-    dispatcher: CoroutineDispatcher = Dispatchers.Main
+    dispatcher: CoroutineDispatcher = Dispatchers.Main,
 ) : CoroutineScope, Closeable {
 
     init {
-
         runMain {
             lifecycleOwner?.lifecycle?.addObserver(object : LifecycleEventObserver {
                 override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
@@ -49,10 +48,8 @@ open class AndroidScope(
         catch(throwable)
     }
 
-
     override val coroutineContext: CoroutineContext =
         dispatcher + exceptionHandler + SupervisorJob()
-
 
     open fun doLaunch(block: suspend CoroutineScope.() -> Unit): AndroidScope {
 
@@ -92,23 +89,20 @@ open class AndroidScope(
         return this
     }
 
-
     open fun cancel(cause: CancellationException? = null) {
         val job = coroutineContext[Job]
             ?: error("Scope cannot be cancelled because it does not have a job: $this")
         job.cancel(cause)
-        Log.i("cancel", "====cancel:${job}")
+        Log.i("cancel", "====cancel:$job")
     }
 
     open fun cancel(
         message: String,
-        cause: Throwable? = null
+        cause: Throwable? = null,
     ) = cancel(CancellationException(message, cause))
 
     override fun close() {
         Log.i("close", "====close")
         cancel()
     }
-
 }
-

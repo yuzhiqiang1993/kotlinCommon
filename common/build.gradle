@@ -82,9 +82,11 @@ dependencies {
     /*okhttp请求插件查看*/
     implementation Retrofit.okhttpprofiler
 
-
     /*内存泄漏检测 leakcanary*/
     debugImplementation ThirdParty.leakcanaryAndroid
+
+    api ThirdParty.BRV
+
     api project(path: ':base')
     api project(path: ':mmkv')
 

@@ -38,6 +38,9 @@ object AndroidOfficial {
     const val swiperefreshlayout =
         "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
+    /*recyclerview*/
+    const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
+
     const val viewpager2 = "androidx.viewpager2:viewpager2:1.1.0-beta01"
 
     private const val roomVersion = "2.4.3"
@@ -108,6 +111,8 @@ object ThirdParty {
     const val jsoup = "org.jsoup:jsoup:1.15.3"
 
     const val xeonBsDiff = "io.github.yuzhiqiang1993:xeon_bsdiff:1.0.1"
+
+    const val BRV = "com.github.liangjingkanji:BRV:1.3.85"
 
     const val flexboxLayout = "com.github.google:flexbox-layout:3.0.0"
 

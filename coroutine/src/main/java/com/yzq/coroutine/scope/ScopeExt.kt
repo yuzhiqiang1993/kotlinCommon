@@ -6,7 +6,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
-
 /**
  * Scope life
  * 具备生命周期感知能力的作用域  生命周期跟随 [LifecycleOwner]

@@ -8,7 +8,9 @@
     app:swipeEnable="true">
 
 
-    <include layout="@layout/item_task_content" />
+    <include
+        android:id="@+id/included_task_content"
+        layout="@layout/item_task_content" />
 
 
     <include layout="@layout/item_delete_menu" />

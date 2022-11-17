@@ -86,16 +86,23 @@
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_10"
             android:text="@string/login" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_clear_mmkv"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_clear_mmkv"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_10"
-            android:text="@string/mmkv"
-            app:backgroundTint="@color/red_600" />
+            android:gravity="center"
+            android:minHeight="@dimen/dp_46"
+            android:paddingStart="@dimen/dp_16"
+            android:paddingEnd="@dimen/dp_16"
+            android:text="@string/clear_mmkv"
+            android:textColor="@color/gray_600"
+            android:textStyle="bold" />
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

@@ -1,116 +1,118 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.view.Menu
-import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemChildClickListener
-import com.yzq.base.extend.init
+import com.drake.brv.utils.divider
+import com.drake.brv.utils.linear
+import com.drake.brv.utils.setup
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.task.TaskBean
 import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.adapter.TaskAdapter
 import com.yzq.kotlincommon.databinding.ActivityTaskBinding
-import com.yzq.widget.HoverItemDecoration
+import com.yzq.kotlincommon.databinding.ItemTaskHoverBinding
+import com.yzq.kotlincommon.databinding.ItemTaskSwipeLayoutBinding
 
 /**
- * @description: 任务页面，主要演示粘性头部
- * @author : yzq
- * @date : 2019/4/30
- * @time : 13:41
- *
+ * @description 任务列表,主要展示粘性头部和侧滑删除
+ * @author yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date 2019/4/30
+ * @time 13:41
  */
 
 @Route(path = RoutePath.Main.TASK)
-class TaskActivity : BaseActivity(), OnItemChildClickListener {
+class TaskActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityTaskBinding::inflate)
     private var tasks = arrayListOf<TaskBean>()
-    private var type: Int = 0
-    private lateinit var taskAdapter: TaskAdapter
 
     override fun initWidget() {
         super.initWidget()
 
         initToolbar(binding.includedToolbar.toolbar, "任务")
-        binding.recy.init()
     }
 
     override fun initData() {
         super.initData()
 
+        val tasks = mutableListOf<TaskBean>()
         for (i in 1..100) {
-            type = if (i % 2 == 0) {
-                1
+            val type = if (i % 2 == 0) {
+                "任务类型一"
             } else {
-                0
+                "任务类型二"
             }
             val taskBean = TaskBean("任务$i", type)
             tasks.add(taskBean)
         }
 
         /*将数据根据类型分组*/
-
-        filterData()
+        filterData(tasks)
 
         showData()
     }
 
     private fun showData() {
 
-        taskAdapter = TaskAdapter(R.layout.item_task_swipe_layout, tasks)
-        taskAdapter.addChildClickViewIds(R.id.tv_name, R.id.tv_delete)
-        taskAdapter.setOnItemChildClickListener(this)
-
-        val hoverItemDecoration =
-            HoverItemDecoration(this) {
-                if (it < 0) {
-                    return@HoverItemDecoration ""
+        binding.recy.linear()
+            .divider(R.drawable.item_divider)
+            .setup {
+                addType<TaskBean> {
+                    when (itemHover) {
+                        true -> R.layout.item_task_hover
+                        else -> R.layout.item_task_swipe_layout
+                    }
                 }
-                val taskBean = tasks[it]
-                if (taskBean.type == 0) {
-                    "巡查"
-                } else {
-                    "急查"
-                }
-            }
-        binding.recy.addItemDecoration(hoverItemDecoration)
 
-        binding.recy.adapter = taskAdapter
+                onBind {
+                    val model = getModel<TaskBean>()
+                    when (itemViewType) {
+                        R.layout.item_task_swipe_layout -> {
+                            getBinding<ItemTaskSwipeLayoutBinding>()
+                                .run {
+                                    includedTaskContent.tvName.setText(
+                                        model.name
+                                    )
+                                }
+                        }
+                        R.layout.item_task_hover -> {
+                            getBinding<ItemTaskHoverBinding>().tvHover.setText(model.type)
+                        }
+                    }
+                }
+                R.id.tv_name.onFastClick {
+                    val taskBean = getModel<TaskBean>()
+                    LogUtils.i("点击了:$taskBean")
+                    ToastUtils.showShort(taskBean.name)
+                }
+
+                R.id.tv_delete.onClick {
+                    val taskBean = getModel<TaskBean>()
+                    LogUtils.i("taskBean:$taskBean")
+                    val indexOf = tasks.indexOf(taskBean)
+                    LogUtils.i("点击了$taskBean,index:$indexOf")
+                    tasks.removeAt(indexOf)
+                    notifyItemRemoved(indexOf)
+                }
+            }.models = tasks
     }
 
-    private lateinit var operationItem: TaskBean
+    private fun filterData(taskData: MutableList<TaskBean>) {
 
-    private var operationPosition: Int = 0
-
-    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
-
-        operationItem = adapter.data[position] as TaskBean
-        operationPosition = position
-        when (view.id) {
-            R.id.tv_name -> {
-                ToastUtils.showShort(operationItem.name)
+        taskData
+            .sortedBy { it.type }
+            .groupBy {
+                it.type
+            }.forEach {
+                /**
+                 * 需要悬停的数据
+                 */
+                tasks.add(TaskBean(it.key, it.key, true))
+                tasks.addAll(it.value)
             }
-            R.id.tv_delete -> {
-
-                tasks.remove(operationItem)
-                taskAdapter.notifyItemRemoved(operationPosition)
-            }
-        }
-    }
-
-    private fun filterData() {
-
-        tasks.sortBy {
-            it.type
-        }
-//        Collections.sort(tasks, kotlin.Comparator { o1, o2 ->
-//            return@Comparator o1.type.compareTo(o2.type)
-//
-//        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
