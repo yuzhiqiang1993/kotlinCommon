@@ -78,7 +78,6 @@ include ':app',
         ':application'
 
 includeBuild("dependency-manager-plugin")
-include ':viewmodel'
 include ':coroutine'
 include ':binding'
 include ':mmkv'

@@ -14,6 +14,7 @@ import com.yzq.common.ext.baseRespApiCall
 import com.yzq.common.ext.dataConvert
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
+import com.yzq.coroutine.scope.launchSafety
 import com.yzq.coroutine.scope.lifeScope
 import com.yzq.kotlincommon.databinding.ActivityApiCallBinding
 import com.yzq.kotlincommon.view_model.ApiCallViewModel
@@ -35,8 +36,6 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
 
     override fun initWidget() {
 
-        ActivityApiCallBinding.inflate(layoutInflater)
-
         binding.run {
 
             initToolbar(includedToolbar.toolbar, "接口请求")
@@ -47,6 +46,9 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
 
             btnLifeScope.setOnThrottleTimeClick {
                 requestByLifeScope()
+            }
+            btnLaunchSafety.setOnThrottleTimeClick {
+                requestByLaunchSafety()
             }
 
             btnConcurrent.setOnThrottleTimeClick {
@@ -59,11 +61,31 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
         }
     }
 
+    private fun requestByLaunchSafety() {
+
+        lifecycleScope.launchSafety {
+            LogUtils.i("准备请求")
+            delay(2000)
+            val localUserList =
+                RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
+                    .dataConvert()
+            LogUtils.i("localUserList:$localUserList")
+        }.catch {
+            LogUtils.i("异常了:$it")
+            it.printStackTrace()
+        }.invokeOnCompletion {
+            LogUtils.i("结束了")
+            if (it != null) {
+                LogUtils.i("有异常:$it")
+            }
+        }
+    }
+
     private fun concurrentRequest() {
         /**
          *  并发请求
          */
-        lifeScope {
+        lifecycleScope.launchSafety {
             /**
              * 如果代码块没有被supervisorScope包裹，那么catch只会被调用一次，也就是首次出现异常的时候，其他子协程会受到影响被取消，并且finall会中会携带首次异常的信息
              *
@@ -75,7 +97,6 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
                         .dataConvert()
                 }
                 launch {
-
                     delay(4000)
                     RetrofitFactory.instance.getService(ApiService::class.java).geocoder()
                 }
@@ -84,7 +105,7 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
 
             LogUtils.i("异常了:$it")
             it.printStackTrace()
-        }.finally {
+        }.invokeOnCompletion {
             LogUtils.i("结束了")
             if (it != null) {
                 LogUtils.i("有异常:$it")
@@ -141,7 +162,7 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
     private fun requestByLifeScope() {
         /**
          * 请求方式二
-         * 直接请求，lifeScope对异常也做了处理
+         * lifeScope请求，lifeScope对异常也做了处理
          */
         lifeScope {
             LogUtils.i("准备请求")

@@ -3,7 +3,6 @@ package com.yzq.base.ui.state_view
 import android.text.TextUtils
 import android.view.View
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.base.ui.state_view.constants.ViewStateContstants
@@ -116,7 +115,6 @@ class StateViewManager(private val activity: BaseActivity) {
      *解除加载框
      */
     fun dismissLoadingDialog() {
-        LogUtils.i("dismissLoadingDialog")
         loadingDialog.dismiss()
     }
 

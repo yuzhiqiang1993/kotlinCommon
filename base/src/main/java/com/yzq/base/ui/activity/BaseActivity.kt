@@ -2,7 +2,6 @@ package com.yzq.base.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.ColorRes
@@ -35,11 +34,6 @@ abstract class BaseActivity : AppCompatActivity {
 
     constructor() : super()
     constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
-
-    private var lastClickTime: Long = 0 // 最后一次点击的时间
-
-    private val intervalTime = 300 // 两次点击之间的间隔
-    private var allowFastClick = false // 是否允许快速点击
 
     /*视图状态管理器*/
     protected val stateViewManager by lazy { StateViewManager(this) }
@@ -189,13 +183,6 @@ abstract class BaseActivity : AppCompatActivity {
     }
 
     /**
-     * 允许快速点击
-     */
-    protected open fun allowFastClick() {
-        this.allowFastClick = true
-    }
-
-    /**
      *
      * @param path String  图片路径
      * @param view View  view
@@ -211,24 +198,6 @@ abstract class BaseActivity : AppCompatActivity {
                 getString(R.string.img_transition)
             )
         startActivity(intent, options.toBundle())
-    }
-
-    /**
-     * 事件分发
-     * @param ev
-     */
-    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-
-        if (!allowFastClick) {
-            if (ev?.action == MotionEvent.ACTION_DOWN) {
-                if (System.currentTimeMillis() - lastClickTime < intervalTime) {
-                    return true
-                } else {
-                    lastClickTime = System.currentTimeMillis()
-                }
-            }
-        }
-        return super.dispatchTouchEvent(ev)
     }
 
     override fun onBackPressed() {
@@ -247,5 +216,4 @@ abstract class BaseActivity : AppCompatActivity {
         super.onDestroy()
         EventBusUtil.unregister(this)
     }
-
 }

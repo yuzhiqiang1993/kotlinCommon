@@ -20,7 +20,7 @@ sealed class ApiResult<out T> {
     data class Success<out T>(val data: T?) : ApiResult<T>()
 
     /**
-     * 表示请求正常(respCode：200),接收到了包含错误码的响应结果
+     * 表示请求正常(respCode：200) 但是自定义的响应码不是正确的或者返回的responseBody是null
      *
      * @param T
      * @property code

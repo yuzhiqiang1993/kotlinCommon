@@ -4,6 +4,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
+import kotlinx.coroutines.delay
 
 /**
  * @description 接口请求的vm
@@ -18,6 +19,7 @@ class ApiCallViewModel : BaseViewModel() {
 
     fun requestData() {
         launchLoadingDialog(onException = onException) {
+            delay(1000)
             val movieBean = RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
             LogUtils.i("movieBean:$movieBean")
         }

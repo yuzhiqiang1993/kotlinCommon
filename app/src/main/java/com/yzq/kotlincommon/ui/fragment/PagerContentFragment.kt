@@ -28,7 +28,6 @@ class PagerContentFragment(var content: String) :
 
     override fun initWidget() {
         super.initWidget()
-
         binding.run {
             bannerViewPager
                 .setAutoPlay(true)

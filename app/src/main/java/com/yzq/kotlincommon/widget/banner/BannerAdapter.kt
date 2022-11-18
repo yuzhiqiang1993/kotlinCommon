@@ -15,7 +15,7 @@ class BannerAdapter : BaseBannerAdapter<String>() {
         holder: BaseViewHolder<String>,
         data: String,
         position: Int,
-        pageSize: Int
+        pageSize: Int,
     ) {
 
         val bannerIv = holder.findViewById<AppCompatImageView>(R.id.iv_banner)

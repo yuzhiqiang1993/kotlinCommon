@@ -88,7 +88,6 @@ class BsDiffViewModel : BaseViewModel() {
                 }
 
                 /*计算md5值*/
-
                 newFileMD5LiveData.value = FileUtils.getFileMD5ToString(newFile)
                 combineFileMD5LiveData.value = FileUtils.getFileMD5ToString(combineFile)
             }

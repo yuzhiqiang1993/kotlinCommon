@@ -6,7 +6,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-
 /**
  * 在主线程中调用指定的挂起块，挂起直到完成，并返回结果。
  *
@@ -37,7 +36,6 @@ suspend fun <T> withDefault(block: suspend CoroutineScope.() -> T) =
  */
 suspend fun <T> withUnconfined(block: suspend CoroutineScope.() -> T) =
     withContext(Dispatchers.Unconfined, block)
-
 
 /**
  * 在主线程上运行

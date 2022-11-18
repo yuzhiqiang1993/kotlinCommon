@@ -24,7 +24,7 @@ import com.yzq.widget.databinding.ViewHorizontalTextLayoutBinding
 class HorizontalTextView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) :
     ConstraintLayout(context, attrs, defStyleAttr) {
 
@@ -41,7 +41,6 @@ class HorizontalTextView @JvmOverloads constructor(
         ViewHorizontalTextLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
-
         /*可以代替传统的try catch*/
         context.withStyledAttributes(attrs, R.styleable.HorizontalTextView) {
             startIconRes = getResourceId(R.styleable.HorizontalTextView_horz_tv_icon, -1)

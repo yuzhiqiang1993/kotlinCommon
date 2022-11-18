@@ -3,6 +3,7 @@ package com.yzq.kotlincommon.view_model
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
+import com.yzq.coroutine.scope.launchSafety
 import kotlinx.coroutines.channels.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -31,8 +32,8 @@ class ChannelViewModel : BaseViewModel() {
 
     fun testChannel() {
 
-        viewModelScope.launch {
-            (1..10).forEach {
+        viewModelScope.launchSafety {
+            for (it in 1..10) {
                 _channel.send(it)
                 LogUtils.i("send:$it")
                 delay(200)
@@ -41,7 +42,7 @@ class ChannelViewModel : BaseViewModel() {
             _channel.close()
         }
 
-        viewModelScope.launch {
+        viewModelScope.launchSafety {
             for (i in _channel) {
                 LogUtils.i("receive:$i")
             }

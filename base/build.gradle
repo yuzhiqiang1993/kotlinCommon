@@ -73,6 +73,7 @@ dependencies {
 //    api AndroidOfficial.viewModel
     api AndroidOfficial.lifecycle
     api AndroidOfficial.liveData
+    api AndroidOfficial.viewModel
     api AndroidOfficial.swiperefreshlayout
 
 
@@ -105,7 +106,6 @@ dependencies {
     api project(path: ':permission')
     api project(path: ':widget')
     api project(path: ':aliemas')
-    api project(path: ':viewmodel')
     api project(path: ':coroutine')
     api project(path: ':binding')
 

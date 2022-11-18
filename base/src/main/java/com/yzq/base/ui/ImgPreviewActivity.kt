@@ -35,7 +35,6 @@ class ImgPreviewActivity : BaseActivity() {
         super.initWidget()
 
         BarUtils.setStatusBarColor(this, Color.BLACK)
-        allowFastClick()
 
         binding.photoView.setOnClickListener {
             onBackPressed()

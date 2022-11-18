@@ -20,6 +20,14 @@
         android:text="apiCall方式请求" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_launchSafety"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_16"
+        android:layout_marginRight="@dimen/dp_16"
+        android:text="使用官方的LifecycleScope调launchSafety请求" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_lifeScope"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

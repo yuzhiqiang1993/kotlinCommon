@@ -5,6 +5,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.data.LoginBean
 import com.yzq.common.utils.MMKVUtil
+import kotlinx.coroutines.delay
 
 class LoginViewModel : BaseViewModel() {
 
@@ -12,6 +13,7 @@ class LoginViewModel : BaseViewModel() {
 
     fun login(account: String, pwd: String) {
         launchLoadingDialog {
+            delay(1000)
 
             MMKVUtil.account = account
             MMKVUtil.pwd = pwd

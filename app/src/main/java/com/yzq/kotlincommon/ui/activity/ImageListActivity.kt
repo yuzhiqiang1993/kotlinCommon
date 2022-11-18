@@ -99,10 +99,8 @@ class ImageListActivity : BaseActivity() {
             binding.run {
                 if (layoutPageRefresh.state == RefreshState.Loading) {
                     recy.bindingAdapter.addModels(data.result.data)
-//                    layoutPageRefresh.finishRefresh()
                 } else {
                     recy.bindingAdapter.setDifferModels(data.result.data)
-//                    layoutPageRefresh.finishLoadMore()
                 }
 
                 layoutPageRefresh.showContent()
