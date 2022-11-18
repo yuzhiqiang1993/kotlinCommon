@@ -1,60 +1,64 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.view.View
-import androidx.lifecycle.lifecycleScope
-import androidx.recyclerview.widget.DiffUtil
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemChildClickListener
-import com.yzq.base.extend.init
+import com.drake.brv.utils.divider
+import com.drake.brv.utils.linear
+import com.drake.brv.utils.setDifferModels
+import com.drake.brv.utils.setup
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.data_base.User
+import com.yzq.coroutine.scope.lifeScope
 import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.adapter.RoomAdapter
 import com.yzq.kotlincommon.databinding.ActivityRoomBinding
+import com.yzq.kotlincommon.databinding.ItemRoomBinding
 import com.yzq.kotlincommon.view_model.RoomViewModel
 import com.yzq.materialdialog.showInputDialog
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @Route(path = RoutePath.Main.ROOM)
 class RoomActivity :
-    BaseVmActivity<RoomViewModel>(),
-    OnItemChildClickListener {
+    BaseVmActivity<RoomViewModel>() {
 
     private val binding by viewbind(ActivityRoomBinding::inflate)
 
     private var isAdd: Boolean = false
-    private val roomAdapter = RoomAdapter(R.layout.item_room, arrayListOf())
-
-    private lateinit var operationItem: User
 
     override fun getViewModelClass(): Class<RoomViewModel> = RoomViewModel::class.java
-
-    override fun initVariable() {
-        roomAdapter.addChildClickViewIds(R.id.tv_delete, R.id.tv_user)
-        roomAdapter.setOnItemChildClickListener(this)
-        roomAdapter.setDiffCallback(object : DiffUtil.ItemCallback<User>() {
-            override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-                return oldItem.name == newItem.name
-            }
-        })
-    }
 
     override fun initWidget() {
 
         initToolbar(binding.includedToolbar.toolbar, "Room")
 
         binding.apply {
-            recy.init()
 
-            recy.adapter = roomAdapter
+            recy.linear()
+                .divider(R.drawable.item_divider)
+                .setup {
+                    addType<User>(R.layout.item_room)
+                    onBind {
+                        val itemBinding = getBinding<ItemRoomBinding>()
+                        val user = getModel<User>()
+                        itemBinding.tvUser.setText(
+                            buildString {
+                                append(user.id.toString())
+                                append("---")
+                                append(user.name)
+                            }
+                        )
+                    }
+
+                    R.id.tv_delete.onClick {
+                        vm.deleteUser(getModel())
+                    }
+
+                    R.id.tv_user.onClick {
+                        showInputDialog(title = "修改") { dialog, input ->
+                            vm.updateUser(getModel<User>().id, input.toString())
+                        }
+                    }
+                }
 
             fabAdd.setOnClickListener {
                 isAdd = true
@@ -68,41 +72,24 @@ class RoomActivity :
         }
     }
 
-    override fun onItemChildClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
-        isAdd = false
-        operationItem = roomAdapter.data[position]
-        when (view.id) {
-            R.id.tv_delete -> {
-                vm.deleteUser(operationItem)
-            }
-
-            R.id.tv_user -> {
-                showInputDialog(title = "修改") { dialog, input ->
-                    vm.updateUser(operationItem.id, input.toString())
-                }
-            }
-        }
-    }
-
     override fun observeViewModel() {
 
         vm.run {
             users.observe(this@RoomActivity) {
-                roomAdapter.setDiffNewData(it)
+                binding.recy.setDifferModels(it)
                 /*延时滚动到最底部*/
                 if (isAdd) {
-                    scrollRecy()
+                    scrollRecy(it.size)
                 }
             }
         }
     }
 
-    private fun scrollRecy() {
-        lifecycleScope.launch {
-            delay(200)
-            runCatching {
-                binding.recy.smoothScrollToPosition(roomAdapter.data.size - 1)
-            }
+    private fun scrollRecy(size: Int) {
+
+        lifeScope {
+            delay(100)
+            binding.recy.scrollToPosition(size - 1)
         }
     }
 }

@@ -13,9 +13,9 @@ import com.yzq.common.BuildConfig
 
 object ServerConstants {
 
-    private const val SERVER_URL_RELEASE = "https://api.douban.com/"
+    private const val SERVER_URL_RELEASE = "http://v.juhe.cn/"
 
-    private const val SERVER_URL_DEBUG = "https://api.douban.com/"
+    private const val SERVER_URL_DEBUG = "http://v.juhe.cn/"
 
     private const val API = "v2/movie/"
 

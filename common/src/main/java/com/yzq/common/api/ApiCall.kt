@@ -31,7 +31,7 @@ suspend inline fun <T> baseRespApiCall(crossinline requestMethod: suspend () -> 
  * @time 16:20
  */
 suspend inline fun <T> apiCall(
-    crossinline requestMethod: suspend () -> Response<T>
+    crossinline requestMethod: suspend () -> Response<T>,
 ): ApiResult<T> {
     return try {
         val resp = requestMethod.invoke()

@@ -2,12 +2,11 @@ package com.yzq.common.api
 
 import com.tencent.bugly.proguard.T
 
-
 /**
  * @description Api接口相关的密封类
- * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date    2022/10/28
- * @time    14:29
+ * @author yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date 2022/10/28
+ * @time 14:29
  */
 
 sealed class ApiResult<out T> {
@@ -30,7 +29,6 @@ sealed class ApiResult<out T> {
      */
     data class Error(val code: Int, val message: String = "") : ApiResult<Nothing>()
 
-
     /**
      * 表示请求异常了，例如网络异常，json解析异常，io异常以及其他未知异常等
      *
@@ -39,7 +37,6 @@ sealed class ApiResult<out T> {
      */
     data class Exception(val t: Throwable) : ApiResult<Nothing>()
 }
-
 
 inline fun <reified T> ApiResult<T>.onSuccess(success: (T?) -> Unit) {
     if (this is ApiResult.Success) {

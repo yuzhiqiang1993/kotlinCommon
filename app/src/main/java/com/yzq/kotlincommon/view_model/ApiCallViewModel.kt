@@ -1,7 +1,9 @@
 package com.yzq.kotlincommon.view_model
 
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.net.view_model.ApiServiceViewModel
+import com.yzq.base.view_model.BaseViewModel
+import com.yzq.common.net.RetrofitFactory
+import com.yzq.common.net.api.ApiService
 
 /**
  * @description 接口请求的vm
@@ -10,13 +12,13 @@ import com.yzq.common.net.view_model.ApiServiceViewModel
  * @time 15:52
  */
 
-class ApiCallViewModel : ApiServiceViewModel() {
+class ApiCallViewModel : BaseViewModel() {
 
     private val onException = { t: Throwable -> LogUtils.i("异常了") }
 
     fun requestData() {
         launchLoadingDialog(onException = onException) {
-            val movieBean = apiServiceModel.getData(1, 10)
+            val movieBean = RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
             LogUtils.i("movieBean:$movieBean")
         }
     }

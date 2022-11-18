@@ -202,7 +202,7 @@ class StateViewManager(private val activity: BaseActivity) {
      * 显示无网络
      *
      */
-    private fun showNoNet() {
+    fun showNoNet() {
 
         if (requestType == httpLoadMore) {
             ToastUtils.showLong(ViewStateContstants.NO_NET)
@@ -218,7 +218,7 @@ class StateViewManager(private val activity: BaseActivity) {
      *
      * @param msg  错误信息
      */
-    private fun showError(msg: String) {
+    fun showError(msg: String) {
         if (requestType == httpLoadMore) {
             ToastUtils.showShort(msg)
         } else {

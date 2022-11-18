@@ -9,14 +9,13 @@
 
 
     <include
-        android:id="@+id/layout_toolbar"
+        android:id="@+id/included_toolbar"
         layout="@layout/toolbar" />
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/layout_swipe_refresh"
+    <com.drake.brv.PageRefreshLayout
+        android:id="@+id/layout_page_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recy"
@@ -25,13 +24,7 @@
             android:scrollbars="vertical" />
 
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
-    <com.yzq.widget.state_view.StateView
-        android:id="@+id/state_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    </com.drake.brv.PageRefreshLayout>
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

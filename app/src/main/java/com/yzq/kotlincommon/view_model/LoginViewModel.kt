@@ -2,11 +2,11 @@ package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.MutableLiveData
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.data.LoginBean
-import com.yzq.common.net.view_model.ApiServiceViewModel
 import com.yzq.common.utils.MMKVUtil
 
-class LoginViewModel : ApiServiceViewModel() {
+class LoginViewModel : BaseViewModel() {
 
     val loginLiveData by lazy { MutableLiveData<LoginBean>() }
 

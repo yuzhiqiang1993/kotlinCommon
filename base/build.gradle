@@ -99,7 +99,6 @@ dependencies {
     api project(path: ':network-status')
 
 
-    api project(path: ':recycleview-adapter')
     api project(path: ':eventbus')
     api project(path: ':img')
     api project(path: ':materialdialog')

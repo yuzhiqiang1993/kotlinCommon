@@ -1,10 +1,8 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemClickListener
+import com.drake.brv.utils.setup
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -12,8 +10,8 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.adapter.TagAdapter
 import com.yzq.kotlincommon.databinding.ActivityFlexBoxBinding
+import com.yzq.kotlincommon.databinding.ItemTagLayoutBinding
 
 /**
  * @description: 弹性布局
@@ -24,9 +22,7 @@ import com.yzq.kotlincommon.databinding.ActivityFlexBoxBinding
  */
 
 @Route(path = RoutePath.Main.FLEX_BOX)
-class FlexBoxActivity : BaseActivity(), OnItemClickListener {
-
-    private lateinit var tagAdapter: TagAdapter
+class FlexBoxActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityFlexBoxBinding::inflate)
 
@@ -41,20 +37,21 @@ class FlexBoxActivity : BaseActivity(), OnItemClickListener {
         binding.recy.layoutManager = flexManager
     }
 
-    private lateinit var tags: ArrayList<String>
-
     override fun initData() {
         super.initData()
 
-        tags =
+        binding.recy
+            .setup {
+                addType<String>(R.layout.item_tag_layout)
+                onBind {
+                    val itemBinding = getBinding<ItemTagLayoutBinding>()
+                    itemBinding.tvTagName.setText(getModel<String>())
+                }
+
+                R.id.tv_tag_name.onClick {
+                    ToastUtils.showShort(getModel<String>())
+                }
+            }.models =
             arrayListOf("java", "kotlin", "javascript", "php", "android", "go", "python", "flutter")
-        tagAdapter = TagAdapter(R.layout.item_tag_layout, tags)
-        tagAdapter.setOnItemClickListener(this)
-        binding.recy.adapter = tagAdapter
-    }
-
-    override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
-
-        ToastUtils.showShort(tags[position])
     }
 }

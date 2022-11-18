@@ -140,6 +140,7 @@ dependencies {
     implementation AndroidOfficial.viewpager2
     implementation(AndroidOfficial.coordinatorlayout)
     implementation(AndroidOfficial.splashscreen)
+    implementation(AndroidOfficial.recyclerview)
 
     kapt ARouter.arouterCompiler
     kapt AndroidOfficial.roomCompiler

@@ -73,7 +73,6 @@ include ':app',
         ':materialdialog',
         ':widget',
         ':permission',
-        ':recycleview-adapter',
         ':aliemas',
         ':network-status',
         ':application'

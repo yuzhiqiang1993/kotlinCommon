@@ -4,14 +4,14 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileIOUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.PathUtils
+import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.net.FileRetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ApiConstants
-import com.yzq.common.net.view_model.ApiServiceViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class DownloadViewModel : ApiServiceViewModel() {
+class DownloadViewModel : BaseViewModel() {
 
     fun downloadApk() {
 

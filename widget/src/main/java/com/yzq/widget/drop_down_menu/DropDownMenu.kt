@@ -9,7 +9,6 @@ import android.view.animation.AnimationUtils
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.core.content.withStyledAttributes
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.widget.R
 import com.yzq.widget.drop_down_menu.DeviceUtils.getScreenHeight
 
@@ -23,7 +22,7 @@ import com.yzq.widget.drop_down_menu.DeviceUtils.getScreenHeight
 class DropDownMenu @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet?,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) :
     LinearLayout(
         context,
@@ -117,14 +116,11 @@ class DropDownMenu @JvmOverloads constructor(
      * @param popupViews  对应要显示浮在上层的的view
      * @param contentView  底部的内容view
      */
-    fun setDropDownMenu(tabTexts: List<String>, popupViews: List<View>, contentView: View) {
-        require(tabTexts.size == popupViews.size) { "params not match, tabTexts.size() should be equal popupViews.size()" }
-
-        /*添加item*/
-        tabTexts.forEach {
-            addTabItem(it)
-        }
-        /*先添加内容view,让它在地底部*/
+    fun setDropDownMenu(
+        map: Map<String, View>,
+        contentView: View,
+    ) {
+        /*先添加contentView,让它在地底部*/
         contentContainer.addView(contentView, 0)
         /*创建遮罩view*/
         maskView = View(context)
@@ -148,8 +144,7 @@ class DropDownMenu @JvmOverloads constructor(
         /*最上方的弹出菜单容器*/
         popupMenuContainer = FrameLayout(context)
 
-        LogUtils.i("contentContainer.height:${contentContainer.height}")
-        /*高度设置为指定的百分比  底部就会显示出下面的遮罩view*/
+        /*高度设置为指定的百分比  弹出后底部就会显示出下面的遮罩view*/
         popupMenuContainer.layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             (getScreenHeight(context) * menuHeightPercent).toInt()
@@ -159,14 +154,19 @@ class DropDownMenu @JvmOverloads constructor(
         /*添加到内容布局中  层级在最上方*/
         contentContainer.addView(popupMenuContainer, 2)
 
-        /*设置弹出菜单里的内容view,依次添加进去*/
-        popupViews.forEach {
-            it.layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-            popupMenuContainer.addView(it)
+        map.iterator().forEach {
+            /*添加tabitem*/
+            addTabItem(it.key)
+            /*添加tabitem对应的view*/
+            it.value.run {
+                layoutParams = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+                popupMenuContainer.addView(this)
+            }
         }
+
     }
 
     private fun addTabItem(titleStr: String) {

@@ -2,18 +2,18 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.view.View
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemClickListener
+import com.drake.brv.BindingAdapter
+import com.drake.brv.utils.linear
+import com.drake.brv.utils.setup
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.adapter.DropDownMenuFilterAdapter
-import com.yzq.kotlincommon.adapter.DropDownMenuFoodTypeAdapter
 import com.yzq.kotlincommon.databinding.ActivityDropDownMenuBinding
+import com.yzq.kotlincommon.databinding.DropDownMenuContentBinding
+import com.yzq.kotlincommon.databinding.ItemDropDownMenuLayoutBinding
 
 /**
  * @description: 下拉菜单
@@ -24,25 +24,14 @@ import com.yzq.kotlincommon.databinding.ActivityDropDownMenuBinding
  */
 
 @Route(path = RoutePath.Main.DROP_DOWN_MENU)
-class DropDownMenuActivity :
-    BaseActivity(),
-    OnItemClickListener {
+class DropDownMenuActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityDropDownMenuBinding::inflate)
 
     private lateinit var tvFilter: AppCompatTextView
 
-    private lateinit var dropDownMenuFoodTypeAdapter: DropDownMenuFoodTypeAdapter
-    private lateinit var dropDownMenuFiltersAdapter: DropDownMenuFilterAdapter
-
-    private var foodType: String = "全部美食"
-    private var filter: String = "智能排序"
-
     private val foodTypes = arrayListOf("全部美食", "福建菜", "江浙菜", "川菜")
     private val filters = arrayListOf("智能排序", "离我最近", "好评优先", "人气最高")
-
-    private val tabs = arrayListOf("全部美食", "智能排序")
-    private val popupViews = arrayListOf<View>()
 
     private lateinit var foodTypeRecy: RecyclerView
     private lateinit var filtersRecy: RecyclerView
@@ -52,64 +41,43 @@ class DropDownMenuActivity :
         initToolbar(binding.includedToolbar.toolbar, "下拉菜单")
 
         val contentLayout = View.inflate(this, R.layout.drop_down_menu_content, null)
-        tvFilter = contentLayout.findViewById(R.id.tv_filter)
 
-        foodTypeRecy = RecyclerView(this)
-        foodTypeRecy.layoutManager = LinearLayoutManager(this)
+//        tvFilter = contentLayout.findViewById(R.id.tv_filter)
 
-        filtersRecy = RecyclerView(this)
-        filtersRecy.layoutManager = LinearLayoutManager(this)
+        val dropDownMenuContentBinding = DropDownMenuContentBinding.bind(contentLayout)
+        dropDownMenuContentBinding.tvFilter.text = "底部内容区域"
 
-        popupViews.add(foodTypeRecy)
-        popupViews.add(filtersRecy)
+        foodTypeRecy = RecyclerView(this).linear()
 
-        binding.dropdownMenu.setDropDownMenu(tabs, popupViews, contentLayout)
+        filtersRecy = RecyclerView(this).linear()
 
-        tvFilter.text = buildString {
-            append(foodType)
-            append("--")
-            append(filter)
+        /*顶部tab以及对应的内容view*/
+        val map = mutableMapOf<String, View>().apply {
+            put("全部美食", foodTypeRecy)
+            put("智能排序", filtersRecy)
         }
+
+        binding.dropdownMenu.setDropDownMenu(map, contentLayout)
+
         setData()
     }
 
     private fun setData() {
 
-        dropDownMenuFoodTypeAdapter =
-            DropDownMenuFoodTypeAdapter(R.layout.item_drop_down_menu_layout, foodTypes)
-        dropDownMenuFoodTypeAdapter.setOnItemClickListener(this)
-
-        dropDownMenuFiltersAdapter =
-            DropDownMenuFilterAdapter(R.layout.item_drop_down_menu_layout, filters)
-        dropDownMenuFiltersAdapter.setOnItemClickListener(this)
-
-        foodTypeRecy.adapter = dropDownMenuFoodTypeAdapter
-        filtersRecy.adapter = dropDownMenuFiltersAdapter
-    }
-
-    override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
-
-        when (adapter) {
-            is DropDownMenuFoodTypeAdapter -> {
-                foodType = dropDownMenuFoodTypeAdapter.data[position]
-                binding.dropdownMenu.setTabText(foodType)
-                tvFilter.text = buildString {
-                    append(foodType)
-                    append("--")
-                    append(filter)
-                }
-                binding.dropdownMenu.closeMenu()
+        val block: BindingAdapter.(RecyclerView) -> Unit = {
+            addType<String>(R.layout.item_drop_down_menu_layout)
+            onBind {
+                val itemBinding = getBinding<ItemDropDownMenuLayoutBinding>()
+                itemBinding.tvContent.setText(getModel<String>())
             }
-            is DropDownMenuFilterAdapter -> {
-                filter = dropDownMenuFiltersAdapter.data[position]
-                binding.dropdownMenu.setTabText(filter)
-                tvFilter.text = buildString {
-                    append(foodType)
-                    append("--")
-                    append(filter)
-                }
+            R.id.tv_content.onClick {
+                binding.dropdownMenu.setTabText(getModel())
                 binding.dropdownMenu.closeMenu()
             }
         }
+
+        filtersRecy.setup(block).models = filters
+
+        foodTypeRecy.setup(block).models = foodTypes
     }
 }

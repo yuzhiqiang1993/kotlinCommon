@@ -1,23 +1,24 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.view.View
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.LogUtils
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemClickListener
-import com.chad.library.adapter.base.listener.OnLoadMoreListener
-import com.yzq.base.extend.init
-import com.yzq.base.ui.activity.BaseVmActivity
+import com.drake.brv.utils.bindingAdapter
+import com.drake.brv.utils.setup
+import com.drake.brv.utils.staggered
+import com.scwang.smart.refresh.layout.constant.RefreshState
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
+import com.yzq.common.api.ApiResult
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.data.movie.Subject
+import com.yzq.common.data.juhe.toutiao.TouTiao
+import com.yzq.common.ext.apiCall
+import com.yzq.common.net.RetrofitFactory
+import com.yzq.common.net.api.ApiService
+import com.yzq.coroutine.scope.lifeScope
+import com.yzq.img.loadWithThumbnail
 import com.yzq.kotlincommon.R
-import com.yzq.kotlincommon.adapter.ImgListAdapter
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding
-import com.yzq.kotlincommon.view_model.ImgListViewModel
-import com.yzq.recycleview_adapter.AdapterLoadMoreView
+import com.yzq.kotlincommon.databinding.ItemImgListBinding
+import kotlin.random.Random
 
 /**
  * @description: 图片瀑布流
@@ -28,111 +29,84 @@ import com.yzq.recycleview_adapter.AdapterLoadMoreView
  */
 
 @Route(path = RoutePath.Main.IMG_LIST)
-class ImageListActivity :
-    BaseVmActivity<ImgListViewModel>(),
-    OnItemClickListener,
-    OnLoadMoreListener {
+class ImageListActivity : BaseActivity() {
+
+    private var page = 1
+    private val pageSize = 30
+
     private val binding by viewbind(ActivityImageListBinding::inflate)
-
-    override fun getViewModelClass(): Class<ImgListViewModel> = ImgListViewModel::class.java
-
-    private var imgListAdapter = ImgListAdapter(R.layout.item_img_list, arrayListOf())
 
     override fun initWidget() {
 
-        initToolbar(binding.layoutToolbar.toolbar, "瀑布流图片（图片列表优化）")
+        initToolbar(binding.includedToolbar.toolbar, "瀑布流图片（图片列表优化）")
 
         initRecy()
 
-        stateViewManager.initStateView(binding.stateView, binding.layoutSwipeRefresh)
-
-        binding.stateView.retry {
+        binding.layoutPageRefresh.onRefresh {
             initData()
-        }
+        }.autoRefresh()
 
-        binding.layoutSwipeRefresh.setOnRefreshListener {
-
-            stateViewManager.switchToHttpRefresh()
-
-            initData()
+        binding.layoutPageRefresh.onLoadMore {
+            page += 1
+            requestData()
         }
     }
 
     private fun initRecy() {
 
-        val layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL)
-        //   val layoutManager = GridLayoutManager(this, 2)
-        /*防止回到顶部时重新布局可能导致item跳跃*/
-        // layoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
-
-        binding.recy.init(layoutManager, false)
-
-        imgListAdapter.setOnItemClickListener(this)
-
-        imgListAdapter.loadMoreModule.setOnLoadMoreListener(this)
-        imgListAdapter.loadMoreModule.loadMoreView = AdapterLoadMoreView()
-
-        binding.recy.adapter = imgListAdapter
-    }
-
-    override fun observeViewModel() {
-
-        vm.run {
-            subjectsLive.observe(this@ImageListActivity) {
-
-                handleDataChanged(it)
+        binding.recy.staggered(3)
+            .setup {
+                addType<TouTiao.Result.Data>(R.layout.item_img_list)
+                onBind {
+                    val itemImgListBinding = getBinding<ItemImgListBinding>()
+                    val model = getModel<TouTiao.Result.Data>()
+                    /*高度随机*/
+                    itemImgListBinding.ivImg.layoutParams.height = 300 + Random.nextInt(300)
+                    itemImgListBinding.ivImg.loadWithThumbnail(model.thumbnailPicS)
+                }
             }
-
-            subjectsDiffResult.observe(this@ImageListActivity) {
-
-                LogUtils.i("更新数据")
-                imgListAdapter.setDiffNewData(it, vm.subjectsLive.value!!)
-            }
-        }
     }
 
     override fun initData() {
-
-        stateViewManager.switchToHttpFirst()
-
-        vm.start = 0
-
-        vm.getData()
+        page = 1
+        requestData()
     }
 
-    private fun handleDataChanged(t: List<Subject>) {
+    private fun requestData() {
 
-        if (stateViewManager.isHttpLoadMore()) {
-
-            if (t.isEmpty()) {
-                imgListAdapter.loadMoreModule.loadMoreEnd()
-            } else {
-                imgListAdapter.addData(t)
-                imgListAdapter.loadMoreModule.loadMoreComplete()
+        lifeScope {
+            val apiResult = apiCall {
+                RetrofitFactory.instance.getService(ApiService::class.java)
+                    .listToutiao(page = page, pageSize = pageSize)
             }
-        } else {
-            /*异步计算出需要更新的数据*/
-            vm.calculateDiff(imgListAdapter.data, t)
+
+            when (apiResult) {
+                is ApiResult.Error -> {
+                    binding.layoutPageRefresh.showError(apiResult.message)
+                }
+                is ApiResult.Exception -> {
+                    binding.layoutPageRefresh.showError(apiResult.t.message)
+                }
+                is ApiResult.Success -> {
+                    setData(apiResult.data)
+                }
+            }
         }
-
-        stateViewManager.showContent()
     }
 
-    override fun onItemClick(adapter: BaseQuickAdapter<*, *>, view: View, position: Int) {
+    private fun setData(data: TouTiao?) {
+        data?.run {
+            binding.run {
+                if (layoutPageRefresh.state == RefreshState.Loading) {
+                    recy.bindingAdapter.addModels(data.result.data)
+//                    layoutPageRefresh.finishRefresh()
+                } else {
+                    recy.bindingAdapter.setDifferModels(data.result.data)
+//                    layoutPageRefresh.finishLoadMore()
+                }
 
-        val imgView =
-            binding.recy.layoutManager!!.findViewByPosition(position)!!
-                .findViewById<AppCompatImageView>(R.id.iv_img)
-        preViewImg(imgListAdapter.data[position].images.large, imgView)
-    }
-
-    override fun onLoadMore() {
-        LogUtils.i("onLoadMoreRequested")
-        if (vm.start <= 250) {
-            stateViewManager.switchToHttpLoadMore()
-            vm.getData()
-        } else {
-            imgListAdapter.loadMoreModule.loadMoreEnd()
+                layoutPageRefresh.showContent()
+            }
         }
     }
 }

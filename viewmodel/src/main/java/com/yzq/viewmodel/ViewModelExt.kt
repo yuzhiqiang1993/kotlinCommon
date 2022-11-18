@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.*
 
-
 /**
  * 对异常做统一的捕获处理
  *
@@ -22,7 +21,6 @@ inline fun ViewModel.launchScope(
         block()
     }
 
-
 /**
  * Launch supervisor scope
  *
@@ -36,22 +34,13 @@ inline fun ViewModel.launchScope(
 inline fun ViewModel.launchSupervisorScope(
     crossinline onException: (t: Throwable) -> Unit = {},
     crossinline block: suspend CoroutineScope.() -> Unit,
-) = viewModelScope.launch(CoroutineExceptionHandler { _, throwable ->
-    onException(throwable)
-}) {
+) = viewModelScope.launch(
+    CoroutineExceptionHandler { _, throwable ->
+        onException(throwable)
+    }
+) {
 
     supervisorScope {
         block()
     }
-
 }
-
-
-
-
-
-
-
-
-
-

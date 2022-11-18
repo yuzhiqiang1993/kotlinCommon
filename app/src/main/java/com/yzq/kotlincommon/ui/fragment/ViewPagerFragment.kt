@@ -20,7 +20,6 @@ class ViewPagerFragment : BaseFragment(R.layout.fragment_view_pager) {
 
     private val viewPagerAdapter =
         ViewPagerAdapter(
-            R.layout.item_view_pager,
             arrayListOf(
                 "tab1",
                 "tab2",
