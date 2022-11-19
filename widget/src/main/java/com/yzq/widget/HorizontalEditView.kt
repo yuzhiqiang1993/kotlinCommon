@@ -9,7 +9,16 @@ import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
+import androidx.core.view.doOnAttach
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.findViewTreeLifecycleOwner
+import com.blankj.utilcode.util.LogUtils
+import com.yzq.coroutine.scope.lifeScope
+import com.yzq.coroutine.withIO
 import com.yzq.widget.databinding.ViewHorizontalEditLayoutBinding
+import kotlinx.coroutines.delay
 
 /**
  * @description: 水平ItemView，输入框
@@ -41,6 +50,29 @@ class HorizontalEditView @JvmOverloads constructor(
         ViewHorizontalEditLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
+
+        doOnAttach {
+            /*要在onAttachedToWindow 中才能获取到findViewTreeLifecycleOwner*/
+            it.findViewTreeLifecycleOwner()?.lifecycle?.addObserver(object :
+                LifecycleEventObserver {
+                override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+                    LogUtils.i("当前状态:$event")
+                }
+            })
+
+            lifeScope {
+                LogUtils.i("测试开始执行耗时任务")
+
+                withIO {
+                    delay(3000)
+                    LogUtils.i("执行完毕了")
+                }
+            }.finally {
+                if (it != null) {
+                    it.printStackTrace()
+                }
+            }
+        }
 
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalEditView)
 

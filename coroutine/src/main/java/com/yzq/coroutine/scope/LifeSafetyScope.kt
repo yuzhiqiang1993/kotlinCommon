@@ -31,12 +31,12 @@ open class LifeSafetyScope(
     /**
      * Catch 用于异常回调
      */
-    protected var catch: (LifeSafetyScope.(Throwable) -> Unit)? = null
+    protected var catch: (LifeSafetyScope.(t: Throwable) -> Unit)? = null
 
     /**
      * Finally 用于最终回调
      */
-    protected var finally: (LifeSafetyScope.(Throwable?) -> Unit)? = null
+    protected var finally: (LifeSafetyScope.(t: Throwable?) -> Unit)? = null
 
     /**
      * Exception handler 异常兜底
@@ -74,7 +74,7 @@ open class LifeSafetyScope(
     /**
      * 当作用域内发生异常时回调
      */
-    open fun catch(block: LifeSafetyScope.(Throwable) -> Unit = {}): LifeSafetyScope {
+    open fun catch(block: LifeSafetyScope.(t: Throwable) -> Unit = {}): LifeSafetyScope {
         this.catch = block
         return this
     }
@@ -83,7 +83,7 @@ open class LifeSafetyScope(
      * 无论正常或者异常结束都将最终执行
      * 如果出现异常会携带异常信息 正常执行则为null
      */
-    open fun finally(block: LifeSafetyScope.(Throwable?) -> Unit = {}): LifeSafetyScope {
+    open fun finally(block: LifeSafetyScope.(t: Throwable?) -> Unit = {}): LifeSafetyScope {
         this.finally = block
         return this
     }
