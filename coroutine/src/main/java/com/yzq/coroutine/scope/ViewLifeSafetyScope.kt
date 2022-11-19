@@ -7,6 +7,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewTreeLifecycleOwner
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 
 /**
  * @description 针对view的具备生命周期检测以及异常兜底的协程作用域
@@ -21,7 +22,7 @@ class ViewLifeSafetyScope(view: View, dispatcher: CoroutineDispatcher = Dispatch
         ViewTreeLifecycleOwner.get(view)?.lifecycle?.addObserver(object : LifecycleEventObserver {
             override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
                 if (event == Lifecycle.Event.ON_DESTROY) {
-                    close()
+                    cancel()
                 }
             }
         })

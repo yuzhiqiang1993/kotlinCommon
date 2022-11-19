@@ -5,7 +5,7 @@ import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
 /**
- * @description 有兜底异常处理的协程作用域
+ * @description 有兜底异常处理的协程
  * @author yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
  * @date 2022/11/18
  * @time 16:40

@@ -1,5 +1,6 @@
 package com.yzq.coroutine.scope
 
+import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -8,7 +9,7 @@ import java.io.Closeable
 import kotlin.coroutines.CoroutineContext
 
 /**
- * 封装的协程作用域,具备自动取消以及异常兜底功能
+ * 自定义的协程作用域,具备自动取消以及异常兜底功能
  * @param lifecycleOwner 生命周期持有者
  * @param lifeEvent 生命周期事件, 默认为 [Lifecycle.Event.ON_DESTROY] 下取消协程作用域
  */
@@ -41,6 +42,7 @@ open class LifeSafetyScope(
      * Exception handler 异常兜底
      */
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        throwable.printStackTrace()
         if (throwable !is CancellationException) {
             catch(throwable)
         }
@@ -50,7 +52,6 @@ open class LifeSafetyScope(
         dispatcher + exceptionHandler + SupervisorJob()
 
     open fun doLaunch(block: suspend CoroutineScope.() -> Unit): LifeSafetyScope {
-
         launch(coroutineContext) {
             block()
         }.invokeOnCompletion {
@@ -88,6 +89,7 @@ open class LifeSafetyScope(
     }
 
     override fun close() {
-        coroutineContext.cancel()
+        Log.i("LifeSafetyScope:", "close")
+        cancel()
     }
 }

@@ -21,7 +21,7 @@ class ViewBindingActivity : BaseActivity() {
 
     override fun initWidget() {
 
-        initToolbar(binding.layoutToolbar.toolbar, "ViewBinding")
+        initToolbar(binding.includedToolbar.toolbar, "ViewBinding")
 
         binding.btnClick.setOnClickListener {
 
