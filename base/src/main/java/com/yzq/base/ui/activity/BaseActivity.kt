@@ -10,10 +10,6 @@ import com.yzq.base.R
 import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.ui.state_view.StateViewManager
-import com.yzq.eventbus.EventBusUtil
-import com.yzq.eventbus.EventMsg
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 
 /**
  * @Description: Activity基类
@@ -45,8 +41,6 @@ abstract class BaseActivity : AppCompatActivity {
                 }
             }
         }
-
-        EventBusUtil.register(this)
 
         /*参数初始化，intent携带的值*/
         initArgs(intent.extras)
@@ -84,15 +78,6 @@ abstract class BaseActivity : AppCompatActivity {
     }
 
     protected open fun initListener() {
-    }
-
-    /**
-     * 处理Eventbus
-     *
-     * @param eventMsg  传递的消息
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    open fun onEventMainThread(eventMsg: EventMsg) {
     }
 
     /**
@@ -142,8 +127,4 @@ abstract class BaseActivity : AppCompatActivity {
         super.onBackPressed()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        EventBusUtil.unregister(this)
-    }
 }
