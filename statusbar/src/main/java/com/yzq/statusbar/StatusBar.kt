@@ -16,6 +16,7 @@ import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
 private const val COLOR_TRANSPARENT = 0
@@ -30,7 +31,7 @@ fun Fragment.statusBarColor(@ColorInt color: Int) = activity?.statusBarColor(col
 
 /** 设置状态栏颜色 */
 fun Activity.statusBarColorRes(@ColorRes colorRes: Int) =
-    statusBarColor(resources.getColor(colorRes))
+    statusBarColor(ContextCompat.getColor(this, colorRes))
 
 /** 设置状态栏颜色 */
 fun Fragment.statusBarColorRes(@ColorRes colorRes: Int) = activity?.statusBarColorRes(colorRes)
@@ -63,7 +64,7 @@ fun Activity.immersive(@ColorInt color: Int = COLOR_TRANSPARENT, darkMode: Boole
     /*清除状态栏半透明的标记*/
 //    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 //    var systemUiVisibility = window.decorView.systemUiVisibility
-
+//
 //    if (color == COLOR_TRANSPARENT) {
 //        systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
 //        systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_STABLE

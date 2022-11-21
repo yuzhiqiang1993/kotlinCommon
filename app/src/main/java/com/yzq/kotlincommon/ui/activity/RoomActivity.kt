@@ -29,9 +29,7 @@ class RoomActivity :
     override fun getViewModelClass(): Class<RoomViewModel> = RoomViewModel::class.java
 
     override fun initWidget() {
-
         initToolbar(binding.includedToolbar.toolbar, "Room")
-
         binding.apply {
 
             recy.linear()

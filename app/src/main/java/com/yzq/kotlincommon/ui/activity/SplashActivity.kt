@@ -8,6 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
+import com.yzq.statusbar.setFullscreen
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -26,6 +27,7 @@ class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setFullscreen()
 
         /*启动屏*/
         val splashScreen = installSplashScreen()
