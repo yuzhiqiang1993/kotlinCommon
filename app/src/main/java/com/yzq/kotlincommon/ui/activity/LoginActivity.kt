@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.graphics.Color
 import android.text.TextUtils
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
@@ -12,6 +13,7 @@ import com.yzq.common.utils.MMKVUtil
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
+import com.yzq.statusbar.immersive
 
 /**
  * @description: SharedPreference相关
@@ -31,7 +33,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
     override fun initWidget() {
         super.initWidget()
 
-        colorStatusBar(R.color.white, binding.layoutContainer, true)
+        immersive(Color.WHITE, true)
 
         binding.tvClearMmkv.setOnThrottleTimeClick {
             MMKVUtil.clear()

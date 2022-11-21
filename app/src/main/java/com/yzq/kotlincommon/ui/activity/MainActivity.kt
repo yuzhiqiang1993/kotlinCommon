@@ -12,6 +12,7 @@ import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
 import com.google.android.material.navigation.NavigationView
 import com.yzq.application.BaseApp
+import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
@@ -19,6 +20,8 @@ import com.yzq.common.data.NaviItem
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
+import com.yzq.statusbar.immersive
+import com.yzq.statusbar.statusPadding
 
 /**
  * @description: 导航页面
@@ -29,16 +32,16 @@ import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
  */
 
 @Route(path = RoutePath.Main.MAIN)
-class MainActivity :
-    BaseActivity(R.layout.activity_main),
-    NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val binding by viewbind(ActivityMainBinding::inflate)
     private var items = arrayListOf<NaviItem>()
 
     override fun initWidget() {
 
         binding.run {
-            initToolbar(binding.includedAppbarMain.toolbar, "kotlin common", displayHome = false)
+            initToolbar(includedAppbarMain.toolbar, "kotlin common", displayHome = false)
+            immersive()
+            includedAppbarMain.toolbar.statusPadding()
 
             val toggle = ActionBarDrawerToggle(
                 this@MainActivity,

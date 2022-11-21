@@ -6,12 +6,11 @@ import androidx.lifecycle.*
 import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 
-
 /**
  * @description 处理生命周期相关逻辑的代理
- * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date    2022/11/8
- * @time    15:48
+ * @author yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date 2022/11/8
+ * @time 15:48
  */
 
 @SuppressLint("RestrictedApi")
@@ -27,7 +26,5 @@ abstract class ActivityBindingDelegate<B : ViewBinding>(activity: ComponentActiv
                 binding = null
             }
         })
-
     }
-
 }

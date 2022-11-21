@@ -7,12 +7,11 @@ import androidx.viewbinding.ViewBinding
 import com.yzq.binding.base.ActivityBindingDelegate
 import kotlin.reflect.KProperty
 
-
 /**
  * @description Activity 中 ViewBingding 的委托实现
- * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date    2022/10/21
- * @time    15:20
+ * @author yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date 2022/10/21
+ * @time 15:20
  */
 
 @SuppressLint("RestrictedApi")
@@ -28,6 +27,5 @@ class ActivityViewBindingDelegate<VB : ViewBinding>(
         binding = viewBinding
         return binding as VB
     }
-
 
 }

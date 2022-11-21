@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
@@ -23,7 +24,7 @@ class NetworkActivity : BaseActivity(), OnNetworkStatusChangedListener {
     }
 
     override fun initWidget() {
-        initToolbar(binding.toolbar.toolbar, "网络状态", showBackHint = true)
+        initToolbar(binding.toolbar.toolbar, "网络状态")
     }
 
     override fun initData() {

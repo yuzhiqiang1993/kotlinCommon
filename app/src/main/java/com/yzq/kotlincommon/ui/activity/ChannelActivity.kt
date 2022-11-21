@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.binding.viewbind

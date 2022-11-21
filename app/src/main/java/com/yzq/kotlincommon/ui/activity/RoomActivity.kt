@@ -5,6 +5,7 @@ import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setDifferModels
 import com.drake.brv.utils.setup
+import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath

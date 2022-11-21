@@ -4,6 +4,7 @@ import com.afollestad.materialdialogs.utils.MDUtil.textChanged
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.binding.databind
 import com.yzq.common.constants.RoutePath

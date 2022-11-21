@@ -8,41 +8,40 @@ import androidx.viewbinding.ViewBinding
 import com.blankj.utilcode.util.LogUtils
 import kotlin.properties.ReadOnlyProperty
 
-
 /**
  * @description Fragment 绑定抽象类，主要处理生命周期相关逻辑
- * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date    2022/11/8
- * @time    15:52
+ * @author yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date 2022/11/8
+ * @time 15:52
  */
 
 abstract class FragmentBindingDelegate<B : ViewBinding>(
     fragment: Fragment
 ) : ReadOnlyProperty<Fragment, B> {
 
-
     protected var binding: B? = null
-
 
     init {
         fragment.lifecycle.addObserver(object : DefaultLifecycleObserver {
             override fun onCreate(owner: LifecycleOwner) {
                 val fragmentManager = fragment.parentFragmentManager
-                fragmentManager.registerFragmentLifecycleCallbacks(object :
-                    FragmentManager.FragmentLifecycleCallbacks() {
-                    override fun onFragmentViewDestroyed(fm: FragmentManager, f: Fragment) {
-                        super.onFragmentViewDestroyed(fm, f)
-                        if (f == fragment) {
-                            LogUtils.i("onFragmentViewDestroyed:${f}")
-                            binding = null
-                            fragmentManager.unregisterFragmentLifecycleCallbacks(this)
+                fragmentManager.registerFragmentLifecycleCallbacks(
+                    object :
+                        FragmentManager.FragmentLifecycleCallbacks() {
+                        override fun onFragmentViewDestroyed(fm: FragmentManager, f: Fragment) {
+                            super.onFragmentViewDestroyed(fm, f)
+                            if (f == fragment) {
+                                LogUtils.i("onFragmentViewDestroyed:$f")
+                                binding = null
+                                fragmentManager.unregisterFragmentLifecycleCallbacks(this)
+                            }
                         }
-                    }
-                }, false)
+                    },
+                    false
+                )
             }
         })
     }
-
 
 //    init {
 //        /**
@@ -75,6 +74,4 @@ abstract class FragmentBindingDelegate<B : ViewBinding>(
 //            }
 //        })
 //    }
-
-
 }

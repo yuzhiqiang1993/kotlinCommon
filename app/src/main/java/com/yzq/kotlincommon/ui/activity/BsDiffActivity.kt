@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.binding.viewbind
@@ -11,8 +12,8 @@ import com.yzq.kotlincommon.view_model.BsDiffViewModel
 /**
  * @description: bsdiff 增量更新示例
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date   : 2021/11/3
- * @time   : 8:04 下午
+ * @date : 2021/11/3
+ * @time : 8:04 下午
  */
 
 @Route(path = RoutePath.Main.BS_DIFF)
@@ -21,7 +22,6 @@ class BsDiffActivity : BaseVmActivity<BsDiffViewModel>() {
     private val binding by viewbind(ActivityBsDiffBinding::inflate)
 
     override fun getViewModelClass() = BsDiffViewModel::class.java
-
 
     override fun initWidget() {
 
@@ -38,7 +38,6 @@ class BsDiffActivity : BaseVmActivity<BsDiffViewModel>() {
                 /*合并差分包*/
                 vm.combineFile()
             }
-
         }
     }
 
@@ -52,10 +51,6 @@ class BsDiffActivity : BaseVmActivity<BsDiffViewModel>() {
             combineFileMD5LiveData.observe(this@BsDiffActivity) {
                 binding.htvCombineFileMd5.setContent(it)
             }
-
         }
-
     }
-
-
 }

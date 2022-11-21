@@ -1,6 +1,7 @@
 package com.yzq.gao_de_map
 
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.binding.viewbind
 import com.yzq.gao_de_map.databinding.ActivityGaoDeBinding

@@ -10,7 +10,7 @@ import android.view.View
  */
 inline fun View.setOnThrottleTimeClick(
     time: Long = 300,
-    crossinline block: () -> Unit
+    crossinline block: () -> Unit,
 ) {
     setOnClickListener {
         isClickable = false

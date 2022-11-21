@@ -108,6 +108,7 @@ dependencies {
     api project(path: ':aliemas')
     api project(path: ':coroutine')
     api project(path: ':binding')
+    api project(':statusbar')
 
 
 }

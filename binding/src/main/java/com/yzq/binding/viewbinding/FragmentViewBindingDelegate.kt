@@ -6,12 +6,11 @@ import androidx.viewbinding.ViewBinding
 import com.yzq.binding.base.FragmentBindingDelegate
 import kotlin.reflect.KProperty
 
-
 /**
  * @description Fragment 的 viewbinding 代理
- * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date    2022/11/7
- * @time    17:56
+ * @author yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date 2022/11/7
+ * @time 17:56
  */
 
 class FragmentViewBindingDelegate<VB : ViewBinding>(
@@ -19,13 +18,10 @@ class FragmentViewBindingDelegate<VB : ViewBinding>(
     val bind: (View) -> VB
 ) : FragmentBindingDelegate<VB>(fragment) {
 
-
     override fun getValue(thisRef: Fragment, property: KProperty<*>): VB {
         binding?.let { return it }
         val viewBinding = bind.invoke(thisRef.requireView())
         binding = viewBinding
         return binding as VB
     }
-
-
 }

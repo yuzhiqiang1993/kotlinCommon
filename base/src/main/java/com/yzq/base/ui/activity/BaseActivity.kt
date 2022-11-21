@@ -3,16 +3,9 @@ package com.yzq.base.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
-import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
-import com.blankj.utilcode.util.BarUtils
 import com.yzq.base.R
 import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.fragment.BaseFragment
@@ -110,48 +103,6 @@ abstract class BaseActivity : AppCompatActivity {
     }
 
     /**
-     * 初始化Toolbar
-     * @param toolbar Toolbar
-     * @param title String  标题
-     * @param displayHome Boolean  是否显示左边图标，默认显示
-     * @param showBackHint Boolean  点击返回键时是否弹窗提示
-     * @param transparentStatusBar Boolean 是否沉浸式状态栏，默认状态栏透明
-     */
-    protected open fun initToolbar(
-        toolbar: Toolbar,
-        title: String,
-        displayHome: Boolean = true,
-        showBackHint: Boolean = false,
-        transparentStatusBar: Boolean = true,
-    ) {
-
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        toolbar.title = title
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(displayHome)
-
-        if (transparentStatusBar) {
-            transStatusBar(toolbar)
-        }
-    }
-
-    protected open fun transStatusBar(view: View, isLightMode: Boolean = false) {
-        BarUtils.transparentStatusBar(this)
-        BarUtils.addMarginTopEqualStatusBarHeight(view)
-        BarUtils.setStatusBarLightMode(this, isLightMode)
-    }
-
-    protected open fun colorStatusBar(
-        @ColorRes color: Int = R.color.colorOnPrimary,
-        view: View,
-        isLightMode: Boolean = false,
-    ) {
-        BarUtils.setStatusBarColor(this, ContextCompat.getColor(this, color))
-        BarUtils.addMarginTopEqualStatusBarHeight(view)
-        BarUtils.setStatusBarLightMode(this, isLightMode)
-    }
-
-    /**
      * Toolbar的返回按钮
      *
      */
@@ -159,27 +110,6 @@ abstract class BaseActivity : AppCompatActivity {
 
         onBackPressed()
         return super.onSupportNavigateUp()
-    }
-
-    /**
-     * 初始化Header
-     *
-     * @param backIv  返回图片控件
-     * @param titleTv  标题控件
-     * @param title  要显示的标题文本
-     * @param showBackHint  点击返回时是否显示返回提示框，默认不显示
-     */
-    protected fun initHeader(
-        backIv: AppCompatImageView,
-        titleTv: TextView,
-        title: String,
-        showBackHint: Boolean = false,
-    ) {
-        titleTv.text = title
-
-        backIv.setOnClickListener {
-            onBackPressed()
-        }
     }
 
     /**

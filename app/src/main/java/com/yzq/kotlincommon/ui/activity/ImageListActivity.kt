@@ -5,6 +5,7 @@ import com.drake.brv.utils.bindingAdapter
 import com.drake.brv.utils.setup
 import com.drake.brv.utils.staggered
 import com.scwang.smart.refresh.layout.constant.RefreshState
+import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.api.ApiResult
