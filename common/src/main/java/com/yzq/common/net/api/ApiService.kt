@@ -43,5 +43,5 @@ interface ApiService {
         @Field("page") page: Int = 1,
         @Field("page_size") pageSize: Int = 10,
         @Field("key") key: String = ApiConstants.juheTouTiaoKey,
-    ): Response<TouTiao>
+    ): TouTiao
 }

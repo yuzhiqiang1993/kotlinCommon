@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.drake.brv.utils.bindingAdapter
 import com.drake.brv.utils.setup
@@ -8,13 +9,11 @@ import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
-import com.yzq.common.api.ApiResult
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.juhe.toutiao.TouTiao
-import com.yzq.common.ext.apiCall
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
-import com.yzq.coroutine.scope.lifeScope
+import com.yzq.coroutine.scope.launchSafety
 import com.yzq.img.loadWithThumbnail
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding
@@ -44,10 +43,12 @@ class ImageListActivity : BaseActivity() {
         initRecy()
 
         binding.layoutPageRefresh.onRefresh {
-            initData()
+            page = 1
+            requestData()
         }.autoRefresh()
 
         binding.layoutPageRefresh.onLoadMore {
+            preloadIndex = 6
             page += 1
             requestData()
         }
@@ -68,44 +69,41 @@ class ImageListActivity : BaseActivity() {
             }
     }
 
-    override fun initData() {
-        page = 1
-        requestData()
-    }
+//    override fun initData() {
+//        page = 1
+//        requestData()
+//    }
 
     private fun requestData() {
-
-        lifeScope {
-            val apiResult = apiCall {
-                RetrofitFactory.instance.getService(ApiService::class.java)
-                    .listToutiao(page = page, pageSize = pageSize)
-            }
-
-            when (apiResult) {
-                is ApiResult.Error -> {
-                    binding.layoutPageRefresh.showError(apiResult.message)
-                }
-                is ApiResult.Exception -> {
-                    binding.layoutPageRefresh.showError(apiResult.t.message)
-                }
-                is ApiResult.Success -> {
-                    setData(apiResult.data)
-                }
-            }
+        lifecycleScope.launchSafety {
+            val listToutiao = RetrofitFactory.instance.getService(ApiService::class.java)
+                .listToutiao(page = 1, pageSize = 50)
+            setData(listToutiao)
+        }.catch {
+            binding.layoutPageRefresh.showError(it)
         }
+
     }
 
     private fun setData(data: TouTiao?) {
-        data?.run {
-            binding.run {
-                if (layoutPageRefresh.state == RefreshState.Loading) {
-                    recy.bindingAdapter.addModels(data.result.data)
-                } else {
-                    recy.bindingAdapter.setDifferModels(data.result.data)
-                }
 
-                layoutPageRefresh.showContent()
+        if (data == null) {
+            binding.layoutPageRefresh.showEmpty()
+        } else {
+            if (data.errorCode == 0) {
+                binding.run {
+                    if (layoutPageRefresh.state == RefreshState.Loading) {
+                        recy.bindingAdapter.addModels(data.result?.data)
+                    } else {
+                        recy.bindingAdapter.setDifferModels(data.result?.data)
+                    }
+
+                    layoutPageRefresh.showContent()
+                }
+            } else {
+                binding.layoutPageRefresh.showError("${data.errorCode}--${data.reason}")
             }
         }
+
     }
 }

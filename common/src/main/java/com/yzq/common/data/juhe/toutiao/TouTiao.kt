@@ -8,7 +8,7 @@ data class TouTiao(
     @Json(name = "reason")
     val reason: String = "", // success
     @Json(name = "result")
-    val result: Result = Result(),
+    val result: Result? = null,
 ) {
     data class Result(
         @Json(name = "data")

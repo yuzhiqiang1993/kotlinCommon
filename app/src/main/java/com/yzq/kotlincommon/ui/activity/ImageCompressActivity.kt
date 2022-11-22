@@ -1,10 +1,14 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.content.Intent
+import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.huantansheng.easyphotos.models.album.entity.Photo
+import com.yzq.base.R
 import com.yzq.base.extend.initToolbar
+import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.activity.BaseVmActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
@@ -61,7 +65,16 @@ class ImageCompressActivity :
         }
 
         binding.ivImg.setOnClickListener {
-            preViewImg(imgPath, it)
+            val intent = Intent(this, ImgPreviewActivity::class.java)
+            intent.putExtra(ImgPreviewActivity.IMG_PATH, imgPath)
+
+            val options =
+                ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this,
+                    it,
+                    getString(R.string.img_transition)
+                )
+            startActivity(intent, options.toBundle())
         }
     }
 

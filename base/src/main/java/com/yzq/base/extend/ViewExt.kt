@@ -15,6 +15,7 @@ inline fun View.setOnThrottleTimeClick(
     setOnClickListener {
         isClickable = false
         block()
+        /*指定时间后将控件置为可点击*/
         postDelayed({ isClickable = true }, time)
     }
 }

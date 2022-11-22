@@ -1,20 +1,23 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.content.Intent
+import androidx.core.app.ActivityOptionsCompat
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
 import com.drake.brv.utils.bindingAdapter
 import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
 import com.yzq.base.extend.initToolbar
+import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
-import com.yzq.common.api.ApiResult
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.juhe.toutiao.TouTiao
-import com.yzq.common.ext.apiCall
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
-import com.yzq.coroutine.scope.lifeScope
+import com.yzq.coroutine.scope.launchSafety
 import com.yzq.img.loadWithThumbnail
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMovieListBinding
@@ -49,50 +52,49 @@ class NewsActivity : BaseActivity() {
                 R.id.iv_img.onClick {
                     val model = getModel<TouTiao.Result.Data>()
                     val itemMovieLayoutBinding = getBinding<ItemMovieLayoutBinding>()
-                    preViewImg(model.thumbnailPicS, itemMovieLayoutBinding.ivImg)
+
+                    val intent = Intent(this@NewsActivity, ImgPreviewActivity::class.java)
+                    intent.putExtra(ImgPreviewActivity.IMG_PATH, model.thumbnailPicS)
+
+                    val options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            this@NewsActivity,
+                            itemMovieLayoutBinding.ivImg,
+                            getString(com.yzq.base.R.string.img_transition)
+                        )
+                    startActivity(intent, options.toBundle())
                 }
             }
 
-        stateViewManager.initStateView(binding.stateView, binding.recy)
-        binding.stateView.retry {
-            initData()
-        }
-    }
-
-    override fun initData() {
-        requestData()
+        binding.layoutState.onRefresh {
+            LogUtils.i("onRefresh")
+            requestData()
+        }.showLoading()
     }
 
     private fun requestData() {
-
-        lifeScope {
-            val apiResult = apiCall {
-                RetrofitFactory.instance.getService(ApiService::class.java)
-                    .listToutiao(page = 1, pageSize = 50)
-            }
-
-            when (apiResult) {
-                is ApiResult.Error -> {
-                    stateViewManager.showError(apiResult.message)
-                }
-                is ApiResult.Exception -> {
-                    stateViewManager.showError(apiResult.t.message!!)
-                }
-                is ApiResult.Success -> {
-                    showData(apiResult.data)
-                }
-            }
+        lifecycleScope.launchSafety {
+            val listToutiao = RetrofitFactory.instance.getService(ApiService::class.java)
+                .listToutiao(page = 1, pageSize = 50)
+            showData(listToutiao)
+        }.catch {
+            binding.layoutState.showError(it)
         }
     }
 
     private fun showData(data: TouTiao?) {
 
-        if (data == null) {
-            stateViewManager.showNoData()
-        } else {
-            binding.recy.bindingAdapter.models = data.result.data
-
-            stateViewManager.showContent()
+        binding.run {
+            if (data == null) {
+                layoutState.showEmpty()
+            } else {
+                if (data.errorCode == 0) {
+                    recy.bindingAdapter.models = data.result?.data
+                    layoutState.showContent()
+                } else {
+                    layoutState.showError("${data.errorCode}--${data.reason}")
+                }
+            }
         }
     }
 }

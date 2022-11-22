@@ -2,12 +2,8 @@ package com.yzq.base.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityOptionsCompat
-import com.yzq.base.R
-import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.ui.state_view.StateViewManager
 
@@ -97,24 +93,6 @@ abstract class BaseActivity : AppCompatActivity {
         return super.onSupportNavigateUp()
     }
 
-    /**
-     *
-     * @param path String  图片路径
-     * @param view View  view
-     */
-    protected fun preViewImg(path: String, view: View) {
-        val intent = Intent(this, ImgPreviewActivity::class.java)
-        intent.putExtra(ImgPreviewActivity.IMG_PATH, path)
-
-        val options =
-            ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this,
-                view,
-                getString(R.string.img_transition)
-            )
-        startActivity(intent, options.toBundle())
-    }
-
     override fun onBackPressed() {
         supportFragmentManager.fragments.forEach {
 
@@ -126,5 +104,4 @@ abstract class BaseActivity : AppCompatActivity {
         }
         super.onBackPressed()
     }
-
 }
