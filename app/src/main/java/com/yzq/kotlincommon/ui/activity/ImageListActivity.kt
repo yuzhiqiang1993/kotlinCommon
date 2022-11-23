@@ -1,5 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.content.Intent
+import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.drake.brv.utils.bindingAdapter
@@ -7,6 +9,7 @@ import com.drake.brv.utils.setup
 import com.drake.brv.utils.staggered
 import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.yzq.base.extend.initToolbar
+import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
@@ -65,6 +68,22 @@ class ImageListActivity : BaseActivity() {
                     /*高度随机*/
                     itemImgListBinding.ivImg.layoutParams.height = 300 + Random.nextInt(300)
                     itemImgListBinding.ivImg.loadWithThumbnail(model.thumbnailPicS)
+                }
+
+                R.id.iv_img.onClick {
+                    val model = getModel<TouTiao.Result.Data>()
+                    val itemMovieLayoutBinding = getBinding<ItemImgListBinding>()
+
+                    val intent = Intent(this@ImageListActivity, ImgPreviewActivity::class.java)
+                    intent.putExtra(ImgPreviewActivity.IMG_PATH, model.thumbnailPicS)
+
+                    val options =
+                        ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            this@ImageListActivity,
+                            itemMovieLayoutBinding.ivImg,
+                            getString(com.yzq.base.R.string.img_transition)
+                        )
+                    startActivity(intent, options.toBundle())
                 }
             }
     }
