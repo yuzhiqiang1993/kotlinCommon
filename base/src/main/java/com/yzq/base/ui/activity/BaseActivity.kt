@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.yzq.base.ui.fragment.BaseFragment
-import com.yzq.base.ui.state_view.StateViewManager
 
 /**
  * @Description: Activity基类
@@ -19,9 +18,6 @@ abstract class BaseActivity : AppCompatActivity {
 
     constructor() : super()
     constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
-
-    /*视图状态管理器*/
-    protected val stateViewManager by lazy { StateViewManager(this) }
 
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
 
@@ -40,14 +36,14 @@ abstract class BaseActivity : AppCompatActivity {
 
         /*参数初始化，intent携带的值*/
         initArgs(intent.extras)
-        /*viewmodel的初始化*/
-        initViewModel()
         /*变量初始化*/
         initVariable()
         /*控件的初始化，例如绑定点击时间之类的*/
         initWidget()
         /*一些监听的初始化，*/
         initListener()
+        /*viewmodel的监听*/
+        observeViewModel()
         /*初始化数据*/
         initData()
     }
@@ -60,7 +56,6 @@ abstract class BaseActivity : AppCompatActivity {
     protected open fun initArgs(extras: Bundle?) {
     }
 
-    protected open fun initViewModel() {}
 
     /*初始化变量*/
     protected open fun initVariable() {
@@ -75,6 +70,8 @@ abstract class BaseActivity : AppCompatActivity {
 
     protected open fun initListener() {
     }
+
+    protected open fun observeViewModel() {}
 
     /**
      * 初始化数据

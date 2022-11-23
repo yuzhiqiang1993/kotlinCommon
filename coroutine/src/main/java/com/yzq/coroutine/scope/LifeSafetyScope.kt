@@ -1,6 +1,5 @@
 package com.yzq.coroutine.scope
 
-import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -89,7 +88,6 @@ open class LifeSafetyScope(
     }
 
     override fun close() {
-        Log.i("LifeSafetyScope:", "close")
         cancel()
     }
 }

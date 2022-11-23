@@ -1,8 +1,9 @@
 package com.yzq.kotlincommon.ui.fragment
 
+import androidx.fragment.app.viewModels
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.launchCollect
-import com.yzq.base.ui.fragment.BaseVmFragment
+import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.binding.viewbind
 import com.yzq.kotlincommon.R
@@ -10,10 +11,10 @@ import com.yzq.kotlincommon.databinding.TaskFragmentBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel
 import kotlinx.coroutines.flow.filter
 
-class TaskFragment : BaseVmFragment<CoroutineViewModel>(R.layout.task_fragment) {
-    private val binding by viewbind(TaskFragmentBinding::bind)
+class TaskFragment : BaseFragment(R.layout.task_fragment) {
 
-    override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
+    private val binding by viewbind(TaskFragmentBinding::bind)
+    private val vm: CoroutineViewModel by viewModels()
 
     companion object {
         fun newInstance() = TaskFragment()
@@ -22,12 +23,9 @@ class TaskFragment : BaseVmFragment<CoroutineViewModel>(R.layout.task_fragment) 
     override fun initWidget() {
         LogUtils.i("TaskFragment")
         binding.tvTask.text = "喻志强"
-
-        stateViewManager.initStateView(binding.stateView, binding.tvTask)
-    }
-
-    override fun initData() {
-        vm.requestData()
+        binding.layoutState.onRefresh {
+            vm.requestData()
+        }.showLoading()
     }
 
     override fun observeViewModel() {
@@ -35,15 +33,14 @@ class TaskFragment : BaseVmFragment<CoroutineViewModel>(R.layout.task_fragment) 
         vm.run {
             geocoder.observe(this@TaskFragment) {
                 binding.tvTask.text = MoshiUtils.toJson(it, "  ")
-
-                stateViewManager.showContent()
+                binding.layoutState.showContent()
             }
 
             geocoderFlow
                 .filter { it != null }
                 .launchCollect(this@TaskFragment.viewLifecycleOwner) { // 扩展方法
                     binding.tvTask.text = it!!.result.formatted_address
-                    stateViewManager.showContent()
+                    binding.layoutState.showContent()
                 }
         }
     }

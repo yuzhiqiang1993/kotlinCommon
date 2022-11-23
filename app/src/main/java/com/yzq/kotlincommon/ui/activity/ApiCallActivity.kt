@@ -1,11 +1,12 @@
 package com.yzq.kotlincommon.ui.activity
 
+import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
-import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.api.ApiResult
 import com.yzq.common.api.onSuccess
@@ -31,9 +32,11 @@ import kotlinx.coroutines.supervisorScope
  */
 
 @Route(path = RoutePath.Main.API_CALL)
-class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
+class ApiCallActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityApiCallBinding::inflate)
+
+    private val vm: ApiCallViewModel by viewModels()
 
     override fun initWidget() {
 
@@ -184,8 +187,6 @@ class ApiCallActivity : BaseVmActivity<ApiCallViewModel>() {
             }
         }
     }
-
-    override fun getViewModelClass() = ApiCallViewModel::class.java
 
     override fun observeViewModel() {
         vm.run {

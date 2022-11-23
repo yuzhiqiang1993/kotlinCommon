@@ -1,14 +1,15 @@
 package com.yzq.kotlincommon.ui.activity
 
+import androidx.activity.viewModels
 import androidx.lifecycle.*
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.launchCollect
-import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
-import com.yzq.coroutine.scope.lifeScope
+import com.yzq.coroutine.scope.launchSafety
 import com.yzq.coroutine.withDefault
 import com.yzq.coroutine.withIO
 import com.yzq.coroutine.withUnconfined
@@ -17,41 +18,36 @@ import com.yzq.kotlincommon.view_model.CoroutineViewModel
 import kotlinx.coroutines.flow.filter
 
 @Route(path = RoutePath.Main.COROUTINE)
-class CoroutinesActivity : BaseVmActivity<CoroutineViewModel>() {
+class CoroutinesActivity : BaseActivity() {
 
-    override fun getViewModelClass(): Class<CoroutineViewModel> = CoroutineViewModel::class.java
+    private val vm: CoroutineViewModel by viewModels()
 
     private val binding by viewbind(ActivityCoroutinesBinding::inflate)
 
     override fun initWidget() {
         super.initWidget()
 
-        initToolbar(binding.layoutToolbar.toolbar, "Coroutine 协程")
-        stateViewManager.initStateView(binding.stateView, binding.tv)
+        initToolbar(binding.includedToolbar.toolbar, "Coroutine 协程")
 
-        binding.stateView.retry {
-            stateViewManager.switchToHttpFirst()
+        binding.layoutState.onRefresh { vm.requestData() }.showLoading()
 
-            vm.requestData()
-        }
-
-        lifeScope {
+        lifecycleScope.launchSafety {
             LogUtils.i("launch 当前线程:${Thread.currentThread().name}")
         }
 
-        lifeScope {
+        lifecycleScope.launchSafety {
             withIO {
                 LogUtils.i("IO 当前线程:${Thread.currentThread().name}")
             }
         }
 
-        lifeScope {
+        lifecycleScope.launchSafety {
             withDefault {
                 LogUtils.i("Default 当前线程:${Thread.currentThread().name}")
             }
         }
 
-        lifeScope {
+        lifecycleScope.launchSafety {
             withUnconfined {
                 LogUtils.i("Unconfined 当前线程:${Thread.currentThread().name}")
             }
@@ -70,11 +66,6 @@ class CoroutinesActivity : BaseVmActivity<CoroutineViewModel>() {
         }
     }
 
-    override fun initData() {
-        stateViewManager.switchToHttpFirst()
-        vm.requestData()
-    }
-
     override fun observeViewModel() {
 
         vm.run {
@@ -83,8 +74,7 @@ class CoroutinesActivity : BaseVmActivity<CoroutineViewModel>() {
                 Observer {
                     LogUtils.i("请求完成")
                     binding.tv.text = it.result.formatted_address
-
-                    stateViewManager.showContent()
+                    binding.layoutState.showContent()
                 }
             )
 
@@ -92,7 +82,7 @@ class CoroutinesActivity : BaseVmActivity<CoroutineViewModel>() {
                 .filter { it != null }
                 .launchCollect(this@CoroutinesActivity) { // 扩展方法
                     binding.tv.text = it!!.result.formatted_address
-                    stateViewManager.showContent()
+                    binding.layoutState.showContent()
                 }
         }
 

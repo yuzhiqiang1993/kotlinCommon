@@ -2,10 +2,13 @@ package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.data.gaode.Geocoder
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
+import com.yzq.coroutine.scope.launchSafety
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
@@ -28,7 +31,6 @@ class CoroutineViewModel : BaseViewModel() {
 
     /*请求数据*/
     fun requestData() {
-
 //        viewModelScope.launch {
 //            val response = apiCall {
 //                RetrofitFactory.instance.getService(ApiService::class.java).geocoder()
@@ -46,7 +48,8 @@ class CoroutineViewModel : BaseViewModel() {
 //            }
 //        }
 
-        launchLoading {
+        viewModelScope.launchSafety {
+            delay(1000)
             _geocoderFlow.value =
                 RetrofitFactory.instance.getService(ApiService::class.java).geocoder().body()
         }

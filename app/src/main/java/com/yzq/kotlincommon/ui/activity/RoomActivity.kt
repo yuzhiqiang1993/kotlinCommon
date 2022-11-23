@@ -1,12 +1,13 @@
 package com.yzq.kotlincommon.ui.activity
 
+import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setDifferModels
 import com.drake.brv.utils.setup
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.data_base.User
@@ -19,14 +20,11 @@ import com.yzq.materialdialog.showInputDialog
 import kotlinx.coroutines.delay
 
 @Route(path = RoutePath.Main.ROOM)
-class RoomActivity :
-    BaseVmActivity<RoomViewModel>() {
+class RoomActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityRoomBinding::inflate)
-
+    private val vm: RoomViewModel by viewModels()
     private var isAdd: Boolean = false
-
-    override fun getViewModelClass(): Class<RoomViewModel> = RoomViewModel::class.java
 
     override fun initWidget() {
         initToolbar(binding.includedToolbar.toolbar, "Room")

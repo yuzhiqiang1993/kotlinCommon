@@ -1,11 +1,13 @@
 package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.PathUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.xeon.bsdiff.utils.XeonBsDiffUtil
 import com.yzq.base.view_model.BaseViewModel
+import com.yzq.coroutine.scope.launchSafety
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
@@ -41,7 +43,8 @@ class BsDiffViewModel : BaseViewModel() {
      */
     fun createDiffFile() {
 
-        launchLoadingDialog(loadText = "正在生成差分包，请稍后...", checkNetWork = false) {
+
+        viewModelScope.launchSafety {
 
             val measureTimeMillis = measureTimeMillis {
                 withContext(Dispatchers.Default) {
@@ -50,7 +53,7 @@ class BsDiffViewModel : BaseViewModel() {
                         return@withContext
                     }
 
-                    val fileDiff = XeonBsDiffUtil.bsdiff(
+                    XeonBsDiffUtil.bsdiff(
                         newFile.absolutePath,
                         oldFile.absolutePath,
                         patchFile.absolutePath
@@ -65,7 +68,7 @@ class BsDiffViewModel : BaseViewModel() {
     /*合并差分包*/
     fun combineFile() {
 
-        launchLoadingDialog(loadText = "正在合并差分包，请稍后...", checkNetWork = false) {
+        viewModelScope.launchSafety {
 
             val measureTimeMillis = measureTimeMillis {
                 /*合并差分包是一个cpu密集型的任务*/

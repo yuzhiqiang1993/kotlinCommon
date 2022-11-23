@@ -32,7 +32,6 @@ class DialogActivity : BaseActivity() {
     private val binding by viewbind(ActivityDialogBinding::inflate)
 
     override fun initWidget() {
-//        allowFastClick()
         binding.run {
             initToolbar(layoutToolbar.toolbar, "弹窗", true)
 
@@ -82,11 +81,11 @@ class DialogActivity : BaseActivity() {
             layoutScrollContent.btnLoading
                 .setOnClickListener {
 
-                    stateViewManager.showLoadingDialog("登录中...")
+                    val loadingDialog = showLoadingDialog("登录中...")
 
                     lifeScope {
                         delay(3000)
-                        stateViewManager.dismissLoadingDialog()
+                        loadingDialog.dismiss()
                     }
                 }
 
@@ -94,7 +93,7 @@ class DialogActivity : BaseActivity() {
                 .setOnClickListener {
                     var count = 0
 
-                    stateViewManager.showProgressDialog("模拟进度")
+                    val progressDialog = showProgressDialog("模拟进度")
 
                     val timerTask = object : TimerTask() {
                         override fun run() {
@@ -104,12 +103,12 @@ class DialogActivity : BaseActivity() {
                             if (count <= 100) {
 
                                 MainScope().launch {
-                                    stateViewManager.changeProgress(count)
+                                    progressDialog.changeProgress(count)
                                 }
                             } else {
                                 cancel()
                                 MainScope().launch {
-                                    stateViewManager.dismissProgressDialog()
+                                    progressDialog.dismiss()
                                 }
                             }
                         }

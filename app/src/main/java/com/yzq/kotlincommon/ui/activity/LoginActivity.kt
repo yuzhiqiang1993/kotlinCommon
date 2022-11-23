@@ -2,17 +2,20 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.graphics.Color
 import android.text.TextUtils
+import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.nav
 import com.yzq.base.extend.setOnThrottleTimeClick
-import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.databind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.utils.MMKVUtil
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
+import com.yzq.materialdialog.getLoadingDialog
+import com.yzq.materialdialog.setLoadingMessage
 import com.yzq.statusbar.immersive
 
 /**
@@ -24,11 +27,12 @@ import com.yzq.statusbar.immersive
  */
 
 @Route(path = RoutePath.Main.LOGIN)
-class LoginActivity : BaseVmActivity<LoginViewModel>() {
+class LoginActivity : BaseActivity() {
 
     private val binding by databind<ActivityLoginBinding>(R.layout.activity_login)
+    private val vm: LoginViewModel by viewModels()
 
-    override fun getViewModelClass(): Class<LoginViewModel> = LoginViewModel::class.java
+    private val loadingDialog by lazy { getLoadingDialog().setLoadingMessage("登录中...") }
 
     override fun initWidget() {
         super.initWidget()
@@ -54,10 +58,9 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
                 return@setOnClickListener
             }
 
-            vm.login(
-                binding.account!!,
-                binding.pwd!!
-            )
+            loadingDialog.show()
+
+            vm.login(binding.account!!, binding.pwd!!)
         }
     }
 
@@ -75,6 +78,7 @@ class LoginActivity : BaseVmActivity<LoginViewModel>() {
 
         vm.run {
             loginLiveData.observe(this@LoginActivity) {
+                loadingDialog.dismiss()
                 nav(RoutePath.Main.MAIN)
             }
         }

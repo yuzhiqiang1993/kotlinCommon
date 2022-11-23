@@ -1,10 +1,12 @@
 package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.data.LoginBean
 import com.yzq.common.utils.MMKVUtil
+import com.yzq.coroutine.scope.launchSafety
 import kotlinx.coroutines.delay
 
 class LoginViewModel : BaseViewModel() {
@@ -12,7 +14,9 @@ class LoginViewModel : BaseViewModel() {
     val loginLiveData by lazy { MutableLiveData<LoginBean>() }
 
     fun login(account: String, pwd: String) {
-        launchLoadingDialog {
+
+        viewModelScope.launchSafety {
+
             delay(1000)
 
             MMKVUtil.account = account

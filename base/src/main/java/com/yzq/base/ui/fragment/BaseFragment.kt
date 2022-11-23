@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.base.ui.state_view.StateViewManager
 
 /**
  * @description: fragment基类
@@ -17,7 +15,6 @@ import com.yzq.base.ui.state_view.StateViewManager
  */
 abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
-    protected val stateViewManager by lazy { StateViewManager(activity = requireActivity() as BaseActivity) }
 
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
 
@@ -28,9 +25,10 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewModel()
         initVariable()
         initWidget()
+        /*viewmodel的监听*/
+        observeViewModel()
         initData()
     }
 
@@ -53,6 +51,8 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
     /*初始化View*/
     protected open fun initWidget() {}
 
+    /*监听vm中的数据*/
+    protected open fun observeViewModel() {}
 
     /*返回键监听*/
     open fun onBackPressed(): Boolean {

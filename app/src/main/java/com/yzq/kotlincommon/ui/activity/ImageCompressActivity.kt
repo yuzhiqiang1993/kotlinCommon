@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.content.Intent
+import androidx.activity.viewModels
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.ViewModelProvider
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -9,7 +10,7 @@ import com.huantansheng.easyphotos.models.album.entity.Photo
 import com.yzq.base.R
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.ImgPreviewActivity
-import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.img.load
@@ -27,18 +28,16 @@ import com.yzq.kotlincommon.view_model.CompressImgViewModel
  */
 
 @Route(path = RoutePath.Main.IMG_COMPRESS)
-class ImageCompressActivity :
-    BaseVmActivity<CompressImgViewModel>() {
+class ImageCompressActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityImageCompressBinding::inflate)
+    private val vm: CompressImgViewModel by viewModels()
 
     private lateinit var compressImgViewModel: CompressImgViewModel
 
     private var selectedPhotos = arrayListOf<Photo>()
 
     private lateinit var imgPath: String
-
-    override fun getViewModelClass() = CompressImgViewModel::class.java
 
     override fun initWidget() {
         super.initWidget()

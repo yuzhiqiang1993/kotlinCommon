@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activity.CoroutinesActivity">
 
 
     <include
-        android:id="@+id/layout_toolbar"
+        android:id="@+id/included_toolbar"
         layout="@layout/toolbar" />
 
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv"
+    <com.drake.statelayout.StateLayout
+        android:id="@+id/layout_state"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_46"
-        android:gravity="center"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp_18"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_46"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp_18" />
+
+    </com.drake.statelayout.StateLayout>
 
 
-    <com.yzq.widget.state_view.StateView
-        android:id="@+id/state_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

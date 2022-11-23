@@ -1,11 +1,12 @@
 package com.yzq.kotlincommon.ui.activity
 
+import androidx.activity.viewModels
 import com.afollestad.materialdialogs.utils.MDUtil.textChanged
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.databind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
@@ -20,11 +21,11 @@ import com.yzq.kotlincommon.view_model.DataBindingViewModel
  */
 
 @Route(path = RoutePath.Main.DATA_BINDING)
-class DataBindingActivity : BaseVmActivity<DataBindingViewModel>() {
+class DataBindingActivity : BaseActivity() {
 
     private val binding: ActivityDataBindingBinding by databind(R.layout.activity_data_binding)
 
-    override fun getViewModelClass() = DataBindingViewModel::class.java
+    private val vm: DataBindingViewModel by viewModels()
 
     override fun initWidget() {
         super.initWidget()

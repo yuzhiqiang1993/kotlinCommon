@@ -139,6 +139,18 @@ fun ComponentActivity.showBackHintDialog(
     }
 }
 
+fun ComponentActivity.showLoadingDialog(msg: String): MaterialDialog {
+    val dialog = getLoadingDialog().setLoadingMessage(msg)
+    dialog.show()
+    return dialog
+}
+
+fun ComponentActivity.showProgressDialog(msg: String): MaterialDialog {
+    val dialog = getProgressDialog()
+    dialog.changeTitle(msg).show()
+    return dialog
+}
+
 /**
  * 单选列表弹窗
  *

@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.view_model
 
+import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.base.view_model.BaseViewModel
@@ -9,8 +10,10 @@ import com.yzq.common.ext.dataConvert
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ResponseCode
+import com.yzq.coroutine.scope.launchSafety
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 
 class MoshiViewModel : BaseViewModel() {
 
@@ -19,7 +22,7 @@ class MoshiViewModel : BaseViewModel() {
     fun serialize() {
         /*生成数据 */
 
-        launchLoadingDialog {
+        viewModelScope.launchSafety {
             val userList = mutableListOf<User>()
             for (it in 1..3) {
                 userList.add(
@@ -38,7 +41,7 @@ class MoshiViewModel : BaseViewModel() {
     }
 
     fun deserialize() {
-        launchLoadingDialog {
+        viewModelScope.launchSafety {
 
             if (jsonStr.isNotEmpty()) {
                 val genericType = MoshiUtils.getGenericType<BaseResp<List<User>>>()
@@ -53,23 +56,26 @@ class MoshiViewModel : BaseViewModel() {
 
     fun requestData() {
 
-        launchSupervisor {
-            launch {
+        viewModelScope.launchSafety {
+            supervisorScope {
+                launch {
 
-                val userList =
-                    RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
-                        .dataConvert()
-                userList?.forEach {
-                    LogUtils.i("${it.name}--${it.age}")
+                    val userList =
+                        RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
+                            .dataConvert()
+                    userList?.forEach {
+                        LogUtils.i("${it.name}--${it.age}")
+                    }
+                }
+
+                launch {
+                    delay(4000)
+                    val userInfo =
+                        RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
+                    LogUtils.i("userInfo:$userInfo")
                 }
             }
 
-            launch {
-                delay(4000)
-                val userInfo =
-                    RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
-                LogUtils.i("userInfo:$userInfo")
-            }
         }
     }
 }

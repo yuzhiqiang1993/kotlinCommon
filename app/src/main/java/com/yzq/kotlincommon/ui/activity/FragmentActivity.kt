@@ -1,11 +1,12 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.fragment.app.commit
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.navigation.NavigationBarView
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
@@ -15,12 +16,11 @@ import com.yzq.kotlincommon.view_model.FragmentViewModel
 
 @Route(path = RoutePath.Main.FRAGMENT)
 class FragmentActivity :
-    BaseVmActivity<FragmentViewModel>(),
+    BaseActivity(),
     NavigationBarView.OnItemSelectedListener {
 
     private val binding by viewbind(ActivityFragmentBinding::inflate)
-
-    override fun getViewModelClass(): Class<FragmentViewModel> = FragmentViewModel::class.java
+    private val vm: FragmentViewModel by viewModels()
 
     override fun initWidget() {
 
@@ -29,9 +29,6 @@ class FragmentActivity :
         binding.bottomNavigation.setOnItemSelectedListener(this)
 
         showFragment(vm.taskFragment)
-    }
-
-    override fun observeViewModel() {
     }
 
     private fun showFragment(fragment: BaseFragment) {

@@ -7,17 +7,18 @@
     tools:context=".ui.fragment.TaskFragment">
 
 
-    <TextView
-        android:id="@+id/tv_task"
+    <com.drake.statelayout.StateLayout
+        android:id="@+id/layout_state"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Hello" />
+        android:layout_height="match_parent">
 
 
-    <com.yzq.widget.state_view.StateView
-        android:id="@+id/state_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_task"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center" />
+    </com.drake.statelayout.StateLayout>
+
 
 </androidx.appcompat.widget.LinearLayoutCompat>

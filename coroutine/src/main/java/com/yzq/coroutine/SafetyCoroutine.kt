@@ -22,7 +22,7 @@ open class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCorouti
     private var catch: ((Throwable) -> Unit)? = null
 
     override fun handleJobException(exception: Throwable): Boolean {
-        Log.i("SafetyCoroutine", "handleJobException")
+        Log.i("SafetyCoroutine", "exception:$exception")
         handleCoroutineException(context, exception)
         if (exception !is CancellationException) {
             catch?.invoke(exception)

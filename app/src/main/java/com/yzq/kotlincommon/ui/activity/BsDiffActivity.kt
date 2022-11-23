@@ -1,13 +1,16 @@
 package com.yzq.kotlincommon.ui.activity
 
+import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
-import com.yzq.base.ui.activity.BaseVmActivity
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBsDiffBinding
 import com.yzq.kotlincommon.view_model.BsDiffViewModel
+import com.yzq.materialdialog.getLoadingDialog
+import com.yzq.materialdialog.setLoadingMessage
 
 /**
  * @description: bsdiff 增量更新示例
@@ -17,11 +20,12 @@ import com.yzq.kotlincommon.view_model.BsDiffViewModel
  */
 
 @Route(path = RoutePath.Main.BS_DIFF)
-class BsDiffActivity : BaseVmActivity<BsDiffViewModel>() {
+class BsDiffActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityBsDiffBinding::inflate)
+    private val vm: BsDiffViewModel by viewModels()
 
-    override fun getViewModelClass() = BsDiffViewModel::class.java
+    private val loadingDialog by lazy { getLoadingDialog().setLoadingMessage("加载中...") }
 
     override fun initWidget() {
 
@@ -31,11 +35,13 @@ class BsDiffActivity : BaseVmActivity<BsDiffViewModel>() {
 
             btnFileDiff.setOnThrottleTimeClick {
                 /*生成差分包*/
+                loadingDialog.setLoadingMessage("正在生成差分包...").show()
                 vm.createDiffFile()
             }
 
             btnFileCombine.setOnThrottleTimeClick {
                 /*合并差分包*/
+                loadingDialog.setLoadingMessage("正在合并差分包...").show()
                 vm.combineFile()
             }
         }
@@ -47,9 +53,11 @@ class BsDiffActivity : BaseVmActivity<BsDiffViewModel>() {
 
             newFileMD5LiveData.observe(this@BsDiffActivity) {
                 binding.htvNewFileMd5.setContent(it)
+                loadingDialog.dismiss()
             }
             combineFileMD5LiveData.observe(this@BsDiffActivity) {
                 binding.htvCombineFileMd5.setContent(it)
+                loadingDialog.dismiss()
             }
         }
     }
