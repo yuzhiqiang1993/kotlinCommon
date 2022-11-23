@@ -67,14 +67,13 @@ class CoroutinesActivity : BaseActivity() {
     }
 
     override fun observeViewModel() {
-
+        observeUIState(vm, binding.layoutState)
         vm.run {
             geocoder.observe(
                 this@CoroutinesActivity,
                 Observer {
                     LogUtils.i("请求完成")
                     binding.tv.text = it.result.formatted_address
-                    binding.layoutState.showContent()
                 }
             )
 
@@ -82,7 +81,6 @@ class CoroutinesActivity : BaseActivity() {
                 .filter { it != null }
                 .launchCollect(this@CoroutinesActivity) { // 扩展方法
                     binding.tv.text = it!!.result.formatted_address
-                    binding.layoutState.showContent()
                 }
         }
 

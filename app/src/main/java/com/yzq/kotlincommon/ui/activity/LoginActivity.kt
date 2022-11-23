@@ -14,8 +14,6 @@ import com.yzq.common.utils.MMKVUtil
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
-import com.yzq.materialdialog.getLoadingDialog
-import com.yzq.materialdialog.setLoadingMessage
 import com.yzq.statusbar.immersive
 
 /**
@@ -30,9 +28,8 @@ import com.yzq.statusbar.immersive
 class LoginActivity : BaseActivity() {
 
     private val binding by databind<ActivityLoginBinding>(R.layout.activity_login)
-    private val vm: LoginViewModel by viewModels()
 
-    private val loadingDialog by lazy { getLoadingDialog().setLoadingMessage("登录中...") }
+    private val vm: LoginViewModel by viewModels()
 
     override fun initWidget() {
         super.initWidget()
@@ -58,8 +55,6 @@ class LoginActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
-            loadingDialog.show()
-
             vm.login(binding.account!!, binding.pwd!!)
         }
     }
@@ -75,10 +70,9 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun observeViewModel() {
-
+        observeUIState(vm)
         vm.run {
             loginLiveData.observe(this@LoginActivity) {
-                loadingDialog.dismiss()
                 nav(RoutePath.Main.MAIN)
             }
         }

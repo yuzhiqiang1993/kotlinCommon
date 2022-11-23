@@ -96,10 +96,11 @@ dependencies {
     /*progressmanager*/
     api ThirdParty.appStartFaster
     api ThirdParty.progressManager
+    api ThirdParty.BRV
+
+
     api project(path: ':application')
     api project(path: ':network-status')
-
-
     api project(path: ':img')
     api project(path: ':materialdialog')
     api project(path: ':permission')

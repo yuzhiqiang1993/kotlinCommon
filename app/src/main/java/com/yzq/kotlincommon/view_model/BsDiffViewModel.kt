@@ -7,9 +7,9 @@ import com.blankj.utilcode.util.PathUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.xeon.bsdiff.utils.XeonBsDiffUtil
 import com.yzq.base.view_model.BaseViewModel
+import com.yzq.base.view_model.UIState
 import com.yzq.coroutine.scope.launchSafety
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.yzq.coroutine.withDefault
 import java.io.File
 import kotlin.system.measureTimeMillis
 
@@ -43,16 +43,15 @@ class BsDiffViewModel : BaseViewModel() {
      */
     fun createDiffFile() {
 
-
         viewModelScope.launchSafety {
+            if (!oldFile.exists() || !newFile.exists()) {
+                _uiState.value = UIState.ShowDialog("文件缺失...")
+                return@launchSafety
+            }
+            _uiState.value = UIState.ShowLoading("正在生成补丁包...")
 
             val measureTimeMillis = measureTimeMillis {
-                withContext(Dispatchers.Default) {
-                    if (!oldFile.exists() || !newFile.exists()) {
-                        ToastUtils.showShort("对比包缺失")
-                        return@withContext
-                    }
-
+                withDefault {
                     XeonBsDiffUtil.bsdiff(
                         newFile.absolutePath,
                         oldFile.absolutePath,
@@ -61,7 +60,9 @@ class BsDiffViewModel : BaseViewModel() {
                 }
             }
 
-            ToastUtils.showLong("差分包生成成功，耗时$measureTimeMillis")
+            _uiState.value = UIState.ShowToast("补丁包生成成功，耗时$measureTimeMillis")
+        }.invokeOnCompletion {
+            _uiState.value = UIState.DissmissLoadingDialog()
         }
     }
 
@@ -69,20 +70,19 @@ class BsDiffViewModel : BaseViewModel() {
     fun combineFile() {
 
         viewModelScope.launchSafety {
-
+            if (!oldFile.exists()) {
+                _uiState.value = UIState.ShowToast("旧文件不存在")
+                return@launchSafety
+            }
+            if (!patchFile.exists()) {
+                ToastUtils.showShort("差分包不存在")
+                _uiState.value = UIState.ShowToast("差分包不存在")
+                return@launchSafety
+            }
+            _uiState.value = UIState.ShowLoadingDialog("正在合并补丁包...")
             val measureTimeMillis = measureTimeMillis {
                 /*合并差分包是一个cpu密集型的任务*/
-                withContext(Dispatchers.Default) {
-
-                    if (!oldFile.exists()) {
-                        ToastUtils.showShort("旧文件不存在")
-                        return@withContext
-                    }
-                    if (!patchFile.exists()) {
-                        ToastUtils.showShort("差分包不存在")
-                        return@withContext
-                    }
-
+                withDefault {
                     XeonBsDiffUtil.bspatch(
                         oldFile.absolutePath,
                         patchFile.absolutePath,
@@ -94,8 +94,9 @@ class BsDiffViewModel : BaseViewModel() {
                 newFileMD5LiveData.value = FileUtils.getFileMD5ToString(newFile)
                 combineFileMD5LiveData.value = FileUtils.getFileMD5ToString(combineFile)
             }
-
-            ToastUtils.showLong("差分包合并完成，耗时:$measureTimeMillis")
+            _uiState.value = UIState.ShowToast("差分包合并完成，耗时:$measureTimeMillis")
+        }.invokeOnCompletion {
+            _uiState.value = UIState.DissmissLoadingDialog()
         }
     }
 }

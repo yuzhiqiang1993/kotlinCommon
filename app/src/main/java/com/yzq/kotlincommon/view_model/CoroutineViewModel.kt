@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.yzq.base.view_model.BaseViewModel
+import com.yzq.base.view_model.UIState
 import com.yzq.common.data.gaode.Geocoder
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
@@ -52,6 +53,7 @@ class CoroutineViewModel : BaseViewModel() {
             delay(1000)
             _geocoderFlow.value =
                 RetrofitFactory.instance.getService(ApiService::class.java).geocoder().body()
+            _uiState.value = UIState.ShowContent()
         }
     }
 }

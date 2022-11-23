@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
 import com.yzq.application.AppContext
 import com.yzq.base.view_model.BaseViewModel
+import com.yzq.base.view_model.UIState
 
 /**
  * @description: 定位模块,签到模式
@@ -44,6 +45,7 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
     /*开始定位*/
 
     fun startLocation() {
+        _uiState.value = UIState.ShowLoadingDialog("正在定位...")
         locationClient.startLocation()
     }
 
@@ -95,8 +97,8 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
         val result = sb.toString()
 
         LogUtils.i(result)
-
         locationData.value = location
+        _uiState.value = UIState.DissmissLoadingDialog()
     }
 
     /**

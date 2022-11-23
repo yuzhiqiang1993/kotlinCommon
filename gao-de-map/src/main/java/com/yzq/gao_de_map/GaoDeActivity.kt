@@ -7,8 +7,6 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.gao_de_map.databinding.ActivityGaoDeBinding
 import com.yzq.gao_de_map.utils.MapPermissionUtils
-import com.yzq.materialdialog.getLoadingDialog
-import com.yzq.materialdialog.setLoadingMessage
 
 @Route(path = com.yzq.common.constants.RoutePath.GaoDe.GAO_DE)
 class GaoDeActivity : BaseActivity() {
@@ -16,17 +14,12 @@ class GaoDeActivity : BaseActivity() {
     private val binding by viewbind(ActivityGaoDeBinding::inflate)
     private val vm: LocationSignViewModel by viewModels()
 
-    private val loadingDialog by lazy { getLoadingDialog().setLoadingMessage("正在获取位置信息") }
-
     override fun initWidget() {
 
         initToolbar(binding.includedToolbar.toolbar, "高德")
 
         binding.btnLocation.setOnClickListener {
             MapPermissionUtils.checkLocationPermission(true, this) {
-
-                loadingDialog.show()
-
                 vm.startLocation()
             }
         }
@@ -41,8 +34,6 @@ class GaoDeActivity : BaseActivity() {
             } else {
                 binding.tvLocationResult.text = t.locationDetail
             }
-
-            loadingDialog.dismiss()
         }
     }
 }

@@ -1,9 +1,6 @@
 package com.yzq.base.view_model
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.blankj.utilcode.util.LogUtils
 
 /**
@@ -15,7 +12,21 @@ import com.blankj.utilcode.util.LogUtils
 
 abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
 
+    protected val _uiState by lazy { MutableLiveData<UIState>() }
+    val uiState: LiveData<UIState> = _uiState
+
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         LogUtils.i("onStateChanged $source === ${event.targetState}")
     }
+}
+
+sealed class UIState {
+    data class ShowLoadingDialog(val msg: String) : UIState()
+    data class ShowDialog(val msg: String) : UIState()
+    data class ShowToast(val msg: String) : UIState()
+    class DissmissLoadingDialog : UIState()
+    data class ShowLoading(val msg: String) : UIState()
+    data class ShowError(val msg: String) : UIState()
+    class ShowEmpty : UIState()
+    class ShowContent : UIState()
 }

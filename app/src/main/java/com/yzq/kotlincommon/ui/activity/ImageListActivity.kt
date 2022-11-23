@@ -101,7 +101,6 @@ class ImageListActivity : BaseActivity() {
         }.catch {
             binding.layoutPageRefresh.showError(it)
         }
-
     }
 
     private fun setData(data: TouTiao?) {
@@ -116,13 +115,11 @@ class ImageListActivity : BaseActivity() {
                     } else {
                         recy.bindingAdapter.setDifferModels(data.result?.data)
                     }
-
                     layoutPageRefresh.showContent()
                 }
             } else {
                 binding.layoutPageRefresh.showError("${data.errorCode}--${data.reason}")
             }
         }
-
     }
 }
