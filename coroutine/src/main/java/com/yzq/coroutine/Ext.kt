@@ -9,6 +9,28 @@ import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
 /**
+ * 有异常兜底功能的 launch
+ *
+ * @param T
+ * @param context
+ * @param start
+ * @param block
+ * @receiver
+ * @return
+ */
+@OptIn(ExperimentalCoroutinesApi::class)
+fun <T> CoroutineScope.launchSafety(
+    context: CoroutineContext = EmptyCoroutineContext,
+    start: CoroutineStart = CoroutineStart.DEFAULT,
+    block: suspend CoroutineScope.() -> T,
+): SafetyCoroutine<T> {
+    val newContext = newCoroutineContext(context)
+    val coroutine = SafetyCoroutine<T>(newContext)
+    coroutine.start(start, coroutine, block)
+    return coroutine
+}
+
+/**
  * Scope life
  * 具备生命周期感知能力的作用域  生命周期跟随 [LifecycleOwner]
  * @param lifeEvent 执行取消逻辑的生命周期事件，默认 [Lifecycle.Event.ON_DESTROY]
@@ -37,26 +59,4 @@ fun View.lifeScope(
     val scope = ViewLifeSafetyScope(this, dispatcher)
     scope.doLaunch(block)
     return scope
-}
-
-/**
- * 有异常兜底功能的 launch
- *
- * @param T
- * @param context
- * @param start
- * @param block
- * @receiver
- * @return
- */
-@OptIn(ExperimentalCoroutinesApi::class)
-fun <T> CoroutineScope.launchSafety(
-    context: CoroutineContext = EmptyCoroutineContext,
-    start: CoroutineStart = CoroutineStart.DEFAULT,
-    block: suspend CoroutineScope.() -> T,
-): SafetyCoroutine<T> {
-    val newContext = newCoroutineContext(context)
-    val coroutine = SafetyCoroutine<T>(newContext)
-    coroutine.start(start, coroutine, block)
-    return coroutine
 }

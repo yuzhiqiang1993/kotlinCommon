@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
@@ -11,7 +12,7 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.data_base.User
-import com.yzq.coroutine.scope.lifeScope
+import com.yzq.coroutine.scope.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityRoomBinding
 import com.yzq.kotlincommon.databinding.ItemRoomBinding
@@ -84,7 +85,7 @@ class RoomActivity : BaseActivity() {
 
     private fun scrollRecy(size: Int) {
 
-        lifeScope {
+        lifecycleScope.launchSafety {
             delay(100)
             binding.recy.scrollToPosition(size - 1)
         }

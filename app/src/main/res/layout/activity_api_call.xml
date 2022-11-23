@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_16"
         android:layout_marginRight="@dimen/dp_16"
-        android:text="使用官方的LifecycleScope调launchSafety请求" />
+        android:text="launchSafety方式请求" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_lifeScope"
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp_16"
         android:layout_marginRight="@dimen/dp_16"
-        android:text="在封装的scope中直接请求" />
+        android:text="lifescope方式请求" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_concurrent"

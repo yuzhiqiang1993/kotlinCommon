@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
+import androidx.lifecycle.lifecycleScope
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
@@ -11,7 +12,7 @@ import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
-import com.yzq.coroutine.scope.lifeScope
+import com.yzq.coroutine.scope.launchSafety
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
 import com.yzq.materialdialog.*
 import kotlinx.coroutines.MainScope
@@ -33,7 +34,7 @@ class DialogActivity : BaseActivity() {
 
     override fun initWidget() {
         binding.run {
-            initToolbar(layoutToolbar.toolbar, "弹窗", true)
+            initToolbar(includedToolbar.toolbar, "弹窗", true)
 
             layoutScrollContent.btnBase.setOnClickListener {
                 showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
@@ -83,7 +84,7 @@ class DialogActivity : BaseActivity() {
 
                     val loadingDialog = showLoadingDialog("登录中...")
 
-                    lifeScope {
+                    lifecycleScope.launchSafety {
                         delay(3000)
                         loadingDialog.dismiss()
                     }
