@@ -209,7 +209,7 @@ fun Fragment.showInputDialog(
  * 加载框
  *
  */
-fun Fragment.getLoadingDialog(): MaterialDialog {
+fun Fragment.newLoadingDialog(): MaterialDialog {
     return getNewDialog().loading()
 }
 
@@ -217,7 +217,7 @@ fun Fragment.getLoadingDialog(): MaterialDialog {
  * 进度框
  *
  */
-fun Fragment.getProgressDialog(): MaterialDialog {
+fun Fragment.newProgressDialog(): MaterialDialog {
 
     return getNewDialog().progress().cancelOnTouchOutside(false).cancelable(false)
 }

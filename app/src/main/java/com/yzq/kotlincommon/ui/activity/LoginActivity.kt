@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.nav
+import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.databind
@@ -14,6 +15,7 @@ import com.yzq.common.utils.MMKVUtil
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
+import com.yzq.materialdialog.newLoadingDialog
 import com.yzq.statusbar.immersive
 
 /**
@@ -30,6 +32,8 @@ class LoginActivity : BaseActivity() {
     private val binding by databind<ActivityLoginBinding>(R.layout.activity_login)
 
     private val vm: LoginViewModel by viewModels()
+
+    private val loadingDialog by lazy { newLoadingDialog() }
 
     override fun initWidget() {
         super.initWidget()
@@ -70,7 +74,7 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun observeViewModel() {
-        observeUIState(vm)
+        observeUIState(vm, loadingDialog)
         vm.run {
             loginLiveData.observe(this@LoginActivity) {
                 nav(RoutePath.Main.MAIN)

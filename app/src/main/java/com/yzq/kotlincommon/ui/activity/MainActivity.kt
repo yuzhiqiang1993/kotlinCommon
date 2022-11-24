@@ -21,7 +21,6 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
 import com.yzq.statusbar.immersive
-import com.yzq.statusbar.statusPadding
 
 /**
  * @description: 导航页面
@@ -41,7 +40,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         binding.run {
             initToolbar(includedAppbarMain.toolbar, "kotlin common", displayHome = false)
             immersive()
-            includedAppbarMain.toolbar.statusPadding()
 
             val toggle = ActionBarDrawerToggle(
                 this@MainActivity,

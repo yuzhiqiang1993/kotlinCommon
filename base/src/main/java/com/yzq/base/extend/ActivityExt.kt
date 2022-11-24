@@ -25,3 +25,4 @@ fun AppCompatActivity.initToolbar(
     immersive()
     toolbar.statusPadding()
 }
+

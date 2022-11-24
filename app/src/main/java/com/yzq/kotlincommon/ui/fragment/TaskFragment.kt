@@ -3,6 +3,7 @@ package com.yzq.kotlincommon.ui.fragment
 import androidx.fragment.app.viewModels
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.launchCollect
+import com.yzq.base.extend.observeUIState
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.binding.viewbind
@@ -29,18 +30,16 @@ class TaskFragment : BaseFragment(R.layout.task_fragment) {
     }
 
     override fun observeViewModel() {
-
+        observeUIState(vm, stateLayout = binding.layoutState)
         vm.run {
             geocoder.observe(this@TaskFragment) {
                 binding.tvTask.text = MoshiUtils.toJson(it, "  ")
-                binding.layoutState.showContent()
             }
 
             geocoderFlow
                 .filter { it != null }
                 .launchCollect(this@TaskFragment.viewLifecycleOwner) { // 扩展方法
                     binding.tvTask.text = it!!.result.formatted_address
-                    binding.layoutState.showContent()
                 }
         }
     }

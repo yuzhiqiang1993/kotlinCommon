@@ -42,6 +42,7 @@ class ViewPager2Activity :
     }
 
     private fun showFragment(fragment: BaseFragment) {
+
         supportFragmentManager.commit {
             /*优化事务操作*/
             setReorderingAllowed(true)

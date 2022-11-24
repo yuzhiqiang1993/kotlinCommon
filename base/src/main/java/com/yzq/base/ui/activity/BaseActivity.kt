@@ -4,15 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
-import com.blankj.utilcode.util.ToastUtils
-import com.drake.statelayout.StateLayout
 import com.yzq.base.ui.fragment.BaseFragment
-import com.yzq.base.view_model.BaseViewModel
-import com.yzq.base.view_model.UIState
-import com.yzq.coroutine.runMain
-import com.yzq.materialdialog.getLoadingDialog
-import com.yzq.materialdialog.setLoadingMessage
-import com.yzq.materialdialog.showBaseDialog
 
 /**
  * @Description: Activity基类
@@ -26,10 +18,6 @@ abstract class BaseActivity : AppCompatActivity {
 
     constructor() : super()
     constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
-
-    protected val loadingDialog by lazy { getLoadingDialog() }
-
-    private var stateLayout: StateLayout? = null
 
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
 
@@ -111,37 +99,5 @@ abstract class BaseActivity : AppCompatActivity {
             }
         }
         super.onBackPressed()
-    }
-
-    protected fun observeUIState(vm: BaseViewModel, stateLayout: StateLayout? = null) {
-        this.stateLayout = stateLayout
-        vm.uiState.observe(this) {
-            when (it) {
-                is UIState.DissmissLoadingDialog -> {
-                    runMain { loadingDialog.dismiss() }
-                }
-                is UIState.ShowLoadingDialog -> {
-                    runMain { loadingDialog.setLoadingMessage(it.msg).show() }
-                }
-                is UIState.ShowToast -> {
-                    runMain { ToastUtils.showLong(it.msg) }
-                }
-                is UIState.ShowDialog -> {
-                    runMain { showBaseDialog(message = it.msg) }
-                }
-                is UIState.ShowContent -> {
-                    stateLayout?.run { runMain { showContent() } }
-                }
-                is UIState.ShowError -> {
-                    stateLayout?.run { runMain { showError(it.msg) } }
-                }
-                is UIState.ShowLoading -> {
-                    stateLayout?.run { runMain { showLoading(it.msg) } }
-                }
-                is UIState.ShowEmpty -> {
-                    stateLayout?.run { runMain { showEmpty() } }
-                }
-            }
-        }
     }
 }

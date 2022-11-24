@@ -3,12 +3,14 @@ package com.yzq.kotlincommon.ui.activity
 import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.yzq.base.extend.initToolbar
+import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBsDiffBinding
 import com.yzq.kotlincommon.view_model.BsDiffViewModel
+import com.yzq.materialdialog.newLoadingDialog
 
 /**
  * @description: bsdiff 增量更新示例
@@ -22,7 +24,7 @@ class BsDiffActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityBsDiffBinding::inflate)
     private val vm: BsDiffViewModel by viewModels()
-
+    private val loadingDialog by lazy { newLoadingDialog() }
     override fun initWidget() {
 
         binding.apply {
@@ -42,7 +44,7 @@ class BsDiffActivity : BaseActivity() {
     }
 
     override fun observeViewModel() {
-        observeUIState(vm)
+        observeUIState(vm, loadingDialog)
         vm.apply {
 
             newFileMD5LiveData.observe(this@BsDiffActivity) {

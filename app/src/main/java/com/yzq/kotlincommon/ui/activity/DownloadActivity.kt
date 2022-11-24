@@ -19,7 +19,7 @@ import com.yzq.coroutine.withIO
 import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
 import com.yzq.materialdialog.changeProgress
 import com.yzq.materialdialog.changeTitle
-import com.yzq.materialdialog.getProgressDialog
+import com.yzq.materialdialog.newProgressDialog
 import com.yzq.permission.getPermissions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -32,7 +32,7 @@ class DownloadActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityDownloadBinding::inflate)
 
-    private val progressDialog by lazy { getProgressDialog() }
+    private val progressDialog by lazy { newProgressDialog() }
 
     override fun initWidget() {
 

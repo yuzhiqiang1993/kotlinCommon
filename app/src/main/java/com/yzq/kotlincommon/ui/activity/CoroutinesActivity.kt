@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.launchCollect
+import com.yzq.base.extend.observeUIState
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
@@ -67,7 +68,7 @@ class CoroutinesActivity : BaseActivity() {
     }
 
     override fun observeViewModel() {
-        observeUIState(vm, binding.layoutState)
+        observeUIState(vm, stateLayout = binding.layoutState)
         vm.run {
             geocoder.observe(
                 this@CoroutinesActivity,

@@ -140,13 +140,13 @@ fun ComponentActivity.showBackHintDialog(
 }
 
 fun ComponentActivity.showLoadingDialog(msg: String): MaterialDialog {
-    val dialog = getLoadingDialog().setLoadingMessage(msg)
+    val dialog = newLoadingDialog().setLoadingMessage(msg)
     dialog.show()
     return dialog
 }
 
 fun ComponentActivity.showProgressDialog(msg: String): MaterialDialog {
-    val dialog = getProgressDialog()
+    val dialog = newProgressDialog()
     dialog.changeTitle(msg).show()
     return dialog
 }
@@ -223,14 +223,14 @@ fun ComponentActivity.showInputDialog(
  * 加载框
  *
  */
-fun ComponentActivity.getLoadingDialog(): MaterialDialog {
+fun ComponentActivity.newLoadingDialog(): MaterialDialog {
     return getNewDialog().loading()
 }
 
 /**
  * 进度框
  */
-fun ComponentActivity.getProgressDialog(): MaterialDialog {
+fun ComponentActivity.newProgressDialog(): MaterialDialog {
 
     return getNewDialog().progress().cancelOnTouchOutside(false).cancelable(false)
 }
