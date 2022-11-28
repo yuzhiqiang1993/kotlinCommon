@@ -3,11 +3,11 @@ package com.yzq.kotlincommon.ui.activity
 import android.content.Intent
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.lifecycleScope
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.drake.brv.utils.bindingAdapter
 import com.drake.brv.utils.setup
 import com.drake.brv.utils.staggered
 import com.scwang.smart.refresh.layout.constant.RefreshState
+import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.activity.BaseActivity

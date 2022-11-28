@@ -11,10 +11,10 @@ import com.blankj.utilcode.util.ArrayUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ProcessUtils
 import com.tencent.mmkv.MMKV
+import com.therouter.TheRouter
 import com.yzq.application.BaseApp
 import com.yzq.common.constants.StoragePath
 import com.yzq.kotlincommon.task.main_thread_task.*
-import com.yzq.kotlincommon.task.work_thread_task.InitARouterTask
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 
 /**
@@ -44,7 +44,6 @@ class App : BaseApp() {
             AppStartTaskDispatcher
                 .create()
                 .setShowLog(true)
-                .addAppStartTask(InitARouterTask())
                 .addAppStartTask(InitUtilsTask())
                 .addAppStartTask(InitMMKVTask())
                 .addAppStartTask(InitStateLayoutConfigTask())
@@ -95,6 +94,7 @@ class App : BaseApp() {
 
     override fun attachBaseContext(base: Context?) {
         allowSysTraceInDebug()
+        TheRouter.isDebug = BuildConfig.DEBUG
         super.attachBaseContext(base)
     }
 

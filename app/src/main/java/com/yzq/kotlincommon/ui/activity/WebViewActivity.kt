@@ -5,8 +5,8 @@ import android.os.Build
 import android.view.KeyEvent
 import android.webkit.*
 import androidx.annotation.RequiresApi
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
+import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind

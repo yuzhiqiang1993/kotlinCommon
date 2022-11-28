@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import com.therouter.TheRouter
 import com.yzq.base.ui.fragment.BaseFragment
 
 /**
@@ -33,7 +34,7 @@ abstract class BaseActivity : AppCompatActivity {
                 }
             }
         }
-
+        TheRouter.inject(this)
         /*参数初始化，intent携带的值*/
         initArgs(intent.extras)
         /*变量初始化*/

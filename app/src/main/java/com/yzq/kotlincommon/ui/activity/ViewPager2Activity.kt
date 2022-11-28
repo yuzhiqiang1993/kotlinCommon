@@ -2,8 +2,8 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.view.MenuItem
 import androidx.fragment.app.commit
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.google.android.material.navigation.NavigationBarView
+import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.base.ui.fragment.BaseFragment

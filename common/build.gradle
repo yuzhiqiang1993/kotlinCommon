@@ -1,4 +1,7 @@
-import com.yzq.dependency_manager_plugin.*
+import com.yzq.dependency_manager_plugin.AndroidConfig
+import com.yzq.dependency_manager_plugin.AndroidOfficial
+import com.yzq.dependency_manager_plugin.Retrofit
+import com.yzq.dependency_manager_plugin.ThirdParty
 
 plugins {
     id 'com.android.library'
@@ -8,11 +11,6 @@ plugins {
     id 'com.yzq.dependency-manager'
 }
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
 
 android {
     compileSdk AndroidConfig.compileSdkVersion
@@ -65,7 +63,6 @@ dependencies {
     /*处理图片方向*/
     implementation AndroidOfficial.exifinterface
 
-    kapt ARouter.arouterCompiler
 
     api AndroidOfficial.roomRuntime
     api AndroidOfficial.roomKtx

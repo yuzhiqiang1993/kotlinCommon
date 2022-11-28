@@ -3,8 +3,8 @@ package com.yzq.kotlincommon.ui.activity
 import android.graphics.Color
 import android.text.TextUtils
 import androidx.activity.viewModels
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
+import com.therouter.router.Route
 import com.yzq.base.extend.nav
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick

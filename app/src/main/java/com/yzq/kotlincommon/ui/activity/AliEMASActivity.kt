@@ -1,9 +1,9 @@
 package com.yzq.kotlincommon.ui.activity
 
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.ha.adapter.AliHaAdapter
 import com.alibaba.ha.adapter.service.tlog.TLogService
 import com.blankj.utilcode.util.ToastUtils
+import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind

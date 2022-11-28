@@ -1,5 +1,5 @@
-import com.yzq.dependency_manager_plugin.ARouter
 import com.yzq.dependency_manager_plugin.AndroidConfig
+import com.yzq.dependency_manager_plugin.TheRouter
 
 plugins {
     id 'com.android.library'
@@ -48,17 +48,10 @@ android {
 }
 
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
-
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    kapt ARouter.arouterCompiler
+    kapt TheRouter.theRouterApt
 
     implementation project(':common')
 

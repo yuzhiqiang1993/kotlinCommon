@@ -22,11 +22,15 @@ buildscript {
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20'
         /*依赖版本管理*/
         classpath "com.github.ben-manes:gradle-versions-plugin:0.42.0"
+
+        /*the router*/
+        classpath 'cn.therouter:plugin:1.1.1'
+
         // 添加emas-services插件
 //        classpath 'com.aliyun.ams:emas-services:1.0.2'
 
         /*加这个能减少ARouter初始化时间*/
-        classpath "com.alibaba:arouter-register:1.0.2"
+//        classpath "com.alibaba:arouter-register:1.0.2"
 
 //        def bytex_plugin_version = "0.3.0"
 //        /*byteX 基础*/

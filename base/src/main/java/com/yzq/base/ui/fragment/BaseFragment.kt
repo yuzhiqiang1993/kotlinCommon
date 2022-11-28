@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import com.therouter.TheRouter
 
 /**
  * @description: fragment基类
@@ -24,6 +25,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        TheRouter.inject(this)
         initVariable()
         initWidget()
         /*viewmodel的监听*/

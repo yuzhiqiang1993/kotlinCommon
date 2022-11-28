@@ -8,12 +8,6 @@ plugins {
 }
 
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
-
 android {
     compileSdk AndroidConfig.compileSdkVersion
 
@@ -83,8 +77,8 @@ dependencies {
     api ThirdParty.utilcode
     api ThirdParty.moshiKotlin
 
-    api ARouter.arouterApi
-    kapt ARouter.arouterCompiler
+    api TheRouter.theRouter
+    kapt TheRouter.theRouterApt
 
 
     /*retrofit*/

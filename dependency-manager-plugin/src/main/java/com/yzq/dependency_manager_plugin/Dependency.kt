@@ -83,10 +83,12 @@ object Retrofit {
     const val moshiConverter = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 }
 
-object ARouter {
-    private const val arouterVersion = "1.5.2"
-    const val arouterApi = "com.alibaba:arouter-api:$arouterVersion"
-    const val arouterCompiler = "com.alibaba:arouter-compiler:$arouterVersion"
+
+object TheRouter {
+    private const val theRouterVersion = "1.1.1"
+
+    const val theRouter = "cn.therouter:router:${theRouterVersion}"
+    const val theRouterApt = "cn.therouter:apt:${theRouterVersion}"
 }
 
 object ThirdParty {

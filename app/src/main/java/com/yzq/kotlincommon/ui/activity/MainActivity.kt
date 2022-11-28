@@ -5,14 +5,14 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
 import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
 import com.google.android.material.navigation.NavigationView
+import com.therouter.router.Route
 import com.yzq.application.BaseApp
 import com.yzq.base.extend.initToolbar
+import com.yzq.base.extend.nav
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
@@ -102,7 +102,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun skip(path: String) {
-        ARouter.getInstance().build(path).navigation(this)
+        nav(path)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

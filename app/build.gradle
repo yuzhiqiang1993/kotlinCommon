@@ -6,6 +6,7 @@ plugins {
     id 'kotlin-kapt'
 //    id 'com.aliyun.ams.emas-services'
     id 'com.yzq.dependency-manager'
+    id 'therouter'
 }
 println "getRootDir():${getRootDir()}"
 
@@ -126,13 +127,6 @@ android {
 }
 
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
-
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -142,8 +136,8 @@ dependencies {
     implementation(AndroidOfficial.splashscreen)
     implementation(AndroidOfficial.recyclerview)
 
-    kapt ARouter.arouterCompiler
     kapt AndroidOfficial.roomCompiler
+    kapt TheRouter.theRouterApt
 
     implementation ThirdParty.zxingYzq
     implementation ThirdParty.jsoup

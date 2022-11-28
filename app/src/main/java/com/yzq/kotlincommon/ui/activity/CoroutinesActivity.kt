@@ -2,8 +2,8 @@ package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
 import androidx.lifecycle.*
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.LogUtils
+import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.launchCollect
 import com.yzq.base.extend.observeUIState
