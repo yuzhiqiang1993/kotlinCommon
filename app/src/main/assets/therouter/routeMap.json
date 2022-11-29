@@ -1,0 +1,184 @@
+[
+  {
+    "path": "/main/zxing",
+    "className": "com.yzq.kotlincommon.ui.activity.ZxingActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/webView",
+    "className": "com.yzq.kotlincommon.ui.activity.WebViewActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/viewPager",
+    "className": "com.yzq.kotlincommon.ui.activity.ViewPager2Activity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/viewBinding",
+    "className": "com.yzq.kotlincommon.ui.activity.ViewBindingActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/task",
+    "className": "com.yzq.kotlincommon.ui.activity.TaskActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/room",
+    "className": "com.yzq.kotlincommon.ui.activity.RoomActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/movies",
+    "className": "com.yzq.kotlincommon.ui.activity.NewsActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/network",
+    "className": "com.yzq.kotlincommon.ui.activity.NetworkActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/moshi",
+    "className": "com.yzq.kotlincommon.ui.activity.MoshiActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/main",
+    "className": "com.yzq.kotlincommon.ui.activity.MainActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/login",
+    "className": "com.yzq.kotlincommon.ui.activity.LoginActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/imgList",
+    "className": "com.yzq.kotlincommon.ui.activity.ImageListActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/imgCompress",
+    "className": "com.yzq.kotlincommon.ui.activity.ImageCompressActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/fragment",
+    "className": "com.yzq.kotlincommon.ui.activity.FragmentActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/flexBox",
+    "className": "com.yzq.kotlincommon.ui.activity.FlexBoxActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/dropDownMenu",
+    "className": "com.yzq.kotlincommon.ui.activity.DropDownMenuActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/download",
+    "className": "com.yzq.kotlincommon.ui.activity.DownloadActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/dialog",
+    "className": "com.yzq.kotlincommon.ui.activity.DialogActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/dataBinding",
+    "className": "com.yzq.kotlincommon.ui.activity.DataBindingActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/coroutine",
+    "className": "com.yzq.kotlincommon.ui.activity.CoroutinesActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/channel",
+    "className": "com.yzq.kotlincommon.ui.activity.ChannelActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/bsDiff",
+    "className": "com.yzq.kotlincommon.ui.activity.BsDiffActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/viewBindingDelegate",
+    "className": "com.yzq.kotlincommon.ui.activity.BindingDelegateActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/apiCall",
+    "className": "com.yzq.kotlincommon.ui.activity.ApiCallActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/emas",
+    "className": "com.yzq.kotlincommon.ui.activity.AliEMASActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/gaoDe/gaoDeMap",
+    "className": "com.yzq.gao_de_map.GaoDeActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  }
+]

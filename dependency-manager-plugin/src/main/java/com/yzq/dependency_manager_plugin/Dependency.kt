@@ -11,7 +11,7 @@ object AndroidOfficial {
     const val appcompat = "androidx.appcompat:appcompat:1.5.1"
 
     const val activityKtx = "androidx.activity:activity-ktx:1.6.1"
-    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.3"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.4"
     const val collectionKtx = "androidx.collection:collection-ktx:1.2.0"
     private const val lifecycleKtxVersion = "2.5.1"
 
@@ -104,21 +104,21 @@ object ThirdParty {
         "com.github.JessYanCoding:ProgressManager:1.5.0"
 
     /*启动器*/
-    const val appStartFaster = "com.github.aiceking:AppStartFaster:2.1.0"
+    const val appStartFaster = "com.github.aiceking:AppStartFaster:2.2.0"
 
     const val zxingYzq = "com.github.yuzhiqiang1993:zxing:2.2.9"
 
-    const val bannerViewPager = "com.github.zhpanvip:BannerViewPager:3.5.7"
+    const val bannerViewPager = "com.github.zhpanvip:BannerViewPager:3.5.8"
 
     const val jsoup = "org.jsoup:jsoup:1.15.3"
 
     const val xeonBsDiff = "io.github.yuzhiqiang1993:xeon_bsdiff:1.0.1"
 
-    const val BRV = "com.github.liangjingkanji:BRV:1.3.85"
+    const val BRV = "com.github.liangjingkanji:BRV:1.3.86"
 
     const val flexboxLayout = "com.github.google:flexbox-layout:3.0.0"
 
-    const val leakcanaryAndroid = "com.squareup.leakcanary:leakcanary-android:2.9.1"
+    const val leakcanaryAndroid = "com.squareup.leakcanary:leakcanary-android:2.10"
 
     const val baseRecyclerViewAdapterHelper =
         "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7"

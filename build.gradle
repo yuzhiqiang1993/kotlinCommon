@@ -20,8 +20,8 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:7.3.1'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.20'
-        /*依赖版本管理*/
-        classpath "com.github.ben-manes:gradle-versions-plugin:0.42.0"
+        /*依赖版本管理 执行./gradlew dependencyUpdates 获取是否有新版本*/
+        classpath "com.github.ben-manes:gradle-versions-plugin:0.44.0"
 
         /*the router*/
         classpath 'cn.therouter:plugin:1.1.1'
