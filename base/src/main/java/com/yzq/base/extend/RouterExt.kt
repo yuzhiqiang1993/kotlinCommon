@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
 import com.therouter.TheRouter
 import com.therouter.router.Navigator
-import com.therouter.router.interceptor.NavigationCallback
 
 
 /**
@@ -18,12 +17,20 @@ import com.therouter.router.interceptor.NavigationCallback
 
 
 fun Navigator.navFinish(activity: ComponentActivity) {
-    navigation(activity, object : NavigationCallback() {
-        override fun onArrival(navigator: Navigator) {
-            super.onArrival(navigator)
-            activity.finish()
-        }
-    })
+//    navigation(activity, object : NavigationCallback() {
+//        override fun onArrival(navigator: Navigator) {
+//            super.onArrival(navigator)
+//            LogUtils.i("activity isDestroyed:${activity.isDestroyed}")
+//            if (!activity.isDestroyed) {
+//                activity.finish()
+//            }
+//
+//        }
+//    })
+
+    /*上面那种在callback中关闭会有内存泄露*/
+    navigation(activity)
+    activity.finish()
 }
 
 
