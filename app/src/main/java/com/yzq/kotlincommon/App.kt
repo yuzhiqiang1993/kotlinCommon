@@ -44,15 +44,15 @@ class App : BaseApp() {
             AppStartTaskDispatcher
                 .create()
                 .setShowLog(true)
-                .addAppStartTask(InitCrashReportTask())
+//                .addAppStartTask(InitCrashReportTask())
                 .addAppStartTask(InitUtilsTask())
                 .addAppStartTask(InitMMKVTask())
                 .addAppStartTask(InitStateLayoutConfigTask())
                 .addAppStartTask(InitSmartRefreshTask())
-                .addAppStartTask(InitAPMTask())
+//                .addAppStartTask(InitAPMTask())
 //                .addAppStartTask(InitTlogTask())
 //                .addAppStartTask(InitAliPushTask())
-                .addAppStartTask(InitMobileAnalyticsTask())
+//                .addAppStartTask(InitMobileAnalyticsTask())
                 .start()
                 .await()
 

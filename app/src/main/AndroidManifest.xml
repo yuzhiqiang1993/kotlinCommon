@@ -13,7 +13,7 @@
         android:theme="@style/Theme.XeonYuTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
-        tools:replace="android:allowBackup,android:label">
+        tools:replace="android:allowBackup,android:label,android:theme">
         <activity
             android:name=".ui.activity.ApiCallActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -69,74 +69,93 @@
         <activity
             android:name=".ui.activity.ViewBindingActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.DataBindingActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.WebViewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.ViewPager2Activity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.DownloadActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.RoomActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.CoroutinesActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.FragmentActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.ImageListActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize" />
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.FlexBoxActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.NewsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.ImageCompressActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.TaskActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.DialogActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.ZxingActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.LoginActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.DropDownMenuActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" /> <!-- 消息接收监听器 -->
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <!-- 消息接收监听器 -->
         <receiver
             android:name="com.yzq.aliemas.push.AliPushReceiver"
             android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
