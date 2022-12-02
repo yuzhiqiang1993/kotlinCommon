@@ -16,4 +16,11 @@
         <item name="android:windowIsTranslucent">true</item>
     </style>
 
+
+    <style name="BubbleDialog" parent="@style/Theme.AppCompat.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--控制背景值-->
+        <!--        <item name="android:backgroundDimEnabled">false</item>-->
+    </style>
+
 </resources>

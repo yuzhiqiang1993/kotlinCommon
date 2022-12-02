@@ -10,20 +10,26 @@ import com.yzq.base.view_model.UIState
 import com.yzq.coroutine.runMain
 import com.yzq.materialdialog.setLoadingMessage
 import com.yzq.materialdialog.showBaseDialog
+import com.yzq.widget.dialog.BubbleDialog
 
 @JvmOverloads
 fun BaseActivity.observeUIState(
     vm: BaseViewModel,
-    loadingDialog: MaterialDialog? = null,
+    loadingDialog: BubbleDialog? = null,
     stateLayout: StateLayout? = null,
 ) {
     vm.uiState.observe(this) {
         when (it) {
             is UIState.DissmissLoadingDialog -> {
-                loadingDialog?.run { runMain { dismiss() } }
+                loadingDialog?.run {
+                    dismiss()
+                }
             }
             is UIState.ShowLoadingDialog -> {
-                loadingDialog?.run { runMain { setLoadingMessage(it.msg).show() } }
+                loadingDialog?.run {
+                    updateTitle(it.msg).show()
+                }
+
             }
             is UIState.ShowToast -> {
                 runMain { ToastUtils.showLong(it.msg) }

@@ -15,8 +15,8 @@ import com.yzq.common.utils.MMKVUtil
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
-import com.yzq.materialdialog.newLoadingDialog
 import com.yzq.statusbar.immersive
+import com.yzq.widget.dialog.BubbleDialog
 
 /**
  * @description: SharedPreference相关
@@ -33,7 +33,8 @@ class LoginActivity : BaseActivity() {
 
     private val vm: LoginViewModel by viewModels()
 
-    private val loadingDialog by lazy { newLoadingDialog() }
+
+    private val bubbleLoadingDialog by lazy { BubbleDialog(this) }
 
     override fun initWidget() {
         super.initWidget()
@@ -45,7 +46,7 @@ class LoginActivity : BaseActivity() {
             initData()
         }
 
-        binding.btnLogin.setOnClickListener {
+        binding.btnLogin.setOnThrottleTimeClick {
 
             if (TextUtils.isEmpty(binding.account)) {
                 binding.inputLayoutAccount.error = "账号不能为空，请检查"
@@ -56,7 +57,7 @@ class LoginActivity : BaseActivity() {
             }
 
             if (TextUtils.isEmpty(binding.account) or TextUtils.isEmpty(binding.pwd)) {
-                return@setOnClickListener
+                return@setOnThrottleTimeClick
             }
 
             vm.login(binding.account!!, binding.pwd!!)
@@ -74,7 +75,7 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun observeViewModel() {
-        observeUIState(vm, loadingDialog)
+        observeUIState(vm, bubbleLoadingDialog)
         vm.run {
             loginLiveData.observe(this@LoginActivity) {
                 nav(RoutePath.Main.MAIN)

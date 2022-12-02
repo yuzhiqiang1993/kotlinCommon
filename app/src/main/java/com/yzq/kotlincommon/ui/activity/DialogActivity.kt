@@ -9,12 +9,14 @@ import com.blankj.utilcode.util.ToastUtils
 import com.loper7.date_time_picker.DateTimeConfig
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
+import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.scope.launchSafety
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
 import com.yzq.materialdialog.*
+import com.yzq.widget.dialog.BubbleDialog
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -36,22 +38,22 @@ class DialogActivity : BaseActivity() {
         binding.run {
             initToolbar(includedToolbar.toolbar, "弹窗", true)
 
-            layoutScrollContent.btnBase.setOnClickListener {
+            layoutScrollContent.btnBase.setOnThrottleTimeClick {
                 showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
             }
 
-            layoutScrollContent.btnOnlyPositiveCallback.setOnClickListener {
+            layoutScrollContent.btnOnlyPositiveCallback.setOnThrottleTimeClick {
                 showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作") {
                     ToastUtils.showShort("点击了确定")
                 }
             }
-            layoutScrollContent.btnPositiveCallback.setOnClickListener {
+            layoutScrollContent.btnPositiveCallback.setOnThrottleTimeClick {
                 showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作") {
                     ToastUtils.showShort("点击了确定")
                 }
             }
 
-            layoutScrollContent.btnCallback.setOnClickListener {
+            layoutScrollContent.btnCallback.setOnThrottleTimeClick {
                 showCallbackDialog(
                     message = "双选项双回调",
                     positiveCallback = {
@@ -64,7 +66,7 @@ class DialogActivity : BaseActivity() {
             }
 
             layoutScrollContent.btnSingleSelect
-                .setOnClickListener {
+                .setOnThrottleTimeClick {
                     val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
 
                     showSingleSelectList(title = "语言", items = datas) { dialog, index, text ->
@@ -73,25 +75,25 @@ class DialogActivity : BaseActivity() {
                 }
 
             layoutScrollContent.btnInput
-                .setOnClickListener {
+                .setOnThrottleTimeClick {
                     showInputDialog(positiveText = "完成") { materialDialog, charSequence ->
                         ToastUtils.showShort(charSequence.toString())
                     }
                 }
 
             layoutScrollContent.btnLoading
-                .setOnClickListener {
+                .setOnThrottleTimeClick {
 
-                    val loadingDialog = showLoadingDialog("登录中...")
+                    val loadingDialog = BubbleDialog(this@DialogActivity).showLoading()
 
                     lifecycleScope.launchSafety {
-                        delay(3000)
+                        delay(2000)
                         loadingDialog.dismiss()
                     }
                 }
 
             layoutScrollContent.btnProgress
-                .setOnClickListener {
+                .setOnThrottleTimeClick {
                     var count = 0
 
                     val progressDialog = showProgressDialog("模拟进度")
@@ -121,13 +123,13 @@ class DialogActivity : BaseActivity() {
                 }
 
             layoutScrollContent.btnSelectYear
-                .setOnClickListener {
+                .setOnThrottleTimeClick {
                     selectYear { millisecond, dateStr ->
                         ToastUtils.showLong(dateStr)
                     }
                 }
             layoutScrollContent.btnSelectDate
-                .setOnClickListener {
+                .setOnThrottleTimeClick {
                     val dateFormat = "yyyy-MM-dd"
                     val displayType =
                         arrayListOf(DateTimeConfig.YEAR, DateTimeConfig.MONTH, DateTimeConfig.DAY)
@@ -141,7 +143,7 @@ class DialogActivity : BaseActivity() {
                     }
                 }
             layoutScrollContent.btnSelectTime
-                .setOnClickListener {
+                .setOnThrottleTimeClick {
                     val dateFormat = "HH:mm:ss"
                     val displayType = arrayListOf(
                         DateTimeConfig.HOUR,
@@ -157,7 +159,7 @@ class DialogActivity : BaseActivity() {
                 }
 
             layoutScrollContent.btnBottomDialog
-                .setOnClickListener {
+                .setOnThrottleTimeClick {
                     MaterialDialog(this@DialogActivity, BottomSheet(LayoutMode.WRAP_CONTENT))
                         .show {
                             title(com.yzq.kotlincommon.R.string.hint)

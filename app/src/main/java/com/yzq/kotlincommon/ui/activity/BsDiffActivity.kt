@@ -10,7 +10,7 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBsDiffBinding
 import com.yzq.kotlincommon.view_model.BsDiffViewModel
-import com.yzq.materialdialog.newLoadingDialog
+import com.yzq.widget.dialog.BubbleDialog
 
 /**
  * @description: bsdiff 增量更新示例
@@ -24,7 +24,7 @@ class BsDiffActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityBsDiffBinding::inflate)
     private val vm: BsDiffViewModel by viewModels()
-    private val loadingDialog by lazy { newLoadingDialog() }
+    private val loadingDialog by lazy { BubbleDialog(this) }
     override fun initWidget() {
 
         binding.apply {
