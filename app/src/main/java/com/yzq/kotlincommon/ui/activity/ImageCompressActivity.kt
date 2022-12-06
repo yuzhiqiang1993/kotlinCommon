@@ -82,6 +82,7 @@ class ImageCompressActivity : BaseActivity() {
             compressedImgPathLiveData.observe(this@ImageCompressActivity) {
                 imgPath = it
                 binding.ivImg.load(imgPath)
+
             }
         }
     }

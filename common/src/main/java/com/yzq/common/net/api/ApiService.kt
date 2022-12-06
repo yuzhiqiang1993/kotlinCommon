@@ -6,6 +6,7 @@ import com.yzq.common.data.github.GithubUserInfo
 import com.yzq.common.data.juhe.toutiao.TouTiao
 import com.yzq.common.data.moshi.LocalUser
 import com.yzq.common.net.constants.ApiConstants
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -35,6 +36,16 @@ interface ApiService {
 
     @GET("http://192.168.1.184:8888/user/userList")
     suspend fun listLocalUser(): BaseResp<List<LocalUser>>
+
+
+    /**
+     * 文件上传接口
+     *
+     * @param requestBody
+     * @return
+     */
+    @POST("http://192.168.0.103:8888/img/uploadImg")
+    suspend fun uploadImg(@Body requestBody: RequestBody): String
 
     @POST("http://v.juhe.cn/toutiao/index")
     @FormUrlEncoded

@@ -9,6 +9,7 @@ import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
 import com.google.android.material.navigation.NavigationView
+import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yzq.application.BaseApp
 import com.yzq.base.extend.initToolbar
@@ -103,6 +104,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun skip(path: String) {
         nav(path)
+        TheRouter.build(path)
+            .navigation()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

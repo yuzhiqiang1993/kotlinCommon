@@ -1,11 +1,12 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.content.Intent
 import android.graphics.Color
 import android.text.TextUtils
 import androidx.activity.viewModels
 import com.blankj.utilcode.util.LogUtils
+import com.therouter.TheRouter
 import com.therouter.router.Route
-import com.yzq.base.extend.nav
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
@@ -78,7 +79,10 @@ class LoginActivity : BaseActivity() {
         observeUIState(vm, bubbleLoadingDialog)
         vm.run {
             loginLiveData.observe(this@LoginActivity) {
-                nav(RoutePath.Main.MAIN)
+                TheRouter.build(RoutePath.Main.MAIN)
+                    .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .navigation()
+                finish()
             }
         }
     }

@@ -11,8 +11,14 @@ import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.*
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.constants.StoragePath
+import com.yzq.common.net.RetrofitFactory
+import com.yzq.common.net.api.ApiService
+import com.yzq.coroutine.scope.launchSafety
 import com.yzq.coroutine.withIO
-import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 import java.io.IOException
 
 /**
@@ -35,9 +41,29 @@ class CompressImgViewModel : BaseViewModel() {
         path: String,
     ) {
 
-        viewModelScope.launch {
+        viewModelScope.launchSafety {
+            val compressImagePath = doCompress(path)
+            _compressedLiveData.value = compressImagePath
 
-            _compressedLiveData.value = doCompress(path)
+            /*上传图片接口示例*/
+
+            val imageFile = File(compressImagePath)
+            LogUtils.i("imageFile:${imageFile.path}")
+            LogUtils.i("imageFile:${imageFile.name}")
+            val multipartBody = MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("key1", "value1")
+                .addFormDataPart("key2", "false")
+                .addFormDataPart("key3", "1")
+                .addFormDataPart("image",
+                    imageFile.getName(),
+                    imageFile.asRequestBody("image/*".toMediaTypeOrNull()))
+                .build()
+
+
+            val uploadImgResp = RetrofitFactory.instance.getService(ApiService::class.java)
+                .uploadImg(multipartBody)
+            LogUtils.i("uploadImgResp = ${uploadImgResp}")
 
         }
     }
