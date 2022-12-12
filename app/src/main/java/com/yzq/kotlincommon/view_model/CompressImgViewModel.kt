@@ -52,7 +52,7 @@ class CompressImgViewModel : BaseViewModel() {
             LogUtils.i("imageFile:${imageFile.name}")
             val multipartBody = MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("key1", "value1")
+                .addFormDataPart("key1", "front")
                 .addFormDataPart("key2", "false")
                 .addFormDataPart("key3", "1")
                 .addFormDataPart("image",

@@ -8,6 +8,9 @@ import android.os.Bundle
 import android.view.animation.LinearInterpolator
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatDialog
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.coroutine.runMain
 import com.yzq.widget.R
 import com.yzq.widget.databinding.LayoutBubbleDialogBinding
@@ -26,6 +29,17 @@ class BubbleDialog @JvmOverloads constructor(
     private val canceledOnTouchOutside: Boolean = false,
     @StyleRes themeResId: Int = R.style.BubbleDialog,
 ) : AppCompatDialog(context, themeResId) {
+
+
+    init {
+        lifecycle.addObserver(object : DefaultLifecycleObserver {
+            override fun onDestroy(owner: LifecycleOwner) {
+                LogUtils.i("BubbleDialog onDestroy")
+                dismiss()
+
+            }
+        })
+    }
 
 
     private lateinit var binding: LayoutBubbleDialogBinding
@@ -56,9 +70,12 @@ class BubbleDialog @JvmOverloads constructor(
     }
 
     override fun dismiss() {
-        runMain {
-            super.dismiss()
+        if (isShowing) {
+            runMain {
+                super.dismiss()
+            }
         }
+
 
     }
 

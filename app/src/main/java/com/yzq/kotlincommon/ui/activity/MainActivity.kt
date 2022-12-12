@@ -13,7 +13,6 @@ import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yzq.application.BaseApp
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.extend.nav
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
@@ -103,7 +102,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun skip(path: String) {
-        nav(path)
         TheRouter.build(path)
             .navigation()
     }

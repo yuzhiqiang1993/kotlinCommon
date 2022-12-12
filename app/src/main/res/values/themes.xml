@@ -12,7 +12,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-
+        <!--为了解决白屏问题-->
+        <item name="android:windowDisablePreview">true</item>
 
     </style>
 

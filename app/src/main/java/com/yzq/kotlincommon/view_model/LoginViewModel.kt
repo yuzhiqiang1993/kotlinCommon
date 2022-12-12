@@ -47,6 +47,7 @@ class LoginViewModel : BaseViewModel() {
 //                throw Exception("bbbbbbbb")
 //            }
             _uiState.value = UIState.DissmissLoadingDialog()
+//            delay(200)
             loginLiveData.value = loginBean
         }
     }
