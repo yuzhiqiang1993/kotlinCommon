@@ -6,12 +6,12 @@ package com.yzq.dependency_manager_plugin
  * @constructor Create empty Android official
  */
 object AndroidOfficial {
-    const val material = "com.google.android.material:material:1.6.1"
+    const val material = "com.google.android.material:material:1.7.0"
 
     const val appcompat = "androidx.appcompat:appcompat:1.5.1"
 
     const val activityKtx = "androidx.activity:activity-ktx:1.6.1"
-    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.4"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.5"
     const val collectionKtx = "androidx.collection:collection-ktx:1.2.0"
     private const val lifecycleKtxVersion = "2.5.1"
 
@@ -85,7 +85,7 @@ object Retrofit {
 
 
 object TheRouter {
-    private const val theRouterVersion = "1.1.1"
+    private const val theRouterVersion = "1.1.2-rc7"
 
     const val theRouter = "cn.therouter:router:${theRouterVersion}"
     const val theRouterApt = "cn.therouter:apt:${theRouterVersion}"
