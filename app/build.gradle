@@ -43,6 +43,7 @@ android {
 
         debug {
             signingConfig signingConfigs.release
+            debuggable true
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
