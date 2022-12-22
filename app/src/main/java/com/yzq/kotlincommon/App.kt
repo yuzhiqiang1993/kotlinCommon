@@ -30,6 +30,7 @@ class App : BaseApp() {
     override fun onCreate() {
         super.onCreate()
         LogUtils.e("ProcessUtils.getCurrentProcessName() = ${ProcessUtils.getCurrentProcessName()}")
+        LogUtils.i("packageName:${packageName}")
 
         if (ProcessUtils.isMainProcess()) {
             LogUtils.i("主进程")
@@ -44,21 +45,35 @@ class App : BaseApp() {
             AppStartTaskDispatcher
                 .create()
                 .setShowLog(true)
-//                .addAppStartTask(InitCrashReportTask())
+                .addAppStartTask(InitCrashReportTask())
                 .addAppStartTask(InitUtilsTask())
                 .addAppStartTask(InitMMKVTask())
                 .addAppStartTask(InitStateLayoutConfigTask())
                 .addAppStartTask(InitSmartRefreshTask())
-//                .addAppStartTask(InitAPMTask())
-//                .addAppStartTask(InitTlogTask())
-//                .addAppStartTask(InitAliPushTask())
-//                .addAppStartTask(InitMobileAnalyticsTask())
+                .addAppStartTask(InitAPMTask())
+                .addAppStartTask(InitTlogTask())
+                .addAppStartTask(InitAliPushTask())
                 .start()
                 .await()
 
             Trace.endSection()
         } else {
             LogUtils.i("非主进程")
+
+            if (ProcessUtils.getCurrentProcessName()
+                    .equals("${packageName}:channel")
+            ) {
+
+                LogUtils.i("channel进程,初始化推送")
+                /*channel进程也要对推送初始化 https://help.aliyun.com/document_detail/434662.html?spm=a2c4g.11186623.0.0.72aa5b78qNHbvx*/
+                AppStartTaskDispatcher
+                    .create()
+                    .setShowLog(true)
+                    .addAppStartTask(InitAliPushTask())
+                    .start()
+                    .await()
+            }
+
         }
     }
 
@@ -108,7 +123,7 @@ class App : BaseApp() {
             val trace = Class.forName("android.os.Trace")
             val setAppTracingAllowed =
                 trace.getDeclaredMethod("setAppTracingAllowed", Boolean::class.javaPrimitiveType)
-            setAppTracingAllowed.invoke(null, true)
+            setAppTracingAllowed.invoke(null, false)//debug才抓trace
         }
     }
 }

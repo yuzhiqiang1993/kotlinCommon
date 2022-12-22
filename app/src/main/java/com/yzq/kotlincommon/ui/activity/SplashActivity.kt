@@ -40,7 +40,6 @@ class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
             LogUtils.i("模拟广告耗时")
             delay(1000)
             notReady = false
-            LogUtils.i("跳转")
             TheRouter.build(RoutePath.Main.LOGIN)
                 .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                 .navigation()

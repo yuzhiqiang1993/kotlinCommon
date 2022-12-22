@@ -1,11 +1,8 @@
 package com.yzq.kotlincommon.task.main_thread_task
 
 import com.alibaba.sdk.android.push.CloudPushService
-import com.alibaba.sdk.android.push.CommonCallback
 import com.alibaba.sdk.android.push.noonesdk.PushInitConfig
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
-import com.blankj.utilcode.util.LogUtils
-import com.yzq.application.AppContext
 import com.yzq.application.BaseApp
 import com.yzq.base.startup.base.MainThreadTask
 import com.yzq.kotlincommon.BuildConfig
@@ -33,19 +30,5 @@ class InitAliPushTask : MainThreadTask() {
         if (BuildConfig.DEBUG) {
             pushService.setLogLevel(CloudPushService.LOG_DEBUG)
         }
-
-        /*该操作会获取用户信息  所以建议在获取相关权限后再初始化 同时还能提升一些启动速度*/
-        pushService.register(
-            AppContext,
-            object : CommonCallback {
-                override fun onSuccess(response: String?) {
-                    LogUtils.i("init cloudchannel success")
-                }
-
-                override fun onFailed(errorCode: String, errorMessage: String) {
-                    LogUtils.i("init cloudchannel failed -- errorcode:$errorCode -- errorMessage:$errorMessage")
-                }
-            }
-        )
     }
 }

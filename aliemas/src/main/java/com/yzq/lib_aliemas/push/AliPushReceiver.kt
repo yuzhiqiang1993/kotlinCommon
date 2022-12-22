@@ -15,14 +15,19 @@ import com.blankj.utilcode.util.LogUtils
 class AliPushReceiver : MessageReceiver() {
     // 消息接收部分的LOG_TAG
     val REC_TAG = "receiver"
-    override fun onNotification(context: Context?, title: String, summary: String, extraMap: Map<String?, String?>) {
+    override fun onNotification(
+        context: Context?,
+        title: String,
+        summary: String,
+        extraMap: Map<String?, String?>,
+    ) {
         // TODO处理推送通知
         LogUtils.e("Receive notification, title: $title, summary: $summary, extraMap: $extraMap")
     }
 
     override fun onMessage(context: Context?, cPushMessage: CPushMessage) {
         LogUtils.e(
-            "onMessage, messageId: " + cPushMessage.messageId + ", title: " + cPushMessage.title + ", content:" + cPushMessage.content
+            "onMessage, messageId: ${cPushMessage.messageId}, title: ${cPushMessage.title}, content:${cPushMessage.content}"
         )
     }
 

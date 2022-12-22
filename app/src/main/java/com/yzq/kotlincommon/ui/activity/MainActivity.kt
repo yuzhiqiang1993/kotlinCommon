@@ -5,12 +5,16 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.alibaba.sdk.android.push.CommonCallback
+import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
+import com.blankj.utilcode.util.LogUtils
 import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
 import com.google.android.material.navigation.NavigationView
 import com.therouter.TheRouter
 import com.therouter.router.Route
+import com.yzq.application.AppContext
 import com.yzq.application.BaseApp
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
@@ -34,6 +38,23 @@ import com.yzq.statusbar.immersive
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val binding by viewbind(ActivityMainBinding::inflate)
     private var items = arrayListOf<NaviItem>()
+
+    override fun initVariable() {
+
+        /*该操作会获取用户信息  所以建议在获取相关权限后再初始化 同时还能提升一些启动速度*/
+        PushServiceFactory.getCloudPushService().register(
+            AppContext,
+            object : CommonCallback {
+                override fun onSuccess(response: String?) {
+                    LogUtils.i("init cloudchannel success")
+                }
+
+                override fun onFailed(errorCode: String, errorMessage: String) {
+                    LogUtils.i("init cloudchannel failed -- errorcode:$errorCode -- errorMessage:$errorMessage")
+                }
+            }
+        )
+    }
 
     override fun initWidget() {
 

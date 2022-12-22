@@ -4,7 +4,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-//    id 'com.aliyun.ams.emas-services'
     id 'com.yzq.dependency-manager'
     id 'therouter'
 }

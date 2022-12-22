@@ -72,7 +72,7 @@ object Kotlinx {
 }
 
 object Retrofit {
-    private const val okHttpVersion = "5.0.0-alpha.9"
+    private const val okHttpVersion = "4.10.0"
     const val okhttp = "com.squareup.okhttp3:okhttp:$okHttpVersion"
     const val okhttpLogInterceptor = "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 

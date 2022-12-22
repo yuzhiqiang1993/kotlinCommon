@@ -13,6 +13,9 @@ buildscript {
             url 'https://maven.aliyun.com/repository/public/'
         }
         maven {
+            url 'https://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
+        maven {
             url "https://artifact.bytedance.com/repository/byteX/"
         }
         gradlePluginPortal()
@@ -26,11 +29,7 @@ buildscript {
         /*the router*/
         classpath 'cn.therouter:plugin:1.1.1'
 
-        // 添加emas-services插件
-//        classpath 'com.aliyun.ams:emas-services:1.0.2'
 
-        /*加这个能减少ARouter初始化时间*/
-//        classpath "com.alibaba:arouter-register:1.0.2"
 
 //        def bytex_plugin_version = "0.3.0"
 //        /*byteX 基础*/
@@ -54,6 +53,9 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url 'https://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
         maven {
             url 'https://maven.aliyun.com/repository/public/'
         }
