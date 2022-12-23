@@ -85,7 +85,7 @@ object Retrofit {
 
 
 object TheRouter {
-    private const val theRouterVersion = "1.1.2-rc7"
+    private const val theRouterVersion = "1.1.2-rc8"
 
     const val theRouter = "cn.therouter:router:${theRouterVersion}"
     const val theRouterApt = "cn.therouter:apt:${theRouterVersion}"

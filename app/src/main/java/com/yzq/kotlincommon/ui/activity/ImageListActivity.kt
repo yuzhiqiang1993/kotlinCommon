@@ -3,6 +3,7 @@ package com.yzq.kotlincommon.ui.activity
 import android.content.Intent
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.lifecycleScope
+import com.blankj.utilcode.util.LogUtils
 import com.drake.brv.utils.bindingAdapter
 import com.drake.brv.utils.setup
 import com.drake.brv.utils.staggered
@@ -16,11 +17,13 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.juhe.toutiao.TouTiao
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
-import com.yzq.coroutine.scope.launchSafety
+import com.yzq.coroutine.scope.doLaunch
+import com.yzq.coroutine.scope.safetyCatch
 import com.yzq.img.loadWithThumbnail
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding
 import com.yzq.kotlincommon.databinding.ItemImgListBinding
+import com.yzq.network_status.NetworkUtil
 import kotlin.random.Random
 
 /**
@@ -88,37 +91,69 @@ class ImageListActivity : BaseActivity() {
             }
     }
 
-//    override fun initData() {
-//        page = 1
-//        requestData()
-//    }
 
     private fun requestData() {
-        lifecycleScope.launchSafety {
-            val listToutiao = RetrofitFactory.instance.getService(ApiService::class.java)
-                .listToutiao(page = 1, pageSize = 50)
-            setData(listToutiao)
-        }.catch {
+//        lifecycleScope.launchSafety {
+//            val listToutiao = RetrofitFactory.instance.getService(ApiService::class.java)
+//                .listToutiao(page = page, pageSize = pageSize)
+//            setData(listToutiao)
+//        }.catch {
+//            LogUtils.i("catch error:${it}")
+//            binding.layoutPageRefresh.showError(it)
+//        }
+
+
+        lifecycleScope.safetyCatch {
+            LogUtils.i("catch error:${it}")
             binding.layoutPageRefresh.showError(it)
+        }.doLaunch {
+            if (!NetworkUtil.isConnected()) {
+                throw Throwable("网络未连接，请检查")
+            }
+            val listToutiao = RetrofitFactory.instance.getService(ApiService::class.java)
+                .listToutiao(page = page, pageSize = pageSize)
+            setData(listToutiao)
+        }.invokeOnCompletion {
+            LogUtils.i("invokeOnCompletion:${it}")
         }
+
+//
+//        lifeScope {
+//            if (!NetworkUtil.isConnected()) {
+//                throw Throwable("网络未连接，请检查")
+//            }
+//            val listToutiao = RetrofitFactory.instance.getService(ApiService::class.java)
+//                .listToutiao(page = page, pageSize = pageSize)
+//            setData(listToutiao)
+//        }.catch {
+//            LogUtils.i("catch error:${it}")
+//            binding.layoutPageRefresh.showError(it)
+//        }.finally {
+//
+//        }
     }
 
     private fun setData(data: TouTiao?) {
 
+        LogUtils.i("刷新状态:${binding.layoutPageRefresh.state}")
         if (data == null) {
             binding.layoutPageRefresh.showEmpty()
         } else {
             if (data.errorCode == 0) {
                 binding.run {
                     if (layoutPageRefresh.state == RefreshState.Loading) {
+                        /*加载更多*/
                         recy.bindingAdapter.addModels(data.result?.data)
                     } else {
                         recy.bindingAdapter.setDifferModels(data.result?.data)
                     }
+
                     layoutPageRefresh.showContent()
                 }
             } else {
+                LogUtils.i("${data.errorCode}==${data.reason}")
                 binding.layoutPageRefresh.showError("${data.errorCode}--${data.reason}")
+
             }
         }
     }

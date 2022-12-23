@@ -26,9 +26,28 @@ fun <T> CoroutineScope.launchSafety(
 ): SafetyCoroutine<T> {
     val newContext = newCoroutineContext(context)
     val coroutine = SafetyCoroutine<T>(newContext)
+    /**
+     * 这里有个问题是如果block代码块中立刻抛出异常的话，由于catch还没赋值，此时，这个异常的catch方法不会被回调
+     * 如果有立刻抛出异常的场景，使用下面的safetyCatch{}.doLaunch{}
+     */
     coroutine.start(start, coroutine, block)
     return coroutine
 }
+
+
+fun CoroutineScope.safetyCatch(catchBlock: (Throwable) -> Unit): SafetyCoroutine<Any> {
+    return SafetyCoroutine<Any>(newCoroutineContext(EmptyCoroutineContext)).catch(catchBlock)
+}
+
+
+fun <T> SafetyCoroutine<T>.doLaunch(
+    start: CoroutineStart = CoroutineStart.DEFAULT,
+    block: suspend CoroutineScope.() -> T,
+): SafetyCoroutine<T> {
+    start(start, this, block)
+    return this
+}
+
 
 /**
  * Scope life

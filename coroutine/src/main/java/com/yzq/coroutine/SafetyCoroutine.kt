@@ -16,39 +16,46 @@ open class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCorouti
     initParentJob = true, active = true
 ) {
 
+    private val tag = "SafetyCoroutine"
+
     /**
      * Catch 用于异常回调
      */
-    private var catch: ((Throwable) -> Unit)? = null
+    private var onCatch: ((Throwable) -> Unit)? = null
 
     override fun handleJobException(exception: Throwable): Boolean {
-        Log.i("SafetyCoroutine", "exception:$exception")
+        Log.i(tag, "exception:$exception")
         handleCoroutineException(context, exception)
         if (exception !is CancellationException) {
-            catch?.invoke(exception)
+            Log.i(tag, "onCatch:$onCatch")
+            onCatch?.invoke(exception)
         }
         return true
     }
 
+
     override fun onCompleted(value: T) {
         super.onCompleted(value)
-        Log.i("SafetyCoroutine", "onCompleted")
+        Log.i(tag, "onCompleted")
     }
 
     override fun onStart() {
         super.onStart()
-        Log.i("SafetyCoroutine", "onStart")
+        Log.i(tag, "onStart")
     }
 
     override fun onCancelling(cause: Throwable?) {
         super.onCancelling(cause)
-        Log.i("SafetyCoroutine", "onCancelling")
+        Log.i(tag, "onCancelling")
     }
 
     override fun onCancelled(cause: Throwable, handled: Boolean) {
         super.onCancelled(cause, handled)
-        Log.i("SafetyCoroutine", "onCancelled")
+        Log.i(tag, "onCancelled")
     }
 
-    fun catch(catchBlock: (Throwable) -> Unit) = apply { this.catch = catchBlock }
+    fun catch(catchBlock: (Throwable) -> Unit) = apply {
+        Log.i(tag, "给catch赋值")
+        this.onCatch = catchBlock
+    }
 }

@@ -146,8 +146,6 @@ dependencies {
 
     implementation ThirdParty.xeonBsDiff
 
-    implementation(AndroidOfficial.recyclerview)
-
 
     implementation project(':gao-de-map')
 

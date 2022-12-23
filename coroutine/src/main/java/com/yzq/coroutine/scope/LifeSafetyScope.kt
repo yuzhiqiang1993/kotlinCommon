@@ -1,5 +1,6 @@
 package com.yzq.coroutine.scope
 
+import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -19,6 +20,8 @@ open class LifeSafetyScope(
     dispatcher: CoroutineDispatcher = Dispatchers.Main,
 ) : CoroutineScope, Closeable {
 
+    private val tag: String = "LifeSafetyScope"
+
     init {
         lifecycleOwner?.lifecycle?.addObserver(object : LifecycleEventObserver {
             override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
@@ -30,12 +33,12 @@ open class LifeSafetyScope(
     /**
      * Catch 用于异常回调
      */
-    protected var catch: (LifeSafetyScope.(t: Throwable) -> Unit)? = null
+    protected var onCatch: (LifeSafetyScope.(t: Throwable) -> Unit)? = null
 
     /**
      * Finally 用于最终回调
      */
-    protected var finally: (LifeSafetyScope.(t: Throwable?) -> Unit)? = null
+    protected var onFinally: (LifeSafetyScope.(t: Throwable?) -> Unit)? = null
 
     /**
      * Exception handler 异常兜底
@@ -52,6 +55,7 @@ open class LifeSafetyScope(
 
     open fun doLaunch(block: suspend CoroutineScope.() -> Unit): LifeSafetyScope {
         launch(coroutineContext) {
+            Log.i(tag, "launch")
             block()
         }.invokeOnCompletion {
             finally(it)
@@ -60,21 +64,23 @@ open class LifeSafetyScope(
     }
 
     protected open fun catch(throwable: Throwable) {
-        catch?.invoke(this@LifeSafetyScope, throwable)
+        Log.i(tag, "catch:${onCatch}")
+        onCatch?.invoke(this@LifeSafetyScope, throwable)
     }
 
     /**
      * @param throwable 如果发生异常导致作用域执行完毕, 则参数为该异常对象, 正常结束则为null
      */
     protected open fun finally(throwable: Throwable?) {
-        finally?.invoke(this@LifeSafetyScope, throwable)
+        onFinally?.invoke(this@LifeSafetyScope, throwable)
     }
 
     /**
      * 当作用域内发生异常时回调
      */
     open fun catch(block: LifeSafetyScope.(t: Throwable) -> Unit = {}): LifeSafetyScope {
-        this.catch = block
+        Log.i(tag, "给catch赋值")
+        this.onCatch = block
         return this
     }
 
@@ -83,7 +89,7 @@ open class LifeSafetyScope(
      * 如果出现异常会携带异常信息 正常执行则为null
      */
     open fun finally(block: LifeSafetyScope.(t: Throwable?) -> Unit = {}): LifeSafetyScope {
-        this.finally = block
+        this.onFinally = block
         return this
     }
 
