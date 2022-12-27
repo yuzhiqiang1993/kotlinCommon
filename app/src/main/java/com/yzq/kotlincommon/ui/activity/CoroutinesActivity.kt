@@ -78,6 +78,7 @@ class CoroutinesActivity : BaseActivity() {
                 }
             )
 
+
             geocoderFlow
                 .filter { it != null }
                 .launchCollect(this@CoroutinesActivity) { // 扩展方法

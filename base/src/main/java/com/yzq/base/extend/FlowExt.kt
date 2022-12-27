@@ -23,6 +23,7 @@ fun <T> Flow<T>.launchCollect(
     lifecycleOwner.lifecycleScope.launch {
         /**
          * 官方推荐使用repeatOnLifecycle或者flowWithLifecycle来收集数据流
+         * 需要注意的是，每次符合生命周期规则时，都会收集一次数据
          */
         lifecycleOwner.lifecycle.repeatOnLifecycle(minActiveState) {
             collect(collector)

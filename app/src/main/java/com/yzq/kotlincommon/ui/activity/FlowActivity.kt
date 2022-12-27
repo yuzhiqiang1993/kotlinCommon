@@ -12,8 +12,11 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.scope.launchSafety
 import com.yzq.kotlincommon.databinding.ActivityFlowBinding
 import com.yzq.kotlincommon.view_model.FlowViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.last
+import kotlinx.coroutines.flow.launchIn
 
 
 /**
@@ -37,41 +40,63 @@ class FlowActivity : BaseActivity() {
         binding.run {
             initToolbar(includedToolbar.toolbar, "Flow")
 
-            btnStart.setOnThrottleTimeClick {
+            btnCollect.setOnThrottleTimeClick {
                 collect()
+            }
+
+            btnLaunchin.setOnThrottleTimeClick {
+                /*launchIn表示在指定协程作用域中立刻执行*/
+                viewModel.stringFlow.launchIn(lifecycleScope)
+            }
+
+            btnFirst.setOnThrottleTimeClick {
+                lifecycleScope.launchSafety {
+                    /*返回第一个后就会结束,不会等到flow走完*/
+                    val first = viewModel.stringFlow.first()
+                    LogUtils.i("first:${first}")
+                }
+            }
+
+            btnLast.setOnThrottleTimeClick {
+                lifecycleScope.launchSafety {
+                    /*等flow走完，返回最后一个值*/
+                    val last = viewModel.stringFlow.last()
+
+                    LogUtils.i("last:${last}")
+
+                    viewModel.stringFlow.collectLatest {
+                        delay(3000)
+//                        LogUtils.i("Collecting $it")
+                        /*来不及处理的数据会被丢弃掉，可以用在输入框搜索的场景*/
+                        LogUtils.i("collected:${it}")
+                    }
+                }
             }
         }
     }
 
     private fun collect() {
+
+
+        /**
+         * 这里使用launchCollect首次执行后，以后每次页面从后台切换到前台都会执行一次collect
+         * 又由于stringFlow是冷流，每次collect都会执行一次数据流发送，所以这里在前后台切换时会发现多次执行
+         * 优势在于页面处于后台时，会自动停止收集流，发送流的逻辑也会停止，下次页面处于可见时会再次执行
+         */
+//        viewModel.stringFlow
+//            .launchCollect(this) {
+//                LogUtils.i("collect:${it}")
+//            }
+
+
+        /**
+         * launchIn表示在指定协程作用域中立刻执行flow，具体应用场景看代码注释
+         */
+//        viewModel.stringFlow.launchIn(lifecycleScope)
+
         lifecycleScope.launchSafety {
             viewModel.stringFlow
-                .filterNotNull()
-                .map {
-                    /*中间操作符，还有很多其他的，用于处理数据*/
-                    "${it}:map"
-                }
-                .flowOn(Dispatchers.IO)//flowOn只会影响上游的线程，后续会自动切到原本的线程
-                .onStart {
-                    /*发送数据前执行*/
-                    LogUtils.i("onStart")
-                }.onEmpty {
-                    /*当什么数据也没发送的时候执行*/
-                    LogUtils.i("onEmpty")
-                }.onEach {
-                    /*上次每次emit，这里都会执行*/
-                    LogUtils.i("onEach:${it}")
-                }.catch { t ->
-                    /*只能捕获上游的异常 catch执行后collect是不会执行的，可以在这里面再次emit让collect得到执行*/
-                    LogUtils.i("catch")
-                    t.printStackTrace()
-                    emit("异常了")
-
-                }.onCompletion { t ->
-                    /*执行完毕时执行*/
-                    t?.printStackTrace()
-                    LogUtils.i("onCompletion")
-                }.collect {
+                .collect {
                     /*终端操作符，触发数据流开始运行，是挂起函数，所以只能在协程中执行*/
                     LogUtils.i("collect:${it}")
                 }
