@@ -97,7 +97,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("DataBinding", RoutePath.Main.DATA_BINDING))
         items.add(NaviItem("ViewBinding", RoutePath.Main.VIEW_BINDING))
         items.add(NaviItem("ALi EMAS", RoutePath.Main.EMAS))
-        items.add(NaviItem("Channel", RoutePath.Main.CHANNEL))
+        items.add(NaviItem("Flow", RoutePath.Main.FLOW))
         items.add(NaviItem("Moshi", RoutePath.Main.MOSHI))
         items.add(NaviItem("Network", RoutePath.Main.NETWORK))
         items.add(NaviItem("BindingDelegate", RoutePath.Main.VIEW_BINDING_DELEGATE))

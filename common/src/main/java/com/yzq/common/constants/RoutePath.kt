@@ -21,7 +21,7 @@ object RoutePath {
         const val LOGIN = "/main/login"
         const val DROP_DOWN_MENU = "/main/dropDownMenu"
         const val EMAS = "/main/emas"
-        const val CHANNEL = "/main/channel"
+        const val FLOW = "/main/flow"
         const val MOSHI = "/main/moshi"
         const val NETWORK = "/main/network"
         const val FLEX_BOX = "/main/flexBox"

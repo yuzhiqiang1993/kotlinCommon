@@ -12,8 +12,10 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!--为了解决白屏问题-->
+        <!--解决跳转白屏问题-->
         <item name="android:windowDisablePreview">true</item>
+        <!--解决字母自动变大写的问题-->
+        <item name="textAllCaps">false</item>
 
     </style>
 

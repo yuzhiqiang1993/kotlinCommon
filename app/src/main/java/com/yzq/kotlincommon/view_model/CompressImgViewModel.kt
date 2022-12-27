@@ -46,7 +46,6 @@ class CompressImgViewModel : BaseViewModel() {
             _compressedLiveData.value = compressImagePath
 
             /*上传图片接口示例*/
-
             val imageFile = File(compressImagePath)
             LogUtils.i("imageFile:${imageFile.path}")
             LogUtils.i("imageFile:${imageFile.name}")

@@ -19,7 +19,7 @@ class RoomViewModel : BaseViewModel() {
     /*增*/
     fun insertUser() {
 
-        viewModelScope.launch {
+        viewModelScope.launchSafety {
 
             val userList = arrayListOf<User>()
             for (i in 0..5) {
@@ -40,7 +40,7 @@ class RoomViewModel : BaseViewModel() {
 
     /*删*/
     fun deleteUser(user: User) {
-        viewModelScope.launch {
+        viewModelScope.launchSafety {
 
             withContext(Dispatchers.IO) {
 

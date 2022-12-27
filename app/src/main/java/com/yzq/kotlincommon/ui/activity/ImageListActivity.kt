@@ -144,7 +144,10 @@ class ImageListActivity : BaseActivity() {
                     if (layoutPageRefresh.state == RefreshState.Loading) {
                         /*加载更多*/
                         recy.bindingAdapter.addModels(data.result?.data)
+                        /*无更多数据*/
+//                        layoutPageRefresh.finishLoadMoreWithNoMoreData()
                     } else {
+                        /*覆盖旧数据*/
                         recy.bindingAdapter.setDifferModels(data.result?.data)
                     }
 

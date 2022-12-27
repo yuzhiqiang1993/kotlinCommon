@@ -16,14 +16,16 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
         <activity
+            android:name=".ui.activity.FlowActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.activity.ApiCallActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ui.activity.BindingDelegateActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -39,11 +41,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activity.ChannelActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+
+
         <activity
             android:name=".ui.activity.AliEMASActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -155,8 +154,7 @@
             android:name=".ui.activity.DropDownMenuActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
-            android:screenOrientation="portrait" />
-        <!-- 消息接收监听器 -->
+            android:screenOrientation="portrait" /> <!-- 消息接收监听器 -->
         <receiver
             android:name="com.yzq.aliemas.push.AliPushReceiver"
             android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->

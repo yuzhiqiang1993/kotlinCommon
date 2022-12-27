@@ -35,6 +35,7 @@ fun <T> CoroutineScope.launchSafety(
 }
 
 
+@OptIn(ExperimentalCoroutinesApi::class)
 fun CoroutineScope.safetyCatch(catchBlock: (Throwable) -> Unit): SafetyCoroutine<Any> {
     return SafetyCoroutine<Any>(newCoroutineContext(EmptyCoroutineContext)).catch(catchBlock)
 }

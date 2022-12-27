@@ -42,7 +42,6 @@ class BsDiffViewModel : BaseViewModel() {
      * 生成差分包,非常的耗时且占用内存，一般都是在服务端进行
      */
     fun createDiffFile() {
-
         viewModelScope.launchSafety {
             if (!oldFile.exists() || !newFile.exists()) {
                 _uiState.value = UIState.ShowDialog("文件缺失...")

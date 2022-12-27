@@ -59,5 +59,6 @@
     <string name="combine_diff_file">合并差分包</string>
     <string name="test">测试</string>
     <string name="clear_mmkv">清除mmkv</string>
+    <string name="collect">collect</string>
 
 </resources>

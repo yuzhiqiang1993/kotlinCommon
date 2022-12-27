@@ -58,5 +58,6 @@
     <string name="test">Test</string>
     <string name="start_location">Start Location</string>
     <string name="clear_mmkv">clear mmkv</string>
+    <string name="collect">collect</string>
 
 </resources>
