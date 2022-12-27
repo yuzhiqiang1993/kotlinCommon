@@ -73,7 +73,8 @@ class CoroutinesActivity : BaseActivity() {
             geocoder.observe(
                 this@CoroutinesActivity,
                 Observer {
-                    LogUtils.i("请求完成")
+                    /*liveData默认就支持页面在onStop时停止观察数据，onStart时观察数据*/
+                    LogUtils.i("liveData请求完成")
                     binding.tv.text = it.result.formatted_address
                 }
             )
@@ -81,7 +82,8 @@ class CoroutinesActivity : BaseActivity() {
 
             geocoderFlow
                 .filter { it != null }
-                .launchCollect(this@CoroutinesActivity) { // 扩展方法
+                .launchCollect(this@CoroutinesActivity) { // 扩展方法 在onStop的时候停止收集数据，onStart后再收集
+                    LogUtils.i("stateFlow请求完成")
                     binding.tv.text = it!!.result.formatted_address
                 }
         }

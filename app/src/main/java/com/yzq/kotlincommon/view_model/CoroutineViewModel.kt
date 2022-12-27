@@ -3,15 +3,21 @@ package com.yzq.kotlincommon.view_model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
+import com.yzq.common.api.onError
+import com.yzq.common.api.onException
+import com.yzq.common.api.onSuccess
 import com.yzq.common.data.gaode.Geocoder
+import com.yzq.common.ext.apiCall
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.scope.launchSafety
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 
 class CoroutineViewModel : BaseViewModel() {
 
@@ -32,25 +38,26 @@ class CoroutineViewModel : BaseViewModel() {
 
     /*请求数据*/
     fun requestData() {
-//        viewModelScope.launch {
-//            val response = apiCall {
-//                RetrofitFactory.instance.getService(ApiService::class.java).geocoder()
-//            }
-//
-//            response.onSuccess {
-//                _geocoderFlow.value = it
-//            }
-//            response.onError { code, message ->
-//                LogUtils.i("onFailed--code:$code,message:$message")
-//            }
-//
-//            response.onException {
-//                LogUtils.i("onException：$it")
-//            }
-//        }
+        viewModelScope.launch {
+            delay(2000)
+            val response = apiCall {
+                RetrofitFactory.instance.getService(ApiService::class.java).geocoder()
+            }
+
+            response.onSuccess {
+                _geocoder.value = it
+            }
+            response.onError { code, message ->
+                LogUtils.i("onFailed--code:$code,message:$message")
+            }
+
+            response.onException {
+                LogUtils.i("onException：$it")
+            }
+        }
 
         viewModelScope.launchSafety {
-            delay(1000)
+            delay(2000)
             _geocoderFlow.value =
                 RetrofitFactory.instance.getService(ApiService::class.java).geocoder().body()
             _uiState.value = UIState.ShowContent()
