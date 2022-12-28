@@ -2,6 +2,9 @@ package com.yzq.kotlincommon.view_model
 
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
+import com.yzq.base.view_model.UIState
+import com.yzq.common.net.RetrofitFactory
+import com.yzq.common.net.api.ApiService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -15,8 +18,6 @@ import kotlinx.coroutines.flow.*
  */
 
 class FlowViewModel : BaseViewModel() {
-
-
     /**
      * 创建一个flow。冷流，在调collect的时候才会发送数据
      */
@@ -58,6 +59,24 @@ class FlowViewModel : BaseViewModel() {
             t?.printStackTrace()
             LogUtils.i("onCompletion")
         }
+
+
+    /**
+     * 网络请求的flow示例
+     * 其实直接使用livedata就满足日常场景了，如果是比较复杂的工作流，再用flow
+     */
+    fun requestData() = flow {
+        LogUtils.i("2秒后开始请求")
+        delay(2000)
+        val userInfo = RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
+        emit(userInfo)
+    }.onStart {
+        _uiState.value = UIState.ShowLoadingDialog("请求中...")
+    }.catch { t ->
+        _uiState.value = UIState.ShowDialog(t.message ?: "异常了")
+    }.onCompletion {
+        _uiState.value = UIState.DissmissLoadingDialog()
+    }
 
 
 }

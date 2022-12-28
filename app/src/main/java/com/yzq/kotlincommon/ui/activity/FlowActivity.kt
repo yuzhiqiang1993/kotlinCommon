@@ -1,10 +1,13 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.LogUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
+import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
@@ -12,6 +15,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.scope.launchSafety
 import com.yzq.kotlincommon.databinding.ActivityFlowBinding
 import com.yzq.kotlincommon.view_model.FlowViewModel
+import com.yzq.widget.dialog.BubbleDialog
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
@@ -28,6 +32,8 @@ import kotlinx.coroutines.flow.launchIn
 
 @Route(path = RoutePath.Main.FLOW)
 class FlowActivity : BaseActivity() {
+    private val loadingDialog by lazy { BubbleDialog(this) }
+
 
     private val binding by viewbind(ActivityFlowBinding::inflate)
 
@@ -72,6 +78,17 @@ class FlowActivity : BaseActivity() {
                     }
                 }
             }
+
+            btnApiRequest.setOnThrottleTimeClick {
+                /*这里在页面处于不可见时依旧会执行 所以尽量不要使用flow冷流去做网络请求 要使用StateFlow或者SharedFlow*/
+                lifecycleScope.launchSafety {
+                    viewModel.requestData()
+                        .flowWithLifecycle(lifecycle, Lifecycle.State.RESUMED)
+                        .collect {
+                            LogUtils.i("请求结果:${it}")
+                        }
+                }
+            }
         }
     }
 
@@ -107,6 +124,12 @@ class FlowActivity : BaseActivity() {
     override fun initData() {
         super.initData()
 
+
+    }
+
+
+    override fun observeViewModel() {
+        observeUIState(viewModel, loadingDialog)
 
     }
 
