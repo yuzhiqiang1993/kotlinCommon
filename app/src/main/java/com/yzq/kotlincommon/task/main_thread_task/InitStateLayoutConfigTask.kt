@@ -20,7 +20,7 @@ class InitStateLayoutConfigTask : MainThreadTask() {
                 emptyLayout = R.layout.layout_empty
                 errorLayout = R.layout.layout_error
                 loadingLayout = R.layout.layout_loading
-                isNetworkingRetry = false//不检查网络
+//                isNetworkingRetry = false//不检查网络
                 /* 参与重试的id，会回调onRefresh*/
                 setRetryIds(R.id.tv_msg, R.id.iv)
 

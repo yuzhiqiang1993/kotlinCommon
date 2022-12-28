@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.*
  */
 
 class FlowViewModel : BaseViewModel() {
+
     /**
      * 创建一个flow。冷流，在调collect的时候才会发送数据
      */
@@ -63,9 +64,9 @@ class FlowViewModel : BaseViewModel() {
 
     /**
      * 网络请求的flow示例
-     * 其实直接使用livedata就满足日常场景了，如果是比较复杂的工作流，再用flow
+     * 其实flow并不适合在像网络请求这种一次性调用的场景下使用，它更加适合用在数据流的情况下例如轮询，且不太适合跟ui状态相关的逻辑
      */
-    fun requestData() = flow {
+    val userFlow = flow {
         LogUtils.i("2秒后开始请求")
         delay(2000)
         val userInfo = RetrofitFactory.instance.getService(ApiService::class.java).userInfo()

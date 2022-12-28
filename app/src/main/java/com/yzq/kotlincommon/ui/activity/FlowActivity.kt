@@ -1,8 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.LogUtils
 import com.therouter.router.Route
@@ -80,20 +79,12 @@ class FlowActivity : BaseActivity() {
             }
 
             btnApiRequest.setOnThrottleTimeClick {
-                /*这里在页面处于不可见时依旧会执行 所以尽量不要使用flow冷流去做网络请求 要使用StateFlow或者SharedFlow*/
-                lifecycleScope.launchSafety {
-                    viewModel.requestData()
-                        .flowWithLifecycle(lifecycle, Lifecycle.State.RESUMED)
-                        .collect {
-                            LogUtils.i("请求结果:${it}")
-                        }
-                }
+
             }
         }
     }
 
     private fun collect() {
-
 
         /**
          * 这里使用launchCollect首次执行后，以后每次页面从后台切换到前台都会执行一次collect
@@ -105,16 +96,12 @@ class FlowActivity : BaseActivity() {
 //                LogUtils.i("collect:${it}")
 //            }
 
-
-        /**
-         * launchIn表示在指定协程作用域中立刻执行flow，具体应用场景看代码注释
-         */
-//        viewModel.stringFlow.launchIn(lifecycleScope)
-
         lifecycleScope.launchSafety {
             viewModel.stringFlow
                 .collect {
-                    /*终端操作符，触发数据流开始运行，是挂起函数，所以只能在协程中执行*/
+                    /**
+                     * 这种实现的缺点是flow收集数据(消费端)不具备生命周期感知能力，也就是说即使页面主语不可见状态，也会执行
+                     */
                     LogUtils.i("collect:${it}")
                 }
         }
@@ -129,7 +116,25 @@ class FlowActivity : BaseActivity() {
 
 
     override fun observeViewModel() {
-        observeUIState(viewModel, loadingDialog)
+
+        viewModel.run {
+            observeUIState(this, loadingDialog)
+
+            /**
+             * 转成livedata后订阅数据更新,页面开启时会自动执行一次，后续只会在数据有变更时才会更新
+             */
+            userFlow.asLiveData()
+                .observe(this@FlowActivity) {
+                    LogUtils.i("userFlow asLiveData 请求结果:${it}")
+                }
+
+//            /**
+//             * 页面打开时就会执行一些，且前后台切换都会重新执行
+//             */
+//            userFlow.launchCollect(this@FlowActivity) {
+//                LogUtils.i("userFlow 请求结果:${it}")
+//            }
+        }
 
     }
 
