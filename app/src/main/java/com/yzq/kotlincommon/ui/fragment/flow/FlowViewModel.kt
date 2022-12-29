@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.view_model
+package com.yzq.kotlincommon.ui.fragment.flow
 
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.*
 
 
 /**
- * @description flow的使用
+ * @description flow 冷流的使用示例
  * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date    2022/12/27
- * @time    15:15
+ * @date    2022/12/28
+ * @time    17:35
  */
 
 class FlowViewModel : BaseViewModel() {
@@ -78,6 +78,5 @@ class FlowViewModel : BaseViewModel() {
     }.onCompletion {
         _uiState.value = UIState.DissmissLoadingDialog()
     }
-
 
 }

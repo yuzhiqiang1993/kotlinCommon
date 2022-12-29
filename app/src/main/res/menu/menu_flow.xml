@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_flow"
+        android:icon="@drawable/ic_flow"
+        android:title="flow" />
+
+    <item
+        android:id="@+id/menu_shared_flow"
+        android:icon="@drawable/ic_shared_flow"
+        android:title="shared flow" />
+
+
+</menu>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.fragment.flow.SharedFlowFragment">
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_sharedflow_emit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:text="sharedFlow生产值" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_sharedflow_collect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:text="sharedFlow订阅值" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_stateflow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:text="StateFlow赋值" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_stateflow_collect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:text="StateFlow新订阅" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

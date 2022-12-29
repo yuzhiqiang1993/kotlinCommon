@@ -1,6 +1,5 @@
 package com.yzq.common.api
 
-import com.tencent.bugly.proguard.T
 
 /**
  * @description Api接口相关的密封类

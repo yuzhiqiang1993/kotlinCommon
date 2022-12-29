@@ -1,6 +1,5 @@
 package com.yzq.base.extend
 
-import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.ToastUtils
 import com.drake.statelayout.StateLayout
 import com.yzq.base.ui.activity.BaseActivity
@@ -8,7 +7,6 @@ import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.coroutine.runMain
-import com.yzq.materialdialog.setLoadingMessage
 import com.yzq.materialdialog.showBaseDialog
 import com.yzq.widget.dialog.BubbleDialog
 
@@ -56,16 +54,21 @@ fun BaseActivity.observeUIState(
 @JvmOverloads
 fun BaseFragment.observeUIState(
     vm: BaseViewModel,
-    loadingDialog: MaterialDialog? = null,
+    loadingDialog: BubbleDialog? = null,
     stateLayout: StateLayout? = null,
 ) {
     vm.uiState.observe(this) {
         when (it) {
             is UIState.DissmissLoadingDialog -> {
-                loadingDialog?.run { runMain { dismiss() } }
+                loadingDialog?.run {
+                    dismiss()
+                }
             }
             is UIState.ShowLoadingDialog -> {
-                loadingDialog?.run { runMain { setLoadingMessage(it.msg).show() } }
+                loadingDialog?.run {
+                    updateTitle(it.msg).show()
+                }
+
             }
             is UIState.ShowToast -> {
                 runMain { ToastUtils.showLong(it.msg) }

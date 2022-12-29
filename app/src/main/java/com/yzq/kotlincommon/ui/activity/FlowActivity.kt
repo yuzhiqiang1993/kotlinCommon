@@ -1,25 +1,20 @@
 package com.yzq.kotlincommon.ui.activity
 
-import androidx.activity.viewModels
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.lifecycleScope
+import android.view.MenuItem
+import androidx.fragment.app.commit
 import com.blankj.utilcode.util.LogUtils
+import com.google.android.material.navigation.NavigationBarView
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.extend.observeUIState
-import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
-import com.yzq.coroutine.scope.launchSafety
+import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFlowBinding
-import com.yzq.kotlincommon.view_model.FlowViewModel
+import com.yzq.kotlincommon.ui.fragment.flow.FlowFragment
+import com.yzq.kotlincommon.ui.fragment.flow.SharedFlowFragment
 import com.yzq.widget.dialog.BubbleDialog
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.last
-import kotlinx.coroutines.flow.launchIn
 
 
 /**
@@ -30,83 +25,50 @@ import kotlinx.coroutines.flow.launchIn
  */
 
 @Route(path = RoutePath.Main.FLOW)
-class FlowActivity : BaseActivity() {
+class FlowActivity : BaseActivity(), NavigationBarView.OnItemSelectedListener {
     private val loadingDialog by lazy { BubbleDialog(this) }
 
 
     private val binding by viewbind(ActivityFlowBinding::inflate)
 
-    private val viewModel: FlowViewModel by viewModels()
-
+    private val flowFragment by lazy { FlowFragment.newInstance() }
+    private val sharedFlowFragment by lazy { SharedFlowFragment.newInstance() }
+    private val fragmentList = arrayListOf<BaseFragment>()
 
     override fun initWidget() {
         super.initWidget()
 
         binding.run {
             initToolbar(includedToolbar.toolbar, "Flow")
+            bottomNavigation.setOnItemSelectedListener(this@FlowActivity)
 
-            btnCollect.setOnThrottleTimeClick {
-                collect()
+        }
+
+
+        showFragment(flowFragment)
+
+    }
+
+    private fun showFragment(fragment: BaseFragment) {
+
+        supportFragmentManager.commit {
+            /*优化事务操作*/
+            setReorderingAllowed(true)
+            if (!fragment.isAdded) {
+                add(R.id.fragment_container_view, fragment)
             }
-
-            btnLaunchin.setOnThrottleTimeClick {
-                /*launchIn表示在指定协程作用域中立刻执行*/
-                viewModel.stringFlow.launchIn(lifecycleScope)
+            if (!fragmentList.contains(fragment)) {
+                fragmentList.add(fragment)
             }
-
-            btnFirst.setOnThrottleTimeClick {
-                lifecycleScope.launchSafety {
-                    /*返回第一个后就会结束,不会等到flow走完*/
-                    val first = viewModel.stringFlow.first()
-                    LogUtils.i("first:${first}")
+            fragmentList.forEach {
+                if (fragment != it) {
+                    hide(it)
                 }
             }
-
-            btnLast.setOnThrottleTimeClick {
-                lifecycleScope.launchSafety {
-                    /*等flow走完，返回最后一个值*/
-                    val last = viewModel.stringFlow.last()
-
-                    LogUtils.i("last:${last}")
-
-                    viewModel.stringFlow.collectLatest {
-                        delay(3000)
-//                        LogUtils.i("Collecting $it")
-                        /*来不及处理的数据会被丢弃掉，可以用在输入框搜索的场景*/
-                        LogUtils.i("collected:${it}")
-                    }
-                }
-            }
-
-            btnApiRequest.setOnThrottleTimeClick {
-
-            }
+            show(fragment)
         }
     }
 
-    private fun collect() {
-
-        /**
-         * 这里使用launchCollect首次执行后，以后每次页面从后台切换到前台都会执行一次collect
-         * 又由于stringFlow是冷流，每次collect都会执行一次数据流发送，所以这里在前后台切换时会发现多次执行
-         * 优势在于页面处于后台时，会自动停止收集流，发送流的逻辑也会停止，下次页面处于可见时会再次执行
-         */
-//        viewModel.stringFlow
-//            .launchCollect(this) {
-//                LogUtils.i("collect:${it}")
-//            }
-
-        lifecycleScope.launchSafety {
-            viewModel.stringFlow
-                .collect {
-                    /**
-                     * 这种实现的缺点是flow收集数据(消费端)不具备生命周期感知能力，也就是说即使页面主语不可见状态，也会执行
-                     */
-                    LogUtils.i("collect:${it}")
-                }
-        }
-
-    }
 
     override fun initData() {
         super.initData()
@@ -114,28 +76,16 @@ class FlowActivity : BaseActivity() {
 
     }
 
-
-    override fun observeViewModel() {
-
-        viewModel.run {
-            observeUIState(this, loadingDialog)
-
-            /**
-             * 转成livedata后订阅数据更新,页面开启时会自动执行一次，后续只会在数据有变更时才会更新
-             */
-            userFlow.asLiveData()
-                .observe(this@FlowActivity) {
-                    LogUtils.i("userFlow asLiveData 请求结果:${it}")
-                }
-
-//            /**
-//             * 页面打开时就会执行一些，且前后台切换都会重新执行
-//             */
-//            userFlow.launchCollect(this@FlowActivity) {
-//                LogUtils.i("userFlow 请求结果:${it}")
-//            }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        LogUtils.i("onNavigationItemReselected:${item}")
+        if (!item.isChecked) {
+            /*不是重复选中 再进行切换*/
+            when (item.itemId) {
+                R.id.menu_flow -> showFragment(flowFragment)
+                R.id.menu_shared_flow -> showFragment(sharedFlowFragment)
+            }
         }
-
+        return true
     }
 
 

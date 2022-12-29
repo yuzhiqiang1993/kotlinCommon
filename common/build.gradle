@@ -68,11 +68,6 @@ dependencies {
     api AndroidOfficial.roomKtx
     kapt AndroidOfficial.roomCompiler
 
-
-    /*Bugly*/
-    api ThirdParty.buglyCrashreportUpgrade
-    api ThirdParty.buglyNativeCrashreport
-
     /*flexbox*/
     api ThirdParty.flexboxLayout
 
