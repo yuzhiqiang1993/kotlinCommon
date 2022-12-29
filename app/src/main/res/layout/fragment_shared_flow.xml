@@ -41,4 +41,13 @@
         android:text="StateFlow新订阅" />
 
 
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:hint="搜索" />
+
+
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -6,6 +6,7 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.therouter.TheRouter
+import com.yzq.widget.dialog.BubbleDialog
 
 /**
  * @description: fragment基类
@@ -17,6 +18,7 @@ import com.therouter.TheRouter
 abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
+    protected val loadingDialog by lazy { BubbleDialog(requireContext(), viewLifecycleOwner) }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -25,6 +27,13 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        viewLifecycleOwner.lifecycle.addObserver(object : LifecycleEventObserver {
+//            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+//
+//                LogUtils.i("$currentClassTag:当前event:${event}")
+//            }
+//
+//        })
         TheRouter.inject(this)
         initVariable()
         initWidget()
@@ -59,4 +68,6 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
     open fun onBackPressed(): Boolean {
         return false
     }
+
+
 }

@@ -4,6 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.base.extend.launchCollect
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.fragment.BaseFragment
@@ -11,7 +12,6 @@ import com.yzq.binding.viewbind
 import com.yzq.coroutine.scope.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentFlowBinding
-import com.yzq.widget.dialog.BubbleDialog
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
@@ -28,7 +28,6 @@ import kotlinx.coroutines.flow.launchIn
 
 class FlowFragment : BaseFragment(R.layout.fragment_flow) {
 
-    private val loadingDialog by lazy { BubbleDialog(requireContext()) }
 
     companion object {
         fun newInstance() = FlowFragment()
@@ -77,9 +76,6 @@ class FlowFragment : BaseFragment(R.layout.fragment_flow) {
                 }
             }
 
-            btnApiRequest.setOnThrottleTimeClick {
-
-            }
         }
     }
 
@@ -124,9 +120,9 @@ class FlowFragment : BaseFragment(R.layout.fragment_flow) {
             /**
              * 页面打开时就会执行一些，且前后台切换都会重新执行
              */
-//            userFlow.launchCollect(viewLifecycleOwner) {
-//                LogUtils.i("userFlow 请求结果:${it}")
-//            }
+            userFlow.launchCollect(viewLifecycleOwner) {
+                LogUtils.i("userFlow 请求结果:${it}")
+            }
         }
 
     }

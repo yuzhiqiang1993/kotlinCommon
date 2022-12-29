@@ -14,7 +14,6 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFlowBinding
 import com.yzq.kotlincommon.ui.fragment.flow.FlowFragment
 import com.yzq.kotlincommon.ui.fragment.flow.SharedFlowFragment
-import com.yzq.widget.dialog.BubbleDialog
 
 
 /**
@@ -26,8 +25,6 @@ import com.yzq.widget.dialog.BubbleDialog
 
 @Route(path = RoutePath.Main.FLOW)
 class FlowActivity : BaseActivity(), NavigationBarView.OnItemSelectedListener {
-    private val loadingDialog by lazy { BubbleDialog(this) }
-
 
     private val binding by viewbind(ActivityFlowBinding::inflate)
 

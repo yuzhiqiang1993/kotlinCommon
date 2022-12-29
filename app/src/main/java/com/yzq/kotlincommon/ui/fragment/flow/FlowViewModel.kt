@@ -64,7 +64,9 @@ class FlowViewModel : BaseViewModel() {
 
     /**
      * 网络请求的flow示例
-     * 其实flow并不适合在像网络请求这种一次性调用的场景下使用，它更加适合用在数据流的情况下例如轮询，且不太适合跟ui状态相关的逻辑
+     * 其实flow并不适合在像网络请求这种一次性调用的场景下使用，再一个flow的collect本身不具备生命周期检测能力，也就是说页面处于非活跃状态下，也会执行collect
+     * 虽然官方给我们提供了 repeatOnLifecycle 或者 flowWithLifecycle 来收集数据流，但是这个方式会造成页面前后台切换时多次执行，并不符合我们日常开发中网络请求相关的场景
+     * 它更加适合用在数据流的情况下例如轮询、页面切换时获取最新位置这种跟生命周期绑定需要多次执行的场景。或者可以在上游使用flow，在ui层转成livedata观察也是可以的
      */
     val userFlow = flow {
         LogUtils.i("2秒后开始请求")

@@ -1,11 +1,17 @@
 package com.yzq.base.extend
 
+import android.text.Editable
+import android.text.TextWatcher
+import android.widget.EditText
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 
 /**
@@ -30,3 +36,28 @@ fun <T> Flow<T>.launchCollect(
         }
     }
 }
+
+/**
+ * 输入框节流
+ * @param timeoutMillis
+ */
+fun EditText.debounce(timeoutMillis: Long = 500) = callbackFlow {
+
+    val textWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+            s?.run {
+                trySend(s.toString())
+            }
+        }
+
+    }
+    addTextChangedListener(textWatcher)
+    awaitClose { this@debounce.removeTextChangedListener(textWatcher) }
+}.debounce(timeoutMillis)

@@ -16,7 +16,6 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.scope.launchSafety
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
 import com.yzq.materialdialog.*
-import com.yzq.widget.dialog.BubbleDialog
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -31,6 +30,7 @@ import java.util.*
  */
 @Route(path = RoutePath.Main.DIALOG)
 class DialogActivity : BaseActivity() {
+
 
     private val binding by viewbind(ActivityDialogBinding::inflate)
 
@@ -83,10 +83,10 @@ class DialogActivity : BaseActivity() {
 
             layoutScrollContent.btnLoading
                 .setOnThrottleTimeClick {
-
-                    val loadingDialog = BubbleDialog(this@DialogActivity).showLoading()
-
                     lifecycleScope.launchSafety {
+                        loadingDialog.showLoading()
+                        delay(1000)
+                        loadingDialog.updateTitle("更新标题，字数边长了................")
                         delay(2000)
                         loadingDialog.dismiss()
                     }

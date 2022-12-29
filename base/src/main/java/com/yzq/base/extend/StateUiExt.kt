@@ -20,13 +20,14 @@ fun BaseActivity.observeUIState(
 ) {
     vm.uiStateFlow.asLiveData().observe(this) {
         LogUtils.i("uiState:${it}")
+        LogUtils.i("loadingDialog:${loadingDialog}")
         when (it) {
             is UIState.Init -> {
                 LogUtils.i("初始状态，不用管")
             }
             is UIState.DissmissLoadingDialog -> {
                 loadingDialog?.run {
-                    runMain { dismiss() }
+                    runMain { dismissDialog() }
                 }
             }
             is UIState.ShowLoadingDialog -> {
@@ -66,25 +67,17 @@ fun BaseFragment.observeUIState(
     stateLayout: StateLayout? = null,
 ) {
     vm.uiStateFlow.asLiveData().observe(viewLifecycleOwner) {
-        LogUtils.i("uiState:${it}")
         when (it) {
             is UIState.Init -> {
                 LogUtils.i("初始状态，不用管")
             }
 
             is UIState.DissmissLoadingDialog -> {
-                loadingDialog?.run {
-                    runMain {
-                        dismiss()
-                    }
-
-                }
+                loadingDialog?.run { dismissDialog() }
             }
             is UIState.ShowLoadingDialog -> {
                 loadingDialog?.run {
-                    runMain {
-                        updateTitle(it.msg).show()
-                    }
+                    updateTitle(it.msg).show()
                 }
             }
             is UIState.ShowToast -> {

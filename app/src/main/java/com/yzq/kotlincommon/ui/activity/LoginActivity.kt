@@ -16,7 +16,6 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
 import com.yzq.statusbar.immersive
-import com.yzq.widget.dialog.BubbleDialog
 
 /**
  * @description: SharedPreference相关
@@ -32,9 +31,6 @@ class LoginActivity : BaseActivity() {
     private val binding by databind<ActivityLoginBinding>(R.layout.activity_login)
 
     private val vm: LoginViewModel by viewModels()
-
-
-    private val bubbleLoadingDialog by lazy { BubbleDialog(this) }
 
     override fun initWidget() {
         super.initWidget()
@@ -77,7 +73,7 @@ class LoginActivity : BaseActivity() {
     override fun observeViewModel() {
 
         vm.run {
-            observeUIState(this, bubbleLoadingDialog)
+            observeUIState(this, loadingDialog)
             loginLiveData.observe(this@LoginActivity) {
                 navClear(RoutePath.Main.MAIN)
 

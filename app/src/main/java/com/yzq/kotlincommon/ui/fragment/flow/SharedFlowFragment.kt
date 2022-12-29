@@ -4,6 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.base.extend.debounce
 import com.yzq.base.extend.launchCollect
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.fragment.BaseFragment
@@ -12,6 +13,9 @@ import com.yzq.coroutine.scope.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentSharedFlowBinding
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 
 /**
@@ -65,6 +69,15 @@ class SharedFlowFragment : BaseFragment(R.layout.fragment_shared_flow) {
                     LogUtils.i("stateflow newCollect:${it}")
                 }
             }
+
+
+            etSearch.debounce()
+                .distinctUntilChanged()
+                .onEach {
+                    delay(2000)
+                    LogUtils.i("输入框变更:${it}")
+                }.launchIn(lifecycleScope)
+
 
         }
     }

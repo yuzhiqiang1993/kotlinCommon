@@ -8,9 +8,9 @@ import android.os.Bundle
 import android.view.animation.LinearInterpolator
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AppCompatDialog
-import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.coroutine.runMain
 import com.yzq.widget.R
 import com.yzq.widget.databinding.LayoutBubbleDialogBinding
@@ -25,6 +25,7 @@ import com.yzq.widget.databinding.LayoutBubbleDialogBinding
 
 class BubbleDialog @JvmOverloads constructor(
     context: Context,
+    lifecycleOwner: LifecycleOwner,//宿主的生命周期
     var title: String = context.getString(R.string.loading),
     private val canceledOnTouchOutside: Boolean = false,
     @StyleRes themeResId: Int = R.style.BubbleDialog,
@@ -34,14 +35,14 @@ class BubbleDialog @JvmOverloads constructor(
     private var objectAnimator: ObjectAnimator? = null
 
     init {
-        lifecycle.addObserver(object : DefaultLifecycleObserver {
-            override fun onDestroy(owner: LifecycleOwner) {
-                LogUtils.i("BubbleDialog onDestroy")
-                dismiss()
 
-                /*这里要及时cancle 不然会有内存泄漏*/
-                objectAnimator?.cancel()
-
+        lifecycleOwner.lifecycle.addObserver(object : LifecycleEventObserver {
+            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+                if (event == Lifecycle.Event.ON_DESTROY) {
+                    /*宿主销毁的时候取消动画  不然会有内存泄漏*/
+                    objectAnimator?.cancel()
+                    dismissDialog()
+                }
             }
         })
     }
@@ -52,6 +53,7 @@ class BubbleDialog @JvmOverloads constructor(
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         binding = LayoutBubbleDialogBinding.inflate(layoutInflater, null, false)
         setContentView(binding.root)
 
@@ -60,7 +62,7 @@ class BubbleDialog @JvmOverloads constructor(
         setCancelable(canceledOnTouchOutside)//返回键不可取消弹窗
         val rotateDrawable = binding.ivLoading.background as RotateDrawable
         objectAnimator = ObjectAnimator.ofInt(rotateDrawable, "level", 0, 10000).apply {
-            duration = 2000
+            duration = 1500
             repeatCount = ValueAnimator.INFINITE
             interpolator = LinearInterpolator()
             start()
@@ -75,15 +77,15 @@ class BubbleDialog @JvmOverloads constructor(
         return this
     }
 
-    override fun dismiss() {
-        LogUtils.i("isShowing:$isShowing")
-        if (isShowing) {
-            runMain {
-                super.dismiss()
-            }
+    fun dismissDialog() {
+        if (!isShowing) {
+            return
         }
-
+        runMain {
+            dismiss()
+        }
     }
+
 
     /**
      * 更新标题文本

@@ -6,6 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.therouter.TheRouter
 import com.yzq.base.ui.fragment.BaseFragment
+import com.yzq.widget.dialog.BubbleDialog
 
 /**
  * @Description: Activity基类
@@ -21,6 +22,7 @@ abstract class BaseActivity : AppCompatActivity {
     constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
     protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
+    protected val loadingDialog by lazy { BubbleDialog(this, this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
