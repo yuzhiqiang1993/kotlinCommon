@@ -8,8 +8,8 @@ import com.blankj.utilcode.util.ToastUtils
 import com.xeon.bsdiff.utils.XeonBsDiffUtil
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
-import com.yzq.coroutine.scope.launchSafety
-import com.yzq.coroutine.withDefault
+import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.coroutine.safety_coroutine.withDefault
 import java.io.File
 import kotlin.system.measureTimeMillis
 

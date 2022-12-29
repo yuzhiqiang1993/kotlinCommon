@@ -12,7 +12,7 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.data_base.User
-import com.yzq.coroutine.scope.launchSafety
+import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityRoomBinding
 import com.yzq.kotlincommon.databinding.ItemRoomBinding

@@ -1,4 +1,4 @@
-package com.yzq.base.extend
+package com.yzq.coroutine.flow
 
 import android.text.Editable
 import android.text.TextWatcher

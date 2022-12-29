@@ -4,12 +4,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.base.extend.debounce
-import com.yzq.base.extend.launchCollect
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
-import com.yzq.coroutine.scope.launchSafety
+import com.yzq.coroutine.flow.debounce
+import com.yzq.coroutine.flow.launchCollect
+import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentSharedFlowBinding
 import kotlinx.coroutines.delay

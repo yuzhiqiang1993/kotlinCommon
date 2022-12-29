@@ -5,7 +5,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
-import com.yzq.coroutine.scope.launchSafety
+import com.yzq.coroutine.safety_coroutine.launchSafety
 import kotlinx.coroutines.delay
 
 /**

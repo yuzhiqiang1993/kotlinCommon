@@ -2,11 +2,11 @@ package com.yzq.kotlincommon.ui.fragment
 
 import androidx.fragment.app.viewModels
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.base.extend.launchCollect
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.binding.viewbind
+import com.yzq.coroutine.flow.launchCollect
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel

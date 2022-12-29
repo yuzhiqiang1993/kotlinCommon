@@ -7,7 +7,7 @@ import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.common.data.LoginBean
 import com.yzq.common.utils.MMKVUtil
-import com.yzq.coroutine.scope.launchSafety
+import com.yzq.coroutine.safety_coroutine.launchSafety
 import kotlinx.coroutines.delay
 
 class LoginViewModel : BaseViewModel() {

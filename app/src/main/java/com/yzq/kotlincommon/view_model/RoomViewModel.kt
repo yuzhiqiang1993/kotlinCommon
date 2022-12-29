@@ -6,7 +6,7 @@ import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.data.data_base.User
 import com.yzq.common.data.data_base.UserDao
 import com.yzq.common.data.data_base.UserDataBase
-import com.yzq.coroutine.scope.launchSafety
+import com.yzq.coroutine.safety_coroutine.launchSafety
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

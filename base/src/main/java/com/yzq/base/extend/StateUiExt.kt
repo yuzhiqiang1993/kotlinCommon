@@ -8,7 +8,7 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
-import com.yzq.coroutine.runMain
+import com.yzq.coroutine.safety_coroutine.runMain
 import com.yzq.materialdialog.showBaseDialog
 import com.yzq.widget.dialog.BubbleDialog
 

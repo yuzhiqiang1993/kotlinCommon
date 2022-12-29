@@ -13,7 +13,7 @@ import com.yzq.common.data.gaode.Geocoder
 import com.yzq.common.ext.apiCall
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
-import com.yzq.coroutine.scope.launchSafety
+import com.yzq.coroutine.safety_coroutine.launchSafety
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

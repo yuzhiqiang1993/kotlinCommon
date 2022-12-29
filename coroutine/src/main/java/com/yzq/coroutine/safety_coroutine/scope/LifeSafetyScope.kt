@@ -1,4 +1,4 @@
-package com.yzq.coroutine.scope
+package com.yzq.coroutine.safety_coroutine.scope
 
 import android.util.Log
 import androidx.lifecycle.Lifecycle

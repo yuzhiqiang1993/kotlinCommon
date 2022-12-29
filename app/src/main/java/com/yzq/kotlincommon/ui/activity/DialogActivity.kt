@@ -13,7 +13,7 @@ import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
-import com.yzq.coroutine.scope.launchSafety
+import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
 import com.yzq.materialdialog.*
 import kotlinx.coroutines.MainScope
@@ -37,6 +37,7 @@ class DialogActivity : BaseActivity() {
     override fun initWidget() {
         binding.run {
             initToolbar(includedToolbar.toolbar, "弹窗", true)
+
 
             layoutScrollContent.btnBase.setOnThrottleTimeClick {
                 showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")

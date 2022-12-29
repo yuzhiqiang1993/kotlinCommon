@@ -14,8 +14,8 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.common.net.FileRetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ApiConstants
-import com.yzq.coroutine.scope.launchSafety
-import com.yzq.coroutine.withIO
+import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.coroutine.safety_coroutine.withIO
 import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
 import com.yzq.materialdialog.changeProgress
 import com.yzq.materialdialog.changeTitle

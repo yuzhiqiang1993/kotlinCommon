@@ -17,8 +17,8 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.juhe.toutiao.TouTiao
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
-import com.yzq.coroutine.scope.doLaunch
-import com.yzq.coroutine.scope.safetyCatch
+import com.yzq.coroutine.safety_coroutine.doLaunch
+import com.yzq.coroutine.safety_coroutine.safetyCatch
 import com.yzq.img.loadWithThumbnail
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding

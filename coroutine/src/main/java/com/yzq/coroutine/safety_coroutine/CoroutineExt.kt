@@ -1,9 +1,10 @@
-package com.yzq.coroutine.scope
+package com.yzq.coroutine.safety_coroutine
 
 import android.view.View
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
-import com.yzq.coroutine.SafetyCoroutine
+import com.yzq.coroutine.safety_coroutine.scope.LifeSafetyScope
+import com.yzq.coroutine.safety_coroutine.scope.ViewLifeSafetyScope
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext

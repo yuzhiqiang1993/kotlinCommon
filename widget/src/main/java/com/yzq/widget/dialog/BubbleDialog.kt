@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatDialog
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import com.yzq.coroutine.runMain
+import com.yzq.coroutine.safety_coroutine.runMain
 import com.yzq.widget.R
 import com.yzq.widget.databinding.LayoutBubbleDialogBinding
 
