@@ -18,7 +18,7 @@ class LoginViewModel : BaseViewModel() {
 
         viewModelScope.launchSafety {
 
-            _uiState.value = UIState.ShowLoadingDialog("登录中...")
+            _uiStateFlow.value = UIState.ShowLoadingDialog("登录中...")
 
             delay(1000)
 
@@ -46,7 +46,7 @@ class LoginViewModel : BaseViewModel() {
 //            withContext(Dispatchers.IO){
 //                throw Exception("bbbbbbbb")
 //            }
-            _uiState.value = UIState.DissmissLoadingDialog()
+            _uiStateFlow.value = UIState.DissmissLoadingDialog()
 //            delay(200)
             loginLiveData.value = loginBean
         }

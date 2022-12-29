@@ -44,10 +44,10 @@ class BsDiffViewModel : BaseViewModel() {
     fun createDiffFile() {
         viewModelScope.launchSafety {
             if (!oldFile.exists() || !newFile.exists()) {
-                _uiState.value = UIState.ShowDialog("文件缺失...")
+                _uiStateFlow.value = UIState.ShowDialog("文件缺失...")
                 return@launchSafety
             }
-            _uiState.value = UIState.ShowLoading("正在生成补丁包...")
+            _uiStateFlow.value = UIState.ShowLoading("正在生成补丁包...")
 
             val measureTimeMillis = measureTimeMillis {
                 withDefault {
@@ -59,9 +59,9 @@ class BsDiffViewModel : BaseViewModel() {
                 }
             }
 
-            _uiState.value = UIState.ShowToast("补丁包生成成功，耗时$measureTimeMillis")
+            _uiStateFlow.value = UIState.ShowToast("补丁包生成成功，耗时$measureTimeMillis")
         }.invokeOnCompletion {
-            _uiState.value = UIState.DissmissLoadingDialog()
+            _uiStateFlow.value = UIState.DissmissLoadingDialog()
         }
     }
 
@@ -70,15 +70,15 @@ class BsDiffViewModel : BaseViewModel() {
 
         viewModelScope.launchSafety {
             if (!oldFile.exists()) {
-                _uiState.value = UIState.ShowToast("旧文件不存在")
+                _uiStateFlow.value = UIState.ShowToast("旧文件不存在")
                 return@launchSafety
             }
             if (!patchFile.exists()) {
                 ToastUtils.showShort("差分包不存在")
-                _uiState.value = UIState.ShowToast("差分包不存在")
+                _uiStateFlow.value = UIState.ShowToast("差分包不存在")
                 return@launchSafety
             }
-            _uiState.value = UIState.ShowLoadingDialog("正在合并补丁包...")
+            _uiStateFlow.value = UIState.ShowLoadingDialog("正在合并补丁包...")
             val measureTimeMillis = measureTimeMillis {
                 /*合并差分包是一个cpu密集型的任务*/
                 withDefault {
@@ -93,9 +93,9 @@ class BsDiffViewModel : BaseViewModel() {
                 newFileMD5LiveData.value = FileUtils.getFileMD5ToString(newFile)
                 combineFileMD5LiveData.value = FileUtils.getFileMD5ToString(combineFile)
             }
-            _uiState.value = UIState.ShowToast("差分包合并完成，耗时:$measureTimeMillis")
+            _uiStateFlow.value = UIState.ShowToast("差分包合并完成，耗时:$measureTimeMillis")
         }.invokeOnCompletion {
-            _uiState.value = UIState.DissmissLoadingDialog()
+            _uiStateFlow.value = UIState.DissmissLoadingDialog()
         }
     }
 }

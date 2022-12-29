@@ -72,11 +72,11 @@ class FlowViewModel : BaseViewModel() {
         val userInfo = RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
         emit(userInfo)
     }.onStart {
-        _uiState.value = UIState.ShowLoadingDialog("请求中...")
+        _uiStateFlow.value = UIState.ShowLoadingDialog("请求中...")
     }.catch { t ->
-        _uiState.value = UIState.ShowDialog(t.message ?: "异常了")
+        _uiStateFlow.value = UIState.ShowDialog(t.message ?: "异常了")
     }.onCompletion {
-        _uiState.value = UIState.DissmissLoadingDialog()
+        _uiStateFlow.value = UIState.DissmissLoadingDialog()
     }
 
 }

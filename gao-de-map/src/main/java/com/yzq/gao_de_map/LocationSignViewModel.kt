@@ -45,7 +45,7 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
     /*开始定位*/
 
     fun startLocation() {
-        _uiState.value = UIState.ShowLoadingDialog("正在定位...")
+        _uiStateFlow.value = UIState.ShowLoadingDialog("正在定位...")
         locationClient.startLocation()
     }
 
@@ -98,7 +98,7 @@ class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
 
         LogUtils.i(result)
         locationData.value = location
-        _uiState.value = UIState.DissmissLoadingDialog()
+        _uiStateFlow.value = UIState.DissmissLoadingDialog()
     }
 
     /**

@@ -1,7 +1,12 @@
 package com.yzq.base.view_model
 
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModel
 import com.blankj.utilcode.util.LogUtils
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 /**
  * @description BaseViewModel
@@ -12,8 +17,11 @@ import com.blankj.utilcode.util.LogUtils
 
 abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
 
-    protected val _uiState by lazy { MutableLiveData<UIState>() }
-    val uiState: LiveData<UIState> = _uiState
+    /**
+     * 使用stateFlow可以解决livedata必须要在主线程更新值的问题
+     */
+    protected val _uiStateFlow by lazy { MutableStateFlow<UIState>(UIState.Init()) }
+    val uiStateFlow: StateFlow<UIState> = _uiStateFlow
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         LogUtils.i("onStateChanged $source === ${event.targetState}")
@@ -21,6 +29,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
 }
 
 sealed class UIState {
+    class Init : UIState()//初始状态,主要是给flow初始值用的
     data class ShowLoadingDialog(val msg: String) : UIState()
     data class ShowDialog(val msg: String) : UIState()
     data class ShowToast(val msg: String) : UIState()

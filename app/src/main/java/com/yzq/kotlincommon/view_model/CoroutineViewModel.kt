@@ -60,7 +60,7 @@ class CoroutineViewModel : BaseViewModel() {
             delay(2000)
             _geocoderFlow.value =
                 RetrofitFactory.instance.getService(ApiService::class.java).geocoder().body()
-            _uiState.value = UIState.ShowContent()
+            _uiStateFlow.value = UIState.ShowContent()
         }
     }
 }

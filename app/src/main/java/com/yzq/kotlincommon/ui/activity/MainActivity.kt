@@ -42,6 +42,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun initVariable() {
 
         /*该操作会获取用户信息  所以建议在获取相关权限后再初始化 同时还能提升一些启动速度*/
+
         PushServiceFactory.getCloudPushService().register(
             AppContext,
             object : CommonCallback {

@@ -1,5 +1,7 @@
 package com.yzq.base.extend
 
+import androidx.lifecycle.asLiveData
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.drake.statelayout.StateLayout
 import com.yzq.base.ui.activity.BaseActivity
@@ -16,16 +18,21 @@ fun BaseActivity.observeUIState(
     loadingDialog: BubbleDialog? = null,
     stateLayout: StateLayout? = null,
 ) {
-    vm.uiState.observe(this) {
+    vm.uiStateFlow.asLiveData().observe(this) {
+        LogUtils.i("uiState:${it}")
         when (it) {
+            is UIState.Init -> {
+                LogUtils.i("初始状态，不用管")
+            }
             is UIState.DissmissLoadingDialog -> {
                 loadingDialog?.run {
-                    dismiss()
+                    runMain { dismiss() }
                 }
             }
             is UIState.ShowLoadingDialog -> {
                 loadingDialog?.run {
-                    updateTitle(it.msg).show()
+                    runMain { updateTitle(it.msg).show() }
+
                 }
 
             }
@@ -47,6 +54,7 @@ fun BaseActivity.observeUIState(
             is UIState.ShowEmpty -> {
                 stateLayout?.run { runMain { showEmpty() } }
             }
+
         }
     }
 }
@@ -57,18 +65,27 @@ fun BaseFragment.observeUIState(
     loadingDialog: BubbleDialog? = null,
     stateLayout: StateLayout? = null,
 ) {
-    vm.uiState.observe(this) {
+    vm.uiStateFlow.asLiveData().observe(viewLifecycleOwner) {
+        LogUtils.i("uiState:${it}")
         when (it) {
+            is UIState.Init -> {
+                LogUtils.i("初始状态，不用管")
+            }
+
             is UIState.DissmissLoadingDialog -> {
                 loadingDialog?.run {
-                    dismiss()
+                    runMain {
+                        dismiss()
+                    }
+
                 }
             }
             is UIState.ShowLoadingDialog -> {
                 loadingDialog?.run {
-                    updateTitle(it.msg).show()
+                    runMain {
+                        updateTitle(it.msg).show()
+                    }
                 }
-
             }
             is UIState.ShowToast -> {
                 runMain { ToastUtils.showLong(it.msg) }

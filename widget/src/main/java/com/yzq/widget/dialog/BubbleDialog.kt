@@ -31,11 +31,16 @@ class BubbleDialog @JvmOverloads constructor(
 ) : AppCompatDialog(context, themeResId) {
 
 
+    private var objectAnimator: ObjectAnimator? = null
+
     init {
         lifecycle.addObserver(object : DefaultLifecycleObserver {
             override fun onDestroy(owner: LifecycleOwner) {
                 LogUtils.i("BubbleDialog onDestroy")
                 dismiss()
+
+                /*这里要及时cancle 不然会有内存泄漏*/
+                objectAnimator?.cancel()
 
             }
         })
@@ -52,8 +57,9 @@ class BubbleDialog @JvmOverloads constructor(
 
         binding.tvTitle.text = title
         setCanceledOnTouchOutside(canceledOnTouchOutside)
+        setCancelable(canceledOnTouchOutside)//返回键不可取消弹窗
         val rotateDrawable = binding.ivLoading.background as RotateDrawable
-        ObjectAnimator.ofInt(rotateDrawable, "level", 0, 10000).apply {
+        objectAnimator = ObjectAnimator.ofInt(rotateDrawable, "level", 0, 10000).apply {
             duration = 2000
             repeatCount = ValueAnimator.INFINITE
             interpolator = LinearInterpolator()
@@ -70,12 +76,12 @@ class BubbleDialog @JvmOverloads constructor(
     }
 
     override fun dismiss() {
+        LogUtils.i("isShowing:$isShowing")
         if (isShowing) {
             runMain {
                 super.dismiss()
             }
         }
-
 
     }
 

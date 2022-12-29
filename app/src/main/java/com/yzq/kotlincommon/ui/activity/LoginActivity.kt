@@ -75,10 +75,13 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun observeViewModel() {
-        observeUIState(vm, bubbleLoadingDialog)
+
         vm.run {
+            observeUIState(this, bubbleLoadingDialog)
             loginLiveData.observe(this@LoginActivity) {
                 navClear(RoutePath.Main.MAIN)
+
+//                navFinish(RoutePath.Main.MAIN)
             }
         }
     }

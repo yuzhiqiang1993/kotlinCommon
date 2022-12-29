@@ -1,8 +1,8 @@
 package com.yzq.kotlincommon.ui.fragment.flow
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.LogUtils
+import com.yzq.base.view_model.BaseViewModel
 import com.yzq.coroutine.scope.launchSafety
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
  * @time    09:57
  */
 
-class SharedFlowViewModel : ViewModel() {
+class SharedFlowViewModel : BaseViewModel() {
 
     /**
      * SharedFlow是热流，也就是说即使没有消费者,生产者也可以生产数据,需要注意的是SharedFlow不会自动完成，也就是说没有complete回调
