@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.commit
 import com.blankj.utilcode.util.LogUtils
@@ -83,6 +84,27 @@ class FlowActivity : BaseActivity(), NavigationBarView.OnItemSelectedListener {
             }
         }
         return true
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        LogUtils.i("onCreate")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        LogUtils.i("onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        LogUtils.i("onResume")
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        LogUtils.i("onWindowFocusChanged")
     }
 
 

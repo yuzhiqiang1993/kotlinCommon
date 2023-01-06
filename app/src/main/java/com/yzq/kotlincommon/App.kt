@@ -14,6 +14,7 @@ import com.tencent.mmkv.MMKV
 import com.therouter.TheRouter
 import com.yzq.application.BaseApp
 import com.yzq.common.constants.StoragePath
+import com.yzq.kotlincommon.polling.PollingManager
 import com.yzq.kotlincommon.task.main_thread_task.*
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 
@@ -25,7 +26,7 @@ import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
  *
  */
 
-class App : BaseApp() {
+class App : BaseApp(), BaseApp.AppExitListener {
 
     override fun onCreate() {
         super.onCreate()
@@ -34,6 +35,7 @@ class App : BaseApp() {
 
         if (ProcessUtils.isMainProcess()) {
             LogUtils.i("主进程")
+            setAppExitListener(this)
             readMetaData()
 
             StoragePath.logPathInfo()
@@ -125,5 +127,11 @@ class App : BaseApp() {
                 trace.getDeclaredMethod("setAppTracingAllowed", Boolean::class.javaPrimitiveType)
             setAppTracingAllowed.invoke(null, false)//debug才抓trace
         }
+    }
+
+    override fun exit() {
+        /*应用退出了*/
+        LogUtils.i("App退出了")
+        PollingManager.instance.shutDown()
     }
 }

@@ -14,8 +14,10 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.common.utils.MMKVUtil
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
+import com.yzq.kotlincommon.polling.PollingManager
 import com.yzq.kotlincommon.view_model.LoginViewModel
 import com.yzq.statusbar.immersive
+import java.util.concurrent.TimeUnit
 
 /**
  * @description: SharedPreference相关
@@ -36,6 +38,11 @@ class LoginActivity : BaseActivity() {
         super.initWidget()
 
         immersive(Color.WHITE, true)
+
+        PollingManager.instance.interval("login", 0, 3, TimeUnit.SECONDS) {
+            LogUtils.i("登录页面级别的轮询")
+        }
+
 
         binding.tvClearMmkv.setOnThrottleTimeClick {
             MMKVUtil.clear()
@@ -80,5 +87,11 @@ class LoginActivity : BaseActivity() {
 //                navFinish(RoutePath.Main.MAIN)
             }
         }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        PollingManager.instance.cancleTaskById("login")
     }
 }

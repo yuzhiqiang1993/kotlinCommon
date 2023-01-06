@@ -17,6 +17,18 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
     private val activityStack: Stack<Activity> = Stack()
 
+    private var appExitListener: AppExitListener? = null
+
+
+    interface AppExitListener {
+        fun exit()
+    }
+
+    fun setAppExitListener(appExitListener: AppExitListener) {
+        this.appExitListener = appExitListener
+    }
+
+
     init {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
@@ -36,13 +48,15 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
     }
 
     /**
-     * 退出App
-     *
+     * 主动退出App
      */
     fun exitApp() {
+
         activityStack.forEach {
             it.finish()
         }
+        this.appExitListener?.exit()
+        System.exit(0)
     }
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
@@ -67,6 +81,10 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
     override fun onActivityDestroyed(activity: Activity) {
         if (activityStack.contains(activity)) {
             activityStack.remove(activity)
+        }
+
+        if (activityStack.size <= 0) {
+            this.appExitListener?.exit()
         }
     }
 }

@@ -25,7 +25,7 @@
             android:name=".ui.activity.ApiCallActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.BindingDelegateActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
