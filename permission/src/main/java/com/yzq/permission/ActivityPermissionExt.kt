@@ -24,7 +24,8 @@ fun AppCompatActivity.getPermissions(
                 /*拒绝 提示去设置手动打开权限*/
                 LogUtils.i("权限被拒绝 deniedForever:$deniedForever,denied:$denied")
 
-                if (deniedForever.size > 0) {
+
+                if (deniedForever.size > 0 || denied.size > 0) {
                     /*存在被拒绝且不再提示的权限 此时需要提示用户打开设置手动开启权限*/
                     showPositiveCallbackDialog(
                         title = "开启权限",

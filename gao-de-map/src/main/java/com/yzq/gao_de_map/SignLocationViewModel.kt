@@ -18,7 +18,7 @@ import com.yzq.base.view_model.UIState
  *
  */
 
-class LocationSignViewModel : BaseViewModel(), AMapLocationListener {
+class SignLocationViewModel : BaseViewModel(), AMapLocationListener {
 
     private val locationClient by lazy {
         /*要先调用隐私合规方法  否则必崩*/

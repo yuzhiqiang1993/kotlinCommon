@@ -14,12 +14,25 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_location"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dp_10"
         android:text="@string/start_location" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_continue_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:text="持续定位" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_allow_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:text="允许完全后台行为" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_location_result"

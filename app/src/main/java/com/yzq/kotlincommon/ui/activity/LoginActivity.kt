@@ -12,9 +12,9 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.databind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.utils.MMKVUtil
+import com.yzq.coroutine.interval.Interval
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
-import com.yzq.kotlincommon.polling.PollingManager
 import com.yzq.kotlincommon.view_model.LoginViewModel
 import com.yzq.statusbar.immersive
 import java.util.concurrent.TimeUnit
@@ -34,14 +34,18 @@ class LoginActivity : BaseActivity() {
 
     private val vm: LoginViewModel by viewModels()
 
+    private val interval = Interval(2, TimeUnit.SECONDS, 0)
+
     override fun initWidget() {
         super.initWidget()
 
         immersive(Color.WHITE, true)
 
-        PollingManager.instance.interval("login", 0, 3, TimeUnit.SECONDS) {
-            LogUtils.i("登录页面级别的轮询")
-        }
+        /*开启一个页面级别的轮询*/
+        interval.onlyResumed(this)//onpause 暂停  onResume恢复
+            .subscribe {
+                LogUtils.i("第:${it} 的轮询")
+            }.start()
 
 
         binding.tvClearMmkv.setOnThrottleTimeClick {
@@ -89,9 +93,4 @@ class LoginActivity : BaseActivity() {
         }
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
-        PollingManager.instance.cancleTaskById("login")
-    }
 }

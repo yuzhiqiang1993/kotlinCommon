@@ -14,9 +14,9 @@ import com.tencent.mmkv.MMKV
 import com.therouter.TheRouter
 import com.yzq.application.BaseApp
 import com.yzq.common.constants.StoragePath
-import com.yzq.kotlincommon.polling.PollingManager
 import com.yzq.kotlincommon.task.main_thread_task.*
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
+
 
 /**
  * @description: Application基类
@@ -28,14 +28,23 @@ import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 
 class App : BaseApp(), BaseApp.AppExitListener {
 
+
+    companion object {
+        const val alarm = "alarm"//定时唤醒的标记
+    }
+
     override fun onCreate() {
         super.onCreate()
         LogUtils.e("ProcessUtils.getCurrentProcessName() = ${ProcessUtils.getCurrentProcessName()}")
         LogUtils.i("packageName:${packageName}")
 
         if (ProcessUtils.isMainProcess()) {
+
             LogUtils.i("主进程")
+            /*监听App是否退出*/
             setAppExitListener(this)
+
+            /*读订单配置未见里的数据*/
             readMetaData()
 
             StoragePath.logPathInfo()
@@ -78,6 +87,7 @@ class App : BaseApp(), BaseApp.AppExitListener {
 
         }
     }
+
 
     private fun readMetaData() {
 
@@ -132,6 +142,5 @@ class App : BaseApp(), BaseApp.AppExitListener {
     override fun exit() {
         /*应用退出了*/
         LogUtils.i("App退出了")
-        PollingManager.instance.shutDown()
     }
 }

@@ -27,8 +27,7 @@ object MapPermissionUtils {
         mapPermission: MapPermission
     ) {
         activity.getPermissions(
-            PermissionConstants.LOCATION,
-            PermissionConstants.STORAGE
+            PermissionConstants.LOCATION
         ) {
             if (needGps) {
 

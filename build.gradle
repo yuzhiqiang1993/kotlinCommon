@@ -30,7 +30,6 @@ buildscript {
         classpath 'cn.therouter:plugin:1.1.1'
 
 
-
 //        def bytex_plugin_version = "0.3.0"
 //        /*byteX 基础*/
 //        classpath "com.bytedance.android.byteX:base-plugin:${bytex_plugin_version}"
