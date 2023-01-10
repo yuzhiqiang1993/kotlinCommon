@@ -1,8 +1,8 @@
 package com.yzq.kotlincommon.ui.fragment
 
-import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.hjq.permissions.Permission
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
 import com.yzq.img.openAlbum
@@ -46,8 +46,8 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
 
         binding.btnPermission.setOnClickListener {
 
-            getPermissions(PermissionConstants.STORAGE) {
-                ToastUtils.showShort("获取了权限：$it")
+            getPermissions(Permission.CAMERA) {
+                ToastUtils.showShort("权限获取成功")
             }
         }
     }

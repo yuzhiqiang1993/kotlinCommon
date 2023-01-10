@@ -94,6 +94,8 @@ object TheRouter {
 object ThirdParty {
     const val utilcode = "com.blankj:utilcodex:1.31.1"
 
+    const val xxPermission = "com.github.getActivity:XXPermissions:16.6"
+
     const val buglyCrashreportUpgrade = "com.tencent.bugly:crashreport_upgrade:1.6.1"
     const val buglyNativeCrashreport = "com.tencent.bugly:nativecrashreport:3.9.2"
 

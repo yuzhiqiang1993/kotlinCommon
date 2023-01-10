@@ -3,8 +3,8 @@ package com.yzq.kotlincommon.ui.activity
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.ClipboardUtils
+import com.hjq.permissions.Permission
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
@@ -56,12 +56,16 @@ class ZxingActivity : BaseActivity() {
             }
     }
 
-    private fun excuteZxing() =
-        getPermissions(PermissionConstants.CAMERA, PermissionConstants.STORAGE) {
+    private fun excuteZxing() {
+
+        getPermissions(Permission.CAMERA, Permission.READ_MEDIA_IMAGES) {
             val intent = Intent(this, CaptureActivity::class.java)
             val zxingConfig = ZxingConfig()
             zxingConfig.isFullScreenScan = false
             intent.putExtra(Constant.INTENT_ZXING_CONFIG, zxingConfig)
             qrCodeActivityResult.launch(intent)
         }
+
+    }
+
 }

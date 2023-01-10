@@ -47,6 +47,8 @@ dependencies {
 
     /*utils*/
     implementation ThirdParty.utilcode
+    /*xxPermission*/
+    api ThirdParty.xxPermission
 
 
 }
