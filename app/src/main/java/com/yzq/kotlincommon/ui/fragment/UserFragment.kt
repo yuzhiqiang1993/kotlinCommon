@@ -46,7 +46,7 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
 
         binding.btnPermission.setOnClickListener {
 
-            getPermissions(Permission.CAMERA) {
+            getPermissions(Permission.NOTIFICATION_SERVICE) {
                 ToastUtils.showShort("权限获取成功")
             }
         }
