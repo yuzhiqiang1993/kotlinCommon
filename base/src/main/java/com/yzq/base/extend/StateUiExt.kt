@@ -84,7 +84,7 @@ fun BaseFragment.observeUIState(
                 runMain { ToastUtils.showLong(it.msg) }
             }
             is UIState.ShowDialog -> {
-                runMain { showBaseDialog(message = it.msg) }
+                runMain { requireActivity().showBaseDialog(message = it.msg) }
             }
             is UIState.ShowContent -> {
                 stateLayout?.run { runMain { showContent() } }

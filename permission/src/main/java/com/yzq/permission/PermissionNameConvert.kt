@@ -23,7 +23,7 @@ object PermissionNameConvert {
     /**
      * 将权限列表拼接成字符串
      */
-    fun listToString(context: Context, hints: List<String>): String {
+    private fun listToString(context: Context, hints: List<String>): String {
         if (hints.isEmpty()) {
             return context.getString(R.string.common_permission_unknown)
         }
@@ -42,7 +42,7 @@ object PermissionNameConvert {
     /**
      * 将权限列表转换成对应名称列表
      */
-    fun permissionsToNames(context: Context, permissions: List<String>): List<String> {
+    private fun permissionsToNames(context: Context, permissions: List<String>): List<String> {
         val permissionNames: MutableList<String> = mutableListOf()
         for (permission in permissions) {
             when (permission) {

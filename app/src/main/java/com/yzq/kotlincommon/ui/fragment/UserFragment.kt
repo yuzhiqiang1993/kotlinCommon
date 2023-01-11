@@ -24,8 +24,7 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
         LogUtils.i("UserFragment")
 
         binding.btnShowDialog.setOnClickListener {
-
-            showCallbackDialog(
+            requireActivity().showCallbackDialog(
                 message = "这是在Fragment中调的弹窗",
                 positiveCallback = {
                     ToastUtils.showShort("点击了确定")
@@ -37,16 +36,13 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
         }
 
         binding.btnSelectImg.setOnClickListener {
-
             openAlbum {
-
                 ToastUtils.showShort("选择的图片:$it")
             }
         }
 
         binding.btnPermission.setOnClickListener {
-
-            getPermissions(Permission.NOTIFICATION_SERVICE) {
+            requireActivity().getPermissions(Permission.NOTIFICATION_SERVICE) {
                 ToastUtils.showShort("权限获取成功")
             }
         }

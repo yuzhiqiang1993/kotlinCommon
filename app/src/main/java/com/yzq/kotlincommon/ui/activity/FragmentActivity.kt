@@ -15,9 +15,7 @@ import com.yzq.kotlincommon.databinding.ActivityFragmentBinding
 import com.yzq.kotlincommon.view_model.FragmentViewModel
 
 @Route(path = RoutePath.Main.FRAGMENT)
-class FragmentActivity :
-    BaseActivity(),
-    NavigationBarView.OnItemSelectedListener {
+class FragmentActivity : BaseActivity(), NavigationBarView.OnItemSelectedListener {
 
     private val binding by viewbind(ActivityFragmentBinding::inflate)
     private val vm: FragmentViewModel by viewModels()
@@ -35,7 +33,7 @@ class FragmentActivity :
 
         supportFragmentManager.commit {
             /*优化事务操作*/
-            setReorderingAllowed(true)
+//            setReorderingAllowed(true)
             if (!fragment.isAdded) {
                 add(R.id.fragment_container_view, fragment)
             }
