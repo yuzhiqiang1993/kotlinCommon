@@ -29,10 +29,6 @@ import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 class App : BaseApp(), BaseApp.AppExitListener {
 
 
-    companion object {
-        const val alarm = "alarm"//定时唤醒的标记
-    }
-
     override fun onCreate() {
         super.onCreate()
         LogUtils.e("ProcessUtils.getCurrentProcessName() = ${ProcessUtils.getCurrentProcessName()}")
@@ -44,7 +40,7 @@ class App : BaseApp(), BaseApp.AppExitListener {
             /*监听App是否退出*/
             setAppExitListener(this)
 
-            /*读订单配置未见里的数据*/
+            /*读清单配置文件里的数据*/
             readMetaData()
 
             StoragePath.logPathInfo()

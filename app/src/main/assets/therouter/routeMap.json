@@ -28,6 +28,13 @@
     "params": {}
   },
   {
+    "path": "/main/threadPool",
+    "className": "com.yzq.kotlincommon.ui.activity.ThreadPoolActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/main/task",
     "className": "com.yzq.kotlincommon.ui.activity.TaskActivity",
     "action": "",

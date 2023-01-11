@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
-
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -19,11 +18,17 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
         <activity
+            android:name=".ui.activity.ThreadPoolActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ui.activity.FlowActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.ApiCallActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -44,8 +49,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
             android:screenOrientation="portrait" />
-
-
         <activity
             android:name=".ui.activity.AliEMASActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

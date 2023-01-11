@@ -37,6 +37,7 @@ object RoutePath {
         const val VIEW_BINDING: String = "/main/viewBinding"
         const val VIEW_BINDING_DELEGATE: String = "/main/viewBindingDelegate"
         const val API_CALL: String = "/main/apiCall"
+        const val THREAD_POOL: String = "/main/threadPool"
 
     }
 

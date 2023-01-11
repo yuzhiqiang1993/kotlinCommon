@@ -103,6 +103,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("Network", RoutePath.Main.NETWORK))
         items.add(NaviItem("BindingDelegate", RoutePath.Main.VIEW_BINDING_DELEGATE))
         items.add(NaviItem("接口请求", RoutePath.Main.API_CALL))
+        items.add(NaviItem("线程池", RoutePath.Main.THREAD_POOL))
 
         setData()
     }
