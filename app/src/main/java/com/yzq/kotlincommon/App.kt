@@ -2,6 +2,7 @@ package com.yzq.kotlincommon
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Build.SUPPORTED_ABIS
@@ -14,6 +15,7 @@ import com.tencent.mmkv.MMKV
 import com.therouter.TheRouter
 import com.yzq.application.BaseApp
 import com.yzq.common.constants.StoragePath
+import com.yzq.kotlincommon.service.ForegroundService
 import com.yzq.kotlincommon.task.main_thread_task.*
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 
@@ -138,5 +140,8 @@ class App : BaseApp(), BaseApp.AppExitListener {
     override fun exit() {
         /*应用退出了*/
         LogUtils.i("App退出了")
+
+        val intent = Intent(this, ForegroundService::class.java)
+        stopService(intent)
     }
 }

@@ -2,7 +2,6 @@ package com.yzq.base.extend
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.WindowCompat
 import com.yzq.statusbar.immersive
 import com.yzq.statusbar.statusPadding
 
@@ -17,7 +16,7 @@ fun AppCompatActivity.initToolbar(
     title: String,
     displayHome: Boolean = true,
 ) {
-    WindowCompat.setDecorFitsSystemWindows(window, false)
+//    WindowCompat.setDecorFitsSystemWindows(window, false)
     toolbar.title = title
     setSupportActionBar(toolbar)
     supportActionBar?.setDisplayHomeAsUpEnabled(displayHome)

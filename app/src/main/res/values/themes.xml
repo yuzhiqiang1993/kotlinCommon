@@ -17,6 +17,7 @@
         <!--解决字母自动变大写的问题-->
         <item name="textAllCaps">false</item>
 
+
     </style>
 
 

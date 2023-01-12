@@ -62,18 +62,18 @@ fun Activity.immersive(view: View, darkMode: Boolean? = null) {
 @JvmOverloads
 fun Activity.immersive(@ColorInt color: Int = COLOR_TRANSPARENT, darkMode: Boolean? = null) {
     /*清除状态栏半透明的标记*/
-//    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-//    var systemUiVisibility = window.decorView.systemUiVisibility
-//
-//    if (color == COLOR_TRANSPARENT) {
-//        systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//        systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//    } else {
-//        systemUiVisibility =
-//            systemUiVisibility and View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//        systemUiVisibility = systemUiVisibility and View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//    }
-//    window.decorView.systemUiVisibility = systemUiVisibility
+    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    var systemUiVisibility = window.decorView.systemUiVisibility
+
+    if (color == COLOR_TRANSPARENT) {
+        systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+    } else {
+        systemUiVisibility =
+            systemUiVisibility and View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        systemUiVisibility = systemUiVisibility and View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+    }
+    window.decorView.systemUiVisibility = systemUiVisibility
 
     /**
      * FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS:标志指示此窗口负责绘制系统栏的背景。

@@ -42,6 +42,13 @@
     "params": {}
   },
   {
+    "path": "/main/service",
+    "className": "com.yzq.kotlincommon.ui.activity.ServiceActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/main/room",
     "className": "com.yzq.kotlincommon.ui.activity.RoomActivity",
     "action": "",

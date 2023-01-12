@@ -1,13 +1,12 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.blankj.utilcode.util.LogUtils
-import com.therouter.TheRouter
+import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
 import com.yzq.statusbar.setFullscreen
 import kotlinx.coroutines.MainScope
@@ -40,10 +39,7 @@ class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
             LogUtils.i("模拟广告耗时")
             delay(1000)
             notReady = false
-            TheRouter.build(RoutePath.Main.LOGIN)
-                .withFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-                .navigation()
-            finish()
+            navFinish(RoutePath.Main.LOGIN)
         }
     }
 

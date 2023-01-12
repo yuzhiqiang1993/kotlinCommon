@@ -23,6 +23,7 @@ fun ComponentActivity.getPermissions(
 ) {
     /*如果已经有权限，直接执行逻辑*/
     if (XXPermissions.isGranted(this, permissions)) {
+        LogUtils.i("已有权限：$permissions")
         permissionGranted.invoke()
         return
     }

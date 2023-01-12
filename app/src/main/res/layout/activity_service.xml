@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.ServiceActivity">
+
+    <include
+        android:id="@+id/included_toolbar"
+        layout="@layout/toolbar" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_backend_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:text="后台服务" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_front_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:text="前台服务" />
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

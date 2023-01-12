@@ -24,7 +24,6 @@ import com.yzq.common.data.NaviItem
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
-import com.yzq.statusbar.immersive
 
 /**
  * @description: 导航页面
@@ -61,7 +60,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         binding.run {
             initToolbar(includedAppbarMain.toolbar, "kotlin common", displayHome = false)
-            immersive()
 
             val toggle = ActionBarDrawerToggle(
                 this@MainActivity,
@@ -104,6 +102,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("BindingDelegate", RoutePath.Main.VIEW_BINDING_DELEGATE))
         items.add(NaviItem("接口请求", RoutePath.Main.API_CALL))
         items.add(NaviItem("线程池", RoutePath.Main.THREAD_POOL))
+        items.add(NaviItem("Service", RoutePath.Main.SERVICE))
 
         setData()
     }

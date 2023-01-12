@@ -4,6 +4,10 @@
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
+    <!--前台服务权限-->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -17,6 +21,34 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
+
+        <!--
+        android:enabled : 如果为true，则这个service可以被系统实例化，如果为false，则不行。默认为true
+        android:exported : 如果为true，则其他应用的组件也可以调用这个service并且可以与它进行互动，如果为false，则只有与service同一个应用或者相同user ID的应用可以开启或绑定此service。它的默认值取决于service是否有intent filters。如果一个filter都没有，就意味着只有指定了service的准确的类名才能调用，也就是说这个service只能应用内部使用——其他的应用不知道它的类名。这种情况下exported的默认值就为false。反之，只要有了一个filter，就意味着service是考虑到外界使用的情况的，这时exported的默认值就为true
+        android:icon : 一个象征着这个service的icon
+        android:isolatedProcess : 如果设置为true，这个service将运行在一个从系统中其他部分分离出来的特殊进程中，我们只能通过Service API来与它进行交流。默认为false。
+        android:label : 显示给用户的这个service的名字。如果不设置，将会默认使用<application>的label属性。
+        android:name : 这个service的路径名，例如“.service.BackendService”。这个属性是唯一一个必须填的属性。
+        android:permission : 其他组件必须具有所填的权限才能启动这个service。
+        android:process : service运行的进程的name。默认启动的service是运行在主进程中的。
+        -->
+        <service
+            android:name=".service.BackendService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name=".service.ForegroundService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.activity.ServiceActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ui.activity.ThreadPoolActivity"
             android:exported="false">
