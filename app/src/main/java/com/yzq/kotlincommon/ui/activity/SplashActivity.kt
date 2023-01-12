@@ -1,13 +1,18 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.View
+import android.view.animation.AnticipateInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
+import com.yzq.statusbar.setFullscreen
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -27,7 +32,7 @@ class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setFullscreen()
+        setFullscreen()
 
         /*启动屏*/
         val splashScreen = installSplashScreen()
@@ -35,9 +40,26 @@ class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
         splashScreen.setKeepOnScreenCondition(this)
 //        setContentView(R.layout.activity_splash)
 
+        /*结束动画  不加这个在低版本会有卡一下的感觉  页面切换不连贯*/
+        splashScreen.setOnExitAnimationListener { splashScreenViewProvider ->
+            val splashScreenView = splashScreenViewProvider.view
+            val iconView = splashScreenViewProvider.iconView
+            val objectAnimator = ObjectAnimator.ofFloat(
+                iconView,
+                View.ALPHA,
+                iconView.alpha,
+                splashScreenView.alpha.toFloat()
+            )
+            objectAnimator.interpolator = AnticipateInterpolator()
+            objectAnimator.duration = 2000L
+            objectAnimator.doOnEnd { splashScreenViewProvider.remove() }
+            objectAnimator.start()
+
+        }
+
         MainScope().launch {
             LogUtils.i("模拟广告耗时")
-            delay(1000)
+            delay(500)
             notReady.compareAndSet(true, false)
             navFinish(RoutePath.Main.LOGIN)
         }

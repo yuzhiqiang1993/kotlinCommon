@@ -56,7 +56,6 @@
             @drawable/ic_splash
         </item>
 
-
         <!--动画执行时间-->
         <!--        <item name="windowSplashScreenAnimationDuration">1000</item>-->
         <item name="postSplashScreenTheme">@style/Theme.XeonYuTheme</item>

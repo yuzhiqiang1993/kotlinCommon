@@ -20,89 +20,97 @@
 
     </data>
 
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/layout_container"
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        tools:context=".ui.activity.LoginActivity">
+        android:layout_height="match_parent">
 
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp_196"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dp_16"
-            app:srcCompat="@drawable/ic_splash" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_account"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_10"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginEnd="@dimen/dp_10"
-            android:minHeight="@dimen/dp_72"
-            app:endIconMode="clear_text"
-            app:errorEnabled="@{account.trim().length()==0}">
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            tools:context=".ui.activity.LoginActivity">
 
-            <com.google.android.material.textfield.TextInputEditText
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_196"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp_16"
+                app:srcCompat="@drawable/ic_splash" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_account"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:hint="@string/input_account_hint"
-                android:maxLines="1"
-                android:text="@={account}" />
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:minHeight="@dimen/dp_72"
+                app:endIconMode="clear_text"
+                app:errorEnabled="@{account.trim().length()==0}">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:hint="@string/input_account_hint"
+                    android:maxLines="1"
+                    android:text="@={account}" />
 
 
-        </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_layout_pwd"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_10"
-            android:layout_marginEnd="@dimen/dp_10"
-            android:minHeight="@dimen/dp_72"
-            app:endIconMode="password_toggle"
-            app:errorEnabled="@{pwd.trim().length()==0}">
-
-
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_layout_pwd"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/white"
-                android:hint="@string/input_pwd_hint"
-                android:inputType="textPassword"
-                android:text="@={pwd}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:minHeight="@dimen/dp_72"
+                app:endIconMode="password_toggle"
+                app:errorEnabled="@{pwd.trim().length()==0}">
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_login"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/dp_10"
-            android:layout_marginTop="@dimen/dp_10"
-            android:layout_marginEnd="@dimen/dp_10"
-            android:text="@string/login" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_clear_mmkv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:minHeight="@dimen/dp_46"
-            android:paddingStart="@dimen/dp_16"
-            android:paddingEnd="@dimen/dp_16"
-            android:text="@string/clear_mmkv"
-            android:textColor="@color/gray_600"
-            android:textStyle="bold" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
+                    android:hint="@string/input_pwd_hint"
+                    android:inputType="textPassword"
+                    android:text="@={pwd}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:text="@string/login" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_clear_mmkv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minHeight="@dimen/dp_46"
+                android:paddingStart="@dimen/dp_16"
+                android:paddingEnd="@dimen/dp_16"
+                android:text="@string/clear_mmkv"
+                android:textColor="@color/gray_600"
+                android:textStyle="bold" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.core.widget.NestedScrollView>
 </layout>
