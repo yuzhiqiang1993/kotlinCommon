@@ -16,6 +16,7 @@ import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.gao_de_map.databinding.ActivityGaoDeBinding
+import com.yzq.gao_de_map.service.LocationService
 import com.yzq.gao_de_map.utils.MapPermissionUtils
 
 @Route(path = com.yzq.common.constants.RoutePath.GaoDe.GAO_DE)
@@ -23,7 +24,6 @@ class GaoDeActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityGaoDeBinding::inflate)
     private val signLocationViewModel: SignLocationViewModel by viewModels()
-    private val continueLocationViewModel: ContinueLocationViewModel by viewModels()
 
 
     override fun initWidget() {
@@ -43,8 +43,16 @@ class GaoDeActivity : BaseActivity() {
                      * 锁屏后一分钟左右的时间会导致cpu休眠，此时后台定位不会执行，就算执行也会定位失败，Alarm+weaklock的方案实测不行
                      * 申请ACCESS_BACKGROUND_LOCATION权限（定位权限选始终允许），引导用户开启 允许完全后台权限 是最好的方案
                      */
-                    continueLocationViewModel.startLocation()
+//                    continueLocationViewModel.startLocation()
+
+                    val intent = Intent(this@GaoDeActivity, LocationService::class.java)
+                    startService(intent)
                 }
+            }
+
+            btnStopContinueLocation.setOnThrottleTimeClick {
+                val intent = Intent(this@GaoDeActivity, LocationService::class.java)
+                stopService(intent)
             }
 
             btnAllowBack.setOnThrottleTimeClick {
@@ -52,7 +60,6 @@ class GaoDeActivity : BaseActivity() {
                 val appPackageName = AppUtils.getAppPackageName()
                 LogUtils.i("appPackageName:${appPackageName}")
                 val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
-
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     val batteryOptimizations =
@@ -78,14 +85,6 @@ class GaoDeActivity : BaseActivity() {
                 binding.tvLocationResult.text = t.address
             } else {
                 binding.tvLocationResult.text = t.locationDetail
-            }
-        }
-
-        continueLocationViewModel.locationData.observe(this) {
-            if (it.errorCode == 0) {
-                binding.tvLocationResult.text = it.address
-            } else {
-                binding.tvLocationResult.text = it.locationDetail
             }
         }
     }

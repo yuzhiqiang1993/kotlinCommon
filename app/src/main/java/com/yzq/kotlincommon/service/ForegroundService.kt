@@ -10,6 +10,7 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.application.AppContext
+import com.yzq.application.BaseApp
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.ui.activity.MainActivity
 
@@ -22,7 +23,7 @@ import com.yzq.kotlincommon.ui.activity.MainActivity
  * @time    11:36
  */
 
-class ForegroundService : Service() {
+class ForegroundService : Service(), BaseApp.AppExitListener {
 
     override fun onCreate() {
         LogUtils.i("onCreate")
@@ -72,6 +73,7 @@ class ForegroundService : Service() {
         /*调用startForegroundService的5秒内必要调用startForeground*/
         startForeground(1, notification)
 
+        BaseApp.getInstance().addAppExitListener(this)
 
         return super.onStartCommand(intent, flags, startId)
     }
@@ -82,6 +84,11 @@ class ForegroundService : Service() {
 
     override fun onDestroy() {
         LogUtils.i("onDestory")
+        BaseApp.getInstance().removeAppExitListener(this)
+    }
+
+    override fun onAppexit() {
+        stopSelf()
     }
 
 }

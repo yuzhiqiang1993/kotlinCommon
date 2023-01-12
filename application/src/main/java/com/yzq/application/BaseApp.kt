@@ -4,7 +4,9 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import com.blankj.utilcode.util.LogUtils
 import java.util.*
+import java.util.concurrent.CopyOnWriteArrayList
 
 /**
  * @description Application基类
@@ -17,15 +19,26 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
 
     private val activityStack: Stack<Activity> = Stack()
 
-    private var appExitListener: AppExitListener? = null
+    private val appExitListenerList: CopyOnWriteArrayList<AppExitListener> = CopyOnWriteArrayList()
 
 
     interface AppExitListener {
-        fun exit()
+        fun onAppexit()
     }
 
-    fun setAppExitListener(appExitListener: AppExitListener) {
-        this.appExitListener = appExitListener
+    fun addAppExitListener(appExitListener: AppExitListener) {
+        if (!appExitListenerList.contains(appExitListener)) {
+            appExitListenerList.add(appExitListener)
+        }
+        LogUtils.i("appExitListenerList:${appExitListenerList.size}")
+    }
+
+    fun removeAppExitListener(appExitListener: AppExitListener) {
+        if (appExitListenerList.contains(appExitListener)) {
+            appExitListenerList.remove(appExitListener)
+        }
+
+        LogUtils.i("appExitListenerList:${appExitListenerList.size}")
     }
 
 
@@ -51,11 +64,12 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
      * 主动退出App
      */
     fun exitApp() {
-
         activityStack.forEach {
             it.finish()
         }
-        this.appExitListener?.exit()
+        appExitListenerList.forEach {
+            it.onAppexit()
+        }
         System.exit(0)
     }
 
@@ -84,7 +98,7 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
         }
 
         if (activityStack.size <= 0) {
-            this.appExitListener?.exit()
+            exitApp()
         }
     }
 }
