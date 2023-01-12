@@ -8,10 +8,10 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
-import com.yzq.statusbar.setFullscreen
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * @description: 闪屏页
@@ -23,11 +23,11 @@ import kotlinx.coroutines.launch
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
 
-    private var notReady = true
+    private var notReady = AtomicBoolean(true)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setFullscreen()
+//        setFullscreen()
 
         /*启动屏*/
         val splashScreen = installSplashScreen()
@@ -38,12 +38,12 @@ class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
         MainScope().launch {
             LogUtils.i("模拟广告耗时")
             delay(1000)
-            notReady = false
+            notReady.compareAndSet(true, false)
             navFinish(RoutePath.Main.LOGIN)
         }
     }
 
     override fun shouldKeepOnScreen(): Boolean {
-        return notReady
+        return notReady.get()
     }
 }

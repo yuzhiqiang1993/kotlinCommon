@@ -48,10 +48,15 @@
         <item name="android:windowFullscreen">true</item>
         <!--设备背景颜色-->
         <item name="windowSplashScreenBackground">@color/white</item>
-        <!--设置动画或图片-->
+        <!--设置动画或图片  动画在Android12 以下不生效 很难受...-->
+        <!--        <item name="windowSplashScreenAnimatedIcon">-->
+        <!--            @drawable/splash_screen_news_avd_preview-->
+        <!--        </item>-->
         <item name="windowSplashScreenAnimatedIcon">
-            @drawable/splash_screen_news_avd_preview
+            @drawable/ic_splash
         </item>
+
+
         <!--动画执行时间-->
         <!--        <item name="windowSplashScreenAnimationDuration">1000</item>-->
         <item name="postSplashScreenTheme">@style/Theme.XeonYuTheme</item>
