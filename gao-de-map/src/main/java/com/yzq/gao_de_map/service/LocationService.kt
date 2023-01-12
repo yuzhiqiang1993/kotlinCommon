@@ -64,10 +64,10 @@ class LocationService : Service(), AMapLocationListener, BaseApp.AppExitListener
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             /*Android 8.0开始必须设置channel*/
             val channel = NotificationChannel(channelId,
-                "前台服务的通知",
+                "获取位置信息",
                 NotificationManager.IMPORTANCE_HIGH)
                 .apply {
-                    description = "通知渠道的描述"
+                    description = "持续获取位置信息,以便于用户知晓你的送餐位置"
                     enableVibration(true)//通知出现时是否震动，一般不设置
                 }
             notificationManager.createNotificationChannel(channel)
@@ -86,7 +86,7 @@ class LocationService : Service(), AMapLocationListener, BaseApp.AppExitListener
 
         val notification = NotificationCompat.Builder(this, channelId)
             .setContentTitle("持续定位")
-            .setContentText("正在通过服务持续定位中...")
+            .setContentText("持续获取位置信息,以便于用户知晓你的送餐位置...")
             .setWhen(System.currentTimeMillis())//显示通知发生的时间
             .setSmallIcon(R.mipmap.ic_launcher_round)
             .setContentIntent(pendingIntent)
