@@ -54,6 +54,7 @@ open class LifeSafetyScope(
         dispatcher + exceptionHandler + SupervisorJob()
 
     open fun doLaunch(block: suspend CoroutineScope.() -> Unit): LifeSafetyScope {
+        Log.i(tag, "doLaunch")
         launch(coroutineContext) {
             Log.i(tag, "launch")
             block()

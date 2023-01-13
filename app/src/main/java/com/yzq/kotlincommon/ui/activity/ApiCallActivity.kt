@@ -83,6 +83,7 @@ class ApiCallActivity : BaseActivity() {
                 LogUtils.i("有异常:$it")
             }
         }
+
     }
 
     private fun concurrentRequest() {

@@ -23,6 +23,9 @@ open class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCorouti
      */
     private var onCatch: ((Throwable) -> Unit)? = null
 
+
+    private var onFinish: ((Throwable?) -> Unit)? = null
+
     override fun handleJobException(exception: Throwable): Boolean {
         Log.i(tag, "exception:$exception")
         handleCoroutineException(context, exception)
@@ -37,6 +40,7 @@ open class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCorouti
     override fun onCompleted(value: T) {
         super.onCompleted(value)
         Log.i(tag, "onCompleted")
+        onFinish?.invoke(null)
     }
 
     override fun onStart() {
@@ -52,10 +56,16 @@ open class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCorouti
     override fun onCancelled(cause: Throwable, handled: Boolean) {
         super.onCancelled(cause, handled)
         Log.i(tag, "onCancelled")
+        onFinish?.invoke(cause)
     }
 
     fun catch(catchBlock: (Throwable) -> Unit) = apply {
         Log.i(tag, "给catch赋值")
         this.onCatch = catchBlock
+    }
+
+    fun finally(block: ((Throwable?) -> Unit)) = apply {
+        Log.i(tag, "给 fininsh 赋值")
+        this.onFinish = block
     }
 }
