@@ -36,7 +36,6 @@ class ForegroundService : Service(), BaseApp.AppExitListener {
         /*前台服务的一个特点就是要是通知栏*/
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
-
         val channelId = "ForegroundService"
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

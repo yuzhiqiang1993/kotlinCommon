@@ -1,8 +1,13 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.content.ComponentName
 import android.content.Intent
+import android.content.ServiceConnection
 import android.os.Build
 import android.os.Bundle
+import android.os.IBinder
+import androidx.lifecycle.asLiveData
+import com.blankj.utilcode.util.LogUtils
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
@@ -12,8 +17,10 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityServiceBinding
 import com.yzq.kotlincommon.service.BackendService
+import com.yzq.kotlincommon.service.BindService
 import com.yzq.kotlincommon.service.ForegroundService
 import com.yzq.permission.getPermissions
+import kotlinx.coroutines.flow.filterNotNull
 
 /**
  * @description Service使用示例
@@ -25,6 +32,31 @@ import com.yzq.permission.getPermissions
 @Route(path = RoutePath.Main.SERVICE)
 class ServiceActivity : BaseActivity() {
     private val binding by viewbind(ActivityServiceBinding::inflate)
+
+
+    private val serviceConnection by lazy {
+        object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+                LogUtils.i("onServiceConnected")
+                val serviceBinder = service as BindService.ServiceBinder
+
+                serviceBinder.run {
+                    changeName("更改的值")
+                    locationFlow
+                        .filterNotNull()
+                        .asLiveData()
+                        .observe(this@ServiceActivity) {
+                            LogUtils.i("定位结果：${it}")
+                        }
+                }
+            }
+
+            override fun onServiceDisconnected(name: ComponentName?) {
+                /*服务系统杀掉时才会执行*/
+                LogUtils.i("onServiceConnected")
+            }
+        }
+    }
 
 
     override fun initWidget() {
@@ -44,6 +76,13 @@ class ServiceActivity : BaseActivity() {
                 }
             }
 
+
+            btnBindService.setOnThrottleTimeClick {
+                val intent = Intent(this@ServiceActivity, BindService::class.java)
+                startService(intent)
+                bindService(intent, serviceConnection, BIND_AUTO_CREATE)
+            }
+
             btnBackendService.setOnThrottleTimeClick {
                 val intent = Intent(this@ServiceActivity, BackendService::class.java)
                 val bundle = Bundle().apply {
@@ -59,6 +98,13 @@ class ServiceActivity : BaseActivity() {
             }
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        /*这里要 unbindService 否则会内存泄漏 并且stopService调用后BindService才会onDestory*/
+        unbindService(serviceConnection)
+        stopService(Intent(this, BindService::class.java))
     }
 
 

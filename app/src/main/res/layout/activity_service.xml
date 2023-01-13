@@ -19,6 +19,14 @@
         android:text="后台服务" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_bind_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:text="绑定服务" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_front_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

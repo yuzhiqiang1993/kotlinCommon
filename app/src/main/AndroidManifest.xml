@@ -2,9 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-
-    <!--前台服务权限-->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> <!-- 前台服务权限 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
@@ -36,7 +34,10 @@
             android:name=".service.BackendService"
             android:enabled="true"
             android:exported="false" />
-
+        <service
+            android:name=".service.BindService"
+            android:enabled="true"
+            android:exported="false" />
         <service
             android:name=".service.ForegroundService"
             android:enabled="true"

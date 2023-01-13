@@ -33,7 +33,8 @@ class LocationService : Service(), BaseApp.AppExitListener, LocationResultListen
     /*正常一次定位*/
     private var locationStarted = AtomicBoolean(false)
 
-    private var locationClient: AMapLocationClient? = null
+    protected var locationClient: AMapLocationClient? = null
+
 
     override fun onCreate() {
         /*初始化定位*/
