@@ -22,26 +22,6 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
     private val appExitListenerList: CopyOnWriteArrayList<AppExitListener> = CopyOnWriteArrayList()
 
 
-    interface AppExitListener {
-        fun onAppexit()
-    }
-
-    fun addAppExitListener(appExitListener: AppExitListener) {
-        if (!appExitListenerList.contains(appExitListener)) {
-            appExitListenerList.add(appExitListener)
-        }
-        LogUtils.i("appExitListenerList:${appExitListenerList.size}")
-    }
-
-    fun removeAppExitListener(appExitListener: AppExitListener) {
-        if (appExitListenerList.contains(appExitListener)) {
-            appExitListenerList.remove(appExitListener)
-        }
-
-        LogUtils.i("appExitListenerList:${appExitListenerList.size}")
-    }
-
-
     init {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
@@ -100,5 +80,26 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
         if (activityStack.size <= 0) {
             exitApp()
         }
+    }
+
+
+    /*Appt 退出时的回调*/
+    interface AppExitListener {
+        fun onAppexit()
+    }
+
+    fun addAppExitListener(appExitListener: AppExitListener) {
+        if (!appExitListenerList.contains(appExitListener)) {
+            appExitListenerList.add(appExitListener)
+        }
+        LogUtils.i("appExitListenerList:${appExitListenerList.size}")
+    }
+
+    fun removeAppExitListener(appExitListener: AppExitListener) {
+        if (appExitListenerList.contains(appExitListener)) {
+            appExitListenerList.remove(appExitListener)
+        }
+
+        LogUtils.i("appExitListenerList:${appExitListenerList.size}")
     }
 }

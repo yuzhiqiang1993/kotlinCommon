@@ -1,6 +1,5 @@
 package com.yzq.gao_de_map
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -12,10 +11,13 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
+import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.gao_de_map.databinding.ActivityGaoDeBinding
+import com.yzq.gao_de_map.ext.openGaoDeMap
+import com.yzq.gao_de_map.ext.openGaoDeNavi
 import com.yzq.gao_de_map.service.LocationService
 import com.yzq.gao_de_map.utils.MapPermissionUtils
 
@@ -44,7 +46,6 @@ class GaoDeActivity : BaseActivity() {
                      * 申请ACCESS_BACKGROUND_LOCATION权限（定位权限选始终允许），引导用户开启 允许完全后台权限 是最好的方案
                      */
 //                    continueLocationViewModel.startLocation()
-
                     val intent = Intent(this@GaoDeActivity, LocationService::class.java)
                     startService(intent)
                 }
@@ -56,30 +57,41 @@ class GaoDeActivity : BaseActivity() {
             }
 
             btnAllowBack.setOnThrottleTimeClick {
+                ignoringBatteryOptimizations()
+            }
 
-                val appPackageName = AppUtils.getAppPackageName()
-                LogUtils.i("appPackageName:${appPackageName}")
-                val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+            btnOpenGaode.setOnThrottleTimeClick {
+                openGaoDeMap()
+            }
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    val batteryOptimizations =
-                        powerManager.isIgnoringBatteryOptimizations(appPackageName)
-                    LogUtils.i("是否忽略电池优化:${batteryOptimizations}")
-                    if (!batteryOptimizations) {
-                        val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
-                        intent.data = Uri.parse("package:$appPackageName")
-                        startActivity(intent)
-                    } else {
-                        ToastUtils.showShort("已经忽略电池优化")
-                    }
-                }
+            btnGaodeNav.setOnThrottleTimeClick {
+                openGaoDeNavi("39.91", "116.40", "天安门")
+            }
+        }
+    }
 
+    /*申请忽略电池优化*/
+    private fun ignoringBatteryOptimizations() {
+        val appPackageName = AppUtils.getAppPackageName()
+        LogUtils.i("appPackageName:${appPackageName}")
+        val powerManager = getSystemService(POWER_SERVICE) as PowerManager
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val batteryOptimizations =
+                powerManager.isIgnoringBatteryOptimizations(appPackageName)
+            LogUtils.i("是否忽略电池优化:${batteryOptimizations}")
+            if (!batteryOptimizations) {
+                val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+                intent.data = Uri.parse("package:$appPackageName")
+                startActivity(intent)
+            } else {
+                ToastUtils.showShort("已经忽略电池优化")
             }
         }
     }
 
     override fun observeViewModel() {
+        observeUIState(signLocationViewModel, loadingDialog)
         signLocationViewModel.locationData.observe(this) { t ->
             if (t.errorCode == 0) {
                 binding.tvLocationResult.text = t.address
@@ -88,4 +100,5 @@ class GaoDeActivity : BaseActivity() {
             }
         }
     }
+
 }

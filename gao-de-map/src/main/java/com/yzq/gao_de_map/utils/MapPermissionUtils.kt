@@ -15,7 +15,6 @@ import com.yzq.permission.getPermissions
  *
  */
 
-typealias MapPermission = () -> Unit
 
 object MapPermissionUtils {
 
@@ -24,23 +23,21 @@ object MapPermissionUtils {
     fun checkLocationPermission(
         needGps: Boolean = false,
         activity: BaseActivity,
-        mapPermission: MapPermission,
+        block: () -> Unit,
     ) {
-
         activity.getPermissions(Permission.ACCESS_FINE_LOCATION,
             Permission.ACCESS_COARSE_LOCATION,
             Permission.ACCESS_BACKGROUND_LOCATION) {
             if (needGps) {
                 if (LocationUtils.isGpsEnabled()) {
-                    mapPermission()
+                    block()
                 } else {
                     activity.showPositiveCallbackDialog("提示", "该功能需要打开GPS,否则无法使用") {
                         LocationUtils.openGpsSettings()
                     }
-
                 }
             } else {
-                mapPermission()
+                block()
             }
         }
     }

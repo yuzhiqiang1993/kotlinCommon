@@ -41,6 +41,21 @@
         android:layout_margin="@dimen/dp_10"
         android:text="忽略电池优化" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_open_gaode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:text="打开高德地图" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_gaode_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:text="使用高德地图导航" />
+
+
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_location_result"
         android:layout_width="match_parent"
