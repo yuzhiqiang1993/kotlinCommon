@@ -1,10 +1,14 @@
 package com.yzq.dependency_manager_plugin
 
+
 /**
- * Android official
- * 官方库的依赖
- * @constructor Create empty Android official
+ * @description 依赖管理 ./gradlew dependencyUpdates
+ * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date    2023/1/13
+ * @time    17:53
  */
+
+
 object AndroidOfficial {
     const val material = "com.google.android.material:material:1.7.0"
 
@@ -43,7 +47,7 @@ object AndroidOfficial {
 
     const val viewpager2 = "androidx.viewpager2:viewpager2:1.1.0-beta01"
 
-    private const val roomVersion = "2.4.3"
+    private const val roomVersion = "2.5.0"
     const val roomRuntime = "androidx.room:room-runtime:$roomVersion"
     const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
     const val roomKtx = "androidx.room:room-ktx:$roomVersion"
@@ -116,7 +120,7 @@ object ThirdParty {
 
     const val xeonBsDiff = "io.github.yuzhiqiang1993:xeon_bsdiff:1.0.1"
 
-    const val BRV = "com.github.liangjingkanji:BRV:1.3.87"
+    const val BRV = "com.github.liangjingkanji:BRV:1.3.88"
 
     const val flexboxLayout = "com.github.google:flexbox-layout:3.0.0"
 
@@ -143,5 +147,5 @@ object ThirdParty {
         "com.afollestad.material-dialogs:bottomsheets:$materialDialog"
     const val materialDialogsLifecycle = "com.afollestad.material-dialogs:lifecycle:$materialDialog"
 
-    const val dateTimePicker = "com.github.loperSeven:DateTimePicker:0.6.0"
+    const val dateTimePicker = "com.github.loperSeven:DateTimePicker:0.6.1"
 }
