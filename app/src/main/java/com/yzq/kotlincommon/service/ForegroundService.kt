@@ -61,7 +61,7 @@ class ForegroundService : Service(), BaseApp.AppExitListener {
         val pendingIntent =
             PendingIntent.getActivity(AppContext, 1, Intent(this, MainActivity::class.java), flag)
 
-        val notification = NotificationCompat.Builder(this, channelId)
+        val notification = NotificationCompat.Builder(AppContext, channelId)
             .setContentTitle("通知标题")
             .setContentText("通知的内容，Kotlin。。。。")
             .setWhen(System.currentTimeMillis())//显示通知发生的时间

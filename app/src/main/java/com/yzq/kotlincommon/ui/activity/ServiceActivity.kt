@@ -34,10 +34,15 @@ class ServiceActivity : BaseActivity() {
     private val binding by viewbind(ActivityServiceBinding::inflate)
 
 
+    /**
+     * Service connection
+     * 调用bindService时传入，跟Service建立连接
+     */
     private val serviceConnection by lazy {
         object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
                 LogUtils.i("onServiceConnected")
+                /*获取Service返回的binder*/
                 val serviceBinder = service as BindService.ServiceBinder
 
                 serviceBinder.run {

@@ -52,12 +52,8 @@ class LocationService : Service(), BaseApp.AppExitListener, LocationResultListen
             LogUtils.i("已经在定位了")
             return super.onStartCommand(intent, flags, startId)
         }
-
-
         /*前台服务的一个特点就是要是通知栏*/
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
-
         val channelId = "ForegroundService"
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -66,8 +62,8 @@ class LocationService : Service(), BaseApp.AppExitListener, LocationResultListen
                 "获取位置信息",
                 NotificationManager.IMPORTANCE_HIGH)
                 .apply {
-                    description = "持续获取位置信息,以便于用户知晓你的送餐位置"
-                    enableVibration(true)//通知出现时是否震动，一般不设置
+                    description = "持续获取位置信息中..."
+//                    enableVibration(true)//通知出现时是否震动，一般不设置
                 }
             notificationManager.createNotificationChannel(channel)
         }
@@ -85,7 +81,7 @@ class LocationService : Service(), BaseApp.AppExitListener, LocationResultListen
 
         val notification = NotificationCompat.Builder(this, channelId)
             .setContentTitle("持续定位")
-            .setContentText("持续获取位置信息,以便于用户知晓你的送餐位置...")
+            .setContentText("持续获取位置信息中...")
             .setWhen(System.currentTimeMillis())//显示通知发生的时间
             .setSmallIcon(R.mipmap.ic_launcher_round)
             .setContentIntent(pendingIntent)

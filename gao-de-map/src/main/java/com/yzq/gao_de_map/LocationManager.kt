@@ -24,7 +24,7 @@ object LocationManager {
         createNewLocationClient(option)
 
     /**
-     * Default sign in option
+     * 默认单次定位的配置
      * https://lbs.amap.com/api/android-location-sdk/guide/android-location/getlocation#configure
      * @return
      */
