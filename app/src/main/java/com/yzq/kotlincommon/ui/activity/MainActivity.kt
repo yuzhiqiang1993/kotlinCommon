@@ -2,6 +2,7 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -37,7 +38,7 @@ import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
     private val binding by viewbind(ActivityMainBinding::inflate)
     private var items = arrayListOf<NaviItem>()
-
+    private var lastBackTimeMillis: Long = 0
     override fun initVariable() {
 
         /*该操作会获取用户信息  所以建议在获取相关权限后再初始化 同时还能提升一些启动速度*/
@@ -54,6 +55,26 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 }
             }
         )
+
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+
+                val drawerLayout: DrawerLayout = binding.drawerLayout
+                if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                } else {
+                    if (System.currentTimeMillis() - lastBackTimeMillis > 2000) {
+                        Toast.makeText(this@MainActivity, "再按一次退出", Toast.LENGTH_SHORT).show()
+                        lastBackTimeMillis = System.currentTimeMillis()
+                    } else {
+                        BaseApp.getInstance().exitApp()
+                    }
+                }
+
+            }
+
+        })
     }
 
     override fun initWidget() {
@@ -146,19 +167,5 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return true
     }
 
-    private var lastBackTimeMillis: Long = 0
 
-    override fun onBackPressed() {
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START)
-        } else {
-            if (System.currentTimeMillis() - lastBackTimeMillis > 2000) {
-                Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show()
-                lastBackTimeMillis = System.currentTimeMillis()
-            } else {
-                BaseApp.getInstance().exitApp()
-            }
-        }
-    }
 }

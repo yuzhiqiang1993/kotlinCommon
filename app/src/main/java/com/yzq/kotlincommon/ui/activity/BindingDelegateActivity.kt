@@ -1,43 +1,25 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.blankj.utilcode.util.LogUtils
 import com.therouter.router.Route
+import com.yzq.base.extend.initToolbar
+import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBindingDelegateBinding
+import com.yzq.materialdialog.showBaseDialog
 
 @Route(path = RoutePath.Main.VIEW_BINDING_DELEGATE)
-class BindingDelegateActivity : AppCompatActivity() {
+class BindingDelegateActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityBindingDelegateBinding::inflate)
+    override fun initWidget() {
+        binding.run {
+            initToolbar(includedToolbar.toolbar, "binding 委托")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_binding_delegate)
-        LogUtils.i("onCreate")
-//        setContentView(binding.root)
-//        LogUtils.i("setContentView")
-        val toolbar = binding.includedToolbar.toolbar.apply {
-            LogUtils.i("apply")
-            title = "binding委托"
-        }
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        binding.btnTest.setOnClickListener {
-
-            LogUtils.i("binding生效了")
+            btnTest.setOnClickListener {
+                showBaseDialog("提示", "binding生效了。。。")
+            }
         }
     }
 
-    /**
-     * Toolbar的返回按钮
-     *
-     */
-    override fun onSupportNavigateUp(): Boolean {
-
-        onBackPressed()
-        return super.onSupportNavigateUp()
-    }
 }

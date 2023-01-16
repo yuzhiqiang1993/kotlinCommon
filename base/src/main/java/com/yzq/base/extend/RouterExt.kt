@@ -22,7 +22,7 @@ fun Navigator.navFinish(activity: ComponentActivity) {
         override fun onArrival(navigator: Navigator) {
             super.onArrival(navigator)
             if (!activity.isDestroyed) {
-                activity.finish()
+                activity.finishAfterTransition()
             }
 
         }

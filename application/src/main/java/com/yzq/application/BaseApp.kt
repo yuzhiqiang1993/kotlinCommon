@@ -45,12 +45,11 @@ open class BaseApp : Application(), Application.ActivityLifecycleCallbacks {
      */
     fun exitApp() {
         activityStack.forEach {
-            it.finish()
+            it.finishAfterTransition()
         }
         appExitListenerList.forEach {
             it.onAppexit()
         }
-        System.exit(0)
     }
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {

@@ -16,7 +16,6 @@ fun AppCompatActivity.initToolbar(
     title: String,
     displayHome: Boolean = true,
 ) {
-//    WindowCompat.setDecorFitsSystemWindows(window, false)
     toolbar.title = title
     setSupportActionBar(toolbar)
     supportActionBar?.setDisplayHomeAsUpEnabled(displayHome)

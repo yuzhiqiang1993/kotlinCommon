@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.therouter.TheRouter
-import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.widget.dialog.BubbleDialog
 
 /**
@@ -31,11 +30,13 @@ abstract class BaseActivity : AppCompatActivity {
         if (!this.isTaskRoot) {
             if (intent != null) {
                 if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN == intent.action) {
-                    finish()
+                    finishAfterTransition()
                     return
                 }
             }
         }
+
+
         TheRouter.inject(this)
         /*参数初始化，intent携带的值*/
         initArgs(intent.extras)
@@ -88,19 +89,8 @@ abstract class BaseActivity : AppCompatActivity {
      */
     override fun onSupportNavigateUp(): Boolean {
 
-        onBackPressed()
+        finishAfterTransition()
         return super.onSupportNavigateUp()
     }
 
-    override fun onBackPressed() {
-        supportFragmentManager.fragments.forEach {
-
-            if (it is BaseFragment) {
-                if (it.onBackPressed()) {
-                    return
-                }
-            }
-        }
-        super.onBackPressed()
-    }
 }

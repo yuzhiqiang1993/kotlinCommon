@@ -2,6 +2,7 @@ package com.yzq.base.ui
 
 import android.graphics.Color
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import com.blankj.utilcode.util.BarUtils
 import com.bumptech.glide.Glide
 import com.yzq.base.databinding.ActivityImgPreviewBinding
@@ -21,6 +22,13 @@ class ImgPreviewActivity : BaseActivity() {
     private val binding by viewbind(ActivityImgPreviewBinding::inflate)
     private lateinit var imagePath: String
 
+    private val backPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            finishAfterTransition()
+        }
+
+    }
+
     companion object {
         const val IMG_PATH = "imgPath"
     }
@@ -34,15 +42,13 @@ class ImgPreviewActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
+        onBackPressedDispatcher.addCallback(this, backPressedCallback)
         BarUtils.setStatusBarColor(this, Color.BLACK)
 
         binding.photoView.setOnClickListener {
-            onBackPressed()
+            backPressedCallback.handleOnBackPressed()
         }
         Glide.with(this).load(imagePath).into(binding.photoView)
     }
 
-    override fun onBackPressed() {
-        finishAfterTransition()
-    }
 }

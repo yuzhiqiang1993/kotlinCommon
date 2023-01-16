@@ -23,15 +23,15 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.activity.LoginActivity">
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/layout_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="vertical"
-            tools:context=".ui.activity.LoginActivity">
+            android:orientation="vertical">
 
 
             <androidx.appcompat.widget.AppCompatImageView

@@ -66,6 +66,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 
     /*返回键监听*/
     open fun onBackPressed(): Boolean {
+        /*如果子类重写返回true  表示fragment要拦截返回键的逻辑 自己做处理*/
         return false
     }
 
