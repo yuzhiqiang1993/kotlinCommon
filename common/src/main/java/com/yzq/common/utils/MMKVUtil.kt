@@ -12,6 +12,8 @@ import com.yzq.mmkv.MMKVReadWriteProp
 
 object MMKVUtil {
 
+    var appFirstOpen: Boolean by MMKVReadWriteProp("appFirstOpen", true)
+    var hasLogin: Boolean by MMKVReadWriteProp("hasLogin", false)
     var account: String by MMKVReadWriteProp("account", "")
     var pwd: String by MMKVReadWriteProp("pwd", "")
     var token: String by MMKVReadWriteProp("token", "")

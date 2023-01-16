@@ -18,7 +18,7 @@ object AndroidConfig {
      * Min sdk version
      * App支持的最低版本
      */
-    const val minSdkVersion = 21 // Android 5.1
+    const val minSdkVersion = 23 // Android 5.1
 
     /**
      * Target sdk version

@@ -10,7 +10,6 @@ import com.tencent.mmkv.MMKV
  */
 
 object MMKVInstance {
-
     fun get(
         mmapID: String? = null,
         cryptKey: String? = null,

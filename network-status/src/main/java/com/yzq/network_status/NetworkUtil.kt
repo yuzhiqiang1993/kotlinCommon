@@ -79,7 +79,7 @@ object NetworkUtil : INetworkStatus {
      */
     override fun registerNetworkStatusChangedListener(
         listener: OnNetworkStatusChangedListener,
-        lifecycleOwner: LifecycleOwner?
+        lifecycleOwner: LifecycleOwner?,
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             NetworkHeight.registerNetworkStatusChangedListener(listener, lifecycleOwner)

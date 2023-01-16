@@ -86,6 +86,7 @@ class LoginActivity : BaseActivity() {
         vm.run {
             observeUIState(this, loadingDialog)
             loginLiveData.observe(this@LoginActivity) {
+                MMKVUtil.hasLogin = true
                 navClear(RoutePath.Main.MAIN)
 
 //                navFinish(RoutePath.Main.MAIN)
