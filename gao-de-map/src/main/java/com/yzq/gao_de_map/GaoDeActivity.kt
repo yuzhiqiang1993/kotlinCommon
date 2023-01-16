@@ -16,6 +16,7 @@ import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.gao_de_map.databinding.ActivityGaoDeBinding
+import com.yzq.gao_de_map.ext.gaoDeMapHasInstalled
 import com.yzq.gao_de_map.ext.openGaoDeMap
 import com.yzq.gao_de_map.ext.openGaoDeNavi
 import com.yzq.gao_de_map.service.LocationService
@@ -61,10 +62,18 @@ class GaoDeActivity : BaseActivity() {
             }
 
             btnOpenGaode.setOnThrottleTimeClick {
+                if (!gaoDeMapHasInstalled()) {
+                    ToastUtils.showShort("请先安装高德地图")
+                    return@setOnThrottleTimeClick
+                }
                 openGaoDeMap()
             }
 
             btnGaodeNav.setOnThrottleTimeClick {
+                if (!gaoDeMapHasInstalled()) {
+                    ToastUtils.showShort("请先安装高德地图")
+                    return@setOnThrottleTimeClick
+                }
                 openGaoDeNavi("39.91", "116.40", "天安门")
             }
         }
