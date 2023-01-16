@@ -38,30 +38,7 @@ class ServiceActivity : BaseActivity() {
      * Service connection
      * 调用bindService时传入，跟Service建立连接
      */
-    private val serviceConnection by lazy {
-        object : ServiceConnection {
-            override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-                LogUtils.i("onServiceConnected")
-                /*获取Service返回的binder*/
-                val serviceBinder = service as BindService.ServiceBinder
-
-                serviceBinder.run {
-                    changeName("更改的值")
-                    locationFlow
-                        .filterNotNull()
-                        .asLiveData()
-                        .observe(this@ServiceActivity) {
-                            LogUtils.i("定位结果：${it}")
-                        }
-                }
-            }
-
-            override fun onServiceDisconnected(name: ComponentName?) {
-                /*服务系统杀掉时才会执行*/
-                LogUtils.i("onServiceConnected")
-            }
-        }
-    }
+    private var serviceConnection: ServiceConnection? = null
 
 
     override fun initWidget() {
@@ -85,7 +62,10 @@ class ServiceActivity : BaseActivity() {
             btnBindService.setOnThrottleTimeClick {
                 val intent = Intent(this@ServiceActivity, BindService::class.java)
                 startService(intent)
-                bindService(intent, serviceConnection, BIND_AUTO_CREATE)
+                if (serviceConnection == null) {
+                    createServieConnection()
+                }
+                bindService(intent, serviceConnection!!, BIND_AUTO_CREATE)
             }
 
             btnBackendService.setOnThrottleTimeClick {
@@ -105,10 +85,37 @@ class ServiceActivity : BaseActivity() {
 
     }
 
+    private fun createServieConnection() {
+        serviceConnection = object : ServiceConnection {
+            override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+                LogUtils.i("onServiceConnected")
+                /*获取Service返回的binder*/
+                val serviceBinder = service as BindService.ServiceBinder
+
+                serviceBinder.run {
+                    changeName("更改的值")
+                    locationFlow
+                        .filterNotNull()
+                        .asLiveData()
+                        .observe(this@ServiceActivity) {
+                            LogUtils.i("定位结果：${it}")
+                        }
+                }
+            }
+
+            override fun onServiceDisconnected(name: ComponentName?) {
+                /*服务系统杀掉时才会执行*/
+                LogUtils.i("onServiceConnected")
+            }
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         /*这里要 unbindService 否则会内存泄漏 并且stopService调用后BindService才会onDestory*/
-        unbindService(serviceConnection)
+        serviceConnection?.run {
+            unbindService(this)
+        }
         stopService(Intent(this, BindService::class.java))
     }
 
