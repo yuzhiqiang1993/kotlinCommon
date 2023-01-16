@@ -63,6 +63,7 @@ println "rootProjectName:${rootProject.getName()}"
 //
 //})
 
+includeBuild("dependency-manager-plugin")
 
 include ':app',
         ':common',
@@ -75,8 +76,6 @@ include ':app',
         ':aliemas',
         ':network-status',
         ':application'
-
-includeBuild("dependency-manager-plugin")
 include ':coroutine'
 include ':binding'
 include ':mmkv'
