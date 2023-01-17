@@ -48,7 +48,7 @@ class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
         }
 
         MainScope().launch {
-            LogUtils.i("模拟广告耗时")
+            LogUtils.i("可以做一些初始化的逻辑，初始化完成后继续走")
             delay(200)
             notReady.compareAndSet(true, false)
         }

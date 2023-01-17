@@ -63,8 +63,6 @@ println "rootProjectName:${rootProject.getName()}"
 //
 //})
 
-includeBuild("dependency-manager-plugin")
-
 include ':app',
         ':common',
         ':gao-de-map',
@@ -80,3 +78,5 @@ include ':coroutine'
 include ':binding'
 include ':mmkv'
 include ':statusbar'
+includeBuild("dependency-manager-plugin")
+include ':mylibrary'

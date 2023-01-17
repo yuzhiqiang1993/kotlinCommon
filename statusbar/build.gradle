@@ -4,7 +4,6 @@ import com.yzq.dependency_manager_plugin.AndroidOfficial
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'com.yzq.dependency-manager'
 }
 
 

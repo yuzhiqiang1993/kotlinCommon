@@ -1,9 +1,3 @@
-/*当前文件用来配置所有子工程公用的配置*/
-
-println("我是根目录下的build.gradle")
-apply from: "gradle_script/checkVersions.gradle"
-apply from: "gradle_script/config.gradle"
-
 buildscript {
 
     repositories {
@@ -42,8 +36,10 @@ buildscript {
 //        /*方法移除*/
 //        classpath "com.bytedance.android.byteX:method-call-opt-plugin:${bytex_plugin_version}"
     }
-
-
+}
+plugins {
+    // 声明插件 不应用
+    id "com.yzq.dependency-manager" apply false
 }
 
 
@@ -78,11 +74,34 @@ task clean(type: Delete) {
  */
 task checkJetifierAll(group: "verification") {}
 
+/*当前文件用来配置所有子工程公用的配置*/
+println("我是根目录下的build.gradle")
+apply from: "gradle_script/checkVersions.gradle"
+apply from: "gradle_script/config.gradle"
+
+
+/*对子工程的公共配置*/
 subprojects { project ->
+    /*依赖管理  基本上每个子项目都要依赖*/
+    apply plugin: 'com.yzq.dependency-manager'
+
+    // 如果想应用到某个子项目中，可以通过 subproject.name 来判断应用在哪个子项目中
+    // subproject.name 是你子项目的名字
+    // 官方文档地址：https://guides.gradle.org/creating-multi-project-builds/#add_documentation
+//    if (subproject.name == "app") {
+//        apply plugin: 'com.android.application'
+//    } else {
+//        apply plugin: 'com.android.library'
+//    }
+
     project.tasks.whenTaskAdded { task ->
         if (task.name == "checkJetifier") {
             checkJetifierAll.dependsOn(task)
         }
     }
 }
+
+
+
+
 
