@@ -1,8 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.Manifest
-import android.content.pm.PackageManager
-import androidx.core.app.ActivityCompat
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
@@ -28,19 +26,12 @@ class NetworkActivity : BaseActivity(), OnNetworkStatusChangedListener {
     }
 
     override fun initData() {
-
         getPermissions(Manifest.permission.READ_PHONE_STATE) {
-            if (ActivityCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.READ_PHONE_STATE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                val networkType = NetworkUtil.getNetworkType()
-                binding.tvNetworkStatus.text = buildString {
-                    append(networkType.code)
-                    append("--")
-                    append(networkType.desc)
-                }
+            val networkType = NetworkUtil.getNetworkType()
+            binding.tvNetworkStatus.text = buildString {
+                append(networkType.code)
+                append("--")
+                append(networkType.desc)
             }
         }
     }

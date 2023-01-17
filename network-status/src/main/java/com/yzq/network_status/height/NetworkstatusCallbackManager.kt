@@ -1,6 +1,5 @@
 package com.yzq.network_status.height
 
-import android.Manifest
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.ConnectivityManager.NetworkCallback
@@ -10,7 +9,6 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import androidx.annotation.RequiresApi
-import androidx.annotation.RequiresPermission
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -27,7 +25,6 @@ import com.yzq.network_status.OnNetworkStatusChangedListener
  * @time : 18:08
  */
 
-@RequiresApi(Build.VERSION_CODES.LOLLIPOP)
 object NetworkstatusCallbackManager : NetworkCallback() {
 
     private val listenersSet by lazy { mutableSetOf<OnNetworkStatusChangedListener>() }
@@ -137,7 +134,7 @@ object NetworkstatusCallbackManager : NetworkCallback() {
      * @param network Network
      * @param networkCapabilities NetworkCapabilities
      */
-    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
+
     override fun onCapabilitiesChanged(network: Network, networkCapabilities: NetworkCapabilities) {
         dispatchStatus(NetworkUtil.getNetworkType())
     }

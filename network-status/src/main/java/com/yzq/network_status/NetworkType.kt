@@ -8,6 +8,7 @@ package com.yzq.network_status
  */
 
 enum class NetworkType(val code: Int, val desc: String) {
+    PERMISSION_DENIED(-3, "缺少权限"),
     NETWORK_UNKONW(-2, "未知网络"),
     NETWORK_NO(-1, "无网络"),
     NETWORK_ETHERNET(0, "以太网"),

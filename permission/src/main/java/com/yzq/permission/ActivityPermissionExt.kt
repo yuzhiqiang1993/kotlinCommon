@@ -22,7 +22,7 @@ fun ComponentActivity.getPermissions(
     permissionGranted: () -> Unit,
 ) {
     /*如果已经有权限，直接执行逻辑*/
-    if (XXPermissions.isGranted(this, permissions)) {
+    if (permissionsGranted(*permissions)) {
         LogUtils.i("已有权限：$permissions")
         permissionGranted.invoke()
         return
@@ -46,7 +46,8 @@ fun ComponentActivity.getPermissions(
                     /*用户点了拒绝并勾选了不在提示 弹窗提示用户手动给权限*/
                     showPermissionSettingDialog(
                         deniedPermissions,
-                        permissionGranted)
+                        permissionGranted
+                    )
                     return
                 }
 
@@ -85,10 +86,13 @@ fun ComponentActivity.showPermissionSettingDialog(
 ) {
 
 
-    showPositiveCallbackDialog(getString(R.string.common_permission_alert),
-        getHintMessage(deniedPermissions)) {
+    showPositiveCallbackDialog(
+        getString(R.string.common_permission_alert),
+        getHintMessage(deniedPermissions)
+    ) {
         /*跳转到设置页面*/
-        XXPermissions.startPermissionActivity(this,
+        XXPermissions.startPermissionActivity(
+            this,
             deniedPermissions,
             object : OnPermissionPageCallback {
                 override fun onGranted() {
@@ -115,8 +119,10 @@ fun ComponentActivity.showPermissionSettingDialog(
 private fun ComponentActivity.getHintMessage(
     deniedPermissions: MutableList<String>,
 ): String {
-    var message: String = getString(R.string.common_permission_message,
-        PermissionNameConvert.getPermissionString(this, deniedPermissions))
+    var message: String = getString(
+        R.string.common_permission_message,
+        PermissionNameConvert.getPermissionString(this, deniedPermissions)
+    )
     if (deniedPermissions.size == 1) {
         val deniedPermission: String = deniedPermissions.get(0)
 

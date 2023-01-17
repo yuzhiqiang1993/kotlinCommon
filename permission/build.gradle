@@ -44,6 +44,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':materialdialog')
+    implementation project(path: ':application')
 
     /*utils*/
     implementation ThirdParty.utilcode

@@ -49,6 +49,7 @@ dependencies {
     //Lifecycles only (without ViewModel or LiveData)
     implementation AndroidOfficial.lifecycle
     implementation project(path: ':application')
+    implementation project(path: ':permission')
 
 
 }

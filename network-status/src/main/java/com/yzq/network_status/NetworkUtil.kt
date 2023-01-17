@@ -1,9 +1,11 @@
 package com.yzq.network_status
 
 import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Build
-import androidx.annotation.RequiresPermission
 import androidx.lifecycle.LifecycleOwner
+import com.blankj.utilcode.util.LogUtils
+import com.yzq.application.AppContext.checkSelfPermission
 import com.yzq.network_status.common.INetworkStatus
 import com.yzq.network_status.height.NetworkHeight
 import com.yzq.network_status.legacy.NetworkLegacy
@@ -22,7 +24,6 @@ object NetworkUtil : INetworkStatus {
      * @param context Context
      * @return Boolean
      */
-    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     override fun isConnected(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             NetworkHeight.isConnected()
@@ -36,7 +37,6 @@ object NetworkUtil : INetworkStatus {
      * 需要权限： `<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />`
      * @return Boolean
      */
-    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     override fun isMobileData(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             NetworkHeight.isMobileData()
@@ -50,7 +50,6 @@ object NetworkUtil : INetworkStatus {
      * 需要权限： `<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />`
      * @return Boolean
      */
-    @RequiresPermission(Manifest.permission.ACCESS_NETWORK_STATE)
     override fun isWifiConnected(): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             NetworkHeight.isWifiConnected()
@@ -64,8 +63,11 @@ object NetworkUtil : INetworkStatus {
      * 需要申请动态权限  `Manifest.permission.READ_PHONE_STATE`
      * @return NetworkType
      */
-    @RequiresPermission(Manifest.permission.READ_PHONE_STATE)
     override fun getNetworkType(): NetworkType {
+        if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            LogUtils.e("缺少 android.permission.READ_PHONE_STATE 权限")
+            return NetworkType.PERMISSION_DENIED
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return NetworkHeight.getNetworkType()
         } else {
