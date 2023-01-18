@@ -1,4 +1,39 @@
-/*用来声明当前工程都包含哪些子工程*/
+/*原本的buildscript 插件管理*/
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
+        maven {
+            url 'https://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
+        maven {
+            url "https://artifact.bytedance.com/repository/byteX/"
+        }
+        gradlePluginPortal()
+    }
+
+}
+/*原本的allprojects 依赖管理*/
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://maven.aliyun.com/nexus/content/repositories/releases/'
+        }
+        maven {
+            url 'https://maven.aliyun.com/repository/public/'
+        }
+        maven {
+            url "https://jitpack.io"
+            credentials { username authToken }
+        }
+    }
+}
 
 
 /**
@@ -63,6 +98,7 @@ println "rootProjectName:${rootProject.getName()}"
 //
 //})
 
+/*用来声明当前工程都包含哪些子工程*/
 include ':app',
         ':common',
         ':gao-de-map',
@@ -78,5 +114,7 @@ include ':coroutine'
 include ':binding'
 include ':mmkv'
 include ':statusbar'
+
+
+/*构建管理插件*/
 includeBuild("dependency-manager-plugin")
-include ':mylibrary'

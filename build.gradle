@@ -1,67 +1,76 @@
-buildscript {
-
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url 'https://maven.aliyun.com/repository/public/'
-        }
-        maven {
-            url 'https://maven.aliyun.com/nexus/content/repositories/releases/'
-        }
-        maven {
-            url "https://artifact.bytedance.com/repository/byteX/"
-        }
-        gradlePluginPortal()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.1'
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.21'
-        /*依赖版本管理 执行./gradlew dependencyUpdates 获取是否有新版本*/
-        classpath "com.github.ben-manes:gradle-versions-plugin:0.44.0"
-
-        /*the router*/
-        classpath 'cn.therouter:plugin:1.1.1'
-
-
-//        def bytex_plugin_version = "0.3.0"
-//        /*byteX 基础*/
-//        classpath "com.bytedance.android.byteX:base-plugin:${bytex_plugin_version}"
-//        /*方法内联*/
-//        classpath "com.bytedance.android.byteX:access-inline-plugin:${bytex_plugin_version}"
-//        /*常量内联*/
-//        classpath "com.bytedance.android.byteX:const-inline-plugin:${bytex_plugin_version}"
-//        /*资源优化*/
-//        classpath "com.bytedance.android.byteX:shrink-r-plugin:${bytex_plugin_version}"
-//        /*方法移除*/
-//        classpath "com.bytedance.android.byteX:method-call-opt-plugin:${bytex_plugin_version}"
-    }
-}
 plugins {
-    // 声明插件 不应用
-    id "com.yzq.dependency-manager" apply false
+    id 'com.android.application' version '7.3.0' apply false
+    id 'com.android.library' version '7.3.0' apply false
+    id 'org.jetbrains.kotlin.android' version '1.7.21' apply false
+    id 'cn.therouter' version '1.1.1' apply false
+    id "com.yzq.dependency-manager" apply true
+    id "com.github.ben-manes.versions" version('0.44.0') apply(false)
 }
 
+//buildscript {
+//
+//    repositories {
+//        google()
+//        mavenCentral()
+//        maven {
+//            url 'https://maven.aliyun.com/repository/public/'
+//        }
+//        maven {
+//            url 'https://maven.aliyun.com/nexus/content/repositories/releases/'
+//        }
+//        maven {
+//            url "https://artifact.bytedance.com/repository/byteX/"
+//        }
+//        gradlePluginPortal()
+//    }
+//    dependencies {
+//        classpath 'com.android.tools.build:gradle:7.3.1'
+//        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.21'
+//        /*依赖版本管理 执行./gradlew dependencyUpdates 获取是否有新版本*/
+//        classpath "com.github.ben-manes:gradle-versions-plugin:0.44.0"
+//
+//        /*the router*/
+//        classpath 'cn.therouter:plugin:1.1.1'
+//
+//
+////        def bytex_plugin_version = "0.3.0"
+////        /*byteX 基础*/
+////        classpath "com.bytedance.android.byteX:base-plugin:${bytex_plugin_version}"
+////        /*方法内联*/
+////        classpath "com.bytedance.android.byteX:access-inline-plugin:${bytex_plugin_version}"
+////        /*常量内联*/
+////        classpath "com.bytedance.android.byteX:const-inline-plugin:${bytex_plugin_version}"
+////        /*资源优化*/
+////        classpath "com.bytedance.android.byteX:shrink-r-plugin:${bytex_plugin_version}"
+////        /*方法移除*/
+////        classpath "com.bytedance.android.byteX:method-call-opt-plugin:${bytex_plugin_version}"
+//    }
+//}
+//plugins {
+//    // 声明插件 不应用
+//    id "com.yzq.dependency-manager" apply false
+//}
 
-allprojects {
-    group "https://github.com/yuzhiqiang1993"
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            url 'https://maven.aliyun.com/nexus/content/repositories/releases/'
-        }
-        maven {
-            url 'https://maven.aliyun.com/repository/public/'
-        }
-        maven {
-            url "https://jitpack.io"
-            credentials { username authToken }
-        }
 
-
-    }
-}
+//allprojects {
+//    group "https://github.com/yuzhiqiang1993"
+//    repositories {
+//        google()
+//        mavenCentral()
+//        maven {
+//            url 'https://maven.aliyun.com/nexus/content/repositories/releases/'
+//        }
+//        maven {
+//            url 'https://maven.aliyun.com/repository/public/'
+//        }
+//        maven {
+//            url "https://jitpack.io"
+//            credentials { username authToken }
+//        }
+//
+//
+//    }
+//}
 
 
 task clean(type: Delete) {
@@ -83,7 +92,7 @@ apply from: "gradle_script/config.gradle"
 /*对子工程的公共配置*/
 subprojects { project ->
     /*依赖管理  基本上每个子项目都要依赖*/
-    apply plugin: 'com.yzq.dependency-manager'
+//    apply plugin: 'com.yzq.dependency-manager'
 
     // 如果想应用到某个子项目中，可以通过 subproject.name 来判断应用在哪个子项目中
     // subproject.name 是你子项目的名字
