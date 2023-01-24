@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.splashscreen.SplashScreenViewProvider
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
@@ -26,26 +24,36 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 
 @SuppressLint("CustomSplashScreen")
-class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
+class SplashActivity : AppCompatActivity() {
 
     private var notReady = AtomicBoolean(true)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         LogUtils.i("onCreate")
-        immersive(Color.WHITE, true)
-        /*启动屏*/
-        val splashScreen = installSplashScreen()
-        /*设置保持住当前splash*/
-        splashScreen.setKeepOnScreenCondition(this)
-//        setContentView(R.layout.activity_splash)
 
-        /*结束动画 在这里面才能加一些自己要显示的ui*/
-        splashScreen.setOnExitAnimationListener { splashScreenViewProvider ->
-            LogUtils.i("setOnExitAnimationListener")
-            immersive(Color.WHITE, true)//由于splash的主题执行完毕了，所以会显示App主题色的状态栏（默认主主色调是蓝色）不沉浸式的话看起来很怪
-            handleRoute(splashScreenViewProvider)
+        immersive(Color.WHITE, true)
+
+        /*启动屏*/
+        installSplashScreen().apply {
+            /*设置保持住当前splash*/
+            setKeepOnScreenCondition {
+                return@setKeepOnScreenCondition notReady.get()
+            }
+            /**
+             * 自己处理动画 在这里面才能加一些自己要显示的ui
+             */
+            setOnExitAnimationListener {
+                /*debug时可能会出现回调不执行的情况，手动杀死app进程然后重新打开即可*/
+                LogUtils.i("setOnExitAnimationListener")
+                immersive(Color.WHITE, true)//由于splash的主题执行完毕了，所以会显示App主题色的状态栏（默认主主色调是蓝色）不沉浸式的话看起来很怪
+                /*路由*/
+                handleRoute()
+            }
+
         }
+
+//        setContentView(R.layout.activity_splash)
 
         MainScope().launch {
             LogUtils.i("可以做一些初始化的逻辑，初始化完成后继续走")
@@ -55,28 +63,24 @@ class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
 
     }
 
-    private fun handleRoute(splashScreenViewProvider: SplashScreenViewProvider) {
+
+    private fun handleRoute() {
         if (MMKVUtil.appFirstOpen) {
             /*首次打开可以弹窗提示同意 隐私政策 */
-            showCallbackDialog("提示", "同意隐私政策，用户协议",
-                positiveCallback = {
-                    MMKVUtil.appFirstOpen = false
-                    /*在这里进行页面跳转*/
-                    route(splashScreenViewProvider)
-
-                },
-                negativeCallback = {
-//                    splashScreenViewProvider.remove()
-                    finishAfterTransition()
-                }
-            )
+            showCallbackDialog("提示", "同意隐私政策，用户协议", positiveCallback = {
+                MMKVUtil.appFirstOpen = false
+                /*在这里进行页面跳转*/
+                route()
+            }, negativeCallback = {
+                finishAfterTransition()
+            })
         } else {
-            route(splashScreenViewProvider)
+            route()
         }
 
     }
 
-    private fun route(splashScreenViewProvider: SplashScreenViewProvider) {
+    private fun route() {
         if (MMKVUtil.hasLogin) {
             navFinish(RoutePath.Main.MAIN)
         } else {
@@ -117,7 +121,4 @@ class SplashActivity : AppCompatActivity(), SplashScreen.KeepOnScreenCondition {
 
     }
 
-    override fun shouldKeepOnScreen(): Boolean {
-        return notReady.get()
-    }
 }
