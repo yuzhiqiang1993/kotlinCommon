@@ -11,6 +11,14 @@
         android:id="@+id/layout_toolbar"
         layout="@layout/toolbar" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_getApk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:text="获取安装包" />
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_file_diff"

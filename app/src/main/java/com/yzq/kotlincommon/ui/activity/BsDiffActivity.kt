@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
+import com.blankj.utilcode.util.LogUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.observeUIState
@@ -29,6 +30,12 @@ class BsDiffActivity : BaseActivity() {
 
             initToolbar(toolbar = layoutToolbar.toolbar, "BsDiff")
 
+
+            btnGetApk.setOnThrottleTimeClick {
+                getApk()
+
+            }
+
             btnFileDiff.setOnThrottleTimeClick {
                 /*生成差分包*/
                 vm.createDiffFile()
@@ -39,6 +46,30 @@ class BsDiffActivity : BaseActivity() {
                 vm.combineFile()
             }
         }
+    }
+
+
+    /**
+     * Get apk
+     *
+     */
+    private fun getApk() {
+
+//        getPermissions(Permission.REQUEST_INSTALL_PACKAGES)
+//        val appPath = AppUtils.getAppPath()
+//        LogUtils.i("appPath:${appPath}")
+
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//            packageManager.getApplicationInfo(packageName, ApplicationInfoFlags.of(PackageManager.GET_META_DATA.toLong()))
+//        }else{
+        val applicationInfo = packageManager.getApplicationInfo(packageName, 0)
+
+//        }
+        LogUtils.i("application:${applicationInfo}")
+        val apkPath = applicationInfo.sourceDir//这个路径就是apk的全路径
+        LogUtils.i("apkPath = ${apkPath}")
+
     }
 
     override fun observeViewModel() {
