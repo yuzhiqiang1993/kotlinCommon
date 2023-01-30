@@ -120,7 +120,7 @@ object ThirdParty {
 
     const val xeonBsDiff = "io.github.yuzhiqiang1993:xeon_bsdiff:1.0.1"
 
-    const val BRV = "com.github.liangjingkanji:BRV:1.3.88"
+    const val BRV = "com.github.liangjingkanji:BRV:1.3.90"
 
     const val flexboxLayout = "com.github.google:flexbox-layout:3.0.0"
 

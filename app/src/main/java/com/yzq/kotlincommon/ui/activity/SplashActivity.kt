@@ -26,11 +26,9 @@ import java.util.concurrent.atomic.AtomicBoolean
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
-    private var notReady = AtomicBoolean(true)
-
+    private val keepOnScreenCondition = AtomicBoolean(true)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        LogUtils.i("onCreate")
 
         immersive(Color.WHITE, true)
 
@@ -38,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
         installSplashScreen().apply {
             /*设置保持住当前splash*/
             setKeepOnScreenCondition {
-                return@setKeepOnScreenCondition notReady.get()
+                return@setKeepOnScreenCondition keepOnScreenCondition.get()
             }
             /**
              * 自己处理动画 在这里面才能加一些自己要显示的ui
@@ -53,12 +51,13 @@ class SplashActivity : AppCompatActivity() {
 
         }
 
+        /*setContentView可以不要*/
 //        setContentView(R.layout.activity_splash)
 
         MainScope().launch {
             LogUtils.i("可以做一些初始化的逻辑，初始化完成后继续走")
             delay(200)
-            notReady.compareAndSet(true, false)
+            keepOnScreenCondition.compareAndSet(true, false)
         }
 
     }

@@ -46,7 +46,7 @@ class ImgPreviewActivity : BaseActivity() {
         BarUtils.setStatusBarColor(this, Color.BLACK)
 
         binding.photoView.setOnClickListener {
-            backPressedCallback.handleOnBackPressed()
+//            backPressedCallback.handleOnBackPressed()
         }
         Glide.with(this).load(imagePath).into(binding.photoView)
     }
