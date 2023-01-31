@@ -47,7 +47,6 @@ class ImageCompressActivity : BaseActivity() {
         initToolbar(binding.layoutToolbar.toolbar, "图片")
         binding.fabCamera.setOnClickListener {
             openCamera {
-
                 compressImgViewModel.compressImg(it[0].path)
             }
         }

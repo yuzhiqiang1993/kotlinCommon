@@ -82,8 +82,10 @@ class ImageListActivity : BaseActivity() {
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
                             this@ImageListActivity,
                             itemMovieLayoutBinding.ivImg,
-                            getString(com.yzq.base.R.string.img_transition)
+                            getString(R.string.img_transition)
                         )
+
+
                     startActivity(intent, options.toBundle())
                 }
             }

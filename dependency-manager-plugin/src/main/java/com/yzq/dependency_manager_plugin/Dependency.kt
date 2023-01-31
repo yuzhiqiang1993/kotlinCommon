@@ -66,7 +66,7 @@ object Kotlinx {
     const val coroutineAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutineVersion"
 
-    private const val kotlinVersion = "1.7.20"
+    private const val kotlinVersion = "1.8.0"
 
     /*一些官方库或者三方库依赖了 jdk7或者jdk8 所以最好在app中显示的依赖一下保证版本统一*/
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"

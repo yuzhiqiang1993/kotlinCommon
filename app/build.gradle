@@ -129,7 +129,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation(Kotlinx.kotlinStdlibJdk8)
+    implementation(Kotlinx.kotlinStdlib)
     implementation AndroidOfficial.viewpager2
     implementation(AndroidOfficial.coordinatorlayout)
     implementation(AndroidOfficial.splashscreen)
