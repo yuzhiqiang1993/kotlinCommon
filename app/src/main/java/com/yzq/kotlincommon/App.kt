@@ -113,6 +113,9 @@ class App : BaseApp(), BaseApp.AppExitListener {
         /*读取BuildConfig中的变量*/
         LogUtils.i("BuildConfig.BASE_URL = ${BuildConfig.BASE_URL}")
         LogUtils.i("BuildConfig.LOG_DEBUG = ${BuildConfig.LOG_DEBUG}")
+
+        val httpUserAgent = System.getProperty("http.agent")
+        LogUtils.i("httpUserAgent:$httpUserAgent")
     }
 
     override fun attachBaseContext(base: Context?) {

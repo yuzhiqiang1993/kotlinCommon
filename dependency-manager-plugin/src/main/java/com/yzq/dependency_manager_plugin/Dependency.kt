@@ -10,9 +10,9 @@ package com.yzq.dependency_manager_plugin
 
 
 object AndroidOfficial {
-    const val material = "com.google.android.material:material:1.7.0"
+    const val material = "com.google.android.material:material:1.8.0"
 
-    const val appcompat = "androidx.appcompat:appcompat:1.5.1"
+    const val appcompat = "androidx.appcompat:appcompat:1.6.0"
 
     const val activityKtx = "androidx.activity:activity-ktx:1.6.1"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.5"
@@ -103,7 +103,7 @@ object ThirdParty {
     const val buglyCrashreportUpgrade = "com.tencent.bugly:crashreport_upgrade:1.6.1"
     const val buglyNativeCrashreport = "com.tencent.bugly:nativecrashreport:3.9.2"
 
-    const val mmkv = "com.tencent:mmkv:1.2.14"
+    const val mmkv = "com.tencent:mmkv:1.2.15"
     const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:1.14.0"
 
     const val progressManager =
