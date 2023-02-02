@@ -21,24 +21,24 @@ object MapPermissionUtils {
     /*检查定位相关权限*/
     @SuppressLint("CheckResult")
     fun checkLocationPermission(
-        needGps: Boolean = false,
         activity: BaseActivity,
         block: () -> Unit,
     ) {
-        activity.getPermissions(Permission.ACCESS_FINE_LOCATION,
+        activity.getPermissions(
+            Permission.ACCESS_FINE_LOCATION,
             Permission.ACCESS_COARSE_LOCATION,
-            Permission.ACCESS_BACKGROUND_LOCATION) {
-            if (needGps) {
-                if (LocationUtils.isGpsEnabled()) {
-                    block()
-                } else {
-                    activity.showPositiveCallbackDialog("提示", "该功能需要打开GPS,否则无法使用") {
-                        LocationUtils.openGpsSettings()
-                    }
-                }
-            } else {
+            Permission.ACCESS_BACKGROUND_LOCATION
+        ) {
+
+            if (LocationUtils.isGpsEnabled()) {
                 block()
+            } else {
+                activity.showPositiveCallbackDialog("提示", "该功能需要打开GPS,否则无法使用") {
+                    LocationUtils.openGpsSettings()
+                }
             }
         }
+
+
     }
 }
