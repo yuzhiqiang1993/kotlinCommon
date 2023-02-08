@@ -124,6 +124,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("接口请求", RoutePath.Main.API_CALL))
         items.add(NaviItem("线程池", RoutePath.Main.THREAD_POOL))
         items.add(NaviItem("Service", RoutePath.Main.SERVICE))
+        items.add(NaviItem("存储", RoutePath.Main.STORAGE))
 
         setData()
     }

@@ -39,6 +39,7 @@ object RoutePath {
         const val API_CALL: String = "/main/apiCall"
         const val THREAD_POOL: String = "/main/threadPool"
         const val SERVICE: String = "/main/service"
+        const val STORAGE: String = "/main/storage"
 
     }
 

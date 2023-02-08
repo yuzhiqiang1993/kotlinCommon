@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.*
 import com.yzq.base.view_model.BaseViewModel
-import com.yzq.common.constants.StoragePath
+import com.yzq.common.constants.AppStorage
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.safety_coroutine.launchSafety
@@ -54,9 +54,11 @@ class CompressImgViewModel : BaseViewModel() {
                 .addFormDataPart("key1", "front")
                 .addFormDataPart("key2", "false")
                 .addFormDataPart("key3", "1")
-                .addFormDataPart("image",
+                .addFormDataPart(
+                    "image",
                     imageFile.getName(),
-                    imageFile.asRequestBody("image/*".toMediaTypeOrNull()))
+                    imageFile.asRequestBody("image/*".toMediaTypeOrNull())
+                )
                 .build()
 
 
@@ -113,7 +115,7 @@ class CompressImgViewModel : BaseViewModel() {
 
         /*保存的文件名称*/
         val savedImgPath =
-            StoragePath.externalAppPicturesPath + rootImgName + System.currentTimeMillis() + ".jpg"
+            "${AppStorage.External.Private.picturesPath}$rootImgName${System.currentTimeMillis()}.jpg"
         /*保存并返回图片路径*/
         if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
             /*返回保存后的路径*/

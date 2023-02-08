@@ -1,6 +1,7 @@
 package com.yzq.img
 
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -63,6 +64,22 @@ fun ImageView.load(path: String): ImageView {
 
     return this
 }
+
+/**
+ * Load
+ *
+ * @param uri
+ * @return
+ */
+fun ImageView.load(uri: Uri): ImageView {
+    Glide.with(context)
+        .load(uri)
+        .apply(options)
+        .into(this)
+
+    return this
+}
+
 
 /**
  * 加载时先用缩略图

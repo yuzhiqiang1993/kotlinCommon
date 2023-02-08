@@ -53,7 +53,7 @@ object LocationManager {
      * @param option
      * @return
      */
-    fun createNewLocationClient(option: AMapLocationClientOption): AMapLocationClient {
+    private fun createNewLocationClient(option: AMapLocationClientOption): AMapLocationClient {
         AMapLocationClient.updatePrivacyShow(AppContext, true, true)
         AMapLocationClient.updatePrivacyAgree(AppContext, true)
         val locationClient = AMapLocationClient(AppContext)

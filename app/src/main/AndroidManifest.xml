@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yzq.kotlincommon">
 
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> <!-- 前台服务权限 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <!--Android 适配Android 11-->
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--兼容低版本 Android10 及以上适配分区存储-->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+    <!-- 前台服务权限 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!--通知栏权限-->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -20,6 +32,11 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
 
+
+        <!-- 适配分区存储 -->
+        <meta-data
+            android:name="ScopedStorage"
+            android:value="true" />
         <!--
         android:enabled : 如果为true，则这个service可以被系统实例化，如果为false，则不行。默认为true
         android:exported : 如果为true，则其他应用的组件也可以调用这个service并且可以与它进行互动，如果为false，则只有与service同一个应用或者相同user ID的应用可以开启或绑定此service。它的默认值取决于service是否有intent filters。如果一个filter都没有，就意味着只有指定了service的准确的类名才能调用，也就是说这个service只能应用内部使用——其他的应用不知道它的类名。这种情况下exported的默认值就为false。反之，只要有了一个filter，就意味着service是考虑到外界使用的情况的，这时exported的默认值就为true
@@ -193,7 +210,13 @@
             android:name=".ui.activity.DropDownMenuActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- 消息接收监听器 -->
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.activity.StorageActivity"
+            android:exported="false" />
+
+        <!-- 消息接收监听器 -->
         <receiver
             android:name="com.yzq.aliemas.push.AliPushReceiver"
             android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->

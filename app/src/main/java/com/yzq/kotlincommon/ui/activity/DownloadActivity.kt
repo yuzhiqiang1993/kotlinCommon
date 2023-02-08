@@ -1,15 +1,14 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.lifecycle.lifecycleScope
-import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileIOUtils
 import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.PathUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
+import com.yzq.common.constants.AppStorage
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.net.FileRetrofitFactory
 import com.yzq.common.net.api.ApiService
@@ -20,7 +19,6 @@ import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
 import com.yzq.materialdialog.changeProgress
 import com.yzq.materialdialog.changeTitle
 import com.yzq.materialdialog.newProgressDialog
-import com.yzq.permission.getPermissions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.jessyan.progressmanager.ProgressListener
@@ -40,11 +38,13 @@ class DownloadActivity : BaseActivity() {
 
         binding.btnDownload
             .setOnClickListener {
-                getPermissions(PermissionConstants.STORAGE) {
-
-                    LogUtils.i("有以下权限:$it")
-                    downloadApk()
-                }
+                /**
+                 * 要想在外部存储的公共目录中写文件，要申请文件管理权限，适配Android11
+                 */
+//                getPermissions(Permission.MANAGE_EXTERNAL_STORAGE) {
+//                    LogUtils.i("有以下权限:$it")
+                downloadApk()
+//                }
             }
     }
 
@@ -75,8 +75,15 @@ class DownloadActivity : BaseActivity() {
 
                 LogUtils.i("""总长度：${download.contentLength()}""")
 
+
+                /**
+                 * Path  公共目录需要先申请管理所有文件的权限,一个准则是能在app私有目录中解决就不要向公共目录中写入数据
+                 */
+//                val path =
+//                    "${AppStorage.External.Public.downloadPath}${packageName}${File.separator}yzq.apk"
+
                 val path =
-                    "${PathUtils.getExternalAppFilesPath()}/yzq.apk"
+                    "${AppStorage.External.Private.downloadPath}yzq.apk"
 
                 val su = withContext(Dispatchers.IO) {
                     FileIOUtils.writeFileFromIS(path, download.byteStream())

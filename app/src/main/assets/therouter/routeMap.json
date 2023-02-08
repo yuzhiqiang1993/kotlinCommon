@@ -42,6 +42,13 @@
     "params": {}
   },
   {
+    "path": "/main/storage",
+    "className": "com.yzq.kotlincommon.ui.activity.StorageActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/main/service",
     "className": "com.yzq.kotlincommon.ui.activity.ServiceActivity",
     "action": "",

@@ -134,6 +134,9 @@ dependencies {
     implementation(AndroidOfficial.coordinatorlayout)
     implementation(AndroidOfficial.splashscreen)
     implementation(AndroidOfficial.recyclerview)
+    implementation 'androidx.appcompat:appcompat:1.6.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
     kapt AndroidOfficial.roomCompiler
     kapt TheRouter.theRouterApt

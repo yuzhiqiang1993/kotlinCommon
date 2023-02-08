@@ -60,6 +60,8 @@ class ImageCompressActivity : BaseActivity() {
 
                 LogUtils.i("选择的图片是$selectedPhotos")
             }
+
+
         }
 
         binding.ivImg.setOnClickListener {

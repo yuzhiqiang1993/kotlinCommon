@@ -13,7 +13,6 @@ import com.blankj.utilcode.util.ProcessUtils
 import com.tencent.mmkv.MMKV
 import com.therouter.TheRouter
 import com.yzq.application.BaseApp
-import com.yzq.common.constants.StoragePath
 import com.yzq.kotlincommon.task.main_thread_task.*
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 
@@ -43,7 +42,6 @@ class App : BaseApp(), BaseApp.AppExitListener {
             /*读清单配置文件里的数据*/
             readMetaData()
 
-            StoragePath.logPathInfo()
 
             Trace.beginSection("BaseApp_AppInit")
 
