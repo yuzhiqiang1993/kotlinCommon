@@ -26,6 +26,7 @@ import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.coroutine.safety_coroutine.withIO
 import com.yzq.kotlincommon.databinding.ActivityStorageBinding
 import com.yzq.permission.getPermissions
+import java.io.File
 
 
 /**
@@ -87,14 +88,14 @@ class StorageActivity : BaseActivity() {
                 val path: String
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    path = Environment.DIRECTORY_PICTURES
+                    path = "${Environment.DIRECTORY_PICTURES}${File.separator}KotlinCommon"
                     values.put(
                         MediaStore.MediaColumns.RELATIVE_PATH,
                         path
                     )
                 } else {
                     path =
-                        "${Environment.getExternalStorageDirectory().path}/${Environment.DIRECTORY_PICTURES}"
+                        "${Environment.getExternalStorageDirectory().path}/${Environment.DIRECTORY_PICTURES}${File.separator}KotlinCommon"
                     values.put(
                         MediaStore.MediaColumns.DATA,
                         "$path/$displayName"
@@ -115,7 +116,7 @@ class StorageActivity : BaseActivity() {
 
                     /*通知相册更新数据*/
                     MediaScannerConnection.scanFile(
-                        this@StorageActivity, arrayOf(uri.path), null
+                        this@StorageActivity, arrayOf(uri.path), arrayOf(mimeType)
                     ) { path, uri ->
                         LogUtils.i("scanFile path:$path")
                         LogUtils.i("scanFile uri:$uri")
