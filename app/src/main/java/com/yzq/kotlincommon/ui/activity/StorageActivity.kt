@@ -126,11 +126,7 @@ class StorageActivity : BaseActivity() {
 
 
             }
-
-
             showImg()
-
-
         }
 
     }

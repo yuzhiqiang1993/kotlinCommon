@@ -1,19 +1,29 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.content.Intent
+import android.net.Uri
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import coil.load
+import com.blankj.utilcode.util.UriUtils
+import com.hjq.permissions.Permission
 import com.therouter.router.Route
 import com.yzq.base.R
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
+import com.yzq.common.constants.AppStorage
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
 import com.yzq.kotlincommon.view_model.CompressImgViewModel
+import com.yzq.permission.getPermissions
+import java.io.File
+import java.util.*
 
 /**
  * @description: 图片相关
@@ -26,12 +36,14 @@ import com.yzq.kotlincommon.view_model.CompressImgViewModel
 @Route(path = RoutePath.Main.IMG_COMPRESS)
 class ImageCompressActivity : BaseActivity() {
 
+    private var takePhotoResult: ActivityResultLauncher<Uri>? = null
+    private var takePhotoUri: Uri? = null
+
     private val binding by viewbind(ActivityImageCompressBinding::inflate)
     private val vm: CompressImgViewModel by viewModels()
 
     private lateinit var compressImgViewModel: CompressImgViewModel
 
-//    private var selectedPhotos = arrayListOf<Photo>()
 
     private lateinit var imgPath: String
 
@@ -40,24 +52,42 @@ class ImageCompressActivity : BaseActivity() {
 
         compressImgViewModel = ViewModelProvider(this).get(CompressImgViewModel::class.java)
 
+        takePhotoResult =
+            registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
+                if (success) {
+                    takePhotoUri?.run {
+                        compressImgViewModel.compressImg(UriUtils.uri2FileNoCacheCopy(this).absolutePath)
+                    }
+                }
+            }
+
         initToolbar(binding.layoutToolbar.toolbar, "图片")
         binding.fabCamera.setOnClickListener {
-//            openCamera {
-//                compressImgViewModel.compressImg(it[0].path)
-//            }
+
+            getPermissions(Permission.CAMERA, Permission.READ_MEDIA_IMAGES) {
+
+                /*创建要保存的文件*/
+                val file = File(
+                    "${AppStorage.External.Public.picturesPath}/KotlinCommon",
+                    "${Calendar.getInstance().timeInMillis}.png"
+                )
+                /*获得uri*/
+                takePhotoUri = FileProvider.getUriForFile(
+                    this,
+                    applicationContext.packageName + ".provider",
+                    file
+                )
+                takePhotoResult?.launch(takePhotoUri)
+            }
+
         }
 
         binding.fabAlbum.setOnClickListener {
 
-//            openAlbum(count = 5, selectedPhotos = selectedPhotos) {
-//                selectedPhotos.clear()
-//                selectedPhotos.addAll(it)
-//                compressImgViewModel.compressImg(selectedPhotos[0].path)
-//
-//                LogUtils.i("选择的图片是$selectedPhotos")
-//            }
+            getPermissions(Permission.READ_MEDIA_IMAGES) {
+                /*暂时没有适配Android13的相册选择器*/
 
-
+            }
         }
 
         binding.ivImg.setOnClickListener {
