@@ -6,7 +6,6 @@ import com.blankj.utilcode.util.ToastUtils
 import com.hjq.permissions.Permission
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
-import com.yzq.img.openAlbum
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentUserBinding
 import com.yzq.materialdialog.showCallbackDialog
@@ -64,9 +63,9 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
         }
 
         binding.btnSelectImg.setOnClickListener {
-            openAlbum {
-                ToastUtils.showShort("选择的图片:$it")
-            }
+//            openAlbum {
+//                ToastUtils.showShort("选择的图片:$it")
+//            }
         }
 
         binding.btnPermission.setOnClickListener {

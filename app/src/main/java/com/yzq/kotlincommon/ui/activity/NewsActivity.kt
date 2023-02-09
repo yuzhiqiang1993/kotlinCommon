@@ -3,6 +3,7 @@ package com.yzq.kotlincommon.ui.activity
 import android.content.Intent
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.lifecycleScope
+import coil.load
 import com.blankj.utilcode.util.LogUtils
 import com.drake.brv.utils.bindingAdapter
 import com.drake.brv.utils.divider
@@ -18,7 +19,6 @@ import com.yzq.common.data.juhe.toutiao.TouTiao
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.safety_coroutine.launchSafety
-import com.yzq.img.loadWithThumbnail
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMovieListBinding
 import com.yzq.kotlincommon.databinding.ItemMovieLayoutBinding
@@ -45,7 +45,7 @@ class NewsActivity : BaseActivity() {
                 onBind {
                     val itemMovieLayoutBinding = getBinding<ItemMovieLayoutBinding>()
                     val model = getModel<TouTiao.Result.Data>()
-                    itemMovieLayoutBinding.ivImg.loadWithThumbnail(model.thumbnailPicS)
+                    itemMovieLayoutBinding.ivImg.load(model.thumbnailPicS)
                     itemMovieLayoutBinding.tvTitle.setText(model.title)
                 }
 

@@ -131,14 +131,13 @@ object ThirdParty {
 
     const val eventBus = "org.greenrobot:eventbus:3.3.1"
 
-    private const val glideVersion = "4.14.2"
-    const val glide = "com.github.bumptech.glide:glide:$glideVersion"
-    const val glideCompiler = "com.github.bumptech.glide:compiler:$glideVersion"
+
+    /*https://github.com/coil-kt/coil/blob/main/README-zh.md*/
+    const val coil = "io.coil-kt:coil:2.2.2"
 
     /*photoView*/
     const val photoview = "com.github.chrisbanes:PhotoView:2.3.0"
 
-    const val easyPhotos = "com.github.HuanTanSheng:EasyPhotos:3.1.5"
 
     private const val materialDialog = "3.3.0"
     const val materialDialogsCore = "com.afollestad.material-dialogs:core:$materialDialog"

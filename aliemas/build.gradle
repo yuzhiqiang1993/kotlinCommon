@@ -1,5 +1,4 @@
 import com.yzq.dependency_manager_plugin.AndroidConfig
-import com.yzq.dependency_manager_plugin.Kotlinx
 import com.yzq.dependency_manager_plugin.ThirdParty
 
 plugins {
@@ -43,7 +42,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation(Kotlinx.kotlinStdlib)
+
     implementation ThirdParty.utilcode
 
 
@@ -56,7 +55,7 @@ dependencies {
     //移动分析  埋点 部分arm64-v8a设备上报错： https://help.aliyun.com/document_detail/65275.html
 //    api 'com.aliyun.ams:alicloud-android-man:1.2.7'
     //推送
-    api 'com.aliyun.ams:alicloud-android-push:3.8.1'
+    api 'com.aliyun.ams:alicloud-android-push:3.8.2'
     //公共依赖库
     api 'com.aliyun.ams:alicloud-android-utdid:2.6.0'
     api 'com.aliyun.ams:alicloud-android-utils:2.0.0'

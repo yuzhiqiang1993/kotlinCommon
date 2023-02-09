@@ -28,6 +28,8 @@ fun ComponentActivity.getPermissions(
         return
     }
 
+    XXPermissions.setCheckMode(BuildConfig.DEBUG)
+
     XXPermissions
         .with(this)
         .permission(permissions)

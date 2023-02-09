@@ -61,6 +61,8 @@ class App : BaseApp(), BaseApp.AppExitListener {
                 .start()
                 .await()
 
+
+
             Trace.endSection()
         } else {
             LogUtils.i("非主进程")

@@ -49,12 +49,8 @@ dependencies {
 
     implementation AndroidOfficial.appcompat
 
-    /*glide*/
-    api ThirdParty.glide
-    kapt ThirdParty.glideCompiler
-
     api ThirdParty.photoview
-    api ThirdParty.easyPhotos
+    api ThirdParty.coil
 
     /*utils*/
     implementation ThirdParty.utilcode

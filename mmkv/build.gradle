@@ -1,5 +1,4 @@
 import com.yzq.dependency_manager_plugin.AndroidConfig
-import com.yzq.dependency_manager_plugin.Kotlinx
 import com.yzq.dependency_manager_plugin.ThirdParty
 
 plugins {
@@ -35,6 +34,6 @@ android {
 }
 
 dependencies {
-    implementation(Kotlinx.kotlinStdlib)
+
     api(ThirdParty.mmkv)
 }

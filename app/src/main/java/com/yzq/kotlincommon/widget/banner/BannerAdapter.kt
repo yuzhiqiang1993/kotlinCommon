@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.widget.banner
 
 import androidx.appcompat.widget.AppCompatImageView
-import com.yzq.img.load
+import coil.load
 import com.yzq.kotlincommon.R
 import com.zhpan.bannerview.BaseBannerAdapter
 import com.zhpan.bannerview.BaseViewHolder

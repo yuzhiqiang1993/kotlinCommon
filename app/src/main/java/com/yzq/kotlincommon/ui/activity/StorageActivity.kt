@@ -2,17 +2,18 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.content.ContentUris
 import android.content.ContentValues
+import android.graphics.Bitmap
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.FileProvider
 import androidx.lifecycle.lifecycleScope
+import coil.load
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.blankj.utilcode.util.UriUtils
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
@@ -23,11 +24,8 @@ import com.yzq.common.constants.AppStorage
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.coroutine.safety_coroutine.withIO
-import com.yzq.img.load
 import com.yzq.kotlincommon.databinding.ActivityStorageBinding
 import com.yzq.permission.getPermissions
-import java.io.BufferedOutputStream
-import java.io.File
 
 
 /**
@@ -41,11 +39,9 @@ import java.io.File
 @Route(path = RoutePath.Main.STORAGE)
 class StorageActivity : BaseActivity() {
 
-    private var takePhotoActivityResult: ActivityResultLauncher<Uri>? = null
+    private var takePhotoActivityResult: ActivityResultLauncher<Void?>? = null
+
     private val binding by viewbind(ActivityStorageBinding::inflate)
-
-
-    private var photoUri: Uri? = null
 
 
     init {
@@ -64,75 +60,76 @@ class StorageActivity : BaseActivity() {
         super.initListener()
 
         takePhotoActivityResult =
-            registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
-                LogUtils.i("success:${success}")
-                if (success) {
-                    saveImg()
-                }
+            registerForActivityResult(ActivityResultContracts.TakePicturePreview()) {
+                it?.run { saveImg(this) }
             }
+
     }
 
-    private fun saveImg() {
+
+    /**
+     * Save img  将拍摄的照片保存到公共文件夹中
+     *
+     * @param bitmap
+     */
+    private fun saveImg(bitmap: Bitmap) {
 
         lifecycleScope.launchSafety {
+            withIO {
 
-            val path = withIO {
-                return@withIO photoUri?.run {
-                    LogUtils.i("uri = ${path}")
-                    val file = UriUtils.uri2File(photoUri)
+                val displayName = "${System.currentTimeMillis()}.jpg"
+                val mimeType = "image/jpeg"
+                val compressFormat = Bitmap.CompressFormat.JPEG
+                val values = ContentValues()
+                values.put(MediaStore.MediaColumns.DISPLAY_NAME, displayName)
+                values.put(MediaStore.MediaColumns.MIME_TYPE, mimeType)
 
-                    val contentValues = ContentValues().apply {
-                        put(MediaStore.MediaColumns.DISPLAY_NAME, file.name)
-                        put(MediaStore.MediaColumns.MIME_TYPE, "jpg")
-                    }
+                val path: String
 
-
-                    val path: String
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                        path =
-                            "${Environment.DIRECTORY_PICTURES}${File.separator}KotlinCommon${File.separator}"
-                        LogUtils.i("path:${path}")
-                        contentValues.put(
-                            MediaStore.MediaColumns.RELATIVE_PATH,
-                            path
-                        )
-                    } else {
-                        path =
-                            "${Environment.getExternalStorageDirectory().path}/${Environment.DIRECTORY_PICTURES}/KotlinCommon/"
-                        LogUtils.i("path:${path}")
-                        contentValues.put(
-                            MediaStore.MediaColumns.DATA,
-                            "${path}${file.name}"
-                        )
-                    }
-                    val uri = contentResolver.insert(
-                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                        contentValues
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    path = Environment.DIRECTORY_PICTURES
+                    values.put(
+                        MediaStore.MediaColumns.RELATIVE_PATH,
+                        path
                     )
-                    if (uri != null) {
-                        val bis = file.inputStream().buffered()
-                        val outputStream = contentResolver.openOutputStream(uri)
-                        if (outputStream != null) {
-                            val bos = BufferedOutputStream(outputStream)
-                            val buffer = ByteArray(1024)
-                            var bytes = bis.read(buffer)
-                            while (bytes >= 0) {
-                                bos.write(buffer, 0, bytes)
-                                bos.flush()
-                                bytes = bis.read(buffer)
-                            }
-                            bos.close()
-                        }
-                        bis.close()
-                    }
-
-                    path
+                } else {
+                    path =
+                        "${Environment.getExternalStorageDirectory().path}/${Environment.DIRECTORY_PICTURES}"
+                    values.put(
+                        MediaStore.MediaColumns.DATA,
+                        "$path/$displayName"
+                    )
                 }
+
+                val uri =
+                    contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+                if (uri != null) {
+                    val outputStream = contentResolver.openOutputStream(uri)
+                    if (outputStream != null) {
+                        bitmap.compress(compressFormat, 100, outputStream)
+                        outputStream.close()
+                    }
+                    LogUtils.i("path = ${path}")
+                    LogUtils.i("uri.path = ${uri.path}")
+                    ToastUtils.showShort("图片已保存至 ${path}")
+
+                    /*通知相册更新数据*/
+                    MediaScannerConnection.scanFile(
+                        this@StorageActivity, arrayOf(uri.path), null
+                    ) { path, uri ->
+                        LogUtils.i("scanFile path:$path")
+                        LogUtils.i("scanFile uri:$uri")
+
+                    }
+                }
+
+
             }
 
 
-            ToastUtils.showShort("图片已保存，路径为:${path}")
+            showImg()
+
+
         }
 
     }
@@ -144,7 +141,7 @@ class StorageActivity : BaseActivity() {
 
             btnAddImg.setOnThrottleTimeClick {
                 getPermissions(Permission.CAMERA, Permission.READ_MEDIA_IMAGES) {
-                    takePhoto()
+                    takePhotoActivityResult?.launch(null)
                 }
 
             }
@@ -158,18 +155,6 @@ class StorageActivity : BaseActivity() {
 
 
         }
-    }
-
-
-    private fun takePhoto() {
-        /*拍一张照片*/
-        photoUri = FileProvider.getUriForFile(
-            this,
-            "${packageName}.provider",
-            File("${AppStorage.External.Private.picturesPath}${System.currentTimeMillis()}.jpg")
-        )
-        takePhotoActivityResult?.launch(photoUri)
-
     }
 
     private fun showImg() {
@@ -202,6 +187,7 @@ class StorageActivity : BaseActivity() {
         LogUtils.i("pictureUriList:${pictureUriList.size}")
 
         if (pictureUriList.size > 0) {
+            println(pictureUriList.get(0))
             binding.ivImg.load(pictureUriList.get(0))
         }
 

@@ -96,6 +96,7 @@ dependencies {
     api project(path: ':application')
     api project(path: ':network-status')
     api project(path: ':img')
+
     api project(path: ':materialdialog')
     api project(path: ':permission')
     api project(path: ':widget')

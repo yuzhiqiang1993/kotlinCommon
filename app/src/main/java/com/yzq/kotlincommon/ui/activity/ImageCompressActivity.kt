@@ -4,8 +4,7 @@ import android.content.Intent
 import androidx.activity.viewModels
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.ViewModelProvider
-import com.blankj.utilcode.util.LogUtils
-import com.huantansheng.easyphotos.models.album.entity.Photo
+import coil.load
 import com.therouter.router.Route
 import com.yzq.base.R
 import com.yzq.base.extend.initToolbar
@@ -13,9 +12,6 @@ import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
-import com.yzq.img.load
-import com.yzq.img.openAlbum
-import com.yzq.img.openCamera
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
 import com.yzq.kotlincommon.view_model.CompressImgViewModel
 
@@ -35,7 +31,7 @@ class ImageCompressActivity : BaseActivity() {
 
     private lateinit var compressImgViewModel: CompressImgViewModel
 
-    private var selectedPhotos = arrayListOf<Photo>()
+//    private var selectedPhotos = arrayListOf<Photo>()
 
     private lateinit var imgPath: String
 
@@ -46,20 +42,20 @@ class ImageCompressActivity : BaseActivity() {
 
         initToolbar(binding.layoutToolbar.toolbar, "图片")
         binding.fabCamera.setOnClickListener {
-            openCamera {
-                compressImgViewModel.compressImg(it[0].path)
-            }
+//            openCamera {
+//                compressImgViewModel.compressImg(it[0].path)
+//            }
         }
 
         binding.fabAlbum.setOnClickListener {
 
-            openAlbum(count = 5, selectedPhotos = selectedPhotos) {
-                selectedPhotos.clear()
-                selectedPhotos.addAll(it)
-                compressImgViewModel.compressImg(selectedPhotos[0].path)
-
-                LogUtils.i("选择的图片是$selectedPhotos")
-            }
+//            openAlbum(count = 5, selectedPhotos = selectedPhotos) {
+//                selectedPhotos.clear()
+//                selectedPhotos.addAll(it)
+//                compressImgViewModel.compressImg(selectedPhotos[0].path)
+//
+//                LogUtils.i("选择的图片是$selectedPhotos")
+//            }
 
 
         }

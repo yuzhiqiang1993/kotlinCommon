@@ -3,8 +3,8 @@ package com.yzq.base.ui
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
+import coil.load
 import com.blankj.utilcode.util.BarUtils
-import com.bumptech.glide.Glide
 import com.yzq.base.databinding.ActivityImgPreviewBinding
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
@@ -48,7 +48,11 @@ class ImgPreviewActivity : BaseActivity() {
         binding.photoView.setOnClickListener {
 //            backPressedCallback.handleOnBackPressed()
         }
-        Glide.with(this).load(imagePath).into(binding.photoView)
+//        Glide.with(this).load(imagePath).into(binding.photoView)
+
+        binding.photoView.load(imagePath)
+
+
     }
 
 }

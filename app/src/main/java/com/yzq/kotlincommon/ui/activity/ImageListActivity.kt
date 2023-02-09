@@ -2,6 +2,7 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.content.Intent
 import androidx.core.app.ActivityOptionsCompat
+import coil.load
 import com.blankj.utilcode.util.LogUtils
 import com.drake.brv.utils.bindingAdapter
 import com.drake.brv.utils.setup
@@ -17,7 +18,6 @@ import com.yzq.common.data.juhe.toutiao.TouTiao
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.safety_coroutine.lifeScope
-import com.yzq.img.loadWithThumbnail
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding
 import com.yzq.kotlincommon.databinding.ItemImgListBinding
@@ -68,7 +68,7 @@ class ImageListActivity : BaseActivity() {
                     val model = getModel<TouTiao.Result.Data>()
                     /*高度随机*/
                     itemImgListBinding.ivImg.layoutParams.height = 300 + Random.nextInt(300)
-                    itemImgListBinding.ivImg.loadWithThumbnail(model.thumbnailPicS)
+                    itemImgListBinding.ivImg.load(model.thumbnailPicS)
                 }
 
                 R.id.iv_img.onClick {
