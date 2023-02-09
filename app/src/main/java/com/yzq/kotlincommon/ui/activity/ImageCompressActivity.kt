@@ -55,8 +55,11 @@ class ImageCompressActivity : BaseActivity() {
         takePhotoResult =
             registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                 if (success) {
-                    takePhotoUri?.run {
-                        compressImgViewModel.compressImg(UriUtils.uri2FileNoCacheCopy(this).absolutePath)
+                    takePhotoUri?.also { uri ->
+                        UriUtils.uri2FileNoCacheCopy(uri)?.also { file ->
+                            compressImgViewModel.compressImg(file.absolutePath)
+                        }
+
                     }
                 }
             }
@@ -68,7 +71,7 @@ class ImageCompressActivity : BaseActivity() {
 
                 /*创建要保存的文件*/
                 val file = File(
-                    "${AppStorage.External.Public.picturesPath}/KotlinCommon",
+                    AppStorage.External.Private.picturesPath,
                     "${Calendar.getInstance().timeInMillis}.png"
                 )
                 /*获得uri*/
