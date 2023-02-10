@@ -7,7 +7,7 @@ import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.OnPermissionPageCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
-import com.yzq.materialdialog.showPositiveCallbackDialog
+import com.yzq.materialdialog.showCallbackDialog
 
 
 /**
@@ -17,8 +17,17 @@ import com.yzq.materialdialog.showPositiveCallbackDialog
  * @time    17:06
  */
 
+
+/**
+ * Get permissions  获取权限
+ *
+ * @param permissions  要申请的权限
+ * @param permissionDenide  申请的权限存在被拒绝的回调
+ * @param permissionGranted  权限都被允许的回调
+ */
 fun ComponentActivity.getPermissions(
     vararg permissions: String,
+    permissionDenide: ((deniedPermissions: MutableList<String>, doNotAskAgain: Boolean) -> Unit)? = null,
     permissionGranted: () -> Unit,
 ) {
     /*如果已经有权限，直接执行逻辑*/
@@ -42,38 +51,52 @@ fun ComponentActivity.getPermissions(
             }
 
             override fun onDenied(deniedPermissions: MutableList<String>, doNotAskAgain: Boolean) {
-                LogUtils.i("deniedPermissions:${deniedPermissions}")
-                LogUtils.i("doNotAskAgain:${doNotAskAgain}")
+                LogUtils.i("onDenied 存在被拒绝的权限 deniedPermissions:${deniedPermissions}")
+                LogUtils.i("onDenied doNotAskAgain:${doNotAskAgain}")
                 if (doNotAskAgain) {
                     /*用户点了拒绝并勾选了不在提示 弹窗提示用户手动给权限*/
                     showPermissionSettingDialog(
                         deniedPermissions,
+                        permissionDenide,
                         permissionGranted
                     )
-                    return
+                } else {
+                    /*申请权限时用户没给权限，但是也没选择不再询问，例如申请后台定位权限，没给始终允许直接返回了，给用户提示选择始终允许*/
+                    specialPermissionPrompt(deniedPermissions)
+                    permissionDenide?.invoke(deniedPermissions, doNotAskAgain)
                 }
 
-                /*一些特殊权限比如后台定位 给用户提示选择始终允许*/
-                if (deniedPermissions.size == 1) {
-                    val deniedPermission: String = deniedPermissions.get(0)
-
-                    if (Permission.ACCESS_BACKGROUND_LOCATION == deniedPermission) {
-                        /*如果是申请后台定位权限 提示用户勾选始终允许*/
-                        ToastUtils.showShort(R.string.common_permission_background_location_fail_hint)
-                    }
-
-                    /*传感器权限只能选择始终允许*/
-                    if (Permission.BODY_SENSORS_BACKGROUND == deniedPermission) {
-                        ToastUtils.showShort(R.string.common_permission_background_sensors_fail_hint)
-                    }
-                }
 
             }
+
 
         })
 
 }
 
+/**
+ * Special permission prompt
+ * 特殊权限提示
+ *
+ * @param deniedPermissions
+ */
+private fun specialPermissionPrompt(deniedPermissions: MutableList<String>) {
+
+    LogUtils.i("特殊权限提示")
+    if (deniedPermissions.size == 1) {
+        val deniedPermission: String = deniedPermissions.get(0)
+
+        if (Permission.ACCESS_BACKGROUND_LOCATION == deniedPermission) {
+            /*如果是申请后台定位权限 提示用户勾选始终允许*/
+            ToastUtils.showShort(R.string.common_permission_background_location_fail_hint)
+        }
+
+        /*传感器权限只能选择始终允许*/
+        if (Permission.BODY_SENSORS_BACKGROUND == deniedPermission) {
+            ToastUtils.showShort(R.string.common_permission_background_sensors_fail_hint)
+        }
+    }
+}
 
 /**
  * 跳转到设置页面前手动给权限的图提示弹窗
@@ -84,30 +107,34 @@ fun ComponentActivity.getPermissions(
  */
 fun ComponentActivity.showPermissionSettingDialog(
     deniedPermissions: MutableList<String>,
+    permissionDenide: ((deniedPermissions: MutableList<String>, doNotAskAgain: Boolean) -> Unit)?,
     permissionGranted: () -> Unit,
 ) {
 
-
-    showPositiveCallbackDialog(
+    showCallbackDialog(
         getString(R.string.common_permission_alert),
-        getHintMessage(deniedPermissions)
-    ) {
-        /*跳转到设置页面*/
-        XXPermissions.startPermissionActivity(
-            this,
-            deniedPermissions,
-            object : OnPermissionPageCallback {
-                override fun onGranted() {
-                    /*在设置页面都给权限了 执行逻辑*/
-                    permissionGranted()
-                }
+        getHintMessage(deniedPermissions),
+        positiveCallback = {
+            /*跳转到设置页面*/
+            XXPermissions.startPermissionActivity(
+                this,
+                deniedPermissions,
+                object : OnPermissionPageCallback {
+                    override fun onGranted() {
+                        /*在设置页面都给权限了 执行逻辑*/
+                        permissionGranted()
+                    }
 
-                override fun onDenied() {
-                    ToastUtils.showShort("权限获取失败")
-                }
+                    override fun onDenied() {
+                        permissionDenide?.invoke(deniedPermissions, true)
+                    }
 
-            })
-    }
+                })
+        },
+        negativeCallback = {
+            permissionDenide?.invoke(deniedPermissions, true)
+        }
+    )
 
 
 }

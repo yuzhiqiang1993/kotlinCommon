@@ -6,10 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.blankj.utilcode.util.LogUtils
+import com.hjq.permissions.Permission
 import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.utils.MMKVUtil
 import com.yzq.materialdialog.showCallbackDialog
+import com.yzq.permission.getPermissions
 import com.yzq.statusbar.immersive
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -44,15 +46,15 @@ class SplashActivity : AppCompatActivity() {
             setOnExitAnimationListener {
                 /*debug时可能会出现回调不执行的情况，手动杀死app进程然后重新打开即可*/
                 LogUtils.i("setOnExitAnimationListener")
-                immersive(Color.WHITE, true)//由于splash的主题执行完毕了，所以会显示App主题色的状态栏（默认主主色调是蓝色）不沉浸式的话看起来很怪
+                immersive(
+                    Color.WHITE,
+                    true
+                )//由于splash的主题执行完毕了，所以会显示App主题色的状态栏（默认主主色调是蓝色）不沉浸式的话看起来很怪
                 /*路由*/
                 handleRoute()
             }
 
         }
-
-        /*setContentView可以不要*/
-//        setContentView(R.layout.activity_splash)
 
         MainScope().launch {
             LogUtils.i("可以做一些初始化的逻辑，初始化完成后继续走")
@@ -60,22 +62,47 @@ class SplashActivity : AppCompatActivity() {
             keepOnScreenCondition.compareAndSet(true, false)
         }
 
+
+        /*setContentView可以不要*/
+//        setContentView(R.layout.activity_splash)
+
+
     }
 
 
     private fun handleRoute() {
-        if (MMKVUtil.appFirstOpen) {
-            /*首次打开可以弹窗提示同意 隐私政策 */
-            showCallbackDialog("提示", "同意隐私政策，用户协议", positiveCallback = {
-                MMKVUtil.appFirstOpen = false
-                /*在这里进行页面跳转*/
+
+
+        /*先申请权限*/
+
+
+
+
+        getPermissions(
+            Permission.ACCESS_COARSE_LOCATION,
+            Permission.ACCESS_FINE_LOCATION,
+            Permission.ACCESS_BACKGROUND_LOCATION,
+            permissionDenide = { deniedPermissions, doNotAskAgain ->
+                LogUtils.i("权限被拒绝了:${deniedPermissions}")
+                finish()
+
+            }
+        ) {
+
+            if (MMKVUtil.appFirstOpen) {
+                /*首次打开可以弹窗提示同意 隐私政策 */
+                showCallbackDialog("提示", "同意隐私政策，用户协议", positiveCallback = {
+                    MMKVUtil.appFirstOpen = false
+                    /*在这里进行页面跳转*/
+                    route()
+                }, negativeCallback = {
+                    finishAfterTransition()
+                })
+            } else {
                 route()
-            }, negativeCallback = {
-                finishAfterTransition()
-            })
-        } else {
-            route()
+            }
         }
+
 
     }
 
