@@ -12,7 +12,7 @@ package com.yzq.dependency_manager_plugin
 object AndroidOfficial {
     const val material = "com.google.android.material:material:1.8.0"
 
-    const val appcompat = "androidx.appcompat:appcompat:1.6.0"
+    const val appcompat = "androidx.appcompat:appcompat:1.6.1"
 
     const val activityKtx = "androidx.activity:activity-ktx:1.6.1"
     const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.5"
@@ -52,7 +52,7 @@ object AndroidOfficial {
     const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
     const val roomKtx = "androidx.room:room-ktx:$roomVersion"
 
-    const val exifinterface = "androidx.exifinterface:exifinterface:1.3.5"
+    const val exifinterface = "androidx.exifinterface:exifinterface:1.3.6"
 
     const val splashscreen = "androidx.core:core-splashscreen:1.0.0"
 
@@ -66,7 +66,7 @@ object Kotlinx {
     const val coroutineAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutineVersion"
 
-    private const val kotlinVersion = "1.8.0"
+    private const val kotlinVersion = "1.8.10"
 
     /*一些官方库或者三方库依赖了 jdk7或者jdk8 所以最好在app中显示的依赖一下保证版本统一*/
     const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -146,5 +146,5 @@ object ThirdParty {
         "com.afollestad.material-dialogs:bottomsheets:$materialDialog"
     const val materialDialogsLifecycle = "com.afollestad.material-dialogs:lifecycle:$materialDialog"
 
-    const val dateTimePicker = "com.github.loperSeven:DateTimePicker:0.6.1"
+    const val dateTimePicker = "com.github.loperSeven:DateTimePicker:0.6.2"
 }

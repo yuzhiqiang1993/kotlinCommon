@@ -71,13 +71,7 @@ class SplashActivity : AppCompatActivity() {
 
 
     private fun handleRoute() {
-
-
         /*先申请权限*/
-
-
-
-
         getPermissions(
             Permission.ACCESS_COARSE_LOCATION,
             Permission.ACCESS_FINE_LOCATION,
@@ -85,7 +79,6 @@ class SplashActivity : AppCompatActivity() {
             permissionDenide = { deniedPermissions, doNotAskAgain ->
                 LogUtils.i("权限被拒绝了:${deniedPermissions}")
                 finish()
-
             }
         ) {
 
