@@ -54,6 +54,7 @@ dependencies {
     implementation(AndroidOfficial.vectordrawable)
     implementation(AndroidOfficial.constraintlayout)
     implementation(AndroidOfficial.annotationLib)
+    implementation(AndroidOfficial.lifecycle)
 
 
     /*utils*/

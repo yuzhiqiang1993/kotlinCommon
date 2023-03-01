@@ -98,7 +98,7 @@ object TheRouter {
 object ThirdParty {
     const val utilcode = "com.blankj:utilcodex:1.31.1"
 
-    const val xxPermission = "com.github.getActivity:XXPermissions:16.6"
+    const val xxPermission = "com.github.getActivity:XXPermissions:16.8"
 
     const val buglyCrashreportUpgrade = "com.tencent.bugly:crashreport_upgrade:1.6.1"
     const val buglyNativeCrashreport = "com.tencent.bugly:nativecrashreport:3.9.2"
@@ -116,7 +116,7 @@ object ThirdParty {
 
     const val bannerViewPager = "com.github.zhpanvip:BannerViewPager:3.5.8"
 
-    const val jsoup = "org.jsoup:jsoup:1.15.3"
+    const val jsoup = "org.jsoup:jsoup:1.15.4"
 
     const val xeonBsDiff = "io.github.yuzhiqiang1993:xeon_bsdiff:1.0.1"
 

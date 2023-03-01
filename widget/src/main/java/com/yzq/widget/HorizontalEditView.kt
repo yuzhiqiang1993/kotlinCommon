@@ -45,14 +45,17 @@ class HorizontalEditView @JvmOverloads constructor(
     init {
 
         doOnAttach {
-            /*要在onAttachedToWindow 中才能获取到findViewTreeLifecycleOwner*/
+            /**
+             * 要在onAttachedToWindow 中才能获取到findViewTreeLifecycleOwner
+             * ViewTreeLifecycleOwner 是Lifecycle KTX中提供的View的一个扩展方法，可以快速地获取一个最近的Fragment或者Activity的LifecycleOwner
+             */
 //            it.findViewTreeLifecycleOwner()?.lifecycle?.run {
 //                addObserver(object :
-//                        LifecycleEventObserver {
-//                        override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-//                            LogUtils.i("当前状态:$event")
-//                        }
-//                    })
+//                    LifecycleEventObserver {
+//                    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+//                        LogUtils.i("当前状态:$event")
+//                    }
+//                })
 //
 //                coroutineScope.launchSafety {
 //                    LogUtils.i("测试开始执行耗时任务")
