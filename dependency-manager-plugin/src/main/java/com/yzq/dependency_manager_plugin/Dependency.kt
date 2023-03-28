@@ -14,10 +14,10 @@ object AndroidOfficial {
 
     const val appcompat = "androidx.appcompat:appcompat:1.6.1"
 
-    const val activityKtx = "androidx.activity:activity-ktx:1.6.1"
-    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.5"
+    const val activityKtx = "androidx.activity:activity-ktx:1.7.0"
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:1.5.6"
     const val collectionKtx = "androidx.collection:collection-ktx:1.2.0"
-    private const val lifecycleKtxVersion = "2.5.1"
+    private const val lifecycleKtxVersion = "2.6.1"
 
     // ViewModel
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleKtxVersion"
@@ -32,7 +32,7 @@ object AndroidOfficial {
         "androidx.vectordrawable:vectordrawable:1.1.0"
     const val constraintlayout =
         "androidx.constraintlayout:constraintlayout:2.1.4"
-    const val annotationLib = "androidx.annotation:annotation:1.5.0"
+    const val annotationLib = "androidx.annotation:annotation:1.6.0"
     const val multiDex = "androidx.multidex:multidex:2.0.1"
 
     // KTX core
@@ -43,11 +43,11 @@ object AndroidOfficial {
         "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     /*recyclerview*/
-    const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
+    const val recyclerview = "androidx.recyclerview:recyclerview:1.3.0"
 
     const val viewpager2 = "androidx.viewpager2:viewpager2:1.1.0-beta01"
 
-    private const val roomVersion = "2.5.0"
+    private const val roomVersion = "2.5.1"
     const val roomRuntime = "androidx.room:room-runtime:$roomVersion"
     const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
     const val roomKtx = "androidx.room:room-ktx:$roomVersion"
@@ -133,7 +133,7 @@ object ThirdParty {
 
 
     /*https://github.com/coil-kt/coil/blob/main/README-zh.md*/
-    const val coil = "io.coil-kt:coil:2.2.2"
+    const val coil = "io.coil-kt:coil:2.3.0"
 
     /*photoView*/
     const val photoview = "com.github.chrisbanes:PhotoView:2.3.0"

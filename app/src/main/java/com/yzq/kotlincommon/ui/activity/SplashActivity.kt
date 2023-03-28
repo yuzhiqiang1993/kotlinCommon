@@ -44,7 +44,7 @@ class SplashActivity : AppCompatActivity() {
              * 自己处理动画 在这里面才能加一些自己要显示的ui
              */
             setOnExitAnimationListener {
-                /*debug时可能会出现回调不执行的情况，手动杀死app进程然后重新打开即可*/
+                /*Android12的设备上 debug时可能会出现回调不执行的情况，手动杀死app进程然后重新打开即可*/
                 LogUtils.i("setOnExitAnimationListener")
                 immersive(
                     Color.WHITE,
