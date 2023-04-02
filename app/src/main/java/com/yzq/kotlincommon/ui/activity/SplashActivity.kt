@@ -30,13 +30,19 @@ class SplashActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "SplashActivity"
-        private val handleRouteInvoke = AtomicBoolean(false)
     }
 
+
+    /*是否执行了最终的方法*/
+    private val handleRouteInvoke = AtomicBoolean(false)
+
+    /*是否blockui*/
     private val keepOnScreenCondition = AtomicBoolean(true)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+        LogUtils.i(TAG, "onCreate handleRouteInvoke::${handleRouteInvoke.get()}")
         immersive(Color.WHITE, true)
 
         /*启动屏*/
@@ -50,24 +56,17 @@ class SplashActivity : AppCompatActivity() {
              */
             setOnExitAnimationListener {
                 /**
-                 * Android12的设备上 debug时或者被其他应用拉起的打开方式会出现setOnExitAnimationListener回调不执行的情况
-                 *
+                 * Android12的设备上 debug 时或者被其他应用拉起的打开方式会出现setOnExitAnimationListener回调不执行的情况
                  */
-                LogUtils.i("setOnExitAnimationListener")
-                immersive(
-                    Color.WHITE,
-                    true
-                )//由于splash的主题执行完毕了，所以会显示App主题色的状态栏（默认主主色调是蓝色）不沉浸式的话看起来很怪
-
+                LogUtils.i(TAG, "setOnExitAnimationListener")
                 /*路由*/
-//                handleRoute()
+                handleRoute()
             }
 
         }
 
         MainScope().launch {
-            LogUtils.i("可以做一些初始化的逻辑，初始化完成后继续走")
-
+            LogUtils.i(TAG, "可以做一些初始化的逻辑，初始化完成后继续走")
             /*解除blockui，正常情况下setOnExitAnimationListener会调用  已知Android12不会被调用*/
             keepOnScreenCondition.compareAndSet(true, false)
             LogUtils.i("可以执行 setOnExitAnimationListener 了")
@@ -81,9 +80,9 @@ class SplashActivity : AppCompatActivity() {
             delay(200)
 
             val handleRouteInovke = handleRouteInvoke.get()
-            LogUtils.i("handleRouteInovke:${handleRouteInovke}")
+            LogUtils.i(TAG, "handleRouteInovke:${handleRouteInovke}")
             if (!handleRouteInovke) {
-                LogUtils.i("handleRouteInvoke 未执行===")
+                LogUtils.i(TAG, "handleRouteInvoke 未执行===")
                 handleRoute()
             }
         }
@@ -94,24 +93,34 @@ class SplashActivity : AppCompatActivity() {
 
     @Synchronized
     private fun handleRoute() {
+
         if (handleRouteInvoke.get()) {
-            LogUtils.i("handleRoute 已经执行过了.....")
+            LogUtils.i(TAG, "handleRoute 已经执行过了.....")
             return
         }
         handleRouteInvoke.compareAndSet(false, true)
+
+        LogUtils.i(TAG, "handleRoute开始执行")
+//        //由于splash的主题执行完毕了，所以会显示App主题色的状态栏（默认主主色调是蓝色）不沉浸式的话看起来很怪
+//        immersive(
+//            Color.WHITE,
+//            true
+//        )
+
+
         /*先申请权限*/
         getPermissions(
             Permission.ACCESS_COARSE_LOCATION,
             Permission.ACCESS_FINE_LOCATION,
             Permission.ACCESS_BACKGROUND_LOCATION,
             permissionDenide = { deniedPermissions, doNotAskAgain ->
-                LogUtils.i("权限被拒绝了:${deniedPermissions}")
+                LogUtils.i(TAG, "权限被拒绝了:${deniedPermissions}")
                 finish()
             }
         ) {
 
             if (MMKVUtil.appFirstOpen) {
-                LogUtils.i("首次打开:${MMKVUtil.appFirstOpen}")
+                LogUtils.i(TAG, "首次打开:${MMKVUtil.appFirstOpen}")
                 /*首次打开可以弹窗提示同意 隐私政策 */
                 showCallbackDialog("提示", "同意隐私政策，用户协议", positiveCallback = {
                     MMKVUtil.appFirstOpen = false
@@ -168,6 +177,12 @@ class SplashActivity : AppCompatActivity() {
 //        iconViewAni.start()//注意要cancle，否则可能会内存泄漏
 
 
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LogUtils.i(TAG, "onDestroy")
     }
 
 }
