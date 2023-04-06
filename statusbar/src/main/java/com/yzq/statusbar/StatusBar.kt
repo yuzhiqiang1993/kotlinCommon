@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2018 Drake, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.yzq.statusbar
 
 import android.annotation.SuppressLint
@@ -9,41 +25,46 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.util.TypedValue
 import android.view.View
+import android.view.View.NO_ID
 import android.view.ViewGroup
-import android.view.WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
 import android.view.WindowManager
 import android.widget.RelativeLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 
 private const val COLOR_TRANSPARENT = 0
 
-/**设置状态栏颜色*/
+
+/**
+ * Status bar color
+ * 设置状态栏颜色
+ * @param color
+ */
 fun Activity.statusBarColor(@ColorInt color: Int) {
+    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
     window?.statusBarColor = color
 }
 
-/** 设置状态栏颜色 */
-fun Fragment.statusBarColor(@ColorInt color: Int) = activity?.statusBarColor(color)
-
-/** 设置状态栏颜色 */
-fun Activity.statusBarColorRes(@ColorRes colorRes: Int) =
-    statusBarColor(ContextCompat.getColor(this, colorRes))
-
-/** 设置状态栏颜色 */
-fun Fragment.statusBarColorRes(@ColorRes colorRes: Int) = activity?.statusBarColorRes(colorRes)
 
 /**
+ * Status bar color res
+ * 设置状态栏颜色
+ * @param colorRes
+ */
+fun Activity.statusBarColorRes(@ColorRes colorRes: Int) =
+    statusBarColor(resources.getColor(colorRes))
+
+
+// <editor-fold desc="透明状态栏">
+/**
  * 使用视图的背景色作为状态栏颜色
- * @param view 提取该View的背景颜色设置为状态栏颜色, 如果该View没有背景颜色则该函数调用无效
+ * @param v 提取该View的背景颜色设置为状态栏颜色, 如果该View没有背景颜色则该函数调用无效
  * @param darkMode 是否显示暗色状态栏文字颜色
  */
 @JvmOverloads
-fun Activity.immersive(view: View, darkMode: Boolean? = null) {
-    val background = view.background
+fun Activity.immersive(v: View, darkMode: Boolean? = null) {
+    val background = v.background
     if (background is ColorDrawable) {
         immersive(background.color, darkMode)
     }
@@ -61,36 +82,54 @@ fun Activity.immersive(view: View, darkMode: Boolean? = null) {
 @SuppressLint("ObsoleteSdkInt")
 @JvmOverloads
 fun Activity.immersive(@ColorInt color: Int = COLOR_TRANSPARENT, darkMode: Boolean? = null) {
-    /*清除状态栏半透明的标记*/
-    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-    var systemUiVisibility = window.decorView.systemUiVisibility
-
-    if (color == COLOR_TRANSPARENT) {
-        systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        systemUiVisibility = systemUiVisibility or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-    } else {
-        systemUiVisibility =
-            systemUiVisibility and View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        systemUiVisibility = systemUiVisibility and View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+    when {
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP -> {
+            when (color) {
+                COLOR_TRANSPARENT -> {
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                    window.decorView.systemUiVisibility =
+                        (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+                    window.statusBarColor = color
+                }
+                else -> {
+                    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                    window.statusBarColor = color
+                }
+            }
+        }
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT -> {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            if (color != COLOR_TRANSPARENT) {
+                setTranslucentView(window.decorView as ViewGroup, color)
+            }
+        }
     }
-    window.decorView.systemUiVisibility = systemUiVisibility
-
-    /**
-     * FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS:标志指示此窗口负责绘制系统栏的背景。
-     * 如果设置，系统栏将使用透明背景绘制，并且此窗口中的相应区域将填充Window.getStatusBarColor()和Window.getNavigationBarColor()中指定的颜色。
-     */
-    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-    window.statusBarColor = color
-
     if (darkMode != null) {
         darkMode(darkMode)
     }
 }
 
-/** 退出沉浸式状态栏 */
-fun Activity.immersiveExit() {
+/**
+ * 退出沉浸式状态栏并恢复默认状态栏颜色
+ *
+ * @param black 是否显示黑色状态栏白色文字(不恢复状态栏颜色)
+ */
+@JvmOverloads
+fun Activity.immersiveExit(black: Boolean = false) {
     window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-    window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+    window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            and View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
+
+    // 恢复默认状态栏颜色
+    if (black) {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+    } else {
+        val typedArray = obtainStyledAttributes(intArrayOf(android.R.attr.statusBarColor))
+        window.statusBarColor = typedArray.getColor(0, 0)
+        typedArray.recycle()
+    }
 }
 
 /**
@@ -100,6 +139,7 @@ fun Activity.immersiveExit() {
 fun Activity.immersiveRes(@ColorRes color: Int, darkMode: Boolean? = null) =
     immersive(resources.getColor(color), darkMode)
 
+
 /**
  * 开关状态栏暗色模式, 并不会透明状态栏, 只是单纯的状态栏文字变暗色调.
  *
@@ -107,22 +147,17 @@ fun Activity.immersiveRes(@ColorRes color: Int, darkMode: Boolean? = null) =
  */
 @JvmOverloads
 fun Activity.darkMode(darkMode: Boolean = true) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        window.decorView.windowInsetsController?.setSystemBarsAppearance(
-            APPEARANCE_LIGHT_STATUS_BARS,
-            APPEARANCE_LIGHT_STATUS_BARS
-        )
-    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         var systemUiVisibility = window.decorView.systemUiVisibility
-        systemUiVisibility =
-            if (darkMode) {
-                systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            } else {
-                systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
-            }
+        systemUiVisibility = if (darkMode) {
+            systemUiVisibility or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        } else {
+            systemUiVisibility and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
+        }
         window.decorView.systemUiVisibility = systemUiVisibility
     }
 }
+
 
 /**
  * 增加View的paddingTop, 增加高度为状态栏高度, 用于防止视图和状态栏重叠
@@ -137,7 +172,7 @@ fun View.statusPadding(remove: Boolean = false) {
     val statusBarHeight = context.statusBarHeight
     val lp = layoutParams
     if (lp != null && lp.height > 0) {
-        lp.height += statusBarHeight // 增高
+        lp.height += statusBarHeight //增高
     }
     if (remove) {
         if (paddingTop < statusBarHeight) return
@@ -173,6 +208,22 @@ fun View.statusMargin(remove: Boolean = false) {
     }
 }
 
+
+/**
+ * 创建假的透明栏
+ */
+private fun Context.setTranslucentView(container: ViewGroup, color: Int) {
+    var simulateStatusBar: View? = container.findViewById(android.R.id.custom)
+    if (simulateStatusBar == null && color != 0) {
+        simulateStatusBar = View(container.context)
+        simulateStatusBar.id = android.R.id.custom
+        val lp = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, statusBarHeight)
+        container.addView(simulateStatusBar, lp)
+    }
+    simulateStatusBar?.setBackgroundColor(color)
+}
+
+
 /**
  * 设置ActionBar的背景颜色
  */
@@ -190,6 +241,7 @@ fun AppCompatActivity.setActionBarBackgroundRes(@ColorRes color: Int) {
 fun AppCompatActivity.setActionBarTransparent() {
     supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 }
+
 
 /**
  * 显示或隐藏导航栏, 系统开启可以隐藏, 系统未开启不能开启
@@ -232,9 +284,9 @@ val Activity?.isNavigationBar: Boolean
         val vp = window.decorView as? ViewGroup
         if (vp != null) {
             for (i in 0 until vp.childCount) {
-                vp.getChildAt(i).context.packageName
-                if (vp.getChildAt(i).id != -1 && "navigationBarBackground" ==
-                    resources.getResourceEntryName(vp.getChildAt(i).id)
+                if (vp.getChildAt(i).id != NO_ID && "navigationBarBackground" == resources.getResourceEntryName(
+                        vp.getChildAt(i).id
+                    )
                 ) return true
             }
         }
@@ -254,6 +306,7 @@ val Context?.navigationBarHeight: Int
         }
         return height
     }
+
 
 /**
  * 状态栏高度

@@ -15,7 +15,6 @@ import kotlinx.coroutines.cancel
  * @date 2022/11/18
  * @time 17:29
  */
-
 class ViewLifeSafetyScope(view: View, dispatcher: CoroutineDispatcher = Dispatchers.Main) :
     LifeSafetyScope(dispatcher = dispatcher) {
     init {

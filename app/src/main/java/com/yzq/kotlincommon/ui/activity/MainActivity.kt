@@ -26,6 +26,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
 
+
 /**
  * @description: 导航页面
  * @author : yzq
@@ -42,7 +43,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun initVariable() {
 
         /*该操作会获取用户信息  所以建议在获取相关权限后再初始化 同时还能提升一些启动速度*/
-
         PushServiceFactory.getCloudPushService().register(
             AppContext,
             object : CommonCallback {
@@ -78,6 +78,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun initWidget() {
+
 
         binding.run {
             initToolbar(includedAppbarMain.toolbar, "kotlin common", displayHome = false)
@@ -127,6 +128,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("存储", RoutePath.Main.STORAGE))
 
         setData()
+
     }
 
     private fun setData() {

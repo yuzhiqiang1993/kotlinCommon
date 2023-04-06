@@ -38,8 +38,8 @@ android {
         }
     }
 
+    /*buildTypes一般会多加，主要是用来配置混淆，压缩，是否可以debug*/
     buildTypes {
-
         debug {
             signingConfig signingConfigs.release
             debuggable true
@@ -52,12 +52,26 @@ android {
             buildConfigField("String", "BASE_URL", "\"https://debug.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
             buildConfigField("String", "CUSTOME_FIELD", "\"${debugValue}\"")
         }
+        /*给测试打包用 混淆 压缩 签名都开启  但是可以debug*/
+        qa {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            debuggable true //该值决定了BuildConfig中的DEBUG值
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("boolean", "LOG_DEBUG", "true")
+            buildConfigField("String", "BASE_URL", "\"https://release.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
+            buildConfigField("String", "CUSTOME_FIELD", "\"${rootProject.ext.releaseValue}\"")
+        }
 
+        /*生产环境用*/
         release {
             signingConfig signingConfigs.release
             minifyEnabled true
             zipAlignEnabled true
             shrinkResources true
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("boolean", "LOG_DEBUG", "true")
             buildConfigField("String", "BASE_URL", "\"https://release.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
@@ -65,36 +79,37 @@ android {
         }
     }
 
-    flavorDimensions "channel", "env"
+    /**
+     * 维度
+     * 这里可以根据不同维度来做一些区分，比如多渠道，品牌，环境等
+     * 最好大写，生成的BuildConfig中会包含该值
+     */
+    flavorDimensions "CHANNEL", "ENV"
     productFlavors {
-
-
-        dev {
-            dimension "env"
+        uat {
+            dimension "ENV"
             manifestPlaceholders = [
-                    "APP_NAME"          : "KotlinCommon-dev",
-                    "META_CHANNEL_VALUE": "app"
+                    "ENV": "uat",
             ]
         }
         prd {
-            dimension "env"
+            dimension "ENV"
             manifestPlaceholders = [
-                    "APP_NAME"          : "KotlinCommon",
-                    "META_CHANNEL_VALUE": "app"
+                    "ENV": "prd",
             ]
         }
 
         wandoujia {
-            dimension "channel"
+            dimension "CHANNEL"
             manifestPlaceholders = [
-                    "APP_NAME"          : "KotlinCommon-wandoujia",
+                    "CHANNEL"           : "wandoujia",
                     "META_CHANNEL_VALUE": "wandoujia"
             ]
         }
         yingyongbao {
-            dimension "channel"
+            dimension "CHANNEL"
             manifestPlaceholders = [
-                    "APP_NAME"          : "KotlinCommon-yingyongbao",
+                    "CHANNEL"           : "yingyongbao",
                     "META_CHANNEL_VALUE": "yingyongbao"
             ]
         }
@@ -128,7 +143,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     implementation(Kotlinx.kotlinStdlib)
     implementation AndroidOfficial.viewpager2
     implementation(AndroidOfficial.coordinatorlayout)

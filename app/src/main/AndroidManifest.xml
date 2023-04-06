@@ -24,7 +24,7 @@
         android:name=".App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
-        android:label="${APP_NAME}"
+        android:label="Xeon-${CHANNEL}-${ENV}"
         android:largeHeap="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -33,6 +33,12 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
+
+
+        <!-- 自定义一些元数据 -->
+        <meta-data
+            android:name="META_CHANNEL"
+            android:value="${META_CHANNEL_VALUE}" />
 
 
         <!-- 适配分区存储 -->
@@ -105,10 +111,8 @@
             android:name=".ui.activity.AliEMASActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- 自定义一些元数据 -->
-        <meta-data
-            android:name="META_CHANNEL"
-            android:value="${META_CHANNEL_VALUE}" />
+            android:screenOrientation="portrait" />
+
 
         <activity
             android:name=".ui.activity.SplashActivity"

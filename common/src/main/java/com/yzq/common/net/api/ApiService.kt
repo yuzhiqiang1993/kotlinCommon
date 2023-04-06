@@ -47,6 +47,16 @@ interface ApiService {
     @POST("http://192.168.0.103:8888/img/uploadImg")
     suspend fun uploadImg(@Body requestBody: RequestBody): String
 
+
+    /**
+     * Post sample
+     * post请求可以直接传指定类型的对象数据做为参数，也可以传RequestBody类型
+     * @param body
+     * @return
+     */
+    @POST("http://192.168.1.184:8888/user/userList")
+    suspend fun postSample(@Body body: LocalUser): BaseResp<LocalUser>
+
     @POST("http://v.juhe.cn/toutiao/index")
     @FormUrlEncoded
     suspend fun listToutiao(

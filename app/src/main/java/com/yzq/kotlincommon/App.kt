@@ -113,6 +113,14 @@ class App : BaseApp(), BaseApp.AppExitListener {
         /*读取BuildConfig中的变量*/
         LogUtils.i("BuildConfig.BASE_URL = ${BuildConfig.BASE_URL}")
         LogUtils.i("BuildConfig.LOG_DEBUG = ${BuildConfig.LOG_DEBUG}")
+        LogUtils.i("BuildConfig.DEBUG = ${BuildConfig.DEBUG}")
+        LogUtils.i("BuildConfig.FLAVOR = ${BuildConfig.FLAVOR}")
+        LogUtils.i("BuildConfig.FLAVOR_ENV = ${BuildConfig.FLAVOR_ENV}")
+        LogUtils.i("BuildConfig.FLAVOR_CHANNEL = ${BuildConfig.FLAVOR_CHANNEL}")
+        LogUtils.i("BuildConfig.BUILD_TYPE = ${BuildConfig.BUILD_TYPE}")
+        LogUtils.i("BuildConfig.VERSION_CODE = ${BuildConfig.VERSION_CODE}")
+        LogUtils.i("BuildConfig.VERSION_NAME = ${BuildConfig.VERSION_NAME}")
+        LogUtils.i("BuildConfig.APPLICATION_ID = ${BuildConfig.APPLICATION_ID}")
 
         val httpUserAgent = System.getProperty("http.agent")
         LogUtils.i("httpUserAgent:$httpUserAgent")
