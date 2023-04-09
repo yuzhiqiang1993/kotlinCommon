@@ -58,9 +58,11 @@ class LocationService : Service(), BaseApp.AppExitListener, LocationResultListen
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             /*Android 8.0开始必须设置channel*/
-            val channel = NotificationChannel(channelId,
+            val channel = NotificationChannel(
+                channelId,
                 "获取位置信息",
-                NotificationManager.IMPORTANCE_HIGH)
+                NotificationManager.IMPORTANCE_HIGH
+            )
                 .apply {
                     description = "持续获取位置信息中..."
 //                    enableVibration(true)//通知出现时是否震动，一般不设置
@@ -90,7 +92,12 @@ class LocationService : Service(), BaseApp.AppExitListener, LocationResultListen
         /*调用startForegroundService的5秒内必要调用startForeground*/
         startForeground(1, notification)
 
+        /*启动后台定位，第一个参数为通知栏ID，建议整个APP使用一个*/
+        locationClient?.enableBackgroundLocation(1, notification)
+        /*关闭后台定位，参数为true时会移除通知栏，为false时不会移除通知栏，但是可以手动移除*/
+        locationClient?.disableBackgroundLocation(true)
         locationClient?.startLocation()
+
         locationStarted.compareAndSet(false, true)
 
         return super.onStartCommand(intent, flags, startId)
