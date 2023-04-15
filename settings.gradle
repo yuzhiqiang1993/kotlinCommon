@@ -1,9 +1,9 @@
 /*原本的buildscript 插件管理*/
 pluginManagement {
+    println("pluginManagement")
     repositories {
         google()
         mavenCentral()
-
         maven {
             url 'https://maven.aliyun.com/repository/public/'
         }
@@ -15,10 +15,10 @@ pluginManagement {
         }
         gradlePluginPortal()
     }
-
 }
 /*原本的allprojects 依赖管理*/
 dependencyResolutionManagement {
+    println("dependencyResolutionManagement")
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         maven {
@@ -60,7 +60,7 @@ dependencyResolutionManagement {
 
 
 /*settings.gradle里的代码会在初始化回调之前执行*/
-println("我是settings.gradle")
+println("settings.gradle执行")
 
 
 println "rootProjectName:${rootProject.getName()}"

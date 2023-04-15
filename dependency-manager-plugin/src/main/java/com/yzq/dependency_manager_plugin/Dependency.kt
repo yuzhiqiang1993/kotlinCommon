@@ -80,7 +80,6 @@ object Retrofit {
     const val okhttp = "com.squareup.okhttp3:okhttp:$okHttpVersion"
     const val okhttpLogInterceptor = "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
-    const val okhttpprofiler = "com.localebro:okhttpprofiler:1.0.8"
 
     private const val retrofitVersion = "2.9.0"
     const val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
@@ -89,16 +88,17 @@ object Retrofit {
 
 
 object TheRouter {
-    private const val theRouterVersion = "1.1.2"
+    const val theRouterVersion = "1.1.2"
 
     const val theRouter = "cn.therouter:router:${theRouterVersion}"
     const val theRouterApt = "cn.therouter:apt:${theRouterVersion}"
 }
 
+
 object ThirdParty {
     const val utilcode = "com.blankj:utilcodex:1.31.1"
 
-    const val xxPermission = "com.github.getActivity:XXPermissions:16.8"
+    const val xxPermission = "com.github.getActivity:XXPermissions:18.0"
 
     const val buglyCrashreportUpgrade = "com.tencent.bugly:crashreport_upgrade:1.6.1"
     const val buglyNativeCrashreport = "com.tencent.bugly:nativecrashreport:3.9.2"
@@ -120,7 +120,7 @@ object ThirdParty {
 
     const val xeonBsDiff = "io.github.yuzhiqiang1993:xeon_bsdiff:1.0.1"
 
-    const val BRV = "com.github.liangjingkanji:BRV:1.3.90"
+    const val BRV = "com.github.liangjingkanji:BRV:1.4.1"
 
     const val flexboxLayout = "com.github.google:flexbox-layout:3.0.0"
 

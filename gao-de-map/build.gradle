@@ -55,6 +55,6 @@ dependencies {
 
     implementation project(':common')
 
-    api 'com.amap.api:location:6.2.0'
+    api 'com.amap.api:location:6.3.0'
 
 }

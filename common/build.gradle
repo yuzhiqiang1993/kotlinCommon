@@ -1,6 +1,5 @@
 import com.yzq.dependency_manager_plugin.AndroidConfig
 import com.yzq.dependency_manager_plugin.AndroidOfficial
-import com.yzq.dependency_manager_plugin.Retrofit
 import com.yzq.dependency_manager_plugin.ThirdParty
 
 plugins {
@@ -71,8 +70,6 @@ dependencies {
     /*flexbox*/
     api ThirdParty.flexboxLayout
 
-    /*okhttp请求插件查看*/
-    implementation Retrofit.okhttpprofiler
 
     /*内存泄漏检测 leakcanary*/
     debugImplementation ThirdParty.leakcanaryAndroid

@@ -1,7 +1,6 @@
 package com.yzq.common.net
 
 import android.util.Log
-import com.localebro.okhttpprofiler.OkHttpProfilerInterceptor
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.common.BuildConfig
 import com.yzq.common.net.constants.ServerConstants
@@ -49,9 +48,7 @@ class RetrofitFactory private constructor() {
 //            .addInterceptor(RequestEncryptInterceptor())
             .addInterceptor(initLogInterceptor())
 
-        if (BuildConfig.DEBUG) {
-            okHttpBuilder.addInterceptor(OkHttpProfilerInterceptor())
-        }
+
 //            .addInterceptor(ResponseDecryptInterceptor())
 
 

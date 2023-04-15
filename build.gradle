@@ -1,12 +1,15 @@
+/**
+ * 该处主要用来申明插件的版本，apply false表示不立即应用，而是自己手动应用
+ */
 plugins {
-    id 'com.android.application' version '7.4.1' apply false
+    id 'com.android.application' version "7.4.1" apply false
     id 'com.android.library' version '7.4.1' apply false
-    id 'org.jetbrains.kotlin.android' version '1.8.10' apply false
-    id 'cn.therouter' version '1.1.1' apply false
-    id "com.yzq.dependency-manager" apply true
+    id 'org.jetbrains.kotlin.android' version "${kotlinVersion}" apply false
+    id 'cn.therouter' version "1.1.2" apply false
+    id "com.yzq.dependency-manager" apply true  //管理依赖库的插件
     id "com.github.ben-manes.versions" version('0.46.0') apply(false)
 }
-
+print("根目录的build.gradle 开始执行")
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
@@ -44,7 +47,15 @@ subprojects { project ->
     }
 }
 
-//查看依赖关系
-//        ./gradlew app:dependencies > deps.txt  --configuration wandoujiaPrdReleaseRuntimeClasspath
 
+/**
+ * 查看项目依赖关系
+ * ./gradlew app:dependencies > deps.txt  --configuration wandoujiaPrdReleaseRuntimeClasspath
+ */
+
+
+/**
+ * 检查依赖库是否有新版本
+ * ./gradlew dependencyUpdates
+ */
 
