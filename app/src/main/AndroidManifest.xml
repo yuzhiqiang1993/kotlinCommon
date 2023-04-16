@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.yzq.kotlincommon">
+    xmlns:tools="http://schemas.android.com/tools">
+
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <!--Android 适配Android 11-->
@@ -19,10 +19,15 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <!--表示如果用户设备没有摄像头是否允许安装 由required字段控制 false表示可以安装-->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:name=".App"
         android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="Xeon-${CHANNEL}-${ENV}"
         android:largeHeap="true"

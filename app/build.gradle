@@ -21,7 +21,7 @@ android {
         versionName AndroidConfig.versionName
         multiDexEnabled AndroidConfig.multiDexEnabled
         vectorDrawables.useSupportLibrary = true
-        resConfigs 'zh'
+        resourceConfigurations += ['zh']
         ndk {
             abiFilters "arm64-v8a", "armeabi-v7a"
         }
@@ -53,17 +53,17 @@ android {
             buildConfigField("String", "CUSTOME_FIELD", "\"${debugValue}\"")
         }
         /*给测试打包用 混淆 压缩 签名都开启  但是可以debug*/
-        qa {
-            signingConfig signingConfigs.release
-            minifyEnabled true
-            zipAlignEnabled true
-            shrinkResources true
-            debuggable true //该值决定了BuildConfig中的DEBUG值
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField("boolean", "LOG_DEBUG", "true")
-            buildConfigField("String", "BASE_URL", "\"https://release.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
-            buildConfigField("String", "CUSTOME_FIELD", "\"${rootProject.ext.releaseValue}\"")
-        }
+//        qa {
+//            signingConfig signingConfigs.release
+//            minifyEnabled true
+//            zipAlignEnabled true
+//            shrinkResources true
+//            debuggable true //该值决定了BuildConfig中的DEBUG值
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            buildConfigField("boolean", "LOG_DEBUG", "true")
+//            buildConfigField("String", "BASE_URL", "\"https://release.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
+//            buildConfigField("String", "CUSTOME_FIELD", "\"${rootProject.ext.releaseValue}\"")
+//        }
 
         /*生产环境用*/
         release {
@@ -122,13 +122,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_11)
-        targetCompatibility(JavaVersion.VERSION_11)
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
     }
 
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 
     /*不加打包的时候有报错提示  但不影响*/
     lint {

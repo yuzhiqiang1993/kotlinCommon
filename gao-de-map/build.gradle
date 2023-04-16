@@ -9,31 +9,27 @@ plugins {
 }
 
 android {
+    namespace 'com.yzq.gao_de_map'
     compileSdk AndroidConfig.compileSdkVersion
-
     defaultConfig {
         minSdk AndroidConfig.minSdkVersion
         targetSdk AndroidConfig.targetSdkVersion
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
     }
-
-
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_11)
-        targetCompatibility(JavaVersion.VERSION_11)
-    }
-
-
     buildTypes {
         release {
             consumerProguardFiles 'proguard-rules.pro'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
         }
-
     }
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 
     buildFeatures {
         dataBinding true
@@ -42,19 +38,12 @@ android {
     lint {
         abortOnError false
     }
-    namespace 'com.yzq.gao_de_map'
-
 
 }
-
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-
     kapt TheRouter.theRouterApt
-
     implementation project(':common')
-
     api 'com.amap.api:location:6.3.0'
 
 }

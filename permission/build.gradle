@@ -9,6 +9,7 @@ plugins {
 
 
 android {
+    namespace 'com.yzq.permission'
     compileSdk AndroidConfig.compileSdkVersion
 
     defaultConfig {
@@ -18,11 +19,6 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
-
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_11)
-        targetCompatibility(JavaVersion.VERSION_11)
-    }
 
     buildTypes {
         release {
@@ -35,7 +31,13 @@ android {
     lint {
         abortOnError false
     }
-    namespace 'com.yzq.permission'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 
 
 }

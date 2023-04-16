@@ -8,34 +8,30 @@ plugins {
 
 
 android {
+    namespace 'com.yzq.aliemas'
     compileSdk AndroidConfig.compileSdkVersion
-
     defaultConfig {
         minSdk AndroidConfig.minSdkVersion
         targetSdk AndroidConfig.targetSdkVersion
         multiDexEnabled AndroidConfig.multiDexEnabled
         vectorDrawables.useSupportLibrary = true
     }
-
-
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_11)
-        targetCompatibility(JavaVersion.VERSION_11)
-    }
-
     buildTypes {
         release {
             consumerProguardFiles 'proguard-rules.pro'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
         }
-
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
     }
     lint {
         abortOnError false
     }
-    namespace 'com.yzq.aliemas'
-
 
 }
 

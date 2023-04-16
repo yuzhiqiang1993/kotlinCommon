@@ -8,8 +8,8 @@ plugins {
 
 }
 
-
 android {
+    namespace 'com.yzq.materialdialog'
     compileSdk AndroidConfig.compileSdkVersion
 
     defaultConfig {
@@ -17,12 +17,6 @@ android {
         targetSdk AndroidConfig.targetSdkVersion
         multiDexEnabled AndroidConfig.multiDexEnabled
         vectorDrawables.useSupportLibrary = true
-    }
-
-
-    compileOptions {
-        sourceCompatibility(JavaVersion.VERSION_11)
-        targetCompatibility(JavaVersion.VERSION_11)
     }
 
     buildTypes {
@@ -36,7 +30,14 @@ android {
     lint {
         abortOnError false
     }
-    namespace 'com.yzq.materialdialog'
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
 
 
 }
