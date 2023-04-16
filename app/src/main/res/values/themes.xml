@@ -1,6 +1,6 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.XeonYuTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+    <style name="Theme.XeonYuTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <!-- 主色调 状态默认颜色，按钮背景以及文本的选中颜色都跟这个有关 -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -47,7 +47,7 @@
     <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
         <!--        <item name="windowNoTitle">true</item>-->
         <!--        <item name="android:windowFullscreen">true</item>-->
-<!--        <item name="android:windowIsTranslucent">true</item>-->
+        <!--        <item name="android:windowIsTranslucent">true</item>-->
         <!--设备背景颜色-->
         <item name="windowSplashScreenBackground">@color/white</item>
         <!--设置动画或图片  动画在Android12 以下不生效 很难受...-->
