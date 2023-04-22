@@ -2,34 +2,37 @@
  * 该处主要用来申明插件的版本，apply false表示不立即应用，而是自己手动应用
  */
 plugins {
-    id 'com.android.application' version '8.0.0' apply false
-    id 'com.android.library' version '8.0.0' apply false
-    id 'org.jetbrains.kotlin.android' version "1.8.10" apply false
-    id 'cn.therouter' version "1.1.4-beta1" apply false
-    id "com.yzq.dependency-manager" apply true  //管理依赖库的插件
-    id "com.github.ben-manes.versions" version('0.46.0') apply(false)
+    id("com.android.application") version "8.0.0" apply false
+    id("com.android.library") version "8.0.0" apply false
+    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
+    id("org.jetbrains.kotlin.plugin.parcelize") version "1.8.10" apply false
+    id("cn.therouter") version "1.1.4-beta1" apply false
+    id("com.yzq.dependency-manager") apply true  //管理依赖库的插件
+    id("com.github.ben-manes.versions") version "0.46.0" apply false
 }
+
 print("根目录的build.gradle 开始执行")
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register<Delete>("clean") {
+    delete(rootProject.buildDir)
 }
+
 
 /**
  * 检测不支持Jetifier的库
  * 通过运行./gradlew checkJetifierAll就可以打印出所有module的Jetifier使用情况
  */
-task checkJetifierAll(group: "verification") {}
+//tasks.register("checkJetifierAll", group = "verification") {}
 
 /*当前文件用来配置所有子工程公用的配置*/
 println("我是根目录下的build.gradle")
-apply from: "gradle_script/checkVersions.gradle"
-apply from: "gradle_script/config.gradle"
+apply(from = "gradle_script/checkVersions.gradle")
 
 
 /*对子工程的公共配置*/
-subprojects { project ->
+subprojects {
     /*依赖管理  基本上每个子项目都要依赖*/
 //    apply plugin: 'com.yzq.dependency-manager'
+
 
     // 如果想应用到某个子项目中，可以通过 subproject.name 来判断应用在哪个子项目中
     // subproject.name 是你子项目的名字
@@ -40,11 +43,17 @@ subprojects { project ->
 //        apply plugin: 'com.android.library'
 //    }
 
-    project.tasks.whenTaskAdded { task ->
-        if (task.name == "checkJetifier") {
-            checkJetifierAll.dependsOn(task)
-        }
-    }
+//    tasks.whenTaskAdded {
+//        if (name == "checkJetifier") {
+//            tasks.getByName("checkJetifierAll").dependsOn(this)
+//        }
+//    }
+
+//    this.tasks.whenTaskAdded { task ->
+//        if (task.name == "checkJetifier") {
+//            tasks.getByName("checkJetifierAll").dependsOn(task)
+//        }
+//    }
 }
 
 
@@ -59,3 +68,11 @@ subprojects { project ->
  * ./gradlew dependencyUpdates
  */
 
+
+/**
+ * 定义的一些变量，在其他脚本中可以通过 rootProject.ext.get("key") 获取
+ */
+ext {
+    set("debugValue", "debugValue")
+    set("releaseValue", "releaseValue")
+}
