@@ -1,6 +1,7 @@
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.8.10"
-    id("java-gradle-plugin")
+//    id("org.jetbrains.kotlin.jvm") version "1.8.10"
+//    id("java-gradle-plugin")
+    `kotlin-dsl`
 }
 
 repositories {
@@ -8,8 +9,8 @@ repositories {
 }
 
 dependencies {
-    implementation(gradleApi())
-    implementation(localGroovy())
+//    compileOnly(gradleApi())
+//    compileOnly(localGroovy())
 }
 
 gradlePlugin {
@@ -22,9 +23,3 @@ gradlePlugin {
 }
 
 println("复合构建===")
-
-
-ext {
-    set("kotlin", "1.8.10")
-
-}

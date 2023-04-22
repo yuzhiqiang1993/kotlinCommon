@@ -7,7 +7,7 @@ import com.yzq.dependency_manager_plugin.ThirdParty
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("com.google.devtools.ksp")
+    kotlin("kapt")
     id("therouter")
 }
 println("getRootDir():${rootDir}")
@@ -144,8 +144,8 @@ dependencies {
     implementation(AndroidOfficial.splashscreen)
     implementation(AndroidOfficial.recyclerview)
 
-    ksp(AndroidOfficial.roomCompiler)
-    ksp(TheRouter.theRouterApt)
+    kapt(AndroidOfficial.roomCompiler)
+    kapt(TheRouter.theRouterApt)
 
     implementation(ThirdParty.zxingYzq)
     implementation(ThirdParty.jsoup)

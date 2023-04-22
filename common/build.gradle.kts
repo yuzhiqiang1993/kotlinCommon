@@ -1,5 +1,4 @@
 import com.yzq.dependency_manager_plugin.AndroidConfig
-import com.yzq.dependency_manager_plugin.AndroidConfig.minSdkVersion
 import com.yzq.dependency_manager_plugin.AndroidOfficial
 import com.yzq.dependency_manager_plugin.ThirdParty
 
@@ -7,7 +6,6 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
-//    kotlin("parcelize")
 }
 
 android {
@@ -15,7 +13,7 @@ android {
     compileSdk = AndroidConfig.compileSdkVersion
 
     defaultConfig {
-        minSdk = minSdkVersion
+        minSdk = AndroidConfig.minSdkVersion
         multiDexEnabled = AndroidConfig.multiDexEnabled
         vectorDrawables.useSupportLibrary = true
 

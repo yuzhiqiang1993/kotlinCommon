@@ -119,7 +119,7 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             }
         ) {
-
+            LogUtils.iTag(TAG, "有权限,进页面")
             if (MMKVUtil.appFirstOpen) {
                 LogUtils.iTag(TAG, "首次打开:${MMKVUtil.appFirstOpen}")
                 /*首次打开可以弹窗提示同意 隐私政策 */
@@ -139,7 +139,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun route() {
-
+        LogUtils.iTag(TAG, "route 跳转页面")
         if (MMKVUtil.hasLogin) {
             navFinish(RoutePath.Main.MAIN)
         } else {

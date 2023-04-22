@@ -5,8 +5,6 @@ import com.yzq.dependency_manager_plugin.ThirdParty
 plugins {
     id("com.android.library")
     kotlin("android")
-    kotlin("kapt")
-//    kotlin("parcelize")
 }
 
 android {
