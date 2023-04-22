@@ -47,13 +47,10 @@ android {
     buildTypes {
         debug {
             signingConfig = signingConfigs.getByName("release")
-            isDebuggable = true
             isMinifyEnabled = false
             isShrinkResources = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
-                file("proguard-rules.pro")
-            )
+            isDebuggable = true
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
             /*给buildConfig中添加变量*/
             buildConfigField("boolean", "LOG_DEBUG", "false")
             buildConfigField("String", "BASE_URL", "\"https://debug.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
@@ -78,11 +75,8 @@ android {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
-            isDebuggable = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android.txt"),
-                file("proguard-rules.pro")
-            )
+            isDebuggable = true
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
             buildConfigField("boolean", "LOG_DEBUG", "true")
             buildConfigField("String", "BASE_URL", "\"https://release.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
             buildConfigField(

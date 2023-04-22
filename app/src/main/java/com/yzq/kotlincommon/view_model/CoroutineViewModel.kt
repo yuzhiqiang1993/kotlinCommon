@@ -46,13 +46,16 @@ class CoroutineViewModel : BaseViewModel() {
 
             response.onSuccess {
                 _geocoder.value = it
+                _uiStateFlow.value = UIState.ShowContent()
             }
             response.onError { code, message ->
                 LogUtils.i("onFailed--code:$code,message:$message")
+                _uiStateFlow.value = UIState.ShowError(message)
             }
 
             response.onException {
                 LogUtils.i("onException：$it")
+                _uiStateFlow.value = UIState.ShowError(it.localizedMessage ?: "onException")
             }
         }
 

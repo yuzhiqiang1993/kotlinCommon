@@ -4,8 +4,8 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.Utils
 import com.yzq.application.BaseApp
-import com.yzq.base.BuildConfig
 import com.yzq.base.startup.base.WorkThreadTask
+import com.yzq.kotlincommon.BuildConfig
 
 /**
  * @description: 初始化 Utils

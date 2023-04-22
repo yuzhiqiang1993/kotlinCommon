@@ -1,7 +1,10 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.blankj.utilcode.util.LogUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
@@ -54,15 +57,9 @@ class CoroutinesActivity : BaseActivity() {
             }
         }
 
-        lifecycleScope.launchWhenCreated {
-            whenCreated {
+        lifecycleScope.launchSafety {
+            repeatOnLifecycle(Lifecycle.State.CREATED) {
                 LogUtils.i("lifecycleScope whenCreated")
-            }
-            whenStarted {
-                LogUtils.i("lifecycleScope whenStarted")
-            }
-            whenResumed {
-                LogUtils.i("lifecycleScope whenResumed")
             }
         }
     }

@@ -3,7 +3,6 @@ import com.yzq.dependency_manager_plugin.AndroidOfficial
 import com.yzq.dependency_manager_plugin.Retrofit
 import com.yzq.dependency_manager_plugin.TheRouter
 import com.yzq.dependency_manager_plugin.ThirdParty
-import org.jetbrains.kotlin.gradle.plugin.KaptExtension
 
 plugins {
     id("com.android.library")
@@ -90,8 +89,4 @@ dependencies {
     api(project(":coroutine"))
     api(project(":binding"))
     api(project(":statusbar"))
-}
-
-configure<KaptExtension> {
-    correctErrorTypes = true
 }

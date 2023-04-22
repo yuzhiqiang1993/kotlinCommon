@@ -17,9 +17,3 @@
     @com.therouter.router.Autowired <fields>;
 }
 
-
-#gson
--dontwarn com.google.gson.**
--keep class com.google.gson.**{*;}
--keep interface com.google.gson.**{*;}
-
