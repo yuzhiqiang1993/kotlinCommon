@@ -21,6 +21,7 @@ class InitUtilsTask : WorkThreadTask() {
             .setLogSwitch(BuildConfig.DEBUG)
             .setGlobalTag(AppUtils.getAppName())
             .setConsoleSwitch(BuildConfig.DEBUG)
+            .setGlobalTag("KotlinCommon")
 
         LogUtils.d(config.toString())
     }
