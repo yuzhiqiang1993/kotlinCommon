@@ -7,7 +7,7 @@ import com.yzq.dependency_manager_plugin.ThirdParty
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    id("com.google.devtools.ksp")
     id("therouter")
 }
 println("getRootDir():${rootDir}")
@@ -144,8 +144,8 @@ dependencies {
     implementation(AndroidOfficial.splashscreen)
     implementation(AndroidOfficial.recyclerview)
 
-    kapt(AndroidOfficial.roomCompiler)
-    kapt(TheRouter.theRouterApt)
+    ksp(AndroidOfficial.roomCompiler)
+    ksp(TheRouter.theRouterApt)
 
     implementation(ThirdParty.zxingYzq)
     implementation(ThirdParty.jsoup)
@@ -158,7 +158,6 @@ dependencies {
 
     implementation(project(":gao-de-map"))
     implementation(project(":common"))
-
 }
 
 

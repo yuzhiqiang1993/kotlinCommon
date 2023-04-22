@@ -10,8 +10,6 @@ repositories {
 dependencies {
     implementation(gradleApi())
     implementation(localGroovy())
-
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
 }
 
 gradlePlugin {
@@ -21,4 +19,12 @@ gradlePlugin {
             implementationClass = "com.yzq.dependency_manager_plugin.DependencyManager"
         }
     }
+}
+
+println("复合构建===")
+
+
+ext {
+    set("kotlin", "1.8.10")
+
 }

@@ -5,10 +5,18 @@ plugins {
     id("com.android.application") version "8.0.0" apply false
     id("com.android.library") version "8.0.0" apply false
     id("org.jetbrains.kotlin.android") version "1.8.10" apply false
-    id("org.jetbrains.kotlin.plugin.parcelize") version "1.8.10" apply false
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
     id("cn.therouter") version "1.1.4-beta1" apply false
     id("com.yzq.dependency-manager") apply true  //管理依赖库的插件
     id("com.github.ben-manes.versions") version "0.46.0" apply false
+}
+
+/**
+ * 定义的一些变量，在其他脚本中可以通过 rootProject.ext.get("key") 获取
+ */
+ext {
+    set("debugValue", "debugValue")
+    set("releaseValue", "releaseValue")
 }
 
 print("根目录的build.gradle 开始执行")
@@ -69,10 +77,3 @@ subprojects {
  */
 
 
-/**
- * 定义的一些变量，在其他脚本中可以通过 rootProject.ext.get("key") 获取
- */
-ext {
-    set("debugValue", "debugValue")
-    set("releaseValue", "releaseValue")
-}
