@@ -1,6 +1,4 @@
 plugins {
-//    id("org.jetbrains.kotlin.jvm") version "1.8.10"
-//    id("java-gradle-plugin")
     `kotlin-dsl`
 }
 
@@ -16,8 +14,8 @@ dependencies {
 gradlePlugin {
     plugins {
         create("version") {
-            id = "com.yzq.dependency-manager"
-            implementationClass = "com.yzq.dependency_manager_plugin.DependencyManager"
+            id = "com.yzq.build-manager"
+            implementationClass = "com.yzq.build_manager.BuildManager"
         }
     }
 }

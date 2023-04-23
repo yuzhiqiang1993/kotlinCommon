@@ -2,7 +2,7 @@
 pluginManagement {
     println("pluginManagement")
     /*构建管理插件*/
-    includeBuild("dependency-manager-plugin")
+    includeBuild("build-manager")
     repositories {
         google()
         mavenCentral()
@@ -36,12 +36,6 @@ dependencyResolutionManagement {
         }
         maven {
             url = uri("https://jitpack.io")
-        }
-    }
-    /*版本控制 */
-    versionCatalogs {
-        create("libs") {
-            from(files("libs.versions.toml"))
         }
     }
 }

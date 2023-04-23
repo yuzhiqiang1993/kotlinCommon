@@ -1,5 +1,5 @@
-import com.yzq.dependency_manager_plugin.AndroidConfig
-import com.yzq.dependency_manager_plugin.TheRouter
+import com.yzq.build_manager.AndroidConfig
+import com.yzq.build_manager.TheRouter
 
 plugins {
     id("com.android.library")

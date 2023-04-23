@@ -1,9 +1,9 @@
-package com.yzq.dependency_manager_plugin
+package com.yzq.build_manager
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-class DependencyManager : Plugin<Project> {
+class BuildManager : Plugin<Project> {
     override fun apply(target: Project) {
 
     }

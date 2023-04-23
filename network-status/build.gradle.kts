@@ -1,6 +1,6 @@
-import com.yzq.dependency_manager_plugin.AndroidConfig
-import com.yzq.dependency_manager_plugin.AndroidOfficial
-import com.yzq.dependency_manager_plugin.ThirdParty
+import com.yzq.build_manager.AndroidConfig
+import com.yzq.build_manager.AndroidOfficial
+import com.yzq.build_manager.ThirdParty
 
 plugins {
     id("com.android.library")

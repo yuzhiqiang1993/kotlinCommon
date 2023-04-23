@@ -1,4 +1,4 @@
-package com.yzq.dependency_manager_plugin
+package com.yzq.build_manager
 
 /**
  * @description Android 相关配置
