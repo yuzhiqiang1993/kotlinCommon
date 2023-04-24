@@ -1,14 +1,12 @@
 import com.yzq.build_manager.AndroidConfig
 import com.yzq.build_manager.AndroidOfficial
-import com.yzq.build_manager.Kotlinx
-import com.yzq.build_manager.TheRouter
 import com.yzq.build_manager.ThirdParty
 
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
-    id("therouter")
+    id("com.yzq.android.application")
+    id("com.yzq.android.room")
+    id("com.yzq.theRouter")
+
 }
 println("getRootDir():${rootDir}")
 
@@ -16,15 +14,13 @@ println("getRootDir():${rootDir}")
 
 android {
     namespace = "com.yzq.kotlincommon"
-    compileSdk = AndroidConfig.compileSdkVersion
     defaultConfig {
         applicationId = "com.yzq.kotlincommon"
-        minSdk = AndroidConfig.minSdkVersion
-        targetSdk = AndroidConfig.targetSdkVersion
         versionCode = AndroidConfig.versionCode
-        versionName = AndroidConfig.versionName
-        multiDexEnabled = AndroidConfig.multiDexEnabled
-        vectorDrawables.useSupportLibrary = true
+        versionName = "1.0.1"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
         resourceConfigurations += listOf("zh")
         ndk {
             abiFilters += listOf("arm64-v8a", "armeabi-v7a")
@@ -56,20 +52,6 @@ android {
             buildConfigField("String", "BASE_URL", "\"https://debug.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
             buildConfigField("String", "CUSTOME_FIELD", "\"${rootProject.ext.get("debugValue")}\"")
         }
-        /*给测试打包用 混淆 压缩 签名都开启  但是可以debug*/
-//        getByName("qa") {
-//            signingConfig = signingConfigs.getByName("release")
-//            isMinifyEnabled = true
-//            isZipAlignEnabled = true
-//            isShrinkResources = true
-//            isDebuggable = true //该值决定了BuildConfig中的DEBUG值
-//            proguardFiles(getDefaultProguardFile("proguard-android.txt"), file("proguard-rules.pro"))
-//            buildConfigField("boolean", "LOG_DEBUG", "true")
-//            buildConfigField("String", "BASE_URL", "\"https://release.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
-//            buildConfigField("String", "CUSTOME_FIELD", "\"${rootProject.ext.releaseValue}\"")
-//        }
-
-
         /*生产环境用*/
         release {
             signingConfig = signingConfigs.getByName("release")
@@ -120,32 +102,20 @@ android {
         viewBinding = true
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
-    }
 
     lint {
         baseline = file("lint-baseline.xml")
     }
-
-    println("我是App工程，${project.name},我的路径是:${project.projectDir}")
 }
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(Kotlinx.kotlinStdlib)
+    implementation(libs.kotlin.stdlib)
     implementation(AndroidOfficial.viewpager2)
     implementation(AndroidOfficial.coordinatorlayout)
     implementation(AndroidOfficial.splashscreen)
     implementation(AndroidOfficial.recyclerview)
 
-    kapt(AndroidOfficial.roomCompiler)
-    kapt(TheRouter.theRouterApt)
 
     implementation(ThirdParty.zxingYzq)
     implementation(ThirdParty.jsoup)

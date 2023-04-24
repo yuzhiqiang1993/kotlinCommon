@@ -47,10 +47,10 @@ object AndroidOfficial {
 
     const val viewpager2 = "androidx.viewpager2:viewpager2:1.1.0-beta01"
 
-    private const val roomVersion = "2.5.1"
-    const val roomRuntime = "androidx.room:room-runtime:$roomVersion"
-    const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
-    const val roomKtx = "androidx.room:room-ktx:$roomVersion"
+//    private const val roomVersion = "2.5.1"
+//    const val roomRuntime = "androidx.room:room-runtime:$roomVersion"
+//    const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
+//    const val roomKtx = "androidx.room:room-ktx:$roomVersion"
 
     const val exifinterface = "androidx.exifinterface:exifinterface:1.3.6"
 
@@ -66,13 +66,13 @@ object Kotlinx {
     const val coroutineAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinxCoroutineVersion"
 
-    private const val kotlinVersion = "1.8.10"
-
-    /*一些官方库或者三方库依赖了 jdk7或者jdk8 所以最好在app中显示的依赖一下保证版本统一*/
-    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    const val kotlinStdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    /*jdk8内部依赖了jdk7 jdk7内部又依赖了kotlin-stdlib 所以一般只需要依赖jdk8即可*/
-//    const val kotlinStdlibJdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}"
+//    private const val kotlinVersion = "1.8.10"
+//
+//    /*一些官方库或者三方库依赖了 jdk7或者jdk8 所以最好在app中显示的依赖一下保证版本统一*/
+//    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+//    const val kotlinStdlibJdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+//    /*jdk8内部依赖了jdk7 jdk7内部又依赖了kotlin-stdlib 所以一般只需要依赖jdk8即可*/
+////    const val kotlinStdlibJdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}"
 }
 
 object Retrofit {
@@ -80,19 +80,18 @@ object Retrofit {
     const val okhttp = "com.squareup.okhttp3:okhttp:$okHttpVersion"
     const val okhttpLogInterceptor = "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
-
     private const val retrofitVersion = "2.9.0"
     const val retrofit = "com.squareup.retrofit2:retrofit:$retrofitVersion"
     const val moshiConverter = "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
 }
 
 
-object TheRouter {
-    const val theRouterVersion = "1.1.4-beta1"
-
-    const val theRouter = "cn.therouter:router:$theRouterVersion"
-    const val theRouterApt = "cn.therouter:apt:$theRouterVersion"
-}
+//object TheRouter {
+//    const val theRouterVersion = "1.1.4-beta1"
+//
+//    const val theRouter = "cn.therouter:router:$theRouterVersion"
+//    const val theRouterApt = "cn.therouter:apt:$theRouterVersion"
+//}
 
 
 object ThirdParty {

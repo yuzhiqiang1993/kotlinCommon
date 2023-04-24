@@ -2,12 +2,18 @@
  * 该处主要用来申明插件的版本，apply false表示不立即应用，而是自己手动应用
  */
 plugins {
-    id("com.android.application") version "8.0.0" apply false
-    id("com.android.library") version "8.0.0" apply false
-    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
-    id("cn.therouter") version "1.1.4-beta1" apply false
-    id("com.yzq.build-manager") apply true  //管理依赖库的插件
-    id("com.github.ben-manes.versions") version "0.46.0" apply false
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.ksp) apply false
+    alias(libs.plugins.theRouter) apply false
+    alias(libs.plugins.benManesVersion) apply false
+
+//    id("com.android.application") version "8.0.0" apply false
+//    id("com.android.library") version "8.0.0" apply false
+//    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
+//    id("cn.therouter") version "1.1.4-beta1" apply false
+//    id("com.github.ben-manes.versions") version "0.46.0" apply false
 }
 
 /**

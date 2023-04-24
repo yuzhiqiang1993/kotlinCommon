@@ -53,5 +53,4 @@ object AndroidConfig {
      * 显示给用户看的版本
      */
     const val versionName = "1.0.1"
-    const val multiDexEnabled = true
 }

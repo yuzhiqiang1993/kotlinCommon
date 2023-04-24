@@ -1,40 +1,18 @@
-import com.yzq.build_manager.AndroidConfig
 import com.yzq.build_manager.AndroidOfficial
 import com.yzq.build_manager.ThirdParty
 
 plugins {
-    id("com.android.library")
-    kotlin("android")
+    id("com.yzq.android.library")
 }
 
 android {
     namespace = "com.yzq.img"
-    compileSdk = AndroidConfig.compileSdkVersion
-
-    defaultConfig {
-        minSdk = AndroidConfig.minSdkVersion
-        multiDexEnabled = AndroidConfig.multiDexEnabled
-        vectorDrawables.useSupportLibrary = true
-    }
 
     buildTypes {
         release {
             consumerProguardFiles("proguard-rules.pro")
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
-    }
-
-    lint {
-        abortOnError = false
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 }
 

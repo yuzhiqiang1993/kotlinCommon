@@ -1,0 +1,35 @@
+import com.android.build.api.dsl.ApplicationExtension
+import com.yzq.build_manager.AndroidConfig
+import com.yzq.build_manager.configureKotlinAndroid
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
+
+
+/**
+ * @description 默认的Application插件
+ * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ * @date    2023/4/23
+ * @time    14:01
+ */
+
+class AndroidApplicationConventionPlugin : Plugin<Project> {
+    override fun apply(target: Project) {
+        with(target) {
+            with(pluginManager) {
+                apply("com.android.application")
+                apply("org.jetbrains.kotlin.android")
+            }
+
+            extensions.configure<ApplicationExtension> {
+                configureKotlinAndroid(this)
+                defaultConfig {
+
+                    targetSdk = AndroidConfig.targetSdkVersion
+                    multiDexEnabled = true
+                }
+            }
+        }
+    }
+
+}

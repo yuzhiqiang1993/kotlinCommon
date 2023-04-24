@@ -12,8 +12,5 @@ class DataBindingBean : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.content)
-
         }
-
-
 }
