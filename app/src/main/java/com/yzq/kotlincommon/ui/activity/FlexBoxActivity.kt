@@ -46,7 +46,7 @@ class FlexBoxActivity : BaseActivity() {
                 addType<String>(R.layout.item_tag_layout)
                 onBind {
                     val itemBinding = getBinding<ItemTagLayoutBinding>()
-                    itemBinding.tvTagName.setText(getModel<String>())
+                    itemBinding.tvTagName.text = getModel<String>()
                 }
 
                 R.id.tv_tag_name.onClick {

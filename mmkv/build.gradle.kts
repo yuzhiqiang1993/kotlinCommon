@@ -1,5 +1,3 @@
-import com.yzq.build_manager.ThirdParty
-
 plugins {
     id("com.yzq.android.library")
 }
@@ -16,5 +14,5 @@ android {
 }
 
 dependencies {
-    api(ThirdParty.mmkv)
+    api(libs.mmkv)
 }

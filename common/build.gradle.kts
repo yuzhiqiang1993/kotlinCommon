@@ -1,6 +1,3 @@
-import com.yzq.build_manager.AndroidOfficial
-import com.yzq.build_manager.ThirdParty
-
 plugins {
     id("com.yzq.android.library")
     id("com.yzq.android.room")
@@ -27,13 +24,13 @@ dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
 
     /*处理图片方向*/
-    implementation(AndroidOfficial.exifinterface)
+    implementation(libs.androidx.exifinterface)
 
     /*flexbox*/
-    api(ThirdParty.flexboxLayout)
+    api(libs.flexbox.layout)
 
     /*内存泄漏检测 leakcanary*/
-    debugImplementation(ThirdParty.leakcanaryAndroid)
+    debugImplementation(libs.leakcanary.android)
 
     api(project(":base"))
     api(project(":mmkv"))

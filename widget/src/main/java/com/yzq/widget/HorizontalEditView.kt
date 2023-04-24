@@ -134,28 +134,6 @@ class HorizontalEditView @JvmOverloads constructor(
         }
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-
-        /*在onAttachedToWindow之后才能获取到,ViewTreeLifecycleOwner,因此在代码块里执行lifeScope时生命周期检测是无效的*/
-
-//        findViewTreeLifecycleOwner()?.lifecycle?.addObserver(object : LifecycleEventObserver {
-//            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-//                LogUtils.i("当前状态:${event}")
-//
-//            }
-//        })
-
-//        lifeScope {
-//            LogUtils.i("测试开始执行耗时任务")
-//
-//            withIO {
-//                delay(3000)
-//                LogUtils.i("执行完毕了")
-//            }
-//        }
-    }
-
     /**
      * 更改内容
      * @param content String

@@ -1,6 +1,3 @@
-import com.yzq.build_manager.AndroidOfficial
-import com.yzq.build_manager.ThirdParty
-
 plugins {
     id("com.yzq.android.library")
 }
@@ -22,20 +19,14 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-
-
-    implementation(AndroidOfficial.appcompat)
-    implementation(AndroidOfficial.material)
-    implementation(AndroidOfficial.vectordrawable)
-    implementation(AndroidOfficial.constraintlayout)
-    implementation(AndroidOfficial.annotationLib)
-    implementation(AndroidOfficial.lifecycle)
-
-
+    implementation(libs.androidx.appcompat)
+    implementation(libs.google.material)
+    implementation(libs.androidx.vectordrawable)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
     /*utils*/
-    implementation(ThirdParty.utilcode)
-
-
+    implementation(libs.utilcodex)
     implementation(project(":coroutine"))
 
 

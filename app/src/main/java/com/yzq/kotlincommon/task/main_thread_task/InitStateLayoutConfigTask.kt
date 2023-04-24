@@ -29,19 +29,17 @@ class InitStateLayoutConfigTask : MainThreadTask() {
                     val msgTv = findViewById<AppCompatTextView>(R.id.tv_msg)
                     when (tag) {
                         is Throwable -> {
-                            msgTv?.setText(tag.message)
+                            msgTv?.text = tag.message
                         }
                         is ApiResult.Error -> {
-                            msgTv?.setText(
-                                buildString {
-                                    append(tag.code)
-                                    append("--")
-                                    append(tag.message)
-                                }
-                            )
+                            msgTv?.text = buildString {
+                                append(tag.code)
+                                append("--")
+                                append(tag.message)
+                            }
                         }
                         is String -> {
-                            msgTv?.setText(tag)
+                            msgTv?.text = tag
                         }
                     }
                 }

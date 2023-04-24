@@ -1,5 +1,3 @@
-import com.yzq.build_manager.ThirdParty
-
 plugins {
     id("com.yzq.android.library")
 }
@@ -20,12 +18,13 @@ android {
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(project(":materialdialog"))
-    implementation(project(":application"))
+//    implementation(project(":application"))
 
+    implementation(libs.androidx.appcompat)
     /*utils*/
-    implementation(ThirdParty.utilcode)
+    implementation(libs.utilcodex)
     /*xxPermission*/
-    api(ThirdParty.xxPermission)
+    api(libs.xxPermissions)
 
 
 }

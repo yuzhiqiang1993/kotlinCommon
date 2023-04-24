@@ -1,5 +1,3 @@
-import com.yzq.build_manager.AndroidOfficial
-import com.yzq.build_manager.ThirdParty
 
 plugins {
     id("com.yzq.android.library")
@@ -17,14 +15,14 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation(AndroidOfficial.appcompat)
-    implementation(AndroidOfficial.material)
-    implementation(AndroidOfficial.constraintlayout)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.google.material)
+    implementation(libs.androidx.constraintlayout)
 
-    api(ThirdParty.materialDialogsCore)
-    api(ThirdParty.materialDialogsInput)
-    api(ThirdParty.materialDialogsBottomsheets)
-    api(ThirdParty.materialDialogsLifecycle)
+    api(libs.materialDialog.core)
+    api(libs.materialDialog.input)
+    api(libs.materialDialog.bottomsheets)
+    api(libs.materialDialog.lifecycle)
 
-    api(ThirdParty.dateTimePicker)
+    api(libs.dateTimePicker)
 }

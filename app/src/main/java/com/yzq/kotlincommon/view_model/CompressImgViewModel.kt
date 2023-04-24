@@ -8,7 +8,11 @@ import android.media.ExifInterface
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.blankj.utilcode.util.*
+import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.FileUtils
+import com.blankj.utilcode.util.ImageUtils
+import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.TimeUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.constants.AppStorage
 import com.yzq.common.net.RetrofitFactory
@@ -56,7 +60,7 @@ class CompressImgViewModel : BaseViewModel() {
                 .addFormDataPart("key3", "1")
                 .addFormDataPart(
                     "image",
-                    imageFile.getName(),
+                    imageFile.name,
                     imageFile.asRequestBody("image/*".toMediaTypeOrNull())
                 )
                 .build()

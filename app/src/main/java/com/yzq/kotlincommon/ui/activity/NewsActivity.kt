@@ -46,7 +46,7 @@ class NewsActivity : BaseActivity() {
                     val itemMovieLayoutBinding = getBinding<ItemMovieLayoutBinding>()
                     val model = getModel<TouTiao.Result.Data>()
                     itemMovieLayoutBinding.ivImg.load(model.thumbnailPicS)
-                    itemMovieLayoutBinding.tvTitle.setText(model.title)
+                    itemMovieLayoutBinding.tvTitle.text = model.title
                 }
 
                 R.id.iv_img.onClick {

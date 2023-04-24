@@ -38,13 +38,11 @@ class RoomActivity : BaseActivity() {
                     onBind {
                         val itemBinding = getBinding<ItemRoomBinding>()
                         val user = getModel<User>()
-                        itemBinding.tvUser.setText(
-                            buildString {
-                                append(user.id.toString())
-                                append("---")
-                                append(user.name)
-                            }
-                        )
+                        itemBinding.tvUser.text = buildString {
+                            append(user.id.toString())
+                            append("---")
+                            append(user.name)
+                        }
                     }
 
                     R.id.tv_delete.onClick {

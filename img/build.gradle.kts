@@ -1,6 +1,3 @@
-import com.yzq.build_manager.AndroidOfficial
-import com.yzq.build_manager.ThirdParty
-
 plugins {
     id("com.yzq.android.library")
 }
@@ -18,10 +15,10 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(AndroidOfficial.appcompat)
+    implementation(libs.androidx.appcompat)
 
-    api(ThirdParty.photoview)
-    api(ThirdParty.coil)
+    api(libs.photoView)
+    api(libs.coil)
 
-    implementation(ThirdParty.utilcode)
+    implementation(libs.utilcodex)
 }

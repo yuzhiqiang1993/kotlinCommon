@@ -68,12 +68,6 @@ class FlowActivity : BaseActivity(), NavigationBarView.OnItemSelectedListener {
     }
 
 
-    override fun initData() {
-        super.initData()
-
-
-    }
-
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         LogUtils.i("onNavigationItemReselected:${item}")
         if (!item.isChecked) {

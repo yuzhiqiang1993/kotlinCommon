@@ -1,7 +1,3 @@
-import com.yzq.build_manager.AndroidOfficial
-import com.yzq.build_manager.Retrofit
-import com.yzq.build_manager.ThirdParty
-
 plugins {
     id("com.yzq.android.library")
     id("com.yzq.theRouter")
@@ -24,38 +20,39 @@ android {
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
 
-    api(AndroidOfficial.appcompat)
-    api(AndroidOfficial.material)
-    api(AndroidOfficial.vectordrawable)
-    api(AndroidOfficial.constraintlayout)
-    api(AndroidOfficial.annotationLib)
-    api(AndroidOfficial.multiDex)
+    api(libs.androidx.appcompat)
+    api(libs.google.material)
+
+    api(libs.androidx.vectordrawable)
+    api(libs.androidx.constraintlayout)
+    api(libs.androidx.annotation)
+    api(libs.androidx.multidex)
 
     /*ktx*/
-    api(AndroidOfficial.corektx)
-    api(AndroidOfficial.activityKtx)
-    api(AndroidOfficial.fragmentKtx)
-    api(AndroidOfficial.collectionKtx)
+    api(libs.androidx.core.ktx)
+    api(libs.androidx.activity.ktx)
+    api(libs.androidx.fragment.ktx)
+    api(libs.androidx.collection.ktx)
 
-    api(AndroidOfficial.lifecycle)
-    api(AndroidOfficial.liveData)
-    api(AndroidOfficial.viewModel)
-    api(AndroidOfficial.swiperefreshlayout)
+    api(libs.androidx.lifecycle.runtime.ktx)
+    api(libs.androidx.lifecycle.livedata.ktx)
+    api(libs.androidx.lifecycle.viewmodel.ktx)
+    api(libs.androidx.swiperefreshlayout)
 
-    api(ThirdParty.utilcode)
-    api(ThirdParty.moshiKotlin)
+    api(libs.utilcodex)
+    api(libs.moshiKotlin)
 
 
     /*retrofit*/
-    api(Retrofit.okhttp)
-    api(Retrofit.okhttpLogInterceptor)
-    api(Retrofit.retrofit)
-    api(Retrofit.moshiConverter)
+    api(libs.okhttp.core)
+    api(libs.okhttp.logging.interceptor)
+    api(libs.retrofit.core)
+    api(libs.retrofit.converter.moshi)
 
     /*progressmanager*/
-    api(ThirdParty.appStartFaster)
-    api(ThirdParty.progressManager)
-    api(ThirdParty.BRV)
+    api(libs.appStartFaster)
+    api(libs.progressManager)
+    api(libs.brv)
 
     api(project(":application"))
     api(project(":network-status"))

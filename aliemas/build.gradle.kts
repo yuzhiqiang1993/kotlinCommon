@@ -1,5 +1,3 @@
-import com.yzq.build_manager.ThirdParty
-
 plugins {
     id("com.yzq.android.library")
 }
@@ -17,7 +15,7 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation(ThirdParty.utilcode)
+    implementation(libs.utilcodex)
 
 
     //崩溃分析

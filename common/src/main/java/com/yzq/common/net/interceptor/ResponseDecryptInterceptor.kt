@@ -51,7 +51,7 @@ class ResponseDecryptInterceptor : Interceptor {
                 /*2.使用aesKey对密文进行解密获取最终的明文*/
                 val source = responseBody!!.source()
                 source.request(java.lang.Long.MAX_VALUE) // Buffer the entire body.
-                val buffer = source.buffer()
+                val buffer = source.buffer
                 var respCharset = Charset.forName("UTF-8")
 
                 val contentType = responseBody.contentType()

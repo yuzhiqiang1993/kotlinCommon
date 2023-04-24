@@ -69,7 +69,7 @@ class DropDownMenuActivity : BaseActivity() {
             addType<String>(R.layout.item_drop_down_menu_layout)
             onBind {
                 val itemBinding = getBinding<ItemDropDownMenuLayoutBinding>()
-                itemBinding.tvContent.setText(getModel<String>())
+                itemBinding.tvContent.text = getModel<String>()
             }
             R.id.tv_content.onClick {
                 binding.dropdownMenu.setTabText(getModel())

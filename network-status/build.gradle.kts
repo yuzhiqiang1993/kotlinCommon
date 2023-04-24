@@ -1,6 +1,3 @@
-import com.yzq.build_manager.AndroidOfficial
-import com.yzq.build_manager.ThirdParty
-
 plugins {
     id("com.yzq.android.library")
 }
@@ -21,11 +18,11 @@ android {
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     /*utils*/
-    implementation(ThirdParty.utilcode)
-    implementation(AndroidOfficial.annotationLib)
+    implementation(libs.utilcodex)
+    implementation(libs.androidx.annotation)
 
     //Lifecycles only (without ViewModel or LiveData)
-    implementation(AndroidOfficial.lifecycle)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(project(":application"))
     implementation(project(":permission"))
 }

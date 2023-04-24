@@ -1,6 +1,3 @@
-import com.yzq.build_manager.AndroidOfficial
-import com.yzq.build_manager.Kotlinx
-
 plugins {
     id("com.yzq.android.library")
 }
@@ -18,9 +15,9 @@ android {
 }
 
 dependencies {
-    api(Kotlinx.coroutinesCore)
-    api(Kotlinx.coroutineAndroid)
+//    api(libs.kotlinx.coroutines.core)
+    api(libs.kotlinx.coroutines.android)
 
-    implementation(AndroidOfficial.lifecycle)
-    implementation(AndroidOfficial.fragmentKtx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.fragment.ktx)
 }

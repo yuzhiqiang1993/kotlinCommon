@@ -26,9 +26,9 @@ class AndroidRoomConventionPlugin : Plugin<Project> {
 
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
-                add("implementation", libs.findLibrary("room.runtime").get())
-                add("implementation", libs.findLibrary("room.ktx").get())
-                add("ksp", libs.findLibrary("room.compiler").get())
+                add("implementation", libs.findLibrary("androidx.room.runtime").get())
+                add("implementation", libs.findLibrary("androidx.room.ktx").get())
+                add("ksp", libs.findLibrary("androidx.room.compiler").get())
             }
         }
     }

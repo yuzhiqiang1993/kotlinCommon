@@ -1,6 +1,3 @@
-import com.yzq.build_manager.AndroidOfficial
-import com.yzq.build_manager.ThirdParty
-
 plugins {
     id("com.yzq.android.library")
 }
@@ -17,6 +14,6 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(AndroidOfficial.appcompat)
-    implementation(ThirdParty.utilcode)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.utilcodex)
 }

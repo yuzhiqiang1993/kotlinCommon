@@ -74,13 +74,11 @@ class TaskActivity : BaseActivity() {
                         R.layout.item_task_swipe_layout -> {
                             getBinding<ItemTaskSwipeLayoutBinding>()
                                 .run {
-                                    includedTaskContent.tvName.setText(
-                                        model.name
-                                    )
+                                    includedTaskContent.tvName.text = model.name
                                 }
                         }
                         R.layout.item_task_hover -> {
-                            getBinding<ItemTaskHoverBinding>().tvHover.setText(model.type)
+                            getBinding<ItemTaskHoverBinding>().tvHover.text = model.type
                         }
                     }
                 }

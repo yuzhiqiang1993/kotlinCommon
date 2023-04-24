@@ -1,7 +1,3 @@
-import com.yzq.build_manager.AndroidConfig
-import com.yzq.build_manager.AndroidOfficial
-import com.yzq.build_manager.ThirdParty
-
 plugins {
     id("com.yzq.android.application")
     id("com.yzq.android.room")
@@ -16,7 +12,7 @@ android {
     namespace = "com.yzq.kotlincommon"
     defaultConfig {
         applicationId = "com.yzq.kotlincommon"
-        versionCode = AndroidConfig.versionCode
+        versionCode = 10001
         versionName = "1.0.1"
         vectorDrawables {
             useSupportLibrary = true
@@ -111,20 +107,20 @@ android {
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(libs.kotlin.stdlib)
-    implementation(AndroidOfficial.viewpager2)
-    implementation(AndroidOfficial.coordinatorlayout)
-    implementation(AndroidOfficial.splashscreen)
-    implementation(AndroidOfficial.recyclerview)
+    implementation(libs.androidx.viewpager2)
+    implementation(libs.androidx.coordinatorlayout)
+    implementation(libs.androidx.core.splashscreen)
+    implementation(libs.androidx.recyclerview)
 
 
-    implementation(ThirdParty.zxingYzq)
-    implementation(ThirdParty.jsoup)
+    implementation(libs.zxingYzq)
+    implementation(libs.jsoup)
 
-    implementation(ThirdParty.bannerViewPager)
+    implementation(libs.bannerViewPager)
 
-    implementation(ThirdParty.xeonBsDiff)
+    implementation(libs.xeonBsDiff)
 
-    implementation(ThirdParty.coil)
+    implementation(libs.coil)
 
     implementation(project(":gao-de-map"))
     implementation(project(":common"))
