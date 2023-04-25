@@ -21,10 +21,6 @@ dependencies {
 
 gradlePlugin {
     plugins {
-//        register("buildManager") {
-//            id = "com.yzq.build-manager"
-//            implementationClass = "BuildManagerPlugin"
-//        }
 
         register("androidApplication") {
             id = "com.yzq.android.application"

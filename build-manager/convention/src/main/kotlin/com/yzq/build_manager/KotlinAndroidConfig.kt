@@ -3,8 +3,10 @@ package com.yzq.build_manager
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
 
 /**
@@ -18,10 +20,19 @@ internal fun Project.configureKotlinAndroid(
     commonExtension: CommonExtension<*, *, *, *>,
 ) {
     commonExtension.apply {
-        compileSdk = AndroidConfig.compileSdkVersion
+
+        val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+        val compileSdkVersion = libs.findVersion("compileSdk").get().requiredVersion.toInt()
+        val minSdkVersion = libs.findVersion("minSdk").get().requiredVersion.toInt()
+
+        println("compileSdkVersion:${compileSdkVersion}")
+        println("minSdkVersion:${minSdkVersion}")
+
+
+        compileSdk = compileSdkVersion
 
         defaultConfig {
-            minSdk = AndroidConfig.minSdkVersion
+            minSdk = minSdkVersion
 //            vectorDrawables {
 //                useSupportLibrary = true
 //            }

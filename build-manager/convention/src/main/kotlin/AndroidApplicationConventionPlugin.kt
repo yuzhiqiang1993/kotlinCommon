@@ -1,9 +1,10 @@
 import com.android.build.api.dsl.ApplicationExtension
-import com.yzq.build_manager.AndroidConfig
 import com.yzq.build_manager.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.getByType
 
 
 /**
@@ -20,12 +21,19 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")
             }
-
+            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+            val targetSdkVersion = libs.findVersion("targetSdk").get().requiredVersion.toInt()
+            val versionCodeInt = libs.findVersion("versionCode").get().requiredVersion.toInt()
+            val versionNameStr = libs.findVersion("versionName").get().requiredVersion
+            println("targetSdkVersion:${targetSdkVersion}")
+            println("versionCodeInt:${versionCodeInt}")
+            println("versionNameStr:${versionNameStr}")
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
                 defaultConfig {
-
-                    targetSdk = AndroidConfig.targetSdkVersion
+                    versionCode = versionCodeInt
+                    versionName = versionNameStr
+                    targetSdk = targetSdkVersion
                     multiDexEnabled = true
                 }
             }
