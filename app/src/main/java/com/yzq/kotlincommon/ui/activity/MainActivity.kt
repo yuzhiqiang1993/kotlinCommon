@@ -126,6 +126,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("线程池", RoutePath.Main.THREAD_POOL))
         items.add(NaviItem("Service", RoutePath.Main.SERVICE))
         items.add(NaviItem("存储", RoutePath.Main.STORAGE))
+        items.add(NaviItem("Lottie", RoutePath.Main.LOTTIE))
 
         setData()
 
@@ -157,12 +158,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         when (item.itemId) {
             R.id.nav_map -> {
             }
+
             R.id.nav_gallery -> {
             }
+
             R.id.nav_slideshow -> {
             }
+
             R.id.nav_tools -> {
             }
+
             R.id.nav_share -> {
             }
         }

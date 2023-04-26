@@ -78,7 +78,7 @@ benManesVersion = "0.46.0"
 okhttp = "4.10.0"
 retrofit = "2.9.0"
 retrofitKotlinxSerializationJson = "0.8.0"
-
+lottie = "6.0.0"
 moshiKotlin = "1.14.0"
 utilcodex = "1.31.1"
 xxPermissions = "18.0"
@@ -135,6 +135,7 @@ okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-i
 retrofit-core = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 retrofit-converter-moshi = { group = "com.squareup.retrofit2", name = "converter-moshi", version.ref = "retrofit" }
 retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "retrofitKotlinxSerializationJson" }
+lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
 utilcodex = { group = "com.blankj", name = "utilcodex", version.ref = "utilcodex" }
 xxPermissions = { group = "com.github.getActivity", name = "XXPermissions", version.ref = "xxPermissions" }
 mmkv = { group = "com.tencent", name = "mmkv", version.ref = "mmkv" }

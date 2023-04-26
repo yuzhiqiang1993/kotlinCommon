@@ -33,7 +33,6 @@ fun BaseActivity.observeUIState(
             is UIState.ShowLoadingDialog -> {
                 loadingDialog?.run {
                     runMain { updateTitle(it.msg).show() }
-
                 }
 
             }

@@ -2,6 +2,7 @@ plugins {
     id("com.yzq.android.application")
     id("com.yzq.android.room")
     id("com.yzq.theRouter")
+    id("org.jetbrains.kotlin.android")
 
 }
 println("getRootDir():${rootDir}")
@@ -114,6 +115,7 @@ dependencies {
 
 
     implementation(libs.zxingYzq)
+    implementation(libs.lottie)
     implementation(libs.jsoup)
 
     implementation(libs.bannerViewPager)
@@ -124,6 +126,9 @@ dependencies {
 
     implementation(project(":gao-de-map"))
     implementation(project(":common"))
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.5.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 }
 
 

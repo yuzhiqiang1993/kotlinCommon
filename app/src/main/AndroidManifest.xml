@@ -3,24 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yzq.kotlincommon">
 
-
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <!--Android 适配Android 11-->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> <!-- Android 适配Android 11 -->
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <!--兼容低版本 Android10 及以上适配分区存储-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 兼容低版本 Android10 及以上适配分区存储 -->
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" />
-    <!-- 前台服务权限 -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <!--通知栏权限-->
+        tools:ignore="ScopedStorage" /> <!-- 前台服务权限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 通知栏权限 -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
-    <uses-permission android:name="android.permission.CAMERA" />
-    <!--表示如果用户设备没有摄像头是否允许安装 由required字段控制 false表示可以安装-->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 表示如果用户设备没有摄像头是否允许安装 由required字段控制 false表示可以安装 -->
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -39,15 +32,13 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
-
-
+        <activity
+            android:name=".ui.activity.LottieActivity"
+            android:exported="false" />
         <!-- 自定义一些元数据 -->
         <meta-data
             android:name="META_CHANNEL"
-            android:value="${META_CHANNEL_VALUE}" />
-
-
-        <!-- 适配分区存储 -->
+            android:value="${META_CHANNEL_VALUE}" /> <!-- 适配分区存储 -->
         <meta-data
             android:name="ScopedStorage"
             android:value="true" />
@@ -118,8 +109,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
             android:screenOrientation="portrait" />
-
-
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="true"
@@ -223,12 +212,9 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.StorageActivity"
-            android:exported="false" />
-
-        <!-- 消息接收监听器 -->
+            android:exported="false" /> <!-- 消息接收监听器 -->
         <receiver
             android:name="com.yzq.aliemas.push.AliPushReceiver"
             android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->

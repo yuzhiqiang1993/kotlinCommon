@@ -91,6 +91,13 @@
     "params": {}
   },
   {
+    "path": "/main/lottie",
+    "className": "com.yzq.kotlincommon.ui.activity.LottieActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/main/login",
     "className": "com.yzq.kotlincommon.ui.activity.LoginActivity",
     "action": "",
