@@ -33,5 +33,5 @@ dependencies {
     api("com.aliyun.ams:alicloud-android-utils:2.0.0")
     api("com.aliyun.ams:alicloud-android-ut:5.4.5")
     api("com.aliyun.ams:alicloud-android-beacon:1.0.8")
-    api("com.aliyun.ams:alicloud-android-ha-adapter:1.1.5.4-open")
+    api("com.aliyun.ams:alicloud-android-ha-adapter:1.1.5.5-open")
 }
