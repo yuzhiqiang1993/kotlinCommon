@@ -97,6 +97,7 @@ android {
     buildFeatures {
         dataBinding = true
         viewBinding = true
+        buildConfig = true
     }
 
 
@@ -123,12 +124,12 @@ dependencies {
     implementation(libs.xeonBsDiff)
 
     implementation(libs.coil)
+    implementation(libs.cordova.webcontainer)
 
     implementation(project(":gao-de-map"))
     implementation(project(":common"))
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.5.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+
+
 }
 
 

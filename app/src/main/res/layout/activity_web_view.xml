@@ -11,10 +11,16 @@
         android:id="@+id/included_toolbar"
         layout="@layout/toolbar" />
 
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
 
-    <WebView
-        android:id="@+id/webview"
+    <com.yzq.cordova_webcontainer.CordovaWebContainer
+        android:id="@+id/web_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>

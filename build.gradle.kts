@@ -1,8 +1,4 @@
-buildscript {
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0")
-    }
-}
+
 /**
  * 该处主要用来申明插件的版本，apply false表示不立即应用，而是自己手动应用
  */
