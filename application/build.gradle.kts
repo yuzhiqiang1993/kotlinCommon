@@ -6,7 +6,7 @@ android {
     namespace = "com.yzq.application"
     buildTypes {
         release {
-            consumerProguardFiles("proguard-rules.pro")
+
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
