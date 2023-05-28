@@ -3,20 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yzq.kotlincommon">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> <!-- Android 适配Android 11 -->
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- 兼容低版本 Android10 及以上适配分区存储 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        tools:ignore="ScopedStorage" /> <!-- 前台服务权限 -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 通知栏权限 -->
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.CAMERA" /> <!-- 表示如果用户设备没有摄像头是否允许安装 由required字段控制 false表示可以安装 -->
+        tools:ignore="ScopedStorage" /><!-- 兼容低版本 Android10 及以上适配分区存储 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- 前台服务权限 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- 通知栏权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="true" />
+        android:required="true" /><!-- 表示如果用户设备没有摄像头是否允许安装 由required字段控制 false表示可以安装 -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:name=".App"
@@ -228,6 +233,16 @@
                 <action android:name="com.alibaba.sdk.android.push.RECEIVE" />
             </intent-filter>
         </receiver>
+
+        <provider
+            android:name="org.apache.cordova.camera.FileProvider"
+            android:authorities="${applicationId}.cordova.plugin.camera.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/camera_provider_paths" />
+        </provider>
     </application>
 
 </manifest>

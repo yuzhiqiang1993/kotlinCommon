@@ -1,4 +1,3 @@
-
 plugins {
     id("com.yzq.android.library")
 }
@@ -7,7 +6,6 @@ android {
     namespace = "com.yzq.materialdialog"
     buildTypes {
         release {
-            consumerProguardFiles("proguard-rules.pro")
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }

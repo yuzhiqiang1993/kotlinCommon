@@ -21,9 +21,9 @@
     </style>
 
 
-    <style name="Theme.AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.AppTheme.AppBarOverlay" parent="Theme.XeonYuTheme" />
 
-    <style name="Theme.AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="Theme.AppTheme.PopupOverlay" parent="Theme.XeonYuTheme" />
 
     <style name="Theme.AppTheme.TabLayout" parent="Theme.XeonYuTheme">
 
@@ -32,7 +32,7 @@
 
 
     <!--启动页主题  视觉上优化启动速度-->
-    <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@drawable/splash_layer_list</item>
         <item name="windowActionBar">false</item>
@@ -67,7 +67,7 @@
     </style>
 
     <!--透明无标题-->
-    <style name="TransparentNoTitleTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+    <style name="TransparentNoTitleTheme" parent="Theme.XeonYuTheme">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>

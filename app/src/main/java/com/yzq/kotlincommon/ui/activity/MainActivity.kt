@@ -16,7 +16,7 @@ import com.google.android.material.navigation.NavigationView
 import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yzq.application.AppContext
-import com.yzq.application.BaseApp
+import com.yzq.application.AppManager
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
@@ -68,7 +68,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         Toast.makeText(this@MainActivity, "再按一次退出", Toast.LENGTH_SHORT).show()
                         lastBackTimeMillis = System.currentTimeMillis()
                     } else {
-                        BaseApp.getInstance().exitApp()
+                        AppManager.exitApp()
                     }
                 }
 

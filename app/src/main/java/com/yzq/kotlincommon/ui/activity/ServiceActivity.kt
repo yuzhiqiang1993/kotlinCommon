@@ -10,6 +10,7 @@ import androidx.lifecycle.asLiveData
 import com.blankj.utilcode.util.LogUtils
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
+import com.yzq.application.AppStateListener
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
@@ -30,7 +31,7 @@ import kotlinx.coroutines.flow.filterNotNull
  */
 
 @Route(path = RoutePath.Main.SERVICE)
-class ServiceActivity : BaseActivity() {
+class ServiceActivity : BaseActivity(), AppStateListener {
     private val binding by viewbind(ActivityServiceBinding::inflate)
 
 
@@ -42,6 +43,7 @@ class ServiceActivity : BaseActivity() {
 
 
     override fun initWidget() {
+
         binding.run {
 
             initToolbar(includedToolbar.toolbar, "Service")

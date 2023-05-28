@@ -5,12 +5,7 @@ plugins {
 
 android {
     namespace = "com.yzq.base"
-    buildTypes {
-        release {
-            consumerProguardFiles("proguard-rules.pro")
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-        }
-    }
+
     buildFeatures {
         dataBinding = true
         viewBinding = true

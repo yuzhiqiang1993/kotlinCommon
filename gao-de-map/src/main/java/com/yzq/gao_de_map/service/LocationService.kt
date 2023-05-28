@@ -12,7 +12,8 @@ import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.application.AppContext
-import com.yzq.application.BaseApp
+import com.yzq.application.AppManager
+import com.yzq.application.AppStateListener
 import com.yzq.gao_de_map.GaoDeActivity
 import com.yzq.gao_de_map.LocationManager
 import com.yzq.gao_de_map.LocationResultListener
@@ -28,7 +29,7 @@ import java.util.concurrent.atomic.AtomicBoolean
  * @time    17:33
  */
 
-class LocationService : Service(), BaseApp.AppExitListener, LocationResultListener {
+class LocationService : Service(), AppStateListener, LocationResultListener {
 
     /*正常一次定位*/
     private var locationStarted = AtomicBoolean(false)
@@ -42,7 +43,7 @@ class LocationService : Service(), BaseApp.AppExitListener, LocationResultListen
             locationClient = LocationManager.newIntervalLocationClient(5000)
                 .apply { setLocationResultListener(this@LocationService) }
         }
-        BaseApp.getInstance().addAppExitListener(this)
+        AppManager.addAppStateListener(this)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -113,10 +114,10 @@ class LocationService : Service(), BaseApp.AppExitListener, LocationResultListen
         LogUtils.i("onDestory")
         locationStarted.compareAndSet(true, false)
         LocationManager.destoryLocationClient(locationClient)
-        BaseApp.getInstance().removeAppExitListener(this)
+        AppManager.removeAppStateListener(this)
     }
 
-    override fun onAppexit() {
+    override fun onAppExit() {
         stopSelf()
     }
 

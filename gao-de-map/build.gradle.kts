@@ -5,12 +5,7 @@ plugins {
 
 android {
     namespace = "com.yzq.gao_de_map"
-    buildTypes {
-        release {
-            consumerProguardFiles("proguard-rules.pro")
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-        }
-    }
+
 
     buildFeatures {
         viewBinding = true

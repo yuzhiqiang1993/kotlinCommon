@@ -41,9 +41,9 @@ class WebViewActivity : CordovaWebContainerActivity() {
 //            webviewClient.interceptRequest { view, request, response ->
 //
 //            }
-            webviewClient.overrideUrlLoading { view, request ->
-                return@overrideUrlLoading false
-            }
+//            webviewClient.overrideUrlLoading { view, request ->
+//                return@overrideUrlLoading false
+//            }
 
             addPagePbserver(object : PageObserver {
                 override fun onReceivedTitle(title: String) {

@@ -10,20 +10,21 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.application.AppContext
-import com.yzq.application.BaseApp
+import com.yzq.application.AppManager
+import com.yzq.application.AppStateListener
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.ui.activity.MainActivity
 
 
 /**
- * @description 前台服务使用示例，主要是为了提升应用集成优先级，防止内存不住被系统杀掉，用户强杀防止不了
+ * @description 前台服务使用示例，主要是为了提升应用进程优先级，防止内存不足被系统杀掉，用户强杀防止不了
  * 前台服务会在通知栏显示通知
  * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
  * @date    2023/1/12
  * @time    11:36
  */
 
-class ForegroundService : Service(), BaseApp.AppExitListener {
+class ForegroundService : Service(), AppStateListener {
 
     override fun onCreate() {
         LogUtils.i("onCreate")
@@ -40,9 +41,11 @@ class ForegroundService : Service(), BaseApp.AppExitListener {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             /*Android 8.0开始必须设置channel*/
-            val channel = NotificationChannel(channelId,
+            val channel = NotificationChannel(
+                channelId,
                 "前台服务的通知",
-                NotificationManager.IMPORTANCE_HIGH)
+                NotificationManager.IMPORTANCE_HIGH
+            )
                 .apply {
                     description = "通知渠道的描述"
                     enableVibration(true)//通知出现时是否震动，一般不设置
@@ -72,7 +75,9 @@ class ForegroundService : Service(), BaseApp.AppExitListener {
         /*调用startForegroundService的5秒内必要调用startForeground*/
         startForeground(1, notification)
 
-        BaseApp.getInstance().addAppExitListener(this)
+        AppManager.addAppStateListener(this)
+
+
 
         return super.onStartCommand(intent, flags, startId)
     }
@@ -83,10 +88,10 @@ class ForegroundService : Service(), BaseApp.AppExitListener {
 
     override fun onDestroy() {
         LogUtils.i("onDestory")
-        BaseApp.getInstance().removeAppExitListener(this)
+        AppManager.removeAppStateListener(this)
     }
 
-    override fun onAppexit() {
+    override fun onAppExit() {
         stopSelf()
     }
 

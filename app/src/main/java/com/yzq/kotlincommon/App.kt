@@ -12,6 +12,8 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ProcessUtils
 import com.tencent.mmkv.MMKV
 import com.therouter.TheRouter
+import com.yzq.application.AppManager
+import com.yzq.application.AppStateListener
 import com.yzq.application.BaseApp
 import com.yzq.kotlincommon.task.main_thread_task.*
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
@@ -25,8 +27,7 @@ import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
  *
  */
 
-class App : BaseApp(), BaseApp.AppExitListener {
-
+class App : BaseApp(), AppStateListener {
 
     override fun onCreate() {
         super.onCreate()
@@ -34,10 +35,9 @@ class App : BaseApp(), BaseApp.AppExitListener {
         LogUtils.i("packageName:${packageName}")
 
         if (ProcessUtils.isMainProcess()) {
-
             LogUtils.i("主进程")
             /*监听App是否退出*/
-            addAppExitListener(this)
+            AppManager.addAppStateListener(this)
 
             /*读清单配置文件里的数据*/
             readMetaData()
@@ -146,7 +146,7 @@ class App : BaseApp(), BaseApp.AppExitListener {
         }
     }
 
-    override fun onAppexit() {
+    override fun onAppExit() {
         /*应用退出了*/
         LogUtils.i("App退出了")
     }

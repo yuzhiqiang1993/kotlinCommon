@@ -9,12 +9,7 @@ plugins {
 android {
     namespace = "com.yzq.statusbar"
 
-    buildTypes {
-        release {
-            consumerProguardFiles("proguard-rules.pro")
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-        }
-    }
+
 }
 
 dependencies {

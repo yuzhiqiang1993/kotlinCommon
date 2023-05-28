@@ -23,6 +23,10 @@ class AndroidLibraryConventionPlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 configureKotlinAndroid(this)
+                defaultConfig {
+                    /*组件的混淆配置*/
+                    consumerProguardFiles("consumer-rules.pro")
+                }
                 /*作为library 一般不指定targetSdk*/
 //                defaultConfig.targetSdk = 33
             }

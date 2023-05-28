@@ -45,7 +45,7 @@ class BackendService : Service() {
             }
 
             TimeUnit.SECONDS.sleep(1)
-            /*对于单词任务来说  在执行完毕后最好停止服务 以免浪费资源*/
+            /*对于单次任务来说  在执行完毕后最好停止服务 以免浪费资源*/
             stopSelf(startId)
         }
 
