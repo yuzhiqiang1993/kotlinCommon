@@ -4,12 +4,7 @@ plugins {
 
 android {
     namespace = "com.yzq.application"
-    buildTypes {
-        release {
 
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-        }
-    }
 }
 
 dependencies {
