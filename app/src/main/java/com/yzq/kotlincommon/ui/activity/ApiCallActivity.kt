@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.LogUtils
 import com.therouter.router.Route
@@ -18,8 +19,10 @@ import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.coroutine.safety_coroutine.lifeScope
+import com.yzq.coroutine.safety_coroutine.scope.LifeSafetyScope
 import com.yzq.kotlincommon.databinding.ActivityApiCallBinding
 import com.yzq.kotlincommon.view_model.ApiCallViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
@@ -87,6 +90,16 @@ class ApiCallActivity : BaseActivity() {
     }
 
     private fun concurrentRequest() {
+
+
+        LifeSafetyScope(this, Lifecycle.Event.ON_DESTROY, Dispatchers.IO).launch {
+
+        }.catch {
+
+        }.finally {
+
+        }
+
         /**
          *  并发请求
          */
@@ -142,10 +155,12 @@ class ApiCallActivity : BaseActivity() {
                 is ApiResult.Error -> {
                     LogUtils.i("onError--> code:${apiResult.code},msg:${apiResult.message}")
                 }
+
                 is ApiResult.Exception -> {
                     LogUtils.i("异常了:${apiResult.t}")
                     apiResult.t.printStackTrace()
                 }
+
                 is ApiResult.Success -> {
                     LogUtils.i("onSuccess--> ${apiResult.data}")
                 }
@@ -169,6 +184,8 @@ class ApiCallActivity : BaseActivity() {
          * 请求方式二
          * lifeScope请求，lifeScope对异常也做了处理
          */
+
+
         lifeScope {
             LogUtils.i("准备请求")
             delay(2000)

@@ -9,17 +9,23 @@ import com.blankj.utilcode.util.LogUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.observeUIState
+import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.flow.launchCollect
 import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.coroutine.safety_coroutine.scope.LifeSafetyScope
 import com.yzq.coroutine.safety_coroutine.withDefault
 import com.yzq.coroutine.safety_coroutine.withIO
 import com.yzq.coroutine.safety_coroutine.withUnconfined
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.launch
 
 @Route(path = RoutePath.Main.COROUTINE)
 class CoroutinesActivity : BaseActivity() {
@@ -62,6 +68,51 @@ class CoroutinesActivity : BaseActivity() {
                 LogUtils.i("lifecycleScope whenCreated")
             }
         }
+
+        MainScope().launch {}
+
+        lifecycleScope.launch {
+
+        }
+
+
+        binding.btnCustomeScope.setOnThrottleTimeClick {
+            /*具备自动取消且有异常兜底的协程作用域，可以随处使用，类似于上面官方提供的  MainScope().launch {} 这种用法*/
+            LifeSafetyScope(this, Lifecycle.Event.ON_DESTROY, dispatcher = Dispatchers.IO)
+                .launch {
+                    LogUtils.i("LifeSafetyScope 开始执行")
+                    1 / 0
+                }.catch {
+                    LogUtils.i("LifeSafetyScope 捕获到异常了")
+                }.finally {
+                    it?.let {
+                        it.printStackTrace()
+                    }
+                    LogUtils.i("LifeSafetyScope 执行结束")
+                }
+        }
+
+        binding.btnCustomeCoroutine.setOnThrottleTimeClick {
+
+            lifecycleScope.launchSafety {
+                LogUtils.i("launchSafety 开始执行")
+//                1 / 0//测试异常捕获是否有效
+
+                delay(1000)
+
+                LogUtils.i("launchSafety 执行完成")
+
+            }.catch {
+                /*这里异常可能会出现捕获不到的情况，原因是catch是在block后面设置的，如果block中立刻抛出了异常，此时catch可能是空，因此，不会被捕获到*/
+                LogUtils.i("launchSafety catch")
+            }.finally {
+                it?.let {
+                    it.printStackTrace()
+                }
+                LogUtils.i("launchSafety finally")
+            }
+        }
+
     }
 
     override fun observeViewModel() {
@@ -72,7 +123,8 @@ class CoroutinesActivity : BaseActivity() {
                 Observer {
                     /*liveData默认就支持页面在onStop时停止观察数据，onStart时观察数据*/
                     LogUtils.i("liveData请求完成")
-                    binding.tv.text = it.result.formatted_address
+                    binding.tv.text = it.toString()
+
                 }
             )
 
@@ -81,9 +133,10 @@ class CoroutinesActivity : BaseActivity() {
                 .filter { it != null }
                 .launchCollect(this@CoroutinesActivity) { // 扩展方法 在onStop的时候停止收集数据，onStart后再收集
                     LogUtils.i("stateFlow请求完成")
-                    binding.tv.text = it!!.result.formatted_address
+                    binding.tv.text = it.toString()
                 }
         }
+
 
         /**
          * 监听stateFlow

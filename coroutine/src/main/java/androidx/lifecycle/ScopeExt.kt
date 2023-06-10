@@ -29,7 +29,7 @@ fun ViewModel.lifeScope(
     dispatcher: CoroutineDispatcher = Dispatchers.Main,
     block: suspend CoroutineScope.() -> Unit,
 ): LifeSafetyScope? {
-    val scope = LifeSafetyScope(dispatcher = dispatcher).doLaunch(block)
+    val scope = LifeSafetyScope(dispatcher = dispatcher).launch(block)
     return setTagIfAbsent(scope.toString(), scope)
 
 }

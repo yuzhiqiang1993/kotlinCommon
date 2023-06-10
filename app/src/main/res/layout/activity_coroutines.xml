@@ -12,6 +12,31 @@
         layout="@layout/toolbar" />
 
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_6"
+        android:text="自定义协程作用域，继承自CoroutineScope，是对作用域的实现，类似于官方提供的MainScope，LifecycleScope等" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_custome_scope"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自定义协程作用域" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_6"
+        android:text="自定义协程，继承自 AbstractCoroutine，是对协程的实现,可以对协程作用域进行扩展使用,我们可专注于安全的执行协程这个功能点，至于是否可自动取消，则交由官方提供的具备生命周期感知能力的scope去实现" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_custome_coroutine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="自定义协程" />
+
+
     <com.drake.statelayout.StateLayout
         android:id="@+id/layout_state"
         android:layout_width="match_parent"

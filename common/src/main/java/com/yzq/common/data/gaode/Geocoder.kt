@@ -1,7 +1,8 @@
 package com.yzq.common.data.gaode
 
 data class Geocoder(
-    val result: Result,
+    val result: Result? = null,
+    val message: String = "",
     val status: Int
 ) {
     data class Result(

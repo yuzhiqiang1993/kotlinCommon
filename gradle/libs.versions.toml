@@ -69,7 +69,7 @@ androidxRoom = "2.5.1"
 #kotlin
 kotlin = "1.8.21"
 ksp = "1.8.21-1.0.11"
-kotlinxCoroutines = "1.6.4"
+kotlinxCoroutines = "1.7.1"
 kotlinxSerializationJson = "1.5.0"
 
 #三方库

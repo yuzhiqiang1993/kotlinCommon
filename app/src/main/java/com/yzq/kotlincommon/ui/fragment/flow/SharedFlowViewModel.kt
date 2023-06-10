@@ -42,6 +42,7 @@ class SharedFlowViewModel : BaseViewModel() {
     fun sharedFlowEmit() {
         LogUtils.i("开始生产数据")
 
+
         viewModelScope.launchSafety {
             repeat(200) {
                 delay(200)

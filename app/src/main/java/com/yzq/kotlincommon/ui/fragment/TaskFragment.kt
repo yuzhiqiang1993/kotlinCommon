@@ -39,7 +39,7 @@ class TaskFragment : BaseFragment(R.layout.task_fragment) {
             geocoderFlow
                 .filter { it != null }
                 .launchCollect(this@TaskFragment.viewLifecycleOwner) { // 扩展方法
-                    binding.tvTask.text = it!!.result.formatted_address
+                    binding.tvTask.text = it.toString()
                 }
         }
     }

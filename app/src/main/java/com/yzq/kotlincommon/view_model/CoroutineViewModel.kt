@@ -38,6 +38,8 @@ class CoroutineViewModel : BaseViewModel() {
 
     /*请求数据*/
     fun requestData() {
+
+
         viewModelScope.launch {
             delay(2000)
             val response = apiCall {
