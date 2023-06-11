@@ -20,7 +20,10 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
     private val backCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
 
-            requireActivity().showPositiveCallbackDialog("确认退出?", "确认退出已填写的数据将会丢失!") {
+            requireActivity().showPositiveCallbackDialog(
+                "确认退出?",
+                "确认退出已填写的数据将会丢失!"
+            ) {
                 /*调OnBackPressedCallback的setEnabled控制callback是否生效*/
                 isEnabled = false
                 requireActivity().onBackPressedDispatcher.onBackPressed()

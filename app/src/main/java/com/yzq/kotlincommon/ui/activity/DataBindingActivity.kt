@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
-import com.afollestad.materialdialogs.utils.MDUtil.textChanged
+import androidx.core.widget.doOnTextChanged
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.therouter.router.Route
@@ -31,8 +31,9 @@ class DataBindingActivity : BaseActivity() {
         super.initWidget()
         initToolbar(binding.layoutToolbar.toolbar, "DataBinding")
 
-        binding.etContent.textChanged {
-            ToastUtils.showShort(it)
+
+        binding.etContent.doOnTextChanged { text, start, before, count ->
+            ToastUtils.showShort(text)
         }
     }
 
