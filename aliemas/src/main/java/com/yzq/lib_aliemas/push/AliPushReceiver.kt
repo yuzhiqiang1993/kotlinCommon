@@ -37,8 +37,10 @@ class AliPushReceiver : MessageReceiver() {
         summary: String,
         extraMap: String,
     ) {
-        LogUtils.e("MyMessageReceiver",
-            "onNotificationOpened, title: $title, summary: $summary, extraMap:$extraMap")
+        LogUtils.e(
+            "MyMessageReceiver",
+            "onNotificationOpened, title: $title, summary: $summary, extraMap:$extraMap"
+        )
     }
 
     override fun onNotificationClickedWithNoAction(
@@ -47,8 +49,10 @@ class AliPushReceiver : MessageReceiver() {
         summary: String,
         extraMap: String,
     ) {
-        LogUtils.e("MyMessageReceiver",
-            "onNotificationClickedWithNoAction, title: $title, summary: $summary, extraMap:$extraMap")
+        LogUtils.e(
+            "MyMessageReceiver",
+            "onNotificationClickedWithNoAction, title: $title, summary: $summary, extraMap:$extraMap"
+        )
     }
 
     override fun onNotificationReceivedInApp(
