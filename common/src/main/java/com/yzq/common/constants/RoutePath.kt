@@ -41,6 +41,7 @@ object RoutePath {
         const val SERVICE: String = "/main/service"
         const val STORAGE: String = "/main/storage"
         const val LOTTIE: String = "/main/lottie"
+        const val ASR: String = "/main/asr"
 
     }
 

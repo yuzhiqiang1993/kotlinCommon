@@ -196,6 +196,13 @@
     "params": {}
   },
   {
+    "path": "/main/asr",
+    "className": "com.yzq.kotlincommon.ui.activity.AsrActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/main/apiCall",
     "className": "com.yzq.kotlincommon.ui.activity.ApiCallActivity",
     "action": "",

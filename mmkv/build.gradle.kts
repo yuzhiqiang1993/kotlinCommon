@@ -4,8 +4,6 @@ plugins {
 
 android {
     namespace = "com.yzq.mmkv"
-
-
 }
 
 dependencies {

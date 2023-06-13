@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ProcessUtils
 import com.tencent.mmkv.MMKV
 import com.therouter.TheRouter
+import com.xeon.asr_demo.ASRManager
 import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
 import com.yzq.application.BaseApp
@@ -61,7 +62,7 @@ class App : BaseApp(), AppStateListener {
                 .start()
                 .await()
 
-
+            ASRManager.init(this)
 
             Trace.endSection()
         } else {
