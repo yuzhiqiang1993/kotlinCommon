@@ -28,6 +28,13 @@
             android:textColor="@color/red_700" />
 
 
+        <!--        <com.yzq.kotlincommon.widget.edittext.FilterEditText-->
+        <!--            android:id="@+id/et_content"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="@dimen/dp_10"-->
+        <!--            android:text="@={data.content}" />-->
+
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/et_content"
             android:layout_width="match_parent"

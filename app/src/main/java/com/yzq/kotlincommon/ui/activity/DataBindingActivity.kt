@@ -12,6 +12,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDataBindingBinding
 import com.yzq.kotlincommon.view_model.DataBindingViewModel
+import com.yzq.kotlincommon.widget.edittext.EmojiExcludeFilter
 
 /**
  * @description: DataBinding
@@ -31,10 +32,11 @@ class DataBindingActivity : BaseActivity() {
         super.initWidget()
         initToolbar(binding.layoutToolbar.toolbar, "DataBinding")
 
-
+        binding.etContent.filters = arrayOf(EmojiExcludeFilter())
         binding.etContent.doOnTextChanged { text, start, before, count ->
             ToastUtils.showShort(text)
         }
+
     }
 
     override fun initData() {
