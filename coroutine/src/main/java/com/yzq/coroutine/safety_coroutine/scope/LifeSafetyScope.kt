@@ -20,7 +20,6 @@ import kotlin.coroutines.CoroutineContext
  * @param lifecycleOwner 生命周期持有者 不传则不具备自动取消的功能
  * @param lifeEvent 生命周期事件, 默认为 [Lifecycle.Event.ON_DESTROY] 下取消协程作用域
  */
-@Suppress("unused", "MemberVisibilityCanBePrivate", "NAME_SHADOWING")
 open class LifeSafetyScope(
     lifecycleOwner: LifecycleOwner? = null,
     lifeEvent: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,

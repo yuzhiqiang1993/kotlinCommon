@@ -22,10 +22,8 @@ import com.yzq.coroutine.safety_coroutine.withUnconfined
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.launch
 
 @Route(path = RoutePath.Main.COROUTINE)
 class CoroutinesActivity : BaseActivity() {
@@ -67,12 +65,6 @@ class CoroutinesActivity : BaseActivity() {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
                 LogUtils.i("lifecycleScope whenCreated")
             }
-        }
-
-        MainScope().launch {}
-
-        lifecycleScope.launch {
-
         }
 
 
