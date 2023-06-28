@@ -17,7 +17,7 @@ import kotlin.coroutines.CoroutineContext
  */
 
 @OptIn(InternalCoroutinesApi::class)
-open class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>(
+class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>(
     parentContext + CoroutineExceptionHandler { _, throwable -> },
     initParentJob = true, active = true
 ) {

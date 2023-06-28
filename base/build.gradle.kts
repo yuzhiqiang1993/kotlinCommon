@@ -48,6 +48,7 @@ dependencies {
     api(libs.appStartFaster)
     api(libs.progressManager)
     api(libs.brv)
+    api(libs.threetenabp)
 
     api(project(":application"))
     api(project(":network-status"))
@@ -60,4 +61,6 @@ dependencies {
     api(project(":coroutine"))
     api(project(":binding"))
     api(project(":statusbar"))
+
+
 }

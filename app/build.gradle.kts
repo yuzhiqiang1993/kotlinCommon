@@ -126,12 +126,13 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.cordova.webcontainer)
 
-    implementation(project(":gao-de-map"))
-    implementation(project(":common"))
-    implementation(project(":baidu"))
     implementation(libs.androidx.appcompat)
     implementation(libs.google.material)
     implementation(libs.androidx.constraintlayout)
+
+    implementation(project(":gao-de-map"))
+    implementation(project(":common"))
+    implementation(project(":baidu"))
 
 
 }

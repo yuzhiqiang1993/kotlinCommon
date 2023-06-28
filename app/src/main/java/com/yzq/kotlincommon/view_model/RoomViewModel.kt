@@ -3,13 +3,15 @@ package com.yzq.kotlincommon.view_model
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
-import com.yzq.common.data.data_base.User
-import com.yzq.common.data.data_base.UserDao
-import com.yzq.common.data.data_base.UserDataBase
+import com.yzq.common.data.db.User
+import com.yzq.common.db.UserDao
+import com.yzq.common.db.UserDataBase
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.random.Random
+import kotlin.random.nextInt
 
 class RoomViewModel : BaseViewModel() {
 
@@ -25,7 +27,13 @@ class RoomViewModel : BaseViewModel() {
             for (i in 0..5) {
 
                 val randomName = getRandomStr()
-                val user = User(name = randomName)
+                val user = User(
+                    name = randomName,
+                    age = Random.nextInt(1..100),
+                    idCardNum = Random.nextInt(100000000, 999999999).toString(),
+                    phone = Random.nextLong(10000000000, 99999999999).toString()
+
+                )
 
                 userList.add(user)
             }
@@ -50,12 +58,12 @@ class RoomViewModel : BaseViewModel() {
     }
 
     /*改*/
-    fun updateUser(id: Int, name: String) {
+    fun updateUser(id: Int, name: String, age: Int) {
 
         viewModelScope.launch {
 
             withContext(Dispatchers.IO) {
-                val user = User(id, name)
+                val user = User(id, name, age)
                 userDao.updateUser(user)
             }
         }

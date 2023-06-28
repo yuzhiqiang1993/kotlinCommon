@@ -5,11 +5,10 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type
 
+
 /**
- * @description: 基于moshi的json转换封装
- * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
- * @date : 2022/3/13
- * @time : 6:29 下午
+ * @description json解析工具类
+ * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
  */
 
 object MoshiUtils {
@@ -18,26 +17,33 @@ object MoshiUtils {
 
     val moshi: Moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
-    inline fun <reified T> toJson(src: T, indent: String = ""): String {
-        try {
-
+    inline fun <reified T> toJson(src: T, indent: String = ""): String? {
+        return kotlin.runCatching {
             val jsonAdapter = moshi.adapter<T>(getGenericType<T>())
-            return jsonAdapter.indent(indent).toJson(src)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return ""
+            jsonAdapter.indent(indent).toJson(src)
+        }.onFailure {
+            it.printStackTrace()
+        }.getOrNull()
+
     }
 
-    inline fun <reified T> fromJson(jsonStr: String): T? {
-        try {
+    inline fun <reified T> toMap(src: T): Map<String, Any>? {
+        return kotlin.runCatching {
             val jsonAdapter = moshi.adapter<T>(getGenericType<T>())
-            return jsonAdapter.fromJson(jsonStr)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return null
+            val jsonStr = jsonAdapter.toJson(src)
+            fromJson<Map<String, Any>>(jsonStr)
+        }.onFailure {
+            it.printStackTrace()
+        }.getOrNull()
     }
+
+    inline fun <reified T> fromJson(jsonStr: String): T? = kotlin.runCatching {
+        val jsonAdapter = moshi.adapter<T>(getGenericType<T>())
+        jsonAdapter.fromJson(jsonStr)
+    }.onFailure {
+        it.printStackTrace()
+    }.getOrDefault(null)
+
 
     inline fun <reified T> getGenericType(): Type {
 

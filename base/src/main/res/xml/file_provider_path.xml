@@ -14,10 +14,10 @@
             name="external"
             path="" />
         <external-files-path
-            name="name"
+            name="external_files"
             path="" />
         <external-cache-path
-            name="name"
+            name="external-cache"
             path="" />
 
     </paths>

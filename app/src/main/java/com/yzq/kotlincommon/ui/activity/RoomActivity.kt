@@ -11,7 +11,8 @@ import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.data.data_base.User
+import com.yzq.common.data.db.User
+import com.yzq.common.db.LocalDateTimeConverter
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityRoomBinding
@@ -40,8 +41,12 @@ class RoomActivity : BaseActivity() {
                         val user = getModel<User>()
                         itemBinding.tvUser.text = buildString {
                             append(user.id.toString())
-                            append("---")
+                            append("--")
                             append(user.name)
+                            append("--")
+                            append(user.age.toString())
+                            append("--")
+                            append(LocalDateTimeConverter().toString(user.updateTime))
                         }
                     }
 
@@ -51,7 +56,11 @@ class RoomActivity : BaseActivity() {
 
                     R.id.tv_user.onClick {
                         showInputDialog(title = "修改") { dialog, input ->
-                            vm.updateUser(getModel<User>().id, input.toString())
+                            vm.updateUser(
+                                getModel<User>().id,
+                                input.toString(),
+                                getModel<User>().age
+                            )
                         }
                     }
                 }

@@ -24,6 +24,7 @@ import com.yzq.kotlincommon.view_model.CoroutineViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.launch
 
 @Route(path = RoutePath.Main.COROUTINE)
 class CoroutinesActivity : BaseActivity() {
@@ -41,6 +42,9 @@ class CoroutinesActivity : BaseActivity() {
 
         lifecycleScope.launchSafety {
             LogUtils.i("launch 当前线程:${Thread.currentThread().name}")
+        }
+        lifecycleScope.launch {
+
         }
 
         lifecycleScope.launchSafety {

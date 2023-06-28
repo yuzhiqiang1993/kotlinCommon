@@ -34,11 +34,6 @@ fun <T> CoroutineScope.launchSafety(
 ): SafetyCoroutine<T> {
     val newContext = newCoroutineContext(context)
     val coroutine = SafetyCoroutine<T>(newContext)
-
-    /**
-     * 这里有个问题是如果block代码块中立刻抛出异常的话，由于catch还没赋值，此时，这个异常的catch方法不会被回调
-     * 如果有立刻抛出异常的场景，在block中delay(10)或者使用lifeScope即可
-     */
     coroutine.start(start, coroutine, block)
     return coroutine
 }
@@ -128,4 +123,13 @@ internal fun postDelayed(
     block: () -> Unit
 ) {
     Handler(looper).postDelayed(block, deleyMillis)
+}
+
+
+fun isMainThread(): Boolean {
+    return Looper.getMainLooper() == Looper.myLooper()
+}
+
+fun getThreadInfo(): String {
+    return "threadName:${Thread.currentThread().name} threadId:${Thread.currentThread().id}"
 }

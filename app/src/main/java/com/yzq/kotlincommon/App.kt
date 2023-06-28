@@ -10,6 +10,7 @@ import com.aice.appstartfaster.dispatcher.AppStartTaskDispatcher
 import com.blankj.utilcode.util.ArrayUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ProcessUtils
+import com.jakewharton.threetenabp.AndroidThreeTen
 import com.tencent.mmkv.MMKV
 import com.therouter.TheRouter
 import com.xeon.asr_demo.ASRManager
@@ -47,6 +48,8 @@ class App : BaseApp(), AppStateListener {
             Trace.beginSection("BaseApp_AppInit")
 
             MMKV.initialize(this)
+            /*日期库初始化*/
+            AndroidThreeTen.init(this)
 
             AppStartTaskDispatcher
                 .create()

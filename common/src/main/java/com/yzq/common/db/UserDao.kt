@@ -1,8 +1,20 @@
-package com.yzq.common.data.data_base
+package com.yzq.common.db
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Update
+import com.yzq.common.data.db.User
+
+
+/**
+ * @description 用户表操作类，DAO：Data Access Object,就是用来操作表的对象
+ * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ */
 
 @Dao
 interface UserDao {

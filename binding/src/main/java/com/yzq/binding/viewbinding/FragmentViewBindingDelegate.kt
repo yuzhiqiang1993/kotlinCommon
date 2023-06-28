@@ -19,6 +19,7 @@ class FragmentViewBindingDelegate<VB : ViewBinding>(
 ) : FragmentBindingDelegate<VB>(fragment) {
 
     override fun getValue(thisRef: Fragment, property: KProperty<*>): VB {
+        /*如果binding有值，直接返回*/
         binding?.let { return it }
         val viewBinding = bind.invoke(thisRef.requireView())
         binding = viewBinding
