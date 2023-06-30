@@ -1,13 +1,10 @@
 plugins {
     id("com.yzq.android.library")
-    id("com.yzq.android.room")
     kotlin("kapt")
 }
 
 android {
     namespace = "com.yzq.common"
-
-
 
     buildFeatures {
         dataBinding = true
@@ -28,5 +25,6 @@ dependencies {
     debugImplementation(libs.leakcanary.android)
 
     api(project(":base"))
-    api(project(":mmkv"))
+    api(project(":storage"))
+
 }

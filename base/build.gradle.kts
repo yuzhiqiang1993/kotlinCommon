@@ -48,7 +48,7 @@ dependencies {
     api(libs.appStartFaster)
     api(libs.progressManager)
     api(libs.brv)
-    api(libs.threetenabp)
+
 
     api(project(":application"))
     api(project(":network-status"))

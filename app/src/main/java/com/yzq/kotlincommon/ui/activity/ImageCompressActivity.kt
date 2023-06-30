@@ -17,13 +17,13 @@ import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
-import com.yzq.common.constants.AppStorage
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
 import com.yzq.kotlincommon.view_model.CompressImgViewModel
 import com.yzq.permission.getPermissions
+import com.yzq.storage.AppStorage
 import java.io.File
-import java.util.*
+import java.util.Calendar
 
 /**
  * @description: 图片相关

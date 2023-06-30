@@ -1,6 +1,7 @@
 package com.yzq.mmkv
 
 import android.os.Parcelable
+import com.tencent.mmkv.MMKV
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -14,24 +15,9 @@ import kotlin.reflect.KProperty
 class MMKVReadWriteProp<V>(
     private val key: String,
     private val defauleVal: V,
-    private val mmapID: String? = null,
-    private val cryptKey: String? = null,
+    private val mmkv: MMKV = MMKV.defaultMMKV(),
 ) : ReadWriteProperty<Any, V> {
 
-//    private val mmkv by lazy {
-//        if (mmapID.isEmpty()) {
-//            MMKV.defaultMMKV(
-//                MMKV.MULTI_PROCESS_MODE,
-//                cryptKey
-//            )
-//        } else {
-//            MMKV.mmkvWithID(
-//                mmapID,
-//                MMKV.MULTI_PROCESS_MODE,
-//                cryptKey
-//            )
-//        }
-//    }
 
     override fun getValue(thisRef: Any, property: KProperty<*>): V {
         return decodeVal(key)
@@ -44,7 +30,7 @@ class MMKVReadWriteProp<V>(
      */
     @Suppress("UNCHECKED_CAST")
     private fun decodeVal(key: String): V {
-        return MMKVInstance.get(mmapID, cryptKey).run {
+        return mmkv.run {
             when (defauleVal) {
                 is String -> decodeString(key, defauleVal)
                 is Int -> decodeInt(key, defauleVal)
@@ -68,7 +54,7 @@ class MMKVReadWriteProp<V>(
      * @param value V
      */
     private fun encodeval(key: String, value: V) {
-        MMKVInstance.get(mmapID, cryptKey).run {
+        mmkv.run {
             when (value) {
                 is String -> encode(key, value)
                 is Int -> encode(key, value)

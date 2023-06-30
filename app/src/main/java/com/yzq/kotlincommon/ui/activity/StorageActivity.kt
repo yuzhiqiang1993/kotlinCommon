@@ -20,12 +20,12 @@ import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
-import com.yzq.common.constants.AppStorage
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.coroutine.safety_coroutine.withIO
 import com.yzq.kotlincommon.databinding.ActivityStorageBinding
 import com.yzq.permission.getPermissions
+import com.yzq.storage.AppStorage
 import java.io.File
 
 

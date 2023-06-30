@@ -1,4 +1,4 @@
-package com.yzq.common.constants
+package com.yzq.storage
 
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.PathUtils

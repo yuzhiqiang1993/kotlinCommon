@@ -1,4 +1,4 @@
-package com.yzq.common.data.db
+package com.yzq.storage.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

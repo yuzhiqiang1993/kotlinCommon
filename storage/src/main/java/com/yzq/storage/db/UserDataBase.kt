@@ -1,4 +1,4 @@
-package com.yzq.common.db
+package com.yzq.storage.db
 
 import androidx.room.Database
 import androidx.room.Room
@@ -8,7 +8,6 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.application.AppContext
-import com.yzq.common.data.db.User
 
 
 /**
@@ -46,13 +45,10 @@ abstract class UserDataBase : RoomDatabase() {
                 database.execSQL(
                     """CREATE TABLE IF NOT EXISTS user_new (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER NOT NULL, idCardNum TEXT DEFAULT '', phone TEXT DEFAULT '', insertTime TEXT DEFAULT (datetime('now')), updateTime TEXT DEFAULT (datetime('now')))"""
                 )
-
                 // 将数据从旧表迁移到新表
                 database.execSQL("INSERT INTO user_new (id, name, age) SELECT id, name, age FROM user")
-
                 // 删除旧表
                 database.execSQL("DROP TABLE user")
-
                 // 将新表重命名为原表名
                 database.execSQL("ALTER TABLE user_new RENAME TO user")
             }

@@ -11,12 +11,13 @@ import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.databind
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.utils.MMKVUtil
 import com.yzq.coroutine.interval.Interval
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
 import com.yzq.statusbar.immersive
+import com.yzq.storage.mmkv.MMKVDefault
+import com.yzq.storage.mmkv.MMKVUser
 import java.util.concurrent.TimeUnit
 
 /**
@@ -49,7 +50,7 @@ class LoginActivity : BaseActivity() {
 
 
         binding.tvClearMmkv.setOnThrottleTimeClick {
-            MMKVUtil.clear()
+            MMKVDefault.mmkv.clearAll()
             initData()
         }
 
@@ -74,11 +75,11 @@ class LoginActivity : BaseActivity() {
     override fun initData() {
 
         LogUtils.i("initData")
-        LogUtils.i("MMKVUtil.account = ${MMKVUtil.account}")
-        LogUtils.i("MMKVUtil.pwd = ${MMKVUtil.pwd}")
+        LogUtils.i("MMKVUtil.account = ${MMKVUser.account}")
+        LogUtils.i("MMKVUtil.pwd = ${MMKVUser.pwd}")
 
-        binding.account = MMKVUtil.account
-        binding.pwd = MMKVUtil.pwd
+        binding.account = MMKVUser.account
+        binding.pwd = MMKVUser.pwd
     }
 
     override fun observeViewModel() {
@@ -86,7 +87,7 @@ class LoginActivity : BaseActivity() {
         vm.run {
             observeUIState(this, loadingDialog)
             loginLiveData.observe(this@LoginActivity) {
-                MMKVUtil.hasLogin = true
+                MMKVUser.hasLogin = true
                 navClear(RoutePath.Main.MAIN)
 
 //                navFinish(RoutePath.Main.MAIN)

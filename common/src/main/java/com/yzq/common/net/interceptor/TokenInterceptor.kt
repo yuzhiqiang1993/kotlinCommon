@@ -1,7 +1,7 @@
 package com.yzq.common.net.interceptor
 
 import com.blankj.utilcode.util.LogUtils
-import com.yzq.common.utils.MMKVUtil
+import com.yzq.storage.mmkv.MMKVUser
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -23,23 +23,22 @@ class TokenInterceptor : Interceptor {
 
             try {
 
-                LogUtils.i("过期之前的idToken:${MMKVUtil.token}")
+                LogUtils.i("过期之前的idToken:${MMKVUser.token}")
 
                 /*token过期  刷新token*/
                 //refreshToken()
                 /*构建新的请求*/
                 val newRequestBuilder = request.newBuilder()
 
-                LogUtils.i("刷新之后的idToken:${MMKVUtil.token}")
+                LogUtils.i("刷新之后的idToken:${MMKVUser.token}")
 
-                newRequestBuilder.header("Authorization", "Bearer ${MMKVUtil.token}")
+                newRequestBuilder.header("Authorization", "Bearer ${MMKVUser.token}")
 
                 return chain.proceed(newRequestBuilder.build())
             } catch (e: Exception) {
                 LogUtils.e("TokenInterceptor error")
                 e.printStackTrace()
-            }
-            finally {
+            } finally {
 
             }
 

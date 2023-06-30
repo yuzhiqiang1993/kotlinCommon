@@ -1,4 +1,4 @@
-package com.yzq.common.db
+package com.yzq.storage.db
 
 import androidx.room.TypeConverter
 import org.threeten.bp.LocalDateTime

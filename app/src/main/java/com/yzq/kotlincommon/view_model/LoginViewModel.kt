@@ -6,8 +6,8 @@ import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.common.data.LoginBean
-import com.yzq.common.utils.MMKVUtil
 import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.storage.mmkv.MMKVUser
 import kotlinx.coroutines.delay
 
 class LoginViewModel : BaseViewModel() {
@@ -22,11 +22,11 @@ class LoginViewModel : BaseViewModel() {
 
             delay(1000)
 
-            MMKVUtil.account = account
-            MMKVUtil.pwd = pwd
+            MMKVUser.account = account
+            MMKVUser.pwd = pwd
 
-            LogUtils.i("MMKVUtil.account = ${MMKVUtil.account}")
-            LogUtils.i("MMKVUtil.account = ${MMKVUtil.pwd}")
+            LogUtils.i("MMKVUtil.account = ${MMKVUser.account}")
+            LogUtils.i("MMKVUtil.account = ${MMKVUser.pwd}")
 
             val loginBean = LoginBean()
             loginBean.account = account

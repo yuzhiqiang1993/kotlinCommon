@@ -9,10 +9,11 @@ import com.blankj.utilcode.util.LogUtils
 import com.hjq.permissions.Permission
 import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.utils.MMKVUtil
 import com.yzq.materialdialog.showCallbackDialog
 import com.yzq.permission.getPermissions
 import com.yzq.statusbar.immersive
+import com.yzq.storage.mmkv.MMKVDefault
+import com.yzq.storage.mmkv.MMKVUser
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -120,11 +121,12 @@ class SplashActivity : AppCompatActivity() {
             }
         ) {
             LogUtils.iTag(TAG, "有权限,进页面")
-            if (MMKVUtil.appFirstOpen) {
-                LogUtils.iTag(TAG, "首次打开:${MMKVUtil.appFirstOpen}")
+            LogUtils.i("MMKVDefault.test:${MMKVDefault.test}")
+            if (MMKVDefault.appFirstOpen) {
+                LogUtils.iTag(TAG, "首次打开:${MMKVDefault.appFirstOpen}")
                 /*首次打开可以弹窗提示同意 隐私政策 */
                 showCallbackDialog("提示", "同意隐私政策，用户协议", positiveCallback = {
-                    MMKVUtil.appFirstOpen = false
+                    MMKVDefault.appFirstOpen = false
                     /*在这里进行页面跳转*/
                     route()
                 }, negativeCallback = {
@@ -140,7 +142,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun route() {
         LogUtils.iTag(TAG, "route 跳转页面")
-        if (MMKVUtil.hasLogin) {
+        if (MMKVUser.hasLogin) {
             navFinish(RoutePath.Main.MAIN)
         } else {
             navFinish(RoutePath.Main.LOGIN)

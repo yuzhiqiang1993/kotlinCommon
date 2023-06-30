@@ -3,10 +3,10 @@ package com.yzq.kotlincommon.view_model
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
-import com.yzq.common.data.db.User
-import com.yzq.common.db.UserDao
-import com.yzq.common.db.UserDataBase
 import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.storage.db.User
+import com.yzq.storage.db.UserDao
+import com.yzq.storage.db.UserDataBase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

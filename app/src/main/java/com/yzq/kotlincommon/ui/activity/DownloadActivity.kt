@@ -8,7 +8,6 @@ import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
-import com.yzq.common.constants.AppStorage
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.net.FileRetrofitFactory
 import com.yzq.common.net.api.ApiService
@@ -19,6 +18,7 @@ import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
 import com.yzq.materialdialog.changeProgress
 import com.yzq.materialdialog.changeTitle
 import com.yzq.materialdialog.newProgressDialog
+import com.yzq.storage.AppStorage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.jessyan.progressmanager.ProgressListener

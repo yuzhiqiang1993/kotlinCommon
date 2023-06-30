@@ -1,4 +1,4 @@
-package com.yzq.common.db
+package com.yzq.storage.db
 
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
@@ -8,7 +8,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.yzq.common.data.db.User
 
 
 /**
