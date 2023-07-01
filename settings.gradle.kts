@@ -4,6 +4,7 @@ pluginManagement {
     /*构建管理插件*/
     includeBuild("build-manager")
     repositories {
+
         google()
         mavenCentral()
         maven {
@@ -13,9 +14,14 @@ pluginManagement {
             url = uri("https://maven.aliyun.com/nexus/content/repositories/releases/")
         }
         maven {
+            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+        }
+
+        maven {
             url = uri("https://artifact.bytedance.com/repository/byteX/")
         }
         gradlePluginPortal()
+//        mavenLocal()
     }
 }
 /*原本的allprojects 依赖管理*/
@@ -26,8 +32,10 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
         }
+
         google()
         mavenCentral()
+
         maven {
             url = uri("https://maven.aliyun.com/nexus/content/repositories/releases/")
         }
@@ -36,6 +44,13 @@ dependencyResolutionManagement {
         }
         maven {
             url = uri("https://jitpack.io")
+        }
+//        mavenLocal()
+    }
+
+    versionCatalogs {
+        create("libs") {
+            from("com.xeonyu:version-catalog:0.0.1")
         }
     }
 }

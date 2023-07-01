@@ -121,7 +121,6 @@ class SplashActivity : AppCompatActivity() {
             }
         ) {
             LogUtils.iTag(TAG, "有权限,进页面")
-            LogUtils.i("MMKVDefault.test:${MMKVDefault.test}")
             if (MMKVDefault.appFirstOpen) {
                 LogUtils.iTag(TAG, "首次打开:${MMKVDefault.appFirstOpen}")
                 /*首次打开可以弹窗提示同意 隐私政策 */
