@@ -15,6 +15,10 @@ dependencyResolutionManagement {
 //            version("theRouter", "1.1.4-rc6")//这里可以覆盖catalog 中已有的版本号
 
         }
+
+        create("androidLibs") {
+            version("minSdk", "21")//这里可以覆盖catalog 中已有的版本号
+        }
     }
 }
 

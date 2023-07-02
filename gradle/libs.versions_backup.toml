@@ -216,3 +216,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 theRouter = { id = "cn.therouter", version.ref = "theRouter" }
 #检查依赖库是否有新版本
 benManesVersion = { id = "com.github.ben-manes.versions", version.ref = "benManesVersion" }
+
+[bundles]
