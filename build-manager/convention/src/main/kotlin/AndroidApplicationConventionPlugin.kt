@@ -23,16 +23,16 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             }
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             val targetSdkVersion = libs.findVersion("targetSdk").get().requiredVersion.toInt()
-            val versionCodeInt = libs.findVersion("versionCode").get().requiredVersion.toInt()
-            val versionNameStr = libs.findVersion("versionName").get().requiredVersion
+//            val versionCodeInt = libs.findVersion("versionCode").get().requiredVersion.toInt()
+//            val versionNameStr = libs.findVersion("versionName").get().requiredVersion
             println("targetSdkVersion:${targetSdkVersion}")
-            println("versionCodeInt:${versionCodeInt}")
-            println("versionNameStr:${versionNameStr}")
+//            println("versionCodeInt:${versionCodeInt}")
+//            println("versionNameStr:${versionNameStr}")
             extensions.configure<ApplicationExtension> {
                 configureKotlinAndroid(this)
                 defaultConfig {
-                    versionCode = versionCodeInt
-                    versionName = versionNameStr
+//                    versionCode = versionCodeInt
+//                    versionName = versionNameStr
                     targetSdk = targetSdkVersion
                     multiDexEnabled = true
                 }

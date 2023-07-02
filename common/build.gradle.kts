@@ -1,6 +1,7 @@
 plugins {
     id("com.yzq.android.library")
-    kotlin("kapt")
+    kotlin("kapt")//dataBinding需要用到
+//    id("com.google.devtools.ksp")
 }
 
 android {

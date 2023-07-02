@@ -1,6 +1,5 @@
 dependencyResolutionManagement {
     repositories {
-
         google()
         mavenCentral()
         maven {
@@ -12,6 +11,9 @@ dependencyResolutionManagement {
         create("libs") {
 //            from(files("../gradle/libs.versions.toml"))
             from("com.xeonyu:version-catalog:0.0.1")
+//            version("minSdk", "21")//这里可以覆盖catalog 中已有的版本号
+//            version("theRouter", "1.1.4-rc6")//这里可以覆盖catalog 中已有的版本号
+
         }
     }
 }

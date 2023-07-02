@@ -1,6 +1,7 @@
 /**
  * 该处主要用来申明插件的版本，apply false表示不立即应用，而是自己手动应用
  */
+println("根目录的build.gradle 开始执行")
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.application) apply false

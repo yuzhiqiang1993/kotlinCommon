@@ -21,8 +21,8 @@
 #*/
 
 
-versionCode = "10001"
-versionName = "1.0.1"
+#versionCode = "10001"
+#versionName = "1.0.1"
 
 #/**
 #* Compile sdk version
@@ -43,8 +43,6 @@ minSdk = "23"
 # Android 13
 #*/
 targetSdk = "33"
-
-
 
 #AGP的版本
 androidGradlePlugin = "8.0.2"
@@ -72,7 +70,7 @@ androidxRoom = "2.5.2"
 kotlin = "1.8.22"
 ksp = "1.8.22-1.0.11"
 kotlinxCoroutines = "1.7.1"
-kotlinxSerializationJson = "1.5.0"
+kotlinxSerializationJson = "1.5.1"
 
 #三方库
 theRouter = "1.2.0-beta2"
@@ -203,6 +201,7 @@ theRouterApt = { group = "cn.therouter", name = "apt", version.ref = "theRouter"
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidxRoom" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidxRoom" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidxRoom" }
+#test
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }

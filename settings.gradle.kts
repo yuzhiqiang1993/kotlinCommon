@@ -3,6 +3,8 @@ pluginManagement {
     println("pluginManagement")
     /*构建管理插件*/
     includeBuild("build-manager")
+    println("复合构建")
+
     repositories {
 
         google()
@@ -51,8 +53,15 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
             from("com.xeonyu:version-catalog:0.0.1")
+//            from(files("gradle/libs.versions_backup.toml"))
+        }
+
+        create("androidLibs") {
+//            from(file("gradle/android.versions.toml"))
+            version("minSdk", "21")//这里可以覆盖catalog 中已有的版本号
         }
     }
+
 }
 
 /**

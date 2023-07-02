@@ -17,14 +17,14 @@ class TheRouterConventionPlugin : Plugin<Project> {
         with(target) {
             println("TheRouterConventionPlugin Apply")
             with(pluginManager) {
-//                apply("com.google.devtools.ksp")
 
                 if (this.hasPlugin("com.android.application")) {
                     println("是Application模块")
                     apply("therouter")
                 }
+                apply("com.google.devtools.ksp")
 
-                apply("org.jetbrains.kotlin.kapt")
+//                apply("org.jetbrains.kotlin.kapt")
             }
 
             println("${project.name}: configureKotlinAndroid")
@@ -38,7 +38,8 @@ class TheRouterConventionPlugin : Plugin<Project> {
 
             dependencies {
                 add("implementation", libs.findLibrary("theRouter").get())
-                add("kapt", libs.findLibrary("theRouterApt").get())
+//                add("kapt", libs.findLibrary("theRouterApt").get())
+                add("ksp", libs.findLibrary("theRouterApt").get())
             }
         }
     }

@@ -2,8 +2,6 @@ plugins {
     id("com.yzq.android.application")
     id("com.yzq.android.room")
     id("com.yzq.theRouter")
-    id("org.jetbrains.kotlin.android")
-
 }
 println("getRootDir():${rootDir}")
 
@@ -15,6 +13,7 @@ android {
         applicationId = "com.yzq.kotlincommon"
         versionCode = 10001
         versionName = "1.0.1"
+        minSdk = androidLibs.versions.minSdk.get().toInt()
         vectorDrawables {
             useSupportLibrary = true
         }
