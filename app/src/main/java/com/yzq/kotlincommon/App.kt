@@ -4,11 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
-import android.os.Build.SUPPORTED_ABIS
 import android.os.Trace
 import com.aice.appstartfaster.dispatcher.AppStartTaskDispatcher
-import com.blankj.utilcode.util.ArrayUtils
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ProcessUtils
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.tencent.mmkv.MMKV
@@ -19,6 +16,7 @@ import com.yzq.application.AppStateListener
 import com.yzq.application.BaseApp
 import com.yzq.kotlincommon.task.main_thread_task.*
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
+import com.yzq.logger.LogCat
 
 
 /**
@@ -33,11 +31,15 @@ class App : BaseApp(), AppStateListener {
 
     override fun onCreate() {
         super.onCreate()
-        LogUtils.e("ProcessUtils.getCurrentProcessName() = ${ProcessUtils.getCurrentProcessName()}")
-        LogUtils.i("packageName:${packageName}")
 
-        if (ProcessUtils.isMainProcess()) {
-            LogUtils.i("主进程")
+        LogCat.enabled = BuildConfig.DEBUG
+
+        LogCat.e("ProcessUtils.getCurrentProcessName() = ${ProcessUtils.getCurrentProcessName()}")
+        LogCat.i("packageName:${packageName}")
+
+
+        if (AppManager.isMainProcess(this)) {
+            LogCat.i("主进程")
             /*监听App是否退出*/
             AppManager.addAppStateListener(this)
 
@@ -69,13 +71,11 @@ class App : BaseApp(), AppStateListener {
 
             Trace.endSection()
         } else {
-            LogUtils.i("非主进程")
+            LogCat.i("非主进程")
 
-            if (ProcessUtils.getCurrentProcessName()
-                    .equals("${packageName}:channel")
-            ) {
+            if (AppManager.getCurrentProcessName(this).equals("${packageName}:channel")) {
 
-                LogUtils.i("channel进程,初始化推送")
+                LogCat.i("channel进程,初始化推送")
                 /*channel进程也要对推送初始化 https://help.aliyun.com/document_detail/434662.html?spm=a2c4g.11186623.0.0.72aa5b78qNHbvx*/
                 AppStartTaskDispatcher
                     .create()
@@ -91,10 +91,10 @@ class App : BaseApp(), AppStateListener {
 
     private fun readMetaData() {
 
-        LogUtils.i("Build.VERSION.SDK_INT = ${Build.VERSION.SDK_INT}")
+        LogCat.i("Build.VERSION.SDK_INT = ${Build.VERSION.SDK_INT}")
 
-        val supportedAbis = SUPPORTED_ABIS
-        LogUtils.i("支持的指令集:${ArrayUtils.toString(supportedAbis)}")
+        val supportedAbis = Build.SUPPORTED_ABIS
+        LogCat.i("支持的指令集:${supportedAbis.contentToString()}")
 
         /*读取Manifest.xml中的 META_DATA */
         val applicationInfo =
@@ -112,22 +112,22 @@ class App : BaseApp(), AppStateListener {
 
         val metaData = applicationInfo.metaData
         val metaChannelValue = metaData.getString("META_CHANNEL")
-        LogUtils.i("metaChannelValue=$metaChannelValue")
+        LogCat.i("metaChannelValue=$metaChannelValue")
 
         /*读取BuildConfig中的变量*/
-        LogUtils.i("BuildConfig.BASE_URL = ${BuildConfig.BASE_URL}")
-        LogUtils.i("BuildConfig.LOG_DEBUG = ${BuildConfig.LOG_DEBUG}")
-        LogUtils.i("BuildConfig.DEBUG = ${BuildConfig.DEBUG}")
-        LogUtils.i("BuildConfig.FLAVOR = ${BuildConfig.FLAVOR}")
-        LogUtils.i("BuildConfig.FLAVOR_ENV = ${BuildConfig.FLAVOR_ENV}")
-        LogUtils.i("BuildConfig.FLAVOR_CHANNEL = ${BuildConfig.FLAVOR_CHANNEL}")
-        LogUtils.i("BuildConfig.BUILD_TYPE = ${BuildConfig.BUILD_TYPE}")
-        LogUtils.i("BuildConfig.VERSION_CODE = ${BuildConfig.VERSION_CODE}")
-        LogUtils.i("BuildConfig.VERSION_NAME = ${BuildConfig.VERSION_NAME}")
-        LogUtils.i("BuildConfig.APPLICATION_ID = ${BuildConfig.APPLICATION_ID}")
+        LogCat.i("BuildConfig.BASE_URL = ${BuildConfig.BASE_URL}")
+        LogCat.i("BuildConfig.LOG_DEBUG = ${BuildConfig.LOG_DEBUG}")
+        LogCat.i("BuildConfig.DEBUG = ${BuildConfig.DEBUG}")
+        LogCat.i("BuildConfig.FLAVOR = ${BuildConfig.FLAVOR}")
+        LogCat.i("BuildConfig.FLAVOR_ENV = ${BuildConfig.FLAVOR_ENV}")
+        LogCat.i("BuildConfig.FLAVOR_CHANNEL = ${BuildConfig.FLAVOR_CHANNEL}")
+        LogCat.i("BuildConfig.BUILD_TYPE = ${BuildConfig.BUILD_TYPE}")
+        LogCat.i("BuildConfig.VERSION_CODE = ${BuildConfig.VERSION_CODE}")
+        LogCat.i("BuildConfig.VERSION_NAME = ${BuildConfig.VERSION_NAME}")
+        LogCat.i("BuildConfig.APPLICATION_ID = ${BuildConfig.APPLICATION_ID}")
 
         val httpUserAgent = System.getProperty("http.agent")
-        LogUtils.i("httpUserAgent:$httpUserAgent")
+        LogCat.i("httpUserAgent:$httpUserAgent")
     }
 
     override fun attachBaseContext(base: Context?) {
@@ -152,6 +152,6 @@ class App : BaseApp(), AppStateListener {
 
     override fun onAppExit() {
         /*应用退出了*/
-        LogUtils.i("App退出了")
+        LogCat.i("App退出了")
     }
 }

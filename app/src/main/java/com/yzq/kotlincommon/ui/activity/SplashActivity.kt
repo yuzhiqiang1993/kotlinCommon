@@ -9,6 +9,7 @@ import com.blankj.utilcode.util.LogUtils
 import com.hjq.permissions.Permission
 import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
+import com.yzq.logger.LogCat
 import com.yzq.materialdialog.showCallbackDialog
 import com.yzq.permission.getPermissions
 import com.yzq.statusbar.immersive
@@ -29,10 +30,6 @@ import java.util.concurrent.atomic.AtomicBoolean
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
-    companion object {
-        private const val TAG = "SplashActivity"
-    }
-
 
     /*是否执行了最终的方法*/
     private val handleRouteInvoke = AtomicBoolean(false)
@@ -43,7 +40,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
 
-        LogUtils.iTag(TAG, "onCreate handleRouteInvoke::${handleRouteInvoke.get()}")
+        LogCat.i("onCreate handleRouteInvoke::${handleRouteInvoke.get()}")
         immersive(Color.WHITE, true)
 
         /*启动屏*/
@@ -68,10 +65,10 @@ class SplashActivity : AppCompatActivity() {
 
         MainScope().launch {
             delay(300)
-            LogUtils.iTag(TAG, "可以做一些初始化的逻辑，初始化完成后继续走")
+            LogCat.i("可以做一些初始化的逻辑，初始化完成后继续走")
             /*解除blockui，正常情况下setOnExitAnimationListener会调用  已知Android12不会被调用*/
             keepOnScreenCondition.compareAndSet(true, false)
-            LogUtils.iTag(TAG, "可以执行 setOnExitAnimationListener 了")
+            LogCat.i("可以执行 setOnExitAnimationListener 了")
 
             /*
             * 已知在Android 12 上会有setOnExitAnimationListener可能不会被调用的问题
@@ -82,9 +79,9 @@ class SplashActivity : AppCompatActivity() {
             delay(200)
 
             val handleRouteInovke = handleRouteInvoke.get()
-            LogUtils.iTag(TAG, "handleRouteInovke:${handleRouteInovke}")
+            LogCat.i("handleRouteInovke:${handleRouteInovke}")
             if (!handleRouteInovke) {
-                LogUtils.iTag(TAG, "handleRouteInvoke 未执行===")
+                LogCat.i("handleRouteInvoke 未执行===")
                 handleRoute()
             }
         }
@@ -97,12 +94,12 @@ class SplashActivity : AppCompatActivity() {
     private fun handleRoute() {
 
         if (handleRouteInvoke.get()) {
-            LogUtils.iTag(TAG, "handleRoute 已经执行过了.....")
+            LogCat.i("handleRoute 已经执行过了.....")
             return
         }
         handleRouteInvoke.compareAndSet(false, true)
 
-        LogUtils.iTag(TAG, "handleRoute开始执行")
+        LogCat.i("handleRoute开始执行")
 //        //由于splash的主题执行完毕了，所以会显示App主题色的状态栏（默认主主色调是蓝色）不沉浸式的话看起来很怪
 //        immersive(
 //            Color.WHITE,
@@ -116,13 +113,13 @@ class SplashActivity : AppCompatActivity() {
             Permission.ACCESS_FINE_LOCATION,
             Permission.ACCESS_BACKGROUND_LOCATION,
             permissionDenide = { deniedPermissions, doNotAskAgain ->
-                LogUtils.iTag(TAG, "权限被拒绝了:${deniedPermissions}")
+                LogCat.i("权限被拒绝了:${deniedPermissions}")
                 finish()
             }
         ) {
-            LogUtils.iTag(TAG, "有权限,进页面")
+            LogCat.i("有权限,进页面")
             if (MMKVDefault.appFirstOpen) {
-                LogUtils.iTag(TAG, "首次打开:${MMKVDefault.appFirstOpen}")
+                LogCat.i("首次打开:${MMKVDefault.appFirstOpen}")
                 /*首次打开可以弹窗提示同意 隐私政策 */
                 showCallbackDialog("提示", "同意隐私政策，用户协议", positiveCallback = {
                     MMKVDefault.appFirstOpen = false
@@ -140,7 +137,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun route() {
-        LogUtils.iTag(TAG, "route 跳转页面")
+        LogCat.i("route 跳转页面")
         if (MMKVUser.hasLogin) {
             navFinish(RoutePath.Main.MAIN)
         } else {
@@ -166,7 +163,7 @@ class SplashActivity : AppCompatActivity() {
 //        iconViewAni.duration = 200
 //        iconViewAni.interpolator = FastOutLinearInInterpolator()
 //        iconViewAni.doOnEnd {
-//            LogUtils.iTag(TAG,"doOnEnd")
+//            LogCat.i(TAG,"doOnEnd")
 //
 //if (MMKVUtil.hasLogin) {
 //            navFinish(RoutePath.Main.MAIN)
@@ -184,7 +181,7 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        LogUtils.iTag(TAG, "onDestroy")
+        LogCat.i("onDestroy")
     }
 
 }

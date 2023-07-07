@@ -10,7 +10,7 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.core.content.withStyledAttributes
 import com.yzq.widget.R
-import com.yzq.widget.drop_down_menu.DeviceUtils.getScreenHeight
+import getScreenHeight
 
 /**
  * @description 下拉菜单
@@ -147,7 +147,7 @@ class DropDownMenu @JvmOverloads constructor(
         /*高度设置为指定的百分比  弹出后底部就会显示出下面的遮罩view*/
         popupMenuContainer.layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
-            (getScreenHeight(context) * menuHeightPercent).toInt()
+            (context.getScreenHeight() * menuHeightPercent).toInt()
         )
         /*先隐藏*/
         popupMenuContainer.visibility = GONE

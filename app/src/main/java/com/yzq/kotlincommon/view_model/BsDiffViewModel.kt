@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.PathUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.xeon.bsdiff.utils.XeonBsDiffUtil
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
+import com.yzq.bsdiff.BsDiffTool
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.coroutine.safety_coroutine.withDefault
 import java.io.File
@@ -51,7 +51,7 @@ class BsDiffViewModel : BaseViewModel() {
 
             val measureTimeMillis = measureTimeMillis {
                 withDefault {
-                    XeonBsDiffUtil.bsdiff(
+                    BsDiffTool.diff(
                         newFile.absolutePath,
                         oldFile.absolutePath,
                         patchFile.absolutePath
@@ -82,7 +82,7 @@ class BsDiffViewModel : BaseViewModel() {
             val measureTimeMillis = measureTimeMillis {
                 /*合并差分包是一个cpu密集型的任务*/
                 withDefault {
-                    XeonBsDiffUtil.bspatch(
+                    BsDiffTool.patch(
                         oldFile.absolutePath,
                         patchFile.absolutePath,
                         combineFile.absolutePath

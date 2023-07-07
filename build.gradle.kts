@@ -8,8 +8,10 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.theRouter) apply false
+    alias(libs.plugins.therouter) apply false
     alias(libs.plugins.benManesVersion) apply false
+    alias(libs.plugins.xeonyu.application) apply false
+    alias(libs.plugins.xeonyu.library) apply false
 
 //    id("com.android.application") version "8.0.0" apply false
 //    id("com.android.library") version "8.0.0" apply false
@@ -21,10 +23,12 @@ plugins {
 /**
  * 定义的一些变量，在其他脚本中可以通过 rootProject.ext.get("key") 获取
  */
-ext {
-    set("debugValue", "debugValue")
-    set("releaseValue", "releaseValue")
+rootProject.run {
+    ext.set("debugValue", "debugValue")
+    ext.set("releaseValue", "releaseValue")
 }
+
+
 
 print("根目录的build.gradle 开始执行")
 tasks.register<Delete>("clean") {

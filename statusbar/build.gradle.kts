@@ -1,7 +1,6 @@
-
-
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.yzq.android.library")
+    alias(libs.plugins.xeonyu.library)
 
 }
 

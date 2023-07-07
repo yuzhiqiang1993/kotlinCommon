@@ -2,7 +2,7 @@ package com.yzq.base.startup.base
 
 import android.os.Trace
 import com.aice.appstartfaster.task.AppStartTask
-import com.blankj.utilcode.util.LogUtils
+import com.yzq.logger.LogCat
 
 /**
  * @description: 启动任务基类
@@ -20,12 +20,12 @@ abstract class BaseAppStartTask : AppStartTask() {
 //        LogUtils.i("methordName:${methordName}")
 //        LogUtils.i("javaClass.canonicalName:${javaClass.canonicalName}")
         Trace.beginSection("${javaClass.canonicalName}.$methordName")
-        LogUtils.i(Thread.currentThread().name)
+        LogCat.i(Thread.currentThread().name)
         taskRun()
 
         time = System.currentTimeMillis() - time
 
-        LogUtils.i("${javaClass.canonicalName}.$methordName 耗时 time = $time")
+        LogCat.i("${javaClass.canonicalName}.$methordName 耗时 time = $time")
         Trace.endSection()
     }
 

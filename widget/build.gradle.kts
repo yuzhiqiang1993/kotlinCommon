@@ -1,5 +1,6 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.yzq.android.library")
+    alias(libs.plugins.xeonyu.library)
 }
 
 
@@ -20,8 +21,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    /*utils*/
-    implementation(libs.utilcodex)
+
     implementation(project(":coroutine"))
 
 

@@ -2,11 +2,11 @@
 pluginManagement {
     println("pluginManagement")
     /*构建管理插件*/
-    includeBuild("build-manager")
-    println("复合构建")
+//    includeBuild("build-manager")
+//    println("复合构建")
 
     repositories {
-
+        mavenLocal()
         google()
         mavenCentral()
         maven {
@@ -23,9 +23,11 @@ pluginManagement {
             url = uri("https://artifact.bytedance.com/repository/byteX/")
         }
         gradlePluginPortal()
-//        mavenLocal()
+
     }
 }
+
+
 /*原本的allprojects 依赖管理*/
 dependencyResolutionManagement {
     println("dependencyResolutionManagement")
@@ -34,7 +36,7 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
         }
-
+        mavenLocal()
         google()
         mavenCentral()
 
@@ -47,22 +49,20 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://jitpack.io")
         }
-//        mavenLocal()
     }
 
     versionCatalogs {
         create("libs") {
-            from("com.xeonyu:version-catalog:0.0.1")
+            from("com.xeonyu:version-catalog:0.0.5")
 //            from(files("gradle/libs.versions_backup.toml"))
         }
-
-        create("androidLibs") {
-//            from(file("gradle/android.versions.toml"))
-            version("minSdk", "21")//这里可以覆盖catalog 中已有的版本号
-        }
+//        create("gaodeLibs") {
+//            library("location", "com.amap.api:location:6.3.0")
+//        }
     }
 
 }
+
 
 /**
  *
@@ -131,3 +131,4 @@ include(":mmkv")
 include(":statusbar")
 include(":baidu")
 include(":storage")
+include(":logger")

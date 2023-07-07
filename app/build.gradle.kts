@@ -1,7 +1,14 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.yzq.android.application")
-    id("com.yzq.android.room")
-    id("com.yzq.theRouter")
+//    id("com.yzq.android.application")
+//    alias(libs.plugins.android.application)
+//    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.xeonyu.application)
+    alias(libs.plugins.ksp)
+    id("therouter")
+//    id("com.yzq.android.room")
+//    id("com.yzq.theRouter")
+
 }
 println("getRootDir():${rootDir}")
 
@@ -13,7 +20,6 @@ android {
         applicationId = "com.yzq.kotlincommon"
         versionCode = 10001
         versionName = "1.0.1"
-        minSdk = androidLibs.versions.minSdk.get().toInt()
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -114,25 +120,31 @@ dependencies {
     implementation(libs.androidx.recyclerview)
 
 
-    implementation(libs.zxingYzq)
+    implementation(libs.xeonyu.zxing)
     implementation(libs.lottie)
     implementation(libs.jsoup)
 
     implementation(libs.bannerViewPager)
 
-    implementation(libs.xeonBsDiff)
+    implementation(libs.xeonyu.bsdiff)
 
     implementation(libs.coil)
-    implementation(libs.cordova.webcontainer)
+    implementation(libs.xeonyu.cordova.webcontainer)
 
     implementation(libs.androidx.appcompat)
     implementation(libs.google.material)
     implementation(libs.androidx.constraintlayout)
 
+    implementation(libs.therouter)
+    ksp(libs.therouter.apt)
+
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
     implementation(project(":gao-de-map"))
     implementation(project(":common"))
     implementation(project(":baidu"))
-
+    implementation(project(":logger"))
 
 }
 

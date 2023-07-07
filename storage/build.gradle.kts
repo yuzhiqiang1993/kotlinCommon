@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.yzq.android.library")
-    id("com.yzq.android.room")
+    alias(libs.plugins.xeonyu.library)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -14,5 +14,8 @@ dependencies {
     implementation(project(":application"))
     api(project(":mmkv"))
     api(libs.threetenabp)
+
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
 
 }

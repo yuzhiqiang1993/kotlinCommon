@@ -1,6 +1,7 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.yzq.android.library")
-    id("com.yzq.theRouter")
+    alias(libs.plugins.xeonyu.library)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -49,6 +50,10 @@ dependencies {
     api(libs.progressManager)
     api(libs.brv)
 
+    api(libs.therouter)
+    ksp(libs.therouter.apt)
+
+
 
     api(project(":application"))
     api(project(":network-status"))
@@ -61,6 +66,7 @@ dependencies {
     api(project(":coroutine"))
     api(project(":binding"))
     api(project(":statusbar"))
+    api(project(":logger"))
 
 
 }
