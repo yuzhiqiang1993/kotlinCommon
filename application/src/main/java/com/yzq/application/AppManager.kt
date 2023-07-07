@@ -33,6 +33,9 @@ object AppManager : Application.ActivityLifecycleCallbacks {
     val activityCount
         get() = _activityCount.get()
 
+    /**
+     * 栈顶的Activity
+     */
     val topActivity: Activity?
         get() {
             return if (activityStack.size > 0) {
@@ -44,6 +47,10 @@ object AppManager : Application.ActivityLifecycleCallbacks {
 
 
     private val _isForeground = AtomicBoolean(false)
+
+    /**
+     * App是否在前台
+     */
     val isForeground: Boolean
         get() = _isForeground.get()
 
@@ -55,7 +62,7 @@ object AppManager : Application.ActivityLifecycleCallbacks {
 
     fun init(application: Application) {
         if (initialized.get()) {
-            LogCat.i("已经初始化过")
+            LogCat.i("已经初始化过了")
             return
         }
         application.registerActivityLifecycleCallbacks(this)
@@ -72,7 +79,6 @@ object AppManager : Application.ActivityLifecycleCallbacks {
         if (appStateListenerList.contains(appStateListener)) {
             appStateListenerList.remove(appStateListener)
         }
-
         LogCat.i("appStateListenerList:${appStateListenerList.size}")
     }
 
@@ -145,16 +151,8 @@ object AppManager : Application.ActivityLifecycleCallbacks {
      * @param context Context
      * @return Boolean
      */
-    fun isMainProcess(context: Context): Boolean {
-
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val packageName = context.packageName
-
-        val currentProcessName = getCurrentProcessName(context)
-
-        return currentProcessName == packageName
-
-    }
+    fun isMainProcess(context: Context): Boolean =
+        getCurrentProcessName(context) == context.packageName
 
 
     /**
@@ -162,18 +160,23 @@ object AppManager : Application.ActivityLifecycleCallbacks {
      * @param context Context
      * @return String?
      */
-    fun getCurrentProcessName(context: Context): String? {
-        val pid = android.os.Process.myPid()
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+    fun getCurrentProcessName(context: Context): String =
+        getCurrrentProcessInfo(context)?.processName ?: ""
 
+
+    /**
+     * 获取当前进程信息
+     * @param context Context
+     * @return ActivityManager.RunningAppProcessInfo?
+     */
+    fun getCurrrentProcessInfo(context: Context): ActivityManager.RunningAppProcessInfo? {
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
         val runningAppProcesses = activityManager.runningAppProcesses
-        for (processInfo in runningAppProcesses) {
-            if (processInfo.pid == pid) {
-                return processInfo.processName
-            }
+
+        return runningAppProcesses.find {
+            it.pid == android.os.Process.myPid()
         }
 
-        return null
     }
 
 }

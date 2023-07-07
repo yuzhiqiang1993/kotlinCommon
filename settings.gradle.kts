@@ -53,7 +53,7 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("libs") {
-            from("com.xeonyu:version-catalog:0.0.5")
+            from("com.xeonyu:version-catalog:0.0.6")
 //            from(files("gradle/libs.versions_backup.toml"))
         }
 //        create("gaodeLibs") {
@@ -131,4 +131,4 @@ include(":mmkv")
 include(":statusbar")
 include(":baidu")
 include(":storage")
-include(":logger")
+//include(":logger")

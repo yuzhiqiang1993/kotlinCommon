@@ -28,5 +28,5 @@ dependencies {
     api(libs.alicloud.android.ut)
     api(libs.alicloud.android.beacon)
     api(libs.alicloud.android.ha.adapter)
-    implementation(project(mapOf("path" to ":logger")))
+    implementation(libs.xeonyu.logger)
 }

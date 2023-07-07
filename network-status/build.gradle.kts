@@ -19,5 +19,5 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(project(":application"))
     implementation(project(":permission"))
-    implementation(project(mapOf("path" to ":logger")))
+    implementation(libs.xeonyu.logger)
 }

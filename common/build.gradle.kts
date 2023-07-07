@@ -27,6 +27,5 @@ dependencies {
 
     api(project(":base"))
     api(project(":storage"))
-    api(project(":logger"))
 
 }

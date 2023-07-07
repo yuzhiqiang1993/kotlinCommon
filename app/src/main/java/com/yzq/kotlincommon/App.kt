@@ -32,7 +32,7 @@ class App : BaseApp(), AppStateListener {
     override fun onCreate() {
         super.onCreate()
 
-        LogCat.enabled = BuildConfig.DEBUG
+        LogCat.setDebug(BuildConfig.DEBUG)
 
         LogCat.e("ProcessUtils.getCurrentProcessName() = ${ProcessUtils.getCurrentProcessName()}")
         LogCat.i("packageName:${packageName}")

@@ -144,7 +144,7 @@ dependencies {
     implementation(project(":gao-de-map"))
     implementation(project(":common"))
     implementation(project(":baidu"))
-    implementation(project(":logger"))
+    implementation(libs.xeonyu.logger)
 
 }
 
