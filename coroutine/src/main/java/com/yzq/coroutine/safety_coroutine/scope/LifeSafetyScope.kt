@@ -1,9 +1,9 @@
 package com.yzq.coroutine.safety_coroutine.scope
 
-import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
+import com.yzq.logger.LogCat
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -26,7 +26,6 @@ open class LifeSafetyScope(
     dispatcher: CoroutineDispatcher = Dispatchers.Main,
 ) : CoroutineScope, Closeable {
 
-    private val tag: String = "LifeSafetyScope"
 
     init {
         lifecycleOwner?.lifecycle?.addObserver(object : LifecycleEventObserver {
@@ -61,9 +60,9 @@ open class LifeSafetyScope(
 
 
     open fun launch(block: suspend CoroutineScope.() -> Unit): LifeSafetyScope {
-        Log.i(tag, "doLaunch")
+        LogCat.i("doLaunch")
         launch(coroutineContext) {
-            Log.i(tag, "launch")
+            LogCat.i("launch")
             block()
         }.invokeOnCompletion {
             /*不管协程是正常完成还有出现异常，最终都会走到该方法*/
@@ -74,7 +73,7 @@ open class LifeSafetyScope(
 
 
     protected open fun catch(throwable: Throwable) {
-        Log.i(tag, "catch:${onCatch}")
+        LogCat.i("catch:${onCatch}")
         onCatch?.invoke(this@LifeSafetyScope, throwable)
     }
 
@@ -90,7 +89,7 @@ open class LifeSafetyScope(
      * 当作用域内发生异常时回调
      */
     open fun catch(block: LifeSafetyScope.(t: Throwable) -> Unit = {}): LifeSafetyScope {
-        Log.i(tag, "给catch赋值")
+        LogCat.i("给catch赋值")
         this.onCatch = block
         return this
     }

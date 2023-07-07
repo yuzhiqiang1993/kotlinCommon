@@ -7,4 +7,6 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.collection.ktx)
+    implementation(libs.utilcodex)
 }

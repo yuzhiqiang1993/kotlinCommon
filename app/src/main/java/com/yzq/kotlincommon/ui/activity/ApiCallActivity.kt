@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.ui.activity
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import com.blankj.utilcode.util.LogUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
@@ -22,6 +21,7 @@ import com.yzq.coroutine.safety_coroutine.lifeScope
 import com.yzq.coroutine.safety_coroutine.scope.LifeSafetyScope
 import com.yzq.kotlincommon.databinding.ActivityApiCallBinding
 import com.yzq.kotlincommon.view_model.ApiCallViewModel
+import com.yzq.logger.LogCat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -71,19 +71,19 @@ class ApiCallActivity : BaseActivity() {
     private fun requestByLaunchSafety() {
 
         lifecycleScope.launchSafety {
-            LogUtils.i("准备请求")
+            LogCat.i("准备请求")
             delay(2000)
             val localUserList =
                 RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
                     .dataConvert()
-            LogUtils.i("localUserList:$localUserList")
+            LogCat.i("localUserList:$localUserList")
         }.catch {
-            LogUtils.i("异常了:$it")
+            LogCat.i("异常了:$it")
             it.printStackTrace()
         }.invokeOnCompletion {
-            LogUtils.i("结束了")
+            LogCat.i("结束了")
             if (it != null) {
-                LogUtils.i("有异常:$it")
+                LogCat.i("有异常:$it")
             }
         }
 
@@ -121,12 +121,12 @@ class ApiCallActivity : BaseActivity() {
             }
         }.catch {
 
-            LogUtils.i("异常了:$it")
+            LogCat.i("异常了:$it")
             it.printStackTrace()
         }.invokeOnCompletion {
-            LogUtils.i("结束了")
+            LogCat.i("结束了")
             if (it != null) {
-                LogUtils.i("有异常:$it")
+                LogCat.i("有异常:$it")
             }
         }
     }
@@ -135,14 +135,14 @@ class ApiCallActivity : BaseActivity() {
 
         /*使用apicall时可以直接使用官方提供的 lifecycleScope，具备取消功能*/
         lifecycleScope.launch {
-            LogUtils.i("准备请求")
+            LogCat.i("准备请求")
             /*响应数据为BaseResp类型的请求*/
             val baseRespApiCall = baseRespApiCall {
                 RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
             }
             baseRespApiCall.onSuccess {
                 it?.forEach {
-                    LogUtils.i("it:$it")
+                    LogCat.i("it:$it")
                 }
             }
 
@@ -153,28 +153,28 @@ class ApiCallActivity : BaseActivity() {
 
             when (apiResult) {
                 is ApiResult.Error -> {
-                    LogUtils.i("onError--> code:${apiResult.code},msg:${apiResult.message}")
+                    LogCat.i("onError--> code:${apiResult.code},msg:${apiResult.message}")
                 }
 
                 is ApiResult.Exception -> {
-                    LogUtils.i("异常了:${apiResult.t}")
+                    LogCat.i("异常了:${apiResult.t}")
                     apiResult.t.printStackTrace()
                 }
 
                 is ApiResult.Success -> {
-                    LogUtils.i("onSuccess--> ${apiResult.data}")
+                    LogCat.i("onSuccess--> ${apiResult.data}")
                 }
             }
 
 //            apiResult.onSuccess {
-//                LogUtils.i("onSuccess--> ${it}")
+//                LogCat.i("onSuccess--> ${it}")
 //            }
 //            apiResult.onError { code, message ->
-//                LogUtils.i("onError--> code:${code},msg:${message}")
+//                LogCat.i("onError--> code:${code},msg:${message}")
 //            }
 //            apiResult.onException {
 //                it.printStackTrace()
-//                LogUtils.i("onException:$it")
+//                LogCat.i("onException:$it")
 //            }
         }
     }
@@ -187,21 +187,21 @@ class ApiCallActivity : BaseActivity() {
 
 
         lifeScope {
-            LogUtils.i("准备请求")
+            LogCat.i("准备请求")
             delay(2000)
             val localUserList =
                 RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
                     .dataConvert()
-            LogUtils.i("localUserList:$localUserList")
+            LogCat.i("localUserList:$localUserList")
         }.catch {
-            LogUtils.i("异常了:$it")
+            LogCat.i("异常了:$it")
             it.printStackTrace()
         }.finally {
             if (it != null) {
                 it.printStackTrace()
-                LogUtils.i("结束了,但是有异常，$it")
+                LogCat.i("结束了,但是有异常，$it")
             } else {
-                LogUtils.i("正常结束了")
+                LogCat.i("正常结束了")
             }
         }
     }

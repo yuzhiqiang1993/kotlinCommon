@@ -11,13 +11,13 @@ import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.ImageUtils
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.TimeUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.coroutine.safety_coroutine.withIO
+import com.yzq.logger.LogCat
 import com.yzq.storage.AppStorage
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -51,8 +51,8 @@ class CompressImgViewModel : BaseViewModel() {
 
             /*上传图片接口示例*/
             val imageFile = File(compressImagePath)
-            LogUtils.i("imageFile:${imageFile.path}")
-            LogUtils.i("imageFile:${imageFile.name}")
+            LogCat.i("imageFile:${imageFile.path}")
+            LogCat.i("imageFile:${imageFile.name}")
             val multipartBody = MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("key1", "front")
@@ -68,21 +68,21 @@ class CompressImgViewModel : BaseViewModel() {
 
             val uploadImgResp = RetrofitFactory.instance.getService(ApiService::class.java)
                 .uploadImg(multipartBody)
-            LogUtils.i("uploadImgResp = ${uploadImgResp}")
+            LogCat.i("uploadImgResp = ${uploadImgResp}")
 
         }
     }
 
     /*只压缩图片*/
     private suspend fun doCompress(path: String): String = withIO {
-        LogUtils.i("path:$path")
-        LogUtils.i("压缩前图片大小：" + FileUtils.getFileLength(path))
+        LogCat.i("path:$path")
+        LogCat.i("压缩前图片大小：" + FileUtils.getFileLength(path))
         /*获取图片旋转的角度*/
         val degree = readPictureDegree(path)
         var selectBitMap = ImageUtils.getBitmap(path)
 
         if (degree != 0) {
-            LogUtils.i("图片旋转了，进行调整")
+            LogCat.i("图片旋转了，进行调整")
             val matrix = Matrix()
             matrix.postRotate(degree.toFloat())
             selectBitMap =
@@ -99,9 +99,9 @@ class CompressImgViewModel : BaseViewModel() {
 
         val defaultW = selectBitMap.width
         val defaultH = selectBitMap.height
-        LogUtils.i("原图分辨率：$defaultW:$defaultH")
+        LogCat.i("原图分辨率：$defaultW:$defaultH")
         val ratio = getRatioSize(defaultW, defaultH)
-        LogUtils.i("缩放比例$ratio")
+        LogCat.i("缩放比例$ratio")
         /*先按比例压缩*/
         selectBitMap =
             ImageUtils.compressByScale(
@@ -109,13 +109,13 @@ class CompressImgViewModel : BaseViewModel() {
                 (defaultW / ratio).toInt(),
                 (defaultH / ratio).toInt()
             )
-        LogUtils.i("比例压缩后：" + selectBitMap.width + ":" + selectBitMap.height)
+        LogCat.i("比例压缩后：" + selectBitMap.width + ":" + selectBitMap.height)
 
         val imgArr = ImageUtils.compressByQuality(selectBitMap, quality)
         /*再按质量压缩*/
         selectBitMap = BitmapFactory.decodeByteArray(imgArr, 0, imgArr.size)
 
-        LogUtils.i("质量压缩后的" + selectBitMap.width + ":" + selectBitMap.height)
+        LogCat.i("质量压缩后的" + selectBitMap.width + ":" + selectBitMap.height)
 
         /*保存的文件名称*/
         val savedImgPath =
@@ -123,11 +123,11 @@ class CompressImgViewModel : BaseViewModel() {
         /*保存并返回图片路径*/
         if (ImageUtils.save(selectBitMap, savedImgPath, Bitmap.CompressFormat.JPEG, true)) {
             /*返回保存后的路径*/
-            LogUtils.i("压缩后图片大小：" + FileUtils.getFileLength(savedImgPath))
+            LogCat.i("压缩后图片大小：" + FileUtils.getFileLength(savedImgPath))
             savedImgPath
         } else {
             /*返回原路径*/
-            LogUtils.i("压缩失败，返回原图")
+            LogCat.i("压缩失败，返回原图")
             path
         }
     }
@@ -155,7 +155,7 @@ class CompressImgViewModel : BaseViewModel() {
             e.printStackTrace()
         }
 
-        LogUtils.i("图片旋转了：${degree}度")
+        LogCat.i("图片旋转了：${degree}度")
 
         return degree
     }

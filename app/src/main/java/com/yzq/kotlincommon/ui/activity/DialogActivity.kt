@@ -4,7 +4,6 @@ import androidx.lifecycle.lifecycleScope
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.loper7.date_time_picker.DateTimeConfig
 import com.therouter.router.Route
@@ -15,11 +14,22 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
-import com.yzq.materialdialog.*
+import com.yzq.logger.LogCat
+import com.yzq.materialdialog.changeProgress
+import com.yzq.materialdialog.selectYear
+import com.yzq.materialdialog.showBaseDialog
+import com.yzq.materialdialog.showCallbackDialog
+import com.yzq.materialdialog.showDatePicker
+import com.yzq.materialdialog.showInputDialog
+import com.yzq.materialdialog.showOnlyPostiveCallBackDialog
+import com.yzq.materialdialog.showPositiveCallbackDialog
+import com.yzq.materialdialog.showProgressDialog
+import com.yzq.materialdialog.showSingleSelectList
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.*
+import java.util.Timer
+import java.util.TimerTask
 
 /**
  * @description: 弹窗
@@ -102,7 +112,7 @@ class DialogActivity : BaseActivity() {
                     val timerTask = object : TimerTask() {
                         override fun run() {
 
-                            LogUtils.i("当前线程：${Thread.currentThread().name}")
+                            LogCat.i("当前线程：${Thread.currentThread().name}")
                             count += 5
                             if (count <= 100) {
 

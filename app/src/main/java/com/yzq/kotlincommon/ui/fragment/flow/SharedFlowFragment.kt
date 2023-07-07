@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.ui.fragment.flow
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
@@ -12,6 +11,7 @@ import com.yzq.coroutine.flow.launchCollect
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentSharedFlowBinding
+import com.yzq.logger.LogCat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
@@ -51,7 +51,7 @@ class SharedFlowFragment : BaseFragment(R.layout.fragment_shared_flow) {
                     viewModel.shareFlow
                         .collect {
                             delay(1000)
-                            LogUtils.i("消费值：${it}")
+                            LogCat.i("消费值：${it}")
 
                         }
                 }
@@ -66,7 +66,7 @@ class SharedFlowFragment : BaseFragment(R.layout.fragment_shared_flow) {
             btnStateflowCollect.setOnThrottleTimeClick {
                 /*新的stateflow订阅者*/
                 viewModel.stateFlow.launchCollect(viewLifecycleOwner) {
-                    LogUtils.i("stateflow newCollect:${it}")
+                    LogCat.i("stateflow newCollect:${it}")
                 }
             }
 
@@ -75,7 +75,7 @@ class SharedFlowFragment : BaseFragment(R.layout.fragment_shared_flow) {
                 .distinctUntilChanged()
                 .onEach {
                     delay(2000)
-                    LogUtils.i("输入框变更:${it}")
+                    LogCat.i("输入框变更:${it}")
                 }.launchIn(lifecycleScope)
 
 
@@ -87,21 +87,21 @@ class SharedFlowFragment : BaseFragment(R.layout.fragment_shared_flow) {
 
         viewModel.run {
 //            stateFlow.launchCollect(viewLifecycleOwner) {
-//                LogUtils.i("stateFlow collect:${it}")
+//                LogCat.i("stateFlow collect:${it}")
 //            }
 //
 //
 //            lifecycleScope.launchSafety {
 //                stateFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle)
 //                    .collectLatest {
-//                        LogUtils.i("stateFlow collect:${it}")
+//                        LogCat.i("stateFlow collect:${it}")
 //                    }
 //            }
 //
 
             stateFlow.asLiveData()
                 .observe(viewLifecycleOwner) {
-                    LogUtils.i("stateFlow asLiveData observe:${it}")
+                    LogCat.i("stateFlow asLiveData observe:${it}")
                 }
 
         }

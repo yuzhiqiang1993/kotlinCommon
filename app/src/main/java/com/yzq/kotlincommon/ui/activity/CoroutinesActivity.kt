@@ -5,7 +5,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.blankj.utilcode.util.LogUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.observeUIState
@@ -21,6 +20,7 @@ import com.yzq.coroutine.safety_coroutine.withIO
 import com.yzq.coroutine.safety_coroutine.withUnconfined
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel
+import com.yzq.logger.LogCat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.filter
@@ -41,7 +41,7 @@ class CoroutinesActivity : BaseActivity() {
         binding.layoutState.onRefresh { vm.requestData() }.showLoading()
 
         lifecycleScope.launchSafety {
-            LogUtils.i("launch 当前线程:${Thread.currentThread().name}")
+            LogCat.i("launch 当前线程:${Thread.currentThread().name}")
         }
         lifecycleScope.launch {
 
@@ -49,25 +49,25 @@ class CoroutinesActivity : BaseActivity() {
 
         lifecycleScope.launchSafety {
             withIO {
-                LogUtils.i("IO 当前线程:${Thread.currentThread().name}")
+                LogCat.i("IO 当前线程:${Thread.currentThread().name}")
             }
         }
 
         lifecycleScope.launchSafety {
             withDefault {
-                LogUtils.i("Default 当前线程:${Thread.currentThread().name}")
+                LogCat.i("Default 当前线程:${Thread.currentThread().name}")
             }
         }
 
         lifecycleScope.launchSafety {
             withUnconfined {
-                LogUtils.i("Unconfined 当前线程:${Thread.currentThread().name}")
+                LogCat.i("Unconfined 当前线程:${Thread.currentThread().name}")
             }
         }
 
         lifecycleScope.launchSafety {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
-                LogUtils.i("lifecycleScope whenCreated")
+                LogCat.i("lifecycleScope whenCreated")
             }
         }
 
@@ -76,36 +76,36 @@ class CoroutinesActivity : BaseActivity() {
             /*具备自动取消且有异常兜底的协程作用域，可以随处使用，类似于上面官方提供的  MainScope().launch {} 这种用法*/
             LifeSafetyScope(this, Lifecycle.Event.ON_DESTROY, dispatcher = Dispatchers.IO)
                 .launch {
-                    LogUtils.i("LifeSafetyScope 开始执行")
+                    LogCat.i("LifeSafetyScope 开始执行")
                     1 / 0
                 }.catch {
-                    LogUtils.i("LifeSafetyScope 捕获到异常了")
+                    LogCat.i("LifeSafetyScope 捕获到异常了")
                 }.finally {
                     it?.let {
                         it.printStackTrace()
                     }
-                    LogUtils.i("LifeSafetyScope 执行结束")
+                    LogCat.i("LifeSafetyScope 执行结束")
                 }
         }
 
         binding.btnCustomeCoroutine.setOnThrottleTimeClick {
 
             lifecycleScope.launchSafety {
-                LogUtils.i("launchSafety 开始执行")
+                LogCat.i("launchSafety 开始执行")
 //                1 / 0//测试异常捕获是否有效
 
                 delay(1000)
 
-                LogUtils.i("launchSafety 执行完成")
+                LogCat.i("launchSafety 执行完成")
 
             }.catch {
                 /*这里异常可能会出现捕获不到的情况，原因是catch是在block后面设置的，如果block中立刻抛出了异常，此时catch可能是空，因此，不会被捕获到*/
-                LogUtils.i("launchSafety catch")
+                LogCat.i("launchSafety catch")
             }.finally {
                 it?.let {
                     it.printStackTrace()
                 }
-                LogUtils.i("launchSafety finally")
+                LogCat.i("launchSafety finally")
             }
         }
 
@@ -118,7 +118,7 @@ class CoroutinesActivity : BaseActivity() {
                 this@CoroutinesActivity,
                 Observer {
                     /*liveData默认就支持页面在onStop时停止观察数据，onStart时观察数据*/
-                    LogUtils.i("liveData请求完成")
+                    LogCat.i("liveData请求完成")
                     binding.tv.text = it.toString()
 
                 }
@@ -128,7 +128,7 @@ class CoroutinesActivity : BaseActivity() {
             geocoderFlow
                 .filter { it != null }
                 .launchCollect(this@CoroutinesActivity) { // 扩展方法 在onStop的时候停止收集数据，onStart后再收集
-                    LogUtils.i("stateFlow请求完成")
+                    LogCat.i("stateFlow请求完成")
                     binding.tv.text = it.toString()
                 }
         }

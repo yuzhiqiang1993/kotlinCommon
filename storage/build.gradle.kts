@@ -12,6 +12,8 @@ dependencies {
     implementation(libs.utilcodex)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(project(":application"))
+    implementation(project(":logger"))
+
     api(project(":mmkv"))
     api(libs.threetenabp)
 

@@ -19,6 +19,9 @@ object LogCat {
         VERBOSE, DEBUG, INFO, WARN, ERROR, WTF
     }
 
+    /* 当前平台的换行符 */
+    private val LINE_SEP = System.getProperty("line.separator")
+
     /** 日志默认标签 */
     var tag = "LogCat"
 
@@ -58,7 +61,7 @@ object LogCat {
     @JvmOverloads
     @JvmStatic
     fun v(
-        msg: Any?,
+        msg: String,
         tag: String = this.tag,
         tr: Throwable? = null,
         occurred: Throwable? = Exception()
@@ -70,7 +73,7 @@ object LogCat {
     @JvmOverloads
     @JvmStatic
     fun i(
-        msg: Any?,
+        msg: String,
         tag: String = this.tag,
         tr: Throwable? = null,
         occurred: Throwable? = Exception()
@@ -81,7 +84,7 @@ object LogCat {
     @JvmOverloads
     @JvmStatic
     fun d(
-        msg: Any?,
+        msg: String,
         tag: String = this.tag,
         tr: Throwable? = null,
         occurred: Throwable? = Exception()
@@ -92,7 +95,7 @@ object LogCat {
     @JvmOverloads
     @JvmStatic
     fun w(
-        msg: Any?,
+        msg: String,
         tag: String = this.tag,
         tr: Throwable? = null,
         occurred: Throwable? = Exception()
@@ -103,7 +106,7 @@ object LogCat {
     @JvmOverloads
     @JvmStatic
     fun e(
-        msg: Any?,
+        msg: String,
         tag: String = this.tag,
         tr: Throwable? = null,
         occurred: Throwable? = Exception()
@@ -111,21 +114,11 @@ object LogCat {
         print(Type.ERROR, msg, tag, tr, occurred)
     }
 
-    @JvmOverloads
-    @JvmStatic
-    fun e(
-        tr: Throwable?,
-        tag: String = this.tag,
-        occurred: Throwable? = Exception(),
-        msg: Any? = "",
-    ) {
-        print(Type.ERROR, msg, tag, tr, occurred)
-    }
 
     @JvmOverloads
     @JvmStatic
     fun wtf(
-        msg: Any?,
+        msg: String,
         tag: String = this.tag,
         tr: Throwable? = null,
         occurred: Throwable? = Exception()
@@ -144,12 +137,12 @@ object LogCat {
      */
     private fun print(
         type: Type = Type.INFO,
-        msg: Any? = null,
+        msg: String,
         tag: String = this.tag,
         tr: Throwable? = null,
         occurred: Throwable? = Exception()
     ) {
-        if (!enabled || msg == null) return
+        if (!enabled) return
 
 
         var traceInfo = ""
@@ -159,20 +152,23 @@ object LogCat {
                 traceInfo = "${className}.$methodName($fileName:$lineNumber)"
             }
         }
-        val info = LogInfo(type, msg.toString(), tag, tr, occurred)
+        val info = LogInfo(type, msg, tag, tr, occurred)
         for (logHook in logHooks) {
             logHook.hook(info)
             if (info.msg == null) return
         }
 
-        val message = """
-            
-            ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-            │ $tag | ${currentThread().name} | ${traceInfo}
-            ├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-            │ $msg
-            └───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-        """.trimIndent()
+        val sb = StringBuilder()
+        sb.appendLine("┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────")
+        sb.appendLine("│ $tag | ${currentThread().name} | ${traceInfo}")
+        sb.appendLine("├───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────")
+        msg.toString().split(LINE_SEP).forEach {
+            sb.appendLine("│ $it")
+        }
+        sb.appendLine("└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────")
+
+
+        val message = sb.toString()
         val max = 3800
         val length = message.length
         if (length > max) {
@@ -202,39 +198,27 @@ object LogCat {
     @JvmOverloads
     @JvmStatic
     fun json(
-        json: Any?,
+        json: String,
         tag: String = this.tag,
         msg: String = "",
         type: Type = Type.INFO,
         occurred: Throwable? = Exception()
     ) {
-        if (!enabled || json == null) return
+        if (!enabled) return
 
-        var message = json.toString()
+        val tokener = JSONTokener(json)
 
-        val occurredMsg = if (traceEnabled && occurred != null) {
-            occurred.stackTrace.getOrNull(1)?.run { " ($fileName:$lineNumber)" }
-        } else ""
+        val obj = runCatching {
+            tokener.nextValue()//解析字符串返回根对象
+        }.getOrDefault(" Parse json error")
 
-        if (message.isBlank()) {
-            print(type, "$msg$occurredMsg\n$message", tag, occurred = null)
-            return
-        }
-
-        val tokener = JSONTokener(message)
-        val obj = try {
-            tokener.nextValue()
-        } catch (e: Exception) {
-            "Parse json error"
-        }
-
-        message = when (obj) {
-            is JSONObject -> obj.toString(2)
-            is JSONArray -> obj.toString(2)
+        val message = when (obj) {
+            is JSONObject -> obj.toString(2) //转成格式化的json
+            is JSONArray -> obj.toString(2) //转成格式化的json
             else -> obj.toString()
         }
 
-        print(type, "$msg$occurredMsg\n$message", tag, occurred = null)
+        print(type, message, tag, occurred = occurred)
     }
 
     private fun log(type: Type, msg: String, tag: String, tr: Throwable?) {

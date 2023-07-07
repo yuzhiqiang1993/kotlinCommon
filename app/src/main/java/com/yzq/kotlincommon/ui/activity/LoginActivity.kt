@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.ui.activity
 import android.graphics.Color
 import android.text.TextUtils
 import androidx.activity.viewModels
-import com.blankj.utilcode.util.LogUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.navClear
 import com.yzq.base.extend.observeUIState
@@ -15,6 +14,7 @@ import com.yzq.coroutine.interval.Interval
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
+import com.yzq.logger.LogCat
 import com.yzq.statusbar.immersive
 import com.yzq.storage.mmkv.MMKVDefault
 import com.yzq.storage.mmkv.MMKVUser
@@ -45,7 +45,7 @@ class LoginActivity : BaseActivity() {
         /*开启一个页面级别的轮询*/
         interval.onlyResumed(this)//onpause 暂停  onResume恢复
             .subscribe {
-                LogUtils.i("第:${it} 的轮询")
+                LogCat.i("第:${it} 的轮询")
             }.start()
 
 
@@ -74,9 +74,9 @@ class LoginActivity : BaseActivity() {
 
     override fun initData() {
 
-        LogUtils.i("initData")
-        LogUtils.i("MMKVUtil.account = ${MMKVUser.account}")
-        LogUtils.i("MMKVUtil.pwd = ${MMKVUser.pwd}")
+        LogCat.i("initData")
+        LogCat.i("MMKVUtil.account = ${MMKVUser.account}")
+        LogCat.i("MMKVUtil.pwd = ${MMKVUser.pwd}")
 
         binding.account = MMKVUser.account
         binding.pwd = MMKVUser.pwd

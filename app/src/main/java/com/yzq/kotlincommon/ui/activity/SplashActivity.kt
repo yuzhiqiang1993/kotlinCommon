@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.blankj.utilcode.util.LogUtils
 import com.hjq.permissions.Permission
 import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
@@ -56,7 +55,7 @@ class SplashActivity : AppCompatActivity() {
                 /**
                  * Android12的设备上 debug 时或者被其他应用拉起的打开方式会出现setOnExitAnimationListener回调不执行的情况
                  */
-                LogUtils.i("setOnExitAnimationListener")
+                LogCat.i("setOnExitAnimationListener")
                 /*路由*/
                 handleRoute()
             }

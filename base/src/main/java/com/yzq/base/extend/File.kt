@@ -6,8 +6,8 @@ import android.webkit.MimeTypeMap
 import androidx.core.content.FileProvider
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileUtils
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.application.AppContext
+import com.yzq.logger.LogCat
 import java.io.File
 
 /**
@@ -29,7 +29,7 @@ fun File.getOpenIntent(): Intent {
     )
 
     val mimeType = MimeTypeMap.getSingleton().getMimeTypeFromExtension(name)
-    LogUtils.i("mimeType:$mimeType")
+    LogCat.i("mimeType:$mimeType")
     intent.setDataAndType(uri, mimeType)
 
     return intent

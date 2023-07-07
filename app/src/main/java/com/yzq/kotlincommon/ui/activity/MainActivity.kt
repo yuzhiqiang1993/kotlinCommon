@@ -8,7 +8,6 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.alibaba.sdk.android.push.CommonCallback
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
-import com.blankj.utilcode.util.LogUtils
 import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
@@ -25,6 +24,7 @@ import com.yzq.common.data.NaviItem
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
+import com.yzq.logger.LogCat
 
 
 /**
@@ -47,11 +47,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             AppContext,
             object : CommonCallback {
                 override fun onSuccess(response: String?) {
-                    LogUtils.i("init cloudchannel success")
+                    LogCat.i("init cloudchannel success")
                 }
 
                 override fun onFailed(errorCode: String, errorMessage: String) {
-                    LogUtils.i("init cloudchannel failed -- errorcode:$errorCode -- errorMessage:$errorMessage")
+                    LogCat.i("init cloudchannel failed -- errorcode:$errorCode -- errorMessage:$errorMessage")
                 }
             }
         )

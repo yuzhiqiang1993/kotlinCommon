@@ -17,8 +17,8 @@ abstract class BaseAppStartTask : AppStartTask() {
         var time = System.currentTimeMillis()
         val methordName = Thread.currentThread().stackTrace[2].methodName
 
-//        LogUtils.i("methordName:${methordName}")
-//        LogUtils.i("javaClass.canonicalName:${javaClass.canonicalName}")
+//        LogCat.i("methordName:${methordName}")
+//        LogCat.i("javaClass.canonicalName:${javaClass.canonicalName}")
         Trace.beginSection("${javaClass.canonicalName}.$methordName")
         LogCat.i(Thread.currentThread().name)
         taskRun()

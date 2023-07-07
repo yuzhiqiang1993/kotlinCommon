@@ -1,9 +1,9 @@
 package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.viewModelScope
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.logger.LogCat
 import com.yzq.storage.db.User
 import com.yzq.storage.db.UserDao
 import com.yzq.storage.db.UserDataBase
@@ -42,7 +42,7 @@ class RoomViewModel : BaseViewModel() {
                 userDao.insertUser(userList)
             }
 
-            LogUtils.i("插入成功")
+            LogCat.i("插入成功")
         }
     }
 

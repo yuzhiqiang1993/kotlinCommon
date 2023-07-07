@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.view_model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.common.api.onError
@@ -14,6 +13,7 @@ import com.yzq.common.ext.apiCall
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.logger.LogCat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -51,12 +51,12 @@ class CoroutineViewModel : BaseViewModel() {
                 _uiStateFlow.value = UIState.ShowContent()
             }
             response.onError { code, message ->
-                LogUtils.i("onFailed--code:$code,message:$message")
+                LogCat.i("onFailed--code:$code,message:$message")
                 _uiStateFlow.value = UIState.ShowError(message)
             }
 
             response.onException {
-                LogUtils.i("onException：$it")
+                LogCat.i("onException：$it")
                 _uiStateFlow.value = UIState.ShowError(it.localizedMessage ?: "onException")
             }
         }

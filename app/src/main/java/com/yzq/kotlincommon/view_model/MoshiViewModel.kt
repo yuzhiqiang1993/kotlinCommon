@@ -1,7 +1,6 @@
 package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.viewModelScope
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.api.BaseResp
@@ -11,6 +10,7 @@ import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ResponseCode
 import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.logger.LogCat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
@@ -36,7 +36,7 @@ class MoshiViewModel : BaseViewModel() {
 
             val baseResp = BaseResp<List<User>>(ResponseCode.SUCCESS, userList, "ok")
             jsonStr = MoshiUtils.toJson(baseResp) ?: ""
-            LogUtils.i(jsonStr)
+            LogCat.i(jsonStr)
         }
     }
 
@@ -45,10 +45,10 @@ class MoshiViewModel : BaseViewModel() {
 
             if (jsonStr.isNotEmpty()) {
                 val genericType = MoshiUtils.getGenericType<BaseResp<List<User>>>()
-                LogUtils.i("genericType==========:$genericType")
+                LogCat.i("genericType==========:$genericType")
                 val userList = MoshiUtils.fromJson<BaseResp<List<User>>>(jsonStr).dataConvert()
                 userList?.forEach {
-                    LogUtils.i(MoshiUtils.toJson(it, "  "))
+                    LogCat.i(MoshiUtils.toJson(it, "  ") ?: "")
                 }
             }
         }
@@ -64,7 +64,7 @@ class MoshiViewModel : BaseViewModel() {
                         RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
                             .dataConvert()
                     userList?.forEach {
-                        LogUtils.i("${it.name}--${it.age}")
+                        LogCat.i("${it.name}--${it.age}")
                     }
                 }
 
@@ -72,7 +72,7 @@ class MoshiViewModel : BaseViewModel() {
                     delay(4000)
                     val userInfo =
                         RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
-                    LogUtils.i("userInfo:$userInfo")
+                    LogCat.i("userInfo:$userInfo")
                 }
             }
 

@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.ui.activity
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
-import android.util.Log
 import com.baidu.speech.EventListener
 import com.baidu.speech.asr.SpeechConstant
 import com.hjq.permissions.Permission
@@ -16,6 +15,7 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityAsrBinding
+import com.yzq.logger.LogCat
 import com.yzq.permission.getPermissions
 import org.json.JSONObject
 
@@ -27,9 +27,6 @@ import org.json.JSONObject
 @Route(path = RoutePath.Main.ASR)
 class AsrActivity : BaseActivity(), EventListener {
 
-    companion object {
-        const val TAG = "AsrActivity"
-    }
 
     private val stringBuilder = StringBuilder()
 
@@ -51,7 +48,7 @@ class AsrActivity : BaseActivity(), EventListener {
     }
 
     private fun start() {
-        Log.i(TAG, "start")
+        LogCat.i("start")
         val param = ASRManager.getParam()
 //        param.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, true)
 //        param.put(SpeechConstant.ACCEPT_AUDIO_DATA, true)
@@ -67,14 +64,14 @@ class AsrActivity : BaseActivity(), EventListener {
                         val message =
                             autoCheck.obtainErrorMessage() // autoCheck.obtainAllMessage();
                         // 可以用下面一行替代，在logcat中查看代码
-                        Log.i(TAG, "handleMessage: ${message}")
+                        LogCat.i("handleMessage: ${message}")
                     }
                 }
             }
         }, false).checkAsr(param)
 
         val jsonParam = JSONObject(param.toMap()).toString()
-        Log.i(TAG, "jsonParam:${jsonParam}")
+        LogCat.i("jsonParam:${jsonParam}")
         val event = SpeechConstant.ASR_START
         ASRManager.instance.send(event, jsonParam, null, 0, 0)
     }
@@ -87,8 +84,8 @@ class AsrActivity : BaseActivity(), EventListener {
         length: Int
     ) {
 
-        Log.i(
-            TAG,
+        LogCat.i(
+
             "onEvent: name:${name}},params:${params},data:${data},offset:${offset},length:${length}"
         )
         if (name != null) {

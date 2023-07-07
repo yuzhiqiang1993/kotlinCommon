@@ -1,12 +1,12 @@
 package com.yzq.permission
 
 import androidx.activity.ComponentActivity
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.OnPermissionPageCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
+import com.yzq.logger.LogCat
 import com.yzq.materialdialog.showCallbackDialog
 
 
@@ -32,7 +32,7 @@ fun ComponentActivity.getPermissions(
 ) {
     /*如果已经有权限，直接执行逻辑*/
     if (permissionsGranted(*permissions)) {
-        LogUtils.i("已有权限：$permissions")
+        LogCat.i("已有权限：$permissions")
         permissionGranted.invoke()
         return
     }
@@ -51,8 +51,8 @@ fun ComponentActivity.getPermissions(
             }
 
             override fun onDenied(deniedPermissions: MutableList<String>, doNotAskAgain: Boolean) {
-                LogUtils.i("onDenied 存在被拒绝的权限 deniedPermissions:${deniedPermissions}")
-                LogUtils.i("onDenied doNotAskAgain:${doNotAskAgain}")
+                LogCat.i("onDenied 存在被拒绝的权限 deniedPermissions:${deniedPermissions}")
+                LogCat.i("onDenied doNotAskAgain:${doNotAskAgain}")
                 if (doNotAskAgain) {
                     /*用户点了拒绝并勾选了不在提示 弹窗提示用户手动给权限*/
                     showPermissionSettingDialog(
@@ -82,7 +82,7 @@ fun ComponentActivity.getPermissions(
  */
 private fun specialPermissionPrompt(deniedPermissions: MutableList<String>) {
 
-    LogUtils.i("特殊权限提示")
+    LogCat.i("特殊权限提示")
     if (deniedPermissions.size == 1) {
         val deniedPermission: String = deniedPermissions.get(0)
 

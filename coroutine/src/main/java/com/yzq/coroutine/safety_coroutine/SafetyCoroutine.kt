@@ -1,6 +1,6 @@
 package com.yzq.coroutine.safety_coroutine
 
-import android.util.Log
+import com.yzq.logger.LogCat
 import kotlinx.coroutines.AbstractCoroutine
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -22,7 +22,6 @@ class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>
     initParentJob = true, active = true
 ) {
 
-    private val tag = "SafetyCoroutine"
 
     /**
      * Catch 用于异常回调
@@ -53,7 +52,7 @@ class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>
      */
     override fun onCancelling(cause: Throwable?) {
         super.onCancelling(cause)
-        Log.i(tag, "onCancelling")
+        LogCat.i("onCancelling")
     }
 
     /**
@@ -61,7 +60,7 @@ class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>
      */
     override fun onCancelled(cause: Throwable, handled: Boolean) {
         super.onCancelled(cause, handled)
-        Log.i(tag, "onCancelled")
+        LogCat.i("onCancelled")
         invokeFinally(cause)
     }
 
@@ -70,21 +69,21 @@ class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>
      */
     override fun onCompleted(value: T) {
         super.onCompleted(value)
-        Log.i(tag, "onCompleted")
+        LogCat.i("onCompleted")
         invokeFinally()
     }
 
 
     private fun invokeCatch(exception: Throwable) {
-        Log.i(tag, "handleJobException invokeCatch exception:$exception")
+        LogCat.i("handleJobException invokeCatch exception:$exception")
         if (onCatch == null) {
             /*这里延时10ms执行*/
             postDelayed {
-                Log.i(tag, "延迟执行 invokeCatch onCatch:$onCatch")
+                LogCat.i("延迟执行 invokeCatch onCatch:$onCatch")
                 onCatch?.invoke(exception)
             }
         } else {
-            Log.i(tag, "invokeCatch onCatch:$onCatch")
+            LogCat.i("invokeCatch onCatch:$onCatch")
             onCatch?.invoke(exception)
         }
     }
@@ -93,22 +92,22 @@ class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>
     private fun invokeFinally(cause: Throwable? = null) {
         if (onFinally == null) {
             postDelayed {
-                Log.i(tag, "延迟执行 invokeFinally: ${onFinally}")
+                LogCat.i("延迟执行 invokeFinally: ${onFinally}")
                 onFinally?.invoke(cause)
             }
         } else {
-            Log.i(tag, "invokeFinally: ${onFinally}")
+            LogCat.i("invokeFinally: ${onFinally}")
             onFinally?.invoke(cause)
         }
     }
 
     fun catch(catchBlock: (Throwable) -> Unit) = apply {
-        Log.i(tag, "给catch赋值")
+        LogCat.i("给catch赋值")
         this.onCatch = catchBlock
     }
 
     fun finally(block: ((Throwable?) -> Unit)) = apply {
-        Log.i(tag, "给 fininsh 赋值")
+        LogCat.i("给 fininsh 赋值")
         this.onFinally = block
     }
 }

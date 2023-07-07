@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.ui.activity
 import android.content.Intent
 import androidx.core.app.ActivityOptionsCompat
 import coil.load
-import com.blankj.utilcode.util.LogUtils
 import com.drake.brv.utils.bindingAdapter
 import com.drake.brv.utils.setup
 import com.drake.brv.utils.staggered
@@ -21,6 +20,7 @@ import com.yzq.coroutine.safety_coroutine.lifeScope
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding
 import com.yzq.kotlincommon.databinding.ItemImgListBinding
+import com.yzq.logger.LogCat
 import com.yzq.network_status.NetworkUtil
 import kotlin.random.Random
 
@@ -102,7 +102,7 @@ class ImageListActivity : BaseActivity() {
 //                .listToutiao(page = page, pageSize = pageSize)
 //            setData(listToutiao)
 //        }.catch {
-//            LogUtils.i("catch error:${it}")
+//            LogCat.i("catch error:${it}")
 //            binding.layoutPageRefresh.showError(it)
 //        }.invokeOnCompletion {
 //
@@ -116,16 +116,16 @@ class ImageListActivity : BaseActivity() {
                 .listToutiao(page = page, pageSize = pageSize)
             setData(listToutiao)
         }.catch {
-            LogUtils.i("catch error:${it}")
+            LogCat.i("catch error:${it}")
             binding.layoutPageRefresh.showError(it)
         }.finally {
-            LogUtils.i("finally")
+            LogCat.i("finally")
         }
     }
 
     private fun setData(data: TouTiao?) {
 
-        LogUtils.i("刷新状态:${binding.layoutPageRefresh.state}")
+        LogCat.i("刷新状态:${binding.layoutPageRefresh.state}")
         if (data == null) {
             binding.layoutPageRefresh.showEmpty()
         } else {
@@ -144,7 +144,7 @@ class ImageListActivity : BaseActivity() {
                     layoutPageRefresh.showContent()
                 }
             } else {
-                LogUtils.i("${data.errorCode}==${data.reason}")
+                LogCat.i("${data.errorCode}==${data.reason}")
                 binding.layoutPageRefresh.showError("${data.errorCode}--${data.reason}")
 
             }

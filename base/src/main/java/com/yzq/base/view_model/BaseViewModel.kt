@@ -4,7 +4,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
-import com.blankj.utilcode.util.LogUtils
+import com.yzq.logger.LogCat
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -24,7 +24,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
     val uiStateFlow: StateFlow<UIState> = _uiStateFlow
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-        LogUtils.i("onStateChanged $source === ${event.targetState}")
+        LogCat.i("onStateChanged $source === ${event.targetState}")
     }
 }
 

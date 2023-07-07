@@ -1,7 +1,14 @@
 package com.yzq.base.managers
 
-import com.blankj.utilcode.util.LogUtils
-import java.util.concurrent.*
+import com.yzq.logger.LogCat
+import java.util.concurrent.BlockingQueue
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import java.util.concurrent.Future
+import java.util.concurrent.LinkedBlockingQueue
+import java.util.concurrent.ThreadFactory
+import java.util.concurrent.ThreadPoolExecutor
+import java.util.concurrent.TimeUnit
 
 
 /**
@@ -123,7 +130,7 @@ class ThreadPoolManager private constructor() {
     /*异常处理*/
     class ThreadPoolUncaughtExceptionHandler : Thread.UncaughtExceptionHandler {
         override fun uncaughtException(thread: Thread, t: Throwable) {
-            LogUtils.i("这里捕获异常：${t.message}")
+            LogCat.i("这里捕获异常：${t.message}")
             t.printStackTrace()
         }
 

@@ -11,5 +11,5 @@ android {
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
     implementation(libs.androidx.appcompat)
-    implementation(libs.utilcodex)
+    implementation(project(mapOf("path" to ":logger")))
 }

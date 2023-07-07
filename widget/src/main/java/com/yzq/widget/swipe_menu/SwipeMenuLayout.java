@@ -383,7 +383,7 @@ public class SwipeMenuLayout extends ViewGroup {
                     }
                     //释放
                     releaseVelocityTracker();
-                    //LogUtils.i(TAG, "onTouch A ACTION_UP ACTION_CANCEL:velocityY:" + velocityX);
+                    //LogCat.i(TAG, "onTouch A ACTION_UP ACTION_CANCEL:velocityY:" + velocityX);
                     isTouching = false;//没有手指在摸我了
                     break;
                 default:

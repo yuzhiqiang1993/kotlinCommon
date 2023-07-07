@@ -1,9 +1,9 @@
 package com.yzq.kotlincommon.ui.fragment.flow
 
 import androidx.lifecycle.viewModelScope
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.logger.LogCat
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -40,14 +40,14 @@ class SharedFlowViewModel : BaseViewModel() {
 
 
     fun sharedFlowEmit() {
-        LogUtils.i("开始生产数据")
+        LogCat.i("开始生产数据")
 
 
         viewModelScope.launchSafety {
             repeat(200) {
                 delay(200)
                 _sharedFlow.emit(it)
-                LogUtils.i("生产值:${it}")
+                LogCat.i("生产值:${it}")
             }
         }
     }

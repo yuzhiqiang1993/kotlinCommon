@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatDelegate
 
 open class BaseApp : Application() {
 
+
     init {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
@@ -22,6 +23,7 @@ open class BaseApp : Application() {
         fun getInstance(): BaseApp {
             return instance
         }
+
     }
 
     override fun onCreate() {

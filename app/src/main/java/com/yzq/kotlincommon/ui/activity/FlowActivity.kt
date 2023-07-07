@@ -3,7 +3,6 @@ package com.yzq.kotlincommon.ui.activity
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.fragment.app.commit
-import com.blankj.utilcode.util.LogUtils
 import com.google.android.material.navigation.NavigationBarView
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
@@ -15,6 +14,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFlowBinding
 import com.yzq.kotlincommon.ui.fragment.flow.FlowFragment
 import com.yzq.kotlincommon.ui.fragment.flow.SharedFlowFragment
+import com.yzq.logger.LogCat
 
 
 /**
@@ -69,7 +69,7 @@ class FlowActivity : BaseActivity(), NavigationBarView.OnItemSelectedListener {
 
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        LogUtils.i("onNavigationItemReselected:${item}")
+        LogCat.i("onNavigationItemReselected:${item}")
         if (!item.isChecked) {
             /*不是重复选中 再进行切换*/
             when (item.itemId) {
@@ -83,22 +83,22 @@ class FlowActivity : BaseActivity(), NavigationBarView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        LogUtils.i("onCreate")
+        LogCat.i("onCreate")
     }
 
     override fun onStart() {
         super.onStart()
-        LogUtils.i("onStart")
+        LogCat.i("onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        LogUtils.i("onResume")
+        LogCat.i("onResume")
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
-        LogUtils.i("onWindowFocusChanged")
+        LogCat.i("onWindowFocusChanged")
     }
 
 

@@ -3,10 +3,10 @@ package com.yzq.gao_de_map
 import androidx.lifecycle.MutableLiveData
 import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.gao_de_map.ext.setLocationResultListener
+import com.yzq.logger.LogCat
 
 /**
  * @description: 定位模块,签到模式
@@ -27,7 +27,7 @@ class SignLocationViewModel : BaseViewModel(), LocationResultListener {
 
     fun startLocation() {
         if (singnInLocationClient == null) {
-            LogUtils.i("首次创建")
+            LogCat.i("首次创建")
             singnInLocationClient = LocationManager.newSigninLocationClient()
                 .apply { setLocationResultListener(this@SignLocationViewModel) }
         }
@@ -41,12 +41,12 @@ class SignLocationViewModel : BaseViewModel(), LocationResultListener {
     }
 
     override fun onFailed(location: AMapLocation) {
-        LogUtils.i("定位失败了")
+        LogCat.i("定位失败了")
     }
 
     override fun onCleared() {
         super.onCleared()
-        LogUtils.i("viewmodel 要被销毁了")
+        LogCat.i("viewmodel 要被销毁了")
         LocationManager.destoryLocationClient(singnInLocationClient)
     }
 

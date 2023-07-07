@@ -1,12 +1,12 @@
 package com.yzq.kotlincommon.ui.fragment
 
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentPagerContentBinding
 import com.yzq.kotlincommon.widget.banner.BannerAdapter
+import com.yzq.logger.LogCat
 
 /**
  * @description: ViewPager中加载的Fragment
@@ -33,7 +33,7 @@ class PagerContentFragment(var content: String) :
                 .setAutoPlay(true)
                 .setAdapter(BannerAdapter())
                 .setOnPageClickListener { clickedView, position ->
-                    LogUtils.i("setOnPageClickListener:$position")
+                    LogCat.i("setOnPageClickListener:$position")
                     ToastUtils.showShort("click:$position")
                 }
                 .create(bannerImgs)

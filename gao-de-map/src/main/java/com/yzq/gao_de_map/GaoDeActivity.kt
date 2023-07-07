@@ -7,7 +7,6 @@ import android.os.PowerManager
 import android.provider.Settings
 import androidx.activity.viewModels
 import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
@@ -21,6 +20,7 @@ import com.yzq.gao_de_map.ext.openGaoDeMap
 import com.yzq.gao_de_map.ext.openGaoDeNavi
 import com.yzq.gao_de_map.service.LocationService
 import com.yzq.gao_de_map.utils.MapPermissionUtils
+import com.yzq.logger.LogCat
 
 @Route(path = com.yzq.common.constants.RoutePath.GaoDe.GAO_DE)
 class GaoDeActivity : BaseActivity() {
@@ -82,13 +82,13 @@ class GaoDeActivity : BaseActivity() {
     /*申请忽略电池优化*/
     private fun ignoringBatteryOptimizations() {
         val appPackageName = AppUtils.getAppPackageName()
-        LogUtils.i("appPackageName:${appPackageName}")
+        LogCat.i("appPackageName:${appPackageName}")
         val powerManager = getSystemService(POWER_SERVICE) as PowerManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val batteryOptimizations =
                 powerManager.isIgnoringBatteryOptimizations(appPackageName)
-            LogUtils.i("是否忽略电池优化:${batteryOptimizations}")
+            LogCat.i("是否忽略电池优化:${batteryOptimizations}")
             if (!batteryOptimizations) {
                 val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
                 intent.data = Uri.parse("package:$appPackageName")

@@ -5,7 +5,7 @@ import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import com.blankj.utilcode.util.LogUtils
+import com.yzq.logger.LogCat
 import java.util.Stack
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.atomic.AtomicBoolean
@@ -55,7 +55,7 @@ object AppManager : Application.ActivityLifecycleCallbacks {
 
     fun init(application: Application) {
         if (initialized.get()) {
-            LogUtils.iTag(TAG, "已经初始化过")
+            LogCat.i("已经初始化过")
             return
         }
         application.registerActivityLifecycleCallbacks(this)
@@ -65,7 +65,7 @@ object AppManager : Application.ActivityLifecycleCallbacks {
         if (!appStateListenerList.contains(appStateListener)) {
             appStateListenerList.add(appStateListener)
         }
-        LogUtils.iTag(TAG, "appStateListenerList:${appStateListenerList.size}")
+        LogCat.i("appStateListenerList:${appStateListenerList.size}")
     }
 
     fun removeAppStateListener(appStateListener: AppStateListener) {
@@ -73,7 +73,7 @@ object AppManager : Application.ActivityLifecycleCallbacks {
             appStateListenerList.remove(appStateListener)
         }
 
-        LogUtils.iTag(TAG, "appStateListenerList:${appStateListenerList.size}")
+        LogCat.i("appStateListenerList:${appStateListenerList.size}")
     }
 
     fun clearAppStateListener() {
@@ -86,11 +86,11 @@ object AppManager : Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityStarted(activity: Activity) {
-        LogUtils.iTag(TAG, "onActivityStarted")
+        LogCat.i("onActivityStarted")
         activityStack.add(activity)
         _activityCount.incrementAndGet()//自增
         if (!_isForeground.get()) {
-            LogUtils.iTag(TAG, "onAppForeground")
+            LogCat.i("onAppForeground")
             _isForeground.compareAndSet(false, true)
             appStateListenerList.forEach {
                 it.onAppForeground()
@@ -111,7 +111,7 @@ object AppManager : Application.ActivityLifecycleCallbacks {
         if (_activityCount.get() <= 0) {
             /*说明此时应用处于后台*/
             _isForeground.set(false)
-            LogUtils.iTag(TAG, "onAppBackground")
+            LogCat.i("onAppBackground")
             appStateListenerList.forEach {
                 it.onAppBackground()
             }
@@ -127,7 +127,7 @@ object AppManager : Application.ActivityLifecycleCallbacks {
             activityStack.remove(activity)
         }
         if (_activityCount.get() <= 0) {
-            LogUtils.iTag(TAG, "onAppExit")
+            LogCat.i("onAppExit")
             appStateListenerList.forEach {
                 it.onAppExit()
             }

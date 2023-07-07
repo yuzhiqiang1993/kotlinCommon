@@ -30,7 +30,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 //        viewLifecycleOwner.lifecycle.addObserver(object : LifecycleEventObserver {
 //            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
 //
-//                LogUtils.i("$currentClassTag:当前event:${event}")
+//                LogCat.i("$currentClassTag:当前event:${event}")
 //            }
 //
 //        })

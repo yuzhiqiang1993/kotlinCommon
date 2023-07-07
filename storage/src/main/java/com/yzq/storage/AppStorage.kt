@@ -1,7 +1,7 @@
 package com.yzq.storage
 
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.PathUtils
+import com.yzq.logger.LogCat
 import java.io.File
 
 /**
@@ -35,7 +35,6 @@ object AppStorage {
         val spPath = "${PathUtils.getInternalAppSpPath()}${File.separator}"
         val cachePath = "${PathUtils.getInternalAppCachePath()}${File.separator}"
         val dbPath = "${PathUtils.getInternalAppDbsPath()}${File.separator}"
-
     }
 
 
@@ -177,7 +176,7 @@ object AppStorage {
         """.trimIndent()
 
 
-        LogUtils.i(pathInfo)
+        LogCat.i(pathInfo)
 
     }
 }

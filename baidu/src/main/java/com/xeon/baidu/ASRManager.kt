@@ -1,9 +1,9 @@
 package com.xeon.asr_demo
 
 import android.app.Application
-import android.util.Log
 import com.baidu.speech.EventManagerFactory
 import com.baidu.speech.asr.SpeechConstant
+import com.yzq.logger.LogCat
 
 object ASRManager {
 
@@ -11,7 +11,7 @@ object ASRManager {
     private lateinit var app: Application
 
     val instance by lazy {
-        Log.i(TAG, "创建ARS实例")
+        LogCat.i(TAG, "创建ARS实例")
         EventManagerFactory.create(app, "asr")
     }
 

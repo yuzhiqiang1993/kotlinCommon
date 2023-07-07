@@ -1,7 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
-import com.blankj.utilcode.util.LogUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.observeUIState
@@ -11,6 +10,7 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBsDiffBinding
 import com.yzq.kotlincommon.view_model.BsDiffViewModel
+import com.yzq.logger.LogCat
 
 /**
  * @description: bsdiff 增量更新示例
@@ -57,7 +57,7 @@ class BsDiffActivity : BaseActivity() {
 
 //        getPermissions(Permission.REQUEST_INSTALL_PACKAGES)
 //        val appPath = AppUtils.getAppPath()
-//        LogUtils.i("appPath:${appPath}")
+//        LogCat.i("appPath:${appPath}")
 
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -66,9 +66,9 @@ class BsDiffActivity : BaseActivity() {
         val applicationInfo = packageManager.getApplicationInfo(packageName, 0)
 
 //        }
-        LogUtils.i("application:${applicationInfo}")
+        LogCat.i("application:${applicationInfo}")
         val apkPath = applicationInfo.sourceDir//这个路径就是apk的全路径
-        LogUtils.i("apkPath = ${apkPath}")
+        LogCat.i("apkPath = ${apkPath}")
 
     }
 

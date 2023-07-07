@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.IBinder
 import androidx.lifecycle.asLiveData
-import com.blankj.utilcode.util.LogUtils
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
 import com.yzq.application.AppStateListener
@@ -20,6 +19,7 @@ import com.yzq.kotlincommon.databinding.ActivityServiceBinding
 import com.yzq.kotlincommon.service.BackendService
 import com.yzq.kotlincommon.service.BindService
 import com.yzq.kotlincommon.service.ForegroundService
+import com.yzq.logger.LogCat
 import com.yzq.permission.getPermissions
 import kotlinx.coroutines.flow.filterNotNull
 
@@ -90,7 +90,7 @@ class ServiceActivity : BaseActivity(), AppStateListener {
     private fun createServieConnection() {
         serviceConnection = object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-                LogUtils.i("onServiceConnected")
+                LogCat.i("onServiceConnected")
                 /*获取Service返回的binder*/
                 val serviceBinder = service as BindService.ServiceBinder
 
@@ -100,14 +100,14 @@ class ServiceActivity : BaseActivity(), AppStateListener {
                         .filterNotNull()
                         .asLiveData()
                         .observe(this@ServiceActivity) {
-                            LogUtils.i("定位结果：${it}")
+                            LogCat.i("定位结果：${it}")
                         }
                 }
             }
 
             override fun onServiceDisconnected(name: ComponentName?) {
                 /*服务系统杀掉时才会执行*/
-                LogUtils.i("onServiceConnected")
+                LogCat.i("onServiceConnected")
             }
         }
     }

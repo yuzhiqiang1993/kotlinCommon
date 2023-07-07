@@ -2,7 +2,6 @@ package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
@@ -13,6 +12,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDataBindingBinding
 import com.yzq.kotlincommon.view_model.DataBindingViewModel
 import com.yzq.kotlincommon.widget.edittext.EmojiExcludeFilter
+import com.yzq.logger.LogCat
 
 /**
  * @description: DataBinding
@@ -46,7 +46,7 @@ class DataBindingActivity : BaseActivity() {
 
     override fun observeViewModel() {
         vm.dataBindingLiveData.observe(this) {
-            LogUtils.i("数据发生变化了:$it")
+            LogCat.i("数据发生变化了:$it")
             binding.data = it
         }
     }

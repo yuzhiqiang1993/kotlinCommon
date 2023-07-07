@@ -3,7 +3,7 @@ package com.yzq.aliemas.push
 import android.content.Context
 import com.alibaba.sdk.android.push.MessageReceiver
 import com.alibaba.sdk.android.push.notification.CPushMessage
-import com.blankj.utilcode.util.LogUtils
+import com.yzq.logger.LogCat
 
 /**
  * @description: 推送广播接收器
@@ -22,11 +22,11 @@ class AliPushReceiver : MessageReceiver() {
         extraMap: Map<String?, String?>,
     ) {
         // TODO处理推送通知
-        LogUtils.e("Receive notification, title: $title, summary: $summary, extraMap: $extraMap")
+        LogCat.e("Receive notification, title: $title, summary: $summary, extraMap: $extraMap")
     }
 
     override fun onMessage(context: Context?, cPushMessage: CPushMessage) {
-        LogUtils.e(
+        LogCat.e(
             "onMessage, messageId: ${cPushMessage.messageId}, title: ${cPushMessage.title}, content:${cPushMessage.content}"
         )
     }
@@ -37,7 +37,7 @@ class AliPushReceiver : MessageReceiver() {
         summary: String,
         extraMap: String,
     ) {
-        LogUtils.e(
+        LogCat.e(
             "MyMessageReceiver",
             "onNotificationOpened, title: $title, summary: $summary, extraMap:$extraMap"
         )
@@ -49,7 +49,7 @@ class AliPushReceiver : MessageReceiver() {
         summary: String,
         extraMap: String,
     ) {
-        LogUtils.e(
+        LogCat.e(
             "MyMessageReceiver",
             "onNotificationClickedWithNoAction, title: $title, summary: $summary, extraMap:$extraMap"
         )
@@ -64,12 +64,12 @@ class AliPushReceiver : MessageReceiver() {
         openActivity: String,
         openUrl: String,
     ) {
-        LogUtils.e(
+        LogCat.e(
             "onNotificationReceivedInApp, title: $title, summary: $summary, extraMap:$extraMap, openType:$openType, openActivity:$openActivity, openUrl:$openUrl"
         )
     }
 
     override fun onNotificationRemoved(context: Context?, messageId: String?) {
-        LogUtils.e("onNotificationRemoved")
+        LogCat.e("onNotificationRemoved")
     }
 }

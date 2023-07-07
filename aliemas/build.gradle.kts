@@ -11,8 +11,6 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-    implementation(libs.utilcodex)
-
 
     //崩溃分析
     api(libs.alicloud.android.ha.crashreporter)
@@ -30,4 +28,5 @@ dependencies {
     api(libs.alicloud.android.ut)
     api(libs.alicloud.android.beacon)
     api(libs.alicloud.android.ha.adapter)
+    implementation(project(mapOf("path" to ":logger")))
 }

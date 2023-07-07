@@ -2,11 +2,11 @@ package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.common.data.LoginBean
 import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.logger.LogCat
 import com.yzq.storage.mmkv.MMKVUser
 import kotlinx.coroutines.delay
 
@@ -25,8 +25,8 @@ class LoginViewModel : BaseViewModel() {
             MMKVUser.account = account
             MMKVUser.pwd = pwd
 
-            LogUtils.i("MMKVUtil.account = ${MMKVUser.account}")
-            LogUtils.i("MMKVUtil.account = ${MMKVUser.pwd}")
+            LogCat.i("MMKVUtil.account = ${MMKVUser.account}")
+            LogCat.i("MMKVUtil.account = ${MMKVUser.pwd}")
 
             val loginBean = LoginBean()
             loginBean.account = account

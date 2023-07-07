@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.lifecycleScope
 import coil.load
-import com.blankj.utilcode.util.LogUtils
 import com.drake.brv.utils.bindingAdapter
 import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
@@ -22,6 +21,7 @@ import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMovieListBinding
 import com.yzq.kotlincommon.databinding.ItemMovieLayoutBinding
+import com.yzq.logger.LogCat
 
 /**
  * @description: 接口请求展示列表
@@ -67,7 +67,7 @@ class NewsActivity : BaseActivity() {
             }
 
         binding.layoutState.onRefresh {
-            LogUtils.i("onRefresh")
+            LogCat.i("onRefresh")
             requestData()
         }.showLoading()
     }

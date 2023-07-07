@@ -10,6 +10,7 @@ import android.util.Log;
 import androidx.core.content.ContextCompat;
 
 import com.baidu.speech.asr.SpeechConstant;
+import com.yzq.logger.LogCat;
 
 import org.json.JSONObject;
 
@@ -279,7 +280,7 @@ public class AutoCheck {
         public void checkOnline() throws Exception {
             String urlpath = "https://openapi.baidu.com/oauth/2.0/token?client_id="
                     + appKey + "&client_secret=" + secretKey + "&grant_type=client_credentials";
-            Log.i("AutoCheck", "Url is " + urlpath);
+            LogCat.i("AutoCheck", "Url is " + urlpath);
             URL url = new URL(urlpath);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setRequestMethod("GET");

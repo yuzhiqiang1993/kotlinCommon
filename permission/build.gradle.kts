@@ -19,6 +19,7 @@ dependencies {
     implementation(libs.utilcodex)
     /*xxPermission*/
     api(libs.xxPermissions)
+    implementation(project(mapOf("path" to ":logger")))
 
 
 }

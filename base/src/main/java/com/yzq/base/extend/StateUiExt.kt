@@ -1,7 +1,6 @@
 package com.yzq.base.extend
 
 import androidx.lifecycle.asLiveData
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.drake.statelayout.StateLayout
 import com.yzq.base.ui.activity.BaseActivity
@@ -9,6 +8,7 @@ import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.coroutine.safety_coroutine.runMain
+import com.yzq.logger.LogCat
 import com.yzq.materialdialog.showBaseDialog
 import com.yzq.widget.dialog.BubbleDialog
 
@@ -19,17 +19,19 @@ fun BaseActivity.observeUIState(
     stateLayout: StateLayout? = null,
 ) {
     vm.uiStateFlow.asLiveData().observe(this) {
-        LogUtils.i("uiState:${it}")
-        LogUtils.i("loadingDialog:${loadingDialog}")
+        LogCat.i("uiState:${it}")
+        LogCat.i("loadingDialog:${loadingDialog}")
         when (it) {
             is UIState.Init -> {
-                LogUtils.i("初始状态，不用管")
+                LogCat.i("初始状态，不用管")
             }
+
             is UIState.DissmissLoadingDialog -> {
                 loadingDialog?.run {
                     runMain { dismissDialog() }
                 }
             }
+
             is UIState.ShowLoadingDialog -> {
                 loadingDialog?.run {
                     runMain { updateTitle(it.msg).show() }
@@ -68,7 +70,7 @@ fun BaseFragment.observeUIState(
     vm.uiStateFlow.asLiveData().observe(viewLifecycleOwner) {
         when (it) {
             is UIState.Init -> {
-                LogUtils.i("初始状态，不用管")
+                LogCat.i("初始状态，不用管")
             }
 
             is UIState.DissmissLoadingDialog -> {

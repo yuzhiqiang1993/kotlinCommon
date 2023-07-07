@@ -1,8 +1,9 @@
 package com.yzq.common.net
 
-import android.util.Log
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.common.net.constants.ServerConstants
+import com.yzq.logger.BuildConfig
+import com.yzq.logger.LogCat
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -61,7 +62,9 @@ class RetrofitFactory private constructor() {
     private fun initLogInterceptor(): HttpLoggingInterceptor {
 
         val interceptor = HttpLoggingInterceptor { message ->
-            Log.i("Retrofit", message)
+            if (BuildConfig.DEBUG) {
+                LogCat.i("Retrofit", message)
+            }
         }
 
         interceptor.level = HttpLoggingInterceptor.Level.BODY

@@ -8,12 +8,12 @@ import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.application.AppContext
 import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.ui.activity.MainActivity
+import com.yzq.logger.LogCat
 
 
 /**
@@ -27,13 +27,13 @@ import com.yzq.kotlincommon.ui.activity.MainActivity
 class ForegroundService : Service(), AppStateListener {
 
     override fun onCreate() {
-        LogUtils.i("onCreate")
+        LogCat.i("onCreate")
     }
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        LogUtils.i("onStartCommand")/*前台服务的一个特点就是要是通知栏*/
+        LogCat.i("onStartCommand")/*前台服务的一个特点就是要是通知栏*/
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
         val channelId = "ForegroundService"
@@ -78,7 +78,7 @@ class ForegroundService : Service(), AppStateListener {
     }
 
     override fun onDestroy() {
-        LogUtils.i("onDestory")
+        LogCat.i("onDestory")
         AppManager.removeAppStateListener(this)
     }
 

@@ -10,7 +10,6 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
-import com.blankj.utilcode.util.LogUtils
 import com.yzq.application.AppContext
 import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
@@ -19,6 +18,7 @@ import com.yzq.gao_de_map.LocationManager
 import com.yzq.gao_de_map.LocationResultListener
 import com.yzq.gao_de_map.R
 import com.yzq.gao_de_map.ext.setLocationResultListener
+import com.yzq.logger.LogCat
 import java.util.concurrent.atomic.AtomicBoolean
 
 
@@ -48,9 +48,9 @@ class LocationService : Service(), AppStateListener, LocationResultListener {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        LogUtils.i("onStartCommand")
+        LogCat.i("onStartCommand")
         if (locationStarted.get()) {
-            LogUtils.i("已经在定位了")
+            LogCat.i("已经在定位了")
             return super.onStartCommand(intent, flags, startId)
         }
         /*前台服务的一个特点就是要是通知栏*/
@@ -111,7 +111,7 @@ class LocationService : Service(), AppStateListener, LocationResultListener {
 
 
     override fun onDestroy() {
-        LogUtils.i("onDestory")
+        LogCat.i("onDestory")
         locationStarted.compareAndSet(true, false)
         LocationManager.destoryLocationClient(locationClient)
         AppManager.removeAppStateListener(this)
@@ -122,11 +122,11 @@ class LocationService : Service(), AppStateListener, LocationResultListener {
     }
 
     override fun onSuccess(location: AMapLocation) {
-        LogUtils.i("定位成功")
+        LogCat.i("定位成功")
     }
 
     override fun onFailed(location: AMapLocation) {
-        LogUtils.i("定位失败")
+        LogCat.i("定位失败")
     }
 
 }
