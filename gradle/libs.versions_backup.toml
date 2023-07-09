@@ -40,6 +40,7 @@ androidxRecyclerview = "1.3.0"
 androidxViewpager2 = "1.1.0-beta02"
 androidxExifinterface = "1.3.6"
 androidxRoom = "2.5.2"
+androidxWebkit = "1.7.0"
 
 #kotlin
 kotlin = "1.8.22"
@@ -51,7 +52,6 @@ kotlinxSerializationJson = "1.5.1"
 theRouter = "1.2.0-beta2"
 benManesVersion = "0.46.0"
 vanniktechPublish = "0.25.3"
-buildManagerVersion = "0.0.1"
 okhttp = "4.11.0"
 retrofit = "2.9.0"
 retrofitKotlinxSerializationJson = "1.0.0"
@@ -62,11 +62,8 @@ xxPermissions = "18.2"
 mmkv = "1.2.16"
 progressManager = "1.5.0"
 appStartFaster = "2.2.0"
-zxingYzq = "2.2.9"
-cordovaWebContainer = "1.0.3"
 bannerViewPager = "3.5.11"
 jsoup = "1.16.1"
-xeonBsDiff = "1.0.2"
 brv = "1.4.1"
 flexboxLayout = "3.0.0"
 leakcanaryAndroid = "2.11"
@@ -93,9 +90,22 @@ espresso-core = "3.5.1"
 #高德map
 gaodeLocation = "6.3.0"
 
+#我的开源库
+xeonBuildManager = "0.0.6"
+xeonZxing = "2.2.9"
+xeonCordovaWebContainer = "1.0.5"
+xeonCordovaLib = "12.0.2"
+xeonBsDiff = "1.0.4"
+xeonLogger = "1.0.3"
+xeonApplication = "1.0.0"
+xeonCoroutine = "1.0.0"
+xeonMMKV = "1.0.0"
+xeonLocationManager = "1.0.0"
+xeonLocationGaode = "1.0.0"
+xeonLocationTencent = "1.0.0"
+xeonLocationBaidu = "1.0.0"
 
 [libraries]
-
 google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 #androidX
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppcompat" }
@@ -117,6 +127,7 @@ androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "s
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "androidxRecyclerview" }
 androidx-viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "androidxViewpager2" }
 androidx-exifinterface = { group = "androidx.exifinterface", name = "exifinterface", version.ref = "androidxExifinterface" }
+androidx-webkit = { group = "androidx.webkit", name = "webkit", version.ref = "androidxWebkit" }
 
 #kotlin
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
@@ -155,9 +166,17 @@ dateTimePicker = { group = "com.github.loperSeven", name = "DateTimePicker", ver
 
 #我自己的开源库
 xeonyu-bsdiff = { group = "com.xeonyu", name = "bsdiff", version.ref = "xeonBsDiff" }
-xeonyu-zxing = { group = "com.github.yuzhiqiang1993", name = "zxing", version.ref = "zxingYzq" }
-xeonyu-cordova-webcontainer = { group = "com.xeonyu", name = "cordova-webcontainer", version.ref = "cordovaWebContainer" }
-
+xeonyu-zxing = { group = "com.github.yuzhiqiang1993", name = "zxing", version.ref = "xeonZxing" }
+xeonyu-cordova-webcontainer = { group = "com.xeonyu", name = "cordova-webcontainer", version.ref = "xeonCordovaWebContainer" }
+xeonyu-cordova-lib = { group = "com.xeonyu", name = "cordova-lib", version.ref = "xeonCordovaLib" }
+xeonyu-logger = { group = "com.xeonyu", name = "logger", version.ref = "xeonLogger" }
+xeonyu-application = { group = "com.xeonyu", name = "application", version.ref = "xeonApplication" }
+xeonyu-coroutine = { group = "com.xeonyu", name = "coroutine", version.ref = "xeonCoroutine" }
+xeonyu-mmkv = { group = "com.xeonyu", name = "mmkv", version.ref = "xeonMMKV" }
+xeonyu-location-manager = { group = "com.xeonyu", name = "location-manager", version.ref = "xeonLocationManager" }
+xeonyu-location-gaode = { group = "com.xeonyu", name = "location-gaode", version.ref = "xeonLocationGaode" }
+xeonyu-location-tencent = { group = "com.xeonyu", name = "location-tencent", version.ref = "xeonLocationTencent" }
+xeonyu-location-baidu = { group = "com.xeonyu", name = "location-baidu", version.ref = "xeonLocationBaidu" }
 
 #阿里emas
 alicloud-android-apm = { module = "com.aliyun.ams:alicloud-android-apm", version.ref = "alicloudAndroidApm" }
@@ -214,7 +233,7 @@ benManesVersion = { id = "com.github.ben-manes.versions", version.ref = "benMane
 #版本发布三方插件
 vanniktechPublish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktechPublish" }
 #自定义的插件
-xeonyu-application = { id = "com.xeonyu.plugin.application", version.ref = "buildManagerVersion" }
-xeonyu-library = { id = "com.xeonyu.plugin.library", version.ref = "buildManagerVersion" }
+xeonyu-application = { id = "com.xeonyu.plugin.application", version.ref = "xeonBuildManager" }
+xeonyu-library = { id = "com.xeonyu.plugin.library", version.ref = "xeonBuildManager" }
 #xeonyu-room = { id = "com.xeonyu.plugin.room", version.ref = "buildManagerVersion" }
 #xeonyu-therouter = { id = "com.xeonyu.plugin.therouter", version.ref = "buildManagerVersion" }

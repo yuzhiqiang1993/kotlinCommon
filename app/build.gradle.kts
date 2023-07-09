@@ -20,6 +20,7 @@ android {
         applicationId = "com.yzq.kotlincommon"
         versionCode = 10001
         versionName = "1.0.1"
+        minSdk = 23
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -109,6 +110,15 @@ android {
     lint {
         baseline = file("lint-baseline.xml")
     }
+
+
+//    compileOptions {
+//        sourceCompatibility = JavaVersion.VERSION_17
+//        targetCompatibility = JavaVersion.VERSION_17
+//    }
+//    kotlinOptions {
+//        jvmTarget = JavaVersion.VERSION_17.toString()
+//    }
 }
 
 dependencies {
@@ -145,6 +155,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":baidu"))
     implementation(libs.xeonyu.logger)
+//    implementation("com.xeonyu:logger:1.0.2-SNAPSHOT")
 
 }
 

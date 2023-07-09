@@ -53,8 +53,8 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("libs") {
-            from("com.xeonyu:version-catalog:0.0.6")
-//            from(files("gradle/libs.versions_backup.toml"))
+//            from("com.xeonyu:version-catalog:0.0.6")
+            from(files("gradle/libs.versions_backup.toml"))
         }
 //        create("gaodeLibs") {
 //            library("location", "com.amap.api:location:6.3.0")
