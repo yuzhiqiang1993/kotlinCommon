@@ -11,7 +11,8 @@ android {
 dependencies {
     implementation(libs.utilcodex)
     implementation(libs.androidx.lifecycle.livedata.ktx)
-    implementation(project(":application"))
+
+    implementation(libs.xeonyu.application)
     implementation(libs.xeonyu.logger)
 
     api(project(":mmkv"))

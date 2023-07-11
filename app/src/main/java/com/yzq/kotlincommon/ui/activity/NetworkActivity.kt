@@ -7,8 +7,8 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityNetworkBinding
+import com.yzq.network_status.NetworkStatus
 import com.yzq.network_status.NetworkType
-import com.yzq.network_status.NetworkUtil
 import com.yzq.network_status.OnNetworkStatusChangedListener
 import com.yzq.permission.getPermissions
 
@@ -18,7 +18,7 @@ class NetworkActivity : BaseActivity(), OnNetworkStatusChangedListener {
     private val binding by viewbind(ActivityNetworkBinding::inflate)
 
     override fun initListener() {
-        NetworkUtil.registerNetworkStatusChangedListener(this, this)
+        NetworkStatus.registerNetworkStatusChangedListener(this, this)
     }
 
     override fun initWidget() {
@@ -27,7 +27,7 @@ class NetworkActivity : BaseActivity(), OnNetworkStatusChangedListener {
 
     override fun initData() {
         getPermissions(Manifest.permission.READ_PHONE_STATE) {
-            val networkType = NetworkUtil.getNetworkType()
+            val networkType = NetworkStatus.getNetworkType()
             binding.tvNetworkStatus.text = buildString {
                 append(networkType.code)
                 append("--")

@@ -4,19 +4,19 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.lifecycle.LifecycleOwner
-import com.yzq.application.AppContext.checkSelfPermission
+import com.yzq.application.AppContext
 import com.yzq.logger.LogCat
 import com.yzq.network_status.common.INetworkStatus
 import com.yzq.network_status.height.NetworkHeight
 import com.yzq.network_status.legacy.NetworkLegacy
 
 /**
- * @description: 网络相关的工具类
+ * @description: 网络状态
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
  * @date : 2022/9/26
  * @time : 16:40
  */
-object NetworkUtil : INetworkStatus {
+object NetworkStatus : INetworkStatus {
 
     /**
      * 网络是否连接
@@ -64,14 +64,18 @@ object NetworkUtil : INetworkStatus {
      * @return NetworkType
      */
     override fun getNetworkType(): NetworkType {
-        if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-            LogCat.e("缺少 android.permission.READ_PHONE_STATE 权限")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && AppContext.checkSelfPermission(
+                Manifest.permission.READ_PHONE_STATE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            LogCat.e("没有 android.permission.ACCESS_NETWORK_STATE 权限,请先申请")
             return NetworkType.PERMISSION_DENIED
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return NetworkHeight.getNetworkType()
+
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            NetworkHeight.getNetworkType()
         } else {
-            return NetworkLegacy.getNetworkType()
+            NetworkLegacy.getNetworkType()
         }
     }
 

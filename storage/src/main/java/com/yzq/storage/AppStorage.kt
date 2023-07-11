@@ -164,15 +164,15 @@ object AppStorage {
             --------------------------
             外部存储
                 私有目录
-                 dataPath:${External.Private.rootPath}
-                 filesPath:${External.Private.filesPath}
-                 picturesPath:${External.Private.picturesPath}
-                 cachePath:${External.Private.cachePath}
-                 ....
-                 公共目录
-                  rootPath:${External.Public.rootPath}
-                  picturesPath:${External.Public.picturesPath}
-                  moviesPath:${External.Public.moviesPath}
+                dataPath:${External.Private.rootPath}
+                filesPath:${External.Private.filesPath}
+                picturesPath:${External.Private.picturesPath}
+                cachePath:${External.Private.cachePath}
+                ....
+                公共目录
+                rootPath:${External.Public.rootPath}
+                picturesPath:${External.Public.picturesPath}
+                moviesPath:${External.Public.moviesPath}
         """.trimIndent()
 
 

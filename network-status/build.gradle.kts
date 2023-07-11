@@ -17,7 +17,6 @@ dependencies {
 
     //Lifecycles only (without ViewModel or LiveData)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(project(":application"))
-    implementation(project(":permission"))
+    implementation(libs.xeonyu.application)
     implementation(libs.xeonyu.logger)
 }

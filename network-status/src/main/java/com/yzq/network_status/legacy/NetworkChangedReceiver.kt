@@ -11,7 +11,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.yzq.application.AppContext
-import com.yzq.application.BaseApp
 import com.yzq.network_status.NetworkType
 import com.yzq.network_status.OnNetworkStatusChangedListener
 import com.yzq.network_status.height.NetworkstatusCallbackManager
@@ -42,7 +41,7 @@ object NetworkChangedReceiver : BroadcastReceiver() {
         listenersSet.add(onNetworkStatusChangedListener)
         if (!registered) {
             val intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
-            BaseApp.getInstance().registerReceiver(this, intentFilter)
+            AppContext.registerReceiver(this, intentFilter)
             registered = true
         }
 

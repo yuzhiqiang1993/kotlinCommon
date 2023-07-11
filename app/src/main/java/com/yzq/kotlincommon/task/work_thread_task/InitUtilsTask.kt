@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.task.work_thread_task
 
 import com.blankj.utilcode.util.Utils
-import com.yzq.application.BaseApp
+import com.yzq.application.AppManager
 import com.yzq.base.startup.base.WorkThreadTask
 
 /**
@@ -13,7 +13,7 @@ import com.yzq.base.startup.base.WorkThreadTask
 
 class InitUtilsTask : WorkThreadTask() {
     override fun taskRun() {
-        Utils.init(BaseApp.getInstance())
+        Utils.init(AppManager.application)
 //        val config = LogUtils.getConfig()
 //            .setLogSwitch(BuildConfig.DEBUG)
 //            .setGlobalTag(AppUtils.getAppName())

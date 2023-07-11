@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.task.main_thread_task
 import com.alibaba.sdk.android.push.CloudPushService
 import com.alibaba.sdk.android.push.noonesdk.PushInitConfig
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
-import com.yzq.application.BaseApp
+import com.yzq.application.AppManager
 import com.yzq.base.startup.base.MainThreadTask
 import com.yzq.kotlincommon.BuildConfig
 import com.yzq.kotlincommon.config.AliEMASConfig
@@ -21,7 +21,7 @@ class InitAliPushTask : MainThreadTask() {
     override fun taskRun() {
         /*https://help.aliyun.com/document_detail/195006.html*/
 
-        val config = PushInitConfig.Builder().application(BaseApp.getInstance())
+        val config = PushInitConfig.Builder().application(AppManager.application)
             .appKey(AliEMASConfig.appKey)
             .appSecret(AliEMASConfig.appSecret)
             .build()

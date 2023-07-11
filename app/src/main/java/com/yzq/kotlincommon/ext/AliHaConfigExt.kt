@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.ext
 import com.alibaba.ha.adapter.AliHaConfig
 import com.blankj.utilcode.util.AppUtils
 import com.yzq.application.AppContext
-import com.yzq.application.BaseApp
+import com.yzq.application.AppManager
 import com.yzq.kotlincommon.config.AliEMASConfig
 
 /**
@@ -20,7 +20,7 @@ fun AliHaConfig.defaultConfig(rsaPublicKey: String = "") {
     appSecret = AliEMASConfig.appSecret
     channel = "channel" // 渠道
     userNick = "xeon" // 用户昵称
-    application = BaseApp.getInstance()
+    application = AppManager.application
     context = AppContext
     isAliyunos = false // 是否是是阿里云os
     if (rsaPublicKey.isNotEmpty()) {

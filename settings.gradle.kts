@@ -1,9 +1,6 @@
 /*原本的buildscript 插件管理*/
 pluginManagement {
     println("pluginManagement")
-    /*构建管理插件*/
-//    includeBuild("build-manager")
-//    println("复合构建")
 
     repositories {
         mavenLocal()
@@ -53,8 +50,8 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("libs") {
-//            from("com.xeonyu:version-catalog:0.0.6")
-            from(files("gradle/libs.versions_backup.toml"))
+            from("com.xeonyu:version-catalog:0.0.9")
+//            from(files("gradle/libs.versions_backup.toml"))
         }
 //        create("gaodeLibs") {
 //            library("location", "com.amap.api:location:6.3.0")
@@ -124,7 +121,7 @@ include(":widget")
 include(":permission")
 include(":aliemas")
 include(":network-status")
-include(":application")
+//include(":application")
 include(":coroutine")
 include(":binding")
 include(":mmkv")

@@ -1,6 +1,7 @@
 package com.yzq.kotlincommon
 
 import android.annotation.SuppressLint
+import android.app.Application
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
@@ -13,7 +14,6 @@ import com.therouter.TheRouter
 import com.xeon.asr_demo.ASRManager
 import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
-import com.yzq.application.BaseApp
 import com.yzq.kotlincommon.task.main_thread_task.*
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 import com.yzq.logger.LogCat
@@ -27,18 +27,18 @@ import com.yzq.logger.LogCat
  *
  */
 
-class App : BaseApp(), AppStateListener {
+class App : Application(), AppStateListener {
 
     override fun onCreate() {
         super.onCreate()
-
+        AppManager.init(this)
         LogCat.setDebug(BuildConfig.DEBUG)
 
         LogCat.e("ProcessUtils.getCurrentProcessName() = ${ProcessUtils.getCurrentProcessName()}")
         LogCat.i("packageName:${packageName}")
 
 
-        if (AppManager.isMainProcess(this)) {
+        if (AppManager.isMainProcess()) {
             LogCat.i("主进程")
             /*监听App是否退出*/
             AppManager.addAppStateListener(this)
@@ -73,7 +73,7 @@ class App : BaseApp(), AppStateListener {
         } else {
             LogCat.i("非主进程")
 
-            if (AppManager.getCurrentProcessName(this).equals("${packageName}:channel")) {
+            if (AppManager.getCurrentProcessName().equals("${packageName}:channel")) {
 
                 LogCat.i("channel进程,初始化推送")
                 /*channel进程也要对推送初始化 https://help.aliyun.com/document_detail/434662.html?spm=a2c4g.11186623.0.0.72aa5b78qNHbvx*/

@@ -13,8 +13,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import com.yzq.application.AppContext
+import com.yzq.network_status.NetworkStatus
 import com.yzq.network_status.NetworkType
-import com.yzq.network_status.NetworkUtil
 import com.yzq.network_status.OnNetworkStatusChangedListener
 
 /**
@@ -134,6 +134,6 @@ object NetworkstatusCallbackManager : NetworkCallback() {
      */
 
     override fun onCapabilitiesChanged(network: Network, networkCapabilities: NetworkCapabilities) {
-        dispatchStatus(NetworkUtil.getNetworkType())
+        dispatchStatus(NetworkStatus.getNetworkType())
     }
 }

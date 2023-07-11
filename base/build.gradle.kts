@@ -54,9 +54,8 @@ dependencies {
     ksp(libs.therouter.apt)
 
     api(libs.xeonyu.logger)
+    api(libs.xeonyu.application)
 
-
-    api(project(":application"))
     api(project(":network-status"))
     api(project(":img"))
 

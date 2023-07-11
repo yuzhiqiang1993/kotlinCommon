@@ -21,7 +21,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding
 import com.yzq.kotlincommon.databinding.ItemImgListBinding
 import com.yzq.logger.LogCat
-import com.yzq.network_status.NetworkUtil
+import com.yzq.network_status.NetworkStatus
 import kotlin.random.Random
 
 /**
@@ -109,7 +109,7 @@ class ImageListActivity : BaseActivity() {
 //        }
 
         lifeScope {
-            if (!NetworkUtil.isConnected()) {
+            if (!NetworkStatus.isConnected()) {
                 throw Throwable("网络未连接，请检查")
             }
             val listToutiao = RetrofitFactory.instance.getService(ApiService::class.java)
