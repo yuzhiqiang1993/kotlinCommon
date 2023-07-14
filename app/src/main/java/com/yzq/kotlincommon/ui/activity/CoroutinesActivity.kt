@@ -20,11 +20,13 @@ import com.yzq.coroutine.safety_coroutine.withIO
 import com.yzq.coroutine.safety_coroutine.withUnconfined
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 
 @Route(path = RoutePath.Main.COROUTINE)
 class CoroutinesActivity : BaseActivity() {
@@ -41,7 +43,7 @@ class CoroutinesActivity : BaseActivity() {
         binding.layoutState.onRefresh { vm.requestData() }.showLoading()
 
         lifecycleScope.launchSafety {
-            LogCat.i("launch 当前线程:${Thread.currentThread().name}")
+            Logger.i("launch 当前线程:${Thread.currentThread().name}")
         }
         lifecycleScope.launch {
 
@@ -49,25 +51,54 @@ class CoroutinesActivity : BaseActivity() {
 
         lifecycleScope.launchSafety {
             withIO {
-                LogCat.i("IO 当前线程:${Thread.currentThread().name}")
+                Logger.i("IO 当前线程:${Thread.currentThread().name}")
             }
         }
 
         lifecycleScope.launchSafety {
             withDefault {
-                LogCat.i("Default 当前线程:${Thread.currentThread().name}")
+                Logger.i("Default 当前线程:${Thread.currentThread().name}")
             }
         }
 
         lifecycleScope.launchSafety {
             withUnconfined {
-                LogCat.i("Unconfined 当前线程:${Thread.currentThread().name}")
+                Logger.i("Unconfined 当前线程:${Thread.currentThread().name}")
             }
         }
 
         lifecycleScope.launchSafety {
             repeatOnLifecycle(Lifecycle.State.CREATED) {
-                LogCat.i("lifecycleScope whenCreated")
+                Logger.i("lifecycleScope whenCreated")
+            }
+        }
+
+
+        binding.btnCoroutine.setOnThrottleTimeClick {
+
+            lifecycleScope.launch(CoroutineExceptionHandler { coroutineContext, throwable ->
+                Logger.i("CoroutineExceptionHandler 捕获到异常了:${throwable.message}")
+            }) {
+                supervisorScope {
+                    Logger.i("supervisorScope 开始执行")
+                    launch {
+                        Logger.i("supervisorScope launch 开始执行")
+                        throw Exception("子协程内部出现异常")
+                        Logger.i("supervisorScope launch 执行结束")
+                    }
+
+                    delay(1000)
+                    1 / 0
+                    Logger.i("supervisorScope 执行结束")
+
+
+                }
+
+            }.invokeOnCompletion {
+                it?.run {
+                    Logger.i("异常:${it.message}")
+                }
+                Logger.i("协程 执行结束")
             }
         }
 
@@ -76,36 +107,62 @@ class CoroutinesActivity : BaseActivity() {
             /*具备自动取消且有异常兜底的协程作用域，可以随处使用，类似于上面官方提供的  MainScope().launch {} 这种用法*/
             LifeSafetyScope(this, Lifecycle.Event.ON_DESTROY, dispatcher = Dispatchers.IO)
                 .launch {
-                    LogCat.i("LifeSafetyScope 开始执行")
+                    Logger.i("LifeSafetyScope 开始执行")
                     1 / 0
                 }.catch {
-                    LogCat.i("LifeSafetyScope 捕获到异常了")
+                    Logger.i("LifeSafetyScope 捕获到异常了")
                 }.finally {
                     it?.let {
                         it.printStackTrace()
                     }
-                    LogCat.i("LifeSafetyScope 执行结束")
+                    Logger.i("LifeSafetyScope 执行结束")
                 }
         }
 
         binding.btnCustomeCoroutine.setOnThrottleTimeClick {
 
             lifecycleScope.launchSafety {
-                LogCat.i("launchSafety 开始执行")
+                Logger.i("launchSafety 开始执行")
 //                1 / 0//测试异常捕获是否有效
 
+                supervisorScope {
+
+                    launchSafety {
+                        throw Exception("supervisorScope1 异常")
+                    }.catch {
+                        Logger.i("supervisorScope1 捕获到异常了")
+                    }.finally {
+                        it?.printStackTrace()
+                        Logger.i("supervisorScope1 执行结束")
+                    }
+
+
+                    launchSafety {
+                        throw Exception("supervisorScope2 异常")
+                    }.catch {
+                        Logger.i("supervisorScope2 捕获到异常了")
+                    }.finally {
+                        it?.printStackTrace()
+                        Logger.i("supervisorScope2 执行结束")
+                    }
+
+
+                }.invokeOnCompletion {
+                    Logger.i("supervisorScope 执行结束")
+                }
+
+                Logger.i("launchSafety 执行继续执行")
+                1 / 0//测试异常捕获是否有效
                 delay(1000)
 
-                LogCat.i("launchSafety 执行完成")
+                Logger.i("launchSafety 执行完成")
 
             }.catch {
                 /*这里异常可能会出现捕获不到的情况，原因是catch是在block后面设置的，如果block中立刻抛出了异常，此时catch可能是空，因此，不会被捕获到*/
-                LogCat.i("launchSafety catch")
+                Logger.i("launchSafety catch")
             }.finally {
-                it?.let {
-                    it.printStackTrace()
-                }
-                LogCat.i("launchSafety finally")
+                it?.printStackTrace()
+                Logger.i("launchSafety finally")
             }
         }
 
@@ -118,7 +175,7 @@ class CoroutinesActivity : BaseActivity() {
                 this@CoroutinesActivity,
                 Observer {
                     /*liveData默认就支持页面在onStop时停止观察数据，onStart时观察数据*/
-                    LogCat.i("liveData请求完成")
+                    Logger.i("liveData请求完成")
                     binding.tv.text = it.toString()
 
                 }
@@ -128,7 +185,7 @@ class CoroutinesActivity : BaseActivity() {
             geocoderFlow
                 .filter { it != null }
                 .launchCollect(this@CoroutinesActivity) { // 扩展方法 在onStop的时候停止收集数据，onStart后再收集
-                    LogCat.i("stateFlow请求完成")
+                    Logger.i("stateFlow请求完成")
                     binding.tv.text = it.toString()
                 }
         }

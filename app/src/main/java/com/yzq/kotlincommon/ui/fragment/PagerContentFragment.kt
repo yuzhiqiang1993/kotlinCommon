@@ -6,7 +6,7 @@ import com.yzq.binding.viewbind
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentPagerContentBinding
 import com.yzq.kotlincommon.widget.banner.BannerAdapter
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 /**
  * @description: ViewPager中加载的Fragment
@@ -33,7 +33,7 @@ class PagerContentFragment(var content: String) :
                 .setAutoPlay(true)
                 .setAdapter(BannerAdapter())
                 .setOnPageClickListener { clickedView, position ->
-                    LogCat.i("setOnPageClickListener:$position")
+                    Logger.i("setOnPageClickListener:$position")
                     ToastUtils.showShort("click:$position")
                 }
                 .create(bannerImgs)

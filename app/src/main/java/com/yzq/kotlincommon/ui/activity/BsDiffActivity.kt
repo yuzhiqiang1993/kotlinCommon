@@ -10,7 +10,7 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBsDiffBinding
 import com.yzq.kotlincommon.view_model.BsDiffViewModel
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 /**
  * @description: bsdiff 增量更新示例
@@ -57,7 +57,7 @@ class BsDiffActivity : BaseActivity() {
 
 //        getPermissions(Permission.REQUEST_INSTALL_PACKAGES)
 //        val appPath = AppUtils.getAppPath()
-//        LogCat.i("appPath:${appPath}")
+//        Logger.i("appPath:${appPath}")
 
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -66,9 +66,9 @@ class BsDiffActivity : BaseActivity() {
         val applicationInfo = packageManager.getApplicationInfo(packageName, 0)
 
 //        }
-        LogCat.i("application:${applicationInfo}")
+        Logger.i("application:${applicationInfo}")
         val apkPath = applicationInfo.sourceDir//这个路径就是apk的全路径
-        LogCat.i("apkPath = ${apkPath}")
+        Logger.i("apkPath = ${apkPath}")
 
     }
 

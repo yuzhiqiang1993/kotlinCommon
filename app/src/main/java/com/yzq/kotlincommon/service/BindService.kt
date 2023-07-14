@@ -9,7 +9,7 @@ import com.amap.api.location.AMapLocationClient
 import com.yzq.gao_de_map.LocationManager
 import com.yzq.gao_de_map.LocationResultListener
 import com.yzq.gao_de_map.ext.setLocationResultListener
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -31,7 +31,7 @@ class BindService : Service(), LocationResultListener {
     private var newSigninLocationClient: AMapLocationClient? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        LogCat.i("onStartCommand")
+        Logger.i("onStartCommand")
         /*一般是startService开启任务 bindService做通信*/
         startLocation()
         return super.onStartCommand(intent, flags, startId)
@@ -44,7 +44,7 @@ class BindService : Service(), LocationResultListener {
      * @return
      */
     override fun onBind(intent: Intent): IBinder {
-        LogCat.i("onBind")
+        Logger.i("onBind")
         return binder
     }
 
@@ -71,7 +71,7 @@ class BindService : Service(), LocationResultListener {
 
         fun changeName(newName: String) {
             /*给外部操作Service中的方法*/
-            LogCat.i("外部调service")
+            Logger.i("外部调service")
             name = newName
         }
 
@@ -87,13 +87,13 @@ class BindService : Service(), LocationResultListener {
 
 
     override fun onUnbind(intent: Intent?): Boolean {
-        LogCat.i("onUnbind")
+        Logger.i("onUnbind")
         return super.onUnbind(intent)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        LogCat.i("onDestroy")
+        Logger.i("onDestroy")
         LocationManager.destoryLocationClient(newSigninLocationClient)
     }
 }

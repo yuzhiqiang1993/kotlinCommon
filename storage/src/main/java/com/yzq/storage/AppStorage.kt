@@ -1,7 +1,7 @@
 package com.yzq.storage
 
 import com.blankj.utilcode.util.PathUtils
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import java.io.File
 
 /**
@@ -176,7 +176,7 @@ object AppStorage {
         """.trimIndent()
 
 
-        LogCat.i(pathInfo)
+        Logger.i(pathInfo)
 
     }
 }

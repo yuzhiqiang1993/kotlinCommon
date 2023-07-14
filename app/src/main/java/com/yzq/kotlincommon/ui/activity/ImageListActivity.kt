@@ -20,7 +20,7 @@ import com.yzq.coroutine.safety_coroutine.lifeScope
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding
 import com.yzq.kotlincommon.databinding.ItemImgListBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import com.yzq.network_status.NetworkStatus
 import kotlin.random.Random
 
@@ -102,7 +102,7 @@ class ImageListActivity : BaseActivity() {
 //                .listToutiao(page = page, pageSize = pageSize)
 //            setData(listToutiao)
 //        }.catch {
-//            LogCat.i("catch error:${it}")
+//            Logger.i("catch error:${it}")
 //            binding.layoutPageRefresh.showError(it)
 //        }.invokeOnCompletion {
 //
@@ -116,16 +116,16 @@ class ImageListActivity : BaseActivity() {
                 .listToutiao(page = page, pageSize = pageSize)
             setData(listToutiao)
         }.catch {
-            LogCat.i("catch error:${it}")
+            Logger.i("catch error:${it}")
             binding.layoutPageRefresh.showError(it)
         }.finally {
-            LogCat.i("finally")
+            Logger.i("finally")
         }
     }
 
     private fun setData(data: TouTiao?) {
 
-        LogCat.i("刷新状态:${binding.layoutPageRefresh.state}")
+        Logger.i("刷新状态:${binding.layoutPageRefresh.state}")
         if (data == null) {
             binding.layoutPageRefresh.showEmpty()
         } else {
@@ -144,7 +144,7 @@ class ImageListActivity : BaseActivity() {
                     layoutPageRefresh.showContent()
                 }
             } else {
-                LogCat.i("${data.errorCode}==${data.reason}")
+                Logger.i("${data.errorCode}==${data.reason}")
                 binding.layoutPageRefresh.showError("${data.errorCode}--${data.reason}")
 
             }

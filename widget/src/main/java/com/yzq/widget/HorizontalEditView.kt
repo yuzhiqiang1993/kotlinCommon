@@ -53,15 +53,15 @@ class HorizontalEditView @JvmOverloads constructor(
 //                addObserver(object :
 //                    LifecycleEventObserver {
 //                    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-//                        LogCat.i("当前状态:$event")
+//                        Logger.i("当前状态:$event")
 //                    }
 //                })
 //
 //                coroutineScope.launchSafety {
-//                    LogCat.i("测试开始执行耗时任务")
+//                    Logger.i("测试开始执行耗时任务")
 //                    withIO {
 //                        delay(3000)
-//                        LogCat.i("执行完毕了")
+//                        Logger.i("执行完毕了")
 //                    }
 //                }
 //            }

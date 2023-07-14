@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.viewbinding.ViewBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import kotlin.properties.ReadOnlyProperty
 
 /**
@@ -31,7 +31,7 @@ abstract class FragmentBindingDelegate<B : ViewBinding>(
                         override fun onFragmentViewDestroyed(fm: FragmentManager, f: Fragment) {
                             super.onFragmentViewDestroyed(fm, f)
                             if (f == fragment) {
-                                LogCat.i("onFragmentViewDestroyed:$f")
+                                Logger.i("onFragmentViewDestroyed:$f")
                                 binding = null
                                 fragmentManager.unregisterFragmentLifecycleCallbacks(this)
                             }

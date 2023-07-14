@@ -4,7 +4,7 @@ package com.yzq.common.net.interceptor
 import com.yzq.common.net.constants.ServerConstants
 import com.yzq.common.net.utils.AESUtil
 import com.yzq.common.net.utils.RSAUtil
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -26,20 +26,20 @@ class RequestEncryptInterceptor : Interceptor {
     private var defaultCharset: Charset = Charset.forName("UTF-8")
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        LogCat.i("开始处理提交给服务端的数据----------------------")
+        Logger.i("开始处理提交给服务端的数据----------------------")
         var request = chain.request()
 
         val url = request.url
         val hostPath = "${url.scheme}://${url.host}".trim()
-        LogCat.i("本次请求的主机地址:$hostPath")
-        LogCat.i("ServerConstants:${ServerConstants.serverUrl}")
+        Logger.i("本次请求的主机地址:$hostPath")
+        Logger.i("ServerConstants:${ServerConstants.serverUrl}")
         if (!ServerConstants.serverUrl.startsWith(hostPath)) {
             return chain.proceed(request)
         }
 
 
         val method = request.method.trim().lowercase(Locale.ROOT)
-        LogCat.i("请求方式：${method}")
+        Logger.i("请求方式：${method}")
 
         if (method == "get" || method == "delete") {
             runCatching {
@@ -48,7 +48,7 @@ class RequestEncryptInterceptor : Interceptor {
                 request = it
             }.onFailure {
                 it.printStackTrace()
-                LogCat.i("url参数加密异常")
+                Logger.i("url参数加密异常")
             }
 
         } else if (method == "post" || method == "put") {
@@ -58,7 +58,7 @@ class RequestEncryptInterceptor : Interceptor {
                 request = it
             }.onFailure {
                 it.printStackTrace()
-                LogCat.i("请求体加密异常")
+                Logger.i("请求体加密异常")
             }
         }
 
@@ -80,12 +80,12 @@ class RequestEncryptInterceptor : Interceptor {
         val contentType = requestBody.contentType()
         if (contentType != null) {
             requestCharset = contentType.charset(defaultCharset)!!
-            LogCat.i("contentType===>${contentType}")
-            LogCat.i("contentType===> type:${contentType.type},subType:${contentType.subtype}")
+            Logger.i("contentType===>${contentType}")
+            Logger.i("contentType===> type:${contentType.type},subType:${contentType.subtype}")
 
             /*如果是二进制上传  则不进行加密*/
             if (contentType.type.lowercase(Locale.ROOT) == "multipart") {
-                LogCat.i("上传文件，不加密")
+                Logger.i("上传文件，不加密")
                 return request
             }
         }
@@ -95,16 +95,16 @@ class RequestEncryptInterceptor : Interceptor {
 
         val requestData =
             URLDecoder.decode(buffer.readString(requestCharset).trim(), "utf-8")
-        LogCat.i("请求的数据为：${requestData}")
+        Logger.i("请求的数据为：${requestData}")
 
         /*产生一个随机数*/
         val randomKey = AESUtil.getRandomKey(16)
-        LogCat.i("生成的随机数：${randomKey}")
+        Logger.i("生成的随机数：${randomKey}")
 
         /*使用产生的随机数对请求的数据进行加密*/
         val aesEncryptData = AESUtil.encrypt(requestData, randomKey)
 
-        LogCat.i("加密后的请求数据为：${aesEncryptData}")
+        Logger.i("加密后的请求数据为：${aesEncryptData}")
 
         /*再使用公钥对随机的key进行加密 得到加密后的key*/
         val encryptAesKeyStr = RSAUtil.encryptByPublic(
@@ -113,7 +113,7 @@ class RequestEncryptInterceptor : Interceptor {
         )
 
         /*将加密后的key放到header里*/
-        LogCat.i("加密后的key：${encryptAesKeyStr}")
+        Logger.i("加密后的key：${encryptAesKeyStr}")
 
 
         /*然后将使用Aes加密过后的数据放到request里*/
@@ -150,21 +150,21 @@ class RequestEncryptInterceptor : Interceptor {
 
         val apiPath =
             "${httpUrl.scheme}://${httpUrl.host}:${httpUrl.port}${httpUrl.encodedPath}".trim()
-        LogCat.i("原本请求的接口地址：$apiPath")
+        Logger.i("原本请求的接口地址：$apiPath")
         val encodedQuery = httpUrl.encodedQuery
-        LogCat.i("请求参数 encodedQuery:" + encodedQuery!!)
+        Logger.i("请求参数 encodedQuery:" + encodedQuery!!)
         /*先获取随机Key*/
         val randomKey = AESUtil.getRandomKey(16)
-        LogCat.i("radomKey：$randomKey")
+        Logger.i("radomKey：$randomKey")
         /*AES加密后的请求数据*/
         val encryptQuery = AESUtil.encrypt(encodedQuery, randomKey)
-        LogCat.i("加密后的参数：$encryptQuery")
+        Logger.i("加密后的参数：$encryptQuery")
         /*用RSA公钥对随机key进行加密*/
         val encryptRandomKey = RSAUtil.encryptByPublic(
             randomKey,
             ServerConstants.RSA_PUB_KEY
         )
-        LogCat.i("RSA公钥加密后的随机key：$encryptRandomKey")
+        Logger.i("RSA公钥加密后的随机key：$encryptRandomKey")
         val newGet = "$apiPath?param=$encryptQuery"
 
         /*返回新的加密后的request*/

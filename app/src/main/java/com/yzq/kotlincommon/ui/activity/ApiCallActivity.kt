@@ -21,7 +21,7 @@ import com.yzq.coroutine.safety_coroutine.lifeScope
 import com.yzq.coroutine.safety_coroutine.scope.LifeSafetyScope
 import com.yzq.kotlincommon.databinding.ActivityApiCallBinding
 import com.yzq.kotlincommon.view_model.ApiCallViewModel
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -71,19 +71,19 @@ class ApiCallActivity : BaseActivity() {
     private fun requestByLaunchSafety() {
 
         lifecycleScope.launchSafety {
-            LogCat.i("准备请求")
+            Logger.i("准备请求")
             delay(2000)
             val localUserList =
                 RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
                     .dataConvert()
-            LogCat.i("localUserList:$localUserList")
+            Logger.i("localUserList:$localUserList")
         }.catch {
-            LogCat.i("异常了:$it")
+            Logger.i("异常了:$it")
             it.printStackTrace()
         }.invokeOnCompletion {
-            LogCat.i("结束了")
+            Logger.i("结束了")
             if (it != null) {
-                LogCat.i("有异常:$it")
+                Logger.i("有异常:$it")
             }
         }
 
@@ -121,12 +121,12 @@ class ApiCallActivity : BaseActivity() {
             }
         }.catch {
 
-            LogCat.i("异常了:$it")
+            Logger.i("异常了:$it")
             it.printStackTrace()
         }.invokeOnCompletion {
-            LogCat.i("结束了")
+            Logger.i("结束了")
             if (it != null) {
-                LogCat.i("有异常:$it")
+                Logger.i("有异常:$it")
             }
         }
     }
@@ -135,14 +135,14 @@ class ApiCallActivity : BaseActivity() {
 
         /*使用apicall时可以直接使用官方提供的 lifecycleScope，具备取消功能*/
         lifecycleScope.launch {
-            LogCat.i("准备请求")
+            Logger.i("准备请求")
             /*响应数据为BaseResp类型的请求*/
             val baseRespApiCall = baseRespApiCall {
                 RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
             }
             baseRespApiCall.onSuccess {
                 it?.forEach {
-                    LogCat.i("it:$it")
+                    Logger.i("it:$it")
                 }
             }
 
@@ -153,28 +153,28 @@ class ApiCallActivity : BaseActivity() {
 
             when (apiResult) {
                 is ApiResult.Error -> {
-                    LogCat.i("onError--> code:${apiResult.code},msg:${apiResult.message}")
+                    Logger.i("onError--> code:${apiResult.code},msg:${apiResult.message}")
                 }
 
                 is ApiResult.Exception -> {
-                    LogCat.i("异常了:${apiResult.t}")
+                    Logger.i("异常了:${apiResult.t}")
                     apiResult.t.printStackTrace()
                 }
 
                 is ApiResult.Success -> {
-                    LogCat.i("onSuccess--> ${apiResult.data}")
+                    Logger.i("onSuccess--> ${apiResult.data}")
                 }
             }
 
 //            apiResult.onSuccess {
-//                LogCat.i("onSuccess--> ${it}")
+//                Logger.i("onSuccess--> ${it}")
 //            }
 //            apiResult.onError { code, message ->
-//                LogCat.i("onError--> code:${code},msg:${message}")
+//                Logger.i("onError--> code:${code},msg:${message}")
 //            }
 //            apiResult.onException {
 //                it.printStackTrace()
-//                LogCat.i("onException:$it")
+//                Logger.i("onException:$it")
 //            }
         }
     }
@@ -187,21 +187,21 @@ class ApiCallActivity : BaseActivity() {
 
 
         lifeScope {
-            LogCat.i("准备请求")
+            Logger.i("准备请求")
             delay(2000)
             val localUserList =
                 RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
                     .dataConvert()
-            LogCat.i("localUserList:$localUserList")
+            Logger.i("localUserList:$localUserList")
         }.catch {
-            LogCat.i("异常了:$it")
+            Logger.i("异常了:$it")
             it.printStackTrace()
         }.finally {
             if (it != null) {
                 it.printStackTrace()
-                LogCat.i("结束了,但是有异常，$it")
+                Logger.i("结束了,但是有异常，$it")
             } else {
-                LogCat.i("正常结束了")
+                Logger.i("正常结束了")
             }
         }
     }

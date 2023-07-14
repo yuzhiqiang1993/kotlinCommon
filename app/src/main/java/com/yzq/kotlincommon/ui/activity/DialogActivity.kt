@@ -14,7 +14,7 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import com.yzq.materialdialog.changeProgress
 import com.yzq.materialdialog.selectYear
 import com.yzq.materialdialog.showBaseDialog
@@ -112,7 +112,7 @@ class DialogActivity : BaseActivity() {
                     val timerTask = object : TimerTask() {
                         override fun run() {
 
-                            LogCat.i("当前线程：${Thread.currentThread().name}")
+                            Logger.i("当前线程：${Thread.currentThread().name}")
                             count += 5
                             if (count <= 100) {
 

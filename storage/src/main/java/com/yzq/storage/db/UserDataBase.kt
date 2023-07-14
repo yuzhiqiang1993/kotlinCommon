@@ -7,7 +7,7 @@ import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.yzq.application.AppContext
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 
 /**
@@ -33,14 +33,14 @@ abstract class UserDataBase : RoomDatabase() {
          */
         private val MIGRATION_1_2: Migration = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                LogCat.i(TAG, "migrate: 1->2")
+                Logger.i(TAG, "migrate: 1->2")
                 database.execSQL("ALTER TABLE user ADD COLUMN age INTEGER default 0 NOT NULL")
             }
         }
 
         private val MIGRATION_2_3 = object : Migration(2, 3) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                LogCat.i(TAG, "migrate: 2->3")
+                Logger.i(TAG, "migrate: 2->3")
                 // 创建临时表
                 database.execSQL(
                     """CREATE TABLE IF NOT EXISTS user_new (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER NOT NULL, idCardNum TEXT DEFAULT '', phone TEXT DEFAULT '', insertTime TEXT DEFAULT (datetime('now')), updateTime TEXT DEFAULT (datetime('now')))"""

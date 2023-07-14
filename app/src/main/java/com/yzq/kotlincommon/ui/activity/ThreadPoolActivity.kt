@@ -8,7 +8,7 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityThreadPoolBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import java.util.concurrent.TimeUnit
 
 
@@ -33,20 +33,20 @@ class ThreadPoolActivity : BaseActivity() {
 
             btnExecuteIoTask.setOnThrottleTimeClick {
                 ThreadPoolManager.instance.executeIoTask {
-                    LogCat.i("开始执行")
+                    Logger.i("开始执行")
                     TimeUnit.SECONDS.sleep(3)
                     /*这里异常不会导致崩溃  内部做处理了*/
                     throw Exception("异常")
-                    LogCat.i("执行完毕")
+                    Logger.i("执行完毕")
                 }
             }
 
             btnExecuteCpuTask.setOnThrottleTimeClick {
                 ThreadPoolManager.instance.executeCpuTask {
-                    LogCat.i("开始执行")
+                    Logger.i("开始执行")
                     TimeUnit.SECONDS.sleep(1)
 
-                    LogCat.i("执行完毕")
+                    Logger.i("执行完毕")
                 }
 
             }
@@ -54,32 +54,32 @@ class ThreadPoolActivity : BaseActivity() {
 
             btnSubmitIoTask.setOnThrottleTimeClick {
                 val future = ThreadPoolManager.instance.submitIoTask {
-                    LogCat.i("开始执行")
+                    Logger.i("开始执行")
                     TimeUnit.SECONDS.sleep(1)
-                    LogCat.i("执行完毕了")
+                    Logger.i("执行完毕了")
                     "这里是返回值"
                 }
                 /*这里不调用get 内部task任务也会执行 有异常不会抛出 只是内部代码不执行了  调get时可以拿到返回数据并阻塞后面的代码*/
                 future?.run {
-                    LogCat.i("返回值：${get()}")
+                    Logger.i("返回值：${get()}")
                 }
 
-                LogCat.i("都结束了。。。")
+                Logger.i("都结束了。。。")
 
             }
 
             btnSubmitCpuTask.setOnThrottleTimeClick {
                 val future = ThreadPoolManager.instance.submitCpuTask {
-                    LogCat.i("开始执行")
+                    Logger.i("开始执行")
                     TimeUnit.SECONDS.sleep(1)
                     throw Exception("主动抛个异常")
-                    LogCat.i("执行完毕了")
+                    Logger.i("执行完毕了")
                     "这里是返回值"
                 }
 
                 future?.run {
                     /*异常会在调用get()方法时才抛出，如果不做处理，则会崩溃*/
-                    kotlin.runCatching { LogCat.i("返回值：${get()}") }.onFailure {
+                    kotlin.runCatching { Logger.i("返回值：${get()}") }.onFailure {
                         it.printStackTrace()
                     }
 

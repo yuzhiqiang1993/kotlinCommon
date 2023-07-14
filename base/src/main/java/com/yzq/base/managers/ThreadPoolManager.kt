@@ -1,6 +1,6 @@
 package com.yzq.base.managers
 
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -130,7 +130,7 @@ class ThreadPoolManager private constructor() {
     /*异常处理*/
     class ThreadPoolUncaughtExceptionHandler : Thread.UncaughtExceptionHandler {
         override fun uncaughtException(thread: Thread, t: Throwable) {
-            LogCat.i("这里捕获异常：${t.message}")
+            Logger.i("这里捕获异常：${t.message}")
             t.printStackTrace()
         }
 

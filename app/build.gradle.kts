@@ -155,7 +155,6 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":baidu"))
     implementation(libs.xeonyu.logger)
-//    implementation("com.xeonyu:logger:1.0.2-SNAPSHOT")
 
 }
 

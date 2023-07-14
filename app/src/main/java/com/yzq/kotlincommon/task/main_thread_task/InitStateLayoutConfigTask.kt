@@ -5,7 +5,7 @@ import com.drake.statelayout.StateConfig
 import com.yzq.base.startup.base.MainThreadTask
 import com.yzq.common.api.ApiResult
 import com.yzq.kotlincommon.R
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 /**
  * @description 初始化状态布局
@@ -25,7 +25,7 @@ class InitStateLayoutConfigTask : MainThreadTask() {
                 setRetryIds(R.id.tv_msg, R.id.iv)
 
                 onError { tag ->
-                    LogCat.i("onError--->${tag}")
+                    Logger.i("onError--->${tag}")
                     val msgTv = findViewById<AppCompatTextView>(R.id.tv_msg)
                     when (tag) {
                         is Throwable -> {

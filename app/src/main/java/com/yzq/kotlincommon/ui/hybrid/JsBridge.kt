@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.ui.hybrid
 
 import android.webkit.JavascriptInterface
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 /**
  * @description: 提供给webview调用的方法
@@ -14,6 +14,6 @@ object JsBridge {
 
     @JavascriptInterface
     fun nativeFun() {
-        LogCat.i("webView调本地方法")
+        Logger.i("webView调本地方法")
     }
 }

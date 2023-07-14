@@ -15,7 +15,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityTaskBinding
 import com.yzq.kotlincommon.databinding.ItemTaskHoverBinding
 import com.yzq.kotlincommon.databinding.ItemTaskSwipeLayoutBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 /**
  * @description 任务列表,主要展示粘性头部和侧滑删除
@@ -84,15 +84,15 @@ class TaskActivity : BaseActivity() {
                 }
                 R.id.tv_name.onFastClick {
                     val taskBean = getModel<TaskBean>()
-                    LogCat.i("点击了:$taskBean")
+                    Logger.i("点击了:$taskBean")
                     ToastUtils.showShort(taskBean.name)
                 }
 
                 R.id.tv_delete.onClick {
                     val taskBean = getModel<TaskBean>()
-                    LogCat.i("taskBean:$taskBean")
+                    Logger.i("taskBean:$taskBean")
                     val indexOf = tasks.indexOf(taskBean)
-                    LogCat.i("点击了$taskBean,index:$indexOf")
+                    Logger.i("点击了$taskBean,index:$indexOf")
                     tasks.removeAt(indexOf)
                     notifyItemRemoved(indexOf)
                 }

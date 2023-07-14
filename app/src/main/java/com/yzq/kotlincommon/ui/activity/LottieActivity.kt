@@ -8,7 +8,7 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityLottieBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 
 /**
@@ -28,25 +28,25 @@ class LottieActivity : BaseActivity() {
         binding.run {
             lottieView.addAnimatorListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(animation: Animator) {
-                    LogCat.i("onAnimationStart")
+                    Logger.i("onAnimationStart")
                 }
 
                 override fun onAnimationEnd(animation: Animator) {
-                    LogCat.i("onAnimationEnd")
+                    Logger.i("onAnimationEnd")
                 }
 
                 override fun onAnimationCancel(animation: Animator) {
-                    LogCat.i("onAnimationCancel")
+                    Logger.i("onAnimationCancel")
                 }
 
                 override fun onAnimationRepeat(animation: Animator) {
-                    LogCat.i("onAnimationRepeat")
+                    Logger.i("onAnimationRepeat")
                 }
 
             })
 
             lottieView.addAnimatorUpdateListener {
-                LogCat.i("animatedFraction:${it.animatedFraction}")
+                Logger.i("animatedFraction:${it.animatedFraction}")
             }
             val url = "https://assets7.lottiefiles.com/packages/lf20_5lTxAupekw.json"
             lottieView.setBackgroundColor(Color.parseColor("#3490dc"))

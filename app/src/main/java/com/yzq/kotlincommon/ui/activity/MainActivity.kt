@@ -24,7 +24,7 @@ import com.yzq.common.data.NaviItem
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 
 /**
@@ -47,11 +47,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             AppContext,
             object : CommonCallback {
                 override fun onSuccess(response: String?) {
-                    LogCat.i("init cloudchannel success")
+                    Logger.i("init cloudchannel success")
                 }
 
                 override fun onFailed(errorCode: String, errorMessage: String) {
-                    LogCat.i("init cloudchannel failed -- errorcode:$errorCode -- errorMessage:$errorMessage")
+                    Logger.i("init cloudchannel failed -- errorcode:$errorCode -- errorMessage:$errorMessage")
                 }
             }
         )

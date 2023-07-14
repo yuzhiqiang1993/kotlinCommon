@@ -6,7 +6,7 @@ import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.common.data.LoginBean
 import com.yzq.coroutine.safety_coroutine.launchSafety
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import com.yzq.storage.mmkv.MMKVUser
 import kotlinx.coroutines.delay
 
@@ -25,8 +25,8 @@ class LoginViewModel : BaseViewModel() {
             MMKVUser.account = account
             MMKVUser.pwd = pwd
 
-            LogCat.i("MMKVUtil.account = ${MMKVUser.account}")
-            LogCat.i("MMKVUtil.account = ${MMKVUser.pwd}")
+            Logger.i("MMKVUtil.account = ${MMKVUser.account}")
+            Logger.i("MMKVUtil.account = ${MMKVUser.pwd}")
 
             val loginBean = LoginBean()
             loginBean.account = account

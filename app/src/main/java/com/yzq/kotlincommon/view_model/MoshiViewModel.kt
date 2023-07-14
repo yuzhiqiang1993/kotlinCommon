@@ -10,7 +10,7 @@ import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ResponseCode
 import com.yzq.coroutine.safety_coroutine.launchSafety
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
@@ -36,7 +36,7 @@ class MoshiViewModel : BaseViewModel() {
 
             val baseResp = BaseResp<List<User>>(ResponseCode.SUCCESS, userList, "ok")
             jsonStr = MoshiUtils.toJson(baseResp) ?: ""
-            LogCat.i(jsonStr)
+            Logger.i(jsonStr)
         }
     }
 
@@ -45,10 +45,10 @@ class MoshiViewModel : BaseViewModel() {
 
             if (jsonStr.isNotEmpty()) {
                 val genericType = MoshiUtils.getGenericType<BaseResp<List<User>>>()
-                LogCat.i("genericType==========:$genericType")
+                Logger.i("genericType==========:$genericType")
                 val userList = MoshiUtils.fromJson<BaseResp<List<User>>>(jsonStr).dataConvert()
                 userList?.forEach {
-                    LogCat.i(MoshiUtils.toJson(it, "  ") ?: "")
+                    Logger.i(MoshiUtils.toJson(it, "  ") ?: "")
                 }
             }
         }
@@ -64,7 +64,7 @@ class MoshiViewModel : BaseViewModel() {
                         RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
                             .dataConvert()
                     userList?.forEach {
-                        LogCat.i("${it.name}--${it.age}")
+                        Logger.i("${it.name}--${it.age}")
                     }
                 }
 
@@ -72,7 +72,7 @@ class MoshiViewModel : BaseViewModel() {
                     delay(4000)
                     val userInfo =
                         RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
-                    LogCat.i("userInfo:$userInfo")
+                    Logger.i("userInfo:$userInfo")
                 }
             }
 

@@ -1,6 +1,6 @@
 package com.yzq.coroutine.safety_coroutine
 
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import kotlinx.coroutines.AbstractCoroutine
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -16,12 +16,20 @@ import kotlin.coroutines.CoroutineContext
  * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
  */
 
+
+private val coroutineExceptionHandler = CoroutineExceptionHandler { _, throwable ->
+    Logger.i("SafetyCoroutine CoroutineExceptionHandler: ${throwable.message}")
+}
+
 @OptIn(InternalCoroutinesApi::class)
 class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>(
-    parentContext + CoroutineExceptionHandler { _, throwable -> },
-    initParentJob = true, active = true
+    parentContext + coroutineExceptionHandler,
+    initParentJob = true,
+    active = true
 ) {
 
+
+    private val TAG = "SafetyCoroutine:${this.hashCode()}"
 
     /**
      * Catch 用于异常回调
@@ -31,8 +39,16 @@ class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>
 
     private var onFinally: ((Throwable?) -> Unit)? = null
 
-    override fun handleJobException(exception: Throwable): Boolean {
 
+    /**
+     * 处理父协程最终的异常信息，也就是只有会影响当前协程的异常才会被处理到，
+     * 如果代码块中有supervisorScope，并且在supervisorScope中的子协程中有异常抛出，但是由于supervisorScope的特性，其子协程的异常不会影响到父协程，这里是不会处理到的
+     * 但是在上面的coroutineExceptionHandler中是会被处理到的
+     * @param exception Throwable
+     * @return Boolean
+     */
+    override fun handleJobException(exception: Throwable): Boolean {
+        Logger.i("$TAG  handleJobException: ${exception.message}")
         handleCoroutineException(context, exception)
         if (exception !is CancellationException) {
             invokeCatch(exception)
@@ -52,7 +68,7 @@ class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>
      */
     override fun onCancelling(cause: Throwable?) {
         super.onCancelling(cause)
-        LogCat.i("onCancelling")
+        Logger.i("$TAG   onCancelling")
     }
 
     /**
@@ -60,7 +76,7 @@ class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>
      */
     override fun onCancelled(cause: Throwable, handled: Boolean) {
         super.onCancelled(cause, handled)
-        LogCat.i("onCancelled")
+        Logger.i("$TAG   onCancelled")
         invokeFinally(cause)
     }
 
@@ -69,21 +85,21 @@ class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>
      */
     override fun onCompleted(value: T) {
         super.onCompleted(value)
-        LogCat.i("onCompleted")
+        Logger.i("$TAG  onCompleted")
         invokeFinally()
     }
 
 
     private fun invokeCatch(exception: Throwable) {
-        LogCat.i("handleJobException invokeCatch exception:$exception")
+        Logger.i("$TAG  handleJobException invokeCatch exception:$exception")
         if (onCatch == null) {
             /*这里延时10ms执行*/
             postDelayed {
-                LogCat.i("延迟执行 invokeCatch onCatch:$onCatch")
+                Logger.i("$TAG  延迟执行 invokeCatch onCatch")
                 onCatch?.invoke(exception)
             }
         } else {
-            LogCat.i("invokeCatch onCatch:$onCatch")
+            Logger.i("$TAG  invokeCatch onCatch")
             onCatch?.invoke(exception)
         }
     }
@@ -92,22 +108,22 @@ class SafetyCoroutine<T>(parentContext: CoroutineContext) : AbstractCoroutine<T>
     private fun invokeFinally(cause: Throwable? = null) {
         if (onFinally == null) {
             postDelayed {
-                LogCat.i("延迟执行 invokeFinally: ${onFinally}")
+                Logger.i("$TAG  延迟执行 invokeFinally")
                 onFinally?.invoke(cause)
             }
         } else {
-            LogCat.i("invokeFinally: ${onFinally}")
+            Logger.i("$TAG  invokeFinally")
             onFinally?.invoke(cause)
         }
     }
 
     fun catch(catchBlock: (Throwable) -> Unit) = apply {
-        LogCat.i("给catch赋值")
+        Logger.i("$TAG  给catch赋值")
         this.onCatch = catchBlock
     }
 
     fun finally(block: ((Throwable?) -> Unit)) = apply {
-        LogCat.i("给 fininsh 赋值")
+        Logger.i("$TAG  给 fininsh 赋值")
         this.onFinally = block
     }
 }

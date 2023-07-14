@@ -15,7 +15,8 @@ dependencies {
     implementation(libs.xeonyu.application)
     implementation(libs.xeonyu.logger)
 
-    api(project(":mmkv"))
+//    api(project(":mmkv"))
+    api(libs.xeonyu.mmkv)
     api(libs.threetenabp)
 
     implementation(libs.androidx.room.ktx)

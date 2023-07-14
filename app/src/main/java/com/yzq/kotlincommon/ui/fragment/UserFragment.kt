@@ -7,7 +7,7 @@ import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentUserBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import com.yzq.materialdialog.showCallbackDialog
 import com.yzq.materialdialog.showPositiveCallbackDialog
 import com.yzq.permission.getPermissions
@@ -43,7 +43,7 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
-        LogCat.i("onHiddenChanged：${hidden}")
+        Logger.i("onHiddenChanged：${hidden}")
         /*保证只在当前fragment中生效*/
         backCallback.isEnabled = !hidden
     }
@@ -51,7 +51,7 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
 
     override fun initWidget() {
 
-        LogCat.i("UserFragment")
+        Logger.i("UserFragment")
 
         binding.btnShowDialog.setOnClickListener {
             requireActivity().showCallbackDialog(

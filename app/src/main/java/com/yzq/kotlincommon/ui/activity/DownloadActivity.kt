@@ -14,7 +14,7 @@ import com.yzq.common.net.constants.ApiConstants
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.coroutine.safety_coroutine.withIO
 import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import com.yzq.materialdialog.changeProgress
 import com.yzq.materialdialog.changeTitle
 import com.yzq.materialdialog.newProgressDialog
@@ -42,7 +42,7 @@ class DownloadActivity : BaseActivity() {
                  * 要想在外部存储的公共目录中写文件，要申请文件管理权限，适配Android11
                  */
 //                getPermissions(Permission.MANAGE_EXTERNAL_STORAGE) {
-//                    LogCat.i("有以下权限:$it")
+//                    Logger.i("有以下权限:$it")
                 downloadApk()
 //                }
             }
@@ -73,7 +73,7 @@ class DownloadActivity : BaseActivity() {
                 val download = FileRetrofitFactory.instance.getService(ApiService::class.java)
                     .downloadApk()
 
-                LogCat.i("""总长度：${download.contentLength()}""")
+                Logger.i("""总长度：${download.contentLength()}""")
 
 
                 /**
@@ -89,8 +89,8 @@ class DownloadActivity : BaseActivity() {
                     FileIOUtils.writeFileFromIS(path, download.byteStream())
                 }
 
-                LogCat.i("存储路径：$path")
-                LogCat.i("文件写入完成:$su")
+                Logger.i("存储路径：$path")
+                Logger.i("文件写入完成:$su")
 
                 path
             }

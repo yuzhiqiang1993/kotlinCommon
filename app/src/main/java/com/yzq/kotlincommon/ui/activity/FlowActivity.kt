@@ -14,7 +14,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFlowBinding
 import com.yzq.kotlincommon.ui.fragment.flow.FlowFragment
 import com.yzq.kotlincommon.ui.fragment.flow.SharedFlowFragment
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 
 /**
@@ -69,7 +69,7 @@ class FlowActivity : BaseActivity(), NavigationBarView.OnItemSelectedListener {
 
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        LogCat.i("onNavigationItemReselected:${item}")
+        Logger.i("onNavigationItemReselected:${item}")
         if (!item.isChecked) {
             /*不是重复选中 再进行切换*/
             when (item.itemId) {
@@ -83,22 +83,22 @@ class FlowActivity : BaseActivity(), NavigationBarView.OnItemSelectedListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        LogCat.i("onCreate")
+        Logger.i("onCreate")
     }
 
     override fun onStart() {
         super.onStart()
-        LogCat.i("onStart")
+        Logger.i("onStart")
     }
 
     override fun onResume() {
         super.onResume()
-        LogCat.i("onResume")
+        Logger.i("onResume")
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
-        LogCat.i("onWindowFocusChanged")
+        Logger.i("onWindowFocusChanged")
     }
 
 

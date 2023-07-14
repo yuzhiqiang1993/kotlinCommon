@@ -23,7 +23,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.coroutine.safety_coroutine.withIO
 import com.yzq.kotlincommon.databinding.ActivityStorageBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 import com.yzq.storage.AppStorage
 import java.io.File
@@ -110,16 +110,16 @@ class StorageActivity : BaseActivity() {
                         bitmap.compress(compressFormat, 100, outputStream)
                         outputStream.close()
                     }
-                    LogCat.i("path = ${path}")
-                    LogCat.i("uri.path = ${uri.path}")
+                    Logger.i("path = ${path}")
+                    Logger.i("uri.path = ${uri.path}")
                     ToastUtils.showShort("图片已保存至 ${path}")
 
                     /*通知相册更新数据*/
                     MediaScannerConnection.scanFile(
                         this@StorageActivity, arrayOf(uri.path), arrayOf(mimeType)
                     ) { path, uri ->
-                        LogCat.i("scanFile path:$path")
-                        LogCat.i("scanFile uri:$uri")
+                        Logger.i("scanFile path:$path")
+                        Logger.i("scanFile uri:$uri")
 
                     }
                 }
@@ -181,7 +181,7 @@ class StorageActivity : BaseActivity() {
         }
 
 
-        LogCat.i("pictureUriList:${pictureUriList.size}")
+        Logger.i("pictureUriList:${pictureUriList.size}")
 
         if (pictureUriList.size > 0) {
             println(pictureUriList.get(0))

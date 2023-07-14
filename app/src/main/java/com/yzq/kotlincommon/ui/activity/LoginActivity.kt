@@ -14,7 +14,7 @@ import com.yzq.coroutine.interval.Interval
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import com.yzq.statusbar.immersive
 import com.yzq.storage.mmkv.MMKVDefault
 import com.yzq.storage.mmkv.MMKVUser
@@ -45,7 +45,7 @@ class LoginActivity : BaseActivity() {
         /*开启一个页面级别的轮询*/
         interval.onlyResumed(this)//onpause 暂停  onResume恢复
             .subscribe {
-                LogCat.i("第:${it} 的轮询")
+                Logger.i("第:${it} 的轮询")
             }.start()
 
 
@@ -74,9 +74,9 @@ class LoginActivity : BaseActivity() {
 
     override fun initData() {
 
-        LogCat.i("initData")
-        LogCat.i("MMKVUtil.account = ${MMKVUser.account}")
-        LogCat.i("MMKVUtil.pwd = ${MMKVUser.pwd}")
+        Logger.i("initData")
+        Logger.i("MMKVUtil.account = ${MMKVUser.account}")
+        Logger.i("MMKVUtil.pwd = ${MMKVUser.pwd}")
 
         binding.account = MMKVUser.account
         binding.pwd = MMKVUser.pwd

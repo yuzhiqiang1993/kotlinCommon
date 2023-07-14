@@ -19,7 +19,7 @@ import com.yzq.kotlincommon.databinding.ActivityServiceBinding
 import com.yzq.kotlincommon.service.BackendService
 import com.yzq.kotlincommon.service.BindService
 import com.yzq.kotlincommon.service.ForegroundService
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 import kotlinx.coroutines.flow.filterNotNull
 
@@ -90,7 +90,7 @@ class ServiceActivity : BaseActivity(), AppStateListener {
     private fun createServieConnection() {
         serviceConnection = object : ServiceConnection {
             override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
-                LogCat.i("onServiceConnected")
+                Logger.i("onServiceConnected")
                 /*获取Service返回的binder*/
                 val serviceBinder = service as BindService.ServiceBinder
 
@@ -100,14 +100,14 @@ class ServiceActivity : BaseActivity(), AppStateListener {
                         .filterNotNull()
                         .asLiveData()
                         .observe(this@ServiceActivity) {
-                            LogCat.i("定位结果：${it}")
+                            Logger.i("定位结果：${it}")
                         }
                 }
             }
 
             override fun onServiceDisconnected(name: ComponentName?) {
                 /*服务系统杀掉时才会执行*/
-                LogCat.i("onServiceConnected")
+                Logger.i("onServiceConnected")
             }
         }
     }

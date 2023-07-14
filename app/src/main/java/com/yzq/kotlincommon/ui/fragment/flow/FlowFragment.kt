@@ -11,7 +11,7 @@ import com.yzq.coroutine.flow.launchCollect
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentFlowBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
@@ -56,7 +56,7 @@ class FlowFragment : BaseFragment(R.layout.fragment_flow) {
                 lifecycleScope.launchSafety {
                     /*返回第一个后就会结束,不会等到flow走完*/
                     val first = viewModel.stringFlow.first()
-                    LogCat.i("first:${first}")
+                    Logger.i("first:${first}")
                 }
             }
 
@@ -65,13 +65,13 @@ class FlowFragment : BaseFragment(R.layout.fragment_flow) {
                     /*等flow走完，返回最后一个值*/
                     val last = viewModel.stringFlow.last()
 
-                    LogCat.i("last:${last}")
+                    Logger.i("last:${last}")
 
                     viewModel.stringFlow.collectLatest {
                         delay(3000)
-//                        LogCat.i("Collecting $it")
+//                        Logger.i("Collecting $it")
                         /*来不及处理的数据会被丢弃掉，可以用在输入框搜索的场景*/
-                        LogCat.i("collected:${it}")
+                        Logger.i("collected:${it}")
                     }
                 }
             }
@@ -89,7 +89,7 @@ class FlowFragment : BaseFragment(R.layout.fragment_flow) {
          */
 //        viewModel.stringFlow
 //            .launchCollect(this) {
-//                LogCat.i("collect:${it}")
+//                Logger.i("collect:${it}")
 //            }
 
         lifecycleScope.launchSafety {
@@ -98,7 +98,7 @@ class FlowFragment : BaseFragment(R.layout.fragment_flow) {
                     /**
                      * 这种实现的缺点是flow收集数据(消费端)不具备生命周期感知能力，也就是说即使页面主语不可见状态，也会执行
                      */
-                    LogCat.i("collect:${it}")
+                    Logger.i("collect:${it}")
                 }
         }
 
@@ -114,14 +114,14 @@ class FlowFragment : BaseFragment(R.layout.fragment_flow) {
              */
             userFlow.asLiveData()
                 .observe(viewLifecycleOwner) {
-                    LogCat.i("userFlow asLiveData 请求结果:${it}")
+                    Logger.i("userFlow asLiveData 请求结果:${it}")
                 }
 
             /**
              * 页面打开时就会执行一些，且前后台切换都会重新执行
              */
             userFlow.launchCollect(viewLifecycleOwner) {
-                LogCat.i("userFlow 请求结果:${it}")
+                Logger.i("userFlow 请求结果:${it}")
             }
         }
 

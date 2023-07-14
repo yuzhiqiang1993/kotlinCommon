@@ -4,7 +4,7 @@ import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationListener
 import com.amap.api.location.AMapLocationQualityReport
 import com.blankj.utilcode.util.TimeUtils
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 
 /**
@@ -64,7 +64,7 @@ interface LocationResultListener : AMapLocationListener {
         // 定位之后的回调时间
         sb.append("回调时间: " + TimeUtils.getNowString() + "\n")
 
-        LogCat.i(sb.toString())
+        Logger.i(sb.toString())
 
 
     }

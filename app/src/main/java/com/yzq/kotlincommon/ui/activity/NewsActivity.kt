@@ -21,7 +21,7 @@ import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMovieListBinding
 import com.yzq.kotlincommon.databinding.ItemMovieLayoutBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 /**
  * @description: 接口请求展示列表
@@ -67,7 +67,7 @@ class NewsActivity : BaseActivity() {
             }
 
         binding.layoutState.onRefresh {
-            LogCat.i("onRefresh")
+            Logger.i("onRefresh")
             requestData()
         }.showLoading()
     }

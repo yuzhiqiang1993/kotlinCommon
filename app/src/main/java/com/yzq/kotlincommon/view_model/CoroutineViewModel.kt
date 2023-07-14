@@ -13,7 +13,7 @@ import com.yzq.common.ext.apiCall
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.safety_coroutine.launchSafety
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -51,12 +51,12 @@ class CoroutineViewModel : BaseViewModel() {
                 _uiStateFlow.value = UIState.ShowContent()
             }
             response.onError { code, message ->
-                LogCat.i("onFailed--code:$code,message:$message")
+                Logger.i("onFailed--code:$code,message:$message")
                 _uiStateFlow.value = UIState.ShowError(message)
             }
 
             response.onException {
-                LogCat.i("onException：$it")
+                Logger.i("onException：$it")
                 _uiStateFlow.value = UIState.ShowError(it.localizedMessage ?: "onException")
             }
         }

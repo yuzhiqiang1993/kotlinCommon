@@ -20,7 +20,7 @@ import com.yzq.gao_de_map.ext.openGaoDeMap
 import com.yzq.gao_de_map.ext.openGaoDeNavi
 import com.yzq.gao_de_map.service.LocationService
 import com.yzq.gao_de_map.utils.MapPermissionUtils
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 @Route(path = com.yzq.common.constants.RoutePath.GaoDe.GAO_DE)
 class GaoDeActivity : BaseActivity() {
@@ -82,13 +82,13 @@ class GaoDeActivity : BaseActivity() {
     /*申请忽略电池优化*/
     private fun ignoringBatteryOptimizations() {
         val appPackageName = AppUtils.getAppPackageName()
-        LogCat.i("appPackageName:${appPackageName}")
+        Logger.i("appPackageName:${appPackageName}")
         val powerManager = getSystemService(POWER_SERVICE) as PowerManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val batteryOptimizations =
                 powerManager.isIgnoringBatteryOptimizations(appPackageName)
-            LogCat.i("是否忽略电池优化:${batteryOptimizations}")
+            Logger.i("是否忽略电池优化:${batteryOptimizations}")
             if (!batteryOptimizations) {
                 val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
                 intent.data = Uri.parse("package:$appPackageName")

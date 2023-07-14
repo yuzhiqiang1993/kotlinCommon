@@ -9,7 +9,7 @@ import com.yzq.coroutine.flow.launchCollect
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import kotlinx.coroutines.flow.filter
 
 class TaskFragment : BaseFragment(R.layout.task_fragment) {
@@ -22,7 +22,7 @@ class TaskFragment : BaseFragment(R.layout.task_fragment) {
     }
 
     override fun initWidget() {
-        LogCat.i("TaskFragment")
+        Logger.i("TaskFragment")
         binding.tvTask.text = "喻志强"
         binding.layoutState.onRefresh {
             vm.requestData()

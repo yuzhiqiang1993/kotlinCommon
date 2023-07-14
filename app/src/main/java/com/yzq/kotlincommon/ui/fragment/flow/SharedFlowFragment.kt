@@ -11,7 +11,7 @@ import com.yzq.coroutine.flow.launchCollect
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentSharedFlowBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
@@ -51,7 +51,7 @@ class SharedFlowFragment : BaseFragment(R.layout.fragment_shared_flow) {
                     viewModel.shareFlow
                         .collect {
                             delay(1000)
-                            LogCat.i("消费值：${it}")
+                            Logger.i("消费值：${it}")
 
                         }
                 }
@@ -66,7 +66,7 @@ class SharedFlowFragment : BaseFragment(R.layout.fragment_shared_flow) {
             btnStateflowCollect.setOnThrottleTimeClick {
                 /*新的stateflow订阅者*/
                 viewModel.stateFlow.launchCollect(viewLifecycleOwner) {
-                    LogCat.i("stateflow newCollect:${it}")
+                    Logger.i("stateflow newCollect:${it}")
                 }
             }
 
@@ -75,7 +75,7 @@ class SharedFlowFragment : BaseFragment(R.layout.fragment_shared_flow) {
                 .distinctUntilChanged()
                 .onEach {
                     delay(2000)
-                    LogCat.i("输入框变更:${it}")
+                    Logger.i("输入框变更:${it}")
                 }.launchIn(lifecycleScope)
 
 
@@ -87,21 +87,21 @@ class SharedFlowFragment : BaseFragment(R.layout.fragment_shared_flow) {
 
         viewModel.run {
 //            stateFlow.launchCollect(viewLifecycleOwner) {
-//                LogCat.i("stateFlow collect:${it}")
+//                Logger.i("stateFlow collect:${it}")
 //            }
 //
 //
 //            lifecycleScope.launchSafety {
 //                stateFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle)
 //                    .collectLatest {
-//                        LogCat.i("stateFlow collect:${it}")
+//                        Logger.i("stateFlow collect:${it}")
 //                    }
 //            }
 //
 
             stateFlow.asLiveData()
                 .observe(viewLifecycleOwner) {
-                    LogCat.i("stateFlow asLiveData observe:${it}")
+                    Logger.i("stateFlow asLiveData observe:${it}")
                 }
 
         }

@@ -4,7 +4,7 @@
 #* Compile sdk version
 #* 按照指定sdk版本进行编译  不影响实际运行  尽量写最新的，最好跟targetsdkversion版本保持一致
 #*/
-compileSdk = "33"
+compileSdk = "34"
 
 #/**
 #* Min sdk version
@@ -43,13 +43,13 @@ androidxRoom = "2.5.2"
 androidxWebkit = "1.7.0"
 
 #kotlin
-kotlin = "1.8.22"
-ksp = "1.8.22-1.0.11"
-kotlinxCoroutines = "1.7.1"
+kotlin = "1.9.0"
+ksp = "1.9.0-1.0.11"
+kotlinxCoroutines = "1.7.2"
 kotlinxSerializationJson = "1.5.1"
 
 #三方库
-theRouter = "1.2.0-beta2"
+theRouter = "1.2.0-beta3"
 benManesVersion = "0.46.0"
 vanniktechPublish = "0.25.3"
 okhttp = "4.11.0"
@@ -59,14 +59,14 @@ lottie = "6.0.1"
 moshiKotlin = "1.15.0"
 utilcodex = "1.31.1"
 xxPermissions = "18.2"
-mmkv = "1.2.16"
+mmkv = "1.3.0"
 progressManager = "1.5.0"
 appStartFaster = "2.2.0"
 bannerViewPager = "3.5.11"
 jsoup = "1.16.1"
-brv = "1.4.1"
+brv = "1.4.2"
 flexboxLayout = "3.0.0"
-leakcanaryAndroid = "2.11"
+leakcanaryAndroid = "2.12"
 coil = "2.4.0"
 photoView = "2.3.0"
 materialDialog = "3.3.0"
@@ -91,13 +91,13 @@ espresso-core = "3.5.1"
 gaodeLocation = "6.3.0"
 
 #我的开源库
-xeonBuildManager = "0.0.6"
+xeonBuildManager = "0.0.7"
 xeonZxing = "2.2.9"
 xeonCordovaWebContainer = "1.0.5"
 xeonCordovaLib = "12.0.2"
 xeonBsDiff = "1.0.4"
-xeonLogger = "1.0.3"
-xeonApplication = "1.0.0"
+xeonLogger = "1.0.4"
+xeonApplication = "1.0.2"
 xeonCoroutine = "1.0.0"
 xeonMMKV = "1.0.0"
 xeonLocationManager = "1.0.0"

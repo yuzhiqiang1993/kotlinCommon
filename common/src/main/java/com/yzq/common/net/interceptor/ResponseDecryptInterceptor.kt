@@ -3,7 +3,7 @@ package com.yzq.common.net.interceptor
 import com.yzq.common.net.constants.ServerConstants
 import com.yzq.common.net.utils.AESUtil
 import com.yzq.common.net.utils.RSAUtil
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody.Companion.toResponseBody
@@ -20,7 +20,7 @@ import java.nio.charset.Charset
 class ResponseDecryptInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        LogCat.i("开始处理服务端响应的数据----------------------")
+        Logger.i("开始处理服务端响应的数据----------------------")
 
         val request = chain.request()
         // val mediaType = MediaType.parse("application/json; charset=utf-8")
@@ -31,7 +31,7 @@ class ResponseDecryptInterceptor : Interceptor {
         }.onSuccess {
             response = it
         }.onFailure {
-            LogCat.e("解密失败")
+            Logger.e("解密失败")
         }
         return response
     }
@@ -40,14 +40,14 @@ class ResponseDecryptInterceptor : Interceptor {
         if (response.isSuccessful) {
             /*获取请求头中的key*/
             val aesKey = response.header(ServerConstants.AES_KEY)
-            LogCat.i("响应头中的AESKey:$aesKey")
+            Logger.i("响应头中的AESKey:$aesKey")
             if (aesKey != null) {
                 /*开始解密*/
                 val responseBody = response.body
                 /*1.先用RSA公钥对随机Key进行解密*/
                 val decryptAesKey = RSAUtil.decryptByPublic(aesKey, ServerConstants.RSA_PUB_KEY)
 
-                LogCat.i("decryptAesKey:$decryptAesKey")
+                Logger.i("decryptAesKey:$decryptAesKey")
                 /*2.使用aesKey对密文进行解密获取最终的明文*/
                 val source = responseBody!!.source()
                 source.request(java.lang.Long.MAX_VALUE) // Buffer the entire body.
@@ -61,10 +61,10 @@ class ResponseDecryptInterceptor : Interceptor {
 
                 val bodyString = buffer.clone().readString(respCharset).trim()
 
-                LogCat.i("响应的原数据为:$bodyString")
+                Logger.i("响应的原数据为:$bodyString")
 
                 val responseData = AESUtil.decrypt(bodyString, decryptAesKey)
-                LogCat.i("解密后的明文：$responseData")
+                Logger.i("解密后的明文：$responseData")
 
                 /*将解密后的明文返回*/
                 val newResponseBody = responseData.trim().toResponseBody(contentType)

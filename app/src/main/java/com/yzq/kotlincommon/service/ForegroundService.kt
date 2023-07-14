@@ -13,7 +13,7 @@ import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.ui.activity.MainActivity
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 
 /**
@@ -27,13 +27,13 @@ import com.yzq.logger.LogCat
 class ForegroundService : Service(), AppStateListener {
 
     override fun onCreate() {
-        LogCat.i("onCreate")
+        Logger.i("onCreate")
     }
 
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        LogCat.i("onStartCommand")/*前台服务的一个特点就是要是通知栏*/
+        Logger.i("onStartCommand")/*前台服务的一个特点就是要是通知栏*/
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
         val channelId = "ForegroundService"
@@ -78,7 +78,7 @@ class ForegroundService : Service(), AppStateListener {
     }
 
     override fun onDestroy() {
-        LogCat.i("onDestory")
+        Logger.i("onDestory")
         AppManager.removeAppStateListener(this)
     }
 

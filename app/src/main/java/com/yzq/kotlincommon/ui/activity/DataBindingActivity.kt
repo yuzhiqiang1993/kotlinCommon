@@ -12,7 +12,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDataBindingBinding
 import com.yzq.kotlincommon.view_model.DataBindingViewModel
 import com.yzq.kotlincommon.widget.edittext.EmojiExcludeFilter
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 
 /**
  * @description: DataBinding
@@ -46,7 +46,7 @@ class DataBindingActivity : BaseActivity() {
 
     override fun observeViewModel() {
         vm.dataBindingLiveData.observe(this) {
-            LogCat.i("数据发生变化了:$it")
+            Logger.i("数据发生变化了:$it")
             binding.data = it
         }
     }

@@ -15,7 +15,7 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityAsrBinding
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 import org.json.JSONObject
 
@@ -48,7 +48,7 @@ class AsrActivity : BaseActivity(), EventListener {
     }
 
     private fun start() {
-        LogCat.i("start")
+        Logger.i("start")
         val param = ASRManager.getParam()
 //        param.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, true)
 //        param.put(SpeechConstant.ACCEPT_AUDIO_DATA, true)
@@ -64,14 +64,14 @@ class AsrActivity : BaseActivity(), EventListener {
                         val message =
                             autoCheck.obtainErrorMessage() // autoCheck.obtainAllMessage();
                         // 可以用下面一行替代，在logcat中查看代码
-                        LogCat.i("handleMessage: ${message}")
+                        Logger.i("handleMessage: ${message}")
                     }
                 }
             }
         }, false).checkAsr(param)
 
         val jsonParam = JSONObject(param.toMap()).toString()
-        LogCat.i("jsonParam:${jsonParam}")
+        Logger.i("jsonParam:${jsonParam}")
         val event = SpeechConstant.ASR_START
         ASRManager.instance.send(event, jsonParam, null, 0, 0)
     }
@@ -84,7 +84,7 @@ class AsrActivity : BaseActivity(), EventListener {
         length: Int
     ) {
 
-        LogCat.i(
+        Logger.i(
 
             "onEvent: name:${name}},params:${params},data:${data},offset:${offset},length:${length}"
         )

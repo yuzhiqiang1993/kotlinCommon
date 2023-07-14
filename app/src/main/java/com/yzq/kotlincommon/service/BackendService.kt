@@ -4,7 +4,7 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import com.yzq.base.managers.ThreadPoolManager
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import java.util.concurrent.TimeUnit
 
 
@@ -20,7 +20,7 @@ class BackendService : Service() {
 
     /*只会执行一次*/
     override fun onCreate() {
-        LogCat.i("onCreate")
+        Logger.i("onCreate")
     }
 
 
@@ -33,14 +33,14 @@ class BackendService : Service() {
      * @return
      */
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        LogCat.i("onStartCommand")
-        LogCat.i("startId:$startId")
+        Logger.i("onStartCommand")
+        Logger.i("startId:$startId")
 
         ThreadPoolManager.instance.executeIoTask {
             intent?.run {
                 intent.extras?.run {
-                    LogCat.i("key1:${getString("key1")}")
-                    LogCat.i("key2:${getInt("key2")}")
+                    Logger.i("key1:${getString("key1")}")
+                    Logger.i("key2:${getInt("key2")}")
                 }
             }
 
@@ -49,7 +49,7 @@ class BackendService : Service() {
             stopSelf(startId)
         }
 
-        LogCat.i("onStartCommand end")
+        Logger.i("onStartCommand end")
 
         return super.onStartCommand(intent, flags, startId)
     }
@@ -67,6 +67,6 @@ class BackendService : Service() {
 
 
     override fun onDestroy() {
-        LogCat.i("onDestory")
+        Logger.i("onDestory")
     }
 }

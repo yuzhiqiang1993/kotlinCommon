@@ -50,8 +50,8 @@ dependencyResolutionManagement {
 
     versionCatalogs {
         create("libs") {
-            from("com.xeonyu:version-catalog:0.0.9")
-//            from(files("gradle/libs.versions_backup.toml"))
+//            from("com.xeonyu:version-catalog:0.1.1")
+            from(files("gradle/libs.versions_backup.toml"))
         }
 //        create("gaodeLibs") {
 //            library("location", "com.amap.api:location:6.3.0")
@@ -124,7 +124,7 @@ include(":network-status")
 //include(":application")
 include(":coroutine")
 include(":binding")
-include(":mmkv")
+//include(":mmkv")
 include(":statusbar")
 include(":baidu")
 include(":storage")

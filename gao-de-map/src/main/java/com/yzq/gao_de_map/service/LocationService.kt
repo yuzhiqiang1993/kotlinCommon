@@ -18,7 +18,7 @@ import com.yzq.gao_de_map.LocationManager
 import com.yzq.gao_de_map.LocationResultListener
 import com.yzq.gao_de_map.R
 import com.yzq.gao_de_map.ext.setLocationResultListener
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import java.util.concurrent.atomic.AtomicBoolean
 
 
@@ -48,9 +48,9 @@ class LocationService : Service(), AppStateListener, LocationResultListener {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        LogCat.i("onStartCommand")
+        Logger.i("onStartCommand")
         if (locationStarted.get()) {
-            LogCat.i("已经在定位了")
+            Logger.i("已经在定位了")
             return super.onStartCommand(intent, flags, startId)
         }
         /*前台服务的一个特点就是要是通知栏*/
@@ -111,7 +111,7 @@ class LocationService : Service(), AppStateListener, LocationResultListener {
 
 
     override fun onDestroy() {
-        LogCat.i("onDestory")
+        Logger.i("onDestory")
         locationStarted.compareAndSet(true, false)
         LocationManager.destoryLocationClient(locationClient)
         AppManager.removeAppStateListener(this)
@@ -122,11 +122,11 @@ class LocationService : Service(), AppStateListener, LocationResultListener {
     }
 
     override fun onSuccess(location: AMapLocation) {
-        LogCat.i("定位成功")
+        Logger.i("定位成功")
     }
 
     override fun onFailed(location: AMapLocation) {
-        LogCat.i("定位失败")
+        Logger.i("定位失败")
     }
 
 }

@@ -5,7 +5,7 @@ import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.safety_coroutine.launchSafety
-import com.yzq.logger.LogCat
+import com.yzq.logger.Logger
 import kotlinx.coroutines.delay
 
 /**
@@ -21,7 +21,7 @@ class ApiCallViewModel : BaseViewModel() {
         viewModelScope.launchSafety {
             delay(1000)
             val movieBean = RetrofitFactory.instance.getService(ApiService::class.java).userInfo()
-            LogCat.i("movieBean:$movieBean")
+            Logger.i("movieBean:$movieBean")
         }
     }
 }
