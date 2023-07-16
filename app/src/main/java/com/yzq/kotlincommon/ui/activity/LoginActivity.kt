@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.text.TextUtils
 import androidx.activity.viewModels
 import com.therouter.router.Route
+import com.yzq.base.extend.immersive
 import com.yzq.base.extend.navClear
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
@@ -15,7 +16,6 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
 import com.yzq.logger.Logger
-import com.yzq.statusbar.immersive
 import com.yzq.storage.mmkv.MMKVDefault
 import com.yzq.storage.mmkv.MMKVUser
 

@@ -100,6 +100,7 @@ xeonLogger = "1.0.4"
 xeonApplication = "1.0.2"
 xeonCoroutine = "1.0.0"
 xeonMMKV = "1.0.0"
+xeonBinding = "1.0.0"
 xeonLocationManager = "1.0.0"
 xeonLocationGaode = "1.0.0"
 xeonLocationTencent = "1.0.0"
@@ -173,6 +174,7 @@ xeonyu-logger = { group = "com.xeonyu", name = "logger", version.ref = "xeonLogg
 xeonyu-application = { group = "com.xeonyu", name = "application", version.ref = "xeonApplication" }
 xeonyu-coroutine = { group = "com.xeonyu", name = "coroutine", version.ref = "xeonCoroutine" }
 xeonyu-mmkv = { group = "com.xeonyu", name = "mmkv", version.ref = "xeonMMKV" }
+xeonyu-binding = { group = "com.xeonyu", name = "binding", version.ref = "xeonBinding" }
 xeonyu-location-manager = { group = "com.xeonyu", name = "location-manager", version.ref = "xeonLocationManager" }
 xeonyu-location-gaode = { group = "com.xeonyu", name = "location-gaode", version.ref = "xeonLocationGaode" }
 xeonyu-location-tencent = { group = "com.xeonyu", name = "location-tencent", version.ref = "xeonLocationTencent" }

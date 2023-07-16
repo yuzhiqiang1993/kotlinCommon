@@ -6,12 +6,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.hjq.permissions.Permission
+import com.yzq.base.extend.immersive
 import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger
 import com.yzq.materialdialog.showCallbackDialog
 import com.yzq.permission.getPermissions
-import com.yzq.statusbar.immersive
 import com.yzq.storage.mmkv.MMKVDefault
 import com.yzq.storage.mmkv.MMKVUser
 import kotlinx.coroutines.MainScope

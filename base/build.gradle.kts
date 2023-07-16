@@ -56,6 +56,7 @@ dependencies {
     api(libs.xeonyu.coroutine)
     api(libs.xeonyu.logger)
     api(libs.xeonyu.application)
+    api(libs.xeonyu.binding)
 
     api(project(":network-status"))
     api(project(":img"))
@@ -64,8 +65,6 @@ dependencies {
     api(project(":permission"))
     api(project(":widget"))
     api(project(":aliemas"))
-    api(project(":binding"))
-    api(project(":statusbar"))
 
 
 }

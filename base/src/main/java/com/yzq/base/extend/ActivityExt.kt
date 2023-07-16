@@ -2,8 +2,6 @@ package com.yzq.base.extend
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.yzq.statusbar.immersive
-import com.yzq.statusbar.statusPadding
 
 /**
  * 初始化toolbar
