@@ -53,6 +53,7 @@ dependencies {
     api(libs.therouter)
     ksp(libs.therouter.apt)
 
+    api(libs.xeonyu.coroutine)
     api(libs.xeonyu.logger)
     api(libs.xeonyu.application)
 
@@ -63,7 +64,6 @@ dependencies {
     api(project(":permission"))
     api(project(":widget"))
     api(project(":aliemas"))
-    api(project(":coroutine"))
     api(project(":binding"))
     api(project(":statusbar"))
 

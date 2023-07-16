@@ -159,10 +159,10 @@ class CoroutinesActivity : BaseActivity() {
 
             }.catch {
                 /*这里异常可能会出现捕获不到的情况，原因是catch是在block后面设置的，如果block中立刻抛出了异常，此时catch可能是空，因此，不会被捕获到*/
-                Logger.i("launchSafety catch")
+                Logger.i("launchSafety catch:${it.message}")
             }.finally {
-                it?.printStackTrace()
-                Logger.i("launchSafety finally")
+
+                Logger.i("launchSafety finally ${it?.message}")
             }
         }
 

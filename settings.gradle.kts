@@ -3,7 +3,7 @@ pluginManagement {
     println("pluginManagement")
 
     repositories {
-        mavenLocal()
+//        mavenLocal()
         google()
         mavenCentral()
         maven {
@@ -33,7 +33,7 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
         }
-        mavenLocal()
+//        mavenLocal()
         google()
         mavenCentral()
 
@@ -121,11 +121,8 @@ include(":widget")
 include(":permission")
 include(":aliemas")
 include(":network-status")
-//include(":application")
-include(":coroutine")
+//include(":coroutine")
 include(":binding")
-//include(":mmkv")
 include(":statusbar")
 include(":baidu")
 include(":storage")
-//include(":logger")

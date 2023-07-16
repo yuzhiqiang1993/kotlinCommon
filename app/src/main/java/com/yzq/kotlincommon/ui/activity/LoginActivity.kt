@@ -10,7 +10,7 @@ import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.databind
 import com.yzq.common.constants.RoutePath
-import com.yzq.coroutine.interval.Interval
+import com.yzq.coroutine.interval.interval
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
@@ -18,7 +18,6 @@ import com.yzq.logger.Logger
 import com.yzq.statusbar.immersive
 import com.yzq.storage.mmkv.MMKVDefault
 import com.yzq.storage.mmkv.MMKVUser
-import java.util.concurrent.TimeUnit
 
 /**
  * @description: SharedPreference相关
@@ -35,7 +34,7 @@ class LoginActivity : BaseActivity() {
 
     private val vm: LoginViewModel by viewModels()
 
-    private val interval = Interval(2, TimeUnit.SECONDS, 0)
+    private val interval = interval()
 
     override fun initWidget() {
         super.initWidget()
@@ -43,7 +42,8 @@ class LoginActivity : BaseActivity() {
         immersive(Color.WHITE, true)
 
         /*开启一个页面级别的轮询*/
-        interval.onlyResumed(this)//onpause 暂停  onResume恢复
+        interval
+            .onlyResumed(this)//onpause 暂停  onResume恢复
             .subscribe {
                 Logger.i("第:${it} 的轮询")
             }.start()

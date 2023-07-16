@@ -92,13 +92,14 @@ class ApiCallActivity : BaseActivity() {
     private fun concurrentRequest() {
 
 
-        LifeSafetyScope(this, Lifecycle.Event.ON_DESTROY, Dispatchers.IO).launch {
+        LifeSafetyScope(this, Lifecycle.Event.ON_DESTROY, Dispatchers.IO)
+            .launch {
 
-        }.catch {
+            }.catch {
 
-        }.finally {
+            }.finally {
 
-        }
+            }
 
         /**
          *  并发请求
@@ -107,7 +108,8 @@ class ApiCallActivity : BaseActivity() {
             /**
              * 如果代码块没有被supervisorScope包裹，那么catch只会被调用一次，也就是首次出现异常的时候，其他子协程会受到影响被取消，并且finall会中会携带首次异常的信息
              *
-             * 如果代码块被supervisorScope包裹，就是里面的子协程互不影响，每个子协程出现异常都会调用catch，且finally中不会携带异常信息
+             * 如果代码块被supervisorScope包裹，就是里面的子协程互不影响,同时子协程的异常不会被传递到父协程(也就是说子协程的异常不会走catch回调，因为内部使用的是handleJobException处理的异常)
+             *
              */
             supervisorScope {
                 launch {
@@ -123,7 +125,7 @@ class ApiCallActivity : BaseActivity() {
 
             Logger.i("异常了:$it")
             it.printStackTrace()
-        }.invokeOnCompletion {
+        }.finally {
             Logger.i("结束了")
             if (it != null) {
                 Logger.i("有异常:$it")
