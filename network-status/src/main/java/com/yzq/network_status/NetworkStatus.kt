@@ -5,7 +5,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.lifecycle.LifecycleOwner
 import com.yzq.application.AppContext
-import com.yzq.logger.Logger
 import com.yzq.network_status.common.INetworkStatus
 import com.yzq.network_status.height.NetworkHeight
 import com.yzq.network_status.legacy.NetworkLegacy
@@ -68,7 +67,6 @@ object NetworkStatus : INetworkStatus {
                 Manifest.permission.READ_PHONE_STATE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            Logger.e("没有 android.permission.ACCESS_NETWORK_STATE 权限,请先申请")
             return NetworkType.PERMISSION_DENIED
         }
 

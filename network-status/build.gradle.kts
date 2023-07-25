@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.xeonyu.library)
 }
@@ -6,8 +5,6 @@ plugins {
 
 android {
     namespace = "com.yzq.network_status"
-
-
 }
 
 
@@ -18,5 +15,4 @@ dependencies {
     //Lifecycles only (without ViewModel or LiveData)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.xeonyu.application)
-    implementation(libs.xeonyu.logger)
 }
