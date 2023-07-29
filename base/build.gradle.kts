@@ -57,8 +57,8 @@ dependencies {
     api(libs.xeonyu.logger)
     api(libs.xeonyu.application)
     api(libs.xeonyu.binding)
+    api(libs.xeonyu.network.status)
 
-    api(project(":network-status"))
     api(project(":img"))
 
     api(project(":materialdialog"))

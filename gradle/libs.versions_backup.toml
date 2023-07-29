@@ -105,6 +105,7 @@ xeonLocationManager = "1.0.0"
 xeonLocationGaode = "1.0.0"
 xeonLocationTencent = "1.0.0"
 xeonLocationBaidu = "1.0.0"
+xeonNetworkStatus = "1.0.1"
 
 [libraries]
 google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
@@ -179,6 +180,7 @@ xeonyu-location-manager = { group = "com.xeonyu", name = "location-manager", ver
 xeonyu-location-gaode = { group = "com.xeonyu", name = "location-gaode", version.ref = "xeonLocationGaode" }
 xeonyu-location-tencent = { group = "com.xeonyu", name = "location-tencent", version.ref = "xeonLocationTencent" }
 xeonyu-location-baidu = { group = "com.xeonyu", name = "location-baidu", version.ref = "xeonLocationBaidu" }
+xeonyu-network-status = { group = "com.xeonyu", name = "network-status", version.ref = "xeonNetworkStatus" }
 
 #阿里emas
 alicloud-android-apm = { module = "com.aliyun.ams:alicloud-android-apm", version.ref = "alicloudAndroidApm" }
