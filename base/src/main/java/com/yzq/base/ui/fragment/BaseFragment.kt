@@ -17,7 +17,7 @@ import com.yzq.widget.dialog.BubbleDialog
  */
 abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
-    protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
+    protected val TAG = "${this.javaClass.simpleName}-${this.hashCode()}"
     protected val loadingDialog by lazy { BubbleDialog(requireContext(), viewLifecycleOwner) }
 
     override fun onAttach(context: Context) {

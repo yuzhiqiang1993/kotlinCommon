@@ -37,7 +37,6 @@ class FileRetrofitFactory private constructor() {
 
     }
 
-
     private fun initOkhttpClient(): OkHttpClient {
 
         val okHttpBuilder = OkHttpClient.Builder()

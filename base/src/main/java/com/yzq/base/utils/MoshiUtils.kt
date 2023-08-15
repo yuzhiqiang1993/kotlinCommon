@@ -17,33 +17,21 @@ object MoshiUtils {
 
     val moshi: Moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
-    inline fun <reified T> toJson(src: T, indent: String = ""): String? {
-        return kotlin.runCatching {
-            val jsonAdapter = moshi.adapter<T>(getGenericType<T>())
-            jsonAdapter.indent(indent).toJson(src)
-        }.onFailure {
-            it.printStackTrace()
-        }.getOrNull()
-
+    inline fun <reified T> toJson(src: T, indent: String = ""): String {
+        val jsonAdapter = moshi.adapter<T>(getGenericType<T>())
+        return jsonAdapter.indent(indent).toJson(src)
     }
 
     inline fun <reified T> toMap(src: T): Map<String, Any>? {
-        return kotlin.runCatching {
-            val jsonAdapter = moshi.adapter<T>(getGenericType<T>())
-            val jsonStr = jsonAdapter.toJson(src)
-            fromJson<Map<String, Any>>(jsonStr)
-        }.onFailure {
-            it.printStackTrace()
-        }.getOrNull()
+        val jsonAdapter = moshi.adapter<T>(getGenericType<T>())
+        val jsonStr = jsonAdapter.toJson(src)
+        return fromJson<Map<String, Any>>(jsonStr)
     }
 
-    inline fun <reified T> fromJson(jsonStr: String): T? = kotlin.runCatching {
+    inline fun <reified T> fromJson(jsonStr: String): T? {
         val jsonAdapter = moshi.adapter<T>(getGenericType<T>())
-        jsonAdapter.fromJson(jsonStr)
-    }.onFailure {
-        it.printStackTrace()
-    }.getOrDefault(null)
-
+        return jsonAdapter.fromJson(jsonStr)
+    }
 
     inline fun <reified T> getGenericType(): Type {
 

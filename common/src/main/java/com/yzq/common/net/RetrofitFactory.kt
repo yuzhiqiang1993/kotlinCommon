@@ -1,11 +1,9 @@
 package com.yzq.common.net
 
-import android.util.Log
+import com.sfic.kfc.knight.net.interecptor.LoggingInterceptor
 import com.yzq.base.utils.MoshiUtils
-import com.yzq.common.BuildConfig
 import com.yzq.common.net.constants.ServerConstants
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
@@ -46,7 +44,7 @@ class RetrofitFactory private constructor() {
             .readTimeout(5, TimeUnit.SECONDS)
 //            .addInterceptor(RequestHeadersInterceptor())
 //            .addInterceptor(RequestEncryptInterceptor())
-            .addInterceptor(initLogInterceptor())
+            .addInterceptor(LoggingInterceptor())
 
 
 //            .addInterceptor(ResponseDecryptInterceptor())
@@ -56,21 +54,6 @@ class RetrofitFactory private constructor() {
     }
 
 
-    /*
-    * 日志拦截器
-    * */
-    private fun initLogInterceptor(): HttpLoggingInterceptor {
-
-        val interceptor = HttpLoggingInterceptor { message ->
-            if (BuildConfig.DEBUG) {
-                Log.i("Retrofit", message)
-            }
-        }
-
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-
-        return interceptor
-    }
 
     /*
     * 具体服务实例化

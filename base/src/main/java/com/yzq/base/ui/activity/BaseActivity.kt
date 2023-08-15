@@ -20,7 +20,8 @@ abstract class BaseActivity : AppCompatActivity {
     constructor() : super()
     constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
 
-    protected val currentClassTag = "${System.currentTimeMillis()}-${this.javaClass.simpleName}"
+    protected val TAG = "${this.javaClass.simpleName}-${this.hashCode()}"
+
     protected val loadingDialog by lazy { BubbleDialog(this, this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
