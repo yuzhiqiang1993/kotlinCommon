@@ -1,14 +1,28 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
 import android.view.View
+import android.webkit.ValueCallback
+import android.webkit.WebView
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
+import com.hjq.permissions.Permission
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.common.constants.RoutePath
 import com.yzq.cordova_webcontainer.CordovaWebContainer
 import com.yzq.cordova_webcontainer.CordovaWebContainerActivity
+import com.yzq.cordova_webcontainer.core.CordovaWebviewChormeClient
 import com.yzq.cordova_webcontainer.observer.PageObserver
 import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
+import com.yzq.logger.Logger
+import com.yzq.permission.getPermissions
+import com.yzq.storage.AppStorage
+import java.io.File
 
 @Route(path = RoutePath.Main.WEB_VIEW)
 class WebViewActivity : CordovaWebContainerActivity() {
@@ -44,6 +58,31 @@ class WebViewActivity : CordovaWebContainerActivity() {
 //            webviewClient.overrideUrlLoading { view, request ->
 //                return@overrideUrlLoading false
 //            }
+            setWebviewChormeClient(object :
+                CordovaWebviewChormeClient(webViewEngine) {
+
+                override fun onShowFileChooser(
+                    webView: WebView,
+                    filePathsCallback: ValueCallback<Array<Uri>>,
+                    fileChooserParams: FileChooserParams
+                ): Boolean {
+                    /**
+                     * 拦截前端 input标签  capture="camera" 表示调用相机
+                     */
+                    if (fileChooserParams.isCaptureEnabled) {
+                        kotlin.runCatching {
+                            takePhoto(filePathsCallback)
+                        }.onFailure {
+                            it.printStackTrace()
+                        }
+                        return true
+                    }
+                    return super.onShowFileChooser(webView, filePathsCallback, fileChooserParams)
+                }
+
+            })
+
+
 
             addPagePbserver(object : PageObserver {
                 override fun onReceivedTitle(title: String) {
@@ -73,5 +112,60 @@ class WebViewActivity : CordovaWebContainerActivity() {
 
     }
 
+
+    /*回调给前端*/
+    private var valueCallback: ValueCallback<Array<Uri>>? = null
+
+    /*暂存拍照图片的photoUri*/
+    private var photoUri: Uri? = null
+
+    private val takePhotoLauncher =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { isSuccess ->
+            if (isSuccess) {
+                // 处理拍照成功的情况
+                Logger.i("拍照成功：${photoUri}")
+                photoUri?.let {
+                    valueCallback?.onReceiveValue(arrayOf(it))
+                }
+
+            } else {
+                // 处理拍照失败或取消的情况
+                Logger.i("拍照失败或取消")
+            }
+        }
+
+    private fun takePhoto(filePathsCallback: ValueCallback<Array<Uri>>) {
+
+        getPermissions(Permission.CAMERA) {
+
+            this.valueCallback = filePathsCallback
+
+            val cordovaImgDir = File(AppStorage.Internal.cachePath, "cordova_img")
+            Logger.i("cordovaImgDir: ${cordovaImgDir.path}")
+            /*尝试删除以前的缓存图片*/
+            if (cordovaImgDir.exists()) {
+                cordovaImgDir.deleteRecursively()
+            }
+            if (!cordovaImgDir.exists()) {
+                cordovaImgDir.mkdirs()
+            }
+
+            val photoFile = File(cordovaImgDir, "${System.currentTimeMillis()}.png")
+            Logger.i("photoFile: ${photoFile.path}")
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
+            photoUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                /*适配Android 7.0以上版本 */
+                FileProvider.getUriForFile(this, "${packageName}.provider", photoFile)
+            } else {
+                Uri.fromFile(photoFile)
+            }
+
+            takePhotoLauncher.launch(photoUri)
+
+        }
+
+
+    }
 
 }
