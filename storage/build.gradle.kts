@@ -9,7 +9,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.utilcodex)
+    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
     implementation(libs.xeonyu.application)

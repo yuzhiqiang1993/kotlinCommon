@@ -79,6 +79,7 @@ class App : Application(), AppStateListener {
 
     private fun readMetaData() {
 
+
         Logger.i("Build.VERSION.SDK_INT = ${Build.VERSION.SDK_INT}")
 
         val supportedAbis = Build.SUPPORTED_ABIS

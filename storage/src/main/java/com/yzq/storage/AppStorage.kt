@@ -1,6 +1,8 @@
 package com.yzq.storage
 
-import com.blankj.utilcode.util.PathUtils
+import android.os.Environment
+import androidx.core.content.ContextCompat
+import com.yzq.application.AppContext
 import com.yzq.logger.Logger
 import java.io.File
 
@@ -20,9 +22,8 @@ import java.io.File
 
 object AppStorage {
 
-
     /**
-     * Internal  内部存储
+     * Internal  内部存储 无需权限
      * 内部存储是用来存放Android系统本身以及应用程序的区域，例如 /system/目录，/data/目录，通常不会很大
      * /data/data/package/ 是系统提供给应用程序的内部存储空间，像SharedPreferences，Sqlite,缓存文件等都是保存在该目录下，该目录是私有的，只能有app自身访问(无需申请权限)，app卸载时会被移除掉
      * 注意：如果设备root了，那么用户是可能访问的
@@ -30,13 +31,53 @@ object AppStorage {
      * @constructor Create empty Internal
      */
     object Internal {
-        val dataPath = "${PathUtils.getInternalAppDataPath()}${File.separator}"
-        val filesPath = "${PathUtils.getInternalAppFilesPath()}${File.separator}"
-        val spPath = "${PathUtils.getInternalAppSpPath()}${File.separator}"
-        val cachePath = "${PathUtils.getInternalAppCachePath()}${File.separator}"
-        val dbPath = "${PathUtils.getInternalAppDbsPath()}${File.separator}"
-    }
 
+        /**
+         * /data/user/0/com.yzq.kotlincommon/
+         * 这里使用ContextCompat获取路径，内部做了兼容性处理
+         */
+        val dataPath = runCatching {
+            "${ContextCompat.getDataDir(AppContext)}${File.separator}"
+        }.getOrDefault("")
+
+
+        /**
+         * /data/user/0/com.yzq.kotlincommon/files/
+         */
+        val filesPath = runCatching {
+            "${AppContext.filesDir}${File.separator}"
+        }.getOrDefault("")
+
+        /**
+         * /data/user/0/com.yzq.kotlincommon/shared_prefs/
+         */
+        val spPath = runCatching {
+            "${ContextCompat.getDataDir(AppContext)}${File.separator}shared_prefs${File.separator}"
+        }.getOrDefault("")
+
+
+        /**
+         * /data/user/0/com.yzq.kotlincommon/cache/
+         */
+        val cachePath = runCatching { "${AppContext.cacheDir}${File.separator}" }.getOrDefault("")
+
+        /**
+         * /data/user/0/com.yzq.kotlincommon/databases/
+         */
+        val dbPath =
+            runCatching { "${ContextCompat.getDataDir(AppContext)}${File.separator}databases${File.separator}" }.getOrDefault(
+                ""
+            )
+
+
+        /**
+         * /data/user/0/com.yzq.kotlincommon/code_cache/
+         */
+        val codeCachePath =
+            runCatching { "${ContextCompat.getCodeCacheDir(AppContext)}${File.separator}}" }.getOrDefault(
+                ""
+            )
+    }
 
     /**
      * External 外部存储
@@ -55,34 +96,136 @@ object AppStorage {
              * root path 私有根目录
              * /storage/emulated/0/Android/data/package/
              */
-            val rootPath = "${PathUtils.getExternalAppDataPath()}${File.separator}"
+            val rootPath = runCatching {
+                "${
+                    ContextCompat.getExternalFilesDirs(
+                        AppContext,
+                        null
+                    )[0].parent
+                }${File.separator}"
+            }.getOrDefault("")
+
+            /**
+             * cache path 缓存目录
+             * /storage/emulated/0/Android/data/package/cache/
+             */
+            val cachePath =
+                runCatching { "${ContextCompat.getExternalCacheDirs(AppContext)[0].absolutePath}${File.separator}" }.getOrDefault(
+                    ""
+                )
+
 
             /**
              * Files path  文件目录
              * /storage/emulated/0/Android/data/package/files
              */
-            val filesPath = "${PathUtils.getExternalAppFilesPath()}${File.separator}"
+            val filesPath = runCatching {
+                "${
+                    ContextCompat.getExternalFilesDirs(
+                        AppContext,
+                        null
+                    )[0].absolutePath
+                }${File.separator}"
+            }.getOrDefault("")
 
 
             /**
              * Download path  下载目录
              * /storage/emulated/0/Android/data/package/files/Download
              */
-            val downloadPath = "${PathUtils.getExternalAppDownloadPath()}${File.separator}"
+            val downloadPath = runCatching {
+                "${
+                    ContextCompat.getExternalFilesDirs(
+                        AppContext,
+                        Environment.DIRECTORY_DOWNLOADS
+                    )[0].absolutePath
+                }${File.separator}"
+
+            }.getOrDefault("")
+
 
             /**
              * Pictures path 图片目录
              * /storage/emulated/0/Android/data/package/files/Pictures/
              */
-            val picturesPath = "${PathUtils.getExternalAppPicturesPath()}${File.separator}"
+            val picturesPath = runCatching {
+                "${
+                    ContextCompat.getExternalFilesDirs(
+                        AppContext,
+                        Environment.DIRECTORY_PICTURES
+                    )[0].absolutePath
+                }${File.separator}"
+            }.getOrDefault("")
+
 
             /**
-             * cache path 缓存目录
-             * /storage/emulated/0/Android/data/package/cache/
+             * Movies path 音乐目录
+             * /storage/emulated/0/Android/data/package/files/Music/
              */
-            val cachePath = "${PathUtils.getExternalAppCachePath()}${File.separator}"
+            val musicPath = runCatching {
+                "${
+                    ContextCompat.getExternalFilesDirs(
+                        AppContext,
+                        Environment.DIRECTORY_MUSIC
+                    )[0].absolutePath
+                }${File.separator}"
 
+            }.getOrDefault("")
+
+            /**
+             * Movies path 电影目录
+             * /storage/emulated/0/Android/data/package/files/Movies/
+             */
+            val moviesPath = runCatching {
+                "${
+                    ContextCompat.getExternalFilesDirs(
+                        AppContext,
+                        Environment.DIRECTORY_MOVIES
+                    )[0].absolutePath
+                }${File.separator}"
+
+            }.getOrDefault("")
+
+            /**
+             * Podcasts path 音频 / 视频的剪辑片段
+             * /storage/emulated/0/Android/data/package/files/Podcasts/
+             */
+            val podcastsPath = runCatching {
+                "${
+                    ContextCompat.getExternalFilesDirs(
+                        AppContext,
+                        Environment.DIRECTORY_PODCASTS
+                    )[0].absolutePath
+                }${File.separator}"
+            }.getOrDefault("")
+
+            /**
+             * Ringtones path 铃声
+             * /storage/emulated/0/Android/data/package/files/Ringtones/
+             */
+            val ringtonesPath = runCatching {
+                "${
+                    ContextCompat.getExternalFilesDirs(
+                        AppContext,
+                        Environment.DIRECTORY_RINGTONES
+                    )[0].absolutePath
+                }${File.separator}"
+            }.getOrDefault("")
+
+            /**
+             * Alarms path 闹钟
+             * /storage/emulated/0/Android/data/package/files/Alarms/
+             */
+            val alarmsPath = runCatching {
+                "${
+                    ContextCompat.getExternalFilesDirs(
+                        AppContext,
+                        Environment.DIRECTORY_ALARMS
+                    )[0].absolutePath
+                }${File.separator}"
+            }.getOrDefault("")
         }
+
 
         /**
          * Public 公共目录
@@ -98,59 +241,72 @@ object AppStorage {
              * /storage/emulated/0/
              *  Android 10之后是不能读写的，主要是为了解决各个App随意创建目录的问题，只能访问官方指定的公共目录
              */
-            val rootPath = "${PathUtils.getExternalStoragePath()}${File.separator}"
+            val rootPath = runCatching {
+                "${Environment.getExternalStorageDirectory().absolutePath}${File.separator}"
+            }.getOrDefault("")
+
 
             /**
              * Download path 下载目录
              * /storage/emulated/0/Download
              */
-            val downloadPath = "${PathUtils.getExternalDownloadsPath()}${File.separator}"
+            val downloadPath = runCatching {
+                "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath}${File.separator}"
+
+            }.getOrDefault("")
 
 
             /**
              * Pictures path  所有的图片 (不包括那些用照相机拍摄的照片)
              * /storage/emulated/0/Pictures/
              */
-            val picturesPath = "${PathUtils.getExternalPicturesPath()}${File.separator}"
+            val picturesPath = runCatching {
+                "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).absolutePath}${File.separator}"
+            }.getOrDefault("")
 
             /**
              * Movies path 所有的电影 (不包括那些用摄像机拍摄的视频) 和 Download / 其他下载的内容
              * /storage/emulated/0/Movies
              */
-            val moviesPath = "${PathUtils.getExternalMoviesPath()}${File.separator}"
+            val moviesPath = runCatching {
+                "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES).absolutePath}${File.separator}"
+            }.getOrDefault("")
 
-            /**
-             * Dcim path 数字相机拍摄的照片
-             * /storage/emulated/0/DCIM/
-             */
-            val dcimPath = "${PathUtils.getExternalDcimPath()}${File.separator}"
 
             /**
              * Music path 用户音乐
              * /storage/emulated/0/Music/
              */
-            val musicPath = "${PathUtils.getExternalMusicPath()}${File.separator}"
+            val musicPath = runCatching {
+                "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC).absolutePath}${File.separator}"
+            }.getOrDefault("")
 
             /**
              * Podcasts path 音频 / 视频的剪辑片段
-             * /storage/emulated/0/Music/
+             * /storage/emulated/0/Podcasts/
              */
-            val podcastsPath = "${PathUtils.getExternalAppPodcastsPath()}${File.separator}"
+            val podcastsPath = runCatching {
+                "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PODCASTS).absolutePath}${File.separator}"
+            }.getOrDefault("")
 
             /**
              * Ringtones path 铃声
              * /storage/emulated/0/Ringtones/
              */
-            val ringtonesPath = "${PathUtils.getExternalRingtonesPath()}${File.separator}"
+            val ringtonesPath = runCatching {
+                "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_RINGTONES).absolutePath}${File.separator}"
+            }.getOrDefault("")
 
             /**
              * Alarms path 闹钟
              * /storage/emulated/0/Alarms/
              */
-            val alarmsPath = "${PathUtils.getExternalAlarmsPath()}${File.separator}"
+            val alarmsPath = runCatching {
+                "${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_ALARMS).absolutePath}${File.separator}"
+            }.getOrDefault("")
         }
-    }
 
+    }
 
     fun logPathInfo() {
 
@@ -164,15 +320,25 @@ object AppStorage {
             --------------------------
             外部存储
                 私有目录
-                dataPath:${External.Private.rootPath}
-                filesPath:${External.Private.filesPath}
-                picturesPath:${External.Private.picturesPath}
+                rootPath:${External.Private.rootPath}
                 cachePath:${External.Private.cachePath}
+                downloadPath:${External.Private.downloadPath}
+                picturesPath:${External.Private.picturesPath}
+                moviesPath:${External.Private.moviesPath}
+                musicPath:${External.Private.musicPath}
+                podcastsPath:${External.Private.podcastsPath}
+                ringtonesPath:${External.Private.ringtonesPath}
+                alarmsPath:${External.Private.alarmsPath}
                 ....
                 公共目录
                 rootPath:${External.Public.rootPath}
+                downloadPath:${External.Public.downloadPath}
                 picturesPath:${External.Public.picturesPath}
                 moviesPath:${External.Public.moviesPath}
+                musicPath:${External.Public.musicPath}
+                podcastsPath:${External.Public.podcastsPath}
+                ringtonesPath:${External.Public.ringtonesPath}
+                alarmsPath:${External.Public.alarmsPath}
         """.trimIndent()
 
 

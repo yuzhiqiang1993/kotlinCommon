@@ -140,7 +140,7 @@ class WebViewActivity : CordovaWebContainerActivity() {
 
             this.valueCallback = filePathsCallback
 
-            val cordovaImgDir = File(AppStorage.Internal.cachePath, "cordova_img")
+            val cordovaImgDir = File(AppStorage.External.Private.cachePath, "cordova_img")
             Logger.i("cordovaImgDir: ${cordovaImgDir.path}")
             /*尝试删除以前的缓存图片*/
             if (cordovaImgDir.exists()) {
