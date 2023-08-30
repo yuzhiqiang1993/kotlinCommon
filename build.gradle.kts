@@ -8,7 +8,7 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.ksp) apply false
-    alias(libs.plugins.therouter) apply false
+    alias(libs.plugins.therouter.agp8) apply false
     alias(libs.plugins.benManesVersion) apply false
     alias(libs.plugins.xeonyu.application) apply false
     alias(libs.plugins.xeonyu.library) apply false

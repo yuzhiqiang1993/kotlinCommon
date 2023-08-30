@@ -20,7 +20,7 @@ minSdk = "23"
 #*/
 targetSdk = "33"
 #AGP的版本
-agp = "8.1.0"
+agp = "8.1.1"
 material = "1.9.0"
 #AndroidX
 androidxAppcompat = "1.6.1"
@@ -43,13 +43,13 @@ androidxRoom = "2.5.2"
 androidxWebkit = "1.7.0"
 
 #kotlin
-kotlin = "1.9.0"
-ksp = "1.9.0-1.0.13"
+kotlin = "1.9.10"
+ksp = "1.9.10-1.0.13"
 kotlinxCoroutines = "1.7.2"
 kotlinxSerializationJson = "1.5.1"
 
 #三方库
-theRouter = "1.2.0-beta4"
+theRouter = "1.2.0-rc1"
 benManesVersion = "0.47.0"
 vanniktechPublish = "0.25.3"
 okhttp = "4.11.0"
@@ -58,13 +58,13 @@ retrofitKotlinxSerializationJson = "1.0.0"
 lottie = "6.1.0"
 moshiKotlin = "1.15.0"
 utilcodex = "1.31.1"
-xxPermissions = "18.2"
+xxPermissions = "18.3"
 mmkv = "1.3.0"
 progressManager = "1.5.0"
 appStartFaster = "2.2.0"
 bannerViewPager = "3.5.11"
 jsoup = "1.16.1"
-brv = "1.4.3"
+brv = "1.5.0"
 flexboxLayout = "3.0.0"
 leakcanaryAndroid = "2.12"
 coil = "2.4.0"
@@ -88,7 +88,7 @@ androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 
 #高德map
-gaodeLocation = "6.3.0"
+gaodeLocation = "6.4.0"
 
 #我的开源库
 xeonBuildManager = "0.0.7"
@@ -231,7 +231,7 @@ kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-therouter = { id = "cn.therouter", version.ref = "theRouter" }
+therouter-agp8 = { id = "cn.therouter.agp8", version.ref = "theRouter" }
 #检查依赖库是否有新版本
 benManesVersion = { id = "com.github.ben-manes.versions", version.ref = "benManesVersion" }
 #版本发布三方插件

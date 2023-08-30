@@ -131,6 +131,7 @@ class WebViewActivity : CordovaWebContainerActivity() {
             } else {
                 // 处理拍照失败或取消的情况
                 Logger.i("拍照失败或取消")
+                valueCallback?.onReceiveValue(null)
             }
         }
 
