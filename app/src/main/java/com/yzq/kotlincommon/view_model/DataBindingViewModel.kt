@@ -10,10 +10,8 @@ class DataBindingViewModel : BaseViewModel() {
     val dataBindingLiveData by lazy { MutableLiveData<DataBindingBean>() }
 
     fun resetData() {
-
         val dataBindingBean = DataBindingBean()
-        dataBindingBean.content = "init"
-
+        dataBindingBean.content.set("init")
         dataBindingLiveData.value = dataBindingBean
     }
 

@@ -109,6 +109,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("高德", RoutePath.GaoDe.GAO_DE))
         items.add(NaviItem("FlexBoxLayout", RoutePath.Main.FLEX_BOX))
         items.add(NaviItem("瀑布流图片", RoutePath.Main.IMG_LIST))
+        items.add(NaviItem("图片加载", RoutePath.Main.IMAGE_LOAD))
         items.add(NaviItem("fragment", RoutePath.Main.FRAGMENT))
         items.add(NaviItem("coroutine(协程)", RoutePath.Main.COROUTINE))
         items.add(NaviItem("room(数据库)", RoutePath.Main.ROOM))
@@ -128,6 +129,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("存储", RoutePath.Main.STORAGE))
         items.add(NaviItem("Lottie", RoutePath.Main.LOTTIE))
         items.add(NaviItem("语音识别ASR", RoutePath.Main.ASR))
+
 
         setData()
 

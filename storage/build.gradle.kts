@@ -1,7 +1,8 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.xeonyu.library)
-    alias(libs.plugins.ksp)
+//    alias(libs.plugins.ksp)
+    kotlin("kapt")
 }
 
 android {
@@ -19,6 +20,6 @@ dependencies {
     api(libs.threetenabp)
 
     implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
 
 }

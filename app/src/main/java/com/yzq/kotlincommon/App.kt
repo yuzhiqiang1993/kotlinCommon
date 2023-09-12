@@ -12,6 +12,7 @@ import com.therouter.TheRouter
 import com.xeon.asr_demo.ASRManager
 import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
+import com.yzq.img.CoilManager
 import com.yzq.kotlincommon.task.main_thread_task.*
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 import com.yzq.logger.Logger
@@ -41,6 +42,7 @@ class App : Application(), AppStateListener {
             Trace.beginSection("BaseApp_AppInit")
             /*日期库初始化*/
             AndroidThreeTen.init(this)
+            CoilManager.init()
             AppStartTaskDispatcher
                 .create()
                 .setShowLog(true)

@@ -42,6 +42,7 @@ object RoutePath {
         const val STORAGE: String = "/main/storage"
         const val LOTTIE: String = "/main/lottie"
         const val ASR: String = "/main/asr"
+        const val IMAGE_LOAD: String = "/main/imageLoad"
 
     }
 

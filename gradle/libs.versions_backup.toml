@@ -20,19 +20,19 @@ minSdk = "23"
 #*/
 targetSdk = "33"
 #AGP的版本
-agp = "8.1.1"
+agp = "8.0.2"
 material = "1.9.0"
 #AndroidX
 androidxAppcompat = "1.6.1"
 androidxActivityKtx = "1.7.2"
 androidxFragmentKtx = "1.6.1"
 androidxCollectionKtx = "1.2.0"
-androidxLifecycle = "2.6.1"
+androidxLifecycle = "2.6.2"
 androidxVectordrawable = "1.1.0"
 androidxConstraintlayout = "2.1.4"
-androidxAnnotation = "1.6.0"
+androidxAnnotation = "1.7.0"
 androidxMultidex = "2.0.1"
-androidxCore = "1.10.1"
+androidxCore = "1.12.0"
 androidxCoreSplashscreen = "1.0.1"
 androidxCoordinatorlayout = "1.2.0"
 androidxSwiperefreshlayout = "1.1.0"
@@ -40,7 +40,7 @@ androidxRecyclerview = "1.3.1"
 androidxViewpager2 = "1.1.0-beta02"
 androidxExifinterface = "1.3.6"
 androidxRoom = "2.5.2"
-androidxWebkit = "1.7.0"
+androidxWebkit = "1.8.0"
 
 #kotlin
 kotlin = "1.9.10"
@@ -49,7 +49,7 @@ kotlinxCoroutines = "1.7.2"
 kotlinxSerializationJson = "1.5.1"
 
 #三方库
-theRouter = "1.2.0-rc1"
+theRouter = "1.2.0-rc2"
 benManesVersion = "0.47.0"
 vanniktechPublish = "0.25.3"
 okhttp = "4.11.0"
@@ -159,6 +159,8 @@ brv = { group = "com.github.liangjingkanji", name = "BRV", version.ref = "brv" }
 flexbox-layout = { group = "com.github.google", name = "flexbox-layout", version.ref = "flexboxLayout" }
 leakcanary-android = { group = "com.squareup.leakcanary", name = "leakcanary-android", version.ref = "leakcanaryAndroid" }
 coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+coil-gif = { group = "io.coil-kt", name = "coil-gif", version.ref = "coil" }
+coil-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
 photoView = { group = "com.github.chrisbanes", name = "PhotoView", version.ref = "photoView" }
 materialDialog-core = { group = "com.afollestad.material-dialogs", name = "core", version.ref = "materialDialog" }
 materialDialog-input = { group = "com.afollestad.material-dialogs", name = "input", version.ref = "materialDialog" }

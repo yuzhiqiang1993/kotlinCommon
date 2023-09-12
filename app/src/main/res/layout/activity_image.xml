@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.ImageActivity">
+
+
+    <include
+        android:id="@+id/layout_toolbar"
+        layout="@layout/toolbar" />
+
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:flexWrap="wrap"
+        app:justifyContent="space_around">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_gif"
+            android:layout_width="wrap_content"
+            android:layout_height="126dp" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_svg"
+            android:layout_width="wrap_content"
+            android:layout_height="126dp" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_round"
+            android:layout_width="wrap_content"
+            android:layout_height="126dp" />
+
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -29,8 +29,8 @@ class LoginViewModel : BaseViewModel() {
             Logger.i("MMKVUtil.account = ${MMKVUser.pwd}")
 
             val loginBean = LoginBean()
-            loginBean.account = account
-            loginBean.pwd = pwd
+            loginBean.account.set(account)
+            loginBean.pwd.set(pwd)
 
 //
 //            val async = async {

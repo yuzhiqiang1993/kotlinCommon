@@ -1,7 +1,6 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.xeonyu.library)
-    alias(libs.plugins.ksp)
 }
 
 android {
@@ -51,7 +50,6 @@ dependencies {
     api(libs.brv)
 
     api(libs.therouter)
-    ksp(libs.therouter.apt)
 
     api(libs.xeonyu.coroutine)
     api(libs.xeonyu.logger)

@@ -68,7 +68,11 @@ class ImageListActivity : BaseActivity() {
                     val model = getModel<TouTiao.Result.Data>()
                     /*高度随机*/
                     itemImgListBinding.ivImg.layoutParams.height = 300 + Random.nextInt(300)
-                    itemImgListBinding.ivImg.load(model.thumbnailPicS)
+                    itemImgListBinding.ivImg.load(model.thumbnailPicS) {
+                        crossfade(true)
+//                        transformations(CircleCropTransformation())//图片圆角
+                    }
+
                 }
 
                 R.id.iv_img.onClick {

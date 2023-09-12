@@ -70,14 +70,7 @@ class HorizontalTextView @JvmOverloads constructor(
             iconEnd.visibility = View.GONE
 
             if (startIconRes != -1) {
-                {
-                    iconStart.visibility = View.VISIBLE
-                    iconStart.setImageResource(startIconRes)
-                    iconStart.colorFilter =
-                        BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                            iconTint, BlendModeCompat.SRC_ATOP
-                        )
-                }
+
                 iconStart.visibility = View.VISIBLE
                 iconStart.setImageResource(startIconRes)
                 iconStart.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(

@@ -1,7 +1,6 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.xeonyu.library)
-    kotlin("kapt")//dataBinding需要用到
 }
 
 android {
@@ -27,5 +26,6 @@ dependencies {
 
     api(project(":base"))
     api(project(":storage"))
+
 
 }

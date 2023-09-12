@@ -4,7 +4,8 @@ plugins {
 //    alias(libs.plugins.android.application)
 //    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.xeonyu.application)
-    alias(libs.plugins.ksp)
+//    alias(libs.plugins.ksp)
+    kotlin("kapt")
     id("therouter")
 //    id("com.yzq.android.room")
 //    id("com.yzq.theRouter")
@@ -146,15 +147,19 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     implementation(libs.therouter)
-    ksp(libs.therouter.apt)
+    kapt(libs.therouter.apt)
+
+    implementation(libs.androidx.exifinterface)
 
     implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
+    kapt(libs.androidx.room.compiler)
+
 
     implementation(project(":gao-de-map"))
     implementation(project(":common"))
     implementation(project(":baidu"))
     implementation(libs.xeonyu.logger)
+
 
 }
 

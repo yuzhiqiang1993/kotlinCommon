@@ -1,16 +1,8 @@
 package com.yzq.common.data
 
 import androidx.databinding.BaseObservable
-import androidx.databinding.Bindable
-import com.yzq.common.BR
+import androidx.databinding.ObservableField
 
-class DataBindingBean : BaseObservable() {
-
-
-    @Bindable
-    var content: String = ""
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.content)
-        }
-}
+data class DataBindingBean(
+    var content: ObservableField<String> = ObservableField<String>("init value")
+) : BaseObservable()

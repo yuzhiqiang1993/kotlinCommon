@@ -44,6 +44,8 @@ class ZxingActivity : BaseActivity() {
                 ClipboardUtils.copyText(tvResult.text)
                 true
             }
+
+
         }
 
         qrCodeActivityResult =
@@ -54,6 +56,8 @@ class ZxingActivity : BaseActivity() {
                     binding.tvResult.text = content
                 }
             }
+
+
     }
 
     private fun excuteZxing() {
