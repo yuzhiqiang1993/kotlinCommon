@@ -129,6 +129,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("存储", RoutePath.Main.STORAGE))
         items.add(NaviItem("Lottie", RoutePath.Main.LOTTIE))
         items.add(NaviItem("语音识别ASR", RoutePath.Main.ASR))
+        items.add(NaviItem("蓝牙", RoutePath.Main.BLUETOOTH))
 
 
         setData()

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yzq.kotlincommon">
 
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> <!-- Android 适配Android 11 -->
@@ -23,6 +24,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation"
+        tools:targetApi="s" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -40,6 +51,9 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
         <activity
+            android:name=".ui.activity.BlueToothActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.ImageActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
@@ -53,13 +67,10 @@
             android:name=".ui.activity.LottieActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <!-- 自定义一些元数据 -->
+            android:screenOrientation="portrait" /> <!-- 自定义一些元数据 -->
         <meta-data
             android:name="META_CHANNEL"
-            android:value="${META_CHANNEL_VALUE}" />
-        <!-- 适配分区存储 -->
+            android:value="${META_CHANNEL_VALUE}" /> <!-- 适配分区存储 -->
         <meta-data
             android:name="ScopedStorage"
             android:value="true" />
@@ -85,7 +96,6 @@
             android:name=".service.ForegroundService"
             android:enabled="true"
             android:exported="false" />
-
 
         <activity
             android:name=".ui.activity.ServiceActivity"

@@ -119,6 +119,13 @@
     "params": {}
   },
   {
+    "path": "/main/imageLoad",
+    "className": "com.yzq.kotlincommon.ui.activity.ImageActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/main/fragment",
     "className": "com.yzq.kotlincommon.ui.activity.FragmentActivity",
     "action": "",
@@ -175,15 +182,15 @@
     "params": {}
   },
   {
-    "path": "/main/channel",
-    "className": "com.yzq.kotlincommon.ui.activity.ChannelActivity",
+    "path": "/main/bsDiff",
+    "className": "com.yzq.kotlincommon.ui.activity.BsDiffActivity",
     "action": "",
     "description": "",
     "params": {}
   },
   {
-    "path": "/main/bsDiff",
-    "className": "com.yzq.kotlincommon.ui.activity.BsDiffActivity",
+    "path": "/main/bluetooth",
+    "className": "com.yzq.kotlincommon.ui.activity.BlueToothActivity",
     "action": "",
     "description": "",
     "params": {}
