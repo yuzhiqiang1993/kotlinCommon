@@ -32,7 +32,8 @@ rootProject.run {
 
 print("根目录的build.gradle 开始执行")
 tasks.register<Delete>("clean") {
-    delete(rootProject.buildDir)
+//    delete(rootProject.buildDir)
+    delete(layout.buildDirectory)
 }
 
 
