@@ -1,4 +1,4 @@
-package com.sfic.kfc.knight.net.interecptor
+package com.yzq.common.net
 
 import com.yzq.common.BuildConfig
 import com.yzq.logger.Logger

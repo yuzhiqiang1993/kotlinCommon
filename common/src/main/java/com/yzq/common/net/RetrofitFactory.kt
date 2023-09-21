@@ -1,6 +1,5 @@
 package com.yzq.common.net
 
-import com.sfic.kfc.knight.net.interecptor.LoggingInterceptor
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.common.net.constants.ServerConstants
 import okhttp3.OkHttpClient
