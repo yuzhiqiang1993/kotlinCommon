@@ -51,7 +51,8 @@ dependencyResolutionManagement {
     versionCatalogs {
         create("libs") {
 //            from("com.xeonyu:version-catalog:0.1.1")
-            from(files("gradle/libs.versions_backup.toml"))
+            /*如果名字为libs.versions，这里就不需要手动写，默认就会依赖*/
+//            from(files("gradle/libs.versions_backup.toml"))
         }
 //        create("gaodeLibs") {
 //            library("location", "com.amap.api:location:6.3.0")
@@ -61,27 +62,35 @@ dependencyResolutionManagement {
 }
 
 
-/**
- *
- * gradle 中两个重要的概念
- * 1.project:表示一个项目，例如app module,其他子module。
- * 2.task:表示一个具体要执行的任务 例如：assembleRelease
- *
- *
- * gradle 生命周期（三个阶段）
- * 1. 初始化阶段（settingsEvaluated）  执行的就是setting.gradle中的代码，主要是看include了哪些模块，生成任务依赖图
- * 2. 配置阶段（projectsLoaded，projectsEvaluated）    执行的各个模块中的build.gradle中的代码
- * 3. 构建阶段（buildFinished）    把配置阶段中生成好的任务依赖图执行，主要是执行task
- */
-
-/**
- * settings.gradle 运行在初始化阶段
- */
-
 /*settings.gradle里的代码会在初始化回调之前执行*/
-println("settings.gradle执行")
+println("settings.gradle 执行")
 
 println("rootProjectName:${rootProject.name}")
+
+gradle.addBuildListener(object : BuildAdapter() {
+
+    override fun settingsEvaluated(settings: Settings) {
+        super.settingsEvaluated(settings)
+        "初始化阶段结束".prependIndent().let(::println)
+    }
+
+    override fun projectsLoaded(gradle: Gradle) {
+        super.projectsLoaded(gradle)
+        println("projectsLoaded")
+    }
+
+    override fun projectsEvaluated(gradle: Gradle) {
+        super.projectsEvaluated(gradle)
+        println("projectsEvaluated")
+    }
+
+    override fun buildFinished(result: BuildResult) {
+        super.buildFinished(result)
+        "构建结束".prependIndent().let(::println)
+    }
+}
+)
+
 
 /*gradle的生命周期回调*/
 //gradle.addBuildListener(object : BuildAdapter() {
@@ -122,3 +131,4 @@ include(":permission")
 include(":aliemas")
 include(":baidu")
 include(":storage")
+

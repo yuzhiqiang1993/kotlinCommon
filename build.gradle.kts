@@ -1,7 +1,7 @@
 /**
  * 该处主要用来申明插件的版本，apply false表示不立即应用，而是自己手动应用
  */
-println("根目录的build.gradle 开始执行")
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.application) apply false
@@ -21,13 +21,14 @@ plugins {
 }
 
 /**
- * 定义的一些变量，在其他脚本中可以通过 rootProject.ext.get("key") 获取
+ * 定义的一些变量，在其他的build.gradle.kts中可以使用
+ * rootProject.ext.get("key") 获取
  */
+
 rootProject.run {
     ext.set("debugValue", "debugValue")
     ext.set("releaseValue", "releaseValue")
 }
-
 
 
 print("根目录的build.gradle 开始执行")

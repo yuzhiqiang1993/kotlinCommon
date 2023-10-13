@@ -44,7 +44,7 @@ class GaoDeActivity : BaseActivity() {
                 MapPermissionUtils.checkLocationPermission(this@GaoDeActivity) {
                     /**
                      * 锁屏后一分钟左右的时间会导致cpu休眠，此时后台定位不会执行，就算执行也会定位失败，Alarm+weaklock的方案实测不行
-                     * 申请ACCESS_BACKGROUND_LOCATION权限（定位权限选始终允许），引导用户开启 允许完全后台权限 是最好的方案
+                     * 申请 ACCESS_BACKGROUND_LOCATION权限（定位权限选始终允许），引导用户开启 允许完全后台权限 是最好的方案
                      */
 //                    continueLocationViewModel.startLocation()
                     val intent = Intent(this@GaoDeActivity, LocationService::class.java)
@@ -101,12 +101,8 @@ class GaoDeActivity : BaseActivity() {
 
     override fun observeViewModel() {
         observeUIState(signLocationViewModel, loadingDialog)
-        signLocationViewModel.locationData.observe(this) { t ->
-            if (t.errorCode == 0) {
-                binding.tvLocationResult.text = t.address
-            } else {
-                binding.tvLocationResult.text = t.locationDetail
-            }
+        signLocationViewModel.locationLiveData.observe(this) { t ->
+            binding.tvLocationResult.text = t.address
         }
     }
 

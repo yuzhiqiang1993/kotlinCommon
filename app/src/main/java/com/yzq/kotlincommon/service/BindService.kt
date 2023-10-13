@@ -4,11 +4,9 @@ import android.app.Service
 import android.content.Intent
 import android.os.Binder
 import android.os.IBinder
-import com.amap.api.location.AMapLocation
-import com.amap.api.location.AMapLocationClient
-import com.yzq.gao_de_map.LocationManager
-import com.yzq.gao_de_map.LocationResultListener
-import com.yzq.gao_de_map.ext.setLocationResultListener
+import com.yzq.location_manager.LocationManager
+import com.yzq.location_protocol.callback.LocationListener
+import com.yzq.location_protocol.data.Location
 import com.yzq.logger.Logger
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,18 +20,17 @@ import kotlinx.coroutines.flow.StateFlow
  * @time    13:53
  */
 
-class BindService : Service(), LocationResultListener {
+class BindService : Service(), LocationListener {
 
     private var binder = ServiceBinder()
 
     private var name: String = ""
 
-    private var newSigninLocationClient: AMapLocationClient? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         Logger.i("onStartCommand")
         /*一般是startService开启任务 bindService做通信*/
-        startLocation()
+        LocationManager.startOnceLocation(this)
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -48,23 +45,15 @@ class BindService : Service(), LocationResultListener {
         return binder
     }
 
-    private fun startLocation() {
-        if (newSigninLocationClient == null) {
-            newSigninLocationClient = LocationManager.newSigninLocationClient()
-                .apply { setLocationResultListener(this@BindService) }
-        }
-        newSigninLocationClient?.startLocation()
-    }
-
 
     /*返回给外部的binder 通信的桥梁*/
     inner class ServiceBinder : Binder() {
 
-        private val _locationFlow = MutableStateFlow<AMapLocation?>(null)
-        val locationFlow = _locationFlow as StateFlow<AMapLocation?>
+        private val _locationFlow = MutableStateFlow<Location?>(null)
+        val locationFlow = _locationFlow as StateFlow<Location?>
 
 
-        fun setLocation(location: AMapLocation) {
+        fun setLocation(location: Location) {
             /*提供数据给外部的方法*/
             _locationFlow.value = location
         }
@@ -77,11 +66,7 @@ class BindService : Service(), LocationResultListener {
 
     }
 
-    override fun onSuccess(location: AMapLocation) {
-        binder.setLocation(location)
-    }
-
-    override fun onFailed(location: AMapLocation) {
+    override fun onReceiveLocation(location: Location) {
         binder.setLocation(location)
     }
 
@@ -94,6 +79,5 @@ class BindService : Service(), LocationResultListener {
     override fun onDestroy() {
         super.onDestroy()
         Logger.i("onDestroy")
-        LocationManager.destoryLocationClient(newSigninLocationClient)
     }
 }

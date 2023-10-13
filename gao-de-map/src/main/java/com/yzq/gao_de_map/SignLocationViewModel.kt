@@ -1,12 +1,11 @@
 package com.yzq.gao_de_map
 
 import androidx.lifecycle.MutableLiveData
-import com.amap.api.location.AMapLocation
-import com.amap.api.location.AMapLocationClient
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
-import com.yzq.gao_de_map.ext.setLocationResultListener
-import com.yzq.logger.Logger
+import com.yzq.location_manager.LocationManager
+import com.yzq.location_protocol.callback.LocationListener
+import com.yzq.location_protocol.data.Location
 
 /**
  * @description: 定位模块,签到模式
@@ -16,38 +15,25 @@ import com.yzq.logger.Logger
  *
  */
 
-class SignLocationViewModel : BaseViewModel(), LocationResultListener {
+class SignLocationViewModel : BaseViewModel() {
 
 
-    private var singnInLocationClient: AMapLocationClient? = null
-
-    var locationData = MutableLiveData<AMapLocation>()
+    val locationLiveData = MutableLiveData<Location>()
 
     /*开始定位*/
-
     fun startLocation() {
-        if (singnInLocationClient == null) {
-            Logger.i("首次创建")
-            singnInLocationClient = LocationManager.newSigninLocationClient()
-                .apply { setLocationResultListener(this@SignLocationViewModel) }
-        }
         _uiStateFlow.value = UIState.ShowLoadingDialog("正在定位...")
-        singnInLocationClient?.startLocation()
-    }
+        LocationManager.startOnceLocation(object : LocationListener {
+            override fun onReceiveLocation(location: Location) {
+                _uiStateFlow.value = UIState.DissmissLoadingDialog()
+                locationLiveData.value = location
+            }
 
-    override fun onSuccess(location: AMapLocation) {
-        locationData.value = location
-        _uiStateFlow.value = UIState.DissmissLoadingDialog()
-    }
+            override fun onFailed(errorCode: Int, errorInfo: String, cacheLocation: Location?) {
+                _uiStateFlow.value = UIState.DissmissLoadingDialog()
 
-    override fun onFailed(location: AMapLocation) {
-        Logger.i("定位失败了")
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        Logger.i("viewmodel 要被销毁了")
-        LocationManager.destoryLocationClient(singnInLocationClient)
+            }
+        })
     }
 
 

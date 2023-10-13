@@ -8,16 +8,15 @@ import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
-import com.amap.api.location.AMapLocation
-import com.amap.api.location.AMapLocationClient
 import com.yzq.application.AppContext
 import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
 import com.yzq.gao_de_map.GaoDeActivity
-import com.yzq.gao_de_map.LocationManager
-import com.yzq.gao_de_map.LocationResultListener
 import com.yzq.gao_de_map.R
-import com.yzq.gao_de_map.ext.setLocationResultListener
+import com.yzq.location_manager.LocationManager
+import com.yzq.location_protocol.callback.LocationListener
+import com.yzq.location_protocol.core.LocationClient
+import com.yzq.location_protocol.data.Location
 import com.yzq.logger.Logger
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -29,20 +28,16 @@ import java.util.concurrent.atomic.AtomicBoolean
  * @time    17:33
  */
 
-class LocationService : Service(), AppStateListener, LocationResultListener {
+class LocationService : Service(), AppStateListener {
 
-    /*正常一次定位*/
+
     private var locationStarted = AtomicBoolean(false)
 
-    protected var locationClient: AMapLocationClient? = null
+
+    private var locationClient: LocationClient? = null
 
 
     override fun onCreate() {
-        /*初始化定位*/
-        if (locationClient == null) {
-            locationClient = LocationManager.newIntervalLocationClient(5000)
-                .apply { setLocationResultListener(this@LocationService) }
-        }
         AppManager.addAppStateListener(this)
     }
 
@@ -92,14 +87,18 @@ class LocationService : Service(), AppStateListener, LocationResultListener {
 
         /*调用startForegroundService的5秒内必要调用startForeground*/
         startForeground(1, notification)
-
-        /*启动后台定位，第一个参数为通知栏ID，建议整个APP使用一个*/
-        locationClient?.enableBackgroundLocation(1, notification)
-        /*关闭后台定位，参数为true时会移除通知栏，为false时不会移除通知栏，但是可以手动移除*/
-        locationClient?.disableBackgroundLocation(true)
-        locationClient?.startLocation()
+        LocationManager.enableBackgroundLocation(1, notification)
+        locationClient =
+            LocationManager.startIntervalLocation(5000,
+                object : LocationListener {
+                    override fun onReceiveLocation(location: Location) {
+                        Logger.i("${location}")
+                    }
+                })
 
         locationStarted.compareAndSet(false, true)
+
+
 
         return super.onStartCommand(intent, flags, startId)
     }
@@ -113,7 +112,7 @@ class LocationService : Service(), AppStateListener, LocationResultListener {
     override fun onDestroy() {
         Logger.i("onDestory")
         locationStarted.compareAndSet(true, false)
-        LocationManager.destoryLocationClient(locationClient)
+        locationClient?.destory()
         AppManager.removeAppStateListener(this)
     }
 
@@ -121,12 +120,5 @@ class LocationService : Service(), AppStateListener, LocationResultListener {
         stopSelf()
     }
 
-    override fun onSuccess(location: AMapLocation) {
-        Logger.i("定位成功")
-    }
-
-    override fun onFailed(location: AMapLocation) {
-        Logger.i("定位失败")
-    }
 
 }

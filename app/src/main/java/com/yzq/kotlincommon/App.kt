@@ -13,7 +13,14 @@ import com.xeon.asr_demo.ASRManager
 import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
 import com.yzq.img.CoilManager
-import com.yzq.kotlincommon.task.main_thread_task.*
+import com.yzq.kotlincommon.task.main_thread_task.InitAPMTask
+import com.yzq.kotlincommon.task.main_thread_task.InitAliPushTask
+import com.yzq.kotlincommon.task.main_thread_task.InitCrashReportTask
+import com.yzq.kotlincommon.task.main_thread_task.InitLocationTask
+import com.yzq.kotlincommon.task.main_thread_task.InitMMKVTask
+import com.yzq.kotlincommon.task.main_thread_task.InitSmartRefreshTask
+import com.yzq.kotlincommon.task.main_thread_task.InitStateLayoutConfigTask
+import com.yzq.kotlincommon.task.main_thread_task.InitTlogTask
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 import com.yzq.logger.Logger
 
@@ -54,6 +61,7 @@ class App : Application(), AppStateListener {
                 .addAppStartTask(InitAPMTask())
                 .addAppStartTask(InitTlogTask())
                 .addAppStartTask(InitAliPushTask())
+                .addAppStartTask(InitLocationTask())
                 .start()
                 .await()
 
