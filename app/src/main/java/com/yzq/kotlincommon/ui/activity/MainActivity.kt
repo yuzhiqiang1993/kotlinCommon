@@ -94,6 +94,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             toggle.syncState()
             navView.setNavigationItemSelectedListener(this@MainActivity)
         }
+
+
     }
 
     override fun initData() {
