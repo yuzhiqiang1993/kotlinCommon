@@ -1,8 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.xeonyu.library)
-//    alias(libs.plugins.ksp)
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -21,5 +20,5 @@ dependencies {
 
     api(libs.xeonyu.location.manager)
     api(libs.xeonyu.location.gaode)
-    kapt(libs.therouter.apt)
+    ksp(libs.therouter.apt)
 }
