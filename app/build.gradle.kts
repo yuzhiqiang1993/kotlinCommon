@@ -5,14 +5,19 @@ plugins {
 //    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.xeonyu.application)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.xeonyu.dependencyAnalysis)
     id("therouter")
-//    id("com.yzq.android.room")
-//    id("com.yzq.theRouter")
 
 }
 println("getRootDir():${rootDir}")
 
 //apply from: file("${getRootDir()}/gradle_script/bytex.gradle")
+
+dependencyAnalysis {
+    enable = true
+    collectFileDetail = true
+    logEnable = true
+}
 
 android {
     namespace = "com.yzq.kotlincommon"

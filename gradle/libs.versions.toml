@@ -92,6 +92,7 @@ gaodeLocation = "6.4.0"
 
 #我的开源库
 xeonBuildManager = "0.0.7"
+xeonDependencyAnalysis = "1.0.1"
 xeonZxing = "2.2.9"
 xeonCordovaWebContainer = "1.0.5"
 xeonCordovaLib = "12.0.2"
@@ -241,5 +242,6 @@ vanniktechPublish = { id = "com.vanniktech.maven.publish", version.ref = "vannik
 #自定义的插件
 xeonyu-application = { id = "com.xeonyu.plugin.application", version.ref = "xeonBuildManager" }
 xeonyu-library = { id = "com.xeonyu.plugin.library", version.ref = "xeonBuildManager" }
+xeonyu-dependencyAnalysis = { id = "com.xeonyu.plugin.dependencyAnalysis", version.ref = "xeonDependencyAnalysis" }
 #xeonyu-room = { id = "com.xeonyu.plugin.room", version.ref = "buildManagerVersion" }
 #xeonyu-therouter = { id = "com.xeonyu.plugin.therouter", version.ref = "buildManagerVersion" }
