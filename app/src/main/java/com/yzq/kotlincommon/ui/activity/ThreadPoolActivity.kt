@@ -9,6 +9,7 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityThreadPoolBinding
 import com.yzq.logger.Logger
+import java.util.concurrent.Callable
 import java.util.concurrent.TimeUnit
 
 
@@ -86,8 +87,64 @@ class ThreadPoolActivity : BaseActivity() {
                 }
 
             }
+            btnInvokeAll.setOnThrottleTimeClick {
+                invokeAllTask()
+            }
+
+            btnSubmitAll.setOnThrottleTimeClick {
+                submitAllTask()
+            }
+
+
         }
     }
 
+    private fun submitAllTask() {
+
+        Logger.i("开始执行")
+        val futureList = ThreadPoolManager.instance.submitMultipleIoTasks(
+            listOf(
+                MyTask("task1", 4),
+                MyTask("task2", 2),
+                MyTask("task3", 3),
+            )
+        )
+
+        Logger.i("都结束了。。。")
+
+        futureList.forEach {
+            Logger.i("返回值：${it.get()}")
+        }
+
+
+    }
+
+    private fun invokeAllTask() {
+        Logger.i("开始执行")
+        val futureList = ThreadPoolManager.instance.invokeAllIoTask(
+            listOf(
+                MyTask("task1"),
+                MyTask("task2", 4),
+                MyTask("task3", 2),
+            )
+        )
+
+        Logger.i("都结束了。。。")
+
+        futureList.forEach {
+            Logger.i("返回值：${it.get()}")
+        }
+    }
+
+
+    inner class MyTask(val taskName: String, val sleepTime: Long = 1) : Callable<String> {
+        override fun call(): String {
+            Logger.i("${Thread.currentThread().name} ${taskName}:开始执行")
+            TimeUnit.SECONDS.sleep(sleepTime)
+            Logger.i("${taskName} 执行完毕了")
+            return "${taskName}返回值"
+        }
+
+    }
 
 }

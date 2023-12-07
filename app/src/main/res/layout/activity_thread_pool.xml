@@ -43,4 +43,20 @@
         android:text="submitCpuTask" />
 
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_invoke_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:text="invokeAllTask" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_submit_all"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:layout_marginEnd="@dimen/dp_16"
+        android:text="submitAllTask" />
+
 </androidx.appcompat.widget.LinearLayoutCompat>
