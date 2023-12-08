@@ -70,6 +70,7 @@ class ThreadPoolActivity : BaseActivity() {
             }
 
             btnSubmitCpuTask.setOnThrottleTimeClick {
+
                 val future = ThreadPoolManager.instance.submitCpuTask {
                     Logger.i("开始执行")
                     TimeUnit.SECONDS.sleep(1)
@@ -102,6 +103,7 @@ class ThreadPoolActivity : BaseActivity() {
     private fun submitAllTask() {
 
         Logger.i("开始执行")
+        //这里会阻塞线程
         val futureList = ThreadPoolManager.instance.submitMultipleIoTasks(
             listOf(
                 MyTask("task1", 4),
@@ -109,6 +111,7 @@ class ThreadPoolActivity : BaseActivity() {
                 MyTask("task3", 3),
             )
         )
+
 
         Logger.i("都结束了。。。")
 
@@ -131,6 +134,7 @@ class ThreadPoolActivity : BaseActivity() {
 
         Logger.i("都结束了。。。")
 
+        //到这里才会阻塞线程
         futureList.forEach {
             Logger.i("返回值：${it.get()}")
         }
