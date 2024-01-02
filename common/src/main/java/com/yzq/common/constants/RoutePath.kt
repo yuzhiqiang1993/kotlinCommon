@@ -44,6 +44,7 @@ object RoutePath {
         const val ASR: String = "/main/asr"
         const val IMAGE_LOAD: String = "/main/imageLoad"
         const val BLUETOOTH: String = "/main/bluetooth"
+        const val REACT_NATIVE: String = "/main/reactNative"
 
     }
 

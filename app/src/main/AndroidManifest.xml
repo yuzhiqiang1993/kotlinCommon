@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yzq.kotlincommon">
 
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> <!-- Android 适配Android 11 -->
@@ -23,7 +22,6 @@
         android:required="true" /> <!-- 表示如果用户设备没有摄像头是否允许安装 由required字段控制 false表示可以安装 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -51,6 +49,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
+        <activity
+            android:name=".ui.activity.ReactNativeActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.BlueToothActivity"
             android:exported="false" />

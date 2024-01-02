@@ -132,6 +132,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("Lottie", RoutePath.Main.LOTTIE))
         items.add(NaviItem("语音识别ASR", RoutePath.Main.ASR))
         items.add(NaviItem("蓝牙", RoutePath.Main.BLUETOOTH))
+        items.add(NaviItem("ReactNative", RoutePath.Main.REACT_NATIVE))
 
 
         setData()

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Trace
 import com.aice.appstartfaster.dispatcher.AppStartTaskDispatcher
+import com.facebook.soloader.SoLoader
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.therouter.TheRouter
 import com.xeon.asr_demo.ASRManager
@@ -42,6 +43,9 @@ class App : Application(), AppStateListener {
 
         if (AppManager.isMainProcess()) {
             Logger.i("主进程")
+            //初始化RN SoLoader
+            SoLoader.init(this, false)
+
             /*监听App是否退出*/
             AppManager.addAppStateListener(this)
             /*读清单配置文件里的数据*/

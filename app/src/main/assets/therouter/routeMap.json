@@ -63,6 +63,13 @@
     "params": {}
   },
   {
+    "path": "/main/reactNative",
+    "className": "com.yzq.kotlincommon.ui.activity.ReactNativeActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/main/movies",
     "className": "com.yzq.kotlincommon.ui.activity.NewsActivity",
     "action": "",

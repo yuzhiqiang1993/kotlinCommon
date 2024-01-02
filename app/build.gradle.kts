@@ -1,5 +1,4 @@
-@Suppress("DSL_SCOPE_VIOLATION")
-plugins {
+@Suppress("DSL_SCOPE_VIOLATION") plugins {
 //    id("com.yzq.android.application")
 //    alias(libs.plugins.android.application)
 //    alias(libs.plugins.kotlin.android)
@@ -7,6 +6,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.xeonyu.dependencyAnalysis)
     id("therouter")
+    alias(libs.plugins.kotlin.android)
 
 }
 println("getRootDir():${rootDir}")
@@ -31,7 +31,7 @@ android {
         }
         resourceConfigurations += listOf("zh")
         ndk {
-            abiFilters += listOf("arm64-v8a", "armeabi-v7a")
+            abiFilters += listOf("arm64-v8a")
         }
     }
 
@@ -54,13 +54,13 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             isDebuggable = true
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            /*给buildConfig中添加变量*/
+            proguardFiles(
+                getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            )/*给buildConfig中添加变量*/
             buildConfigField("boolean", "LOG_DEBUG", "false")
             buildConfigField("String", "BASE_URL", "\"https://debug.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
             buildConfigField("String", "CUSTOME_FIELD", "\"${rootProject.ext.get("debugValue")}\"")
-        }
-        /*生产环境用*/
+        }/*生产环境用*/
         release {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
@@ -70,9 +70,7 @@ android {
             buildConfigField("boolean", "LOG_DEBUG", "true")
             buildConfigField("String", "BASE_URL", "\"https://release.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
             buildConfigField(
-                "String",
-                "CUSTOME_FIELD",
-                "\"${rootProject.ext.get("releaseValue")}\""
+                "String", "CUSTOME_FIELD", "\"${rootProject.ext.get("releaseValue")}\""
             )
         }
     }
@@ -117,6 +115,15 @@ android {
     }
 
 
+    packaging {
+        jniLibs.pickFirsts.apply {
+            add("lib/arm64-v8a/libc++_shared.so")
+            add("lib/armeabi-v7a/libc++_shared.so")
+            add("lib/x86/libc++_shared.so")
+            add("lib/x86_64/libc++_shared.so")
+        }
+    }
+
 //    compileOptions {
 //        sourceCompatibility = JavaVersion.VERSION_17
 //        targetCompatibility = JavaVersion.VERSION_17
@@ -151,6 +158,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     implementation(libs.therouter)
+    implementation(libs.androidx.activity)
     ksp(libs.therouter.apt)
 
     implementation(libs.androidx.exifinterface)
@@ -162,6 +170,7 @@ dependencies {
     implementation(project(":gao-de-map"))
     implementation(project(":common"))
     implementation(project(":baidu"))
+    implementation(project(":react-native"))
     implementation(libs.xeonyu.logger)
 
 
