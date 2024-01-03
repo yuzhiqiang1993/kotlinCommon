@@ -14,6 +14,12 @@ import com.yzq.kotlincommon.BuildConfig
 import com.yzq.kotlincommon.databinding.ActivityReactNativeBinding
 import com.yzq.react_native.BaseRnActivity
 
+
+/**
+ * @description 用于承载RN的Activity
+ * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
+ */
+
 @Route(path = RoutePath.Main.REACT_NATIVE)
 class ReactNativeActivity : BaseRnActivity() {
 
@@ -22,10 +28,9 @@ class ReactNativeActivity : BaseRnActivity() {
     override fun getReactRootView() = binding.reactRootView
 
     override fun createReactInstanceManager(): ReactInstanceManager {
-        return ReactInstanceManager.builder()
-            .setApplication(AppManager.application)
+        return ReactInstanceManager.builder().setApplication(AppManager.application)
             .setCurrentActivity(this)
-            .setBundleAssetName("index.android.bundle")//打包时放在assets目录下的JS bundle包的名字，App release之后会从该目录下加载JS bundle；
+            .setBundleAssetName("rn/index.android.bundle")//打包时放在assets目录下的JS bundle包的名字，App release之后会从该目录下加载JS bundle；
             .setJSMainModulePath("index")//入口文件名字，即index.js；
             .addPackage(MainReactPackage())
             .setJavaScriptExecutorFactory(HermesExecutorFactory())
@@ -39,10 +44,10 @@ class ReactNativeActivity : BaseRnActivity() {
 
 
         binding.run {
-
             initToolbar(includedToolbar.toolbar, "ReactNative")
             reactRootView.startReactApplication(reactInstanceManager, "RNProject0_73_1", null)
             fab.setOnClickListener {
+                //显示开发者调试菜单
                 reactInstanceManager.devSupportManager?.showDevOptionsDialog()
             }
         }
