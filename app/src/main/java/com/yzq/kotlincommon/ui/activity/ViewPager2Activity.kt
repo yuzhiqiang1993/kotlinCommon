@@ -68,6 +68,7 @@ class ViewPager2Activity :
                 R.id.menu_view -> {
                     showFragment(viewPagerFragment)
                 }
+
                 R.id.menu_fragment -> {
 
                     showFragment(viewPagerWithFragment)

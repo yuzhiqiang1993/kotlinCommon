@@ -1,6 +1,6 @@
 package com.yzq.common.net.utils
 
-import java.util.*
+import java.util.Random
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec

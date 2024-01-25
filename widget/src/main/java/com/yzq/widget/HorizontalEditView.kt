@@ -10,7 +10,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import androidx.core.view.doOnAttach
-import androidx.lifecycle.*
 import com.yzq.widget.databinding.ViewHorizontalEditLayoutBinding
 
 /**

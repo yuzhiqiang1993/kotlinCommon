@@ -52,6 +52,7 @@ object PermissionNameConvert {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.READ_MEDIA_IMAGES, Permission.READ_MEDIA_VIDEO -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                         val hint = context.getString(R.string.common_permission_image_and_video)
@@ -60,6 +61,7 @@ object PermissionNameConvert {
                         }
                     }
                 }
+
                 Permission.READ_MEDIA_AUDIO -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                         val hint = context.getString(R.string.common_permission_music_and_audio)
@@ -68,18 +70,21 @@ object PermissionNameConvert {
                         }
                     }
                 }
+
                 Permission.CAMERA -> {
                     val hint = context.getString(R.string.common_permission_camera)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.RECORD_AUDIO -> {
                     val hint = context.getString(R.string.common_permission_microphone)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.ACCESS_FINE_LOCATION, Permission.ACCESS_COARSE_LOCATION, Permission.ACCESS_BACKGROUND_LOCATION -> {
                     var hint: String
                     hint = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
@@ -94,6 +99,7 @@ object PermissionNameConvert {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.BODY_SENSORS, Permission.BODY_SENSORS_BACKGROUND -> {
                     var hint: String
                     hint = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
@@ -107,6 +113,7 @@ object PermissionNameConvert {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.BLUETOOTH_SCAN, Permission.BLUETOOTH_CONNECT, Permission.BLUETOOTH_ADVERTISE -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                         val hint = context.getString(R.string.common_permission_nearby_devices)
@@ -115,6 +122,7 @@ object PermissionNameConvert {
                         }
                     }
                 }
+
                 Permission.NEARBY_WIFI_DEVICES -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                         val hint = context.getString(R.string.common_permission_nearby_devices)
@@ -123,24 +131,28 @@ object PermissionNameConvert {
                         }
                     }
                 }
+
                 Permission.READ_PHONE_STATE, Permission.CALL_PHONE, Permission.ADD_VOICEMAIL, Permission.USE_SIP, Permission.READ_PHONE_NUMBERS, Permission.ANSWER_PHONE_CALLS -> {
                     val hint = context.getString(R.string.common_permission_phone)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.GET_ACCOUNTS, Permission.READ_CONTACTS, Permission.WRITE_CONTACTS -> {
                     val hint = context.getString(R.string.common_permission_contacts)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.READ_CALENDAR, Permission.WRITE_CALENDAR -> {
                     val hint = context.getString(R.string.common_permission_calendar)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.READ_CALL_LOG, Permission.WRITE_CALL_LOG, Permission.PROCESS_OUTGOING_CALLS -> {
                     val hint =
                         context.getString(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) R.string.common_permission_call_logs else R.string.common_permission_phone)
@@ -148,6 +160,7 @@ object PermissionNameConvert {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.ACTIVITY_RECOGNITION -> {
                     val hint =
                         context.getString(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) R.string.common_permission_activity_recognition_api30 else R.string.common_permission_activity_recognition_api29)
@@ -155,6 +168,7 @@ object PermissionNameConvert {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.ACCESS_MEDIA_LOCATION -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                         val hint =
@@ -164,12 +178,14 @@ object PermissionNameConvert {
                         }
                     }
                 }
+
                 Permission.SEND_SMS, Permission.RECEIVE_SMS, Permission.READ_SMS, Permission.RECEIVE_WAP_PUSH, Permission.RECEIVE_MMS -> {
                     val hint = context.getString(R.string.common_permission_sms)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.MANAGE_EXTERNAL_STORAGE -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                         val hint = context.getString(R.string.common_permission_all_file_access)
@@ -178,30 +194,35 @@ object PermissionNameConvert {
                         }
                     }
                 }
+
                 Permission.REQUEST_INSTALL_PACKAGES -> {
                     val hint = context.getString(R.string.common_permission_install_unknown_apps)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.SYSTEM_ALERT_WINDOW -> {
                     val hint = context.getString(R.string.common_permission_display_over_other_apps)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.WRITE_SETTINGS -> {
                     val hint = context.getString(R.string.common_permission_modify_system_settings)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.NOTIFICATION_SERVICE -> {
                     val hint = context.getString(R.string.common_permission_allow_notifications)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.POST_NOTIFICATIONS -> {
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                         val hint = context.getString(R.string.common_permission_post_notifications)
@@ -210,6 +231,7 @@ object PermissionNameConvert {
                         }
                     }
                 }
+
                 Permission.BIND_NOTIFICATION_LISTENER_SERVICE -> {
                     val hint =
                         context.getString(R.string.common_permission_allow_notifications_access)
@@ -217,48 +239,56 @@ object PermissionNameConvert {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.PACKAGE_USAGE_STATS -> {
                     val hint = context.getString(R.string.common_permission_apps_with_usage_access)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.SCHEDULE_EXACT_ALARM -> {
                     val hint = context.getString(R.string.common_permission_alarms_reminders)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.ACCESS_NOTIFICATION_POLICY -> {
                     val hint = context.getString(R.string.common_permission_do_not_disturb_access)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS -> {
                     val hint = context.getString(R.string.common_permission_ignore_battery_optimize)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.BIND_VPN_SERVICE -> {
                     val hint = context.getString(R.string.common_permission_vpn)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.PICTURE_IN_PICTURE -> {
                     val hint = context.getString(R.string.common_permission_picture_in_picture)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 Permission.GET_INSTALLED_APPS -> {
                     val hint = context.getString(R.string.common_permission_get_installed_apps)
                     if (!permissionNames.contains(hint)) {
                         permissionNames.add(hint)
                     }
                 }
+
                 else -> {}
             }
         }

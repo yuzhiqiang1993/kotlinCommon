@@ -77,6 +77,7 @@ class TaskActivity : BaseActivity() {
                                     includedTaskContent.tvName.text = model.name
                                 }
                         }
+
                         R.layout.item_task_hover -> {
                             getBinding<ItemTaskHoverBinding>().tvHover.text = model.type
                         }

@@ -35,8 +35,8 @@ public class AutoCheck {
     private final LinkedHashMap<String, Check> checks;
     private final Context context;
     private final Handler handler;
-    private boolean hasError;
     private final boolean enableOffline;
+    private boolean hasError;
     private boolean isFinished = false;
     private String name;
 

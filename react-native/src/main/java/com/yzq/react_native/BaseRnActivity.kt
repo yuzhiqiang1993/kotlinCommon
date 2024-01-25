@@ -5,7 +5,6 @@ import android.view.View
 import com.facebook.react.ReactInstanceManager
 import com.facebook.react.ReactRootView
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
-import com.facebook.soloader.SoLoader
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.logger.Logger
 

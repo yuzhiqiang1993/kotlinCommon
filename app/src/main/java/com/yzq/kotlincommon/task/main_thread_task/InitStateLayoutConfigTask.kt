@@ -31,6 +31,7 @@ class InitStateLayoutConfigTask : MainThreadTask() {
                         is Throwable -> {
                             msgTv?.text = tag.message
                         }
+
                         is ApiResult.Error -> {
                             msgTv?.text = buildString {
                                 append(tag.code)
@@ -38,6 +39,7 @@ class InitStateLayoutConfigTask : MainThreadTask() {
                                 append(tag.message)
                             }
                         }
+
                         is String -> {
                             msgTv?.text = tag
                         }

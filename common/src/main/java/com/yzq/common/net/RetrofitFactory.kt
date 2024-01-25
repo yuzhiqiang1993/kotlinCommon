@@ -53,7 +53,6 @@ class RetrofitFactory private constructor() {
     }
 
 
-
     /*
     * 具体服务实例化
     * */

@@ -38,21 +38,27 @@ fun BaseActivity.observeUIState(
                 }
 
             }
+
             is UIState.ShowToast -> {
                 runMain { ToastUtils.showLong(it.msg) }
             }
+
             is UIState.ShowDialog -> {
                 runMain { showBaseDialog(message = it.msg) }
             }
+
             is UIState.ShowContent -> {
                 stateLayout?.run { runMain { showContent() } }
             }
+
             is UIState.ShowError -> {
                 stateLayout?.run { runMain { showError(it.msg) } }
             }
+
             is UIState.ShowLoading -> {
                 stateLayout?.run { runMain { showLoading(it.msg) } }
             }
+
             is UIState.ShowEmpty -> {
                 stateLayout?.run { runMain { showEmpty() } }
             }
@@ -76,26 +82,33 @@ fun BaseFragment.observeUIState(
             is UIState.DissmissLoadingDialog -> {
                 loadingDialog?.run { dismissDialog() }
             }
+
             is UIState.ShowLoadingDialog -> {
                 loadingDialog?.run {
                     updateTitle(it.msg).show()
                 }
             }
+
             is UIState.ShowToast -> {
                 runMain { ToastUtils.showLong(it.msg) }
             }
+
             is UIState.ShowDialog -> {
                 runMain { requireActivity().showBaseDialog(message = it.msg) }
             }
+
             is UIState.ShowContent -> {
                 stateLayout?.run { runMain { showContent() } }
             }
+
             is UIState.ShowError -> {
                 stateLayout?.run { runMain { showError(it.msg) } }
             }
+
             is UIState.ShowLoading -> {
                 stateLayout?.run { runMain { showLoading(it.msg) } }
             }
+
             is UIState.ShowEmpty -> {
                 stateLayout?.run { runMain { showEmpty() } }
             }
