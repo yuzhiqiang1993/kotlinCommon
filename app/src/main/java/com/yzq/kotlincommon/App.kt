@@ -34,6 +34,7 @@ import com.yzq.logger.Logger
  *
  */
 
+
 class App : Application(), AppStateListener {
 
     override fun onCreate() {

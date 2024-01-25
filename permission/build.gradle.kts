@@ -6,6 +6,9 @@ plugins {
 
 android {
     namespace = "com.yzq.permission"
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 

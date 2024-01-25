@@ -1,12 +1,8 @@
 @Suppress("DSL_SCOPE_VIOLATION") plugins {
-//    id("com.yzq.android.application")
-//    alias(libs.plugins.android.application)
-//    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.xeonyu.application)
     alias(libs.plugins.ksp)
     alias(libs.plugins.xeonyu.dependencyAnalysis)
     id("therouter")
-    alias(libs.plugins.kotlin.android)
 
 }
 println("getRootDir():${rootDir}")
@@ -17,6 +13,7 @@ dependencyAnalysis {
     enable = true
     collectFileDetail = true
     logEnable = true
+    collectArtifactFilePath = true
 }
 
 android {

@@ -30,7 +30,7 @@ class ReactNativeActivity : BaseRnActivity() {
     override fun createReactInstanceManager(): ReactInstanceManager {
         return ReactInstanceManager.builder().setApplication(AppManager.application)
             .setCurrentActivity(this)
-            .setBundleAssetName("rn/index.android.bundle")//打包时放在assets目录下的JS bundle包的名字，App release之后会从该目录下加载JS bundle；
+            .setBundleAssetName("rn/index.android.bundle")//打包时放在assets目录下的JS bundle包的名字，加载内置bundle时使用；
             .setJSMainModulePath("index")//入口文件名字，即index.js；
             .addPackage(MainReactPackage())
             .setJavaScriptExecutorFactory(HermesExecutorFactory())

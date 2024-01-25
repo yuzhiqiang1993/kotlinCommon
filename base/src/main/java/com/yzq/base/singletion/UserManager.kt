@@ -11,11 +11,12 @@ class UserManager private constructor(name: String) {
 
     companion object {
 
-        @Volatile private var INSTANCE: UserManager? = null
+        @Volatile
+        private var INSTANCE: UserManager? = null
 
         fun getInstance(name: String) {
 
-            /*这种写法其实就是下面那种写法*/
+            /*这种写法跟下面效果一致*/
             INSTANCE ?: synchronized(this) {
                 INSTANCE ?: UserManager(name).also { INSTANCE = it }
             }

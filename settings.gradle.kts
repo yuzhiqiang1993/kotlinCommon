@@ -3,7 +3,7 @@ pluginManagement {
     println("pluginManagement")
 
     repositories {
-//        mavenLocal()
+        mavenLocal()
         google()
         mavenCentral()
         maven {
@@ -22,18 +22,6 @@ pluginManagement {
         gradlePluginPortal()
 
     }
-
-//    resolutionStrategy {
-//        eachPlugin {
-//            when (requested.id.id) {
-//                "com.yzq.dependency.analysis" -> {
-//                    useModule("com.yzq:dependency-analysis-plugin:1.0.0-SNAPSHOT")
-//                }
-//
-//                else -> {}
-//            }
-//        }
-//    }
 }
 
 
