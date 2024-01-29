@@ -16,7 +16,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityRoomBinding
 import com.yzq.kotlincommon.databinding.ItemRoomBinding
 import com.yzq.kotlincommon.view_model.RoomViewModel
-import com.yzq.materialdialog.showInputDialog
+import com.yzq.dialog.showInputDialog
 import com.yzq.storage.db.LocalDateTimeConverter
 import com.yzq.storage.db.User
 import kotlinx.coroutines.delay

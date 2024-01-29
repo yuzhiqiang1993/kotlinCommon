@@ -14,8 +14,8 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(project(":materialdialog"))
-//    implementation(project(":application"))
+    implementation(project(":dialog"))
+    //    implementation(project(":application"))
 
     implementation(libs.androidx.appcompat)
     /*utils*/

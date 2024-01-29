@@ -6,7 +6,7 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBindingDelegateBinding
-import com.yzq.materialdialog.showBaseDialog
+import com.yzq.dialog.showBaseDialog
 
 @Route(path = RoutePath.Main.VIEW_BINDING_DELEGATE)
 class BindingDelegateActivity : BaseActivity() {

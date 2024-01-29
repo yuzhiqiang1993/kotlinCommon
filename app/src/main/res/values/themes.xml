@@ -78,4 +78,11 @@
     </style>
 
 
+    <!--弹窗的自定义样式-->
+    <style name="DialogAnimation" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+    </style>
+
+
 </resources>

@@ -18,10 +18,14 @@ dependencies {
     implementation(libs.google.material)
     implementation(libs.androidx.constraintlayout)
 
+    implementation(libs.xeonyu.logger)
+
     api(libs.materialDialog.core)
     api(libs.materialDialog.input)
     api(libs.materialDialog.bottomsheets)
     api(libs.materialDialog.lifecycle)
 
     api(libs.dateTimePicker)
+
+
 }

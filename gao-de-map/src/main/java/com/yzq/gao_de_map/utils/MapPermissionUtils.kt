@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import com.hjq.permissions.Permission
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.common.utils.LocationUtils
-import com.yzq.materialdialog.showPositiveCallbackDialog
+import com.yzq.dialog.showPositiveCallbackDialog
 import com.yzq.permission.getPermissions
 
 /**

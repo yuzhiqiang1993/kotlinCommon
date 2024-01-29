@@ -9,7 +9,7 @@ import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.coroutine.safety_coroutine.runMain
 import com.yzq.logger.Logger
-import com.yzq.materialdialog.showBaseDialog
+import com.yzq.dialog.showBaseDialog
 import com.yzq.widget.dialog.BubbleDialog
 
 @JvmOverloads

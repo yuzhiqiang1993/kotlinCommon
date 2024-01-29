@@ -27,7 +27,8 @@ class ReactNativeActivity : BaseRnActivity() {
     override fun getReactRootView() = binding.reactRootView
 
     override fun createReactInstanceManager(): ReactInstanceManager {
-        return ReactInstanceManager.builder().setApplication(AppManager.application)
+        return ReactInstanceManager.builder()
+            .setApplication(AppManager.application)
             .setCurrentActivity(this)
             .setBundleAssetName("rn/index.android.bundle")//打包时放在assets目录下的JS bundle包的名字，加载内置bundle时使用；
             .setJSMainModulePath("index")//入口文件名字，即index.js；
@@ -36,6 +37,7 @@ class ReactNativeActivity : BaseRnActivity() {
             .setUseDeveloperSupport(BuildConfig.DEBUG)//开发者支持，开发模式下开启；
             .setInitialLifecycleState(LifecycleState.RESUMED)//设置初始生命周期状态，这里设置为resume即可；
             .build()
+
     }
 
 

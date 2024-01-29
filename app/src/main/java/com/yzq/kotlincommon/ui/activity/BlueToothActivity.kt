@@ -22,7 +22,7 @@ import com.yzq.kotlincommon.databinding.ActivityBlueToothBinding
 import com.yzq.kotlincommon.databinding.ItemBluetoothBinding
 import com.yzq.kotlincommon.manager.BluetoothScanner
 import com.yzq.logger.Logger
-import com.yzq.materialdialog.showBaseDialog
+import com.yzq.dialog.showBaseDialog
 import com.yzq.permission.getPermissions
 
 

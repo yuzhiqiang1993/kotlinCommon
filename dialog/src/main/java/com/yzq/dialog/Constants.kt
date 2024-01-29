@@ -1,4 +1,4 @@
-package com.yzq.materialdialog
+package com.yzq.dialog
 
 const val HINT = "提示"
 const val SURE = "确定"

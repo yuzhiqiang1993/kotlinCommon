@@ -1,4 +1,4 @@
-package com.yzq.materialdialog
+package com.yzq.dialog
 
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
+import com.yzq.materialdialog.R
 
 /**
  * @description: 扩展的加载框

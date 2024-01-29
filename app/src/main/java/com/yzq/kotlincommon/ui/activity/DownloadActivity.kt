@@ -15,9 +15,9 @@ import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.coroutine.safety_coroutine.withIO
 import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
 import com.yzq.logger.Logger
-import com.yzq.materialdialog.changeProgress
-import com.yzq.materialdialog.changeTitle
-import com.yzq.materialdialog.newProgressDialog
+import com.yzq.dialog.changeProgress
+import com.yzq.dialog.changeTitle
+import com.yzq.dialog.newProgressDialog
 import com.yzq.storage.AppStorage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

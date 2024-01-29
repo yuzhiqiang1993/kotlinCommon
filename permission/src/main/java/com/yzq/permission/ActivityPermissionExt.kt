@@ -7,7 +7,7 @@ import com.hjq.permissions.OnPermissionPageCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
 import com.yzq.logger.Logger
-import com.yzq.materialdialog.showCallbackDialog
+import com.yzq.dialog.showCallbackDialog
 
 
 /**

@@ -5,12 +5,15 @@ import com.blankj.utilcode.util.ToastUtils
 import com.hjq.permissions.Permission
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
+import com.yzq.dialog.autoDissmiss
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentUserBinding
 import com.yzq.logger.Logger
-import com.yzq.materialdialog.showCallbackDialog
-import com.yzq.materialdialog.showPositiveCallbackDialog
+import com.yzq.dialog.showCallbackDialog
+import com.yzq.dialog.showPositiveCallbackDialog
+import com.yzq.kotlincommon.dialog.CustomDialogFragment
 import com.yzq.permission.getPermissions
+
 
 class UserFragment : BaseFragment(R.layout.fragment_user) {
 
@@ -21,8 +24,7 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
         override fun handleOnBackPressed() {
 
             requireActivity().showPositiveCallbackDialog(
-                "确认退出?",
-                "确认退出已填写的数据将会丢失!"
+                "确认退出?", "确认退出已填写的数据将会丢失!"
             ) {
                 /*调OnBackPressedCallback的setEnabled控制callback是否生效*/
                 isEnabled = false
@@ -37,14 +39,12 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
     }
 
 
-    override fun initVariable() {
-        /*返回处理*/
+    override fun initVariable() {/*返回处理*/
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backCallback)
     }
 
     override fun onHiddenChanged(hidden: Boolean) {
-        Logger.i("onHiddenChanged：${hidden}")
-        /*保证只在当前fragment中生效*/
+        Logger.i("onHiddenChanged：${hidden}")/*保证只在当前fragment中生效*/
         backCallback.isEnabled = !hidden
     }
 
@@ -54,15 +54,17 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
         Logger.i("UserFragment")
 
         binding.btnShowDialog.setOnClickListener {
-            requireActivity().showCallbackDialog(
-                message = "这是在Fragment中调的弹窗",
-                positiveCallback = {
-                    ToastUtils.showShort("点击了确定")
-                },
-                negativeCallback = {
-                    ToastUtils.showShort("点击了取消")
-                }
-            )
+//            requireActivity().showCallbackDialog(
+//                message = "这是在Fragment中调的弹窗",
+//                positiveCallback = {
+//                    ToastUtils.showShort("点击了确定")
+//                },
+//                negativeCallback = {
+//                    ToastUtils.showShort("点击了取消")
+//                }
+//            )
+
+            CustomDialogFragment.newInstance(requireActivity()).autoDissmiss().safeShow()
         }
 
         binding.btnSelectImg.setOnClickListener {

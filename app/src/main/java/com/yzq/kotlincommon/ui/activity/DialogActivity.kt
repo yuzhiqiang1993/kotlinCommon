@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
@@ -13,18 +14,20 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.dialog.autoDissmiss
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
+import com.yzq.kotlincommon.dialog.CustomDialogFragment
 import com.yzq.logger.Logger
-import com.yzq.materialdialog.changeProgress
-import com.yzq.materialdialog.selectYear
-import com.yzq.materialdialog.showBaseDialog
-import com.yzq.materialdialog.showCallbackDialog
-import com.yzq.materialdialog.showDatePicker
-import com.yzq.materialdialog.showInputDialog
-import com.yzq.materialdialog.showOnlyPostiveCallBackDialog
-import com.yzq.materialdialog.showPositiveCallbackDialog
-import com.yzq.materialdialog.showProgressDialog
-import com.yzq.materialdialog.showSingleSelectList
+import com.yzq.dialog.changeProgress
+import com.yzq.dialog.selectYear
+import com.yzq.dialog.showBaseDialog
+import com.yzq.dialog.showCallbackDialog
+import com.yzq.dialog.showDatePicker
+import com.yzq.dialog.showInputDialog
+import com.yzq.dialog.showOnlyPostiveCallBackDialog
+import com.yzq.dialog.showPositiveCallbackDialog
+import com.yzq.dialog.showProgressDialog
+import com.yzq.dialog.showSingleSelectList
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -65,120 +68,108 @@ class DialogActivity : BaseActivity() {
             }
 
             layoutScrollContent.btnCallback.setOnThrottleTimeClick {
-                showCallbackDialog(
-                    message = "双选项双回调",
-                    positiveCallback = {
-                        ToastUtils.showShort("点击了确定")
-                    },
-                    negativeCallback = {
-                        ToastUtils.showShort("点击了取消")
-                    }
-                )
+                showCallbackDialog(message = "双选项双回调", positiveCallback = {
+                    ToastUtils.showShort("点击了确定")
+                }, negativeCallback = {
+                    ToastUtils.showShort("点击了取消")
+                })
             }
 
-            layoutScrollContent.btnSingleSelect
-                .setOnThrottleTimeClick {
-                    val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
+            layoutScrollContent.btnSingleSelect.setOnThrottleTimeClick {
+                val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
 
-                    showSingleSelectList(title = "语言", items = datas) { dialog, index, text ->
-                        ToastUtils.showShort(text.toString())
-                    }
+                showSingleSelectList(title = "语言", items = datas) { dialog, index, text ->
+                    ToastUtils.showShort(text.toString())
                 }
+            }
 
-            layoutScrollContent.btnInput
-                .setOnThrottleTimeClick {
-                    showInputDialog(positiveText = "完成") { materialDialog, charSequence ->
-                        ToastUtils.showShort(charSequence.toString())
-                    }
+            layoutScrollContent.btnInput.setOnThrottleTimeClick {
+                showInputDialog(positiveText = "完成") { materialDialog, charSequence ->
+                    ToastUtils.showShort(charSequence.toString())
                 }
+            }
 
-            layoutScrollContent.btnLoading
-                .setOnThrottleTimeClick {
-                    lifecycleScope.launchSafety {
-                        loadingDialog.showLoading()
-                        delay(1000)
-                        loadingDialog.updateTitle("更新标题，字数边长了................")
-                        delay(2000)
-                        loadingDialog.dismiss()
-                    }
+            layoutScrollContent.btnLoading.setOnThrottleTimeClick {
+                lifecycleScope.launchSafety {
+                    loadingDialog.showLoading()
+                    delay(1000)
+                    loadingDialog.updateTitle("更新标题，字数边长了................")
+                    delay(2000)
+                    loadingDialog.dismiss()
                 }
+            }
 
-            layoutScrollContent.btnProgress
-                .setOnThrottleTimeClick {
-                    var count = 0
+            layoutScrollContent.btnProgress.setOnThrottleTimeClick {
+                var count = 0
 
-                    val progressDialog = showProgressDialog("模拟进度")
+                val progressDialog = showProgressDialog("模拟进度")
 
-                    val timerTask = object : TimerTask() {
-                        override fun run() {
+                val timerTask = object : TimerTask() {
+                    override fun run() {
 
-                            Logger.i("当前线程：${Thread.currentThread().name}")
-                            count += 5
-                            if (count <= 100) {
+                        Logger.i("当前线程：${Thread.currentThread().name}")
+                        count += 5
+                        if (count <= 100) {
 
-                                MainScope().launch {
-                                    progressDialog.changeProgress(count)
-                                }
-                            } else {
-                                cancel()
-                                MainScope().launch {
-                                    progressDialog.dismiss()
-                                }
+                            MainScope().launch {
+                                progressDialog.changeProgress(count)
+                            }
+                        } else {
+                            cancel()
+                            MainScope().launch {
+                                progressDialog.dismiss()
                             }
                         }
                     }
-
-                    Timer().schedule(
-                        timerTask, 0, 200
-                    )
                 }
 
-            layoutScrollContent.btnSelectYear
-                .setOnThrottleTimeClick {
-                    selectYear { millisecond, dateStr ->
-                        ToastUtils.showLong(dateStr)
-                    }
-                }
-            layoutScrollContent.btnSelectDate
-                .setOnThrottleTimeClick {
-                    val dateFormat = "yyyy-MM-dd"
-                    val displayType =
-                        arrayListOf(DateTimeConfig.YEAR, DateTimeConfig.MONTH, DateTimeConfig.DAY)
+                Timer().schedule(
+                    timerTask, 0, 200
+                )
+            }
 
-                    showDatePicker(
-                        title = "选择年月日",
-                        displayType = displayType,
-                        dateFormat = dateFormat
-                    ) { millisecond, dateStr ->
-                        ToastUtils.showLong(dateStr)
-                    }
+            layoutScrollContent.btnSelectYear.setOnThrottleTimeClick {
+                selectYear { millisecond, dateStr ->
+                    ToastUtils.showLong(dateStr)
                 }
-            layoutScrollContent.btnSelectTime
-                .setOnThrottleTimeClick {
-                    val dateFormat = "HH:mm:ss"
-                    val displayType = arrayListOf(
-                        DateTimeConfig.HOUR,
-                        DateTimeConfig.MIN,
-                        DateTimeConfig.SECOND
-                    )
+            }
+            layoutScrollContent.btnSelectDate.setOnThrottleTimeClick {
+                val dateFormat = "yyyy-MM-dd"
+                val displayType =
+                    arrayListOf(DateTimeConfig.YEAR, DateTimeConfig.MONTH, DateTimeConfig.DAY)
 
-                    showDatePicker(
-                        title = "选择时分秒", displayType = displayType, dateFormat = dateFormat
-                    ) { millisecond, dateStr ->
-                        ToastUtils.showLong(dateStr)
-                    }
+                showDatePicker(
+                    title = "选择年月日", displayType = displayType, dateFormat = dateFormat
+                ) { millisecond, dateStr ->
+                    ToastUtils.showLong(dateStr)
                 }
+            }
+            layoutScrollContent.btnSelectTime.setOnThrottleTimeClick {
+                val dateFormat = "HH:mm:ss"
+                val displayType = arrayListOf(
+                    DateTimeConfig.HOUR, DateTimeConfig.MIN, DateTimeConfig.SECOND
+                )
 
-            layoutScrollContent.btnBottomDialog
-                .setOnThrottleTimeClick {
-                    MaterialDialog(this@DialogActivity, BottomSheet(LayoutMode.WRAP_CONTENT))
-                        .show {
-                            title(com.yzq.kotlincommon.R.string.hint)
-                            message(text = "bottom sheet")
-                            positiveButton(text = "确定")
-                            negativeButton(text = "取消")
-                        }
+                showDatePicker(
+                    title = "选择时分秒", displayType = displayType, dateFormat = dateFormat
+                ) { millisecond, dateStr ->
+                    ToastUtils.showLong(dateStr)
                 }
+            }
+
+            layoutScrollContent.btnBottomDialog.setOnThrottleTimeClick {
+                MaterialDialog(this@DialogActivity, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+                    title(com.yzq.kotlincommon.R.string.hint)
+                    message(text = "bottom sheet")
+                    positiveButton(text = "确定")
+                    negativeButton(text = "取消")
+                }
+            }
+
+
+            layoutScrollContent.btnDialogFragment.setOnThrottleTimeClick {
+                CustomDialogFragment.newInstance(this@DialogActivity).autoDissmiss().safeShow()
+            }
         }
     }
 }

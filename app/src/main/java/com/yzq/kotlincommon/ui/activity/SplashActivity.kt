@@ -10,7 +10,7 @@ import com.yzq.base.extend.immersive
 import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger
-import com.yzq.materialdialog.showCallbackDialog
+import com.yzq.dialog.showCallbackDialog
 import com.yzq.permission.getPermissions
 import com.yzq.storage.mmkv.MMKVDefault
 import com.yzq.storage.mmkv.MMKVUser

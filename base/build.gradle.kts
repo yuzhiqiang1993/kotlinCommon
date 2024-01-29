@@ -58,8 +58,8 @@ dependencies {
     api(libs.xeonyu.network.status)
 
     api(project(":img"))
+    api(project(":dialog"))
 
-    api(project(":materialdialog"))
     api(project(":permission"))
     api(project(":widget"))
     api(project(":aliemas"))

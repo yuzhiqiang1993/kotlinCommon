@@ -1,4 +1,4 @@
-package com.yzq.materialdialog
+package com.yzq.dialog
 
 import android.text.TextUtils
 import android.text.format.DateFormat
@@ -12,14 +12,12 @@ import com.afollestad.materialdialogs.list.ItemListener
 import com.afollestad.materialdialogs.list.listItems
 import com.loper7.date_time_picker.DateTimeConfig
 import com.loper7.date_time_picker.dialog.CardDatePickerDialog
+import com.yzq.materialdialog.R
 
 /*获取一个新的Dialog实例*/
 fun ComponentActivity.getNewDialog(): MaterialDialog {
 
-    return MaterialDialog(this)
-        .cancelOnTouchOutside(false)
-        .cancelable(false)
-        .lifecycleOwner(this)
+    return MaterialDialog(this).cancelOnTouchOutside(false).cancelable(false).lifecycleOwner(this)
 }
 
 /**
@@ -320,18 +318,12 @@ fun ComponentActivity.showDatePicker(
     datePickerListener: DatePickerListener,
 ) {
 
-    CardDatePickerDialog.builder(this)
-        .setTitle(title)
-        .showBackNow(showBackNow)
-        .showFocusDateInfo(showFocusDateInfo)
-        .showDateLabel(showDateLabel)
-        .setMaxTime(maxTime)
-        .setMinTime(minTime)
-        .setDefaultTime(defaultTime)
-        .setDisplayType(displayType)
-        .setBackGroundModel(CardDatePickerDialog.CARD)
+    CardDatePickerDialog.builder(this).setTitle(title).showBackNow(showBackNow)
+        .showFocusDateInfo(showFocusDateInfo).showDateLabel(showDateLabel).setMaxTime(maxTime)
+        .setMinTime(minTime).setDefaultTime(defaultTime).setDisplayType(displayType)
+//        .setBackGroundModel(CardDatePickerDialog.CARD)
         .setChooseDateModel(DateTimeConfig.GLOBAL_CHINA)
-//        .setBackGroundModel(R.drawable.shape_bg_dialog_custom)
+        .setBackGroundModel(R.drawable.shape_bg_dialog_custom)
         .setOnChoose(positiveText) { millisecond ->
             val dateStr = DateFormat.format(dateFormat, millisecond).toString()
             datePickerListener(millisecond, dateStr)

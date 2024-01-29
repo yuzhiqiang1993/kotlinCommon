@@ -11,7 +11,6 @@ package com.yzq.common.constants
 object RoutePath {
 
     object Main {
-
         const val TASK = "/main/task"
         const val MAIN = "/main/main"
         const val MOVIES = "/main/movies"
@@ -45,6 +44,7 @@ object RoutePath {
         const val IMAGE_LOAD: String = "/main/imageLoad"
         const val BLUETOOTH: String = "/main/bluetooth"
         const val REACT_NATIVE: String = "/main/reactNative"
+        const val JAVA_ACTIVITY: String = "/main/javaActivity"
 
     }
 

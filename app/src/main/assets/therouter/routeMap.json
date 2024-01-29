@@ -112,6 +112,13 @@
     "params": {}
   },
   {
+    "path": "/main/javaActivity",
+    "className": "com.yzq.kotlincommon.ui.activity.JavaActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/main/imgList",
     "className": "com.yzq.kotlincommon.ui.activity.ImageListActivity",
     "action": "",
