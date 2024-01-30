@@ -5,7 +5,6 @@ import android.os.Bundle;
 import com.therouter.router.Route;
 import com.yzq.base.ui.activity.BaseActivity;
 import com.yzq.common.constants.RoutePath;
-import com.yzq.dialog.DialogFragmentExtKt;
 import com.yzq.kotlincommon.databinding.ActivityJavaBinding;
 import com.yzq.kotlincommon.dialog.CustomDialogFragment;
 
@@ -35,7 +34,7 @@ public class JavaActivity extends BaseActivity {
     protected void initWidget() {
         binding.includedToolbar.toolbar.setTitle("JavaActivity");
         binding.btnDialogFragment.setOnClickListener(v -> {
-            CustomDialogFragment.newInstance(this).safeShow();
+            CustomDialogFragment.newInstance(this).autoDissmiss().safeShow();
         });
 
     }

@@ -5,13 +5,11 @@ import com.blankj.utilcode.util.ToastUtils
 import com.hjq.permissions.Permission
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
-import com.yzq.dialog.autoDissmiss
+import com.yzq.dialog.showPositiveCallbackDialog
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentUserBinding
-import com.yzq.logger.Logger
-import com.yzq.dialog.showCallbackDialog
-import com.yzq.dialog.showPositiveCallbackDialog
 import com.yzq.kotlincommon.dialog.CustomDialogFragment
+import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 
 

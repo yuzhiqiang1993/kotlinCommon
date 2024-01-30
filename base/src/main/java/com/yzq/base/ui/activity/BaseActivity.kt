@@ -5,6 +5,8 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.therouter.TheRouter
+import com.yzq.base.R
+import com.yzq.dialog.LottieLoadingDialog
 import com.yzq.widget.dialog.BubbleDialog
 
 /**
@@ -22,7 +24,10 @@ abstract class BaseActivity : AppCompatActivity {
 
     protected val TAG = "${this.javaClass.simpleName}-${this.hashCode()}"
 
-    protected val loadingDialog by lazy { BubbleDialog(this, this) }
+    protected val loadingDialog by lazy {
+        LottieLoadingDialog.newInstance(this).bgRes(R.color.trans) as LottieLoadingDialog
+    }
+    protected val bubleLoadingDialog by lazy { BubbleDialog(this, this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -12,7 +12,6 @@ import com.afollestad.materialdialogs.list.ItemListener
 import com.afollestad.materialdialogs.list.listItems
 import com.loper7.date_time_picker.DateTimeConfig
 import com.loper7.date_time_picker.dialog.CardDatePickerDialog
-import com.yzq.materialdialog.R
 
 /*获取一个新的Dialog实例*/
 fun ComponentActivity.getNewDialog(): MaterialDialog {

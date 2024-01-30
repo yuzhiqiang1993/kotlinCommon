@@ -4,11 +4,15 @@ plugins {
 }
 
 android {
-    namespace = "com.yzq.materialdialog"
+    namespace = "com.yzq.dialog"
     buildTypes {
         release {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -17,13 +21,17 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.google.material)
     implementation(libs.androidx.constraintlayout)
+    api(libs.lottie)
 
     implementation(libs.xeonyu.logger)
+    api(libs.xeonyu.coroutine)
 
     api(libs.materialDialog.core)
     api(libs.materialDialog.input)
     api(libs.materialDialog.bottomsheets)
     api(libs.materialDialog.lifecycle)
+
+
 
     api(libs.dateTimePicker)
 

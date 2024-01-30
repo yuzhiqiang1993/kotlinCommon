@@ -38,8 +38,7 @@ class BubbleDialog @JvmOverloads constructor(
 
         lifecycleOwner.lifecycle.addObserver(object : LifecycleEventObserver {
             override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-                if (event == Lifecycle.Event.ON_DESTROY) {
-                    /*宿主销毁的时候取消动画  不然会有内存泄漏*/
+                if (event == Lifecycle.Event.ON_DESTROY) {/*宿主销毁的时候取消动画  不然会有内存泄漏*/
                     objectAnimator?.cancel()
                     dismissDialog()
                 }
@@ -70,6 +69,9 @@ class BubbleDialog @JvmOverloads constructor(
     }
 
     fun showLoading(): BubbleDialog {
+        if (isShowing) {
+            return this
+        }
         runMain {
             super.show()
         }

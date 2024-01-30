@@ -103,5 +103,10 @@
         android:layout_height="wrap_content"
         android:text="dialogFragment" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_dialog_lottie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="lottieDialoig" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
