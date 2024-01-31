@@ -24,9 +24,8 @@ import com.yzq.dialog.showOnlyPostiveCallBackDialog
 import com.yzq.dialog.showPositiveCallbackDialog
 import com.yzq.dialog.showProgressDialog
 import com.yzq.dialog.showSingleSelectList
-import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
-import com.yzq.kotlincommon.dialog.CustomDialogFragment
+import com.yzq.kotlincommon.dialog.CustomDialog
 import com.yzq.logger.Logger
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -170,23 +169,20 @@ class DialogActivity : BaseActivity() {
 
 
             layoutScrollContent.btnDialogFragment.setOnThrottleTimeClick {
-                CustomDialogFragment.newInstance(this@DialogActivity).autoDissmiss().safeShow()
+                CustomDialog(this@DialogActivity)
+                    .safeShow()
             }
 
-            val lottieDialog = LottieLoadingDialog.newInstance(this@DialogActivity)
-                .lottieUrl("https://assets7.lottiefiles.com/packages/lf20_5lTxAupekw.json")
-//                    .width(LayoutParams.WRAP_CONTENT)
-                .autoDissmiss().animStyle(R.style.DialogAnimation)
-                .cancelable(false)
-                .bgRes(R.color.trans)
-//                    .dimAmount(0.0f)//遮罩层的透明度
-////                    .width(LayoutParams.MATCH_PARENT)
-////                    .height(LayoutParams.MATCH_PARENT)
-//                    .cancelable(true)
-//
-
-//                .alpha(0.1f)
-
+//            val dialogConfig = DialogConfig
+//                .Builder()
+//                .width(300)
+//                .height(300)
+//                .alpha(0.6f)
+//                .cancelable(true)
+//                .build()
+            val lottieDialog =
+                LottieLoadingDialog(this@DialogActivity)
+                    .lottieUrl("https://assets7.lottiefiles.com/packages/lf20_5lTxAupekw.json")
 
             layoutScrollContent.btnDialogLottie.setOnThrottleTimeClick {
                 lottieDialog.safeShow()

@@ -8,7 +8,7 @@ import com.yzq.binding.viewbind
 import com.yzq.dialog.showPositiveCallbackDialog
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentUserBinding
-import com.yzq.kotlincommon.dialog.CustomDialogFragment
+import com.yzq.kotlincommon.dialog.CustomDialog
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 
@@ -62,7 +62,7 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
 //                }
 //            )
 
-            CustomDialogFragment.newInstance(requireActivity()).autoDissmiss().safeShow()
+            CustomDialog(requireActivity()).safeShow()
         }
 
         binding.btnSelectImg.setOnClickListener {

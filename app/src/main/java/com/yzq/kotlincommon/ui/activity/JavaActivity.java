@@ -5,8 +5,10 @@ import android.os.Bundle;
 import com.therouter.router.Route;
 import com.yzq.base.ui.activity.BaseActivity;
 import com.yzq.common.constants.RoutePath;
+import com.yzq.dialog.LottieLoadingDialog;
+import com.yzq.dialog.core.DialogConfig;
 import com.yzq.kotlincommon.databinding.ActivityJavaBinding;
-import com.yzq.kotlincommon.dialog.CustomDialogFragment;
+import com.yzq.kotlincommon.dialog.CustomDialog;
 
 @Route(path = RoutePath.Main.JAVA_ACTIVITY)
 public class JavaActivity extends BaseActivity {
@@ -34,7 +36,16 @@ public class JavaActivity extends BaseActivity {
     protected void initWidget() {
         binding.includedToolbar.toolbar.setTitle("JavaActivity");
         binding.btnDialogFragment.setOnClickListener(v -> {
-            CustomDialogFragment.newInstance(this).autoDissmiss().safeShow();
+
+            CustomDialog customDialogFragment = new CustomDialog(this);
+
+            customDialogFragment.safeShow();
+
+
+            new LottieLoadingDialog(this)
+                    .setDialogConfig(new DialogConfig().width(100))
+                    .lottieUrl("https://assets9.lottiefiles.com/packages/lf20_8xjzqz.json")
+                    .safeShow();
         });
 
     }
