@@ -15,6 +15,7 @@ import coil.load
 import com.blankj.utilcode.util.ToastUtils
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
+import com.yzq.application.AppStorage
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
@@ -25,7 +26,6 @@ import com.yzq.coroutine.safety_coroutine.withIO
 import com.yzq.kotlincommon.databinding.ActivityStorageBinding
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
-import com.yzq.storage.AppStorage
 import java.io.File
 
 

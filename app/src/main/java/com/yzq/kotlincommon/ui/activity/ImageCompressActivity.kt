@@ -12,6 +12,7 @@ import coil.load
 import com.blankj.utilcode.util.UriUtils
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
+import com.yzq.application.AppStorage
 import com.yzq.base.R
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.ImgPreviewActivity
@@ -21,7 +22,6 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
 import com.yzq.kotlincommon.view_model.CompressImgViewModel
 import com.yzq.permission.getPermissions
-import com.yzq.storage.AppStorage
 import java.io.File
 import java.util.Calendar
 

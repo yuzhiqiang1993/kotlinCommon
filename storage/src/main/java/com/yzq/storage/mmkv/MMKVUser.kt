@@ -1,8 +1,8 @@
 package com.yzq.storage.mmkv
 
 import com.tencent.mmkv.MMKV
+import com.yzq.application.AppStorage
 import com.yzq.mmkv.MMKVReadWriteProp
-import com.yzq.storage.AppStorage
 
 
 /**

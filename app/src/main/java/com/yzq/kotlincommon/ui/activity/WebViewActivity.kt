@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
+import com.yzq.application.AppStorage
 import com.yzq.base.extend.initToolbar
 import com.yzq.common.constants.RoutePath
 import com.yzq.cordova_webcontainer.CordovaWebContainer
@@ -21,7 +22,6 @@ import com.yzq.cordova_webcontainer.observer.PageObserver
 import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
-import com.yzq.storage.AppStorage
 import java.io.File
 
 @Route(path = RoutePath.Main.WEB_VIEW)

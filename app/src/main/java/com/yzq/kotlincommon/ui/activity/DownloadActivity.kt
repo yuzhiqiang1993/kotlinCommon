@@ -4,6 +4,7 @@ import androidx.lifecycle.lifecycleScope
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileIOUtils
 import com.therouter.router.Route
+import com.yzq.application.AppStorage
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
@@ -13,12 +14,11 @@ import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ApiConstants
 import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.coroutine.safety_coroutine.withIO
-import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
-import com.yzq.logger.Logger
 import com.yzq.dialog.changeProgress
 import com.yzq.dialog.changeTitle
 import com.yzq.dialog.newProgressDialog
-import com.yzq.storage.AppStorage
+import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
+import com.yzq.logger.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.jessyan.progressmanager.ProgressListener
