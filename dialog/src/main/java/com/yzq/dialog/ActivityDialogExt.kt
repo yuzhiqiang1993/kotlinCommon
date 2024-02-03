@@ -28,9 +28,9 @@ fun ComponentActivity.getNewDialog(): MaterialDialog {
  */
 
 fun ComponentActivity.showBaseDialog(
-    title: String = HINT,
+    title: String = resources.getString(R.string.hint),
     message: String,
-    positiveText: String = SURE,
+    positiveText: String = resources.getString(R.string.sure),
 ) {
 
     getNewDialog().show {
@@ -48,9 +48,9 @@ fun ComponentActivity.showBaseDialog(
  * @param positiveText  确定按钮的文字
  */
 fun ComponentActivity.showOnlyPostiveCallBackDialog(
-    title: String = HINT,
+    title: String = resources.getString(R.string.hint),
     message: String,
-    positiveText: String = SURE,
+    positiveText: String = resources.getString(R.string.sure),
     callback: DialogCallback,
 ) {
 
@@ -71,10 +71,10 @@ fun ComponentActivity.showOnlyPostiveCallBackDialog(
  * @param positiveCallback Function1<MaterialDialog, Unit>  确定回调
  */
 fun ComponentActivity.showPositiveCallbackDialog(
-    title: String = HINT,
+    title: String = resources.getString(R.string.hint),
     message: String,
-    positiveText: String = SURE,
-    negativeText: String = CANCEL,
+    positiveText: String = resources.getString(R.string.sure),
+    negativeText: String = resources.getString(R.string.cancel),
     positiveCallback: DialogCallback,
 ) {
 
@@ -95,10 +95,10 @@ fun ComponentActivity.showPositiveCallbackDialog(
  * @param negativeText  取消按钮文本
  */
 fun ComponentActivity.showCallbackDialog(
-    title: String = HINT,
+    title: String = resources.getString(R.string.hint),
     message: String,
-    positiveText: String = SURE,
-    negativeText: String = CANCEL,
+    positiveText: String = resources.getString(R.string.sure),
+    negativeText: String = resources.getString(R.string.cancel),
     positiveCallback: DialogCallback,
     negativeCallback: DialogCallback,
 ) {
@@ -120,11 +120,11 @@ fun ComponentActivity.showCallbackDialog(
  * @param negativeText  取消按钮文本
  */
 fun ComponentActivity.showBackHintDialog(
-    title: String = HINT,
-    message: String = BACK_HINT,
-    positiveText: String = SURE,
+    title: String = resources.getString(R.string.hint),
+    message: String = "继续返回会丢失本页数据，是否返回？",
+    positiveText: String = resources.getString(R.string.sure),
+    negativeText: String = resources.getString(R.string.cancel),
     positiveCallback: DialogCallback,
-    negativeText: String = CANCEL,
 ) {
 
     getNewDialog().show {
@@ -136,11 +136,6 @@ fun ComponentActivity.showBackHintDialog(
     }
 }
 
-fun ComponentActivity.showLoadingDialog(msg: String): MaterialDialog {
-    val dialog = newLoadingDialog().setLoadingMessage(msg)
-    dialog.show()
-    return dialog
-}
 
 fun ComponentActivity.showProgressDialog(msg: String): MaterialDialog {
     val dialog = newProgressDialog()
@@ -156,7 +151,7 @@ fun ComponentActivity.showProgressDialog(msg: String): MaterialDialog {
  * @param items  选项
  */
 fun ComponentActivity.showSingleSelectList(
-    title: String = HINT,
+    title: String = resources.getString(R.string.hint),
     message: String = "",
     items: List<String>,
     listListener: ItemListener,
@@ -185,9 +180,9 @@ fun ComponentActivity.showSingleSelectList(
  */
 
 fun ComponentActivity.showInputDialog(
-    title: String = HINT,
-    positiveText: String = SURE,
-    negativeText: String = CANCEL,
+    title: String = resources.getString(R.string.hint),
+    positiveText: String = resources.getString(R.string.sure),
+    negativeText: String = resources.getString(R.string.cancel),
     message: String = "",
     inputHint: String = "",
     prefill: String = "",
@@ -216,13 +211,6 @@ fun ComponentActivity.showInputDialog(
     }
 }
 
-/**
- * 加载框
- *
- */
-fun ComponentActivity.newLoadingDialog(): MaterialDialog {
-    return getNewDialog().loading()
-}
 
 /**
  * 进度框
@@ -258,8 +246,8 @@ fun ComponentActivity.selectYear(
     minTime: Long = 0,
     defaultTime: Long = 0,
     dateFormat: String = "yyyy",
-    positiveText: String = SURE,
-    negativeText: String = CANCEL,
+    positiveText: String = resources.getString(R.string.sure),
+    negativeText: String = resources.getString(R.string.cancel),
     datePickerListener: DatePickerListener,
 ) {
 
@@ -312,8 +300,8 @@ fun ComponentActivity.showDatePicker(
     minTime: Long = 0,
     defaultTime: Long = 0,
     dateFormat: String = "yyyy-MM-dd HH:mm:ss",
-    positiveText: String = SURE,
-    negativeText: String = CANCEL,
+    positiveText: String = resources.getString(R.string.sure),
+    negativeText: String = resources.getString(R.string.cancel),
     datePickerListener: DatePickerListener,
 ) {
 

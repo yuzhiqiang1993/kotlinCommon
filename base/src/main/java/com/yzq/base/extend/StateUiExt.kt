@@ -8,15 +8,14 @@ import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.coroutine.safety_coroutine.runMain
-import com.yzq.dialog.LottieLoadingDialog
+import com.yzq.dialog.core.BaseDialogFragment
 import com.yzq.dialog.showBaseDialog
 import com.yzq.logger.Logger
-import com.yzq.widget.dialog.BubbleDialog
 
 @JvmOverloads
 fun BaseActivity.observeUIState(
     vm: BaseViewModel,
-    loadingDialog: LottieLoadingDialog? = null,
+    loadingDialog: BaseDialogFragment<*>? = null,
     stateLayout: StateLayout? = null,
 ) {
     vm.uiStateFlow.asLiveData().observe(this) {
@@ -68,7 +67,7 @@ fun BaseActivity.observeUIState(
 @JvmOverloads
 fun BaseFragment.observeUIState(
     vm: BaseViewModel,
-    loadingDialog: BubbleDialog? = null,
+    loadingDialog: BaseDialogFragment<*>? = null,
     stateLayout: StateLayout? = null,
 ) {
     vm.uiStateFlow.asLiveData().observe(viewLifecycleOwner) {
@@ -78,13 +77,11 @@ fun BaseFragment.observeUIState(
             }
 
             is UIState.DissmissLoadingDialog -> {
-                loadingDialog?.run { dismissDialog() }
+                loadingDialog?.safeDismiss()
             }
 
             is UIState.ShowLoadingDialog -> {
-                loadingDialog?.run {
-                    updateTitle(it.msg).show()
-                }
+                loadingDialog?.safeShow()
             }
 
             is UIState.ShowToast -> {

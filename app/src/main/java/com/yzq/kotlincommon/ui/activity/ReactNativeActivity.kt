@@ -8,9 +8,10 @@ import com.therouter.router.Route
 import com.yzq.application.AppManager
 import com.yzq.base.extend.initToolbar
 import com.yzq.binding.viewbind
+import com.yzq.common.BuildConfig
 import com.yzq.common.constants.RoutePath
-import com.yzq.kotlincommon.BuildConfig
 import com.yzq.kotlincommon.databinding.ActivityReactNativeBinding
+import com.yzq.react_native.BaseJsExecptionHandler
 import com.yzq.react_native.BaseRnActivity
 
 
@@ -28,15 +29,20 @@ class ReactNativeActivity : BaseRnActivity() {
 
     override fun createReactInstanceManager(): ReactInstanceManager {
         return ReactInstanceManager.builder()
+            //设置Application上下文；
             .setApplication(AppManager.application)
+            //添加package，package内部包含了多个Native Module；
+            .addPackage(MainReactPackage())
+            //JS 异常回调处理实现；
+            .setRedBoxHandler(BaseJsExecptionHandler())
             .setCurrentActivity(this)
             .setBundleAssetName("rn/index.android.bundle")//打包时放在assets目录下的JS bundle包的名字，加载内置bundle时使用；
             .setJSMainModulePath("index")//入口文件名字，即index.js；
-            .addPackage(MainReactPackage())
             .setJavaScriptExecutorFactory(HermesExecutorFactory())
             .setUseDeveloperSupport(BuildConfig.DEBUG)//开发者支持，开发模式下开启；
             .setInitialLifecycleState(LifecycleState.RESUMED)//设置初始生命周期状态，这里设置为resume即可；
             .build()
+
 
     }
 

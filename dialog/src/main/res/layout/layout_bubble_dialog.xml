@@ -7,7 +7,7 @@
     android:layout_height="@dimen/dp_96"
     android:layout_gravity="center"
     android:alpha="0.9"
-    android:background="@drawable/bg_bubble_dialog"
+    android:background="@drawable/shape_bg_bubble_dialog"
     android:gravity="center"
     android:minWidth="@dimen/dp_96"
     android:minHeight="@dimen/dp_96"
@@ -20,10 +20,10 @@
         android:background="@drawable/ic_bubble_loading" />
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_loading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:singleLine="true"
         android:textColor="#FFFFFF"

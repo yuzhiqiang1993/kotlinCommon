@@ -13,7 +13,7 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.safety_coroutine.launchSafety
-import com.yzq.dialog.LottieLoadingDialog
+import com.yzq.dialog.LottieDialog
 import com.yzq.dialog.changeProgress
 import com.yzq.dialog.selectYear
 import com.yzq.dialog.showBaseDialog
@@ -24,6 +24,7 @@ import com.yzq.dialog.showOnlyPostiveCallBackDialog
 import com.yzq.dialog.showPositiveCallbackDialog
 import com.yzq.dialog.showProgressDialog
 import com.yzq.dialog.showSingleSelectList
+import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
 import com.yzq.kotlincommon.dialog.CustomDialog
 import com.yzq.logger.Logger
@@ -92,11 +93,13 @@ class DialogActivity : BaseActivity() {
 
             layoutScrollContent.btnLoading.setOnThrottleTimeClick {
                 lifecycleScope.launchSafety {
-                    bubleLoadingDialog.showLoading()
+                    bubleLoadingDialog
+                        .content(resources.getString(R.string.loading))
+                        .safeShow()
                     delay(1000)
-                    bubleLoadingDialog.updateTitle("更新标题，字数边长了................")
+                    bubleLoadingDialog.content("就要完成了...")
                     delay(2000)
-                    bubleLoadingDialog.dismiss()
+                    bubleLoadingDialog.safeDismiss()
                 }
             }
 
@@ -181,7 +184,7 @@ class DialogActivity : BaseActivity() {
 //                .cancelable(true)
 //                .build()
             val lottieDialog =
-                LottieLoadingDialog(this@DialogActivity)
+                LottieDialog(this@DialogActivity)
                     .lottieUrl("https://assets7.lottiefiles.com/packages/lf20_5lTxAupekw.json")
 
             layoutScrollContent.btnDialogLottie.setOnThrottleTimeClick {

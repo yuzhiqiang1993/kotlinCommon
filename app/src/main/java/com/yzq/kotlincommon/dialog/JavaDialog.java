@@ -24,4 +24,8 @@ public class JavaDialog extends BaseDialogFragment<JavaDialog> {
         return null;
     }
 
+    @Override
+    public void initWidget(@NonNull View contentView) {
+
+    }
 }

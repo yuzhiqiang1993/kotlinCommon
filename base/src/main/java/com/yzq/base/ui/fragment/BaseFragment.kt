@@ -6,7 +6,7 @@ import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.therouter.TheRouter
-import com.yzq.widget.dialog.BubbleDialog
+import com.yzq.dialog.BubbleLoadingDialog
 
 /**
  * @description: fragment基类
@@ -18,7 +18,7 @@ import com.yzq.widget.dialog.BubbleDialog
 abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
     protected val TAG = "${this.javaClass.simpleName}-${this.hashCode()}"
-    protected val loadingDialog by lazy { BubbleDialog(requireContext(), viewLifecycleOwner) }
+    protected val loadingDialog by lazy { BubbleLoadingDialog(requireActivity()) }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)

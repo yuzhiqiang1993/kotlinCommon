@@ -118,7 +118,21 @@ abstract class BaseDialogFragment<T : BaseDialogFragment<T>>(
         return contentView
     }
 
-    private fun removeContainerView() {/*避免出现同一个DialogFragment实例，二次显示时出现DialogFragment can not be attached to a container view的异常*/
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        contentView?.run {
+            initWidget(this)
+        }
+    }
+
+    abstract fun initWidget(contentView: View)
+
+
+    private fun removeContainerView() {
+        /**
+         * 这里先移除一下
+         * 避免出现同一个DialogFragment实例，二次显示时出现DialogFragment can not be attached to a container view的异常
+         */
         runMain {
             contentView?.let {
                 it.parent?.run {
@@ -249,15 +263,11 @@ abstract class BaseDialogFragment<T : BaseDialogFragment<T>>(
     /**
      * 安全地调用 dismiss，避免可能的异常
      */
-    fun safeDismiss() {
+    open fun safeDismiss() {
         runCatching {
-            if (hostActivity.isDestroyed || hostActivity.isFinishing) return@runCatching
-            dialog?.run {
-                if (this.isShowing) {
-                    runMain {
-                        dismissAllowingStateLoss()
-
-                    }
+            if (isShowing()) {
+                runMain {
+                    dismissAllowingStateLoss()
                 }
             }
         }.onFailure {
@@ -265,6 +275,13 @@ abstract class BaseDialogFragment<T : BaseDialogFragment<T>>(
         }
     }
 
+
+    protected fun isShowing(): Boolean {
+
+        if (hostActivity.isDestroyed || hostActivity.isFinishing) return false
+
+        return dialog?.isShowing ?: false
+    }
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)

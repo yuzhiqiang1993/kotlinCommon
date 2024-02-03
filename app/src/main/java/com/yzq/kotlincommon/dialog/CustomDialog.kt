@@ -27,10 +27,7 @@ class CustomDialog(activity: FragmentActivity) :
         FragmentCustomDialogBinding.inflate(layoutInflater)
     }
 
-    override fun initView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-
+    override fun initWidget(contentView: View) {
         binding.btnConfirm.setOnThrottleTimeClick {
             safeDismiss()
         }
@@ -38,6 +35,11 @@ class CustomDialog(activity: FragmentActivity) :
         binding.btnCancel.setOnThrottleTimeClick {
             safeDismiss()
         }
+    }
+
+    override fun initView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
         return binding.root
     }
 

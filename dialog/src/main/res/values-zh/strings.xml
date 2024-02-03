@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="app_name">materialdialog</string>
-    <string name="select_year">选择年份</string>
-    <string name="zero">0</string>
-    <string name="hundred">100</string>
-</resources>

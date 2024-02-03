@@ -2,33 +2,9 @@ package com.yzq.dialog
 
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatTextView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
 import com.afollestad.materialdialogs.customview.getCustomView
-
-/**
- * @description: 扩展的加载框
- * @author : yzq
- * @date : 2019/2/21
- * @time : 13:03
- *
- */
-fun MaterialDialog.loading(): MaterialDialog =
-    customView(R.layout.loading_dialog_layout, scrollable = false)
-
-/**
- * 设置加载框的文本
- *
- * @param loadingMessage
- */
-fun MaterialDialog.setLoadingMessage(loadingMessage: String = LOADING): MaterialDialog {
-
-    val loadingMessageTv =
-        getCustomView().findViewById<AppCompatTextView>(R.id.loading_message_tv)
-    loadingMessageTv.text = loadingMessage
-    return this
-}
 
 /**
  * @description: 扩展的进度框
@@ -39,7 +15,7 @@ fun MaterialDialog.setLoadingMessage(loadingMessage: String = LOADING): Material
  */
 
 fun MaterialDialog.progress() =
-    customView(R.layout.progress_dialog_layout, scrollable = false).cornerRadius(4f)
+    customView(R.layout.layout_progress_dialog, scrollable = false).cornerRadius(4f)
 
 fun MaterialDialog.changeTitle(title: String) = title(text = title)
 

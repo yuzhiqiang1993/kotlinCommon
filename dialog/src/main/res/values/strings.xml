@@ -3,4 +3,8 @@
     <string name="select_year">选择年份</string>
     <string name="zero">0</string>
     <string name="hundred">100</string>
+    <string name="hint">提示</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="loading">加载中…</string>
 </resources>

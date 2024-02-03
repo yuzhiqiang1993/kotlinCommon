@@ -8,16 +8,15 @@ import androidx.annotation.RawRes
 import androidx.fragment.app.FragmentActivity
 import com.yzq.dialog.core.BaseDialogFragment
 import com.yzq.dialog.core.DialogConfig
-import com.yzq.dialog.databinding.LottieLoadingDialogLayoutBinding
-import com.yzq.logger.Logger
+import com.yzq.dialog.databinding.LayoutLottieDialogBinding
 
 
 /**
  * @description: 加载弹窗，一般用于网络请求时的加载提示，不可取消，只能等待请求完成后关闭，否则会导致内存泄漏
  * @author : yuzhiqiang
  */
-class LottieLoadingDialog(activity: FragmentActivity) :
-    BaseDialogFragment<LottieLoadingDialog>(activity) {
+class LottieDialog(activity: FragmentActivity) :
+    BaseDialogFragment<LottieDialog>(activity) {
 
 
     //本地的加载动画文件,兜底用
@@ -25,27 +24,29 @@ class LottieLoadingDialog(activity: FragmentActivity) :
     private var lottieUrl: String? = null
 
 
-    private val binding: LottieLoadingDialogLayoutBinding by lazy {
-        LottieLoadingDialogLayoutBinding.inflate(layoutInflater)
+    private val binding: LayoutLottieDialogBinding by lazy {
+        LayoutLottieDialogBinding.inflate(layoutInflater)
     }
-
 
     override fun initView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        Logger.i("initView")
+        return binding.root
+    }
+
+
+    override fun initWidget(contentView: View) {
 //        val url = "https://assets7.lottiefiles.com/packages/lf20_5lTxAupekw.json"
 //        binding.lottieView.setBackgroundColor(Color.parseColor("#3490dc"))
 //        binding.lottieView.setAnimationFromUrl(url)
 
         //如果是本地文件
-
         if (lottieUrl != null) {
             binding.lottieView.setAnimationFromUrl(lottieUrl)
         } else {
             binding.lottieView.setAnimation(lottieRes)
         }
-        return binding.root
+
     }
 
     override fun dialogConfig(config: DialogConfig) {
@@ -53,12 +54,12 @@ class LottieLoadingDialog(activity: FragmentActivity) :
     }
 
 
-    fun loadLottieRes(@RawRes res: Int): LottieLoadingDialog {
+    fun loadLottieRes(@RawRes res: Int): LottieDialog {
         this.lottieRes = res
         return this
     }
 
-    fun lottieUrl(url: String): LottieLoadingDialog {
+    fun lottieUrl(url: String): LottieDialog {
         this.lottieUrl = url
         return this
     }

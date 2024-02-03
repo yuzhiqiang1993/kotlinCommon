@@ -79,6 +79,19 @@ android {
      */
     flavorDimensions += listOf("CHANNEL", "ENV")
     productFlavors {
+        /*品牌*/
+        create("xiaomi") {
+            dimension = "CHANNEL"
+            manifestPlaceholders["CHANNEL"] = "xiaomi"
+            manifestPlaceholders["META_CHANNEL_VALUE"] = "xiaomi"
+        }
+        create("oppo") {
+            dimension = "CHANNEL"
+            manifestPlaceholders["CHANNEL"] = "oppo"
+            manifestPlaceholders["META_CHANNEL_VALUE"] = "oppo"
+        }
+
+        /*环境*/
         create("uat") {
             dimension = "ENV"
             manifestPlaceholders["ENV"] = "uat"
@@ -87,16 +100,7 @@ android {
             dimension = "ENV"
             manifestPlaceholders["ENV"] = "prd"
         }
-        create("wandoujia") {
-            dimension = "CHANNEL"
-            manifestPlaceholders["CHANNEL"] = "wandoujia"
-            manifestPlaceholders["META_CHANNEL_VALUE"] = "wandoujia"
-        }
-        create("yingyongbao") {
-            dimension = "CHANNEL"
-            manifestPlaceholders["CHANNEL"] = "yingyongbao"
-            manifestPlaceholders["META_CHANNEL_VALUE"] = "yingyongbao"
-        }
+
     }
 
 
