@@ -10,53 +10,107 @@
         android:id="@+id/included_toolbar"
         layout="@layout/toolbar" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_execute_io_task"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginEnd="@dimen/dp_16"
-        android:text="executeIoTask" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_execute_cpu_task"
+        android:id="@+id/btn_execute"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginEnd="@dimen/dp_16"
-        android:text="executeCpuTask" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="execute" />
+
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_submit_io_task"
+        android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginEnd="@dimen/dp_16"
-        android:text="submitIoTask" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_submit_cpu_task"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginEnd="@dimen/dp_16"
-        android:text="submitCpuTask" />
-
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="submit" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_invoke_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginEnd="@dimen/dp_16"
-        android:text="invokeAllTask" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="invokeAll" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_submit_all"
+        android:id="@+id/btn_run_async"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_16"
-        android:layout_marginEnd="@dimen/dp_16"
-        android:text="submitAllTask" />
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="runAsync" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_supply_async"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="supplyAsync" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_all_of_task"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="allOfTask(异步获取结果)" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_all_of_task_sync"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="allOfTask(同步处理结果)" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_timeout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="timeout(同步获取执行结果)" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_timeout_async"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="timeoutAsync(异步获取执行结果)" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_schedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="schedule(定时任务)" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_custom_thread_pool"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="customThreadPool" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_pool_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="poolStatus" />
 </androidx.appcompat.widget.LinearLayoutCompat>

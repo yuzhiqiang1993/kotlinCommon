@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.service
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import com.yzq.base.managers.ThreadPoolManager
+import com.yzq.coroutine.thread_pool.ThreadPoolManager
 import com.yzq.logger.Logger
 import java.util.concurrent.TimeUnit
 
@@ -36,7 +36,7 @@ class BackendService : Service() {
         Logger.i("onStartCommand")
         Logger.i("startId:$startId")
 
-        ThreadPoolManager.instance.executeIoTask {
+        ThreadPoolManager.instance.ioThreadPoolExecutor.execute {
             intent?.run {
                 intent.extras?.run {
                     Logger.i("key1:${getString("key1")}")

@@ -22,6 +22,8 @@ pluginManagement {
         gradlePluginPortal()
 
     }
+
+
 }
 
 
@@ -29,6 +31,9 @@ pluginManagement {
 dependencyResolutionManagement {
     println("dependencyResolutionManagement")
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+
+    //强制刷新依赖
+
     repositories {
         maven {
             url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
@@ -47,6 +52,7 @@ dependencyResolutionManagement {
             url = uri("https://jitpack.io")
         }
     }
+
 
     versionCatalogs {
         create("libs") {

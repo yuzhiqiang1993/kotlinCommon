@@ -49,7 +49,7 @@ class StorageActivity : BaseActivity() {
         /**
          * 打印存储的目录
          */
-        AppStorage.logPathInfo()
+        Logger.i(AppStorage.logPathInfo)
     }
 
     override fun initVariable() {

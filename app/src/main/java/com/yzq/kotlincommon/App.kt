@@ -24,6 +24,11 @@ import com.yzq.kotlincommon.task.main_thread_task.InitStateLayoutConfigTask
 import com.yzq.kotlincommon.task.main_thread_task.InitTlogTask
 import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
 import com.yzq.logger.Logger
+import com.yzq.logger.console.ConsoleLogConfig
+import com.yzq.logger.console.ConsoleLogPrinter
+import com.yzq.logger.core.loggerDebug
+import com.yzq.logger.file.FileLogConfig
+import com.yzq.logger.file.FileLogPrinter
 
 
 /**
@@ -40,7 +45,24 @@ class App : Application(), AppStateListener {
     override fun onCreate() {
         super.onCreate()
         AppManager.init(this, BuildConfig.DEBUG)
-        Logger.setDebug(BuildConfig.DEBUG)
+        loggerDebug = BuildConfig.DEBUG
+
+        Logger
+            .addPrinter(
+                ConsoleLogPrinter.getInstance(
+                    ConsoleLogConfig.Builder().enable(BuildConfig.DEBUG).build()
+                )
+            )
+            .addPrinter(
+                FileLogPrinter.getInstance(
+                    FileLogConfig.Builder()
+                        .enable(BuildConfig.DEBUG)
+                        .writeLogInterval(60)
+                        .storageDuration(1 * 24)
+                        .build()
+
+                )
+            )
 
         if (AppManager.isMainProcess()) {
             Logger.i("主进程")
@@ -48,27 +70,17 @@ class App : Application(), AppStateListener {
             SoLoader.init(this, false)
 
             /*监听App是否退出*/
-            AppManager.addAppStateListener(this)
-            /*读清单配置文件里的数据*/
+            AppManager.addAppStateListener(this)/*读清单配置文件里的数据*/
             readMetaData()
-            Trace.beginSection("BaseApp_AppInit")
-            /*日期库初始化*/
+            Trace.beginSection("BaseApp_AppInit")/*日期库初始化*/
             AndroidThreeTen.init(this)
             CoilManager.init()
-            AppStartTaskDispatcher
-                .create()
-                .setShowLog(true)
-                .addAppStartTask(InitCrashReportTask())
-                .addAppStartTask(InitUtilsTask())
-                .addAppStartTask(InitMMKVTask())
+            AppStartTaskDispatcher.create().setShowLog(true).addAppStartTask(InitCrashReportTask())
+                .addAppStartTask(InitUtilsTask()).addAppStartTask(InitMMKVTask())
                 .addAppStartTask(InitStateLayoutConfigTask())
-                .addAppStartTask(InitSmartRefreshTask())
-                .addAppStartTask(InitAPMTask())
-                .addAppStartTask(InitTlogTask())
-                .addAppStartTask(InitAliPushTask())
-                .addAppStartTask(InitLocationTask())
-                .start()
-                .await()
+                .addAppStartTask(InitSmartRefreshTask()).addAppStartTask(InitAPMTask())
+                .addAppStartTask(InitTlogTask()).addAppStartTask(InitAliPushTask())
+                .addAppStartTask(InitLocationTask()).start().await()
 
             ASRManager.init(this)
 
@@ -78,14 +90,9 @@ class App : Application(), AppStateListener {
 
             if (AppManager.getCurrentProcessName().equals("${packageName}:channel")) {
 
-                Logger.i("channel进程,初始化推送")
-                /*channel进程也要对推送初始化 https://help.aliyun.com/document_detail/434662.html?spm=a2c4g.11186623.0.0.72aa5b78qNHbvx*/
-                AppStartTaskDispatcher
-                    .create()
-                    .setShowLog(true)
-                    .addAppStartTask(InitAliPushTask())
-                    .start()
-                    .await()
+                Logger.i("channel进程,初始化推送")/*channel进程也要对推送初始化 https://help.aliyun.com/document_detail/434662.html?spm=a2c4g.11186623.0.0.72aa5b78qNHbvx*/
+                AppStartTaskDispatcher.create().setShowLog(true).addAppStartTask(InitAliPushTask())
+                    .start().await()
             }
 
         }
@@ -101,18 +108,16 @@ class App : Application(), AppStateListener {
         Logger.i("支持的指令集:${supportedAbis.contentToString()}")
 
         /*读取Manifest.xml中的 META_DATA */
-        val applicationInfo =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                packageManager.getApplicationInfo(
-                    packageName,
-                    PackageManager.ApplicationInfoFlags.of(PackageManager.GET_META_DATA.toLong())
-                )
-            } else {
-                packageManager.getApplicationInfo(
-                    packageName,
-                    PackageManager.GET_META_DATA
-                )
-            }
+        val applicationInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            packageManager.getApplicationInfo(
+                packageName,
+                PackageManager.ApplicationInfoFlags.of(PackageManager.GET_META_DATA.toLong())
+            )
+        } else {
+            packageManager.getApplicationInfo(
+                packageName, PackageManager.GET_META_DATA
+            )
+        }
 
         val metaData = applicationInfo.metaData
         val metaChannelValue = metaData.getString("META_CHANNEL")
@@ -154,8 +159,7 @@ class App : Application(), AppStateListener {
         }
     }
 
-    override fun onAppExit() {
-        /*应用退出了*/
+    override fun onAppExit() {/*应用退出了*/
         Logger.i("App退出了")
     }
 }
