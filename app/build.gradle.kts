@@ -1,7 +1,7 @@
 @Suppress("DSL_SCOPE_VIOLATION") plugins {
     alias(libs.plugins.xeonyu.application)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.xeonyu.dependencyAnalysis)
+    alias(libs.plugins.xeonyu.dependencyManager)
     id("therouter")
 
 }
@@ -9,12 +9,23 @@ println("getRootDir():${rootDir}")
 
 //apply from: file("${getRootDir()}/gradle_script/bytex.gradle")
 
-dependencyAnalysis {
-    enable = true
-    collectFileDetail = true
-    logEnable = true
-    collectArtifactFilePath = true
+dependencyManager {
+    //依赖分析
+    analysis {
+        enable = true
+        collectFileDetail = true
+        collectArtifactFilePath = true
+    }
+    //依赖替换,可以用于替换指定依赖以及统一版本
+    replace {
+        this.enable = true
+        this.replaceMap = mapOf(
+            "org.jetbrains.kotlin:kotlin-stdlib" to "${libs.kotlin.stdlib.jdk8.get()}",
+        )
+    }
 }
+
+
 
 android {
     namespace = "com.yzq.kotlincommon"

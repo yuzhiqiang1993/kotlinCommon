@@ -89,7 +89,6 @@ subprojects {
  * ./gradlew dependencyUpdates
  */
 
-
 allprojects {
     configurations.all {
         resolutionStrategy {
