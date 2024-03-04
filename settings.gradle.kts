@@ -4,22 +4,16 @@ pluginManagement {
 
     repositories {
         mavenLocal()
-        google()
         mavenCentral()
-        maven {
-            url = uri("https://maven.aliyun.com/repository/public/")
-        }
-        maven {
-            url = uri("https://maven.aliyun.com/nexus/content/repositories/releases/")
-        }
+        gradlePluginPortal()
+        google()
         maven {
             url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
         }
-
         maven {
             url = uri("https://artifact.bytedance.com/repository/byteX/")
         }
-        gradlePluginPortal()
+
 
     }
 
@@ -30,18 +24,26 @@ pluginManagement {
 /*原本的allprojects 依赖管理*/
 dependencyResolutionManagement {
     println("dependencyResolutionManagement")
+    /**
+     * FAIL_ON_PROJECT_REPOS： 如果设置此模式，任何直接在项目中声明的存储库都会触发构建错误。这对于确保在构建时不意外地使用项目中的存储库非常有用。（说白了就是不允许在项目中单独设置repositories）
+     *
+     * PREFER_PROJECT： 如果设置此模式，项目中声明的存储库将优先于设置中声明的存储库。这可以确保在存在相同的存储库时使用项目中的版本。
+     *
+     * PREFER_SETTINGS： 如果设置了此模式，将忽略项目中直接声明的任何存储库，而只使用通过构建脚本或插件声明的存储库。
+     *
+     *
+     */
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
 
     //强制刷新依赖
 
     repositories {
-        maven {
-            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-        }
-//        mavenLocal()
-        google()
+        //        mavenLocal()
         mavenCentral()
-
+        google()
+        maven {
+            url = uri("https://jitpack.io")
+        }
         maven {
             url = uri("https://maven.aliyun.com/nexus/content/repositories/releases/")
         }
@@ -49,7 +51,18 @@ dependencyResolutionManagement {
             url = uri("https://maven.aliyun.com/repository/public/")
         }
         maven {
-            url = uri("https://jitpack.io")
+            url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+        }
+        /**
+         * 下面可以用来统一处理仓库源
+         * 例如给指定仓库添加excludeGroup
+         */
+        configureEach {
+            when (this) {
+                is MavenArtifactRepository -> {
+                    println("${this.name}-${this.url}")
+                }
+            }
         }
     }
 
@@ -94,8 +107,7 @@ gradle.addBuildListener(object : BuildAdapter() {
         super.buildFinished(result)
         "构建结束".prependIndent().let(::println)
     }
-}
-)
+})
 
 
 /*gradle的生命周期回调*/

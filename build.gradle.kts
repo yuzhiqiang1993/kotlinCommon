@@ -91,8 +91,16 @@ subprojects {
 
 allprojects {
     configurations.all {
+        //依赖解析处理
         resolutionStrategy {
             cacheChangingModulesFor(0, TimeUnit.SECONDS)
+            //依赖替换
+            dependencySubstitution {
+
+                //替换kotlin为指定版本
+//                substitute(module("org.jetbrains.kotlin:kotlin-stdlib")).using(module("org.jetbrains.kotlin:kotlin-stdlib-jdk8"))
+            }
         }
     }
+
 }

@@ -20,7 +20,7 @@ dependencyManager {
     replace {
         this.enable = true
         this.replaceMap = mapOf(
-            "org.jetbrains.kotlin:kotlin-stdlib" to "${libs.kotlin.stdlib.jdk8.get()}",
+//            "org.jetbrains.kotlin:kotlin-stdlib" to "${libs.kotlin.stdlib.jdk8.get()}",
         )
     }
 }
