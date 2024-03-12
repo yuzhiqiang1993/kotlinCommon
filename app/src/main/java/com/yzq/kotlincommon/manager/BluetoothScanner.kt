@@ -11,6 +11,7 @@ import android.bluetooth.le.ScanSettings
 import android.content.Context
 import com.yzq.application.AppContext
 import com.yzq.coroutine.safety_coroutine.postDelayed
+import com.yzq.logger.Logger
 import java.util.concurrent.atomic.AtomicBoolean
 
 class BluetoothScanner(private val callback: ScanerCallback) {
@@ -21,16 +22,19 @@ class BluetoothScanner(private val callback: ScanerCallback) {
 
     private val scanning = AtomicBoolean(false)
 
+
     val isScanning: Boolean
         get() = scanning.get()
 
 
     private val internalScanCallback = object : ScanCallback() {
         override fun onScanResult(callbackType: Int, result: ScanResult) {
+            Logger.i("onScanResult,callbackType:$callbackType")
             callback.onScanResult(callbackType, result)
         }
 
         override fun onBatchScanResults(results: MutableList<ScanResult>?) {
+            Logger.i("onBatchScanResults,results.size:${results?.size}")
             callback.onBatchScanResults(results)
         }
 
@@ -52,23 +56,12 @@ class BluetoothScanner(private val callback: ScanerCallback) {
         callback.startScan()
 
         callback.onBondedDevicesResults(bluetoothAdapter.bondedDevices)
-        /*获取哪个蓝牙处于连接状态*/
-        bluetoothAdapter.getProfileProxy(AppContext, object : BluetoothProfile.ServiceListener {
-            override fun onServiceDisconnected(profile: Int) {
-                callback.disonnectDevice(profile)
-            }
-
-            override fun onServiceConnected(profile: Int, proxy: BluetoothProfile?) {
-                callback.connectDevice(profile, proxy)
-            }
-        }, BluetoothProfile.HEADSET)
 
 
-        val settings = ScanSettings.Builder()
-            .setScanMode(ScanSettings.SCAN_MODE_BALANCED)
-            .setReportDelay(200)
-//            .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
-            .build()
+        val settings = ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+            .setReportDelay(1000 * 2).build()
+
+
 
         bluetoothAdapter.bluetoothLeScanner?.startScan(null, settings, internalScanCallback)
 
@@ -77,6 +70,21 @@ class BluetoothScanner(private val callback: ScanerCallback) {
         }
 
 
+    }
+
+
+    fun refreshConnectedDevices(callback: ScanerCallback) {/*获取哪个蓝牙处于连接状态*/
+        bluetoothAdapter.getProfileProxy(AppContext, object : BluetoothProfile.ServiceListener {
+            override fun onServiceDisconnected(profile: Int) {
+                //断开连接的设备
+                callback.disonnectDevice(profile)
+            }
+
+            override fun onServiceConnected(profile: Int, proxy: BluetoothProfile?) {
+                //已连接的设备
+                callback.connectDevice(profile, proxy)
+            }
+        }, BluetoothProfile.HEADSET)
     }
 
     @SuppressLint("MissingPermission")

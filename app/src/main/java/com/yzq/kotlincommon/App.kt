@@ -27,8 +27,6 @@ import com.yzq.logger.Logger
 import com.yzq.logger.console.ConsoleLogConfig
 import com.yzq.logger.console.ConsoleLogPrinter
 import com.yzq.logger.core.loggerDebug
-import com.yzq.logger.file.FileLogConfig
-import com.yzq.logger.file.FileLogPrinter
 
 
 /**
@@ -53,16 +51,16 @@ class App : Application(), AppStateListener {
                     ConsoleLogConfig.Builder().enable(BuildConfig.DEBUG).build()
                 )
             )
-            .addPrinter(
-                FileLogPrinter.getInstance(
-                    FileLogConfig.Builder()
-                        .enable(BuildConfig.DEBUG)
-                        .writeLogInterval(60)
-                        .storageDuration(1 * 24)
-                        .build()
-
-                )
-            )
+//            .addPrinter(
+//                FileLogPrinter.getInstance(
+//                    FileLogConfig.Builder()
+//                        .enable(BuildConfig.DEBUG)
+//                        .writeLogInterval(60)
+//                        .storageDuration(1 * 24)
+//                        .build()
+//
+//                )
+//            )
 
         if (AppManager.isMainProcess()) {
             Logger.i("主进程")

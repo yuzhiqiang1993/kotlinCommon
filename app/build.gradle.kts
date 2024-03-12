@@ -23,6 +23,15 @@ dependencyManager {
 //            "org.jetbrains.kotlin:kotlin-stdlib" to "${libs.kotlin.stdlib.jdk8.get()}",
         )
     }
+
+    //代码查找
+    searchCode {
+        enable = true
+        searchStrings = listOf(
+            " Log.i"
+        )
+        libFilters = listOf("com.xeonyu")
+    }
 }
 
 
