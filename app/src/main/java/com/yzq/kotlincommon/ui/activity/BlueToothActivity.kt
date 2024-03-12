@@ -39,7 +39,7 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
     //可用列表
     private var unPairDeviceList = mutableSetOf<BlueToothItem>()
 
-    private val bluetoothLeScanner = BluetoothScanner(this)
+    private var bluetoothLeScanner: BluetoothScanner? = null
 
 
     @SuppressLint("MissingPermission")
@@ -48,7 +48,7 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
             initToolbar(includedToolbar.toolbar, "蓝牙")
 
             ivRefresh.setOnThrottleTimeClick {
-                bluetoothLeScanner.startScan()
+                bluetoothLeScanner?.startScan()
             }
 
             rvPair.linear().divider(R.drawable.item_divider).setup {
@@ -98,12 +98,14 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
     }
 
 
-    @SuppressLint("MissingPermission")
-    private fun scanBlueTooth() {/*获取蓝牙和位置信息权限*/
+    private fun scanBlueTooth() {
+        /*获取蓝牙和位置信息权限*/
         getPermissions(
             Permission.BLUETOOTH_SCAN, Permission.BLUETOOTH_CONNECT, Permission.BLUETOOTH_ADVERTISE
         ) {
-            bluetoothLeScanner.startScan()
+            Logger.i("获取蓝牙权限成功")
+            bluetoothLeScanner = BluetoothScanner(this)
+            bluetoothLeScanner?.startScan()
         }
     }
 
@@ -140,12 +142,12 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
     }
 
     private fun changeScanUi() {
-        binding.progress.visibility = if (bluetoothLeScanner.isScanning) {
+        binding.progress.visibility = if (bluetoothLeScanner?.isScanning == true) {
             View.VISIBLE
         } else {
             View.GONE
         }
-        binding.ivRefresh.visibility = if (bluetoothLeScanner.isScanning) {
+        binding.ivRefresh.visibility = if (bluetoothLeScanner?.isScanning == true) {
             View.GONE
         } else {
             View.VISIBLE
@@ -154,7 +156,7 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
 
     override fun onDestroy() {
         super.onDestroy()
-        bluetoothLeScanner.stopScan()
+        bluetoothLeScanner?.stopScan()
     }
 
 
@@ -260,7 +262,7 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
     override fun onResume() {
         super.onResume()
         //前后台切换时检查下当前蓝牙是否有链接
-        bluetoothLeScanner.refreshConnectedDevices(this)
+        bluetoothLeScanner?.refreshConnectedDevices(this)
 
     }
 }

@@ -73,11 +73,16 @@ class App : Application(), AppStateListener {
             Trace.beginSection("BaseApp_AppInit")/*日期库初始化*/
             AndroidThreeTen.init(this)
             CoilManager.init()
-            AppStartTaskDispatcher.create().setShowLog(true).addAppStartTask(InitCrashReportTask())
-                .addAppStartTask(InitUtilsTask()).addAppStartTask(InitMMKVTask())
+            AppStartTaskDispatcher.create()
+                .setShowLog(true)
+                .addAppStartTask(InitCrashReportTask())
+                .addAppStartTask(InitUtilsTask())
+                .addAppStartTask(InitMMKVTask())
                 .addAppStartTask(InitStateLayoutConfigTask())
-                .addAppStartTask(InitSmartRefreshTask()).addAppStartTask(InitAPMTask())
-                .addAppStartTask(InitTlogTask()).addAppStartTask(InitAliPushTask())
+                .addAppStartTask(InitSmartRefreshTask())
+                .addAppStartTask(InitAPMTask())
+                .addAppStartTask(InitTlogTask())
+                .addAppStartTask(InitAliPushTask())
                 .addAppStartTask(InitLocationTask()).start().await()
 
             ASRManager.init(this)
@@ -88,7 +93,8 @@ class App : Application(), AppStateListener {
 
             if (AppManager.getCurrentProcessName().equals("${packageName}:channel")) {
 
-                Logger.i("channel进程,初始化推送")/*channel进程也要对推送初始化 https://help.aliyun.com/document_detail/434662.html?spm=a2c4g.11186623.0.0.72aa5b78qNHbvx*/
+                Logger.i("channel进程,初始化推送")
+                /*channel进程也要对推送初始化 https://help.aliyun.com/document_detail/434662.html?spm=a2c4g.11186623.0.0.72aa5b78qNHbvx*/
                 AppStartTaskDispatcher.create().setShowLog(true).addAppStartTask(InitAliPushTask())
                     .start().await()
             }

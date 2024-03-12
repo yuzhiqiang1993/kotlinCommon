@@ -6,8 +6,8 @@ import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.OnPermissionPageCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
-import com.yzq.logger.Logger
 import com.yzq.dialog.showCallbackDialog
+import com.yzq.logger.Logger
 
 
 /**
@@ -37,7 +37,7 @@ fun ComponentActivity.getPermissions(
         return
     }
 
-    XXPermissions.setCheckMode(BuildConfig.DEBUG)
+    XXPermissions.setCheckMode(true)
 
     XXPermissions
         .with(this)

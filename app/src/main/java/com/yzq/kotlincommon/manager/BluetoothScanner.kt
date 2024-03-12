@@ -31,7 +31,6 @@ class BluetoothScanner(private val callback: ScanerCallback) {
         @SuppressLint("MissingPermission")
         override fun onScanResult(callbackType: Int, result: ScanResult) {
 
-//            Logger.i("${result.toString()}")
             if (result.device.name == null || result.device.address == null) {
                 return
             }
@@ -76,7 +75,7 @@ class BluetoothScanner(private val callback: ScanerCallback) {
 
         bluetoothAdapter.bluetoothLeScanner?.startScan(null, settings.build(), internalScanCallback)
 
-        postDelayed(deleyMillis = 10 * 1000) {
+        postDelayed(deleyMillis = 15 * 1000) {
             Logger.i("stopScan")
             stopScan()
         }
