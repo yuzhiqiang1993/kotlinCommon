@@ -5,10 +5,10 @@ import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothProfile
 import android.bluetooth.le.ScanResult
 import android.view.View
+import com.drake.brv.utils.addModels
 import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.models
-import com.drake.brv.utils.setDifferModels
 import com.drake.brv.utils.setup
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
@@ -61,14 +61,18 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
                     }
 
                     if (item.connected) {
-                        itemBinding.tvName.setTextColor(resources.getColor(R.color.colorPrimary))
+                        itemBinding.tvName.setTextColor(
+                            resources.getColor(
+                                R.color.colorPrimary, null
+                            )
+                        )
                         itemBinding.tvUse.visibility = View.VISIBLE
                     } else {
-                        itemBinding.tvName.setTextColor(resources.getColor(R.color.black))
+                        itemBinding.tvName.setTextColor(resources.getColor(R.color.black, null))
                         itemBinding.tvUse.visibility = View.GONE
                     }
                 }
-            }
+            }.models = pairDeviceList.toList()
 
             rvUnpair.linear().divider(R.drawable.item_divider).setup {
                 addType<BlueToothItem>(R.layout.item_bluetooth)
@@ -82,7 +86,7 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
 
 
                 }
-            }
+            }.models = unPairDeviceList.toList()
         }
 
 
@@ -121,22 +125,18 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
 
         //已配对列表
         val bondedList = bondedDevices.map {
-            BlueToothItem(
-                name = it.name ?: "",
+            BlueToothItem(name = it.name ?: "",
                 address = it.address,
                 type = it.type,
                 bondState = it.bondState,
                 deviceClass = it.bluetoothClass.deviceClass,
                 majorDeviceClass = it.bluetoothClass.majorDeviceClass,
                 connected = false,
-                uuids = it.uuids?.map { it.uuid.toString() } ?: emptyList()
-            )
+                uuids = it.uuids?.map { it.uuid.toString() } ?: emptyList())
         }
 
-        pairDeviceList.addAll(bondedList)
-
         /*已配对列表*/
-        binding.rvPair.models = pairDeviceList.toList()
+        binding.rvPair.models = bondedList.toList()
     }
 
     private fun changeScanUi() {
@@ -162,63 +162,47 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
         showBaseDialog("提示", "蓝牙未开启")
     }
 
-
     @SuppressLint("MissingPermission")
-    override fun onBatchScanResults(results: MutableList<ScanResult>?) {
-        Logger.i("onBatchScanResults:${results?.size}")
+    override fun onScanResult(callbackType: Int, result: ScanResult) {
+        //如果已配对的设备中已经添加过result或者unPairDeviceList中已经添加过result，就不再添加
+        val device = result.device
+        Logger.i("onScanResult:${device.name},${device.address}")
 
-        if (results.isNullOrEmpty()) {
+        if (device.name == null || device.address == null) {
             return
         }
 
-
-        val resultList =
-            results.map { it.device }.filter { it.name != null && it.name.isNotEmpty() }
-
-        resultList.listIterator().forEach {
-            Logger.i("扫描到的设备：${getDeviceInfo(it)}")
-        }
-
-
-        val blueToothItems = resultList.map {
-            BlueToothItem(
-                name = it.name ?: "",
-                address = it.address,
-                type = it.type,
-                bondState = it.bondState,
-                deviceClass = it.bluetoothClass.deviceClass,
-                majorDeviceClass = it.bluetoothClass.majorDeviceClass,
-                connected = false,
-                uuids = it.uuids?.map { it.uuid.toString() } ?: emptyList()
-            )
-        }
-
-
-        //把已配对的设备和已添加的设备过滤掉
-        val filterList = blueToothItems.filter { item ->
-            pairDeviceList.find { it.address == item.address } == null
-        }
-
-        //如果unPairDeviceList已经添加过blueToothItems中的数据，就不再添加
-        if (unPairDeviceList.isNotEmpty()) {
-            filterList.forEach { item ->
-                if (unPairDeviceList.find { it.address == item.address } == null) {
-                    unPairDeviceList.add(item)
-                }
+        binding.rvPair.models?.forEach {
+            if ((it as BlueToothItem).address == device.address) {
+                return
             }
-        } else {
-            unPairDeviceList.addAll(filterList)
         }
 
-
-        Logger.i("unPairDeviceList:${unPairDeviceList.size}")
-
-        /*通知数据更新*/
-        if (binding.rvUnpair.models.isNullOrEmpty()) {
-            binding.rvUnpair.models = unPairDeviceList.toList()
-        } else {
-            binding.rvUnpair.setDifferModels(unPairDeviceList.toList())
+        binding.rvUnpair.models?.forEach {
+            if ((it as BlueToothItem).address == device.address) {
+                return
+            }
         }
+
+        val blueToothItem = BlueToothItem(name = device.name ?: "",
+            address = device.address,
+            type = device.type,
+            bondState = device.bondState,
+            deviceClass = device.bluetoothClass.deviceClass,
+            majorDeviceClass = device.bluetoothClass.majorDeviceClass,
+            connected = false,
+            uuids = device.uuids?.map { it.uuid.toString() } ?: emptyList())
+
+
+
+        binding.rvUnpair.addModels(listOf(blueToothItem))
+
+    }
+
+
+    @SuppressLint("MissingPermission")
+    override fun onBatchScanResults(results: MutableList<ScanResult>?) {
+
     }
 
     @SuppressLint("MissingPermission")
@@ -256,8 +240,7 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
     @SuppressLint("MissingPermission")
     private fun getDeviceInfo(device: BluetoothDevice): String {
         val sb = StringBuilder().appendLine("name:${device.name}")
-            .appendLine("address:${device.address}")
-            .appendLine("type:${device.type}")
+            .appendLine("address:${device.address}").appendLine("type:${device.type}")
             .appendLine("bondState:${device.bondState}")
             .appendLine("deviceClass:${device.bluetoothClass.deviceClass}")
             .appendLine("majorDeviceClass:${device.bluetoothClass.majorDeviceClass}")

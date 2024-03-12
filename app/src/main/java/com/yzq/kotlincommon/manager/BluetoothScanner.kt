@@ -28,8 +28,13 @@ class BluetoothScanner(private val callback: ScanerCallback) {
 
 
     private val internalScanCallback = object : ScanCallback() {
+        @SuppressLint("MissingPermission")
         override fun onScanResult(callbackType: Int, result: ScanResult) {
-            Logger.i("onScanResult,callbackType:$callbackType")
+
+//            Logger.i("${result.toString()}")
+            if (result.device.name == null || result.device.address == null) {
+                return
+            }
             callback.onScanResult(callbackType, result)
         }
 
@@ -53,19 +58,26 @@ class BluetoothScanner(private val callback: ScanerCallback) {
             return
         }
         scanning.set(true)
+
         callback.startScan()
 
+        //获取已配对的设备
         callback.onBondedDevicesResults(bluetoothAdapter.bondedDevices)
 
+        val settings = ScanSettings.Builder()
+            .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)//低延迟，高功耗
+            .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)//所有匹配的结果都会回调
+            .setScanMode(ScanSettings.MATCH_MODE_STICKY)//粘性匹配模式
 
-        val settings = ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
-            .setReportDelay(1000 * 2).build()
+        if (bluetoothAdapter.isOffloadedScanBatchingSupported) {
+            settings.setReportDelay(0L)
+        }
 
 
+        bluetoothAdapter.bluetoothLeScanner?.startScan(null, settings.build(), internalScanCallback)
 
-        bluetoothAdapter.bluetoothLeScanner?.startScan(null, settings, internalScanCallback)
-
-        postDelayed(deleyMillis = 20 * 1000) {
+        postDelayed(deleyMillis = 10 * 1000) {
+            Logger.i("stopScan")
             stopScan()
         }
 
