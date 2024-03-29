@@ -38,7 +38,7 @@ dependencyResolutionManagement {
     //强制刷新依赖
 
     repositories {
-        //        mavenLocal()
+        mavenLocal()
         mavenCentral()
         google()
         maven {

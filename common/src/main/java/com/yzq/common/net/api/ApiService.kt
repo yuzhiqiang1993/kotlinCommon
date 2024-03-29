@@ -40,7 +40,7 @@ interface ApiService {
     @GET("https://api.github.com/users/yuzhiqiang1993")
     suspend fun userInfo(): GithubUserInfo
 
-    @GET("http://192.168.1.184:8888/user/userList")
+    @GET("http://192.168.31.72:8888/user/userList")
     suspend fun listLocalUser(): BaseResp<List<LocalUser>>
 
 

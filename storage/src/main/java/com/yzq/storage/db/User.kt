@@ -2,6 +2,7 @@ package com.yzq.storage.db
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import org.threeten.bp.LocalDateTime
 
 
@@ -20,6 +21,8 @@ data class User(
     var age: Int,
     var idCardNum: String = "",
     var phone: String = "",
+    @TypeConverters(value = [LocalDateTimeConverter::class])
     var insertTime: LocalDateTime = LocalDateTime.now(),
+    @TypeConverters(value = [LocalDateTimeConverter::class])
     var updateTime: LocalDateTime = LocalDateTime.now(),
 )
