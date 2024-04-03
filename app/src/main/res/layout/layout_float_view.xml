@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/content_view"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_url="https://lottie.host/b38153da-a3dd-4161-9636-f18eadad449c/BzEXBfYKJo.json" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/move_view"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_url="https://lottie.host/07d1a4f4-2a97-4225-8492-1d59cda7a1c3/fw6BOELpiE.json" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/edge_view"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_url="https://lottie.host/b38153da-a3dd-4161-9636-f18eadad449c/BzEXBfYKJo.json" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

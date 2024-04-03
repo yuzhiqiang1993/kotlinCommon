@@ -99,7 +99,7 @@ xeonCordovaWebContainer = "1.0.6"
 xeonCordovaLib = "12.0.2"
 xeonBsDiff = "1.0.4"
 xeonLogger = "1.0.5"
-xeonApplication = "1.0.4"
+xeonApplication = "1.0.6"
 xeonCoroutine = "1.0.3"
 xeonMMKV = "1.0.0"
 xeonBinding = "1.0.0"
@@ -108,6 +108,8 @@ xeonLocationGaode = "1.0.1"
 xeonLocationTencent = "1.0.1"
 xeonLocationBaidu = "1.0.1"
 xeonNetworkStatus = "1.0.1"
+xeonFloatView = "1.0.1"
+
 activity = "1.8.2"
 
 [libraries]
@@ -190,6 +192,7 @@ xeonyu-location-gaode = { group = "com.xeonyu", name = "location-gaode", version
 xeonyu-location-tencent = { group = "com.xeonyu", name = "location-tencent", version.ref = "xeonLocationTencent" }
 xeonyu-location-baidu = { group = "com.xeonyu", name = "location-baidu", version.ref = "xeonLocationBaidu" }
 xeonyu-network-status = { group = "com.xeonyu", name = "network-status", version.ref = "xeonNetworkStatus" }
+xeonyu-floatview = { group = "com.xeonyu", name = "float-view", version.ref = "xeonFloatView" }
 
 #阿里emas
 alicloud-android-apm = { module = "com.aliyun.ams:alicloud-android-apm", version.ref = "alicloudAndroidApm" }

@@ -1,11 +1,13 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.sdk.android.push.CommonCallback
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
 import com.drake.brv.utils.divider
@@ -21,9 +23,12 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.NaviItem
+import com.yzq.coroutine.safety_coroutine.postDelayed
+import com.yzq.floating_view.FloatingViewManager
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
+import com.yzq.kotlincommon.databinding.LayoutFloatViewBinding
 import com.yzq.logger.Logger
 
 
@@ -40,6 +45,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private val binding by viewbind(ActivityMainBinding::inflate)
     private var items = arrayListOf<NaviItem>()
     private var lastBackTimeMillis: Long = 0
+
+    private var floatingViewManager: FloatingViewManager? = null
+
     override fun initVariable() {
 
         /*该操作会获取用户信息  所以建议在获取相关权限后再初始化 同时还能提升一些启动速度*/
@@ -78,6 +86,24 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     override fun initWidget() {
+        val floatViewBinding = LayoutFloatViewBinding.inflate(LayoutInflater.from(AppContext))
+
+
+        floatingViewManager = FloatingViewManager.Builder(this).floatingViewConfig {
+            contentView(floatViewBinding.contentView)
+            edgeView(floatViewBinding.edgeView)
+            moveView(floatViewBinding.moveView)
+            draggable(true)
+            autoMoveToEdge(true)
+            autoShowEdgeView(true)
+            bottomMargin(100)
+            marginEdge(20)
+            edgeViewScale(0.5f)
+        }.globalShow(true).build()
+
+
+
+        floatingViewManager?.show()
 
 
         binding.run {
@@ -141,7 +167,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun setData() {
-        binding.includedAppbarMain.recy
+        binding
+            .includedAppbarMain
+            .recy
             .linear()
             .divider(R.drawable.item_divider)
             .setup {
@@ -154,6 +182,33 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     skip(getModel<NaviItem>().path)
                 }
             }.models = items
+
+
+        var isScrolling = false
+        binding.includedAppbarMain.recy.addOnScrollListener(object :
+            RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(
+                recyclerView: RecyclerView,
+                newState: Int
+            ) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    //延时200ms，等待recyclerView滚动完成
+                    isScrolling = true
+                    floatingViewManager?.switchToEdgeView()
+
+                } else if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    isScrolling = false
+                    postDelayed(deleyMillis = 800) {
+                        if (!isScrolling) {
+                            floatingViewManager?.switchToContentView()
+                        }
+
+                    }
+
+                }
+            }
+        })
     }
 
     private fun skip(path: String) {

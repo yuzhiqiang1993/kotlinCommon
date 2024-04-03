@@ -84,7 +84,8 @@ class BluetoothScanner(private val callback: ScanerCallback) {
     }
 
 
-    fun refreshConnectedDevices(callback: ScanerCallback) {/*获取哪个蓝牙处于连接状态*/
+    fun refreshConnectedDevices(callback: ScanerCallback) {
+        /*获取哪个蓝牙处于连接状态*/
         bluetoothAdapter.getProfileProxy(AppContext, object : BluetoothProfile.ServiceListener {
             override fun onServiceDisconnected(profile: Int) {
                 //断开连接的设备

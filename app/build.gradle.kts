@@ -164,6 +164,8 @@ dependencies {
 
 
     implementation(libs.xeonyu.zxing)
+    implementation(libs.xeonyu.logger)
+    implementation(libs.xeonyu.floatview)
     implementation(libs.lottie)
     implementation(libs.jsoup)
 
@@ -192,7 +194,6 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":baidu"))
     implementation(project(":react-native"))
-    implementation(libs.xeonyu.logger)
 
 
 }
