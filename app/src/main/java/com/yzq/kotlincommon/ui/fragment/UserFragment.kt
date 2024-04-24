@@ -1,8 +1,8 @@
 package com.yzq.kotlincommon.ui.fragment
 
 import androidx.activity.OnBackPressedCallback
-import com.blankj.utilcode.util.ToastUtils
 import com.hjq.permissions.Permission
+import com.hjq.toast.Toaster
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
 import com.yzq.dialog.showPositiveCallbackDialog
@@ -55,10 +55,10 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
 //            requireActivity().showCallbackDialog(
 //                message = "这是在Fragment中调的弹窗",
 //                positiveCallback = {
-//                    ToastUtils.showShort("点击了确定")
+//                    Toaster.showShort("点击了确定")
 //                },
 //                negativeCallback = {
-//                    ToastUtils.showShort("点击了取消")
+//                    Toaster.showShort("点击了取消")
 //                }
 //            )
 
@@ -67,13 +67,13 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
 
         binding.btnSelectImg.setOnClickListener {
 //            openAlbum {
-//                ToastUtils.showShort("选择的图片:$it")
+//                Toaster.showShort("选择的图片:$it")
 //            }
         }
 
         binding.btnPermission.setOnClickListener {
             requireActivity().getPermissions(Permission.NOTIFICATION_SERVICE) {
-                ToastUtils.showShort("权限获取成功")
+                Toaster.showShort("权限获取成功")
             }
         }
     }

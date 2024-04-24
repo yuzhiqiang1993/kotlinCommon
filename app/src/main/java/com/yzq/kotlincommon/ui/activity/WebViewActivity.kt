@@ -1,9 +1,7 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.provider.MediaStore
 import android.view.View
 import android.webkit.ValueCallback
 import android.webkit.WebView
@@ -153,7 +151,6 @@ class WebViewActivity : CordovaWebContainerActivity() {
 
             val photoFile = File(cordovaImgDir, "${System.currentTimeMillis()}.png")
             Logger.i("photoFile: ${photoFile.path}")
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
 
             photoUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 /*适配Android 7.0以上版本 */
@@ -162,7 +159,10 @@ class WebViewActivity : CordovaWebContainerActivity() {
                 Uri.fromFile(photoFile)
             }
 
-            takePhotoLauncher.launch(photoUri)
+            photoUri?.also {
+                takePhotoLauncher.launch(it)
+            }
+
 
         }
 

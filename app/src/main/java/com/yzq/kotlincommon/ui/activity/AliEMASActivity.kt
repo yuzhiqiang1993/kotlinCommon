@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.ui.activity
 
 import com.alibaba.ha.adapter.AliHaAdapter
 import com.alibaba.ha.adapter.service.tlog.TLogService
-import com.blankj.utilcode.util.ToastUtils
+import com.hjq.toast.Toaster
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
@@ -31,7 +31,7 @@ class AliEMASActivity : BaseActivity() {
             btnCustomReport.setOnClickListener {
                 /*自定义崩溃上报*/
                 AliHaAdapter.getInstance().reportCustomError(Exception("test exception"))
-                ToastUtils.showLong("已上报")
+                Toaster.showLong("已上报")
             }
         }
     }

@@ -1,6 +1,6 @@
 package com.yzq.common.net.interceptor
 
-import com.blankj.utilcode.util.DeviceUtils
+import com.yzq.base.extend.getDeviceId
 import com.yzq.common.net.constants.ServerConstants
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -22,7 +22,7 @@ class RequestHeadersInterceptor : Interceptor {
 
         val builder = request.newBuilder()
 
-        builder.addHeader(ServerConstants.DEVICE_ID, DeviceUtils.getAndroidID())
+        builder.addHeader(ServerConstants.DEVICE_ID, getDeviceId())
             .header("Accept", "*/*")
             .header("Accept-Encoding", "gzip")
             .header("Cache-Control", "no-cache")

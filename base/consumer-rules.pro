@@ -1,3 +1,6 @@
+#Toaster
+-keep class com.hjq.toast.** {*;}
+
 #TheRouter
 -keep class androidx.annotation.Keep
 -keep @androidx.annotation.Keep class * {*;}

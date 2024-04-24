@@ -2,7 +2,6 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.view.LayoutInflater
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -14,6 +13,7 @@ import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
 import com.google.android.material.navigation.NavigationView
+import com.hjq.toast.Toaster
 import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yzq.application.AppContext
@@ -73,7 +73,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                     drawerLayout.closeDrawer(GravityCompat.START)
                 } else {
                     if (System.currentTimeMillis() - lastBackTimeMillis > 2000) {
-                        Toast.makeText(this@MainActivity, "再按一次退出", Toast.LENGTH_SHORT).show()
+                        Toaster.showShort("再按一次退出")
                         lastBackTimeMillis = System.currentTimeMillis()
                     } else {
                         AppManager.exitApp()

@@ -13,6 +13,9 @@ plugins {
     alias(libs.plugins.xeonyu.application) apply false
     alias(libs.plugins.xeonyu.library) apply false
 
+    id("com.dorongold.task-tree") version "3.0.0"
+
+
 //    id("com.android.application") version "8.0.0" apply false
 //    id("com.android.library") version "8.0.0" apply false
 //    id("org.jetbrains.kotlin.android") version "1.8.10" apply false

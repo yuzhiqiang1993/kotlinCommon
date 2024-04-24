@@ -19,5 +19,4 @@ dependencies {
     api(libs.coil.gif)
     api(libs.coil.svg)
 
-    implementation(libs.utilcodex)
 }

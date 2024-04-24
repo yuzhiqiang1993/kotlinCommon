@@ -1,10 +1,10 @@
 package com.yzq.kotlincommon.ui.activity
 
-import com.blankj.utilcode.util.ToastUtils
 import com.drake.brv.utils.setup
 import com.google.android.flexbox.AlignItems
 import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
+import com.hjq.toast.Toaster
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
@@ -50,7 +50,7 @@ class FlexBoxActivity : BaseActivity() {
                 }
 
                 R.id.tv_tag_name.onClick {
-                    ToastUtils.showShort(getModel<String>())
+                    Toaster.showShort(getModel<String>())
                 }
             }.models =
             arrayListOf("java", "kotlin", "javascript", "php", "android", "go", "python", "flutter")

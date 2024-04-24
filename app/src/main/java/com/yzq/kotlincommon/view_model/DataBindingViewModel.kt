@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.MutableLiveData
-import com.blankj.utilcode.util.ToastUtils
+import com.hjq.toast.Toaster
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.data.DataBindingBean
 
@@ -17,6 +17,6 @@ class DataBindingViewModel : BaseViewModel() {
 
     fun getData() {
 
-        ToastUtils.showShort("当前值:${dataBindingLiveData.value?.content}")
+        Toaster.showShort("当前值:${dataBindingLiveData.value?.content}")
     }
 }

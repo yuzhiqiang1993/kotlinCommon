@@ -1,6 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
-import com.blankj.utilcode.util.ToastUtils
+import com.hjq.toast.Toaster
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
@@ -26,7 +26,7 @@ class ViewBindingActivity : BaseActivity() {
 
         binding.btnClick.setOnClickListener {
 
-            ToastUtils.showShort("点击了按钮")
+            Toaster.showShort("点击了按钮")
         }
     }
 }

@@ -1,5 +1,4 @@
-@Suppress("DSL_SCOPE_VIOLATION")
-plugins {
+@Suppress("DSL_SCOPE_VIOLATION") plugins {
     alias(libs.plugins.xeonyu.library)
 }
 
@@ -34,7 +33,6 @@ dependencies {
     api(libs.androidx.lifecycle.viewmodel.ktx)
     api(libs.androidx.swiperefreshlayout)
 
-    api(libs.utilcodex)
     api(libs.moshiKotlin)
 
 
@@ -56,6 +54,18 @@ dependencies {
     api(libs.xeonyu.application)
     api(libs.xeonyu.binding)
     api(libs.xeonyu.network.status)
+    api(libs.toaster)
+    //google 广告
+    implementation(libs.play.services.ads.identifier)
+
+//    api(libs.file.core)
+//
+//    api(libs.file.selector)
+//    api(libs.file.compressor)
+
+    api("com.github.javakam:file.core:3.9.8@aar")
+    api("com.github.javakam:file.selector:3.9.8@aar")
+    api("com.github.javakam:file.compressor:3.9.8@aar")
 
     api(project(":img"))
     api(project(":dialog"))

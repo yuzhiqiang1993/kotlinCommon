@@ -1,9 +1,13 @@
 package com.yzq.gao_de_map.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
+import android.location.LocationManager
+import android.provider.Settings
 import com.hjq.permissions.Permission
+import com.yzq.application.AppContext
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.common.utils.LocationUtils
 import com.yzq.dialog.showPositiveCallbackDialog
 import com.yzq.permission.getPermissions
 
@@ -30,15 +34,28 @@ object MapPermissionUtils {
             Permission.ACCESS_BACKGROUND_LOCATION
         ) {
 
-            if (LocationUtils.isGpsEnabled()) {
+            if (isGPSEnabled(activity)) {
                 block()
             } else {
                 activity.showPositiveCallbackDialog("提示", "该功能需要打开GPS,否则无法使用") {
-                    LocationUtils.openGpsSettings()
+                    openGpsSettings(activity)
                 }
             }
         }
 
 
+    }
+
+    @SuppressLint("WrongConstant")
+    fun isGPSEnabled(context: Context = AppContext): Boolean {
+        val locationManager =
+            context.getSystemService(Context.LOCATION_SERVICE) as android.location.LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+    }
+
+
+    fun openGpsSettings(context: Context = AppContext) {
+        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+        context.startActivity(intent)
     }
 }

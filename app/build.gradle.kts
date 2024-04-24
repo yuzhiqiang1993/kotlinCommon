@@ -4,6 +4,7 @@
     alias(libs.plugins.xeonyu.dependencyManager)
     id("therouter")
 
+
 }
 println("getRootDir():${rootDir}")
 

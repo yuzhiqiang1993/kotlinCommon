@@ -4,9 +4,10 @@ pluginManagement {
 
     repositories {
         mavenLocal()
-        mavenCentral()
         gradlePluginPortal()
         google()
+        mavenCentral()
+        maven { url = uri("https://s01.oss.sonatype.org/content/groups/public") }
         maven {
             url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
         }
@@ -39,8 +40,9 @@ dependencyResolutionManagement {
 
     repositories {
         mavenLocal()
-        mavenCentral()
         google()
+        mavenCentral()
+
         maven {
             url = uri("https://jitpack.io")
         }
@@ -50,6 +52,7 @@ dependencyResolutionManagement {
         maven {
             url = uri("https://maven.aliyun.com/repository/public/")
         }
+        maven { url = uri("https://s01.oss.sonatype.org/content/groups/public") }
         maven {
             url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
         }
@@ -103,10 +106,10 @@ gradle.addBuildListener(object : BuildAdapter() {
         println("projectsEvaluated")
     }
 
-    override fun buildFinished(result: BuildResult) {
-        super.buildFinished(result)
-        "构建结束".prependIndent().let(::println)
-    }
+//    override fun buildFinished(result: BuildResult) {
+//        super.buildFinished(result)
+//        "构建结束".prependIndent().let(::println)
+//    }
 })
 
 

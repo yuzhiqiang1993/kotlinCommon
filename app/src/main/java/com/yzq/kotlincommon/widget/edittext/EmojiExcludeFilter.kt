@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.widget.edittext
 
 import android.text.InputFilter
 import android.text.Spanned
-import com.blankj.utilcode.util.ToastUtils
+import com.hjq.toast.Toaster
 import java.util.regex.Pattern
 
 
@@ -28,7 +28,7 @@ class EmojiExcludeFilter : InputFilter {
     ): CharSequence? {
         val emojiMatcher = emojiPattern.matcher(source)
         return if (emojiMatcher.find()) {
-            ToastUtils.showShort("不允许输入表情")
+            Toaster.showShort("不允许输入表情")
             ""
         } else {
             null

@@ -1,9 +1,9 @@
 package com.yzq.kotlincommon.ext
 
 import com.alibaba.ha.adapter.AliHaConfig
-import com.blankj.utilcode.util.AppUtils
 import com.yzq.application.AppContext
 import com.yzq.application.AppManager
+import com.yzq.base.extend.getAppVersionName
 import com.yzq.kotlincommon.config.AliEMASConfig
 
 /**
@@ -16,7 +16,7 @@ import com.yzq.kotlincommon.config.AliEMASConfig
 fun AliHaConfig.defaultConfig(rsaPublicKey: String = "") {
 
     appKey = AliEMASConfig.appKey
-    appVersion = AppUtils.getAppVersionName()
+    appVersion = getAppVersionName()
     appSecret = AliEMASConfig.appSecret
     channel = "channel" // 渠道
     userNick = "xeon" // 用户昵称

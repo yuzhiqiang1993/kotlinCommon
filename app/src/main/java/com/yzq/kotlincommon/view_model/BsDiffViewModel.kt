@@ -2,9 +2,9 @@ package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.blankj.utilcode.util.FileUtils
-import com.blankj.utilcode.util.PathUtils
-import com.blankj.utilcode.util.ToastUtils
+import com.hjq.toast.Toaster
+import com.yzq.application.AppStorage
+import com.yzq.base.extend.md5
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.bsdiff.BsDiffTool
@@ -27,16 +27,16 @@ class BsDiffViewModel : BaseViewModel() {
     private val suffix = "apk"
 
     /*新文件*/
-    private val newFile = File(PathUtils.getExternalAppCachePath(), "new.$suffix")
+    private val newFile = File(AppStorage.External.Private.cachePath, "new.$suffix")
 
     /*旧文件*/
-    private val oldFile = File(PathUtils.getExternalAppCachePath(), "old.$suffix")
+    private val oldFile = File(AppStorage.External.Private.cachePath, "old.$suffix")
 
     /*合并后的文件*/
-    private val combineFile = File(PathUtils.getExternalAppCachePath(), "combine.$suffix")
+    private val combineFile = File(AppStorage.External.Private.cachePath, "combine.$suffix")
 
     /*生成的补丁文件*/
-    private val patchFile = File(PathUtils.getExternalAppCachePath(), "patch.$suffix")
+    private val patchFile = File(AppStorage.External.Private.cachePath, "patch.$suffix")
 
     /**
      * 生成差分包,非常的耗时且占用内存，一般都是在服务端进行
@@ -74,7 +74,7 @@ class BsDiffViewModel : BaseViewModel() {
                 return@launchSafety
             }
             if (!patchFile.exists()) {
-                ToastUtils.showShort("差分包不存在")
+                Toaster.showShort("差分包不存在")
                 _uiStateFlow.value = UIState.ShowToast("差分包不存在")
                 return@launchSafety
             }
@@ -90,8 +90,8 @@ class BsDiffViewModel : BaseViewModel() {
                 }
 
                 /*计算md5值*/
-                newFileMD5LiveData.value = FileUtils.getFileMD5ToString(newFile)
-                combineFileMD5LiveData.value = FileUtils.getFileMD5ToString(combineFile)
+                newFileMD5LiveData.value = newFile.md5()
+                combineFileMD5LiveData.value = combineFile.md5()
             }
             _uiStateFlow.value = UIState.ShowToast("差分包合并完成，耗时:$measureTimeMillis")
         }.invokeOnCompletion {

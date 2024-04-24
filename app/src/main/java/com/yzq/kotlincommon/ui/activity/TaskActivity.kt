@@ -1,10 +1,10 @@
 package com.yzq.kotlincommon.ui.activity
 
 import android.view.Menu
-import com.blankj.utilcode.util.ToastUtils
 import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
+import com.hjq.toast.Toaster
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
@@ -86,7 +86,7 @@ class TaskActivity : BaseActivity() {
                 R.id.tv_name.onFastClick {
                     val taskBean = getModel<TaskBean>()
                     Logger.i("点击了:$taskBean")
-                    ToastUtils.showShort(taskBean.name)
+                    Toaster.showShort(taskBean.name)
                 }
 
                 R.id.tv_delete.onClick {

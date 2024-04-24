@@ -18,8 +18,6 @@ dependencies {
     //    implementation(project(":application"))
 
     implementation(libs.androidx.appcompat)
-    /*utils*/
-    implementation(libs.utilcodex)
     /*xxPermission*/
     api(libs.xxPermissions)
     implementation(libs.xeonyu.logger)

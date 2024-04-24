@@ -4,7 +4,7 @@ import androidx.lifecycle.lifecycleScope
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
-import com.blankj.utilcode.util.ToastUtils
+import com.hjq.toast.Toaster
 import com.loper7.date_time_picker.DateTimeConfig
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
@@ -59,20 +59,20 @@ class DialogActivity : BaseActivity() {
 
             layoutScrollContent.btnOnlyPositiveCallback.setOnThrottleTimeClick {
                 showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作") {
-                    ToastUtils.showShort("点击了确定")
+                    Toaster.showShort("点击了确定")
                 }
             }
             layoutScrollContent.btnPositiveCallback.setOnThrottleTimeClick {
                 showPositiveCallbackDialog(message = "双选项，但只有确定按钮回调的弹窗，一般用于选择性的操作") {
-                    ToastUtils.showShort("点击了确定")
+                    Toaster.showShort("点击了确定")
                 }
             }
 
             layoutScrollContent.btnCallback.setOnThrottleTimeClick {
                 showCallbackDialog(message = "双选项双回调", positiveCallback = {
-                    ToastUtils.showShort("点击了确定")
+                    Toaster.showShort("点击了确定")
                 }, negativeCallback = {
-                    ToastUtils.showShort("点击了取消")
+                    Toaster.showShort("点击了取消")
                 })
             }
 
@@ -80,13 +80,13 @@ class DialogActivity : BaseActivity() {
                 val datas = arrayListOf("java", "kotlin", "android", "python", "flutter")
 
                 showSingleSelectList(title = "语言", items = datas) { dialog, index, text ->
-                    ToastUtils.showShort(text.toString())
+                    Toaster.showShort(text.toString())
                 }
             }
 
             layoutScrollContent.btnInput.setOnThrottleTimeClick {
                 showInputDialog(positiveText = "完成") { materialDialog, charSequence ->
-                    ToastUtils.showShort(charSequence.toString())
+                    Toaster.showShort(charSequence.toString())
                 }
             }
 
@@ -134,7 +134,7 @@ class DialogActivity : BaseActivity() {
 
             layoutScrollContent.btnSelectYear.setOnThrottleTimeClick {
                 selectYear { millisecond, dateStr ->
-                    ToastUtils.showLong(dateStr)
+                    Toaster.showLong(dateStr)
                 }
             }
             layoutScrollContent.btnSelectDate.setOnThrottleTimeClick {
@@ -145,7 +145,7 @@ class DialogActivity : BaseActivity() {
                 showDatePicker(
                     title = "选择年月日", displayType = displayType, dateFormat = dateFormat
                 ) { millisecond, dateStr ->
-                    ToastUtils.showLong(dateStr)
+                    Toaster.showLong(dateStr)
                 }
             }
             layoutScrollContent.btnSelectTime.setOnThrottleTimeClick {
@@ -157,7 +157,7 @@ class DialogActivity : BaseActivity() {
                 showDatePicker(
                     title = "选择时分秒", displayType = displayType, dateFormat = dateFormat
                 ) { millisecond, dateStr ->
-                    ToastUtils.showLong(dateStr)
+                    Toaster.showLong(dateStr)
                 }
             }
 

@@ -1,8 +1,8 @@
 package com.yzq.base.extend
 
 import androidx.lifecycle.asLiveData
-import com.blankj.utilcode.util.ToastUtils
 import com.drake.statelayout.StateLayout
+import com.hjq.toast.Toaster
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.view_model.BaseViewModel
@@ -37,7 +37,7 @@ fun BaseActivity.observeUIState(
             }
 
             is UIState.ShowToast -> {
-                runMain { ToastUtils.showLong(it.msg) }
+                runMain { Toaster.showLong(it.msg) }
             }
 
             is UIState.ShowDialog -> {
@@ -85,7 +85,7 @@ fun BaseFragment.observeUIState(
             }
 
             is UIState.ShowToast -> {
-                runMain { ToastUtils.showLong(it.msg) }
+                runMain { Toaster.showLong(it.msg) }
             }
 
             is UIState.ShowDialog -> {

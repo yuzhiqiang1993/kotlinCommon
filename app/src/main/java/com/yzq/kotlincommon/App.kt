@@ -22,7 +22,8 @@ import com.yzq.kotlincommon.task.main_thread_task.InitMMKVTask
 import com.yzq.kotlincommon.task.main_thread_task.InitSmartRefreshTask
 import com.yzq.kotlincommon.task.main_thread_task.InitStateLayoutConfigTask
 import com.yzq.kotlincommon.task.main_thread_task.InitTlogTask
-import com.yzq.kotlincommon.task.work_thread_task.InitUtilsTask
+import com.yzq.kotlincommon.task.work_thread_task.InitFileOperatorTask
+import com.yzq.kotlincommon.task.work_thread_task.InitToasterTask
 import com.yzq.logger.Logger
 import com.yzq.logger.console.ConsoleLogConfig
 import com.yzq.logger.console.ConsoleLogPrinter
@@ -36,8 +37,6 @@ import com.yzq.logger.core.loggerDebug
  * @time : 11:28
  *
  */
-
-
 class App : Application(), AppStateListener {
 
     override fun onCreate() {
@@ -68,22 +67,27 @@ class App : Application(), AppStateListener {
             SoLoader.init(this, false)
 
             /*监听App是否退出*/
-            AppManager.addAppStateListener(this)/*读清单配置文件里的数据*/
+            AppManager.addAppStateListener(this)
+            //读清单配置文件里的数据
             readMetaData()
-            Trace.beginSection("BaseApp_AppInit")/*日期库初始化*/
+            Trace.beginSection("BaseApp_AppInit")
+            //日期库初始化
             AndroidThreeTen.init(this)
             CoilManager.init()
             AppStartTaskDispatcher.create()
                 .setShowLog(true)
                 .addAppStartTask(InitCrashReportTask())
-                .addAppStartTask(InitUtilsTask())
                 .addAppStartTask(InitMMKVTask())
                 .addAppStartTask(InitStateLayoutConfigTask())
                 .addAppStartTask(InitSmartRefreshTask())
                 .addAppStartTask(InitAPMTask())
                 .addAppStartTask(InitTlogTask())
                 .addAppStartTask(InitAliPushTask())
-                .addAppStartTask(InitLocationTask()).start().await()
+                .addAppStartTask(InitLocationTask())
+                .addAppStartTask(InitToasterTask())
+                .addAppStartTask(InitFileOperatorTask())
+                .start()
+                .await()
 
             ASRManager.init(this)
 

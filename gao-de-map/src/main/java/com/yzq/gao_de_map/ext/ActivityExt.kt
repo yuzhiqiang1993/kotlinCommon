@@ -3,7 +3,7 @@ package com.yzq.gao_de_map.ext
 import android.content.Intent
 import android.net.Uri
 import androidx.activity.ComponentActivity
-import com.blankj.utilcode.util.AppUtils
+import com.yzq.application.AppManager
 
 private const val gaoDeMapPackageName = "com.autonavi.minimap"
 fun ComponentActivity.openGaoDeNavi(
@@ -50,4 +50,4 @@ fun ComponentActivity.openGaoDeMap() {
 }
 
 
-fun ComponentActivity.gaoDeMapHasInstalled() = AppUtils.isAppInstalled("com.autonavi.minimap")
+fun ComponentActivity.gaoDeMapHasInstalled() = AppManager.isAppInstalled("com.autonavi.minimap")

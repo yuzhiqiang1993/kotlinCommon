@@ -12,8 +12,8 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.lifecycleScope
 import coil.load
-import com.blankj.utilcode.util.ToastUtils
 import com.hjq.permissions.Permission
+import com.hjq.toast.Toaster
 import com.therouter.router.Route
 import com.yzq.application.AppStorage
 import com.yzq.base.extend.initToolbar
@@ -112,7 +112,7 @@ class StorageActivity : BaseActivity() {
                     }
                     Logger.i("path = ${path}")
                     Logger.i("uri.path = ${uri.path}")
-                    ToastUtils.showShort("图片已保存至 ${path}")
+                    Toaster.showShort("图片已保存至 ${path}")
 
                     /*通知相册更新数据*/
                     MediaScannerConnection.scanFile(

@@ -2,13 +2,12 @@ package com.yzq.gao_de_map
 
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.PowerManager
 import android.provider.Settings
 import androidx.activity.viewModels
-import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.ToastUtils
+import com.hjq.toast.Toaster
 import com.therouter.router.Route
+import com.yzq.application.AppManager
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
@@ -63,7 +62,7 @@ class GaoDeActivity : BaseActivity() {
 
             btnOpenGaode.setOnThrottleTimeClick {
                 if (!gaoDeMapHasInstalled()) {
-                    ToastUtils.showShort("请先安装高德地图")
+                    Toaster.showShort("请先安装高德地图")
                     return@setOnThrottleTimeClick
                 }
                 openGaoDeMap()
@@ -71,7 +70,7 @@ class GaoDeActivity : BaseActivity() {
 
             btnGaodeNav.setOnThrottleTimeClick {
                 if (!gaoDeMapHasInstalled()) {
-                    ToastUtils.showShort("请先安装高德地图")
+                    Toaster.showShort("请先安装高德地图")
                     return@setOnThrottleTimeClick
                 }
                 openGaoDeNavi("39.91", "116.40", "天安门")
@@ -81,21 +80,19 @@ class GaoDeActivity : BaseActivity() {
 
     /*申请忽略电池优化*/
     private fun ignoringBatteryOptimizations() {
-        val appPackageName = AppUtils.getAppPackageName()
+        val appPackageName = AppManager.getPackageName()
         Logger.i("appPackageName:${appPackageName}")
         val powerManager = getSystemService(POWER_SERVICE) as PowerManager
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val batteryOptimizations =
-                powerManager.isIgnoringBatteryOptimizations(appPackageName)
-            Logger.i("是否忽略电池优化:${batteryOptimizations}")
-            if (!batteryOptimizations) {
-                val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
-                intent.data = Uri.parse("package:$appPackageName")
-                startActivity(intent)
-            } else {
-                ToastUtils.showShort("已经忽略电池优化")
-            }
+        val batteryOptimizations =
+            powerManager.isIgnoringBatteryOptimizations(appPackageName)
+        Logger.i("是否忽略电池优化:${batteryOptimizations}")
+        if (!batteryOptimizations) {
+            val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+            intent.data = Uri.parse("package:$appPackageName")
+            startActivity(intent)
+        } else {
+            Toaster.showShort("已经忽略电池优化")
         }
     }
 

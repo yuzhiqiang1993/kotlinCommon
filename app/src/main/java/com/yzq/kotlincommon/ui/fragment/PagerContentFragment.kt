@@ -1,6 +1,6 @@
 package com.yzq.kotlincommon.ui.fragment
 
-import com.blankj.utilcode.util.ToastUtils
+import com.hjq.toast.Toaster
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
 import com.yzq.kotlincommon.R
@@ -34,7 +34,7 @@ class PagerContentFragment(var content: String) :
                 .setAdapter(BannerAdapter())
                 .setOnPageClickListener { clickedView, position ->
                     Logger.i("setOnPageClickListener:$position")
-                    ToastUtils.showShort("click:$position")
+                    Toaster.showShort("click:$position")
                 }
                 .create(bannerImgs)
 

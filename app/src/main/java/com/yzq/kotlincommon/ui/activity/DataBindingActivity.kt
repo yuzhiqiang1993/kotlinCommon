@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
-import com.blankj.utilcode.util.ToastUtils
+import com.hjq.toast.Toaster
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
@@ -34,7 +34,7 @@ class DataBindingActivity : BaseActivity() {
 
         binding.etContent.filters = arrayOf(EmojiExcludeFilter())
         binding.etContent.doOnTextChanged { text, start, before, count ->
-            ToastUtils.showShort(text)
+            Toaster.showShort(text)
         }
 
     }

@@ -1,11 +1,11 @@
 package com.yzq.base.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import coil.load
-import com.blankj.utilcode.util.BarUtils
+import com.yzq.base.R
 import com.yzq.base.databinding.ActivityImgPreviewBinding
+import com.yzq.base.extend.statusBarColorRes
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 
@@ -43,12 +43,12 @@ class ImgPreviewActivity : BaseActivity() {
         super.initWidget()
 
         onBackPressedDispatcher.addCallback(this, backPressedCallback)
-        BarUtils.setStatusBarColor(this, Color.BLACK)
+        statusBarColorRes(R.color.black)
+
 
         binding.photoView.setOnClickListener {
-//            backPressedCallback.handleOnBackPressed()
+            backPressedCallback.handleOnBackPressed()
         }
-//        Glide.with(this).load(imagePath).into(binding.photoView)
 
         binding.photoView.load(imagePath)
 

@@ -25,10 +25,9 @@ abstract class BaseActivity : AppCompatActivity {
     protected val TAG = "${this.javaClass.simpleName}-${this.hashCode()}"
 
     protected val loadingDialog by lazy {
-        LottieDialog(this)
-            .config {
-                bgRes(R.color.trans)
-            }
+        LottieDialog(this).config {
+            bgRes(R.color.trans)
+        }
     }
     protected val bubleLoadingDialog by lazy { BubbleLoadingDialog(this) }
 
@@ -46,12 +45,18 @@ abstract class BaseActivity : AppCompatActivity {
         }
 
 
-        TheRouter.inject(this)/*参数初始化，intent携带的值*/
-        initArgs(intent.extras)/*变量初始化*/
-        initVariable()/*控件的初始化，例如绑定点击时间之类的*/
-        initWidget()/*一些监听的初始化，*/
-        initListener()/*viewmodel的监听*/
-        observeViewModel()/*初始化数据*/
+        TheRouter.inject(this)
+        //参数初始化，intent携带的值
+        initArgs(intent.extras)
+        //变量初始化
+        initVariable()
+        //控件的初始化，例如绑定点击时间之类的
+        initWidget()
+        //一些监听的初始化
+        initListener()
+        //viewmodel的监听
+        observeViewModel()
+        //初始化数据
         initData()
     }
 

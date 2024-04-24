@@ -1,11 +1,12 @@
 package com.yzq.permission
 
+import android.widget.Toast
 import androidx.activity.ComponentActivity
-import com.blankj.utilcode.util.ToastUtils
 import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.OnPermissionPageCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
+import com.yzq.application.AppContext
 import com.yzq.dialog.showCallbackDialog
 import com.yzq.logger.Logger
 
@@ -88,12 +89,20 @@ private fun specialPermissionPrompt(deniedPermissions: MutableList<String>) {
 
         if (Permission.ACCESS_BACKGROUND_LOCATION == deniedPermission) {
             /*如果是申请后台定位权限 提示用户勾选始终允许*/
-            ToastUtils.showShort(R.string.common_permission_background_location_fail_hint)
+            Toast.makeText(
+                AppContext,
+                R.string.common_permission_background_location_fail_hint,
+                Toast.LENGTH_LONG
+            ).show()
         }
 
         /*传感器权限只能选择始终允许*/
         if (Permission.BODY_SENSORS_BACKGROUND == deniedPermission) {
-            ToastUtils.showShort(R.string.common_permission_background_sensors_fail_hint)
+            Toast.makeText(
+                AppContext,
+                R.string.common_permission_background_sensors_fail_hint,
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 }

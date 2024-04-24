@@ -1,11 +1,11 @@
 package com.yzq.kotlincommon.ui.activity
 
 import androidx.lifecycle.lifecycleScope
-import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.FileIOUtils
 import com.therouter.router.Route
+import com.yzq.application.AppManager
 import com.yzq.application.AppStorage
 import com.yzq.base.extend.initToolbar
+import com.yzq.base.extend.writeFileFromIS
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
@@ -86,7 +86,7 @@ class DownloadActivity : BaseActivity() {
                     "${AppStorage.External.Private.downloadPath}yzq.apk"
 
                 val su = withContext(Dispatchers.IO) {
-                    FileIOUtils.writeFileFromIS(path, download.byteStream())
+                    writeFileFromIS(path, download.byteStream())
                 }
 
                 Logger.i("存储路径：$path")
@@ -95,7 +95,7 @@ class DownloadActivity : BaseActivity() {
                 path
             }
 
-            AppUtils.installApp(savePath)
+            AppManager.installApk(savePath)
         }
     }
 }

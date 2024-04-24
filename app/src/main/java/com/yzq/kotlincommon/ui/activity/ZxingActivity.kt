@@ -3,9 +3,9 @@ package com.yzq.kotlincommon.ui.activity
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.blankj.utilcode.util.ClipboardUtils
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
+import com.yzq.base.extend.copyText
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
@@ -41,7 +41,7 @@ class ZxingActivity : BaseActivity() {
             }
 
             tvResult.setOnLongClickListener {
-                ClipboardUtils.copyText(tvResult.text)
+                copyText(tvResult.text)
                 true
             }
 

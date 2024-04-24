@@ -1,5 +1,13 @@
 package com.yzq.kotlincommon.ui.activity
 
+import ando.file.core.FileGlobal.OVER_LIMIT_EXCEPT_OVERFLOW
+import ando.file.core.FileUtils
+import ando.file.selector.FileSelectCallBack
+import ando.file.selector.FileSelectCondition
+import ando.file.selector.FileSelectResult
+import ando.file.selector.FileSelector
+import ando.file.selector.FileType
+import ando.file.selector.IFileType
 import android.content.Intent
 import android.net.Uri
 import androidx.activity.result.ActivityResultLauncher
@@ -9,7 +17,6 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModelProvider
 import coil.load
-import com.blankj.utilcode.util.UriUtils
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
 import com.yzq.application.AppStorage
@@ -21,6 +28,7 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
 import com.yzq.kotlincommon.view_model.CompressImgViewModel
+import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 import java.io.File
 import java.util.Calendar
@@ -47,6 +55,10 @@ class ImageCompressActivity : BaseActivity() {
 
     private lateinit var imgPath: String
 
+    companion object {
+        const val TAG = "ImageCompressActivity"
+    }
+
     override fun initWidget() {
         super.initWidget()
 
@@ -56,10 +68,8 @@ class ImageCompressActivity : BaseActivity() {
             registerForActivityResult(ActivityResultContracts.TakePicture()) { success ->
                 if (success) {
                     takePhotoUri?.also { uri ->
-                        UriUtils.uri2FileNoCacheCopy(uri)?.also { file ->
-                            compressImgViewModel.compressImg(file.absolutePath)
-                        }
-
+                        //将uri转为file
+                        compressImgViewModel.compressImg(uri)
                     }
                 }
             }
@@ -80,7 +90,10 @@ class ImageCompressActivity : BaseActivity() {
                     applicationContext.packageName + ".provider",
                     file
                 )
-                takePhotoResult?.launch(takePhotoUri)
+                takePhotoUri?.also {
+                    /*启动相机*/
+                    takePhotoResult?.launch(it)
+                }
             }
 
         }
@@ -88,8 +101,7 @@ class ImageCompressActivity : BaseActivity() {
         binding.fabAlbum.setOnClickListener {
 
             getPermissions(Permission.READ_MEDIA_IMAGES) {
-                /*暂时没有适配Android13的相册选择器*/
-
+                selectImg()
             }
         }
 
@@ -107,12 +119,47 @@ class ImageCompressActivity : BaseActivity() {
         }
     }
 
+    private fun selectImg() {
+
+        FileSelector
+            .with(this)
+            .setRequestCode(11)
+            .setTypeMismatchTip("文件类型不匹配 !") //File type mismatch
+            .setMinCount(1, "至少选择一个文件 !") //Choose at least one file
+            .setOverLimitStrategy(OVER_LIMIT_EXCEPT_OVERFLOW)
+            .setExtraMimeTypes("image/*") //默认不做文件类型约束为"*/*",不同类型系统提供的选择UI不一样 eg:"video/*","audio/*","image/*"
+            .filter(object : FileSelectCondition {
+                override fun accept(fileType: IFileType, uri: Uri?): Boolean {
+                    return when (fileType) {
+                        FileType.IMAGE -> (uri != null && !uri.path.isNullOrBlank() && !FileUtils.isGif(
+                            uri
+                        ))
+
+                        FileType.VIDEO -> false
+                        FileType.AUDIO -> false
+                        else -> false
+                    }
+                }
+            })
+            .callback(object : FileSelectCallBack {
+                override fun onSuccess(results: List<FileSelectResult>?) {
+                    Logger.it(TAG, "onSuccess: ${results?.size}")
+                    compressImgViewModel.compressImg(results?.get(0)?.uri!!)
+                }
+
+                override fun onError(e: Throwable?) {
+                    Logger.et(TAG, "onError: ${e?.message}")
+                }
+            })
+            .choose()
+
+    }
+
     override fun observeViewModel() {
         vm.run {
             compressedImgPathLiveData.observe(this@ImageCompressActivity) {
                 imgPath = it
                 binding.ivImg.load(imgPath)
-
             }
         }
     }
