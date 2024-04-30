@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yzq.kotlincommon">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" /> <!-- Android 适配Android 11 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" /><!--Android 14新权限-->
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
@@ -19,7 +19,8 @@
 
     <uses-feature
         android:name="android.hardware.camera"
-        android:required="true" /> <!-- 表示如果用户设备没有摄像头是否允许安装 由required字段控制 false表示可以安装 -->
+        android:required="false" /> <!-- 表示如果用户设备没有摄像头是否允许安装 由required字段控制 false表示可以安装 -->
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
@@ -54,6 +55,15 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
+
+        <meta-data
+            android:name="META_CHANNEL"
+            android:value="${META_CHANNEL_VALUE}" /> <!-- 自定义一些元数据 -->
+
+        <meta-data
+            android:name="ScopedStorage"
+            android:value="true" /><!-- 适配分区存储 -->
+
         <activity
             android:name=".ui.activity.JavaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -83,13 +93,8 @@
             android:name=".ui.activity.LottieActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- 自定义一些元数据 -->
-        <meta-data
-            android:name="META_CHANNEL"
-            android:value="${META_CHANNEL_VALUE}" /> <!-- 适配分区存储 -->
-        <meta-data
-            android:name="ScopedStorage"
-            android:value="true" />
+            android:screenOrientation="portrait" />
+
         <!--
         android:enabled : 如果为true，则这个service可以被系统实例化，如果为false，则不行。默认为true
         android:exported : 如果为true，则其他应用的组件也可以调用这个service并且可以与它进行互动，如果为false，则只有与service同一个应用或者相同user ID的应用可以开启或绑定此service。它的默认值取决于service是否有intent filters。如果一个filter都没有，就意味着只有指定了service的准确的类名才能调用，也就是说这个service只能应用内部使用——其他的应用不知道它的类名。这种情况下exported的默认值就为false。反之，只要有了一个filter，就意味着service是考虑到外界使用的情况的，这时exported的默认值就为true

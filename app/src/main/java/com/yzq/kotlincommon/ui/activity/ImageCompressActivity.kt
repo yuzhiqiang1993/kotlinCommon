@@ -44,6 +44,8 @@ import java.util.Calendar
 @Route(path = RoutePath.Main.IMG_COMPRESS)
 class ImageCompressActivity : BaseActivity() {
 
+
+    private var fileSelector: FileSelector? = null
     private var takePhotoResult: ActivityResultLauncher<Uri>? = null
     private var takePhotoUri: Uri? = null
 
@@ -77,18 +79,17 @@ class ImageCompressActivity : BaseActivity() {
         initToolbar(binding.layoutToolbar.toolbar, "图片")
         binding.fabCamera.setOnClickListener {
 
-            getPermissions(Permission.CAMERA, Permission.READ_MEDIA_IMAGES) {
+            getPermissions(
+                Permission.CAMERA
+            ) {
 
                 /*创建要保存的文件*/
                 val file = File(
                     AppStorage.External.Private.picturesPath,
                     "${Calendar.getInstance().timeInMillis}.png"
-                )
-                /*获得uri*/
+                )/*获得uri*/
                 takePhotoUri = FileProvider.getUriForFile(
-                    this,
-                    applicationContext.packageName + ".provider",
-                    file
+                    this, applicationContext.packageName + ".provider", file
                 )
                 takePhotoUri?.also {
                     /*启动相机*/
@@ -100,7 +101,9 @@ class ImageCompressActivity : BaseActivity() {
 
         binding.fabAlbum.setOnClickListener {
 
-            getPermissions(Permission.READ_MEDIA_IMAGES) {
+            getPermissions(
+                Permission.READ_MEDIA_IMAGES, Permission.READ_MEDIA_VISUAL_USER_SELECTED
+            ) {
                 selectImg()
             }
         }
@@ -109,19 +112,15 @@ class ImageCompressActivity : BaseActivity() {
             val intent = Intent(this, ImgPreviewActivity::class.java)
             intent.putExtra(ImgPreviewActivity.IMG_PATH, imgPath)
 
-            val options =
-                ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    this,
-                    it,
-                    getString(R.string.img_transition)
-                )
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this, it, getString(R.string.img_transition)
+            )
             startActivity(intent, options.toBundle())
         }
     }
 
     private fun selectImg() {
-
-        FileSelector
+        fileSelector = FileSelector
             .with(this)
             .setRequestCode(11)
             .setTypeMismatchTip("文件类型不匹配 !") //File type mismatch
@@ -140,8 +139,7 @@ class ImageCompressActivity : BaseActivity() {
                         else -> false
                     }
                 }
-            })
-            .callback(object : FileSelectCallBack {
+            }).callback(object : FileSelectCallBack {
                 override fun onSuccess(results: List<FileSelectResult>?) {
                     Logger.it(TAG, "onSuccess: ${results?.size}")
                     compressImgViewModel.compressImg(results?.get(0)?.uri!!)
@@ -150,8 +148,7 @@ class ImageCompressActivity : BaseActivity() {
                 override fun onError(e: Throwable?) {
                     Logger.et(TAG, "onError: ${e?.message}")
                 }
-            })
-            .choose()
+            }).choose()
 
     }
 
@@ -162,5 +159,11 @@ class ImageCompressActivity : BaseActivity() {
                 binding.ivImg.load(imgPath)
             }
         }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        fileSelector?.obtainResult(requestCode, resultCode, data)
     }
 }
