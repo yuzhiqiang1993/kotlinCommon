@@ -157,7 +157,8 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-    implementation(libs.kotlin.stdlib)
+
+    implementation(platform(libs.kotlin.bom))
     implementation(libs.androidx.viewpager2)
     implementation(libs.androidx.coordinatorlayout)
     implementation(libs.androidx.core.splashscreen)

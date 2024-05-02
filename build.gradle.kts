@@ -83,7 +83,7 @@ subprojects {
 
 /**
  * 查看项目依赖关系
- * ./gradlew app:dependencies > deps.txt  --configuration wandoujiaPrdReleaseRuntimeClasspath
+ * ./gradlew app:dependencies > deps.txt  --configuration oppoPrdReleaseRuntimeClasspath
  */
 
 

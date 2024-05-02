@@ -52,9 +52,9 @@ class LoggingInterceptor : Interceptor {
             .appendLine("响应体：$responseContent")
 
         if (response.code != 200) {
-            Logger.et(TAG, respSb.toString())
-        } else {
             Logger.wt(TAG, respSb.toString())
+        } else {
+            Logger.it(TAG, respSb.toString())
         }
 
 
