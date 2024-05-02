@@ -15,6 +15,11 @@ import java.nio.charset.Charset
  */
 
 class LoggingInterceptor : Interceptor {
+
+    companion object {
+        private const val TAG = "LoggingInterceptor"
+    }
+
     override fun intercept(chain: Interceptor.Chain): Response {
 
         if (!BuildConfig.DEBUG) {
@@ -33,7 +38,7 @@ class LoggingInterceptor : Interceptor {
             .appendLine("请求方法：${request.method}")
             .appendLine("请求头：${request.headers}")
             .appendLine("请求体：$requestContent")
-        Logger.i(requestSb.toString())
+        Logger.it(requestSb.toString())
 
 
         val response = chain.proceed(request)
@@ -45,7 +50,13 @@ class LoggingInterceptor : Interceptor {
             .appendLine("响应码：${response.code}")
             .appendLine("响应头：${response.headers}")
             .appendLine("响应体：$responseContent")
-        Logger.i(respSb.toString())
+
+        if (response.code != 200) {
+            Logger.et(TAG, respSb.toString())
+        } else {
+            Logger.wt(TAG, respSb.toString())
+        }
+
 
         // 重新构建响应体，因为原始响应体已经被读取过一次
         val newResponseBody = responseBody?.contentType()
@@ -53,4 +64,5 @@ class LoggingInterceptor : Interceptor {
 
         return response.newBuilder().body(newResponseBody).build()
     }
+
 }
