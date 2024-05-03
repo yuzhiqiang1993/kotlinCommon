@@ -100,17 +100,17 @@ xeonZxing = "2.2.9"
 xeonCordovaWebContainer = "1.0.6"
 xeonCordovaLib = "12.0.2"
 xeonBsDiff = "1.0.4"
-xeonLogger = "1.0.5"
-xeonApplication = "1.0.7-SNAPSHOT"
-xeonCoroutine = "1.0.3"
-xeonMMKV = "1.0.0"
-xeonBinding = "1.0.0"
+xeonLogger = "1.0.6"
+xeonApplication = "1.0.7"
+xeonCoroutine = "1.0.4"
+xeonMMKV = "1.0.1"
+xeonBinding = "1.0.1"
 xeonLocationManager = "1.0.1"
 xeonLocationGaode = "1.0.1"
 xeonLocationTencent = "1.0.1"
 xeonLocationBaidu = "1.0.1"
 xeonNetworkStatus = "1.0.1"
-xeonFloatView = "1.0.1"
+xeonFloatView = "1.0.2"
 
 activity = "1.9.0"
 playServicesAdsIdentifier = "18.0.1"
@@ -142,6 +142,9 @@ androidx-viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", vers
 androidx-exifinterface = { group = "androidx.exifinterface", name = "exifinterface", version.ref = "androidxExifinterface" }
 androidx-webkit = { group = "androidx.webkit", name = "webkit", version.ref = "androidxWebkit" }
 google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+play-services-ads-identifier = { group = "com.google.android.gms", name = "play-services-ads-identifier", version.ref = "playServicesAdsIdentifier" }
+
 #kotlin
 kotlin-bom = { group = "org.jetbrains.kotlin", name = "kotlin-bom", version.ref = "kotlin" }
 kotlin-stdlib = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
@@ -238,8 +241,6 @@ androidx-room-runtime = { group = "androidx.room", name = "room-runtime", versio
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext-junit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
-androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
-play-services-ads-identifier = { group = "com.google.android.gms", name = "play-services-ads-identifier", version.ref = "playServicesAdsIdentifier" }
 
 
 [bundles]

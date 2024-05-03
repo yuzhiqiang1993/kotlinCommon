@@ -6,6 +6,12 @@ plugins {
 
 android {
     namespace = "com.yzq.storage"
+
+    defaultConfig {
+        ksp {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
+    }
 }
 
 dependencies {

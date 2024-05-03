@@ -3,7 +3,7 @@ pluginManagement {
     println("pluginManagement")
 
     repositories {
-        mavenLocal()
+//        mavenLocal()
         gradlePluginPortal()
         google()
         mavenCentral()
@@ -39,7 +39,7 @@ dependencyResolutionManagement {
     //强制刷新依赖
 
     repositories {
-        mavenLocal()
+//        mavenLocal()
         google()
         mavenCentral()
 
