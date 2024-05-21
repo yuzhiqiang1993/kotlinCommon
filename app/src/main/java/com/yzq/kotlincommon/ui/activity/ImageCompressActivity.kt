@@ -83,11 +83,12 @@ class ImageCompressActivity : BaseActivity() {
                 Permission.CAMERA
             ) {
 
-                /*创建要保存的文件*/
+                //创建要保存的文件
                 val file = File(
                     AppStorage.External.Private.picturesPath,
                     "${Calendar.getInstance().timeInMillis}.png"
-                )/*获得uri*/
+                )
+                //获得uri
                 takePhotoUri = FileProvider.getUriForFile(
                     this, applicationContext.packageName + ".provider", file
                 )
@@ -126,7 +127,7 @@ class ImageCompressActivity : BaseActivity() {
             .setTypeMismatchTip("文件类型不匹配 !") //File type mismatch
             .setMinCount(1, "至少选择一个文件 !") //Choose at least one file
             .setOverLimitStrategy(OVER_LIMIT_EXCEPT_OVERFLOW)
-            .setExtraMimeTypes("image/*") //默认不做文件类型约束为"*/*",不同类型系统提供的选择UI不一样 eg:"video/*","audio/*","image/*"
+            .setExtraMimeTypes("image/*") //默认不做文件类型约束为 "*/*",不同类型系统提供的选择UI不一样 eg:"video/*","audio/*","image/*"
             .filter(object : FileSelectCondition {
                 override fun accept(fileType: IFileType, uri: Uri?): Boolean {
                     return when (fileType) {

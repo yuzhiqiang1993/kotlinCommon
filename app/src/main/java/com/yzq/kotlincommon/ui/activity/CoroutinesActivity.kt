@@ -84,7 +84,6 @@ class CoroutinesActivity : BaseActivity() {
                     launch {
                         Logger.i("supervisorScope launch 开始执行")
                         throw Exception("子协程内部出现异常")
-                        Logger.i("supervisorScope launch 执行结束")
                     }
 
                     delay(1000)

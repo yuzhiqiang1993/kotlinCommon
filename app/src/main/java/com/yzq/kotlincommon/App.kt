@@ -28,6 +28,10 @@ import com.yzq.logger.Logger
 import com.yzq.logger.console.ConsoleLogConfig
 import com.yzq.logger.console.ConsoleLogPrinter
 import com.yzq.logger.core.loggerDebug
+import com.yzq.logger.file.FileLogConfig
+import com.yzq.logger.file.FileLogPrinter
+import com.yzq.logger.view.core.ViewLogConfig
+import com.yzq.logger.view.core.ViewLogPrinter
 
 
 /**
@@ -42,6 +46,8 @@ class App : Application(), AppStateListener {
     override fun onCreate() {
         super.onCreate()
         AppManager.init(this, BuildConfig.DEBUG)
+
+
         loggerDebug = BuildConfig.DEBUG
 
         Logger
@@ -50,16 +56,21 @@ class App : Application(), AppStateListener {
                     ConsoleLogConfig.Builder().enable(BuildConfig.DEBUG).build()
                 )
             )
-//            .addPrinter(
-//                FileLogPrinter.getInstance(
-//                    FileLogConfig.Builder()
-//                        .enable(BuildConfig.DEBUG)
-//                        .writeLogInterval(60)
-//                        .storageDuration(1 * 24)
-//                        .build()
-//
-//                )
-//            )
+            .addPrinter(
+                FileLogPrinter.getInstance(
+                    FileLogConfig.Builder()
+                        .enable(BuildConfig.DEBUG)
+                        .writeLogInterval(60)
+                        .storageDuration(1 * 24)
+                        .build()
+
+                )
+            )
+            .addPrinter(
+                ViewLogPrinter.getInstance(
+                    ViewLogConfig.Builder().enable(BuildConfig.DEBUG).build()
+                )
+            )
 
         if (AppManager.isMainProcess()) {
             Logger.i("主进程")

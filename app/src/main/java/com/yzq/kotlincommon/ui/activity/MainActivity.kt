@@ -24,12 +24,14 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.NaviItem
 import com.yzq.coroutine.safety_coroutine.postDelayed
+import com.yzq.floating_view.FloatingViewListener
 import com.yzq.floating_view.FloatingViewManager
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityMainBinding
 import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
 import com.yzq.kotlincommon.databinding.LayoutFloatViewBinding
 import com.yzq.logger.Logger
+import com.yzq.logger.view.log_view.LogViewActivity
 
 
 /**
@@ -99,7 +101,16 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             bottomMargin(100)
             marginEdge(20)
             edgeViewScale(0.5f)
-        }.globalShow(true).build()
+        }.globalShow(true)
+            .addBlackList(LogViewActivity::class.java)
+            .build()
+
+        floatingViewManager?.setFloatingViewListener(object : FloatingViewListener {
+            override fun onClick() {
+                Logger.showLogInfoPage()
+            }
+
+        })
 
 
 
@@ -160,7 +171,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("蓝牙", RoutePath.Main.BLUETOOTH))
         items.add(NaviItem("ReactNative", RoutePath.Main.REACT_NATIVE))
         items.add(NaviItem("JavaActivity", RoutePath.Main.JAVA_ACTIVITY))
-
+        items.add(NaviItem("Jetpack Compose", RoutePath.Main.COMPOSE))
 
         setData()
 
@@ -184,7 +195,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }.models = items
 
 
-        var isScrolling = false
+        var isScrolling: Boolean
         binding.includedAppbarMain.recy.addOnScrollListener(object :
             RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(
@@ -212,8 +223,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun skip(path: String) {
-        TheRouter.build(path)
-            .navigation()
+        TheRouter.build(path).navigation()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

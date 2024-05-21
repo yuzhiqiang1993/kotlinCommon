@@ -20,6 +20,7 @@ import com.yzq.cordova_webcontainer.observer.PageObserver
 import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
+import org.apache.cordova.LOG
 import java.io.File
 
 @Route(path = RoutePath.Main.WEB_VIEW)
@@ -49,7 +50,7 @@ class WebViewActivity : CordovaWebContainerActivity() {
 
 
         binding.webContainer.apply {
-            init(this@WebViewActivity, this@WebViewActivity)
+            init(this@WebViewActivity, LOG.VERBOSE)
 //            webviewClient.interceptRequest { view, request, response ->
 //
 //            }

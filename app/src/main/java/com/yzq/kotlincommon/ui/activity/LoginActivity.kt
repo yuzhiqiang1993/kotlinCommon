@@ -39,6 +39,7 @@ class LoginActivity : BaseActivity() {
     override fun initWidget() {
         super.initWidget()
 
+
         immersive(Color.WHITE, true)
 
         /*开启一个页面级别的轮询*/

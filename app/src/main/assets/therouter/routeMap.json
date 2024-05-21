@@ -196,6 +196,13 @@
     "params": {}
   },
   {
+    "path": "/main/compose",
+    "className": "com.yzq.kotlincommon.ui.activity.ComposeActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/main/bsDiff",
     "className": "com.yzq.kotlincommon.ui.activity.BsDiffActivity",
     "action": "",

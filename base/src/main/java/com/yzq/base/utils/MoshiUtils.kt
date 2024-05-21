@@ -34,7 +34,6 @@ object MoshiUtils {
     }
 
     inline fun <reified T> getGenericType(): Type {
-
         return object :
             MoshiTypeReference<T>() {}::class.java
             .genericSuperclass

@@ -3,6 +3,7 @@
     alias(libs.plugins.ksp)
     alias(libs.plugins.xeonyu.dependencyManager)
     id("therouter")
+    alias(libs.plugins.kotlin.android)
 
 
 }
@@ -129,6 +130,12 @@ android {
         dataBinding = true
         viewBinding = true
         buildConfig = true
+        compose = true
+    }
+
+    composeOptions {
+        //kotlin和compose版本对应关系：https://developer.android.com/jetpack/androidx/releases/compose-kotlin?hl=zh-cn
+        kotlinCompilerExtensionVersion = "1.5.13"
     }
 
 
@@ -144,14 +151,22 @@ android {
             add("lib/x86/libc++_shared.so")
             add("lib/x86_64/libc++_shared.so")
         }
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    kotlinOptions {
+//        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_17.toString()
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
 //    compileOptions {
-//        sourceCompatibility = JavaVersion.VERSION_17
-//        targetCompatibility = JavaVersion.VERSION_17
-//    }
-//    kotlinOptions {
-//        jvmTarget = JavaVersion.VERSION_17.toString()
+//        sourceCompatibility = JavaVersion.VERSION_1_8
+//        targetCompatibility = JavaVersion.VERSION_1_8
 //    }
 }
 
@@ -159,6 +174,8 @@ dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
 
     implementation(platform(libs.kotlin.bom))
+    implementation(libs.bundles.kotlin)
+
     implementation(libs.androidx.viewpager2)
     implementation(libs.androidx.coordinatorlayout)
     implementation(libs.androidx.core.splashscreen)
@@ -184,6 +201,11 @@ dependencies {
 
     implementation(libs.therouter)
     implementation(libs.androidx.activity)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    androidTestImplementation(platform(libs.androidx.compose.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
     ksp(libs.therouter.apt)
 
     implementation(libs.androidx.exifinterface)
@@ -196,6 +218,11 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":baidu"))
     implementation(project(":react-native"))
+
+
+//     https://mvnrepository.com/artifact/androidx.compose/compose-bom
+    implementation(platform(libs.androidx.compose.compose.bom))
+    implementation(libs.bundles.compose)
 
 
 }

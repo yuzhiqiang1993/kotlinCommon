@@ -60,6 +60,7 @@
     <string name="start_location">开始定位</string>
     <string name="clear_mmkv">清除mmkv</string>
     <string name="collect">collect</string>
+    <string name="title_activity_compose">ComposeActivity</string>
 
 
 </resources>

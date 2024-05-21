@@ -45,6 +45,7 @@ object RoutePath {
         const val BLUETOOTH: String = "/main/bluetooth"
         const val REACT_NATIVE: String = "/main/reactNative"
         const val JAVA_ACTIVITY: String = "/main/javaActivity"
+        const val COMPOSE: String = "/main/compose"
 
     }
 
