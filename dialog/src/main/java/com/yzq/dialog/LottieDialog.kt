@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RawRes
-import androidx.fragment.app.FragmentActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.yzq.dialog.core.BaseDialogFragment
 import com.yzq.dialog.core.DialogConfig
 import com.yzq.dialog.databinding.LayoutLottieDialogBinding
@@ -15,7 +15,7 @@ import com.yzq.dialog.databinding.LayoutLottieDialogBinding
  * @description: 加载弹窗，一般用于网络请求时的加载提示，不可取消，只能等待请求完成后关闭，否则会导致内存泄漏
  * @author : yuzhiqiang
  */
-class LottieDialog(activity: FragmentActivity) : BaseDialogFragment<LottieDialog>(activity) {
+class LottieDialog(activity: AppCompatActivity) : BaseDialogFragment<LottieDialog>(activity) {
 
 
     //本地的加载动画文件,兜底用

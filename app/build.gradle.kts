@@ -220,11 +220,6 @@ dependencies {
     implementation(project(":react-native"))
 
 
-//     https://mvnrepository.com/artifact/androidx.compose/compose-bom
-    implementation(platform(libs.androidx.compose.compose.bom))
-    implementation(libs.bundles.compose)
-
-
 }
 
 

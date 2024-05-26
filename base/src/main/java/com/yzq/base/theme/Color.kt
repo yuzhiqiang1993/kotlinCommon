@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.theme
+package com.yzq.base.theme
 
 import androidx.compose.ui.graphics.Color
 

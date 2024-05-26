@@ -17,6 +17,13 @@ dependencies {
     api(libs.androidx.appcompat)
     api(libs.google.material)
 
+    //     https://mvnrepository.com/artifact/androidx.compose/compose-bom
+    api(platform(libs.androidx.compose.compose.bom))
+    api(libs.bundles.compose)
+
+    debugApi(libs.androidx.compose.ui.tooling)
+    debugApi(libs.androidx.compose.ui.tooling.preview)
+
     api(libs.androidx.vectordrawable)
     api(libs.androidx.constraintlayout)
     api(libs.androidx.annotation)
@@ -76,3 +83,19 @@ dependencies {
 
 
 }
+
+tasks.register("printSpecificDependency") {
+    doLast {
+        val configuration = configurations.getByName("oppoPrdReleaseRuntimeClasspath")
+        val dependency = configuration.incoming.resolutionResult.allDependencies.find {
+            it.requested.displayName.contains("androidx.compose.material3:material3")
+        }
+        if (dependency != null) {
+            println(dependency)
+        } else {
+            println("Dependency not found")
+        }
+    }
+}
+
+

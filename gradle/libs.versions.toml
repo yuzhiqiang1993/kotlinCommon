@@ -167,30 +167,35 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 #BOM 是 "Bill of Materials" 的缩写，这个依赖是一个 BOM（元数据文件），用于统一管理 Jetpack Compose 相关库的版本。它允许你在项目中使用统一的版本，而无需为每个库指定单独的版本号。
 #也就是说只要是以androidx.compose开头的库，都可以使用composeBom这个版本号
 androidx-compose-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "androidxComposeBomVersion" }
-#runtime
-androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
-#基础库，如Size、Padding,modifier修饰符 等
-androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
-#material组件库，如下拉刷新
+
+# 最上层的库，包含了compose 所有的必要库，理论上只需要依赖这一个即可。这个模块包含各种 Material 组件，如按钮、卡片、对话框、导航栏等
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-#ui组件库，如Button、Text等
-androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
-#这个库提供了用于在 Jetpack Compose 中进行图形处理的工具和类。它包含了一些用于绘制图形、处理颜色、渐变等功能的工具
-androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-#动画库
+#material icons，提供了material风格的图标，需要使用的话要单独依赖
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+
+#偏上层库，如Size、Padding,modifier修饰符 等。提供了构建用户界面所需的基础组件和实用工具，但不包含特定设计系统的样式。
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+
+#动画库，提供丰富的动画 API，帮助开发者实现复杂的动画效果和交互。
 androidx-compose-animation = { group = "androidx.compose.animation", name = "animation" }
-#LiveData支持
-androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata" }
-#viewmodel支持
-androidx-compose-runtime-viewmodel = { group = "androidx.compose.runtime", name = "runtime-viewmodel" }
-#as预览
+
+#compose.ui 是 Jetpack Compose 的核心模块，提供了声明式 UI 编程的基础设施。包含绘制系统、文本处理、布局构建、输入处理等底层功能，是所有更高层模块的基础。
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+
+#runtime，底层基础库，Runtime 分组是 Compose 的核心，提供了声明式 UI 编程的基础架构。包括组合函数的实现、状态管理和组合树的管理。
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+
+##LiveData支持
+#androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata" }
+##viewmodel支持
+#androidx-compose-runtime-viewmodel = { group = "androidx.compose.runtime", name = "runtime-viewmodel" }
+
+
+#as预览，提供开发阶段的预览工具，需要单独依赖
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 
 
-#material icons
-androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
-androidx-compose-material-icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
 
 #三方库
 okhttp-core = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
@@ -286,11 +291,17 @@ androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit
 [bundles]
 room = ["androidx-room-ktx", "androidx-room-runtime"]
 kotlin = ["kotlin-stdlib", "kotlin-stdlibjdk8"]
-compose = ["androidx-compose-foundation", "androidx-compose-material3",
-    "androidx-compose-ui", "androidx-ui-graphics", "androidx-compose-animation",
-    "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview",
-    "androidx-compose-runtime", "androidx-activity-compose",
-    "androidx-compose-material-icons-extended", "androidx-compose-material-icons-core"]
+compose = [
+    "androidx-compose-material3",
+    "androidx-activity-compose",
+    "androidx-compose-material-icons-extended",
+    #    "androidx-compose-foundation",
+    #    "androidx-compose-ui",
+    #    "androidx-ui-graphics",
+    #    "androidx-compose-animation",
+    #    "androidx-compose-runtime",
+
+]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -300,11 +311,11 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 therouter-agp8 = { id = "cn.therouter.agp8", version.ref = "theRouter" }
-#检查依赖库是否有新版本
+# 检查依赖库是否有新版本
 benManesVersion = { id = "com.github.ben-manes.versions", version.ref = "benManesVersion" }
-#版本发布三方插件
+# 版本发布三方插件
 vanniktechPublish = { id = "com.vanniktech.maven.publish", version.ref = "vanniktechPublish" }
-#自定义的插件
+# 自定义的插件
 xeonyu-application = { id = "com.xeonyu.plugin.application", version.ref = "xeonBuildManager" }
 xeonyu-library = { id = "com.xeonyu.plugin.library", version.ref = "xeonBuildManager" }
 xeonyu-dependencyManager = { id = "com.xeonyu.plugin.dependencyManager", version.ref = "xeonDependencyManager" }
