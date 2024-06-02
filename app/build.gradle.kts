@@ -4,6 +4,7 @@
     alias(libs.plugins.xeonyu.dependencyManager)
     id("therouter")
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose.compiler)
 
 
 }
@@ -133,10 +134,11 @@ android {
         compose = true
     }
 
-    composeOptions {
-        //kotlin和compose版本对应关系：https://developer.android.com/jetpack/androidx/releases/compose-kotlin?hl=zh-cn
-        kotlinCompilerExtensionVersion = "1.5.13"
-    }
+    //kotlin 2.0开始，使用插件的方式引入compose
+//    composeOptions {
+//        //kotlin和compose版本对应关系：https://developer.android.com/jetpack/androidx/releases/compose-kotlin?hl=zh-cn
+//        kotlinCompilerExtensionVersion = "1.5.13"
+//    }
 
 
     lint {

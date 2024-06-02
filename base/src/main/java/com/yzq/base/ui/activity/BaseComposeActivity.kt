@@ -58,16 +58,11 @@ abstract class BaseComposeActivity : ComponentActivity() {
     private fun initComposeUI() {
         actionBar?.hide()
         setContent {
-
             AppTheme {
-
                 DisposableEffect(Unit) {
-
                     onDispose {}
                 }
-
             }
-
         }
     }
 

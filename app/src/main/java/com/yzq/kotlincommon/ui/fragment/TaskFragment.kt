@@ -36,8 +36,7 @@ class TaskFragment : BaseFragment(R.layout.task_fragment) {
                 binding.tvTask.text = MoshiUtils.toJson(it, "  ")
             }
 
-            geocoderFlow
-                .filter { it != null }
+            geocoderFlow.filter { it != null }
                 .launchCollect(this@TaskFragment.viewLifecycleOwner) { // 扩展方法
                     binding.tvTask.text = it.toString()
                 }

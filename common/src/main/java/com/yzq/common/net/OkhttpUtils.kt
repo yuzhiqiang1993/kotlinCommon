@@ -3,7 +3,9 @@ package com.yzq.common.net
 
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.coroutine.safety_coroutine.withIO
+import com.yzq.coroutine.thread_pool.ThreadPoolManager
 import com.yzq.logger.Logger
+import okhttp3.Dispatcher
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.MediaType.Companion.toMediaType
@@ -23,19 +25,19 @@ import java.util.concurrent.TimeUnit
 
 object OkHttpUtils {
 
-    val client = OkHttpClient
-        .Builder()
+    val client = OkHttpClient.Builder()
         .connectTimeout(5, TimeUnit.SECONDS)
         .readTimeout(5, TimeUnit.SECONDS)
         .addInterceptor(LoggingInterceptor())
+        .dispatcher(Dispatcher(ThreadPoolManager.instance.ioThreadPoolExecutor))//设置线程池,okhttp本身做了限制，默认同时最多支持64个请求
         .build()
 
 
-    private val downloadClient = OkHttpClient
-        .Builder()
-        .connectTimeout(5, TimeUnit.SECONDS)
-        .readTimeout(5, TimeUnit.SECONDS)
-        .build()
+    private val downloadClient =
+        OkHttpClient.Builder()
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(5, TimeUnit.SECONDS)
+            .build()
 
 
     /**
@@ -51,9 +53,7 @@ object OkHttpUtils {
         params: Map<String, String> = emptyMap(),
     ): Result<T> {
         val httpUrl = url.toHttpUrlWithParams(params)
-        val request = Request.Builder()
-            .url(httpUrl)
-            .build()
+        val request = Request.Builder().url(httpUrl).build()
         return request<T>(request)
     }
 
@@ -71,10 +71,7 @@ object OkHttpUtils {
         params: Map<String, String> = emptyMap(),
     ): Result<T> {
         val requestBody = params.toJsonRequestBody()
-        val request = Request.Builder()
-            .url(url)
-            .post(requestBody)
-            .build()
+        val request = Request.Builder().url(url).post(requestBody).build()
         return request<T>(request)
     }
 
@@ -104,9 +101,7 @@ object OkHttpUtils {
 
 
     suspend fun downloadFile(
-        url: String,
-        destFile: File,
-        progressCallback: (progress: Int, total: Long) -> Unit
+        url: String, destFile: File, progressCallback: (progress: Int, total: Long) -> Unit
     ): Result<File> {
         return withIO {
             val request = Request.Builder().url(url).build()
@@ -134,8 +129,7 @@ object OkHttpUtils {
                                 lastCallbackTime = System.currentTimeMillis()
                                 progressCallback(lastProgress, contentLength)
                             }
-                        }
-                        /*保证100一定会被回调一次*/
+                        }/*保证100一定会被回调一次*/
                         if (lastProgress != 100) {
                             lastProgress = 100
                             progressCallback.invoke(lastProgress, contentLength)

@@ -89,7 +89,6 @@ class ComposeActivity : ComponentActivity() {
 
 @Composable
 fun ShowStrLength(value: String) {
-
     /**
      * remember 起到缓存作用，防止重组导致变量重新初始化，只要是在Compose函数内部的变量，理论上都要使用remember进行缓存
      * 参数value是需要缓存的变量，只要value发生变化，size也会发生变化，如果value不发生变化，size也不会发生变化，以避免重组

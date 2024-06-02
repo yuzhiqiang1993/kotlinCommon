@@ -95,8 +95,7 @@ object AESUtil {
     fun main(args: Array<String>) {
 
         /*构建一个随机密码*/
-        val key =
-            getRandomKey(keyLength)
+        val key = getRandomKey(keyLength)
         println("随机生成的key：$key")
 
         val data = "{'fig':1,'message':'登录成功'}"

@@ -2,16 +2,17 @@
  * 该处主要用来申明插件的版本，apply false表示不立即应用，而是自己手动应用
  */
 
-@Suppress("DSL_SCOPE_VIOLATION")
-plugins {
+@Suppress("DSL_SCOPE_VIOLATION") plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.therouter.agp8) apply false
     alias(libs.plugins.benManesVersion) apply false
     alias(libs.plugins.xeonyu.application) apply false
     alias(libs.plugins.xeonyu.library) apply false
+
 
     id("com.dorongold.task-tree") version "3.0.0"
 
