@@ -153,15 +153,16 @@
 #避免混淆内部类
 -keepattributes InnerClasses
 
-#（可选）避免Log打印输出
-#-assumenosideeffects class android.util.Log {
-#        public static *** v(...);
-#        public static *** d(...);
-#        public static *** i(...);
-#        public static *** w(...);
-#        public static *** e(...);
-#}
-
+# 移除日志打印
+-assumenosideeffects class android.util.Log {
+        public static *** d(...);
+        public static *** e(...);
+        public static *** i(...);
+        public static *** v(...);
+        public static *** println(...);
+        public static *** w(...);
+        public static *** wtf(...);
+}
 
 
 #kotlin 相关
