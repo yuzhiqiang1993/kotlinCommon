@@ -15,13 +15,13 @@ println("getRootDir():${rootDir}")
 dependencyManager {
     //依赖分析
     analysis {
-        enable = true
+        enable = false
         collectFileDetail = true
         collectArtifactFilePath = true
     }
     //依赖替换,可以用于替换指定依赖以及统一版本
     replace {
-        this.enable = true
+        this.enable = false
         this.replaceMap = mapOf(
 //            "org.jetbrains.kotlin:kotlin-stdlib" to "${libs.kotlin.stdlib.jdk8.get()}",
         )
@@ -29,7 +29,7 @@ dependencyManager {
 
     //代码查找
     searchCode {
-        enable = true
+        enable = false
         searchStrings = listOf(
             " Log.i"
         )
@@ -80,7 +80,8 @@ android {
             buildConfigField("boolean", "LOG_DEBUG", "false")
             buildConfigField("String", "BASE_URL", "\"https://debug.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
             buildConfigField("String", "CUSTOME_FIELD", "\"${rootProject.ext.get("debugValue")}\"")
-        }/*生产环境用*/
+        }
+
         release {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true

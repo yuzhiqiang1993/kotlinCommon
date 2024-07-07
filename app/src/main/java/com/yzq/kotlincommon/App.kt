@@ -27,7 +27,6 @@ import com.yzq.kotlincommon.task.work_thread_task.InitToasterTask
 import com.yzq.logger.Logger
 import com.yzq.logger.console.ConsoleLogConfig
 import com.yzq.logger.console.ConsoleLogPrinter
-import com.yzq.logger.core.loggerDebug
 import com.yzq.logger.file.FileLogConfig
 import com.yzq.logger.file.FileLogPrinter
 import com.yzq.logger.view.core.ViewLogConfig
@@ -48,14 +47,12 @@ class App : Application(), AppStateListener {
         AppManager.init(this, BuildConfig.DEBUG)
 
 
-        loggerDebug = BuildConfig.DEBUG
-
-        Logger
-            .addPrinter(
-                ConsoleLogPrinter.getInstance(
-                    ConsoleLogConfig.Builder().enable(BuildConfig.DEBUG).build()
-                )
+//        if (BuildConfig.DEBUG) {
+        Logger.addPrinter(
+            ConsoleLogPrinter.getInstance(
+                ConsoleLogConfig.Builder().enable(BuildConfig.DEBUG).build()
             )
+        )
             .addPrinter(
                 FileLogPrinter.getInstance(
                     FileLogConfig.Builder()
@@ -70,7 +67,9 @@ class App : Application(), AppStateListener {
                 ViewLogPrinter.getInstance(
                     ViewLogConfig.Builder().enable(BuildConfig.DEBUG).build()
                 )
-            )
+            ).debug(true)
+//        }
+
 
         if (AppManager.isMainProcess()) {
             Logger.i("主进程")

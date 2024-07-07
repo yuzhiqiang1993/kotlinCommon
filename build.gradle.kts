@@ -14,7 +14,8 @@
     alias(libs.plugins.xeonyu.library) apply false
 
 
-    id("com.dorongold.task-tree") version "3.0.0"
+    //用于输出任务树
+    id("com.dorongold.task-tree") version "4.0.0"
 
 
 //    id("com.android.application") version "8.0.0" apply false

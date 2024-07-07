@@ -3,7 +3,7 @@ pluginManagement {
     println("pluginManagement")
 
     repositories {
-//        mavenLocal()
+        mavenLocal()
         gradlePluginPortal()
         google()
         mavenCentral()

@@ -32,8 +32,6 @@
 # 混淆采用的算法.
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 
-# dump文件列出apk包内所有class的内部结构
--dump class_files.txt
 # seeds.txt文件列出未混淆的类和成员
 -printseeds seeds.txt
 # usage.txt文件列出从apk中删除的代码
@@ -166,6 +164,7 @@
 
 
 #kotlin 相关
+
 -dontwarn kotlin.**
 -keep class kotlin.** { *; }
 -keep interface kotlin.** { *; }
@@ -186,6 +185,8 @@
 -keep class org.jetbrains.** { *; }
 -keep interface org.jetbrains.** { *; }
 -dontwarn org.jetbrains.**
+
+
 
 #
 ##Cordova
