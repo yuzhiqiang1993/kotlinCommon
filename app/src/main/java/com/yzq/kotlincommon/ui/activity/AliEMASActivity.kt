@@ -29,7 +29,7 @@ class AliEMASActivity : BaseActivity() {
             initToolbar(toolbar = toolbar.toolbar, "EMAS")
 
             btnCustomReport.setOnClickListener {
-                /*自定义崩溃上报*/
+                //自定义崩溃上报
                 AliHaAdapter.getInstance().reportCustomError(Exception("test exception"))
                 Toaster.showLong("已上报")
             }

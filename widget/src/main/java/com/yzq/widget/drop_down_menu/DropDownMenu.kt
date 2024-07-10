@@ -120,11 +120,11 @@ class DropDownMenu @JvmOverloads constructor(
         map: Map<String, View>,
         contentView: View,
     ) {
-        /*先添加contentView,让它在地底部*/
+        //先添加contentView,让它在地底部
         contentContainer.addView(contentView, 0)
-        /*创建遮罩view*/
+        //创建遮罩view
         maskView = View(context)
-        /*配置属性*/
+        //配置属性
         maskView.run {
             layoutParams = FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
@@ -134,30 +134,30 @@ class DropDownMenu @JvmOverloads constructor(
             setOnClickListener { v: View? -> closeMenu() }
             visibility = GONE
         }
-        /*添加到内容布局中 让它浮在内部上方*/
+        //添加到内容布局中 让它浮在内部上方
         contentContainer.addView(maskView, 1)
 
-        /*先移除遮罩上方的view*/
+        //先移除遮罩上方的view
         if (contentContainer.getChildAt(2) != null) {
             contentContainer.removeViewAt(2)
         }
-        /*最上方的弹出菜单容器*/
+        //最上方的弹出菜单容器
         popupMenuContainer = FrameLayout(context)
 
-        /*高度设置为指定的百分比  弹出后底部就会显示出下面的遮罩view*/
+        //高度设置为指定的百分比  弹出后底部就会显示出下面的遮罩view
         popupMenuContainer.layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             (context.getScreenHeight() * menuHeightPercent).toInt()
         )
-        /*先隐藏*/
+        //先隐藏
         popupMenuContainer.visibility = GONE
-        /*添加到内容布局中  层级在最上方*/
+        //添加到内容布局中  层级在最上方
         contentContainer.addView(popupMenuContainer, 2)
 
         map.iterator().forEach {
-            /*添加tabitem*/
+            //添加tabitem
             addTabItem(it.key)
-            /*添加tabitem对应的view*/
+            //添加tabitem对应的view
             it.value.run {
                 layoutParams = ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -233,38 +233,38 @@ class DropDownMenu @JvmOverloads constructor(
      * @param target
      */
     private fun switchMenu(target: View) {
-        /*先隐藏其他选项*/
+        //先隐藏其他选项
         for (i in 0 until tabMenuContainer.childCount) {
             val currentTabItem = tabMenuContainer.getChildAt(i) as TabItem
             if (target === tabMenuContainer.getChildAt(i)) {
 
-                /*点击的是已经选中的item*/
+                //点击的是已经选中的item
                 if (currentTabPosition == i) {
                     closeMenu()
                 } else {
-                    /*点击的是其他item*/
+                    //点击的是其他item
                     if (currentTabPosition == -1) {
-                        /*当下拉菜单处于关闭状态时 显示*/
+                        //当下拉菜单处于关闭状态时 显示
                         popupMenuContainer.visibility = VISIBLE
                         popupMenuContainer.animation = AnimationUtils.loadAnimation(
                             context,
                             R.anim.dd_menu_in
                         )
-                        /*遮罩层执行动画显示*/
+                        //遮罩层执行动画显示
                         maskView.visibility = VISIBLE
                         maskView.animation = AnimationUtils.loadAnimation(
                             context,
                             R.anim.dd_mask_in
                         )
                     }
-                    /*显示下拉菜单里的对应内容*/
+                    //显示下拉菜单里的对应内容
                     popupMenuContainer.getChildAt(i).visibility = VISIBLE
                     currentTabItem.setTitleColor(textSelectedColor)
                     currentTabItem.setIcon(menuSelectedIcon, textSelectedColor)
                     currentTabPosition = i
                 }
             } else {
-                /*隐藏其他的popupMenuViews*/
+                //隐藏其他的popupMenuViews
                 popupMenuContainer.getChildAt(i).visibility = GONE
                 currentTabItem.setTitleColor(textUnselectedColor)
                 currentTabItem.setIcon(menuUnselectedIcon, textUnselectedColor)

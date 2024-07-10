@@ -10,9 +10,7 @@ package com.yzq.common.net.constants
  */
 
 object ResponseCode {
-
-
-    /*成功*/
+    //成功
     const val SUCCESS = 200
 
 

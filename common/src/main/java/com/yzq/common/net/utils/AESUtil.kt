@@ -94,7 +94,7 @@ object AESUtil {
     @JvmStatic
     fun main(args: Array<String>) {
 
-        /*构建一个随机密码*/
+        //构建一个随机密码
         val key = getRandomKey(keyLength)
         println("随机生成的key：$key")
 
