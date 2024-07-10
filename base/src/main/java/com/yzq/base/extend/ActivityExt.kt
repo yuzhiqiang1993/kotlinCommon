@@ -17,7 +17,7 @@ fun AppCompatActivity.initToolbar(
     toolbar.title = title
     setSupportActionBar(toolbar)
     supportActionBar?.setDisplayHomeAsUpEnabled(displayHome)
-    /*沉浸式*/
+    //沉浸式
     immersive()
     toolbar.statusPadding()
 }

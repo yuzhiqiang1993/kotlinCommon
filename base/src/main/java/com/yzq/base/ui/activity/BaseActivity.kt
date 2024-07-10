@@ -68,7 +68,9 @@ abstract class BaseActivity : AppCompatActivity {
     protected open fun initArgs(extras: Bundle?) {
     }
 
-    /*初始化变量*/
+    /**
+     * 初始化变量
+     */
     protected open fun initVariable() {
     }
 

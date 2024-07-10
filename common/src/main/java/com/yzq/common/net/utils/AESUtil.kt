@@ -26,7 +26,7 @@ object AESUtil {
     private var keyLength = 16
 
 
-    /*当加密模式为CBC时  需要偏移量*/
+    //当加密模式为CBC时  需要偏移量
     private const val offset = "1234567890000000"
 
 

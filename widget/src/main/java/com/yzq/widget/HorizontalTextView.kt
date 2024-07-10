@@ -40,7 +40,7 @@ class HorizontalTextView @JvmOverloads constructor(
         ViewHorizontalTextLayoutBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
-        /*可以代替传统的try catch*/
+        //可以代替传统的try catch
         context.withStyledAttributes(attrs, R.styleable.HorizontalTextView) {
             startIconRes = getResourceId(R.styleable.HorizontalTextView_horz_tv_icon, -1)
             iconTint = getColor(

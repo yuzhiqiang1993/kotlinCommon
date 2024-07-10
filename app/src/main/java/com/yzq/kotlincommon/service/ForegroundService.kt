@@ -49,11 +49,13 @@ class ForegroundService : Service(), AppStateListener {
         }
 
 
-        /*点击跳转页面*/
-        var flag = PendingIntent.FLAG_UPDATE_CURRENT/*兼容Android31*/
+        //点击跳转页面
+        var flag = PendingIntent.FLAG_UPDATE_CURRENT
+        //兼容Android31
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             flag = flag or PendingIntent.FLAG_IMMUTABLE
-        }/*如果想点击不同的按钮跳转到不同的页面 可以给不同的requestCode来区分*/
+        }
+        //如果想点击不同的按钮跳转到不同的页面 可以给不同的requestCode来区分
         val pendingIntent =
             PendingIntent.getActivity(AppContext, 1, Intent(this, MainActivity::class.java), flag)
 
@@ -63,8 +65,9 @@ class ForegroundService : Service(), AppStateListener {
                 .setWhen(System.currentTimeMillis())//显示通知发生的时间
                 .setSmallIcon(R.mipmap.ic_launcher_round).setContentIntent(pendingIntent).build()
 
-        /*调用 startForegroundService 的5秒内必要调用startForeground*/
+        //调用 startForegroundService 的5秒内必要调用startForeground
         startForeground(1, notification)
+
 
         AppManager.addAppStateListener(this)
 

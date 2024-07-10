@@ -37,7 +37,7 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
         TheRouter.inject(this)
         initVariable()
         initWidget()
-        /*viewmodel的监听*/
+        //viewmodel的监听
         observeViewModel()
         initData()
     }
@@ -54,17 +54,26 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
     protected open fun initArgs(arguments: Bundle?) {
     }
 
-    /*初始化数据*/
+    /**
+     * 初始化数据
+     */
     protected open fun initData() {
     }
 
-    /*初始化View*/
+    /**
+     * 初始化View
+     */
     protected open fun initWidget() {}
 
-    /*监听vm中的数据*/
+    /**
+     * 监听vm中的数据
+     */
     protected open fun observeViewModel() {}
 
-    /*返回键监听*/
+    /**
+     * 返回键监听
+     * @return Boolean
+     */
     open fun onBackPressed(): Boolean {
         /*如果子类重写返回true  表示fragment要拦截返回键的逻辑 自己做处理*/
         return false

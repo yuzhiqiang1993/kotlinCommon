@@ -62,14 +62,14 @@ class DropDownMenu @JvmOverloads constructor(
     // tab未选中图标
     private var menuUnselectedIcon = 0
 
-    /*内容高度百分比*/
+    //内容高度百分比
     private var menuHeightPercent = 0.5f
 
-    /*menu的背景颜色*/
+    //menu的背景颜色
     private var menuBackgroundColor = Color.WHITE
 
     init {
-        /*垂直排列*/
+        //垂直排列
         orientation = VERTICAL
         context.withStyledAttributes(attrs, R.styleable.DropDownMenu) {
             textSelectedColor =
@@ -99,13 +99,13 @@ class DropDownMenu @JvmOverloads constructor(
             layoutParams = params
         }
         addView(tabMenuContainer, 0)
-        /*创建一个FrameLayout用来存放内容*/
+        //创建一个FrameLayout用来存放内容
         contentContainer = FrameLayout(context)
         contentContainer.layoutParams = FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT,
             FrameLayout.LayoutParams.MATCH_PARENT
         )
-        /*放在tabContainer下面*/
+        //放在tabContainer下面
         addView(contentContainer, 1)
     }
 

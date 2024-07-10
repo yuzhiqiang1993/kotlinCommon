@@ -27,7 +27,10 @@ interface ApiService {
         @Query("latest_admin") latest_admin: String = "1",
     ): Response<Geocoder>
 
-    /*下载安装包*/
+    /**
+     * 下载安装包
+     * @return ResponseBody
+     */
     @Streaming
     @GET(ApiConstants.apk)
     suspend fun downloadApk(): ResponseBody

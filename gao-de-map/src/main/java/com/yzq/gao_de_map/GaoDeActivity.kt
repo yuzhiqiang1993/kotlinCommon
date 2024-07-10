@@ -78,7 +78,7 @@ class GaoDeActivity : BaseActivity() {
         }
     }
 
-    /*申请忽略电池优化*/
+    //申请忽略电池优化
     private fun ignoringBatteryOptimizations() {
         val appPackageName = AppManager.getPackageName()
         Logger.i("appPackageName:${appPackageName}")

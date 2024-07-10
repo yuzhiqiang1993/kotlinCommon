@@ -40,7 +40,7 @@ fun ComponentActivity.openGaoDeMap() {
         val intent = Intent()
         intent.action = Intent.ACTION_VIEW
         intent.addCategory(Intent.CATEGORY_DEFAULT)
-        /*直接打开地图*/
+        //直接打开地图
         val uri = Uri.parse("androidamap://rootmap?sourceApplication")
         intent.data = uri
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

@@ -92,13 +92,12 @@ class HorizontalEditView @JvmOverloads constructor(
         }
 
         binding.run {
-            /*默认隐藏图标*/
-
+            //默认隐藏图标
             iconStart.visibility = View.GONE
 
             iconEnd.visibility = View.GONE
 
-            /*显示前面的图标*/
+            //显示前面的图标
             if (iconRes != -1) {
 
                 iconStart.visibility = View.VISIBLE
@@ -108,7 +107,7 @@ class HorizontalEditView @JvmOverloads constructor(
                 )
             }
 
-            /*显示后面的图标*/
+            //显示后面的图标
             if (endIconRes != -1) {
                 iconEnd.visibility = View.VISIBLE
                 iconEnd.setImageResource(endIconRes)
@@ -117,7 +116,7 @@ class HorizontalEditView @JvmOverloads constructor(
                 )
             }
 
-            /*设置inputType*/
+            //设置inputType
             when (inputType) {
 
                 "0" -> inputContent.inputType = InputType.TYPE_CLASS_PHONE

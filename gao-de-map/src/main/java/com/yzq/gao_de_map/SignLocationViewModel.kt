@@ -20,7 +20,9 @@ class SignLocationViewModel : BaseViewModel() {
 
     val locationLiveData = MutableLiveData<Location>()
 
-    /*开始定位*/
+    /**
+     * 开始定位
+     */
     fun startLocation() {
         _uiStateFlow.value = UIState.ShowLoadingDialog("正在定位...")
         LocationManager.startOnceLocation(object : LocationListener {

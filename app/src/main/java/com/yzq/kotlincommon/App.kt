@@ -52,22 +52,17 @@ class App : Application(), AppStateListener {
             ConsoleLogPrinter.getInstance(
                 ConsoleLogConfig.Builder().enable(BuildConfig.DEBUG).build()
             )
-        )
-            .addPrinter(
-                FileLogPrinter.getInstance(
-                    FileLogConfig.Builder()
-                        .enable(BuildConfig.DEBUG)
-                        .writeLogInterval(60)
-                        .storageDuration(1 * 24)
-                        .build()
+        ).addPrinter(
+            FileLogPrinter.getInstance(
+                FileLogConfig.Builder().enable(BuildConfig.DEBUG).writeLogInterval(60)
+                    .storageDuration(1 * 24).build()
 
-                )
             )
-            .addPrinter(
-                ViewLogPrinter.getInstance(
-                    ViewLogConfig.Builder().enable(BuildConfig.DEBUG).build()
-                )
-            ).debug(true)
+        ).addPrinter(
+            ViewLogPrinter.getInstance(
+                ViewLogConfig.Builder().enable(BuildConfig.DEBUG).build()
+            )
+        ).debug(true)
 //        }
 
 
@@ -84,20 +79,12 @@ class App : Application(), AppStateListener {
             //日期库初始化
             AndroidThreeTen.init(this)
             CoilManager.init()
-            AppStartTaskDispatcher.create()
-                .setShowLog(true)
-                .addAppStartTask(InitCrashReportTask())
-                .addAppStartTask(InitMMKVTask())
-                .addAppStartTask(InitStateLayoutConfigTask())
-                .addAppStartTask(InitSmartRefreshTask())
-                .addAppStartTask(InitAPMTask())
-                .addAppStartTask(InitTlogTask())
-                .addAppStartTask(InitAliPushTask())
-                .addAppStartTask(InitLocationTask())
-                .addAppStartTask(InitToasterTask())
-                .addAppStartTask(InitFileOperatorTask())
-                .start()
-                .await()
+            AppStartTaskDispatcher.create().setShowLog(true).addAppStartTask(InitCrashReportTask())
+                .addAppStartTask(InitMMKVTask()).addAppStartTask(InitStateLayoutConfigTask())
+                .addAppStartTask(InitSmartRefreshTask()).addAppStartTask(InitAPMTask())
+                .addAppStartTask(InitTlogTask()).addAppStartTask(InitAliPushTask())
+                .addAppStartTask(InitLocationTask()).addAppStartTask(InitToasterTask())
+                .addAppStartTask(InitFileOperatorTask()).start().await()
 
             ASRManager.init(this)
 
@@ -107,8 +94,7 @@ class App : Application(), AppStateListener {
 
             if (AppManager.getCurrentProcessName().equals("${packageName}:channel")) {
 
-                Logger.i("channel进程,初始化推送")
-                /*channel进程也要对推送初始化 https://help.aliyun.com/document_detail/434662.html?spm=a2c4g.11186623.0.0.72aa5b78qNHbvx*/
+                Logger.i("channel进程,初始化推送")/*channel进程也要对推送初始化 https://help.aliyun.com/document_detail/434662.html?spm=a2c4g.11186623.0.0.72aa5b78qNHbvx*/
                 AppStartTaskDispatcher.create().setShowLog(true).addAppStartTask(InitAliPushTask())
                     .start().await()
             }
@@ -125,7 +111,7 @@ class App : Application(), AppStateListener {
         val supportedAbis = Build.SUPPORTED_ABIS
         Logger.i("支持的指令集:${supportedAbis.contentToString()}")
 
-        /*读取Manifest.xml中的 META_DATA */
+        //读取Manifest.xml中的 META_DATA
         val applicationInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             packageManager.getApplicationInfo(
                 packageName,
@@ -141,7 +127,7 @@ class App : Application(), AppStateListener {
         val metaChannelValue = metaData.getString("META_CHANNEL")
         Logger.i("metaChannelValue=$metaChannelValue")
 
-        /*读取BuildConfig中的变量*/
+        //读取BuildConfig中的变量
         Logger.i("BuildConfig.BASE_URL = ${BuildConfig.BASE_URL}")
         Logger.i("BuildConfig.LOG_DEBUG = ${BuildConfig.LOG_DEBUG}")
         Logger.i("BuildConfig.DEBUG = ${BuildConfig.DEBUG}")
@@ -177,7 +163,8 @@ class App : Application(), AppStateListener {
         }
     }
 
-    override fun onAppExit() {/*应用退出了*/
+    override fun onAppExit() {
+        //应用退出了
         Logger.i("App退出了")
     }
 }

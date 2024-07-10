@@ -48,12 +48,12 @@ class LocationService : Service(), AppStateListener {
             Logger.i("已经在定位了")
             return super.onStartCommand(intent, flags, startId)
         }
-        /*前台服务的一个特点就是要是通知栏*/
+        //前台服务的一个特点就是要是通知栏
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
         val channelId = "ForegroundService"
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            /*Android 8.0开始必须设置channel*/
+            //Android 8.0开始必须设置channel
             val channel = NotificationChannel(
                 channelId,
                 "获取位置信息",
@@ -67,13 +67,13 @@ class LocationService : Service(), AppStateListener {
         }
 
 
-        /*点击跳转页面*/
+        //点击跳转页面
         var flag = PendingIntent.FLAG_UPDATE_CURRENT
-        /*兼容Android31*/
+        //兼容Android31
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             flag = flag or PendingIntent.FLAG_IMMUTABLE
         }
-        /*如果想点击不同的按钮跳转到不同的页面 可以给不同的requestCode来区分*/
+        //如果想点击不同的按钮跳转到不同的页面 可以给不同的requestCode来区分
         val pendingIntent =
             PendingIntent.getActivity(AppContext, 1, Intent(this, GaoDeActivity::class.java), flag)
 
@@ -85,7 +85,7 @@ class LocationService : Service(), AppStateListener {
             .setContentIntent(pendingIntent)
             .build()
 
-        /*调用startForegroundService的5秒内必要调用startForeground*/
+        //调用startForegroundService的5秒内必要调用startForeground
         startForeground(1, notification)
         LocationManager.enableBackgroundLocation(1, notification)
         locationClient =

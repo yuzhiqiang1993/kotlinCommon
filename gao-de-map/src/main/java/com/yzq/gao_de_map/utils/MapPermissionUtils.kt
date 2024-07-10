@@ -21,8 +21,11 @@ import com.yzq.permission.getPermissions
 
 
 object MapPermissionUtils {
-
-    /*检查定位相关权限*/
+    /**
+     * 检查定位相关权限
+     * @param activity BaseActivity
+     * @param block () -> Unit
+     */
     @SuppressLint("CheckResult")
     fun checkLocationPermission(
         activity: BaseActivity,
