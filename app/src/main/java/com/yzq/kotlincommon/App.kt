@@ -47,23 +47,23 @@ class App : Application(), AppStateListener {
         AppManager.init(this, BuildConfig.DEBUG)
 
 
-//        if (BuildConfig.DEBUG) {
-        Logger.addPrinter(
-            ConsoleLogPrinter.getInstance(
-                ConsoleLogConfig.Builder().enable(BuildConfig.DEBUG).build()
-            )
-        ).addPrinter(
-            FileLogPrinter.getInstance(
-                FileLogConfig.Builder().enable(BuildConfig.DEBUG).writeLogInterval(60)
-                    .storageDuration(1 * 24).build()
+        if (BuildConfig.DEBUG) {
+            Logger.addPrinter(
+                ConsoleLogPrinter.getInstance(
+                    ConsoleLogConfig.Builder().enable(BuildConfig.DEBUG).build()
+                )
+            ).addPrinter(
+                FileLogPrinter.getInstance(
+                    FileLogConfig.Builder().enable(BuildConfig.DEBUG).writeLogInterval(60)
+                        .storageDuration(1 * 24).build()
 
-            )
-        ).addPrinter(
-            ViewLogPrinter.getInstance(
-                ViewLogConfig.Builder().enable(BuildConfig.DEBUG).build()
-            )
-        ).debug(true)
-//        }
+                )
+            ).addPrinter(
+                ViewLogPrinter.getInstance(
+                    ViewLogConfig.Builder().enable(BuildConfig.DEBUG).build()
+                )
+            ).debug(true)
+        }
 
 
         if (AppManager.isMainProcess()) {

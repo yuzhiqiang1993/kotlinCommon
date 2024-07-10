@@ -66,21 +66,12 @@ class DownloadActivity : BaseActivity() {
     }
 
     private fun downloadApk() {
-
         progressDialog.changeTitle("下载中...").show()
         lifecycleScope.launchSafety {
             val savePath = withIO {
                 val download = FileRetrofitFactory.instance.getService(ApiService::class.java)
                     .downloadApk()
-
                 Logger.i("""总长度：${download.contentLength()}""")
-
-
-                /**
-                 * Path  公共目录需要先申请管理所有文件的权限,一个准则是能在app私有目录中解决就不要向公共目录中写入数据
-                 */
-//                val path =
-//                    "${AppStorage.External.Public.downloadPath}${packageName}${File.separator}yzq.apk"
 
                 val path =
                     "${AppStorage.External.Private.downloadPath}yzq.apk"
@@ -94,8 +85,9 @@ class DownloadActivity : BaseActivity() {
 
                 path
             }
+            progressDialog.dismiss()
 
-            AppManager.installApk(savePath)
+            AppManager.installApk(savePath, "${AppManager.application.packageName}.provider")
         }
     }
 }

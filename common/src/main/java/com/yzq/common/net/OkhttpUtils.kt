@@ -15,6 +15,7 @@ import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
+import java.io.InputStream
 import java.util.concurrent.TimeUnit
 
 
@@ -33,11 +34,11 @@ object OkHttpUtils {
         .build()
 
 
-    private val downloadClient =
-        OkHttpClient.Builder()
-            .connectTimeout(5, TimeUnit.SECONDS)
-            .readTimeout(5, TimeUnit.SECONDS)
-            .build()
+//    private val downloadClient =
+//        OkHttpClient.Builder()
+//            .connectTimeout(5, TimeUnit.SECONDS)
+//            .readTimeout(5, TimeUnit.SECONDS)
+//            .build()
 
 
     /**
@@ -78,23 +79,32 @@ object OkHttpUtils {
 
     suspend inline fun <reified T> request(request: Request): Result<T> {
         return withIO {
-            val resp = client.newCall(request).execute()
-            if (resp.isSuccessful) {
-                val body = resp.body?.string()
-                Logger.i("body:${body}")
-                if (body.isNullOrEmpty()) {
-                    Result.Error("Response body is null")
-                } else {
-                    val respData = when (T::class) {
-                        String::class -> body as T
-                        else -> MoshiUtils.fromJson<T>(body)!!
-                    }
-                    Logger.i("respData: $respData")
-                    Result.Success(respData)
+            try {
+                val response = client.newCall(request).execute()
+
+                if (!response.isSuccessful) {
+                    return@withIO Result.Error(response.message)
                 }
-            } else {
-                Result.Error(resp.message)
+                val body = response.body ?: return@withIO Result.Error("Response body is null")
+                return@withIO when (T::class) {
+                    InputStream::class -> {
+                        Result.Success(body.byteStream() as T)
+                    }
+
+                    String::class -> {
+                        Result.Success(body.string() as T)
+                    }
+
+                    else -> {
+                        Result.Success(
+                            MoshiUtils.fromJson<T>(body.string())!!
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                Result.Error(e.message ?: "")
             }
+
         }
 
     }
@@ -105,7 +115,7 @@ object OkHttpUtils {
     ): Result<File> {
         return withIO {
             val request = Request.Builder().url(url).build()
-            downloadClient.newCall(request).execute().use { response ->
+            client.newCall(request).execute().use { response ->
                 if (!response.isSuccessful) {
                     return@withIO Result.Error(response.message)
                 }
