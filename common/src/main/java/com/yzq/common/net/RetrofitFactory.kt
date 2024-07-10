@@ -28,7 +28,7 @@ class RetrofitFactory private constructor() {
 
     }
 
-    /*线程安全的懒汉式单例*/
+    //线程安全的懒汉式单例
     companion object {
         val instance: RetrofitFactory by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
             RetrofitFactory()

@@ -26,7 +26,7 @@ class ResponseDecryptInterceptor : Interceptor {
         // val mediaType = MediaType.parse("application/json; charset=utf-8")
         var response = chain.proceed(request)
         runCatching {
-            /*解密*/
+            //解密
             decryptResponse(response)
         }.onSuccess {
             response = it
@@ -38,17 +38,17 @@ class ResponseDecryptInterceptor : Interceptor {
 
     private fun decryptResponse(response: Response): Response {
         if (response.isSuccessful) {
-            /*获取请求头中的key*/
+            //获取请求头中的key
             val aesKey = response.header(ServerConstants.AES_KEY)
             Logger.i("响应头中的AESKey:$aesKey")
             if (aesKey != null) {
-                /*开始解密*/
+                //开始解密
                 val responseBody = response.body
-                /*1.先用RSA公钥对随机Key进行解密*/
+                //先用RSA公钥对随机Key进行解密
                 val decryptAesKey = RSAUtil.decryptByPublic(aesKey, ServerConstants.RSA_PUB_KEY)
 
                 Logger.i("decryptAesKey:$decryptAesKey")
-                /*2.使用aesKey对密文进行解密获取最终的明文*/
+                //使用aesKey对密文进行解密获取最终的明文
                 val source = responseBody!!.source()
                 source.request(java.lang.Long.MAX_VALUE) // Buffer the entire body.
                 val buffer = source.buffer
@@ -66,9 +66,9 @@ class ResponseDecryptInterceptor : Interceptor {
                 val responseData = AESUtil.decrypt(bodyString, decryptAesKey)
                 Logger.i("解密后的明文：$responseData")
 
-                /*将解密后的明文返回*/
+                //将解密后的明文返回
                 val newResponseBody = responseData.trim().toResponseBody(contentType)
-                /*构建新的响应返回*/
+                //构建新的响应返回
                 return response.newBuilder().body(newResponseBody).build()
             }
         }

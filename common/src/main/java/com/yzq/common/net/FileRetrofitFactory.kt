@@ -29,7 +29,7 @@ class FileRetrofitFactory private constructor() {
     }
 
 
-    /*线程安全的懒汉式单例*/
+    //线程安全的懒汉式单例
     companion object {
         val instance: FileRetrofitFactory by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
             FileRetrofitFactory()
@@ -47,9 +47,12 @@ class FileRetrofitFactory private constructor() {
     }
 
 
-    /*
-    * 具体服务实例化
-    * */
+    /**
+     * 具体服务实例化
+     * @param T Any?
+     * @param service Class<T>
+     * @return T
+     */
     fun <T> getService(service: Class<T>): T {
 
         return retrofit.create(service)

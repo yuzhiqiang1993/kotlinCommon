@@ -83,13 +83,13 @@ class RequestEncryptInterceptor : Interceptor {
             Logger.i("contentType===>${contentType}")
             Logger.i("contentType===> type:${contentType.type},subType:${contentType.subtype}")
 
-            /*如果是二进制上传  则不进行加密*/
+            //如果是二进制上传  则不进行加密
             if (contentType.type.lowercase(Locale.ROOT) == "multipart") {
                 Logger.i("上传文件，不加密")
                 return request
             }
         }
-        /*获取请求的数据*/
+        //获取请求的数据
         val buffer = Buffer()
         requestBody.writeTo(buffer)
 
@@ -97,29 +97,29 @@ class RequestEncryptInterceptor : Interceptor {
             URLDecoder.decode(buffer.readString(requestCharset).trim(), "utf-8")
         Logger.i("请求的数据为：${requestData}")
 
-        /*产生一个随机数*/
+        //产生一个随机数
         val randomKey = AESUtil.getRandomKey(16)
         Logger.i("生成的随机数：${randomKey}")
 
-        /*使用产生的随机数对请求的数据进行加密*/
+        //使用产生的随机数对请求的数据进行加密
         val aesEncryptData = AESUtil.encrypt(requestData, randomKey)
 
         Logger.i("加密后的请求数据为：${aesEncryptData}")
 
-        /*再使用公钥对随机的key进行加密 得到加密后的key*/
+        //再使用公钥对随机的key进行加密 得到加密后的key
         val encryptAesKeyStr = RSAUtil.encryptByPublic(
             randomKey,
             ServerConstants.RSA_PUB_KEY
         )
 
-        /*将加密后的key放到header里*/
+        //将加密后的key放到header里
         Logger.i("加密后的key：${encryptAesKeyStr}")
 
 
-        /*然后将使用Aes加密过后的数据放到request里*/
+        //然后将使用Aes加密过后的数据放到request里
         val newRequestBody = aesEncryptData.toRequestBody(contentType)
 
-        /*将加密过后的AES随机key放到请求头中并构建新的request*/
+        //将加密过后的AES随机key放到请求头中并构建新的request
         val newRequestBuilder = request.newBuilder()
         newRequestBuilder.addHeader(
             ServerConstants.AES_KEY,
@@ -144,7 +144,7 @@ class RequestEncryptInterceptor : Interceptor {
      */
     private fun encryptUrlParam(request: Request): Request {
 
-        /*如果是null 不加密直接返回*/
+        //如果是null 不加密直接返回
         val httpUrl = request.url
         httpUrl.encodedQuery ?: return request
 
@@ -153,13 +153,13 @@ class RequestEncryptInterceptor : Interceptor {
         Logger.i("原本请求的接口地址：$apiPath")
         val encodedQuery = httpUrl.encodedQuery
         Logger.i("请求参数 encodedQuery:" + encodedQuery!!)
-        /*先获取随机Key*/
+        //先获取随机Key
         val randomKey = AESUtil.getRandomKey(16)
         Logger.i("radomKey：$randomKey")
-        /*AES加密后的请求数据*/
+        //AES加密后的请求数据
         val encryptQuery = AESUtil.encrypt(encodedQuery, randomKey)
         Logger.i("加密后的参数：$encryptQuery")
-        /*用RSA公钥对随机key进行加密*/
+        //用RSA公钥对随机key进行加密
         val encryptRandomKey = RSAUtil.encryptByPublic(
             randomKey,
             ServerConstants.RSA_PUB_KEY
@@ -167,7 +167,7 @@ class RequestEncryptInterceptor : Interceptor {
         Logger.i("RSA公钥加密后的随机key：$encryptRandomKey")
         val newGet = "$apiPath?param=$encryptQuery"
 
-        /*返回新的加密后的request*/
+        //返回新的加密后的request
         return request.newBuilder().url(newGet)
             .addHeader(
                 ServerConstants.AES_KEY,

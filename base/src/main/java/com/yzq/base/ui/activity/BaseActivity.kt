@@ -34,7 +34,7 @@ abstract class BaseActivity : AppCompatActivity {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        /*防止首次安装点击home键重新实例化*/
+        //防止首次安装点击home键重新实例化
         if (!this.isTaskRoot) {
             if (intent != null) {
                 if (intent.hasCategory(Intent.CATEGORY_LAUNCHER) && Intent.ACTION_MAIN == intent.action) {

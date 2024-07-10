@@ -129,7 +129,8 @@ object OkHttpUtils {
                                 lastCallbackTime = System.currentTimeMillis()
                                 progressCallback(lastProgress, contentLength)
                             }
-                        }/*保证100一定会被回调一次*/
+                        }
+                        //保证100一定会被回调一次
                         if (lastProgress != 100) {
                             lastProgress = 100
                             progressCallback.invoke(lastProgress, contentLength)
