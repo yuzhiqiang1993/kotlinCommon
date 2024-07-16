@@ -61,12 +61,19 @@ class ForegroundService : Service(), AppStateListener {
         val pendingIntent =
             PendingIntent.getActivity(AppContext, 1, Intent(this, MainActivity::class.java), flag)
 
+        //使用自定义的通知view,不用自定义view的话图标需要适配灰色的
+//        val customView = RemoteViews(AppContext.packageName, R.layout.custom_notification)
+
         val notification =
-            NotificationCompat.Builder(AppContext, channelId).setContentTitle("通知标题")
+            NotificationCompat.Builder(AppContext, channelId)
+//                .setContent(customView)
+                .setContentTitle("通知标题")
                 .setContentText("通知的内容，Kotlin。。。。")
                 .setWhen(System.currentTimeMillis())//显示通知发生的时间
-                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setSmallIcon(R.drawable.ic_notification)
+//                .setColor(resources.getColor(R.color.colorPrimary, null))//设置通知小图标的颜色
                 .setContentIntent(pendingIntent).build()
+
 
         //调用 startForegroundService 的5秒内必要调用startForeground
         startForeground(1, notification)
