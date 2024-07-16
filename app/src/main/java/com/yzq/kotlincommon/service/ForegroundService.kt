@@ -33,12 +33,14 @@ class ForegroundService : Service(), AppStateListener {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
 
-        Logger.i("onStartCommand")/*前台服务的一个特点就是要是通知栏*/
+        //前台服务的一个特点就是要是通知栏
+        Logger.i("onStartCommand")
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
         val channelId = "ForegroundService"
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {/*Android 8.0开始必须设置channel*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            //Android 8.0开始必须设置channel
             val channel = NotificationChannel(
                 channelId, "前台服务的通知", NotificationManager.IMPORTANCE_HIGH
             ).apply {
@@ -63,7 +65,8 @@ class ForegroundService : Service(), AppStateListener {
             NotificationCompat.Builder(AppContext, channelId).setContentTitle("通知标题")
                 .setContentText("通知的内容，Kotlin。。。。")
                 .setWhen(System.currentTimeMillis())//显示通知发生的时间
-                .setSmallIcon(R.mipmap.ic_launcher_round).setContentIntent(pendingIntent).build()
+                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setContentIntent(pendingIntent).build()
 
         //调用 startForegroundService 的5秒内必要调用startForeground
         startForeground(1, notification)
