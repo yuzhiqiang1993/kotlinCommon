@@ -1,5 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,6 +25,7 @@ import com.therouter.router.Route
 import com.yzq.base.theme.LightBlue300
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.logger.Logger
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 
@@ -34,6 +36,10 @@ import kotlin.random.Random
 
 @Route(path = RoutePath.Main.COMPOSE)
 class ComposeActivity : ComponentActivity() {
+
+    companion object {
+        const val TAG = "ComposeActivity"
+    }
 
     // 定义一个可变的状态
     val name = mutableStateOf("Compose")
@@ -47,6 +53,8 @@ class ComposeActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        handleDeeplink(intent)
 
         //setContent是Compose的一个函数，用于设置UI界面
         setContent {
@@ -82,6 +90,52 @@ class ComposeActivity : ComponentActivity() {
             name.value = "yuzhiqiang"
             age = 30
         }
+    }
+
+    private fun handleDeeplink(intent: Intent?) {
+
+        intent?.let {
+            val uri = it.data
+            uri?.let {
+                val path = uri.path
+                val host = uri.host
+                val query = uri.query
+                val scheme = uri.scheme
+                val port = uri.port
+                val fragment = uri.fragment
+                val userInfo = uri.userInfo
+                val authority = uri.authority
+                val schemeSpecificPart = uri.schemeSpecificPart
+                val encodedAuthority = uri.encodedAuthority
+                val encodedFragment = uri.encodedFragment
+                val encodedPath = uri.encodedPath
+                val encodedQuery = uri.encodedQuery
+                val encodedSchemeSpecificPart = uri.encodedSchemeSpecificPart
+                val encodedUserInfo = uri.encodedUserInfo
+                Logger.it(
+                    TAG,
+                    "path:$path",
+                    "host:$host",
+                    "query:$query",
+                    "scheme:$scheme",
+                    "port:$port",
+                    "fragment:$fragment",
+                    "userInfo:$userInfo",
+                    "authority:$authority",
+                    "schemeSpecificPart:$schemeSpecificPart",
+                    "encodedAuthority:$encodedAuthority",
+                    "encodedFragment:$encodedFragment",
+                    "encodedPath:$encodedPath",
+                    "encodedQuery:$encodedQuery",
+                    "encodedSchemeSpecificPart:$encodedSchemeSpecificPart",
+                    "encodedUserInfo:$encodedUserInfo"
+                )
+            }
+
+
+        }
+
+
     }
 
 

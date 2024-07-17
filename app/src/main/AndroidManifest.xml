@@ -65,8 +65,24 @@
         <activity
             android:name=".ui.activity.ComposeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="true"
+            android:screenOrientation="portrait">
+
+            <!--使用adb命令可以模拟： adb shell am start -W -a android.intent.action.VIEW -d "https://www.kotlincommon.com/compose/124" com.yzq.kotlincommon-->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.kotlincommon.com"
+                    android:pathPrefix="/compose"
+                    android:scheme="https" />
+            </intent-filter>
+
+        </activity>
+
         <activity
             android:name=".ui.activity.JavaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
