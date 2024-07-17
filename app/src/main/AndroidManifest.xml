@@ -266,7 +266,7 @@
         <activity
             android:name=".ui.activity.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="false"
+            android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
@@ -315,6 +315,16 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/camera_provider_paths" />
         </provider>
+
+
+        <receiver
+            android:name=".broadcast_receiver.MyBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <!--指定广播响应的动作-->
+                <action android:name="com.yzq.ACTION_TEST" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
