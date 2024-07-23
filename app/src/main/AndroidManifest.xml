@@ -66,6 +66,7 @@
             android:name=".ui.activity.ComposeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
 
             <!--使用adb命令可以模拟： adb shell am start -W -a android.intent.action.VIEW -d "https://www.kotlincommon.com/compose/124" com.yzq.kotlincommon-->
@@ -184,6 +185,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
             android:screenOrientation="portrait" />
+
+        <!--adb shell am start -n com.yzq.kotlincommon/.ui.activity.SplashActivity -e key1 value1 -e key2 value2-->
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="true"

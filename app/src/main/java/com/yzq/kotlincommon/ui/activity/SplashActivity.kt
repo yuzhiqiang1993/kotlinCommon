@@ -30,6 +30,16 @@ import java.util.concurrent.atomic.AtomicBoolean
 class SplashActivity : AppCompatActivity() {
 
 
+    /**
+     *  通过命令可以拉起：
+     *  adb shell am start -n com.yzq.kotlincommon/.ui.activity.SplashActivity -e key1 value1 -e key2 value2
+     *
+     */
+
+    companion object {
+        const val TAG = "SplashActivity"
+    }
+
     /*是否执行了最终的方法*/
     private val handleRouteInvoke = AtomicBoolean(false)
 
@@ -38,6 +48,12 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Logger.it(TAG, "onCreate:${intent}")
+        intent.extras?.let {
+            for (key in it.keySet()) {
+                Logger.it(TAG, "key:${key} value:${it[key]}")
+            }
+        }
 
         Logger.i("onCreate handleRouteInvoke::${handleRouteInvoke.get()}")
         immersive(Color.WHITE, true)

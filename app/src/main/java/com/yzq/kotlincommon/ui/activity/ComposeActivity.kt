@@ -29,6 +29,7 @@ import com.yzq.logger.Logger
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 
+
 /**
  * @description: ComposeActivity
  * @author : yuzhiqiang
@@ -54,6 +55,7 @@ class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Logger.it(TAG, "onCreate")
         handleDeeplink(intent)
 
         //setContent是Compose的一个函数，用于设置UI界面
@@ -136,6 +138,12 @@ class ComposeActivity : ComponentActivity() {
         }
 
 
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        Logger.it(TAG, "onNewIntent")
+        handleDeeplink(intent)
     }
 
 

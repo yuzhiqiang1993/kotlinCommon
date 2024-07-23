@@ -7,7 +7,6 @@ import android.content.Intent
 import com.therouter.TheRouter
 import com.therouter.router.Navigator
 import com.therouter.router.interceptor.NavigationCallback
-import com.yzq.application.AppManager
 import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger
 
@@ -32,13 +31,20 @@ class MyBroadcastReceiver : BroadcastReceiver() {
             Logger.it(TAG, "key1:${value1}", "key2:${value2}", "key3:${value3}")
 
 
-            val activityCount = AppManager.activityCount
+//            val activityCount = AppManager.activityCount
+//
+//            Logger.it(TAG, "activityCount:${activityCount}")
+//
+//            if (activityCount == 0) {
+//                Logger.et(TAG, "App 未运行")
+//            }
 
-            Logger.it(TAG, "activityCount:${activityCount}")
 
-            if (activityCount == 0) {
-                Logger.et(TAG, "App 未运行")
-            }
+//            Intent().apply {
+//                setClassName(AppManager.application, ComposeActivity::class.java.name)
+//                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                AppManager.application.startActivity(this)
+//            }
 
             TheRouter.build(RoutePath.Main.COMPOSE)
                 .navigation(context, object : NavigationCallback() {
