@@ -5,6 +5,7 @@
 #* 按照指定sdk版本进行编译  不影响实际运行  尽量写最新的，最好跟targetsdkversion版本保持一致
 #*/
 
+
 compileSdk = "34"
 
 #/**
@@ -82,6 +83,7 @@ dateTimePicker = "0.6.3"
 threetenabp = "1.4.7"
 reactAndroid = "0.74.2"
 fileCore = "3.9.8@aar"
+buglyPro = "4.3.0.3"
 
 #阿里EMAS
 alicloudAndroidApm = "1.1.3.0-open"
@@ -122,9 +124,7 @@ xeonFloatView = "1.0.3"
 
 
 [libraries]
-file-compressor = { group = "com.github.javakam", name = "file.compressor", version.ref = "fileCore" }
-file-core = { group = "com.github.javakam", name = "file.core", version.ref = "fileCore" }
-file-selector = { group = "com.github.javakam", name = "file.selector", version.ref = "fileCore" }
+
 
 #androidX
 androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppcompat" }
@@ -225,6 +225,11 @@ materialDialog-input = { group = "com.afollestad.material-dialogs", name = "inpu
 materialDialog-bottomsheets = { group = "com.afollestad.material-dialogs", name = "bottomsheets", version.ref = "materialDialog" }
 materialDialog-lifecycle = { group = "com.afollestad.material-dialogs", name = "lifecycle", version.ref = "materialDialog" }
 dateTimePicker = { group = "com.github.loperSeven", name = "DateTimePicker", version.ref = "dateTimePicker" }
+
+bugly-pro = { module = "com.tencent.bugly:bugly-pro", version.ref = "buglyPro" }
+file-compressor = { group = "com.github.javakam", name = "file.compressor", version.ref = "fileCore" }
+file-core = { group = "com.github.javakam", name = "file.core", version.ref = "fileCore" }
+file-selector = { group = "com.github.javakam", name = "file.selector", version.ref = "fileCore" }
 
 react-android = { module = "com.facebook.react:react-android", version.ref = "reactAndroid" }
 react-hermes-android = { module = "com.facebook.react:hermes-android", version.ref = "reactAndroid" }

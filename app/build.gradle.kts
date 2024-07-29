@@ -174,7 +174,7 @@ android {
 }
 
 dependencies {
-    implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
+    implementation(fileTree(mapOf("include" to listOf("*.jar", "*.aar"), "dir" to "libs")))
 
     implementation(platform(libs.kotlin.bom))
     implementation(libs.bundles.kotlin)
@@ -215,6 +215,8 @@ dependencies {
 
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    implementation(libs.bugly.pro)
 
 
     implementation(project(":gao-de-map"))

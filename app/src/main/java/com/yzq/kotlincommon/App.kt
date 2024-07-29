@@ -9,6 +9,9 @@ import android.os.Trace
 import com.aice.appstartfaster.dispatcher.AppStartTaskDispatcher
 import com.facebook.soloader.SoLoader
 import com.jakewharton.threetenabp.AndroidThreeTen
+import com.tencent.bugly.library.Bugly
+import com.tencent.bugly.library.BuglyBuilder
+import com.tencent.feedback.eup.CrashHandleListener
 import com.therouter.TheRouter
 import com.xeon.asr_demo.ASRManager
 import com.yzq.application.AppManager
@@ -73,6 +76,10 @@ class App : Application(), AppStateListener {
 
             /*监听App是否退出*/
             AppManager.addAppStateListener(this)
+
+            initBugly()
+
+
             //读清单配置文件里的数据
             readMetaData()
             Trace.beginSection("BaseApp_AppInit")
@@ -102,9 +109,116 @@ class App : Application(), AppStateListener {
         }
     }
 
+    private fun initBugly() {
+        val buglyBuilder = BuglyBuilder("appkey", "appId")
+
+
+
+        buglyBuilder.setCrashHandleListener(object : CrashHandleListener {
+            /**
+             * Crash处理回调时，此接口返回的数据以附件的形式上报，附件名userExtraByteData
+             * @param isNativeCrashed 是否Native异常
+             * @param crashType 异常的类型
+             * @param crashStack 异常堆栈
+             * @param nativeSiCode native异常时的SI_CODE，非Native异常此数据无效
+             * @param crashTime native异常的发生时间
+             * @return 上报的附件字节流
+             */
+            override fun getCrashExtraData(
+                isNativeCrashed: Boolean,
+                crashType: String?,
+                crashAddress: String?,
+                crashStack: String?,
+                nativeSiCode: Int,
+                crashTime: Long
+            ): ByteArray {
+                Logger.e(
+                    "getCrashExtraData:",
+                    "isNativeCrashed:$isNativeCrashed,crashType:$crashType,crashAddress:$crashAddress,crashStack:$crashStack,nativeSiCode:$nativeSiCode,crashTime:$crashTime"
+                )
+                return byteArrayOf()
+            }
+
+
+            /**
+             * Crash处理回调时，此接口返回的数据在附件extraMessage.txt中展示
+             * @param isNativeCrashed 是否Native异常
+             * @param crashType 异常的类型
+             * @param crashStack 异常堆栈
+             * @param nativeSiCode native异常时的SI_CODE，非Native异常此数据无效
+             * @param crashTime native异常的发生时间
+             * @return 上报的数据
+             */
+            override fun getCrashExtraMessage(
+                isNativeCrashed: Boolean,
+                crashType: String?,
+                crashAddress: String?,
+                crashStack: String?,
+                nativeSiCode: Int,
+                crashTime: Long
+            ): String {
+                Logger.e(
+                    "getCrashExtraMessage:",
+                    "isNativeCrashed:$isNativeCrashed,crashType:$crashType,crashAddress:$crashAddress,crashStack:$crashStack,nativeSiCode:$nativeSiCode,crashTime:$crashTime"
+                )
+
+                return ""
+            }
+
+            /**
+             * Crash处理回调前，执行此接口
+             * @param isNativeCrashed 是否Native异常
+             */
+            override fun onCrashHandleStart(isNativeCrashed: Boolean) {
+                Logger.e("onCrashHandleStart:isNativeCrashed:$isNativeCrashed")
+            }
+
+            override fun onCrashHandleEnd(p0: Boolean): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            /**
+             * Crash处理回调时，执行此接口
+             * @param isNativeCrashed 是否NativeCrash
+             * @param crashType Crash类型
+             * @param crashMsg Crash消息， 例如 “Attempt to invoke virtual method 'int java.lang.String.length()' on a null object reference” （4.4.1.2新增）
+             * @param crashAddress Crash地址
+             * @param crashStack Crash堆栈
+             * @param nativeSiCode native异常时有效，SI_CODE
+             * @param crashTime crash时间
+             * @param userId crash时用户ID
+             * @param deviceId crash时的设备ID
+             * @param crashUuid 这条异常的唯一标识
+             * @return 返回值没有实际作用，不影响方法正常使用，可忽略
+             */
+            override fun onCrashSaving(
+                isNativeCrashed: Boolean,
+                crashType: String?,
+                crashAddress: String?,
+                crashStack: String?,
+                nativeSiCode: Int,
+                crashTime: Long,
+                userId: String?,
+                deviceId: String?,
+                crashUuid: String?,
+                processName: String?
+            ): Boolean {
+
+                Logger.e(
+                    "onCrashSaving:",
+                    "isNativeCrashed:$isNativeCrashed,crashType:$crashType,crashAddress:$crashAddress,crashStack:$crashStack,nativeSiCode:$nativeSiCode,crashTime:$crashTime,userId:$userId,deviceId:$deviceId,crashUuid:$crashUuid,processName:$processName"
+                )
+                return true
+            }
+
+        })
+
+        Bugly.init(this, buglyBuilder)
+
+    }
+
 
     private fun readMetaData() {
-
 
         Logger.i("Build.VERSION.SDK_INT = ${Build.VERSION.SDK_INT}")
 
