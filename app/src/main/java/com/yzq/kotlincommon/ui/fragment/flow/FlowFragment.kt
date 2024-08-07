@@ -38,11 +38,15 @@ class FlowFragment : BaseFragment(R.layout.fragment_flow) {
     private val binding by viewbind(FragmentFlowBinding::bind)
 
 
+    override fun initVariable() {
+        //监听生命周期
+        lifecycle.addObserver(viewModel)
+    }
+
+
     override fun initWidget() {
 
         binding.run {
-
-
             btnCollect.setOnThrottleTimeClick {
                 collect()
             }

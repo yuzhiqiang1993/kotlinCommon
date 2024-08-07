@@ -35,14 +35,15 @@ abstract class BaseFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentL
 //
 //        })
         TheRouter.inject(this)
+        //初始化数据
         initVariable()
+        //初始化view
         initWidget()
         //viewmodel的监听
         observeViewModel()
         initData()
     }
 
-    protected open fun initViewModel() {}
 
     protected open fun initVariable() {}
 

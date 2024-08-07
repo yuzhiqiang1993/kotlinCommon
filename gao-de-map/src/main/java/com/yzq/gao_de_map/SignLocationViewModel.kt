@@ -27,12 +27,12 @@ class SignLocationViewModel : BaseViewModel() {
         _uiStateFlow.value = UIState.ShowLoadingDialog("正在定位...")
         LocationManager.startOnceLocation(object : LocationListener {
             override fun onReceiveLocation(location: Location) {
-                _uiStateFlow.value = UIState.DissmissLoadingDialog()
+                _uiStateFlow.value = UIState.DissmissLoadingDialog
                 locationLiveData.value = location
             }
 
             override fun onFailed(errorCode: Int, errorInfo: String, cacheLocation: Location?) {
-                _uiStateFlow.value = UIState.DissmissLoadingDialog()
+                _uiStateFlow.value = UIState.DissmissLoadingDialog
 
             }
         })

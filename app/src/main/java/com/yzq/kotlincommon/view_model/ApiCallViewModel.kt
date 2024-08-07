@@ -18,6 +18,7 @@ import kotlinx.coroutines.delay
 class ApiCallViewModel : BaseViewModel() {
 
     fun requestData() {
+
         viewModelScope.launchSafety {
             delay(1000)
             val movieBean = RetrofitFactory.instance.getService(ApiService::class.java).userInfo()

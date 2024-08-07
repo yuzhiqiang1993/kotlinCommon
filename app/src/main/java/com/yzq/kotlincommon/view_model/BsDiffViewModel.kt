@@ -61,7 +61,7 @@ class BsDiffViewModel : BaseViewModel() {
 
             _uiStateFlow.value = UIState.ShowToast("补丁包生成成功，耗时$measureTimeMillis")
         }.invokeOnCompletion {
-            _uiStateFlow.value = UIState.DissmissLoadingDialog()
+            _uiStateFlow.value = UIState.DissmissLoadingDialog
         }
     }
 
@@ -95,7 +95,7 @@ class BsDiffViewModel : BaseViewModel() {
             }
             _uiStateFlow.value = UIState.ShowToast("差分包合并完成，耗时:$measureTimeMillis")
         }.invokeOnCompletion {
-            _uiStateFlow.value = UIState.DissmissLoadingDialog()
+            _uiStateFlow.value = UIState.DissmissLoadingDialog
         }
     }
 }

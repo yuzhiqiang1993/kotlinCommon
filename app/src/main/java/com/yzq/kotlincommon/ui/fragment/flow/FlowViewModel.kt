@@ -86,7 +86,7 @@ class FlowViewModel : BaseViewModel() {
     }.catch { t ->
         _uiStateFlow.value = UIState.ShowDialog(t.message ?: "异常了")
     }.onCompletion {
-        _uiStateFlow.value = UIState.DissmissLoadingDialog()
+        _uiStateFlow.value = UIState.DissmissLoadingDialog
     }
 
 }

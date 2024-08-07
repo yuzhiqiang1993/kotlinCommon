@@ -1,4 +1,5 @@
-@Suppress("DSL_SCOPE_VIOLATION") plugins {
+@Suppress("DSL_SCOPE_VIOLATION")
+plugins {
     alias(libs.plugins.xeonyu.application)
     alias(libs.plugins.ksp)
     alias(libs.plugins.xeonyu.dependencyManager)

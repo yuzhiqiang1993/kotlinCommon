@@ -20,7 +20,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
     /**
      * 使用stateFlow可以解决livedata必须要在主线程更新值的问题
      */
-    protected val _uiStateFlow by lazy { MutableStateFlow<UIState>(UIState.Init()) }
+    protected val _uiStateFlow by lazy { MutableStateFlow<UIState>(UIState.Init) }
     val uiStateFlow: StateFlow<UIState> = _uiStateFlow
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
@@ -29,11 +29,11 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
 }
 
 sealed class UIState {
-    class Init : UIState()//初始状态,主要是给flow初始值用的
+    data object Init : UIState()//初始状态,主要是给flow初始值用的
     data class ShowLoadingDialog(val msg: String) : UIState()
     data class ShowDialog(val msg: String) : UIState()
     data class ShowToast(val msg: String) : UIState()
-    class DissmissLoadingDialog : UIState()
+    data object DissmissLoadingDialog : UIState()
     data class ShowLoading(val msg: String) : UIState()
     data class ShowError(val msg: String) : UIState()
     class ShowEmpty : UIState()
