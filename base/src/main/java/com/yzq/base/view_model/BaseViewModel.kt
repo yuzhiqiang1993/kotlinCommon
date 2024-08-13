@@ -24,7 +24,7 @@ abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
     val uiStateFlow: StateFlow<UIState> = _uiStateFlow
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-        Logger.i("onStateChanged $source === ${event.targetState}")
+        Logger.i("onStateChanged $event-->${event.targetState}")
     }
 }
 

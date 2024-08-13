@@ -174,40 +174,24 @@ class App : Application(), AppStateListener {
             }
 
             override fun onCrashHandleEnd(p0: Boolean): Boolean {
-                TODO("Not yet implemented")
+
+                return true
             }
 
-            /**
-             * Crash处理回调时，执行此接口
-             * @param isNativeCrashed 是否NativeCrash
-             * @param crashType Crash类型
-             * @param crashMsg Crash消息， 例如 “Attempt to invoke virtual method 'int java.lang.String.length()' on a null object reference” （4.4.1.2新增）
-             * @param crashAddress Crash地址
-             * @param crashStack Crash堆栈
-             * @param nativeSiCode native异常时有效，SI_CODE
-             * @param crashTime crash时间
-             * @param userId crash时用户ID
-             * @param deviceId crash时的设备ID
-             * @param crashUuid 这条异常的唯一标识
-             * @return 返回值没有实际作用，不影响方法正常使用，可忽略
-             */
-            override fun onCrashSaving(
-                isNativeCrashed: Boolean,
-                crashType: String?,
-                crashAddress: String?,
-                crashStack: String?,
-                nativeSiCode: Int,
-                crashTime: Long,
-                userId: String?,
-                deviceId: String?,
-                crashUuid: String?,
-                processName: String?
-            ): Boolean {
 
-                Logger.e(
-                    "onCrashSaving:",
-                    "isNativeCrashed:$isNativeCrashed,crashType:$crashType,crashAddress:$crashAddress,crashStack:$crashStack,nativeSiCode:$nativeSiCode,crashTime:$crashTime,userId:$userId,deviceId:$deviceId,crashUuid:$crashUuid,processName:$processName"
-                )
+            override fun onCrashSaving(
+                p0: Boolean,
+                p1: String?,
+                p2: String?,
+                p3: String?,
+                p4: String?,
+                p5: Int,
+                p6: Long,
+                p7: String?,
+                p8: String?,
+                p9: String?,
+                p10: String?
+            ): Boolean {
                 return true
             }
 

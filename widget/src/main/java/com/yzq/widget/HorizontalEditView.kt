@@ -25,18 +25,11 @@ class HorizontalEditView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-) :
-    ConstraintLayout(context, attrs, defStyleAttr) {
+) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private var iconRes: Int
-    private var iconTint: Int = R.color.primary_icon
     private var titleStr: String?
     private var contentStr: String?
-    private var hint: String?
-    private var endIconRes: Int
-    private var endIconTint: Int = R.color.primary_icon
-    private var editEnable = true
-    private var inputType: String?
+
 
     private val binding: ViewHorizontalEditLayoutBinding =
         ViewHorizontalEditLayoutBinding.inflate(LayoutInflater.from(context), this, true)
@@ -69,67 +62,71 @@ class HorizontalEditView @JvmOverloads constructor(
         val typeArr = context.obtainStyledAttributes(attrs, R.styleable.HorizontalEditView)
 
         try {
-            iconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_icon, -1)
-            iconTint = typeArr.getColor(
-                R.styleable.HorizontalEditView_horz_edit_icon_tint,
-                R.color.primary_icon
+            val iconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_icon, -1)
+            val iconTint = typeArr.getColor(
+                R.styleable.HorizontalEditView_horz_edit_icon_tint, R.color.primary_icon
             )
-            inputType =
-                typeArr.getString(R.styleable.HorizontalEditView_horz_edit_inputType)
-            editEnable =
+            val inputType = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_inputType)
+            val editEnable =
                 typeArr.getBoolean(R.styleable.HorizontalEditView_horz_edit_editEnable, true)
-            endIconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_endIcon, -1)
+            val endIconRes =
+                typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_endIcon, -1)
 
-            endIconTint = typeArr.getColor(
-                R.styleable.HorizontalEditView_horz_edit_end_icon_tint,
-                R.color.primary_icon
+            val endIconTint = typeArr.getColor(
+                R.styleable.HorizontalEditView_horz_edit_end_icon_tint, R.color.primary_icon
             )
             titleStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_title)
             contentStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_content)
-            hint = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_hint)
+            val hint = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_hint)
+
+
+            binding.run {
+                //默认隐藏图标
+                iconStart.visibility = View.GONE
+
+                iconEnd.visibility = View.GONE
+
+                //显示前面的图标
+                if (iconRes != -1) {
+
+                    iconStart.visibility = View.VISIBLE
+                    iconStart.setImageResource(iconRes)
+                    iconStart.colorFilter =
+                        BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                            iconTint, BlendModeCompat.SRC_ATOP
+                        )
+                }
+
+                //显示后面的图标
+                if (endIconRes != -1) {
+                    iconEnd.visibility = View.VISIBLE
+                    iconEnd.setImageResource(endIconRes)
+                    iconEnd.colorFilter =
+                        BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                            endIconTint, BlendModeCompat.SRC_ATOP
+                        )
+                }
+
+                //设置inputType
+                when (inputType) {
+
+                    "0" -> inputContent.inputType = InputType.TYPE_CLASS_PHONE
+                    "1" -> inputContent.inputType = InputType.TYPE_CLASS_NUMBER
+                    "2" -> inputContent.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                    else -> inputContent.inputType = InputType.TYPE_CLASS_TEXT
+                }
+
+                tvTitle.text = titleStr
+                inputContent.hint = hint
+                inputContent.setText(contentStr)
+                inputContent.isEnabled = editEnable
+            }
+
         } finally {
             typeArr.recycle()
         }
 
-        binding.run {
-            //默认隐藏图标
-            iconStart.visibility = View.GONE
 
-            iconEnd.visibility = View.GONE
-
-            //显示前面的图标
-            if (iconRes != -1) {
-
-                iconStart.visibility = View.VISIBLE
-                iconStart.setImageResource(iconRes)
-                iconStart.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                    iconTint, BlendModeCompat.SRC_ATOP
-                )
-            }
-
-            //显示后面的图标
-            if (endIconRes != -1) {
-                iconEnd.visibility = View.VISIBLE
-                iconEnd.setImageResource(endIconRes)
-                iconEnd.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                    endIconTint, BlendModeCompat.SRC_ATOP
-                )
-            }
-
-            //设置inputType
-            when (inputType) {
-
-                "0" -> inputContent.inputType = InputType.TYPE_CLASS_PHONE
-                "1" -> inputContent.inputType = InputType.TYPE_CLASS_NUMBER
-                "2" -> inputContent.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
-                else -> inputContent.inputType = InputType.TYPE_CLASS_TEXT
-            }
-
-            tvTitle.text = titleStr
-            inputContent.hint = hint
-            inputContent.setText(contentStr)
-            inputContent.isEnabled = editEnable
-        }
     }
 
     /**
