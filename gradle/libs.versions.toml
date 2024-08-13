@@ -82,7 +82,7 @@ materialDialog = "3.3.0"
 dateTimePicker = "0.6.3"
 threetenabp = "1.4.7"
 reactAndroid = "0.74.2"
-fileCore = "3.9.8@aar"
+#fileCore = "3.9.8@aar"
 buglyPro = "4.4.2.1"
 
 #阿里EMAS
@@ -227,9 +227,9 @@ materialDialog-lifecycle = { group = "com.afollestad.material-dialogs", name = "
 dateTimePicker = { group = "com.github.loperSeven", name = "DateTimePicker", version.ref = "dateTimePicker" }
 
 bugly-pro = { module = "com.tencent.bugly:bugly-pro", version.ref = "buglyPro" }
-file-compressor = { group = "com.github.javakam", name = "file.compressor", version.ref = "fileCore" }
-file-core = { group = "com.github.javakam", name = "file.core", version.ref = "fileCore" }
-file-selector = { group = "com.github.javakam", name = "file.selector", version.ref = "fileCore" }
+#file-compressor = { group = "com.github.javakam", name = "file.compressor", version.ref = "fileCore" }
+#file-core = { group = "com.github.javakam", name = "file.core", version.ref = "fileCore" }
+#file-selector = { group = "com.github.javakam", name = "file.selector", version.ref = "fileCore" }
 
 react-android = { module = "com.facebook.react:react-android", version.ref = "reactAndroid" }
 react-hermes-android = { module = "com.facebook.react:hermes-android", version.ref = "reactAndroid" }
