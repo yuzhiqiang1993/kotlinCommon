@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.yzq.login.widget.TitleBackView
+        android:id="@+id/title_back_view"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        app:titleText="@string/retrieve_pwd" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="为167****设置新的登录密码"
+            android:textColor="@color/colorOnPrimary"
+            android:textSize="16sp" />
+
+
+        <com.yzq.login.widget.InputPwdView
+            android:id="@+id/input_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_login"
+            style="@style/center_bold_16"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/btn_selector"
+            android:enabled="false"
+            android:text="@string/complete_and_login"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/input_pwd" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

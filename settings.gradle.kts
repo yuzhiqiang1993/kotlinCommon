@@ -154,3 +154,4 @@ include(":baidu")
 include(":storage")
 
 include(":react-native")
+include(":login")

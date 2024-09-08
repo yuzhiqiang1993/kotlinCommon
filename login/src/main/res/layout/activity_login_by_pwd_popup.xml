@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/popup_color">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/bottom_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/tv_forget_pwd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.yzq.login.widget.PopupHeaderView
+            android:id="@+id/popup_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/layout_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_close">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    style="@style/black_bold_26"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_by_pwd"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!--验证码登录-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_login_by_sms"
+                    style="@style/center_bold_16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/login_by_sms_code"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!--手机号-->
+            <com.yzq.login.widget.InputPhoneView
+                android:id="@+id/input_phone"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="30dp"
+                app:icon_padding="10dp"
+                app:icon_size="34dp"
+                app:icon_src="@drawable/ic_clear"
+                app:icon_visibility="false"
+                app:input_hint="@string/login_phone_input_hint"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_title" />
+
+
+            <!--密码-->
+            <com.yzq.login.widget.InputPwdView
+                android:id="@+id/input_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="10dp"
+                app:input_hint="@string/login_password_input_hint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/input_phone" />
+
+
+            <!--登录按钮-->
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_login"
+                style="@style/center_bold_16"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/btn_selector"
+                android:enabled="false"
+                android:text="@string/login"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/input_pwd" />
+
+
+            <!--隐私协议-->
+            <com.yzq.login.widget.AgreementCheckboxView
+                android:id="@+id/agreement_checkbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                app:agreement_links="@array/agreement_links"
+                app:agreement_text="@string/login_agreement"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_login"
+                app:show_check="true" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--忘记密码-->
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_forget_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center"
+        android:paddingTop="40dp"
+        android:paddingBottom="20dp"
+        android:text="@string/forget_pwd"
+        android:textColor="@color/secondary_text"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

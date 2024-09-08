@@ -1,6 +1,5 @@
 package com.yzq.base.extend
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
@@ -63,7 +62,6 @@ fun Activity.immersive(v: View, darkMode: Boolean? = null) {
  * @param color 状态栏颜色, 不指定则为透明状态栏
  * @param darkMode 是否显示暗色状态栏文字颜色
  */
-@SuppressLint("ObsoleteSdkInt")
 @JvmOverloads
 fun Activity.immersive(@ColorInt color: Int = COLOR_TRANSPARENT, darkMode: Boolean? = null) {
     when {
@@ -123,7 +121,7 @@ fun Activity.immersiveExit(black: Boolean = false) {
  */
 @JvmOverloads
 fun Activity.immersiveRes(@ColorRes color: Int, darkMode: Boolean? = null) =
-    immersive(resources.getColor(color), darkMode)
+    immersive(resources.getColor(color, null), darkMode)
 
 
 /**

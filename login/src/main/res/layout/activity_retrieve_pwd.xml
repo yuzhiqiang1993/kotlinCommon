@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.yzq.login.widget.TitleBackView
+        android:id="@+id/title_back_view"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        app:titleText="@string/retrieve_pwd" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <!--手机号-->
+        <com.yzq.login.widget.InputPhoneView
+            android:id="@+id/input_phone"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="30dp"
+            app:icon_padding="10dp"
+            app:icon_size="34dp"
+            app:icon_src="@drawable/ic_clear"
+            app:icon_visibility="false"
+            app:input_hint="@string/login_phone_input_hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout_title" />
+
+
+        <!--验证码-->
+        <com.yzq.login.widget.InputWithSmsView
+            android:id="@+id/input_sms_code"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            app:input_hint="验证码"
+            app:sms_button_text="@string/get_sms_code"
+            app:sms_button_text_color="@color/secondary_text"
+            app:sms_button_text_size="12dp" />
+
+
+        <!--下一步-->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_next_step"
+            style="@style/center_bold_16"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="48dp"
+            android:background="@drawable/btn_selector"
+            android:enabled="false"
+            android:text="@string/next_step"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/input_pwd" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

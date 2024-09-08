@@ -1,0 +1,27 @@
+package com.yumc.android.userauth.login.view_model
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.yzq.base.view_model.BaseViewModel
+
+
+/**
+ *
+ * @description:  免登录页面ViewModel
+ * @author : yuzhiqiang
+ *
+ */
+
+class ExemptLoginViewModel : BaseViewModel() {
+
+
+    //是否同意协议
+    private var _isAgreementChecked: MutableLiveData<Boolean> = MutableLiveData(false)
+    val isAgreementChecked: LiveData<Boolean> = _isAgreementChecked
+
+
+    fun agreementChecked(checked: Boolean) {
+        this._isAgreementChecked.value = checked
+    }
+
+}

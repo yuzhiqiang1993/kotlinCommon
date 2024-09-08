@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <application>
+
+        <activity
+            android:name=".ui.complete.LoginByOneKeyActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.complete.LoginByPwdActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.complete.CompleteRegisterInfoActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.complete.RetrievePwdActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.complete.SetNewPwdActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.immediate.ExemptLoginPopupActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/TransparentTheme" />
+
+        <activity
+            android:name=".ui.immediate.LoginByOneKeyPopupActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/TransparentTheme" />
+        <activity
+            android:name=".ui.immediate.LoginByPwdActivityPopupActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/TransparentTheme" />
+        <activity
+            android:name=".ui.immediate.CompleteRegisterInfoPopupActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/TransparentTheme" />
+        <activity
+            android:name=".ui.immediate.RetrievePwdPopupActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/TransparentTheme" />
+        <activity
+            android:name=".ui.immediate.SetNewPwdPopupActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/TransparentTheme" />
+    </application>
+
+</manifest>

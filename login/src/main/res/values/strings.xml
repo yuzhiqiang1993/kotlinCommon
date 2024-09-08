@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">login</string>
+    <string name="login">登录</string>
+    <string name="login_by_pwd">密码登录</string>
+    <string name="login_by_sms_code">验证码登录</string>
+    <string name="login_phone_input_hint">请输入手机号</string>
+    <string name="login_password_input_hint">请输入密码</string>
+    <string name="login_agreement">已阅读并同意《会员协议》《隐私条款》《App会员条款》</string>
+    <string-array name="agreement_links">
+        <item>《会员协议》</item>
+        <item>《隐私条款》</item>
+        <item>《App会员条款》</item>
+    </string-array>
+    <string name="one_key_login_agreement">未注册手机号登录后自动生成会员账号，且代表您已阅读并同意《中国移动认证服务协议》《会员协议》《隐私条款》《App会员条款》</string>
+    <string-array name="one_key_login_agreement_links">
+        <item>《中国移动认证服务协议》</item>
+        <item>《会员协议》</item>
+        <item>《隐私条款》</item>
+        <item>《App会员条款》</item>
+    </string-array>
+    <string name="login_agreement_dialog">请您认真阅读《会员协议》《隐私条款》《App会员条款》的全部条款，接受后可开始使用我们的服务</string>
+    <string name="onekey_login_agreement_dialog">未注册手机号登录后自动生成会员账号，请您认真阅读《会员协议》《隐私条款》《App会员条款》的全部条款，接受后可开始使用我们的服务</string>
+    <string name="disagree">不同意</string>
+    <string name="agree">同意</string>
+    <string name="retrieve_pwd">找回密码</string>
+    <string name="forget_pwd">忘记密码</string>
+    <string name="current_phone_login">本机号码一键登录</string>
+    <string name="other_phone_login">使用其他手机号登录</string>
+    <string name="sms_code_login">手机验证码登录</string>
+    <string name="exempt_login">免登录</string>
+    <string name="complete_register_info">完善注册信息</string>
+    <string name="complete_and_login">完成并登录</string>
+    <string name="next_step">下一步</string>
+    <string name="get_sms_code">获取验证码</string>
+    <string name="change_phone">换号</string>
+</resources>

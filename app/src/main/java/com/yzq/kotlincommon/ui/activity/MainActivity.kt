@@ -144,6 +144,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("Zxing", RoutePath.Main.ZXING))
         items.add(NaviItem("BsDiff", RoutePath.Main.BS_DIFF))
         items.add(NaviItem("登录页面", RoutePath.Main.LOGIN))
+        items.add(NaviItem("登录页面2", RoutePath.Main.USER_AUTH))
         items.add(NaviItem("下拉菜单", RoutePath.Main.DROP_DOWN_MENU))
         items.add(NaviItem("高德", RoutePath.GaoDe.GAO_DE))
         items.add(NaviItem("FlexBoxLayout", RoutePath.Main.FLEX_BOX))

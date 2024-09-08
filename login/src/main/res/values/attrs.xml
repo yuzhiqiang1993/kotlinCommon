@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--验证码输入框-->
+    <declare-styleable name="InputWithSmsView">
+        <attr name="sms_button_text" format="string" />
+        <attr name="sms_button_text_color" format="color" />
+        <attr name="sms_button_text_size" format="dimension" />
+        <attr name="sms_button_width" format="dimension" />
+        <attr name="sms_button_height" format="dimension" />
+        <attr name="sms_button_padding" format="dimension" />
+
+    </declare-styleable>
+
+
+    <!--隐私协议复选框-->
+    <declare-styleable name="AgreementCheckboxView">
+        <attr name="show_check" format="boolean" />
+        <attr name="agreement_text" format="string" />
+        <attr name="agreement_links" format="reference" />
+    </declare-styleable>
+
+
+    <!-- 带返回的title -->
+    <declare-styleable name="TitleBackView">
+        <attr name="titleText" format="string" />
+    </declare-styleable>
+
+</resources>

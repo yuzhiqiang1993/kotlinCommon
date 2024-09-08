@@ -1,8 +1,0 @@
-<resources>
-    <string name="app_name">widget</string>
-    <string name="no_data">No Data</string>
-    <string name="retry">Retry</string>
-    <string name="no_net">No Net</string>
-    <string name="loading">Loading…</string>
-
-</resources>

@@ -17,12 +17,10 @@
     <color name="primary_icon">#000000</color>
     <color name="secondary_icon">#9e9e9e</color>
 
-
     <!--图标颜色-->
     <color name="icons">#FFFFFF</color>
     <!--分割线颜色-->
     <color name="divider">#BDBDBD</color>
-
 
     <!--浅灰色-->
     <color name="lightGray">#888888</color>
@@ -35,7 +33,8 @@
     <!--文字提示颜色-->
     <color name="font_hint">#919191</color>
 
-
+    <!-- 透明度 65% 的黑色-->
+    <color name="popup_color">#A6000000</color>
     <color name="trans">#00000000</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>

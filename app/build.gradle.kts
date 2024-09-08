@@ -87,7 +87,7 @@ android {
             signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
-            isDebuggable = true
+            isDebuggable = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
             buildConfigField("boolean", "LOG_DEBUG", "true")
             buildConfigField("String", "BASE_URL", "\"https://release.xxx.xxx/\"")//字符串的值直接写的话需要加转义符
@@ -224,6 +224,7 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":baidu"))
     implementation(project(":react-native"))
+    implementation(project(":login"))
 
 
 }

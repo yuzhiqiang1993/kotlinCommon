@@ -29,8 +29,7 @@
         android:usesPermissionFlags="neverForLocation"
         tools:targetApi="s" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
-    <!--安装apk权限-->
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" /> <!-- 安装apk权限 -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <uses-feature
@@ -54,6 +53,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
+        <activity
+            android:name=".ui.activity.UserAuthActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="META_CHANNEL"
@@ -61,7 +63,6 @@
         <meta-data
             android:name="ScopedStorage"
             android:value="true" /> <!-- 适配分区存储 -->
-
         <activity
             android:name=".ui.activity.ComposeActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -69,7 +70,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
 
-            <!--使用adb命令可以模拟： adb shell am start -W -a android.intent.action.VIEW -d "https://www.kotlincommon.com/compose/124" com.yzq.kotlincommon-->
+            <!-- 使用adb命令可以模拟： adb shell am start -W -a android.intent.action.VIEW -d "https://www.kotlincommon.com/compose/124" com.yzq.kotlincommon -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -81,9 +82,7 @@
                     android:pathPrefix="/compose"
                     android:scheme="https" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".ui.activity.JavaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -184,9 +183,7 @@
             android:name=".ui.activity.AliEMASActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
-            android:screenOrientation="portrait" />
-
-        <!--adb shell am start -n com.yzq.kotlincommon/.ui.activity.SplashActivity -e key1 value1 -e key2 value2-->
+            android:screenOrientation="portrait" /> <!-- adb shell am start -n com.yzq.kotlincommon/.ui.activity.SplashActivity -e key1 value1 -e key2 value2 -->
         <activity
             android:name=".ui.activity.SplashActivity"
             android:exported="true"
@@ -319,12 +316,12 @@
                 android:resource="@xml/camera_provider_paths" />
         </provider>
 
-
         <receiver
             android:name=".broadcast_receiver.MyBroadcastReceiver"
             android:exported="true">
             <intent-filter>
-                <!--指定广播响应的动作-->
+
+                <!-- 指定广播响应的动作 -->
                 <action android:name="com.yzq.ACTION_TEST" />
             </intent-filter>
         </receiver>

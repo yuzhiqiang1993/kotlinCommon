@@ -17,6 +17,7 @@ import kotlinx.coroutines.delay
 
 class ApiCallViewModel : BaseViewModel() {
 
+
     fun requestData() {
 
         viewModelScope.launchSafety {

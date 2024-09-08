@@ -17,6 +17,9 @@ import kotlinx.coroutines.flow.StateFlow
 
 abstract class BaseViewModel : ViewModel(), LifecycleEventObserver {
 
+
+    protected val TAG = "${this.javaClass.simpleName}-${this.hashCode()}"
+
     /**
      * 使用stateFlow可以解决livedata必须要在主线程更新值的问题
      */

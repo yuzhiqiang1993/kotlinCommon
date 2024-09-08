@@ -22,6 +22,7 @@ dependencies {
     implementation(libs.androidx.annotation)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.xeonyu.coroutine)
+    implementation(libs.xeonyu.logger)
 
 
 }

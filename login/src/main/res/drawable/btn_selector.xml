@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:color="@android:color/darker_gray" android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/gray_400" />
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+
+    <!-- 可用状态 -->
+    <item android:color="@color/colorOnPrimary" android:state_enabled="true">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorOnPrimary" />
+            <corners android:radius="6dp" />
+        </shape>
+    </item>
+</selector>

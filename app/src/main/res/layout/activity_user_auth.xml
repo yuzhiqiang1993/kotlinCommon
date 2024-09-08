@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+
+    android:orientation="vertical"
+    tools:context=".ui.activity.UserAuthActivity">
+
+    <include
+        android:id="@+id/included_toolbar"
+        layout="@layout/toolbar" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="24dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login_by_onkey"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="一键登录(全屏)" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_login_by_onekey_popup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="一键登录(popup)" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_exempt_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="免密登录(popup)" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_complete_register_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="完善注册信息" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_complete_register_info_popup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="完善注册信息(popup)" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

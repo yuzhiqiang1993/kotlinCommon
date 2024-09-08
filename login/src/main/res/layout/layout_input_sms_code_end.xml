@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="44dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <!--清除icon-->
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_clear"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_clear" />
+
+    <!--验证码按钮-->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_sms_code"
+        android:layout_width="80dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="6dp"
+        android:background="@drawable/sms_btn_selector"
+        android:enabled="false"
+        android:gravity="center"
+        android:text="@string/get_sms_code"
+        android:textColor="@color/gray_600"
+        android:textSize="12sp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

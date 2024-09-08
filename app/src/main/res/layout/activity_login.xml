@@ -52,6 +52,7 @@
                 android:layout_marginEnd="@dimen/dp_10"
                 android:minHeight="@dimen/dp_72"
                 app:endIconMode="clear_text"
+
                 app:errorEnabled="@{account.trim().length()==0}">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -75,7 +76,6 @@
                 android:minHeight="@dimen/dp_72"
                 app:endIconMode="password_toggle"
                 app:errorEnabled="@{pwd.trim().length()==0}">
-
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"

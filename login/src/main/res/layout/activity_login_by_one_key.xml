@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.complete.LoginByOneKeyActivity">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_close"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:padding="4dp"
+        android:src="@drawable/ic_close"
+        android:tint="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="24dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_close">
+
+
+        <!--logo-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <!--手机号-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="xxxxxxxxx"
+            android:textColor="@color/black"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <!--本机号码一键登录-->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_current_phone_login"
+            style="@style/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/btn_selector"
+            android:text="@string/current_phone_login" />
+
+        <!--其他手机-->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_other_phone_login"
+            style="@style/login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/dialog_negative_btn"
+            android:text="@string/other_phone_login"
+            android:textColor="@color/black" />
+
+
+        <!--协议-->
+        <com.yzq.login.widget.AgreementCheckboxView
+            android:id="@+id/agreement_checkbox_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:agreement_links="@array/one_key_login_agreement_links"
+            app:agreement_text="@string/one_key_login_agreement"
+            app:show_check="true" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

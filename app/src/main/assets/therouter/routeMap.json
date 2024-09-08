@@ -1,5 +1,82 @@
 [
   {
+    "path": "/login/setNewPwdPopup",
+    "className": "com.yzq.login.ui.immediate.SetNewPwdPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/retirevePwdPopup",
+    "className": "com.yzq.login.ui.immediate.RetrievePwdPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/loginByPwdPopup",
+    "className": "com.yzq.login.ui.immediate.LoginByPwdActivityPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/onekeyLoginPopup",
+    "className": "com.yzq.login.ui.immediate.LoginByOneKeyPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/exemptLoginPopup",
+    "className": "com.yzq.login.ui.immediate.ExemptLoginPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/completeRegisterInfoPopup",
+    "className": "com.yzq.login.ui.immediate.CompleteRegisterInfoPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/setNewPwd",
+    "className": "com.yzq.login.ui.complete.SetNewPwdActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/retirevePwd",
+    "className": "com.yzq.login.ui.complete.RetrievePwdActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/loginByPwd",
+    "className": "com.yzq.login.ui.complete.LoginByPwdActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/onekeyLogin",
+    "className": "com.yzq.login.ui.complete.LoginByOneKeyActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/completeRegisterInfo",
+    "className": "com.yzq.login.ui.complete.CompleteRegisterInfoActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/main/zxing",
     "className": "com.yzq.kotlincommon.ui.activity.ZxingActivity",
     "action": "",
@@ -23,6 +100,13 @@
   {
     "path": "/main/viewBinding",
     "className": "com.yzq.kotlincommon.ui.activity.ViewBindingActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/userAuth",
+    "className": "com.yzq.kotlincommon.ui.activity.UserAuthActivity",
     "action": "",
     "description": "",
     "params": {}

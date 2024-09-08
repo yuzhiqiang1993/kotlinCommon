@@ -61,4 +61,22 @@
         <attr name="leftSwipe" format="boolean" />
     </declare-styleable>
 
+
+    <!--尾部自定义View的输入框-->
+    <declare-styleable name="InputWithCustomEndView">
+        <attr name="input_enable" format="boolean" />
+        <attr name="input_hint" format="string" />
+    </declare-styleable>
+
+
+    <!--尾部是icon的输入框-->
+    <declare-styleable name="InputWithEndImageView">
+        <attr name="icon_src" format="reference" />
+        <attr name="icon_size" format="dimension" />
+        <attr name="icon_padding" format="dimension" />
+        <attr name="icon_tint" format="color" />
+        <attr name="icon_visibility" format="boolean" />
+    </declare-styleable>
+
+
 </resources>

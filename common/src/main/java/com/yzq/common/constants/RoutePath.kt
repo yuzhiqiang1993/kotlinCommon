@@ -46,6 +46,55 @@ object RoutePath {
         const val REACT_NATIVE: String = "/main/reactNative"
         const val JAVA_ACTIVITY: String = "/main/javaActivity"
         const val COMPOSE: String = "/main/compose"
+        const val USER_AUTH: String = "/main/userAuth"
+
+    }
+
+
+    object Login {
+        //一键登录
+        const val ONE_KEY_LOGIN = "/login/onekeyLogin"
+
+        //免密登录
+        const val EXEMPT_LOGIN = "/login/exemptLogin"
+
+        //密码登录
+        const val LOGIN_BY_PWD = "/login/loginByPwd"
+
+        //短信登录
+        const val LOGIN_BY_SMS = "/login/loginBySms"
+
+        //找回密码
+        const val RETIREVE_PWD = "/login/retirevePwd"
+
+        //设置新密码
+        const val SET_NEW_PWD = "/login/setNewPwd"
+
+        //完善注册信息
+        const val COMPLETE_REGISTER_INFO = "/login/completeRegisterInfo"
+
+        //一键登录(popup)
+        const val ONE_KEY_LOGIN_POPUP = "/login/onekeyLoginPopup"
+
+        //免密登录(popup)
+        const val EXEMPT_LOGIN_POPUP = "/login/exemptLoginPopup"
+
+        //密码登录(popup)
+        const val LOGIN_BY_PWD_POPUP = "/login/loginByPwdPopup"
+
+        //短信登录(popup)
+        const val LOGIN_BY_SMS_POPUP = "/login/loginBySmsPopup"
+
+        //找回密码(popup)
+        const val RETIREVE_PWD_POPUP = "/login/retirevePwdPopup"
+
+        //设置新密码(popup)
+        const val SET_NEW_PWD_POPUP = "/login/setNewPwdPopup"
+
+        //完善注册信息(popup)
+        const val COMPLETE_REGISTER_INFO_POPUP = "/login/completeRegisterInfoPopup"
+
+
 
     }
 
