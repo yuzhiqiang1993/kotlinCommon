@@ -30,7 +30,6 @@ internal class AgreementDialog(
 
     private var binding: DialogAgreementBinding? = null
 
-
     private var btnClick: ((Boolean) -> Unit)? = null
 
 
@@ -51,16 +50,14 @@ internal class AgreementDialog(
 
         }
 
-
-
         return binding!!.root
     }
 
 
     override fun dialogConfig(config: DialogConfig) {
-        super.dialogConfig(config)
         config.cancelable(false)
-        config.bgRes(R.drawable.dialog_bg)
+        config.bgRes(R.drawable.agreement_dialog_bg)
+
         val displayMetrics = resources.displayMetrics
         val screenWidth = displayMetrics.widthPixels
         config.dialogWidth = (screenWidth * 0.8).toInt()

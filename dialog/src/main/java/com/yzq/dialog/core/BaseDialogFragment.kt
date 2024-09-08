@@ -234,8 +234,6 @@ abstract class BaseDialogFragment<T : BaseDialogFragment<T>>(
             }
             dimAmount = config.dialogDimAmount
             alpha = config.dialogAlpha
-
-
         }
     }
 
