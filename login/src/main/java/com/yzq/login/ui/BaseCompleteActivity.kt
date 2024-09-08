@@ -14,7 +14,7 @@ open class BaseCompleteActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        immersiveRes(com.yzq.base.R.color.white, false)
+        immersiveRes(com.yzq.base.R.color.white, true)
     }
 
 
