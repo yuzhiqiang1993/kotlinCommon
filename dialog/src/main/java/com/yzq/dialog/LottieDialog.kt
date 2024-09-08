@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.annotation.RawRes
 import androidx.appcompat.app.AppCompatActivity
 import com.yzq.dialog.core.BaseDialogFragment
-import com.yzq.dialog.core.DialogConfig
 import com.yzq.dialog.databinding.LayoutLottieDialogBinding
 
 
@@ -48,9 +47,6 @@ class LottieDialog(activity: AppCompatActivity) : BaseDialogFragment<LottieDialo
 
     }
 
-    override fun dialogConfig(config: DialogConfig) {
-        super.dialogConfig(config)
-    }
 
 
     fun loadLottieRes(@RawRes res: Int): LottieDialog {

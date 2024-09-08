@@ -41,7 +41,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher_round" />
+            android:src="@mipmap/ic_launcher" />
 
         <!--手机号-->
         <androidx.appcompat.widget.AppCompatTextView

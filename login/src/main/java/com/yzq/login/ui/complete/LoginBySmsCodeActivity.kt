@@ -1,7 +1,5 @@
 package com.yzq.login.ui.complete
 
-import android.content.Context
-import android.content.Intent
 import android.view.View
 import androidx.activity.viewModels
 import com.therouter.TheRouter
@@ -11,33 +9,25 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger.it
 import com.yzq.login.R
-import com.yzq.login.databinding.ActivityLoginByPwdBinding
+import com.yzq.login.databinding.ActivityLoginBySmsCodeBinding
 import com.yzq.login.ui.BaseCompleteActivity
 import com.yzq.login.ui.dialog.AgreementDialog
-import com.yzq.login.viewmodel.LoginPwdViewModel
+import com.yzq.login.viewmodel.LoginSmsCodeViewModel
+
 
 /**
+ * @description: 通过短信验证码登录页面
  * @author : yuzhiqiang
- * @description: 密码登录页
  */
+@Route(path = RoutePath.Login.LOGIN_BY_SMS)
+class LoginBySmsCodeActivity : BaseCompleteActivity() {
+    private val binding: ActivityLoginBySmsCodeBinding by viewbind(ActivityLoginBySmsCodeBinding::inflate)
 
-@Route(path = RoutePath.Login.LOGIN_BY_PWD)
-class LoginByPwdActivity : BaseCompleteActivity() {
-
-    private val binding: ActivityLoginByPwdBinding by viewbind(ActivityLoginByPwdBinding::inflate)
-
-    private val loginByPwdViewModel: LoginPwdViewModel by viewModels()
+    private val veiwModel: LoginSmsCodeViewModel by viewModels()
 
     private val agreementViewModel: AgreementViewModel by viewModels()
 
     private var agreementDialog: AgreementDialog? = null
-
-    companion object {
-        fun start(context: Context) {
-            val intent = Intent(context, LoginByPwdActivity::class.java)
-            context.startActivity(intent)
-        }
-    }
 
     override fun initVariable() {
         agreementDialog = AgreementDialog(this, R.string.login_agreement_dialog)
@@ -47,9 +37,9 @@ class LoginByPwdActivity : BaseCompleteActivity() {
     override fun initListener() {
 
         agreementDialog?.onBtnClick {
-            loginByPwdViewModel.changeAgreementChecked(it)
+            veiwModel.changeAgreementChecked(it)
             if (it) {
-                loginByPwdViewModel.login()
+                veiwModel.login()
             }
         }
 
@@ -58,54 +48,65 @@ class LoginByPwdActivity : BaseCompleteActivity() {
                 finish()
             }
 
-            tvLoginBySms.setOnClickListener { v: View? ->
-                //验证码登录
-                it(TAG, "验证码登录")
-                TheRouter.build(RoutePath.Login.LOGIN_BY_SMS).navigation()
+            tvLoginByPwd.setOnClickListener { v: View? ->
+                //密码登录
+                it(TAG, "密码登录")
+                TheRouter.build(RoutePath.Login.LOGIN_BY_PWD).navigation()
                 finish()
             }
 
             inputPhone.onContentChange { phone ->
-                loginByPwdViewModel.changePhone(phone)
+                veiwModel.changePhone(phone)
             }
-            inputPwd.onContentChange { pwd ->
-                loginByPwdViewModel.changePwd(pwd)
+
+            inputSmsCode.run {
+                onContentChange { smsCode ->
+                    veiwModel.changeSmsCode(smsCode)
+                }
+                onSmsBtnClick {
+                    //获取验证码
+                    it(TAG, "获取验证码")
+                    veiwModel.sendSmsCode()
+                }
             }
+
 
             agreementCheckbox.onAgreementChecked { isChecked ->
                 it(TAG, "协议选中:$isChecked")
-                loginByPwdViewModel.changeAgreementChecked(isChecked)
+                veiwModel.changeAgreementChecked(isChecked)
             }
             agreementCheckbox.onAgreementClick { content ->
                 agreementViewModel.agreementClick(content)
             }
 
-
             btnLogin.setOnClickListener { view: View? ->
-                loginByPwdViewModel.login()
+                veiwModel.login()
             }
 
-            tvForgetPwd.setOnClickListener { view: View? ->
-                //忘记密码
-                it(TAG, "忘记密码")
-                TheRouter.build(RoutePath.Login.RETIREVE_PWD).navigation()
-            }
         }
     }
 
     override fun observeViewModel() {
-        loginByPwdViewModel.run {
+        veiwModel.run {
 
-            btnEnable.observe(this@LoginByPwdActivity) { enable: Boolean ->
+            btnEnable.observe(this@LoginBySmsCodeActivity) { enable: Boolean ->
                 binding.btnLogin.isEnabled = enable
             }
 
-            isAgreementChecked.observe(this@LoginByPwdActivity) { isChecked: Boolean ->
+            isAgreementChecked.observe(this@LoginBySmsCodeActivity) { isChecked: Boolean ->
                 binding.agreementCheckbox.changeCheckState(isChecked)
             }
 
-            loginByPwdViewModel.showAgreementDialog.observe(
-                this@LoginByPwdActivity
+            smsCodeBtnEnable.observe(this@LoginBySmsCodeActivity) {
+                binding.inputSmsCode.changeSmsBtnEnable(it)
+            }
+
+            startCountDown.observe(this@LoginBySmsCodeActivity) {
+                binding.inputSmsCode.startCountdown()
+            }
+
+            showAgreementDialog.observe(
+                this@LoginBySmsCodeActivity
             ) { show: Boolean ->
                 if (show) {
                     //显示协议弹窗
@@ -115,5 +116,6 @@ class LoginByPwdActivity : BaseCompleteActivity() {
             }
         }
     }
+
 
 }

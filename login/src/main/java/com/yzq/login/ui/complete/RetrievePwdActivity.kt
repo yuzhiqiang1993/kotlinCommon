@@ -58,7 +58,8 @@ class RetrievePwdActivity : BaseCompleteActivity() {
 
             /*下一步*/
             btnNextStep.setOnClickListener {
-                SetNewPwdActivity.start(this@RetrievePwdActivity)
+
+            SetNewPwdActivity.start(this@RetrievePwdActivity)
                 finish()
             }
 

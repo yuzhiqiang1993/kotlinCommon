@@ -1,4 +1,4 @@
-package com.yzq.login.ui.immediate
+package com.yzq.login.ui.popup
 
 import android.content.Context
 import android.content.Intent

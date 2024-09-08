@@ -22,9 +22,7 @@ class CompleteRegisterInfoActivity : BaseCompleteActivity() {
     private val binding: ActivityCompleteRegisterInfoBinding by viewbind(
         ActivityCompleteRegisterInfoBinding::inflate
     )
-
     private val viewModel: CompleteRegisterInfoViewModel by viewModels()
-
 
     companion object {
         fun start(context: Context) {
@@ -38,12 +36,9 @@ class CompleteRegisterInfoActivity : BaseCompleteActivity() {
             titleBackView.onBackIvClick {
                 finish()
             }
-
-
             inputPwd.onContentChange {
                 viewModel.changePwd(it)
             }
-
             btnCompleteRegister.setOnClickListener {
                 viewModel.completeRegister()
             }

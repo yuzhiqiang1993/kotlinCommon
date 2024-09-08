@@ -74,7 +74,8 @@ class LoginByOneKeyActivity : BaseCompleteActivity() {
             //其他手机号登录
             btnOtherPhoneLogin.setOnClickListener {
                 //跳转到验证码登录页面
-                TheRouter.build(RoutePath.Login.LOGIN_BY_PWD).navFinish(this@LoginByOneKeyActivity)
+                TheRouter.build(RoutePath.Login.LOGIN_BY_SMS).navFinish(this@LoginByOneKeyActivity)
+                finish()
 
             }
 
@@ -101,6 +102,8 @@ class LoginByOneKeyActivity : BaseCompleteActivity() {
             showAgreementDialog.observe(this@LoginByOneKeyActivity) {
                 if (it) {
                     agreementDialog?.safeShow()
+                } else {
+                    agreementDialog?.safeDismiss()
                 }
             }
         }

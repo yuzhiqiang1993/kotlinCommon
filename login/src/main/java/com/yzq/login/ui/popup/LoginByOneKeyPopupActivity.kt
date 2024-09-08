@@ -1,4 +1,4 @@
-package com.yzq.login.ui.immediate
+package com.yzq.login.ui.popup
 
 import android.content.Context
 import android.content.Intent
@@ -43,7 +43,6 @@ class LoginByOneKeyPopupActivity : BasePopupActivity() {
 
 
     override fun initWidget() {
-
         agreementDialog = AgreementDialog(this, R.string.one_key_login_agreement);
     }
 

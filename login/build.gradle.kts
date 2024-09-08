@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.xeonyu.library)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.android)
 }
 
 
@@ -24,6 +25,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.xeonyu.coroutine)
     implementation(libs.xeonyu.binding)
+    implementation(libs.androidx.activity)
 
     ksp(libs.therouter.apt)
 

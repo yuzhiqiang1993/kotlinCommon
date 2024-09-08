@@ -242,7 +242,6 @@ abstract class BaseDialogFragment<T : BaseDialogFragment<T>>(
      * 显示 DialogFragment，避免可能的异常
      */
     fun safeShow() {
-
         runCatching {
             val fragmentManager = hostActivity.supportFragmentManager
             if (!hostActivity.isFinishing && !hostActivity.isDestroyed && !fragmentManager.isStateSaved) {
@@ -250,7 +249,6 @@ abstract class BaseDialogFragment<T : BaseDialogFragment<T>>(
                     show(fragmentManager, dialogTag)
                     callback?.onShow()
                 }
-
             }
         }.onFailure {
             it.printStackTrace()
@@ -275,9 +273,7 @@ abstract class BaseDialogFragment<T : BaseDialogFragment<T>>(
 
 
     protected fun isShowing(): Boolean {
-
         if (hostActivity.isDestroyed || hostActivity.isFinishing) return false
-
         return dialog?.isShowing ?: false
     }
 

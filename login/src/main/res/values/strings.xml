@@ -5,7 +5,9 @@
     <string name="login_by_sms_code">验证码登录</string>
     <string name="login_phone_input_hint">请输入手机号</string>
     <string name="login_password_input_hint">请输入密码</string>
-    <string name="login_agreement">已阅读并同意《会员协议》《隐私条款》《App会员条款》</string>
+    <string name="sms_code_hint">验证码</string>
+    <string name="login_by_pwd_agreement">已阅读并同意《会员协议》《隐私条款》《App会员条款》</string>
+    <string name="login_by_sms_code_agreement">未注册手机号登录后自动生成会员账号，且代表您已阅读并同意《会员协议》《隐私条款》《App会员条款》</string>
     <string-array name="agreement_links">
         <item>《会员协议》</item>
         <item>《隐私条款》</item>

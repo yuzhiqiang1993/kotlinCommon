@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <application>
-
+        <activity
+            android:name=".ui.complete.LoginBySmsCodeActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.complete.LoginByOneKeyActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.complete.LoginByPwdActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.complete.CompleteRegisterInfoActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
@@ -32,38 +33,37 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.immediate.ExemptLoginPopupActivity"
-            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/TransparentTheme" />
-
-        <activity
-            android:name=".ui.immediate.LoginByOneKeyPopupActivity"
+            android:name=".ui.popup.ExemptLoginPopupActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/TransparentTheme" />
         <activity
-            android:name=".ui.immediate.LoginByPwdActivityPopupActivity"
+            android:name=".ui.popup.LoginByOneKeyPopupActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/TransparentTheme" />
         <activity
-            android:name=".ui.immediate.CompleteRegisterInfoPopupActivity"
+            android:name=".ui.popup.LoginByPwdActivityPopupActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/TransparentTheme" />
         <activity
-            android:name=".ui.immediate.RetrievePwdPopupActivity"
+            android:name=".ui.popup.CompleteRegisterInfoPopupActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/TransparentTheme" />
         <activity
-            android:name=".ui.immediate.SetNewPwdPopupActivity"
+            android:name=".ui.popup.RetrievePwdPopupActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/TransparentTheme" />
+        <activity
+            android:name=".ui.popup.SetNewPwdPopupActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale"
             android:exported="false"
             android:screenOrientation="portrait"

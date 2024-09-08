@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">base</string>
-    <string name="img_transition">img_transition</string>
-    <string name="data_parse_error">Data Parsing Error</string>
-    <string name="unknown_exception">Unknown Exception</string>
-    <string name="timeout">Timeout</string>
-    <string name="no_net">No Net</string>
-    <string name="loading">Loading…</string>
-</resources>

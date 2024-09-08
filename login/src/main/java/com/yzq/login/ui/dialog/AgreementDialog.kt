@@ -38,7 +38,6 @@ internal class AgreementDialog(
     ): View {
         binding = DialogAgreementBinding.inflate(inflater, container, false)
 
-
         binding?.run {
 
             val agreementArray = resources.getStringArray(R.array.agreement_links)
@@ -56,7 +55,7 @@ internal class AgreementDialog(
 
     override fun dialogConfig(config: DialogConfig) {
         config.cancelable(false)
-        config.bgRes(R.drawable.agreement_dialog_bg)
+        config.dialogBgRes = R.drawable.agreement_dialog_bg
 
         val displayMetrics = resources.displayMetrics
         val screenWidth = displayMetrics.widthPixels
@@ -86,7 +85,4 @@ internal class AgreementDialog(
         this.btnClick = btnClick
     }
 
-    interface OnBtnClickListener {
-        fun click(isAgree: Boolean)
-    }
 }

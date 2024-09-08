@@ -14,7 +14,7 @@ open class BasePopupActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        immersiveRes(com.yzq.widget.R.color.popup_color, true)
+        immersiveRes(com.yzq.widget.R.color.popup_color, false)
     }
 
 
