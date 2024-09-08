@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     android:background="@color/popup_color">
 
+
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/bottom_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/tv_forget_pwd"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -29,15 +30,19 @@
             android:orientation="vertical"
             android:paddingStart="24dp"
             android:paddingEnd="24dp"
-            android:paddingBottom="24dp">
-
+            android:paddingBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_close">
 
             <com.yzq.login.widget.PopupTitleView
                 android:id="@+id/popup_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleEnd="@string/login_by_sms_code"
-                app:titleStart="@string/login_by_pwd" />
+                app:titleEnd="@string/login_by_pwd"
+                app:titleStart="@string/login_by_sms_code" />
+
 
             <!--手机号-->
             <com.yzq.login.widget.InputPhoneView
@@ -52,16 +57,16 @@
                 app:input_hint="@string/login_phone_input_hint" />
 
 
-            <!--密码-->
-            <com.yzq.login.widget.InputPwdView
-                android:id="@+id/input_pwd"
+            <!--验证码-->
+            <com.yzq.login.widget.InputWithSmsView
+                android:id="@+id/input_sms_code"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_marginTop="10dp"
-                app:input_hint="@string/login_password_input_hint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_phone" />
+                app:input_hint="验证码"
+                app:sms_button_text="@string/get_sms_code"
+                app:sms_button_text_color="@color/secondary_text"
+                app:sms_button_text_size="12dp" />
 
 
             <!--登录按钮-->
@@ -74,7 +79,8 @@
                 android:background="@drawable/btn_selector"
                 android:enabled="false"
                 android:text="@string/login"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                app:layout_constraintTop_toBottomOf="@+id/input_sms_code" />
 
 
             <!--隐私协议-->
@@ -84,10 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="26dp"
                 app:agreement_links="@array/agreement_links"
-                app:agreement_text="@string/login_by_pwd_agreement"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_login"
+                app:agreement_text="@string/login_by_sms_code_agreement"
                 app:show_check="true" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -95,20 +98,5 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <!--忘记密码-->
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tv_forget_pwd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:gravity="center"
-        android:paddingTop="40dp"
-        android:paddingBottom="20dp"
-        android:text="@string/forget_pwd"
-        android:textColor="@color/secondary_text"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

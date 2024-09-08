@@ -81,7 +81,7 @@ class LoginByOneKeyPopupActivity : BasePopupActivity() {
             tvChangePhone.setOnClickListener {
                 //跳转到验证码登录页面
                 finish()
-                LoginByPwdActivityPopupActivity.start(this@LoginByOneKeyPopupActivity)
+                LoginByPwdPopupActivity.start(this@LoginByOneKeyPopupActivity)
 
             }
 

@@ -3,6 +3,7 @@ package com.yzq.login.ui.popup
 import android.content.Context
 import android.content.Intent
 import androidx.activity.viewModels
+import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
 import com.yzq.binding.viewbind
@@ -20,7 +21,7 @@ import floatWithSoftInput
  * @author : yuzhiqiang
  */
 @Route(path = RoutePath.Login.LOGIN_BY_PWD_POPUP)
-class LoginByPwdActivityPopupActivity : BasePopupActivity() {
+class LoginByPwdPopupActivity : BasePopupActivity() {
 
     private val binding: ActivityLoginByPwdPopupBinding by viewbind(ActivityLoginByPwdPopupBinding::inflate)
 
@@ -33,7 +34,7 @@ class LoginByPwdActivityPopupActivity : BasePopupActivity() {
 
     companion object {
         fun start(context: Context) {
-            val intent = Intent(context, LoginByPwdActivityPopupActivity::class.java)
+            val intent = Intent(context, LoginByPwdPopupActivity::class.java)
             context.startActivity(intent)
         }
     }
@@ -66,7 +67,7 @@ class LoginByPwdActivityPopupActivity : BasePopupActivity() {
             popupHeader.onIvBackClick {
                 //返回到一键登录页面
                 finish()
-                LoginByOneKeyPopupActivity.start(this@LoginByPwdActivityPopupActivity)
+                LoginByOneKeyPopupActivity.start(this@LoginByPwdPopupActivity)
             }
 
             popupHeader.onIvCloseClick() {
@@ -75,8 +76,11 @@ class LoginByPwdActivityPopupActivity : BasePopupActivity() {
 
             }
 
-            tvLoginBySms.setOnClickListener {
+            popupTitle.titleEndOnClick {
                 //验证码登录
+                finish()
+                TheRouter.build(RoutePath.Login.LOGIN_BY_SMS_POPUP).navigation()
+
             }
 
             //手机号
@@ -109,7 +113,7 @@ class LoginByPwdActivityPopupActivity : BasePopupActivity() {
             //忘记密码
             tvForgetPwd.setOnClickListener {
                 //跳转到忘记密码页面
-                RetrievePwdPopupActivity.start(this@LoginByPwdActivityPopupActivity)
+                RetrievePwdPopupActivity.start(this@LoginByPwdPopupActivity)
             }
         }
 
@@ -119,15 +123,15 @@ class LoginByPwdActivityPopupActivity : BasePopupActivity() {
     override fun observeViewModel() {
 
         loginByPwdViewModel.run {
-            btnEnable.observe(this@LoginByPwdActivityPopupActivity) { enable: Boolean? ->
+            btnEnable.observe(this@LoginByPwdPopupActivity) { enable: Boolean? ->
                 binding.btnLogin.isEnabled = enable!!
             }
 
-            isAgreementChecked.observe(this@LoginByPwdActivityPopupActivity) {
+            isAgreementChecked.observe(this@LoginByPwdPopupActivity) {
                 binding.agreementCheckbox.changeCheckState(it)
             }
 
-            showAgreementDialog.observe(this@LoginByPwdActivityPopupActivity) { show: Boolean ->
+            showAgreementDialog.observe(this@LoginByPwdPopupActivity) { show: Boolean ->
                 if (show) {
                     //显示协议弹窗
                     agreementDialog!!.safeShow()

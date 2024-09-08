@@ -26,4 +26,9 @@
         <attr name="titleText" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="PopupTitleView">
+        <attr name="titleStart" format="string" />
+        <attr name="titleEnd" format="string" />
+    </declare-styleable>
+
 </resources>
