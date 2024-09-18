@@ -12,7 +12,7 @@ import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginByPwdPopupBinding
 import com.yzq.login.ui.BasePopupActivity
 import com.yzq.login.ui.dialog.AgreementDialog
-import com.yzq.login.viewmodel.LoginPwdViewModel
+import com.yzq.login.view_model.LoginPwdViewModel
 import floatWithSoftInput
 
 

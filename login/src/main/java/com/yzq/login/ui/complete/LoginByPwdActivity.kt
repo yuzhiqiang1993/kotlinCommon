@@ -14,7 +14,7 @@ import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginByPwdBinding
 import com.yzq.login.ui.BaseCompleteActivity
 import com.yzq.login.ui.dialog.AgreementDialog
-import com.yzq.login.viewmodel.LoginPwdViewModel
+import com.yzq.login.view_model.LoginPwdViewModel
 
 /**
  * @author : yuzhiqiang

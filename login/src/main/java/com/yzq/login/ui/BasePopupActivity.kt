@@ -18,9 +18,9 @@ open class BasePopupActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         immersiveRes(com.yzq.widget.R.color.popup_color, false)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, R.anim.slide_in_bottom, 0, 0)
+            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, R.anim.fade_in, 0, 0)
         } else {
-            overridePendingTransition(R.anim.slide_in_bottom, 0)
+            overridePendingTransition(R.anim.fade_in, 0)
         }
     }
 
@@ -28,9 +28,9 @@ open class BasePopupActivity : BaseActivity() {
     override fun finish() {
         super.finish()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, 0, R.anim.slide_out_top, 0)
+            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, 0, R.anim.fade_out, 0)
         } else {
-            overridePendingTransition(0, R.anim.slide_out_top)
+            overridePendingTransition(0, R.anim.fade_out)
         }
 
     }

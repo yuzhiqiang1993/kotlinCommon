@@ -1,4 +1,4 @@
-package com.yzq.login.viewmodel
+package com.yzq.login.view_model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
