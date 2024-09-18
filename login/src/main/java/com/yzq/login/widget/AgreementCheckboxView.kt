@@ -159,12 +159,12 @@ class AgreementCheckboxView @JvmOverloads constructor(
     }
 
 
-    fun changeCheckState(isChecked: Boolean) {
+    fun changeCheckState(checked: Boolean) {
         //状态相同不做处理
-        if (this.isChecked == isChecked) {
+        if (this.isChecked == checked) {
             return
         }
-        this.isChecked = isChecked
+        this.isChecked = checked
         binding.ivChecked.setImageResource(getCurrentCheckRes())
         onAgreementChecked?.invoke(this.isChecked)
     }

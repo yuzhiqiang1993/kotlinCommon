@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewTreeObserver
 import android.view.Window
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.core.view.ViewCompat
@@ -12,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import com.yzq.application.AppContext.getSystemService
 
 /**
  * 让指定View随着软键盘的弹出和隐藏而浮动 (贼麻烦，各种屏幕尺寸的兼容情况未知，要多测～)
@@ -92,7 +94,6 @@ internal fun Window.floatWithSoftInput(
                     isShowing = false
                 }
             }
-
             handler.postDelayed(pendingTask!!, delayMillis)
         }.onFailure {
             it.printStackTrace()
@@ -107,12 +108,34 @@ internal fun Window.floatWithSoftInput(
         }
 
         override fun onPause(owner: LifecycleOwner) {
+            this@floatWithSoftInput.hideSoftInput()
             decorView.viewTreeObserver.removeOnGlobalLayoutListener(globalLayoutListener)
         }
+
 
         override fun onDestroy(owner: LifecycleOwner) {
             decorView.viewTreeObserver.removeOnGlobalLayoutListener(globalLayoutListener)
             handler.removeCallbacksAndMessages(null)
         }
     })
+}
+
+/**
+ * 隐藏键盘
+ */
+fun Activity.hideSoftInput() {
+    kotlin.runCatching {
+        val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+    }
+}
+
+/**
+ * 隐藏键盘
+ */
+fun Window.hideSoftInput() {
+    kotlin.runCatching {
+        val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+    }
 }

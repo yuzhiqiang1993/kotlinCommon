@@ -13,8 +13,8 @@ import com.yzq.logger.Logger
  */
 class BaseJsExecptionHandler : RedBoxHandler {
 
+    override fun handleRedbox(title: String?, stack: Array<StackFrame>, errorType: ErrorType) {
 
-    override fun handleRedbox(title: String?, stack: Array<out StackFrame>, errorType: ErrorType) {
         Logger.i("handleRedbox: $title stack: ${stack.contentToString()} errorType: $errorType")
     }
 
@@ -26,11 +26,10 @@ class BaseJsExecptionHandler : RedBoxHandler {
     override fun reportRedbox(
         context: Context,
         title: String,
-        stack: Array<out StackFrame>,
+        stack: Array<StackFrame>,
         sourceUrl: String,
         reportCompletedListener: RedBoxHandler.ReportCompletedListener
     ) {
         Logger.i("reportRedbox: $title stack: ${stack.contentToString()} sourceUrl: $sourceUrl")
-
     }
 }
