@@ -36,9 +36,9 @@ sealed class UIState {
     data class ShowLoadingDialog(val msg: String) : UIState()
     data class ShowDialog(val msg: String) : UIState()
     data class ShowToast(val msg: String) : UIState()
-    data object DissmissLoadingDialog : UIState()
+    data object DismissLoadingDialog : UIState()
     data class ShowLoading(val msg: String) : UIState()
     data class ShowError(val msg: String) : UIState()
-    class ShowEmpty : UIState()
-    class ShowContent : UIState()
+    data object ShowEmpty : UIState()
+    data object ShowContent : UIState()
 }

@@ -48,7 +48,7 @@ class CoroutineViewModel : BaseViewModel() {
 
             response.onSuccess {
                 _geocoder.value = it
-                _uiStateFlow.value = UIState.ShowContent()
+                _uiStateFlow.value = UIState.ShowContent
             }
             response.onError { code, message ->
                 Logger.i("onFailed--code:$code,message:$message")
@@ -65,7 +65,7 @@ class CoroutineViewModel : BaseViewModel() {
             delay(2000)
             _geocoderFlow.value =
                 RetrofitFactory.instance.getService(ApiService::class.java).geocoder().body()
-            _uiStateFlow.value = UIState.ShowContent()
+            _uiStateFlow.value = UIState.ShowContent
         }
     }
 }

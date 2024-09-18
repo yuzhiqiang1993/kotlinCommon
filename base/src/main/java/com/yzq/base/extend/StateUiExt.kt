@@ -26,7 +26,7 @@ fun BaseActivity.observeUIState(
                 Logger.i("初始状态，不用管")
             }
 
-            is UIState.DissmissLoadingDialog -> {
+            is UIState.DismissLoadingDialog -> {
                 loadingDialog?.safeDismiss()
             }
 
@@ -76,7 +76,7 @@ fun BaseFragment.observeUIState(
                 Logger.i("初始状态，不用管")
             }
 
-            is UIState.DissmissLoadingDialog -> {
+            is UIState.DismissLoadingDialog -> {
                 loadingDialog?.safeDismiss()
             }
 
