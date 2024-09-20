@@ -1,13 +1,12 @@
 package com.yzq.login.ui.popup
 
-import android.content.Context
-import android.content.Intent
 import androidx.activity.viewModels
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.CompleteRegisterInfoViewModel
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivityCompleteRegisterInfoPopupBinding
+import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
 import floatWithSoftInput
 
@@ -25,22 +24,20 @@ class CompleteRegisterInfoPopupActivity : BasePopupActivity() {
 
     private val viewModel: CompleteRegisterInfoViewModel by viewModels()
 
-    companion object {
-        fun start(context: Context) {
-            val intent = Intent(context, CompleteRegisterInfoPopupActivity::class.java)
-            context.startActivity(intent)
-        }
-    }
-
 
     override fun initWidget() {
 
         binding.run {
-
+            bottomSheetView = bottomContent
             floatWithSoftInput(bottomContent)
+        }
 
+    }
+
+    override fun initListener() {
+        binding.run {
             popupHeader.onIvCloseClick {
-                finish()
+                PageManager.finishAll()
             }
 
             inputPwd.onContentChange {
@@ -51,7 +48,6 @@ class CompleteRegisterInfoPopupActivity : BasePopupActivity() {
                 viewModel.completeRegister()
             }
         }
-
     }
 
     override fun observeViewModel() {
@@ -61,5 +57,9 @@ class CompleteRegisterInfoPopupActivity : BasePopupActivity() {
                 binding.btnCompleteRegister.isEnabled = it
             }
         }
+    }
+
+    override fun handleBackPressed() {
+        PageManager.finishAll()
     }
 }

@@ -1,15 +1,15 @@
 package com.yzq.login.ui.popup
 
-import android.content.Context
-import android.content.Intent
 import androidx.activity.viewModels
 import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
+import com.yzq.base.extend.navFinish
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginByPwdPopupBinding
+import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
 import com.yzq.login.ui.dialog.AgreementDialog
 import com.yzq.login.view_model.LoginPwdViewModel
@@ -31,21 +31,13 @@ class LoginByPwdPopupActivity : BasePopupActivity() {
 
     private var agreementDialog: AgreementDialog? = null
 
-
-    companion object {
-        fun start(context: Context) {
-            val intent = Intent(context, LoginByPwdPopupActivity::class.java)
-            context.startActivity(intent)
-        }
-    }
-
     override fun initWidget() {
 
         binding.run {
             //设置指定View浮动在软键盘上方
             floatWithSoftInput(bottomContent)
-
             popupHeader.showBack(true)
+            bottomSheetView = bottomContent
         }
     }
 
@@ -65,21 +57,18 @@ class LoginByPwdPopupActivity : BasePopupActivity() {
 
         binding.run {
             popupHeader.onIvBackClick {
-                //返回到一键登录页面
-                finish()
-                LoginByOneKeyPopupActivity.start(this@LoginByPwdPopupActivity)
+                handleBackPressed()
             }
 
-            popupHeader.onIvCloseClick() {
+            popupHeader.onIvCloseClick {
                 //返回到菜单
-                finish()
-
+                PageManager.finishAll()
             }
 
             popupTitle.titleEndOnClick {
                 //验证码登录
-                finish()
-                TheRouter.build(RoutePath.Login.LOGIN_BY_SMS_POPUP).navigation()
+                TheRouter.build(RoutePath.Login.LOGIN_BY_SMS_POPUP)
+                    .navFinish(this@LoginByPwdPopupActivity)
 
             }
 
@@ -114,6 +103,7 @@ class LoginByPwdPopupActivity : BasePopupActivity() {
             tvForgetPwd.setOnClickListener {
                 //跳转到忘记密码页面
                 RetrievePwdPopupActivity.start(this@LoginByPwdPopupActivity)
+                finish()
             }
         }
 
@@ -138,6 +128,12 @@ class LoginByPwdPopupActivity : BasePopupActivity() {
                 }
             }
         }
+    }
+
+    override fun handleBackPressed() {
+        //返回到验证码登录页面
+        TheRouter.build(RoutePath.Login.LOGIN_BY_SMS_POPUP)
+            .navFinish(this@LoginByPwdPopupActivity)
     }
 
 }

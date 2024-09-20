@@ -14,6 +14,9 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import com.yzq.application.AppContext.getSystemService
+import com.yzq.logger.Logger
+
+private const val TAG = "SoftInputExt"
 
 /**
  * 让指定View随着软键盘的弹出和隐藏而浮动 (贼麻烦，各种屏幕尺寸的兼容情况未知，要多测～)
@@ -52,7 +55,9 @@ internal fun Window.floatWithSoftInput(
     }
 
     var floatViewBottom = 0
+    //键盘是否显示
     var isShowing = false
+    //是否需要浮动
     var needFloat = false
     val animateDuration = 200L
     val delayMillis = 10L
@@ -64,8 +69,10 @@ internal fun Window.floatWithSoftInput(
 
             val rootWindowInsets = ViewCompat.getRootWindowInsets(decorView)
             val hasSoftInput = rootWindowInsets?.isVisible(WindowInsetsCompat.Type.ime()) ?: false
+            //键盘高度
             val softInputHeight =
                 rootWindowInsets?.getInsets(WindowInsetsCompat.Type.ime())?.bottom ?: 0
+            Logger.it(TAG, "softInputHeight:$softInputHeight")
 
             pendingTask?.let {
                 handler.removeCallbacks(it)
@@ -76,10 +83,17 @@ internal fun Window.floatWithSoftInput(
                 if (floatViewBottom == 0) {
                     val floatViewLocation = IntArray(2)
                     floatView.getLocationInWindow(floatViewLocation)
+                    Logger.it(
+                        TAG,
+                        "floatViewLocation:${floatViewLocation[0]},${floatViewLocation[1]}"
+                    )
                     floatViewBottom = floatViewLocation[1] + floatView.height
+                    Logger.it(TAG, "floatViewBottom:$floatViewBottom")
                 }
                 val decorViewBottom = decorView.bottom
+                Logger.it(TAG, "decorViewBottom:$decorViewBottom")
                 val offset = (decorViewBottom - floatViewBottom - softInputHeight).toFloat()
+                Logger.it(TAG, "offset:$offset")
                 if (hasSoftInput) {
                     needFloat = editText == null || editText.hasFocus()
                     if (needFloat) {

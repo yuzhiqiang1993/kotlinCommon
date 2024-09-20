@@ -3,13 +3,16 @@ package com.yzq.login.ui.popup
 import android.content.Context
 import android.content.Intent
 import androidx.activity.viewModels
+import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
 import com.yumc.android.userauth.login.view_model.OneKeyLoginViewModel
+import com.yzq.base.extend.navFinish
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginByOneKeyPopupBinding
+import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
 import com.yzq.login.ui.dialog.AgreementDialog
 
@@ -43,6 +46,7 @@ class LoginByOneKeyPopupActivity : BasePopupActivity() {
 
 
     override fun initWidget() {
+        bottomSheetView = binding.bottomContent
         agreementDialog = AgreementDialog(this, R.string.one_key_login_agreement);
     }
 
@@ -59,18 +63,19 @@ class LoginByOneKeyPopupActivity : BasePopupActivity() {
 
             //点击浮层关闭
             main.setOnClickListener {
-                finish()
+
+                PageManager.finishAll()
             }
 
             //下面内容不做点击事件
             bottomContent.setOnClickListener(null)
 
             popupHeader.onIvCloseClick {
-                finish()
+                PageManager.finishAll()
             }
 
             //当前手机号
-            tvPhone.setText("159xxxxx1234")
+            tvPhone.text = "159xxxxx1234"
 
             //当前手机号登录
             btnCurrentPhoneLogin.setOnClickListener {
@@ -80,9 +85,8 @@ class LoginByOneKeyPopupActivity : BasePopupActivity() {
             //换号码
             tvChangePhone.setOnClickListener {
                 //跳转到验证码登录页面
-                finish()
-                LoginByPwdPopupActivity.start(this@LoginByOneKeyPopupActivity)
-
+                TheRouter.build(RoutePath.Login.LOGIN_BY_SMS_POPUP)
+                    .navFinish(this@LoginByOneKeyPopupActivity)
             }
 
             agreementCheckboxView.run {
@@ -121,4 +125,8 @@ class LoginByOneKeyPopupActivity : BasePopupActivity() {
 
     }
 
+
+    override fun handleBackPressed() {
+        PageManager.finishAll()
+    }
 }

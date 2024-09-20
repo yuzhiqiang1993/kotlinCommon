@@ -12,7 +12,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger.it
 import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginByPwdBinding
-import com.yzq.login.ui.BaseCompleteActivity
+import com.yzq.login.ui.BaseLoginActivity
 import com.yzq.login.ui.dialog.AgreementDialog
 import com.yzq.login.view_model.LoginPwdViewModel
 
@@ -22,7 +22,7 @@ import com.yzq.login.view_model.LoginPwdViewModel
  */
 
 @Route(path = RoutePath.Login.LOGIN_BY_PWD)
-class LoginByPwdActivity : BaseCompleteActivity() {
+class LoginByPwdActivity : BaseLoginActivity() {
 
     private val binding: ActivityLoginByPwdBinding by viewbind(ActivityLoginByPwdBinding::inflate)
 

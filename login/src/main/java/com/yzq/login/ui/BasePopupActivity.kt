@@ -1,10 +1,13 @@
 package com.yzq.login.ui
 
-import android.os.Build
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.view.View
+import android.view.animation.DecelerateInterpolator
+import androidx.core.animation.doOnEnd
 import com.yzq.base.extend.immersiveRes
-import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.login.R
+import com.yzq.login.manager.PageManager
 
 
 /**
@@ -12,26 +15,39 @@ import com.yzq.login.R
  * @author : yuzhiqiang
  */
 
-open class BasePopupActivity : BaseActivity() {
+open class BasePopupActivity : BaseLoginActivity() {
+
+    protected var bottomSheetView: View? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        immersiveRes(com.yzq.widget.R.color.popup_color, false)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            overrideActivityTransition(OVERRIDE_TRANSITION_OPEN, R.anim.fade_in, 0, 0)
+        immersiveRes(com.yzq.widget.R.color.popup_color_50, false)
+
+        if (PageManager.hasTopPage()) {
+            overridePendingTransition(0, 0)
         } else {
-            overridePendingTransition(R.anim.fade_in, 0)
+            overridePendingTransition(R.anim.slide_in_bottom, 0)
         }
+
+
     }
 
 
-    override fun finish() {
-        super.finish()
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, 0, R.anim.fade_out, 0)
-        } else {
-            overridePendingTransition(0, R.anim.fade_out)
+    fun animateFinish() {
+        bottomSheetView?.run {
+            val animator =
+                ObjectAnimator.ofFloat(this, "translationY", 0f, height.toFloat()).apply {
+                    duration = 200
+                    interpolator = DecelerateInterpolator()
+                }
+            animator.doOnEnd {
+                super.finish()
+                overridePendingTransition(0, R.anim.fade_out)
+            }
+            animator.start()
+        } ?: run {
+            super.finish()
+            overridePendingTransition(0, R.anim.slide_out_top)
         }
-
     }
 }

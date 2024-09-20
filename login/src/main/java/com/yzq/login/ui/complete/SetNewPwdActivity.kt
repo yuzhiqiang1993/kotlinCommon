@@ -8,7 +8,7 @@ import com.yumc.android.userauth.login.view_model.SetNewPwdViewModel
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivitySetNewPwdBinding
-import com.yzq.login.ui.BaseCompleteActivity
+import com.yzq.login.ui.BaseLoginActivity
 
 
 /**
@@ -19,7 +19,7 @@ import com.yzq.login.ui.BaseCompleteActivity
  */
 
 @Route(path = RoutePath.Login.SET_NEW_PWD)
-class SetNewPwdActivity : BaseCompleteActivity() {
+class SetNewPwdActivity : BaseLoginActivity() {
 
     private val binding: ActivitySetNewPwdBinding by viewbind(ActivitySetNewPwdBinding::inflate)
 

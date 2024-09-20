@@ -10,7 +10,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger.it
 import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginBySmsCodeBinding
-import com.yzq.login.ui.BaseCompleteActivity
+import com.yzq.login.ui.BaseLoginActivity
 import com.yzq.login.ui.dialog.AgreementDialog
 import com.yzq.login.view_model.LoginSmsCodeViewModel
 
@@ -20,7 +20,7 @@ import com.yzq.login.view_model.LoginSmsCodeViewModel
  * @author : yuzhiqiang
  */
 @Route(path = RoutePath.Login.LOGIN_BY_SMS)
-class LoginBySmsCodeActivity : BaseCompleteActivity() {
+class LoginBySmsCodeActivity : BaseLoginActivity() {
     private val binding: ActivityLoginBySmsCodeBinding by viewbind(ActivityLoginBySmsCodeBinding::inflate)
 
     private val veiwModel: LoginSmsCodeViewModel by viewModels()

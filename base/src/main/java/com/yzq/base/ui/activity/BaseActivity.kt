@@ -2,6 +2,7 @@ package com.yzq.base.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.therouter.TheRouter
@@ -58,6 +59,20 @@ abstract class BaseActivity : AppCompatActivity {
         observeViewModel()
         //初始化数据
         initData()
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                handleBackPressed()
+            }
+
+        })
+    }
+
+    /**
+     * 处理返回键
+     */
+    protected open fun handleBackPressed() {
+        finish()
     }
 
     /**

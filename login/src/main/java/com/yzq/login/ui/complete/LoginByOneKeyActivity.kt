@@ -12,7 +12,7 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginByOneKeyBinding
-import com.yzq.login.ui.BaseCompleteActivity
+import com.yzq.login.ui.BaseLoginActivity
 import com.yzq.login.ui.dialog.AgreementDialog
 
 
@@ -24,7 +24,7 @@ import com.yzq.login.ui.dialog.AgreementDialog
  */
 
 @Route(path = RoutePath.Login.ONE_KEY_LOGIN)
-class LoginByOneKeyActivity : BaseCompleteActivity() {
+class LoginByOneKeyActivity : BaseLoginActivity() {
 
     private val binding: ActivityLoginByOneKeyBinding by viewbind(ActivityLoginByOneKeyBinding::inflate)
 

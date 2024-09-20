@@ -5,14 +5,17 @@ import androidx.activity.viewModels
 import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
+import com.yzq.base.extend.navFinish
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger.it
 import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginBySmsCodePopupBinding
+import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
 import com.yzq.login.ui.dialog.AgreementDialog
 import com.yzq.login.view_model.LoginSmsCodeViewModel
+import floatWithSoftInput
 
 
 /**
@@ -32,8 +35,14 @@ class LoginBySmsCodePopupActivity : BasePopupActivity() {
 
     private var agreementDialog: AgreementDialog? = null
 
+
     override fun initVariable() {
         agreementDialog = AgreementDialog(this, R.string.login_agreement_dialog)
+    }
+
+    override fun initWidget() {
+        bottomSheetView = binding.bottomContent
+        floatWithSoftInput(binding.bottomContent)
     }
 
 
@@ -49,25 +58,21 @@ class LoginBySmsCodePopupActivity : BasePopupActivity() {
         binding.run {
             popupHeader.run {
                 onIvBackClick {
-                    finish()
-                    TheRouter.build(RoutePath.Login.ONE_KEY_LOGIN_POPUP).navigation()
+                    TheRouter.build(RoutePath.Login.ONE_KEY_LOGIN_POPUP)
+                        .navFinish(this@LoginBySmsCodePopupActivity)
                 }
                 onIvCloseClick {
-                    finish()
+                    PageManager.finishAll()
                 }
             }
 
             popupTitle.titleEndOnClick {
                 //密码登录
-                finish()
-                TheRouter.build(RoutePath.Login.LOGIN_BY_PWD_POPUP).navigation()
+                TheRouter.build(RoutePath.Login.LOGIN_BY_PWD_POPUP)
+                    .navFinish(this@LoginBySmsCodePopupActivity)
 
             }
 
-            inputSmsCode.setOnClickListener { v: View? ->
-                TheRouter.build(RoutePath.Login.LOGIN_BY_PWD).navigation()
-                finish()
-            }
 
             inputPhone.onContentChange { phone ->
                 veiwModel.changePhone(phone)
@@ -129,6 +134,11 @@ class LoginBySmsCodePopupActivity : BasePopupActivity() {
                 }
             }
         }
+    }
+
+
+    override fun handleBackPressed() {
+        PageManager.finishAll()
     }
 
 

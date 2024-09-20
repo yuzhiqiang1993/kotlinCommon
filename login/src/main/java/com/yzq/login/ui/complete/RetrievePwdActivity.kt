@@ -8,7 +8,7 @@ import com.yumc.android.userauth.login.view_model.RetrievePwdViewModel
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivityRetrievePwdBinding
-import com.yzq.login.ui.BaseCompleteActivity
+import com.yzq.login.ui.BaseLoginActivity
 
 
 /**
@@ -18,7 +18,7 @@ import com.yzq.login.ui.BaseCompleteActivity
  *
  */
 @Route(path = RoutePath.Login.RETIREVE_PWD)
-class RetrievePwdActivity : BaseCompleteActivity() {
+class RetrievePwdActivity : BaseLoginActivity() {
     private val binding: ActivityRetrievePwdBinding by viewbind(ActivityRetrievePwdBinding::inflate)
 
     private val retrievePwdViewModel: RetrievePwdViewModel by viewModels()

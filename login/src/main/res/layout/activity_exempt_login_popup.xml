@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/popup_color">
+    android:layout_height="match_parent">
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -89,16 +88,6 @@
                 android:layout_marginTop="28dp"
                 android:background="@drawable/btn_selector"
                 android:text="@string/current_phone_login" />
-
-            <!--手机验证码登录-->
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_sms_code_login"
-                style="@style/login_btn"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/btn_selector"
-                android:text="@string/sms_code_login" />
 
 
             <!--免登录-->

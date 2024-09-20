@@ -8,7 +8,7 @@ import com.yumc.android.userauth.login.view_model.CompleteRegisterInfoViewModel
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivityCompleteRegisterInfoBinding
-import com.yzq.login.ui.BaseCompleteActivity
+import com.yzq.login.ui.BaseLoginActivity
 
 /**
  *
@@ -17,7 +17,7 @@ import com.yzq.login.ui.BaseCompleteActivity
  *
  */
 @Route(path = RoutePath.Login.COMPLETE_REGISTER_INFO)
-class CompleteRegisterInfoActivity : BaseCompleteActivity() {
+class CompleteRegisterInfoActivity : BaseLoginActivity() {
 
     private val binding: ActivityCompleteRegisterInfoBinding by viewbind(
         ActivityCompleteRegisterInfoBinding::inflate

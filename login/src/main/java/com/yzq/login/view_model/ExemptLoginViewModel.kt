@@ -24,4 +24,13 @@ class ExemptLoginViewModel : BaseViewModel() {
         this._isAgreementChecked.value = checked
     }
 
+    fun oneKeyLogin() {
+
+
+    }
+
+    fun exemptLogin() {
+
+    }
+
 }

@@ -3,11 +3,14 @@ package com.yzq.login.ui.popup
 import android.content.Context
 import android.content.Intent
 import androidx.activity.viewModels
+import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.SetNewPwdViewModel
+import com.yzq.base.extend.navFinish
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivitySetNewPwdPopupBinding
+import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
 import floatWithSoftInput
 
@@ -31,13 +34,25 @@ class SetNewPwdPopupActivity : BasePopupActivity() {
     }
 
 
+    override fun initWidget() {
+
+        binding.run {
+            bottomSheetView = bottomContent
+            popupHeader.showBack(true)
+        }
+    }
+
     override fun initListener() {
         binding.run {
 
             floatWithSoftInput(bottomContent)
 
+
+            popupHeader.onIvBackClick {
+                handleBackPressed()
+            }
             popupHeader.onIvCloseClick {
-                finish()
+                PageManager.finishAll()
             }
 
             inputPwd.onContentChange {
@@ -61,4 +76,9 @@ class SetNewPwdPopupActivity : BasePopupActivity() {
         }
     }
 
+
+    override fun handleBackPressed() {
+        TheRouter.build(RoutePath.Login.RETIREVE_PWD_POPUP)
+            .navFinish(this)
+    }
 }

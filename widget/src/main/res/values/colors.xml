@@ -35,6 +35,8 @@
 
     <!-- 透明度 65% 的黑色-->
     <color name="popup_color">#A6000000</color>
+    <!-- 透明度 50% 的黑色-->
+    <color name="popup_color_50">#80000000</color>
     <color name="trans">#00000000</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>

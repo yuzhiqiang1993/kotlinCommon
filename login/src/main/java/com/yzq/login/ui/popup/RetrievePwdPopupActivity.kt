@@ -3,11 +3,14 @@ package com.yzq.login.ui.popup
 import android.content.Context
 import android.content.Intent
 import androidx.activity.viewModels
+import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.RetrievePwdViewModel
+import com.yzq.base.extend.navFinish
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivityRetrievePwdPopupBinding
+import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
 import floatWithSoftInput
 
@@ -30,14 +33,24 @@ class RetrievePwdPopupActivity : BasePopupActivity() {
         }
     }
 
+    override fun initWidget() {
+        binding.run {
+            bottomSheetView = bottomContent
+            popupHeader.showBack(true)
+        }
+    }
 
     override fun initListener() {
         binding.run {
 
             floatWithSoftInput(bottomContent)
 
+            popupHeader.onIvBackClick {
+                handleBackPressed()
+            }
+
             popupHeader.onIvCloseClick {
-                finish()
+                PageManager.finishAll()
             }
 
 
@@ -68,8 +81,8 @@ class RetrievePwdPopupActivity : BasePopupActivity() {
 
             /*下一步*/
             btnNextStep.setOnClickListener {
-                SetNewPwdPopupActivity.start(this@RetrievePwdPopupActivity)
-                finish()
+                TheRouter.build(RoutePath.Login.SET_NEW_PWD_POPUP)
+                    .navFinish(this@RetrievePwdPopupActivity)
             }
 
         }
@@ -93,5 +106,11 @@ class RetrievePwdPopupActivity : BasePopupActivity() {
 
     }
 
+
+    override fun handleBackPressed() {
+        //回到密码登录页面
+        TheRouter.build(RoutePath.Login.LOGIN_BY_PWD_POPUP)
+            .navFinish(this@RetrievePwdPopupActivity)
+    }
 
 }
