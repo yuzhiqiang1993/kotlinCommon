@@ -155,3 +155,4 @@ include(":storage")
 
 include(":react-native")
 include(":login")
+include(":soft-input")

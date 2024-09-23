@@ -8,7 +8,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivityCompleteRegisterInfoPopupBinding
 import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
-import floatWithSoftInput
+import com.yzq.soft_input.setWindowSoftInput
 
 
 /**
@@ -29,7 +29,7 @@ class CompleteRegisterInfoPopupActivity : BasePopupActivity() {
 
         binding.run {
             bottomSheetView = bottomContent
-            floatWithSoftInput(bottomContent)
+            setWindowSoftInput(bottomContent)
         }
 
     }

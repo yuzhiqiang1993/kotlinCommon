@@ -12,7 +12,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivitySetNewPwdPopupBinding
 import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
-import floatWithSoftInput
+import com.yzq.soft_input.setWindowSoftInput
 
 
 /**
@@ -45,7 +45,7 @@ class SetNewPwdPopupActivity : BasePopupActivity() {
     override fun initListener() {
         binding.run {
 
-            floatWithSoftInput(bottomContent)
+            setWindowSoftInput(bottomContent)
 
 
             popupHeader.onIvBackClick {

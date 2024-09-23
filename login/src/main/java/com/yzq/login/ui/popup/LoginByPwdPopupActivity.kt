@@ -13,7 +13,7 @@ import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
 import com.yzq.login.ui.dialog.AgreementDialog
 import com.yzq.login.view_model.LoginPwdViewModel
-import floatWithSoftInput
+import com.yzq.soft_input.setWindowSoftInput
 
 
 /**
@@ -35,7 +35,7 @@ class LoginByPwdPopupActivity : BasePopupActivity() {
 
         binding.run {
             //设置指定View浮动在软键盘上方
-            floatWithSoftInput(bottomContent)
+            setWindowSoftInput(bottomContent)
             popupHeader.showBack(true)
             bottomSheetView = bottomContent
         }

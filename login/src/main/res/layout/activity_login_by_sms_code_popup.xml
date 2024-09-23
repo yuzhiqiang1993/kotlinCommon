@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/agreement_checkbox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -82,20 +82,24 @@
                 app:layout_constraintTop_toBottomOf="@+id/input_sms_code" />
 
 
-            <!--隐私协议-->
-            <com.yzq.login.widget.AgreementCheckboxView
-                android:id="@+id/agreement_checkbox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="26dp"
-                app:agreement_links="@array/agreement_links"
-                app:agreement_text="@string/login_by_sms_code_agreement"
-                app:show_check="true" />
-
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
     </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--隐私协议-->
+    <com.yzq.login.widget.AgreementCheckboxView
+        android:id="@+id/agreement_checkbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="24dp"
+        app:agreement_links="@array/agreement_links"
+        app:agreement_text="@string/login_by_sms_code_agreement"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:show_check="true" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,7 @@ import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
 import com.yzq.login.ui.dialog.AgreementDialog
 import com.yzq.login.view_model.LoginSmsCodeViewModel
-import floatWithSoftInput
+import com.yzq.soft_input.setWindowSoftInput
 
 
 /**
@@ -42,7 +42,9 @@ class LoginBySmsCodePopupActivity : BasePopupActivity() {
 
     override fun initWidget() {
         bottomSheetView = binding.bottomContent
-        floatWithSoftInput(binding.bottomContent)
+        setWindowSoftInput(
+            binding.bottomContent
+        )
     }
 
 
