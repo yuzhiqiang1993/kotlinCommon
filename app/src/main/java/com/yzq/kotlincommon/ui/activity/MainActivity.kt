@@ -23,7 +23,7 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.NaviItem
-import com.yzq.coroutine.safety_coroutine.postDelayed
+import com.yzq.coroutine.ext.postDelayed
 import com.yzq.floating_view.FloatingViewListener
 import com.yzq.floating_view.FloatingViewManager
 import com.yzq.kotlincommon.R

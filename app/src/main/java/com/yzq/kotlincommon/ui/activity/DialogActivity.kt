@@ -14,7 +14,7 @@ import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
-import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.coroutine.ext.launchSafety
 import com.yzq.dialog.LottieDialog
 import com.yzq.dialog.changeProgress
 import com.yzq.dialog.selectYear

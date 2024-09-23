@@ -16,8 +16,8 @@ import com.yzq.common.ext.baseRespApiCall
 import com.yzq.common.ext.dataConvert
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
-import com.yzq.coroutine.safety_coroutine.launchSafety
-import com.yzq.coroutine.safety_coroutine.lifeScope
+import com.yzq.coroutine.ext.launchSafety
+import com.yzq.coroutine.ext.lifeScope
 import com.yzq.coroutine.safety_coroutine.scope.LifeSafetyScope
 import com.yzq.kotlincommon.databinding.ActivityApiCallBinding
 import com.yzq.kotlincommon.view_model.ApiCallViewModel

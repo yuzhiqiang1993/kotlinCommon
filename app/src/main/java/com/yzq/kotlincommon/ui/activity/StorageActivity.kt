@@ -21,8 +21,8 @@ import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
-import com.yzq.coroutine.safety_coroutine.launchSafety
-import com.yzq.coroutine.safety_coroutine.withIO
+import com.yzq.coroutine.ext.launchSafety
+import com.yzq.coroutine.ext.withIO
 import com.yzq.kotlincommon.databinding.ActivityStorageBinding
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions

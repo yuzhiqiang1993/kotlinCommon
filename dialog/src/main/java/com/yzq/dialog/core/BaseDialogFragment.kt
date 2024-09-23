@@ -14,7 +14,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import com.yzq.coroutine.safety_coroutine.runMain
+import com.yzq.coroutine.ext.runMain
 import com.yzq.logger.Logger
 
 

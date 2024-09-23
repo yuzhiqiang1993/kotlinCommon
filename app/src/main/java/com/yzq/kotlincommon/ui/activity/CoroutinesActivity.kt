@@ -12,12 +12,11 @@ import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
+import com.yzq.coroutine.ext.launchSafety
+import com.yzq.coroutine.ext.withDefault
+import com.yzq.coroutine.ext.withIO
 import com.yzq.coroutine.flow.launchCollect
-import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.coroutine.safety_coroutine.scope.LifeSafetyScope
-import com.yzq.coroutine.safety_coroutine.withDefault
-import com.yzq.coroutine.safety_coroutine.withIO
-import com.yzq.coroutine.safety_coroutine.withUnconfined
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel
 import com.yzq.logger.Logger
@@ -61,11 +60,6 @@ class CoroutinesActivity : BaseActivity() {
             }
         }
 
-        lifecycleScope.launchSafety {
-            withUnconfined {
-                Logger.i("Unconfined 当前线程:${Thread.currentThread().name}")
-            }
-        }
 
         lifecycleScope.launchSafety {
             repeatOnLifecycle(Lifecycle.State.CREATED) {

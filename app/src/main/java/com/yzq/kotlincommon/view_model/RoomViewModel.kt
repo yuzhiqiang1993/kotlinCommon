@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.viewModelScope
 import com.yzq.base.view_model.BaseViewModel
-import com.yzq.coroutine.safety_coroutine.launchSafety
+import com.yzq.coroutine.ext.launchSafety
 import com.yzq.logger.Logger
 import com.yzq.storage.db.User
 import com.yzq.storage.db.UserDao

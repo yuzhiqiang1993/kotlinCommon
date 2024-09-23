@@ -10,7 +10,7 @@ import android.bluetooth.le.ScanResult
 import android.bluetooth.le.ScanSettings
 import android.content.Context
 import com.yzq.application.AppContext
-import com.yzq.coroutine.safety_coroutine.postDelayed
+import com.yzq.coroutine.ext.postDelayed
 import com.yzq.logger.Logger
 import java.util.concurrent.atomic.AtomicBoolean
 

@@ -7,7 +7,7 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
-import com.yzq.coroutine.safety_coroutine.runMain
+import com.yzq.coroutine.ext.runMain
 import com.yzq.dialog.core.BaseDialogFragment
 import com.yzq.dialog.showBaseDialog
 import com.yzq.logger.Logger

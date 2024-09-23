@@ -7,8 +7,8 @@ import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
+import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.flow.launchCollect
-import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentFlowBinding
 import com.yzq.logger.Logger

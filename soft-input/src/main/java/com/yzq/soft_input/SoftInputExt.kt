@@ -3,8 +3,8 @@ package com.yzq.soft_input
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
-import android.os.Looper
 import android.view.View
+import android.view.ViewTreeObserver
 import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
@@ -14,7 +14,9 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import com.yzq.coroutine.safety_coroutine.postDelayed
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import com.yzq.application.AppContext.getSystemService
 
 
 private const val TAG = "SoftInputExt"
@@ -40,16 +42,22 @@ fun EditText.showSoftInput() {
  * @receiver Activity
  */
 fun Activity.hideSoftInput() {
+    window.hideSoftInput()
+}
+
+/**
+ * 隐藏键盘
+ */
+fun Window.hideSoftInput() {
     kotlin.runCatching {
         currentFocus?.let {
             val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
         } ?: let {
-            WindowCompat.getInsetsController(window, window.decorView)
+            WindowCompat.getInsetsController(this, decorView)
                 .hide(WindowInsetsCompat.Type.ime())
         }
     }
-
 }
 
 /**
@@ -134,7 +142,8 @@ fun Dialog.setWindowSoftInput(
 private fun Window.setWindowSoftInput(
     floatView: View,
     transitionView: View? = null,
-    editText: View? = null
+    editText: View? = null,
+    lifecycle: Lifecycle? = null
 ) {
     //设置软键盘弹出模式为 SOFT_INPUT_ADJUST_NOTHING: 不调整窗口，自行处理
     if (this.attributes.softInputMode != WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING) {
@@ -148,12 +157,7 @@ private fun Window.setWindowSoftInput(
     //动画时长
     val animateDuration = 150L
 
-    postDelayed(Looper.getMainLooper(), 10) {
-
-    }
-
-    //监听器
-    decorView.viewTreeObserver.addOnGlobalLayoutListener {
+    val globalLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
         //先获取要浮动在软键盘上方的View的底部坐标
         if (floatViewBottom == 0) {
             /*
@@ -170,7 +174,8 @@ private fun Window.setWindowSoftInput(
 
         //获取软键盘高度
         val rootWindowInsets =
-            ViewCompat.getRootWindowInsets(decorView) ?: return@addOnGlobalLayoutListener
+            ViewCompat.getRootWindowInsets(decorView) ?: return@OnGlobalLayoutListener
+
         val softInputHeight = rootWindowInsets.getInsets(WindowInsetsCompat.Type.ime()).bottom
 
         //软键盘是否显示
@@ -198,6 +203,23 @@ private fun Window.setWindowSoftInput(
                 }
             }
         }
+
+    }
+
+
+    if (lifecycle == null) {
+        decorView.viewTreeObserver.addOnGlobalLayoutListener(globalLayoutListener)
+    } else {
+        lifecycle.addObserver(object : androidx.lifecycle.DefaultLifecycleObserver {
+            override fun onResume(owner: LifecycleOwner) {
+                decorView.viewTreeObserver.addOnGlobalLayoutListener(globalLayoutListener)
+            }
+
+            override fun onPause(owner: LifecycleOwner) {
+                decorView.viewTreeObserver.removeOnGlobalLayoutListener(globalLayoutListener)
+                this@setWindowSoftInput.hideSoftInput()
+            }
+        })
     }
 }
 

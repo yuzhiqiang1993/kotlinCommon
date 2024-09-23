@@ -6,9 +6,9 @@ import androidx.lifecycle.lifecycleScope
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
+import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.flow.debounce
 import com.yzq.coroutine.flow.launchCollect
-import com.yzq.coroutine.safety_coroutine.launchSafety
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentSharedFlowBinding
 import com.yzq.logger.Logger

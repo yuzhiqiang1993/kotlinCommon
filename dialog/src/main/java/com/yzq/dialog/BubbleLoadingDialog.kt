@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
 import androidx.fragment.app.FragmentActivity
-import com.yzq.coroutine.safety_coroutine.runMain
+import com.yzq.coroutine.ext.runMain
 import com.yzq.dialog.core.BaseDialogFragment
 import com.yzq.dialog.databinding.LayoutBubbleDialogBinding
 

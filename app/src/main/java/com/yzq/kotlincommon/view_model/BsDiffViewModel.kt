@@ -8,8 +8,8 @@ import com.yzq.base.extend.md5
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.bsdiff.BsDiffTool
-import com.yzq.coroutine.safety_coroutine.launchSafety
-import com.yzq.coroutine.safety_coroutine.withDefault
+import com.yzq.coroutine.ext.launchSafety
+import com.yzq.coroutine.ext.withDefault
 import java.io.File
 import kotlin.system.measureTimeMillis
 
