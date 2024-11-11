@@ -46,7 +46,6 @@ class App : Application(), AppStateListener {
         super.onCreate()
         AppManager.init(this, BuildConfig.DEBUG)
 
-
         if (BuildConfig.DEBUG) {
             Logger.addPrinter(
                 ConsoleLogPrinter.getInstance(

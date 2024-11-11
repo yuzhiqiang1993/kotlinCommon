@@ -204,13 +204,16 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
 
     implementation(libs.therouter)
+    ksp(libs.therouter.apt)
+
+
     implementation(libs.androidx.activity)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     androidTestImplementation(platform(libs.androidx.compose.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    ksp(libs.therouter.apt)
+
 
     implementation(libs.androidx.exifinterface)
 
