@@ -11,7 +11,6 @@ import android.view.WindowManager
 private fun Context.getScreenSize(): Pair<Int, Int> {
     val windowManager = this.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     val display = windowManager.defaultDisplay
-
     val displayMetrics = DisplayMetrics()
     display.getRealMetrics(displayMetrics)
 

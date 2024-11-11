@@ -12,7 +12,7 @@ import com.yzq.application.AppContext
  * @description: 获取App的版本号
  * @return String
  */
-fun getAppVersionName(): String {
+fun getAppVersionName(): String? {
     return AppContext.packageManager.getPackageInfo(AppContext.packageName, 0).versionName
 }
 

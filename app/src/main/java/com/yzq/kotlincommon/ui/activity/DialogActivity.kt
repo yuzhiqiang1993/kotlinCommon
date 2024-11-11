@@ -6,8 +6,6 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.hjq.toast.Toaster
 import com.loper7.date_time_picker.DateTimeConfig
-import com.tencent.bugly.library.Bugly
-import com.tencent.bugly.library.BuglyConstants
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
@@ -57,13 +55,13 @@ class DialogActivity : BaseActivity() {
 
             layoutScrollContent.btnBase.setOnThrottleTimeClick {
                 showBaseDialog(message = "基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
-                Bugly.testCrash(BuglyConstants.JAVA_CRASH)
+//                Bugly.testCrash(BuglyConstants.JAVA_CRASH)
             }
 
             layoutScrollContent.btnOnlyPositiveCallback.setOnThrottleTimeClick {
                 showOnlyPostiveCallBackDialog(message = "只有确定选项和回调的弹窗，一般用于强制性的操作") {
                     Toaster.showShort("点击了确定")
-                    Bugly.testCrash(BuglyConstants.NATIVE_CRASH)
+//                    Bugly.testCrash(BuglyConstants.NATIVE_CRASH)
                 }
             }
             layoutScrollContent.btnPositiveCallback.setOnThrottleTimeClick {
@@ -97,9 +95,7 @@ class DialogActivity : BaseActivity() {
 
             layoutScrollContent.btnLoading.setOnThrottleTimeClick {
                 lifecycleScope.launchSafety {
-                    bubleLoadingDialog
-                        .content(resources.getString(R.string.loading))
-                        .safeShow()
+                    bubleLoadingDialog.content(resources.getString(R.string.loading)).safeShow()
                     delay(1000)
                     bubleLoadingDialog.content("就要完成了...")
                     delay(2000)
@@ -176,8 +172,7 @@ class DialogActivity : BaseActivity() {
 
 
             layoutScrollContent.btnDialogFragment.setOnThrottleTimeClick {
-                CustomDialog(this@DialogActivity)
-                    .safeShow()
+                CustomDialog(this@DialogActivity).safeShow()
             }
 
 //            val dialogConfig = DialogConfig
@@ -188,8 +183,7 @@ class DialogActivity : BaseActivity() {
 //                .cancelable(true)
 //                .build()
             val lottieDialog =
-                LottieDialog(this@DialogActivity)
-                    .lottieUrl("https://assets7.lottiefiles.com/packages/lf20_5lTxAupekw.json")
+                LottieDialog(this@DialogActivity).lottieUrl("https://assets7.lottiefiles.com/packages/lf20_5lTxAupekw.json")
 
             layoutScrollContent.btnDialogLottie.setOnThrottleTimeClick {
                 lottieDialog.safeShow()

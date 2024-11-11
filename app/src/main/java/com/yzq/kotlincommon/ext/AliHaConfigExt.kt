@@ -16,7 +16,7 @@ import com.yzq.kotlincommon.config.AliEMASConfig
 fun AliHaConfig.defaultConfig(rsaPublicKey: String = "") {
 
     appKey = AliEMASConfig.appKey
-    appVersion = getAppVersionName()
+    appVersion = getAppVersionName() ?: ""
     appSecret = AliEMASConfig.appSecret
     channel = "channel" // 渠道
     userNick = "xeon" // 用户昵称
