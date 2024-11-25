@@ -14,7 +14,7 @@
                 android:resource="@xml/file_provider_path" />
         </provider>
         <activity
-            android:name=".ui.ImgPreviewActivity"
+            android:name=".ui.img_pre.ImgPreviewActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
 

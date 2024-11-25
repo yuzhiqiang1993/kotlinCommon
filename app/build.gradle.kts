@@ -228,6 +228,7 @@ dependencies {
     implementation(project(":baidu"))
     implementation(project(":react-native"))
     implementation(project(":login"))
+    implementation(project(":player"))
 
 
 }

@@ -13,6 +13,7 @@ compileSdk = "34"
 #* App支持的最低版本
 #*/
 
+
 minSdk = "24"
 
 #/**
@@ -84,6 +85,7 @@ threetenabp = "1.4.7"
 reactAndroid = "0.75.2"
 #fileCore = "3.9.8@aar"
 buglyPro = "4.4.2.4"
+gsyvideoplayer = "v10.0.0"
 
 #阿里EMAS
 alicloudAndroidApm = "1.1.4.0-open"
@@ -149,6 +151,7 @@ androidx-exifinterface = { group = "androidx.exifinterface", name = "exifinterfa
 androidx-webkit = { group = "androidx.webkit", name = "webkit", version.ref = "androidxWebkit" }
 google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+
 play-services-ads-identifier = { group = "com.google.android.gms", name = "play-services-ads-identifier", version.ref = "playServicesAdsIdentifier" }
 
 #kotlin
@@ -225,7 +228,7 @@ materialDialog-input = { group = "com.afollestad.material-dialogs", name = "inpu
 materialDialog-bottomsheets = { group = "com.afollestad.material-dialogs", name = "bottomsheets", version.ref = "materialDialog" }
 materialDialog-lifecycle = { group = "com.afollestad.material-dialogs", name = "lifecycle", version.ref = "materialDialog" }
 dateTimePicker = { group = "com.github.loperSeven", name = "DateTimePicker", version.ref = "dateTimePicker" }
-
+gsyvideoplayer = { module = "com.github.CarGuo.GSYVideoPlayer:gsyvideoplayer", version.ref = "gsyvideoplayer" }
 #bugly-pro = { module = "com.tencent.bugly:bugly-pro", version.ref = "buglyPro" }
 #file-compressor = { group = "com.github.javakam", name = "file.compressor", version.ref = "fileCore" }
 #file-core = { group = "com.github.javakam", name = "file.core", version.ref = "fileCore" }

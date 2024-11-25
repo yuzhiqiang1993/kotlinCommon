@@ -95,11 +95,15 @@ object RoutePath {
         const val COMPLETE_REGISTER_INFO_POPUP = "/login/completeRegisterInfoPopup"
 
 
-
     }
 
     object GaoDe {
         const val GAO_DE = "/gaoDe/gaoDeMap"
     }
+
+    object Player {
+        const val Player = "/player/player"
+    }
+
 
 }

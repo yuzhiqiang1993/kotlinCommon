@@ -9,8 +9,8 @@ import com.drake.brv.utils.staggered
 import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.base.ui.img_pre.ImgPreviewActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.juhe.toutiao.TouTiao
@@ -80,7 +80,10 @@ class ImageListActivity : BaseActivity() {
                     val itemMovieLayoutBinding = getBinding<ItemImgListBinding>()
 
                     val intent = Intent(this@ImageListActivity, ImgPreviewActivity::class.java)
-                    intent.putExtra(ImgPreviewActivity.IMG_PATH, model.thumbnailPicS)
+                    intent.putStringArrayListExtra(
+                        ImgPreviewActivity.IMG_PATHS,
+                        arrayListOf(model.thumbnailPicS)
+                    )
 
                     val options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(

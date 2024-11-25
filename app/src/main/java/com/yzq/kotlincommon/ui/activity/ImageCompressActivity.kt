@@ -22,8 +22,8 @@ import com.therouter.router.Route
 import com.yzq.application.AppStorage
 import com.yzq.base.R
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.ui.ImgPreviewActivity
 import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.base.ui.img_pre.ImgPreviewActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
@@ -111,7 +111,7 @@ class ImageCompressActivity : BaseActivity() {
 
         binding.ivImg.setOnClickListener {
             val intent = Intent(this, ImgPreviewActivity::class.java)
-            intent.putExtra(ImgPreviewActivity.IMG_PATH, imgPath)
+            intent.putStringArrayListExtra(ImgPreviewActivity.IMG_PATHS, arrayListOf(imgPath))
 
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this, it, getString(R.string.img_transition)
