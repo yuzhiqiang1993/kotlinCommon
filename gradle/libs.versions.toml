@@ -112,7 +112,7 @@ xeonCordovaWebContainer = "1.0.7"
 xeonCordovaLib = "12.0.2"
 xeonBsDiff = "1.0.4"
 xeonLogger = "1.2.1"
-xeonApplication = "1.0.8"
+xeonApplication = "1.0.9"
 xeonCoroutine = "1.0.5"
 xeonMMKV = "1.0.1"
 xeonBinding = "1.0.1"
@@ -229,7 +229,7 @@ materialDialog-bottomsheets = { group = "com.afollestad.material-dialogs", name 
 materialDialog-lifecycle = { group = "com.afollestad.material-dialogs", name = "lifecycle", version.ref = "materialDialog" }
 dateTimePicker = { group = "com.github.loperSeven", name = "DateTimePicker", version.ref = "dateTimePicker" }
 gsyvideoplayer = { module = "com.github.CarGuo.GSYVideoPlayer:gsyvideoplayer", version.ref = "gsyvideoplayer" }
-#bugly-pro = { module = "com.tencent.bugly:bugly-pro", version.ref = "buglyPro" }
+bugly-pro = { module = "com.tencent.bugly:bugly-pro", version.ref = "buglyPro" }
 #file-compressor = { group = "com.github.javakam", name = "file.compressor", version.ref = "fileCore" }
 #file-core = { group = "com.github.javakam", name = "file.core", version.ref = "fileCore" }
 #file-selector = { group = "com.github.javakam", name = "file.selector", version.ref = "fileCore" }

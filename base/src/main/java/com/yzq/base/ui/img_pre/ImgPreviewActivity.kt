@@ -1,8 +1,11 @@
 package com.yzq.base.ui.img_pre
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
+import androidx.core.app.ActivityOptionsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.yzq.base.R
 import com.yzq.base.databinding.ActivityImgPreviewBinding
@@ -21,7 +24,7 @@ import com.yzq.binding.viewbind
 class ImgPreviewActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityImgPreviewBinding::inflate)
-    private lateinit var imagePaths: MutableList<String>
+    private var imagePaths: List<String> = emptyList<String>()
     private var initialPosition: Int = 0
 
     private val backPressedCallback = object : OnBackPressedCallback(true) {
@@ -34,12 +37,28 @@ class ImgPreviewActivity : BaseActivity() {
     companion object {
         const val IMG_PATHS = "imgPaths"
         const val INITIAL_POSITION = "initialPosition"
+
+        fun start(
+            context: Context,
+            imgPaths: ArrayList<String>,
+            initialPosition: Int = 0,
+            options: ActivityOptionsCompat? = null
+        ) {
+            val intent = Intent(context, ImgPreviewActivity::class.java)
+            intent.putStringArrayListExtra(IMG_PATHS, imgPaths)
+            intent.putExtra(INITIAL_POSITION, initialPosition)
+
+            if (options != null) {
+                context.startActivity(intent, options.toBundle())
+            } else {
+                context.startActivity(intent)
+            }
+        }
     }
 
     override fun initArgs(extras: Bundle?) {
         if (extras != null) {
             imagePaths = (extras.getStringArrayList(IMG_PATHS) ?: emptyList()).toMutableList()
-            imagePaths.add("http://gips3.baidu.com/it/u=3886271102,3123389489&fm=3028&app=3028&f=JPEG&fmt=auto?w=1280&h=960")
             initialPosition = extras.getInt(INITIAL_POSITION, 0)
         }
     }

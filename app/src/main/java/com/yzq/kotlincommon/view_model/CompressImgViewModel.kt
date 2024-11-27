@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.yzq.application.AppManager
 import com.yzq.application.AppStorage
+import com.yzq.application.getPackageName
 import com.yzq.base.extend.save
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.net.RetrofitFactory

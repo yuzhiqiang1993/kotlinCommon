@@ -110,13 +110,10 @@ class ImageCompressActivity : BaseActivity() {
         }
 
         binding.ivImg.setOnClickListener {
-            val intent = Intent(this, ImgPreviewActivity::class.java)
-            intent.putStringArrayListExtra(ImgPreviewActivity.IMG_PATHS, arrayListOf(imgPath))
-
             val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this, it, getString(R.string.img_transition)
             )
-            startActivity(intent, options.toBundle())
+            ImgPreviewActivity.start(this, arrayListOf(imgPath), 0, options)
         }
     }
 

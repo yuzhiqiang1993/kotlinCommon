@@ -1,7 +1,12 @@
 package com.yzq.common.net.interceptor
 
-import com.yzq.base.extend.getDeviceId
-import com.yzq.common.net.constants.ServerConstants
+import android.os.Build
+import com.yzq.application.AppManager
+import com.yzq.application.getAppVersionCode
+import com.yzq.application.getAppVersionName
+import com.yzq.base.extend.getAndroidId
+import com.yzq.base.extend.getAndroidVersion
+import com.yzq.base.extend.getDeviceModel
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -22,11 +27,16 @@ class RequestHeadersInterceptor : Interceptor {
 
         val builder = request.newBuilder()
 
-        builder.addHeader(ServerConstants.DEVICE_ID, getDeviceId())
-            .header("Accept", "*/*")
-            .header("Accept-Encoding", "gzip")
-            .header("Cache-Control", "no-cache")
-            .build()
+
+        val httpAgent = System.getProperty("http.agent")
+
+        builder.header("Device-ID", getAndroidId())
+            .header("Android-Version", getAndroidVersion())
+            .header("Version-Code", "${AppManager.getAppVersionCode()}")
+            .header("Version-Name", AppManager.getAppVersionName())
+            .header("Device", "${Build.BRAND}/${getDeviceModel()}")
+            .header("Accept", "*/*").header("Accept-Encoding", "gzip")
+            .header("User-Agent", httpAgent ?: "").header("Cache-Control", "no-cache").build()
 
 
         return chain.proceed(builder.build())

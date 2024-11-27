@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import com.hjq.toast.Toaster
 import com.therouter.router.Route
 import com.yzq.application.AppManager
+import com.yzq.application.getPackageName
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick

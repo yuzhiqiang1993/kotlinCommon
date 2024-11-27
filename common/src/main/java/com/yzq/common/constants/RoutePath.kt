@@ -28,6 +28,7 @@ object RoutePath {
         const val FRAGMENT = "/main/fragment"
         const val COROUTINE = "/main/coroutine"
         const val BS_DIFF = "/main/bsDiff"
+        const val BUGLY = "/main/bugly"
         const val ROOM = "/main/room"
         const val DOWNLOAD = "/main/download"
         const val VIEW_PAGER: String = "/main/viewPager"

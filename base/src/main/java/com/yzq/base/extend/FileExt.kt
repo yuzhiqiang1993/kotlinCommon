@@ -6,6 +6,7 @@ import android.webkit.MimeTypeMap
 import androidx.core.content.FileProvider
 import com.yzq.application.AppContext
 import com.yzq.application.AppManager
+import com.yzq.application.getPackageName
 import com.yzq.logger.Logger
 import java.io.File
 import java.io.FileInputStream

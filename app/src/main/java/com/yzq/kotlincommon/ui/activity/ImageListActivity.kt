@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.content.Intent
 import androidx.core.app.ActivityOptionsCompat
 import coil.load
 import com.drake.brv.utils.bindingAdapter
@@ -78,13 +77,6 @@ class ImageListActivity : BaseActivity() {
                 R.id.iv_img.onClick {
                     val model = getModel<TouTiao.Result.Data>()
                     val itemMovieLayoutBinding = getBinding<ItemImgListBinding>()
-
-                    val intent = Intent(this@ImageListActivity, ImgPreviewActivity::class.java)
-                    intent.putStringArrayListExtra(
-                        ImgPreviewActivity.IMG_PATHS,
-                        arrayListOf(model.thumbnailPicS)
-                    )
-
                     val options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
                             this@ImageListActivity,
@@ -92,8 +84,12 @@ class ImageListActivity : BaseActivity() {
                             getString(R.string.img_transition)
                         )
 
-
-                    startActivity(intent, options.toBundle())
+                    ImgPreviewActivity.start(
+                        this@ImageListActivity,
+                        arrayListOf(model.thumbnailPicS),
+                        0,
+                        options
+                    )
                 }
             }
     }

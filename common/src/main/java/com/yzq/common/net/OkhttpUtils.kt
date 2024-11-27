@@ -2,6 +2,7 @@ package com.yzq.common.net
 
 
 import com.yzq.base.utils.MoshiUtils
+import com.yzq.common.net.interceptor.LoggingInterceptor
 import com.yzq.coroutine.ext.withIO
 import com.yzq.coroutine.thread_pool.ThreadPoolManager
 import com.yzq.logger.Logger

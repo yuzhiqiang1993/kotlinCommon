@@ -1,6 +1,5 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.content.Intent
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.lifecycleScope
 import coil.load
@@ -52,20 +51,21 @@ class NewsActivity : BaseActivity() {
                 R.id.iv_img.onClick {
                     val model = getModel<TouTiao.Result.Data>()
                     val itemMovieLayoutBinding = getBinding<ItemMovieLayoutBinding>()
-
-                    val intent = Intent(this@NewsActivity, ImgPreviewActivity::class.java)
-                    intent.putStringArrayListExtra(
-                        ImgPreviewActivity.IMG_PATHS,
-                        arrayListOf(model.thumbnailPicS)
-                    )
-
                     val options =
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
                             this@NewsActivity,
                             itemMovieLayoutBinding.ivImg,
                             getString(com.yzq.base.R.string.img_transition)
                         )
-                    startActivity(intent, options.toBundle())
+
+                    ImgPreviewActivity.start(
+                        this@NewsActivity,
+                        arrayListOf<String>(model.thumbnailPicS).apply {
+                            add("http://gips3.baidu.com/it/u=3886271102,3123389489&fm=3028&app=3028&f=JPEG&fmt=auto?w=1280&h=960")
+                        },
+                        0,
+                        options
+                    )
                 }
             }
 

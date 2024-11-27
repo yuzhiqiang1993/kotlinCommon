@@ -2,6 +2,9 @@ package com.yzq.common.net
 
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.common.net.constants.ServerConstants
+import com.yzq.common.net.interceptor.LoggingInterceptor
+import com.yzq.coroutine.thread_pool.ThreadPoolManager
+import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -43,6 +46,7 @@ class RetrofitFactory private constructor() {
 //            .addInterceptor(RequestHeadersInterceptor())
 //            .addInterceptor(RequestEncryptInterceptor())
             .addInterceptor(LoggingInterceptor())
+            .dispatcher(Dispatcher(ThreadPoolManager.instance.ioThreadPoolExecutor))//设置线程池,okhttp本身做了限制，默认同时最多支持64个请求
 
 
 //            .addInterceptor(ResponseDecryptInterceptor())

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.activity.ComponentActivity
 import com.yzq.application.AppManager
+import com.yzq.application.isAppInstalled
 
 private const val gaoDeMapPackageName = "com.autonavi.minimap"
 fun ComponentActivity.openGaoDeNavi(

@@ -1,4 +1,4 @@
-package com.yzq.common.net
+package com.yzq.common.net.interceptor
 
 import com.yzq.common.BuildConfig
 import com.yzq.logger.Logger
@@ -6,7 +6,6 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import okio.Buffer
 import java.nio.charset.Charset
-
 
 /**
  * @description 网络请求日志拦截
@@ -30,20 +29,17 @@ class LoggingInterceptor : Interceptor {
         val requestContent = buffer.readString(Charset.defaultCharset())
 
         // 打印请求信息
-        val requestSb = StringBuilder()
-            .appendLine("请求URL：${request.url}")
-            .appendLine("请求方法：${request.method}")
-            .appendLine("请求头：${request.headers}")
-            .appendLine("请求体：$requestContent")
+        val requestSb = StringBuilder().appendLine("请求URL：${request.url}")
+            .appendLine("请求方法：${request.method}").appendLine("请求头：")
+            .appendLine(request.headers).appendLine("请求体:").appendLine(requestContent)
         Logger.it(TAG, requestSb.toString())
 
 
         val response = chain.proceed(request)
 
-        val respSb = StringBuilder()
-            .appendLine("响应URL：${response.request.url}")
-            .appendLine("响应码：${response.code}")
-            .appendLine("响应头：${response.headers}")
+        val respSb = StringBuilder().appendLine("响应URL：${response.request.url}")
+            .appendLine("响应码：${response.code}").appendLine("响应头:")
+            .appendLine(response.headers)
 
         // 检查响应体的内容类型
         val contentType = response.body?.contentType()
@@ -53,9 +49,12 @@ class LoggingInterceptor : Interceptor {
 
         if (logRespContent) {
             // 处理文本响应体
-            val responseContent = response.peekBody(Long.MAX_VALUE).string()
+            val responseContent =
+                runCatching {
+                    response.peekBody(Long.MAX_VALUE).string()
+                }.getOrDefault("响应数据获取异常")
             // 打印响应信息
-            respSb.appendLine("响应体：$responseContent")
+            respSb.appendLine("响应体").appendLine(responseContent)
         } else {
             respSb.appendLine("响应体：[非文本类型]")
         }
