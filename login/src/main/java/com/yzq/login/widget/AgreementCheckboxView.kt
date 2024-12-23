@@ -121,7 +121,7 @@ class AgreementCheckboxView @JvmOverloads constructor(
                     override fun updateDrawState(ds: TextPaint) {
                         super.updateDrawState(ds)
                         ds.isUnderlineText = false //不显示下划线
-                        ds.color = resources.getColor(com.yzq.base.R.color.colorOnPrimary, null)
+                        ds.color = resources.getColor(com.yzq.resource.R.color.color_primary, null)
                         ds.isFakeBoldText = true
                         ds.bgColor = Color.TRANSPARENT
 

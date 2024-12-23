@@ -71,7 +71,7 @@ class ForegroundService : Service(), AppStateListener {
                 .setContentText("通知的内容，Kotlin。。。。")
                 .setWhen(System.currentTimeMillis())//显示通知发生的时间
                 .setSmallIcon(R.drawable.ic_notification)
-//                .setColor(resources.getColor(R.color.colorPrimary, null))//设置通知小图标的颜色
+//                .setColor(resources.getColor(com.yzq.resource.R.color.colorPrimary, null))//设置通知小图标的颜色
                 .setContentIntent(pendingIntent).build()
 
 

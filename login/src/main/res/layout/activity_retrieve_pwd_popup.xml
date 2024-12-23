@@ -59,7 +59,7 @@
                 android:layout_marginTop="20dp"
                 app:input_hint="验证码"
                 app:sms_button_text="@string/get_sms_code"
-                app:sms_button_text_color="@color/secondary_text"
+                app:sms_button_text_color="@color/text_secondary"
                 app:sms_button_text_size="12dp" />
 
 

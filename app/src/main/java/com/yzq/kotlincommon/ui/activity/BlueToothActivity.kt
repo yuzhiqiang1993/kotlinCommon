@@ -63,12 +63,17 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
                     if (item.connected) {
                         itemBinding.tvName.setTextColor(
                             resources.getColor(
-                                R.color.colorPrimary, null
+                                com.yzq.resource.R.color.color_primary, null
                             )
                         )
                         itemBinding.tvUse.visibility = View.VISIBLE
                     } else {
-                        itemBinding.tvName.setTextColor(resources.getColor(R.color.black, null))
+                        itemBinding.tvName.setTextColor(
+                            resources.getColor(
+                                com.yzq.resource.R.color.black,
+                                null
+                            )
+                        )
                         itemBinding.tvUse.visibility = View.GONE
                     }
                 }
@@ -127,7 +132,8 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
 
         //已配对列表
         val bondedList = bondedDevices.map {
-            BlueToothItem(name = it.name ?: "",
+            BlueToothItem(
+                name = it.name ?: "",
                 address = it.address,
                 type = it.type,
                 bondState = it.bondState,
@@ -186,7 +192,8 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
             }
         }
 
-        val blueToothItem = BlueToothItem(name = device.name ?: "",
+        val blueToothItem = BlueToothItem(
+            name = device.name ?: "",
             address = device.address,
             type = device.type,
             bondState = device.bondState,

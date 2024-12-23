@@ -21,7 +21,7 @@ open class BasePopupActivity : BaseLoginActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        immersiveRes(com.yzq.widget.R.color.popup_color_50, false)
+        immersiveRes(com.yzq.resource.R.color.popup_bg, false)
 
         if (PageManager.hasTopPage()) {
             overridePendingTransition(0, 0)

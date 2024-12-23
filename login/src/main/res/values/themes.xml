@@ -13,7 +13,7 @@
     <style name="link_text">
         <item name="android:textSize">12sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/colorOnPrimary</item>
+        <item name="android:textColor">@color/color_primary</item>
     </style>
 
 
@@ -42,7 +42,7 @@
     <!--透明主题-->
     <style name="TransparentTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:windowBackground">@color/popup_color_50</item>
+        <item name="android:windowBackground">@color/popup_bg</item>
         <!--        <item name="android:windowIsFloating">false</item>-->
         <!--        <item name="android:windowNoTitle">true</item>-->
         <!--        <item name="android:backgroundDimEnabled">false</item>-->

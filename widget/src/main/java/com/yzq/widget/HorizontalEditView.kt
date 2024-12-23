@@ -64,7 +64,8 @@ class HorizontalEditView @JvmOverloads constructor(
         try {
             val iconRes = typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_icon, -1)
             val iconTint = typeArr.getColor(
-                R.styleable.HorizontalEditView_horz_edit_icon_tint, R.color.primary_icon
+                R.styleable.HorizontalEditView_horz_edit_icon_tint,
+                com.yzq.resource.R.color.icon_primary
             )
             val inputType = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_inputType)
             val editEnable =
@@ -73,7 +74,8 @@ class HorizontalEditView @JvmOverloads constructor(
                 typeArr.getResourceId(R.styleable.HorizontalEditView_horz_edit_endIcon, -1)
 
             val endIconTint = typeArr.getColor(
-                R.styleable.HorizontalEditView_horz_edit_end_icon_tint, R.color.primary_icon
+                R.styleable.HorizontalEditView_horz_edit_end_icon_tint,
+                com.yzq.resource.R.color.icon_primary
             )
             titleStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_title)
             contentStr = typeArr.getString(R.styleable.HorizontalEditView_horz_edit_content)

@@ -30,10 +30,9 @@ dependencies {
     api(libs.materialDialog.input)
     api(libs.materialDialog.bottomsheets)
     api(libs.materialDialog.lifecycle)
-
-
-
     api(libs.dateTimePicker)
+
+    implementation(project(":resource"))
 
 
 }

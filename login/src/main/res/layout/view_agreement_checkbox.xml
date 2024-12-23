@@ -12,7 +12,7 @@
         android:paddingEnd="8dp"
         android:paddingBottom="14dp"
         android:src="@drawable/ic_unchecked"
-        android:tint="@color/primary_icon"
+        android:tint="@color/icon_primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

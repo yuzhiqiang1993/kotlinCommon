@@ -27,28 +27,19 @@ object CoilManager {
 //        }).build()
 
 
-    private val imageLoader = ImageLoader.Builder(AppContext)
-        .crossfade(true)
-        .memoryCache {
-            MemoryCache.Builder(AppContext)
-                .maxSizePercent(0.25)
-                .build()
+    private val imageLoader = ImageLoader.Builder(AppContext).crossfade(true).memoryCache {
+        MemoryCache.Builder(AppContext).maxSizePercent(0.25).build()
+    }.diskCache {
+        DiskCache.Builder().directory(AppContext.cacheDir.resolve("image_cache"))
+            .maxSizePercent(0.1).build()
+    }.components {
+        if (SDK_INT >= 28) {
+            add(ImageDecoderDecoder.Factory())
+        } else {
+            add(GifDecoder.Factory())
         }
-        .diskCache {
-            DiskCache.Builder()
-                .directory(AppContext.cacheDir.resolve("image_cache"))
-                .maxSizePercent(0.1)
-                .build()
-        }
-        .components {
-            if (SDK_INT >= 28) {
-                add(ImageDecoderDecoder.Factory())
-            } else {
-                add(GifDecoder.Factory())
-            }
-            add(SvgDecoder.Factory())
-        }
-        .build()
+        add(SvgDecoder.Factory())
+    }.build()
 
     fun init(imageLoader: ImageLoader? = null) {
         Coil.setImageLoader(imageLoader ?: this.imageLoader)

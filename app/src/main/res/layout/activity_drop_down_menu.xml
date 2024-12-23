@@ -23,7 +23,7 @@
         app:menuSelectedIcon="@drawable/ic_arrow_up"
         app:menuTextSize="@dimen/sp_14"
         app:menuUnselectedIcon="@drawable/ic_arrow_down"
-        app:textSelectedColor="@color/colorOnPrimary"
+        app:textSelectedColor="@color/color_primary"
         app:textUnselectedColor="@color/black" />
 
 

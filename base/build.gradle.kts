@@ -74,9 +74,9 @@ dependencies {
     api("com.github.javakam:file.selector:3.9.8@aar")
     api("com.github.javakam:file.compressor:3.9.8@aar")
 
+    api(project(":resource"))
     api(project(":img"))
     api(project(":dialog"))
-
     api(project(":permission"))
     api(project(":widget"))
     api(project(":aliemas"))

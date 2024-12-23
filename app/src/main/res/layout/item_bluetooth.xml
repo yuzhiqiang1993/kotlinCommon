@@ -35,7 +35,7 @@
             android:layout_marginStart="@dimen/dp_10"
             android:gravity="center_vertical"
             android:text="蓝牙名称"
-            android:textColor="@color/primary_text"
+            android:textColor="@color/text_primary"
             app:layout_constraintBottom_toTopOf="@+id/tv_use"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

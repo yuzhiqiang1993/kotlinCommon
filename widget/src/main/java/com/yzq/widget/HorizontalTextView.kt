@@ -29,12 +29,12 @@ class HorizontalTextView @JvmOverloads constructor(
     ConstraintLayout(context, attrs, defStyleAttr) {
 
     private var startIconRes = -1
-    private var iconTint = R.color.primary_icon
+    private var iconTint = com.yzq.resource.R.color.icon_primary
     private var titleStr = ""
     private var contentStr = ""
     private var hintStr = ""
     private var endIconRes = -1
-    private var endIconTint = R.color.primary_icon
+    private var endIconTint = com.yzq.resource.R.color.icon_primary
     private var contentLeft = false
     private val binding =
         ViewHorizontalTextLayoutBinding.inflate(LayoutInflater.from(context), this, true)
@@ -45,14 +45,14 @@ class HorizontalTextView @JvmOverloads constructor(
             startIconRes = getResourceId(R.styleable.HorizontalTextView_horz_tv_icon, -1)
             iconTint = getColor(
                 R.styleable.HorizontalTextView_horz_tv_icon_tint,
-                R.color.primary_icon
+                com.yzq.resource.R.color.icon_primary
             )
             endIconRes =
                 getResourceId(R.styleable.HorizontalTextView_horz_tv_endIcon, -1)
 
             endIconTint = getColor(
                 R.styleable.HorizontalEditView_horz_edit_end_icon_tint,
-                R.color.primary_icon
+                com.yzq.resource.R.color.icon_primary
             )
 
             titleStr = getString(R.styleable.HorizontalTextView_horz_tv_title) ?: ""

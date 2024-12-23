@@ -12,6 +12,6 @@
         android:gravity="center_vertical"
         android:paddingStart="@dimen/dp_10"
         android:paddingEnd="@dimen/dp_10"
-        android:textColor="@color/primary_text" />
+        android:textColor="@color/text_primary" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

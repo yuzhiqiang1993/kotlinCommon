@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.annotation.GravityInt
 import androidx.annotation.StyleRes
-import com.yzq.dialog.R
 
 
 /**
@@ -33,7 +32,7 @@ class DialogConfig {
 
     /*dialog的背景资源*/
     @DrawableRes
-    var dialogBgRes: Int = R.color.trans
+    var dialogBgRes: Int = com.yzq.resource.R.color.transparent
 
 
     fun cancelable(cancelable: Boolean): DialogConfig {

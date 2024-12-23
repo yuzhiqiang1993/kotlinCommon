@@ -126,7 +126,7 @@
             android:layout_marginBottom="35dp"
             android:gravity="center"
             android:text="@string/retrieve_pwd"
-            android:textColor="@color/secondary_text"
+            android:textColor="@color/text_secondary"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

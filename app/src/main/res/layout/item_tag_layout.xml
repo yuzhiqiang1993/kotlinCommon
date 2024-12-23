@@ -12,5 +12,5 @@
     android:paddingTop="@dimen/dp_2"
     android:paddingRight="@dimen/dp_8"
     android:paddingBottom="@dimen/dp_2"
-    android:textColor="@color/colorPrimary" />
+    android:textColor="@color/color_primary" />
 

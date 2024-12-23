@@ -16,7 +16,7 @@ open class BaseLoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        immersiveRes(com.yzq.base.R.color.white, true)
+        immersiveRes(com.yzq.resource.R.color.white, true)
         PageManager.pushPage(this)
     }
 

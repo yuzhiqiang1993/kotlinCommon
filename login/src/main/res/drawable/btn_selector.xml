@@ -9,9 +9,9 @@
     </item>
 
     <!-- 可用状态 -->
-    <item android:color="@color/colorOnPrimary" android:state_enabled="true">
+    <item android:color="@color/color_primary" android:state_enabled="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/colorOnPrimary" />
+            <solid android:color="@color/color_primary" />
             <corners android:radius="6dp" />
         </shape>
     </item>

@@ -24,6 +24,9 @@ dependencies {
     implementation(libs.xeonyu.coroutine)
     implementation(libs.xeonyu.logger)
 
+    implementation(project(":resource"))
+
+
 
 }
 

@@ -47,7 +47,7 @@ class InputWithSmsView @JvmOverloads constructor(
             val buttonText = getString(R.styleable.InputWithSmsView_sms_button_text) ?: "获取验证码"
             val buttonTextColor = getColor(
                 R.styleable.InputWithSmsView_sms_button_text_color,
-                ContextCompat.getColor(context, android.R.color.white)
+                ContextCompat.getColor(context, com.yzq.resource.R.color.white)
             )
             val buttonTextSize = getDimension(
                 R.styleable.InputWithSmsView_sms_button_text_size, 12f
@@ -117,7 +117,7 @@ class InputWithSmsView @JvmOverloads constructor(
                 endViewBinding.btnSmsCode.setTextColor(
                     ContextCompat.getColor(
                         context,
-                        com.yzq.base.R.color.white
+                        com.yzq.resource.R.color.white
                     )
                 )
                 isCounting = false
@@ -141,14 +141,14 @@ class InputWithSmsView @JvmOverloads constructor(
             endViewBinding.btnSmsCode.setTextColor(
                 ContextCompat.getColor(
                     context,
-                    com.yzq.base.R.color.colorOnPrimary
+                    com.yzq.resource.R.color.color_primary
                 )
             )
         } else {
             endViewBinding.btnSmsCode.setTextColor(
                 ContextCompat.getColor(
                     context,
-                    com.yzq.base.R.color.secondary_icon
+                    com.yzq.resource.R.color.icon_secondary
                 )
             )
         }

@@ -75,7 +75,7 @@ class ViewPagerWithFragment :
                 tabTv.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.black
+                        com.yzq.resource.R.color.black
                     )
                 )
             } else {
@@ -83,7 +83,7 @@ class ViewPagerWithFragment :
                 tabTv.setTextColor(
                     ContextCompat.getColor(
                         requireContext(),
-                        R.color.gray_600
+                        com.yzq.resource.R.color.gray_600
                     )
                 )
             }

@@ -6,7 +6,6 @@ import androidx.activity.OnBackPressedCallback
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import com.therouter.TheRouter
-import com.yzq.base.R
 import com.yzq.dialog.BubbleLoadingDialog
 import com.yzq.dialog.LottieDialog
 
@@ -27,7 +26,7 @@ abstract class BaseActivity : AppCompatActivity {
 
     protected val loadingDialog by lazy {
         LottieDialog(this).config {
-            bgRes(R.color.trans)
+            bgRes(com.yzq.resource.R.color.transparent)
         }
     }
     protected val bubleLoadingDialog by lazy { BubbleLoadingDialog(this) }
