@@ -17,6 +17,7 @@ import com.yzq.dialog.databinding.LayoutPromptDialogBinding
 
 class PromptDialog(activity: FragmentActivity) : BaseDialogFragment<PromptDialog>(activity) {
 
+    private var title: String = ""
     private var content: String = ""
     private var positiveText: String = "确定"
     private var negativeText: String = "取消"
@@ -30,6 +31,13 @@ class PromptDialog(activity: FragmentActivity) : BaseDialogFragment<PromptDialog
     }
 
     override fun initWidget(contentView: View) {
+
+        binding.tvTitle.text = title
+        if (title.isEmpty()) {
+            binding.tvTitle.visibility = View.GONE
+        } else {
+            binding.tvTitle.visibility = View.VISIBLE
+        }
 
         binding.tvContent.text = content
         binding.btnPositive.text = positiveText
@@ -70,6 +78,12 @@ class PromptDialog(activity: FragmentActivity) : BaseDialogFragment<PromptDialog
     }
 
 
+    fun title(title: String): PromptDialog {
+        this.title = title
+        return this
+    }
+
+
     fun content(content: String): PromptDialog {
         this.content = content
         return this
@@ -78,7 +92,6 @@ class PromptDialog(activity: FragmentActivity) : BaseDialogFragment<PromptDialog
     fun positiveBtn(text: String = "确定", listener: View.OnClickListener): PromptDialog {
         this.positiveText = text
         this.positiveListener = listener
-
         return this
     }
 

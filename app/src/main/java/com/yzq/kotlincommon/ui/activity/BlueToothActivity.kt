@@ -166,7 +166,7 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
 
     override fun onBluetoothDisabled() {
 //        showBaseDialog("提示", "蓝牙未开启")
-        PromptDialog(this).content("蓝牙未开启").safeShow()
+        PromptDialog(this).title("提示").content("蓝牙未开启").safeShow()
     }
 
     @SuppressLint("MissingPermission")

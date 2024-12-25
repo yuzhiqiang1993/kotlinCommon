@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_bg_dialog_custom"
     android:orientation="vertical">
+
+    <!--    &lt;!&ndash;图片区域&ndash;&gt;-->
+    <!--    <androidx.appcompat.widget.AppCompatImageView-->
+    <!--        android:id="@+id/ivTop"-->
+    <!--        android:layout_width="@dimen/dp_99"-->
+    <!--        android:layout_height="30dp"-->
+    <!--        android:layout_gravity="center_horizontal"-->
+    <!--        android:visibility="gone"-->
+    <!--        app:srcCompat="@drawable/dialog_background" />-->
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,17 +22,30 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/sp_20"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tool:text="标题" />
+
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvContent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="@dimen/dp_68"
+            android:layout_marginTop="@dimen/dp_6"
+            android:text="内容区域"
             android:textColor="@color/text_primary"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/sp_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
 
             />
 

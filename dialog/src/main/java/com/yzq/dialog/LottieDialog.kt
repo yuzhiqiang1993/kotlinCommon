@@ -48,7 +48,6 @@ class LottieDialog(activity: AppCompatActivity) : BaseDialogFragment<LottieDialo
     }
 
 
-
     fun loadLottieRes(@RawRes res: Int): LottieDialog {
         this.lottieRes = res
         return this

@@ -43,6 +43,7 @@ class DialogActivity : BaseActivity() {
 //                Bugly.testCrash(BuglyConstants.JAVA_CRASH)
 
                 PromptDialog(this@DialogActivity).apply {
+                    title("提示")
                     content("基础弹窗，没有任何回调，只有确定按钮且没有回调，一般用于信息提示")
                     singlePositiveBtn { v ->
 
