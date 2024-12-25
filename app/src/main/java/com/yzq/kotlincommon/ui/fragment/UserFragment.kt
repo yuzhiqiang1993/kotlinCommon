@@ -5,7 +5,7 @@ import com.hjq.permissions.Permission
 import com.hjq.toast.Toaster
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.binding.viewbind
-import com.yzq.dialog.showPositiveCallbackDialog
+import com.yzq.dialog.PromptDialog
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentUserBinding
 import com.yzq.kotlincommon.dialog.CustomDialog
@@ -21,13 +21,16 @@ class UserFragment : BaseFragment(R.layout.fragment_user) {
     private val backCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
 
-            requireActivity().showPositiveCallbackDialog(
-                "确认退出?", "确认退出已填写的数据将会丢失!"
-            ) {
-                /*调OnBackPressedCallback的setEnabled控制callback是否生效*/
-                isEnabled = false
-                requireActivity().onBackPressedDispatcher.onBackPressed()
-            }
+            PromptDialog(requireActivity())
+                .apply {
+                    content("确认退出已填写的数据将会丢失!")
+                }.positiveBtn { v ->
+                    /*调OnBackPressedCallback的setEnabled控制callback是否生效*/
+                    isEnabled = false
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                }
+
+
         }
 
     }

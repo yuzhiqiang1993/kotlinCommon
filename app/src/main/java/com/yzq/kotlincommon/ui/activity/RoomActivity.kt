@@ -12,7 +12,6 @@ import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.ext.launchSafety
-import com.yzq.dialog.showInputDialog
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityRoomBinding
 import com.yzq.kotlincommon.databinding.ItemRoomBinding
@@ -55,13 +54,13 @@ class RoomActivity : BaseActivity() {
                     }
 
                     R.id.tv_user.onClick {
-                        showInputDialog(title = "修改") { dialog, input ->
-                            vm.updateUser(
-                                getModel<User>().id,
-                                input.toString(),
-                                getModel<User>().age
-                            )
-                        }
+//                        showInputDialog(title = "修改") { dialog, input ->
+//                            vm.updateUser(
+//                                getModel<User>().id,
+//                                input.toString(),
+//                                getModel<User>().age
+//                            )
+//                        }
                     }
                 }
 

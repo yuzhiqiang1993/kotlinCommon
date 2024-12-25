@@ -8,8 +8,8 @@ import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
 import com.yzq.coroutine.ext.runMain
+import com.yzq.dialog.PromptDialog
 import com.yzq.dialog.core.BaseDialogFragment
-import com.yzq.dialog.showBaseDialog
 import com.yzq.logger.Logger
 
 @JvmOverloads
@@ -41,7 +41,12 @@ fun BaseActivity.observeUIState(
             }
 
             is UIState.ShowDialog -> {
-                runMain { showBaseDialog(message = it.msg) }
+                runMain {
+                    PromptDialog(this).content(it.msg).singlePositiveBtn { v ->
+
+                    }.safeShow()
+
+                }
             }
 
             is UIState.ShowContent -> {
@@ -89,7 +94,10 @@ fun BaseFragment.observeUIState(
             }
 
             is UIState.ShowDialog -> {
-                runMain { requireActivity().showBaseDialog(message = it.msg) }
+                runMain {
+                    PromptDialog(requireActivity()).content(it.msg).singlePositiveBtn { v -> }
+                        .safeShow()
+                }
             }
 
             is UIState.ShowContent -> {

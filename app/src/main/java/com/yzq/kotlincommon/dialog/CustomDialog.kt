@@ -53,6 +53,7 @@ class CustomDialog(activity: FragmentActivity) :
             dialogHeight = (screenHeight * 0.4).toInt()
             dialogGravity = Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL
             dialogBgRes = com.yzq.dialog.R.drawable.shape_bg_dialog_custom
+
         }
 
     }

@@ -9,7 +9,7 @@ import com.hjq.permissions.Permission
 import com.yzq.base.extend.immersive
 import com.yzq.base.extend.navFinish
 import com.yzq.common.constants.RoutePath
-import com.yzq.dialog.showCallbackDialog
+import com.yzq.dialog.PromptDialog
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 import com.yzq.storage.mmkv.MMKVDefault
@@ -137,12 +137,16 @@ class SplashActivity : AppCompatActivity() {
             Logger.it(TAG, "有权限,进页面")
             if (MMKVDefault.appFirstOpen) {
                 Logger.it(TAG, "首次打开:${MMKVDefault.appFirstOpen}")/*首次打开可以弹窗提示同意 隐私政策 */
-                showCallbackDialog("提示", "同意隐私政策，用户协议", positiveCallback = {
+
+                PromptDialog(this).apply {
+                    content("同意隐私政策，用户协议")
+                }.positiveBtn("同意") { v ->
                     MMKVDefault.appFirstOpen = false/*在这里进行页面跳转*/
                     route()
-                }, negativeCallback = {
+                }.negativeBtn("退出") { v ->
                     finishAfterTransition()
-                })
+                }
+
             } else {
                 route()
             }

@@ -79,7 +79,6 @@ flexboxLayout = "3.0.0"
 leakcanaryAndroid = "2.14"
 coil = "2.7.0"
 photoView = "2.3.0"
-materialDialog = "3.3.0"
 dateTimePicker = "0.6.3"
 threetenabp = "1.4.7"
 reactAndroid = "0.75.2"
@@ -223,10 +222,7 @@ coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
 coil-gif = { group = "io.coil-kt", name = "coil-gif", version.ref = "coil" }
 coil-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
 photoView = { group = "com.github.chrisbanes", name = "PhotoView", version.ref = "photoView" }
-materialDialog-core = { group = "com.afollestad.material-dialogs", name = "core", version.ref = "materialDialog" }
-materialDialog-input = { group = "com.afollestad.material-dialogs", name = "input", version.ref = "materialDialog" }
-materialDialog-bottomsheets = { group = "com.afollestad.material-dialogs", name = "bottomsheets", version.ref = "materialDialog" }
-materialDialog-lifecycle = { group = "com.afollestad.material-dialogs", name = "lifecycle", version.ref = "materialDialog" }
+
 dateTimePicker = { group = "com.github.loperSeven", name = "DateTimePicker", version.ref = "dateTimePicker" }
 gsyvideoplayer = { module = "com.github.CarGuo.GSYVideoPlayer:gsyvideoplayer", version.ref = "gsyvideoplayer" }
 bugly-pro = { module = "com.tencent.bugly:bugly-pro", version.ref = "buglyPro" }

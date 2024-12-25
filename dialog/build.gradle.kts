@@ -26,10 +26,6 @@ dependencies {
     implementation(libs.xeonyu.logger)
     api(libs.xeonyu.coroutine)
 
-    api(libs.materialDialog.core)
-    api(libs.materialDialog.input)
-    api(libs.materialDialog.bottomsheets)
-    api(libs.materialDialog.lifecycle)
     api(libs.dateTimePicker)
 
     implementation(project(":resource"))

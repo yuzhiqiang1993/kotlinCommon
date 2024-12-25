@@ -19,7 +19,7 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.data.bluetooth.BlueToothItem
 import com.yzq.common.data.bluetooth.deviceDesc
-import com.yzq.dialog.showBaseDialog
+import com.yzq.dialog.PromptDialog
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityBlueToothBinding
 import com.yzq.kotlincommon.databinding.ItemBluetoothBinding
@@ -70,8 +70,7 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
                     } else {
                         itemBinding.tvName.setTextColor(
                             resources.getColor(
-                                com.yzq.resource.R.color.black,
-                                null
+                                com.yzq.resource.R.color.black, null
                             )
                         )
                         itemBinding.tvUse.visibility = View.GONE
@@ -103,8 +102,7 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
     }
 
 
-    private fun scanBlueTooth() {
-        /*获取蓝牙和位置信息权限*/
+    private fun scanBlueTooth() {/*获取蓝牙和位置信息权限*/
         getPermissions(
             Permission.BLUETOOTH_SCAN, Permission.BLUETOOTH_CONNECT, Permission.BLUETOOTH_ADVERTISE
         ) {
@@ -167,7 +165,8 @@ class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
 
 
     override fun onBluetoothDisabled() {
-        showBaseDialog("提示", "蓝牙未开启")
+//        showBaseDialog("提示", "蓝牙未开启")
+        PromptDialog(this).content("蓝牙未开启").safeShow()
     }
 
     @SuppressLint("MissingPermission")

@@ -8,7 +8,7 @@ import android.provider.Settings
 import com.hjq.permissions.Permission
 import com.yzq.application.AppContext
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.dialog.showPositiveCallbackDialog
+import com.yzq.dialog.PromptDialog
 import com.yzq.permission.getPermissions
 
 /**
@@ -40,9 +40,11 @@ object MapPermissionUtils {
             if (isGPSEnabled(activity)) {
                 block()
             } else {
-                activity.showPositiveCallbackDialog("提示", "该功能需要打开GPS,否则无法使用") {
-                    openGpsSettings(activity)
-                }
+
+                PromptDialog(activity).apply {
+                    content("该功能需要打开GPS,否则无法使用")
+                }.positiveBtn("去开启") { v -> openGpsSettings(activity) }
+
             }
         }
 

@@ -14,9 +14,7 @@ import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ApiConstants
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.ext.withIO
-import com.yzq.dialog.changeProgress
-import com.yzq.dialog.changeTitle
-import com.yzq.dialog.newProgressDialog
+import com.yzq.dialog.ProgressDialog
 import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
 import com.yzq.logger.Logger
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +28,7 @@ class DownloadActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityDownloadBinding::inflate)
 
-    private val progressDialog by lazy { newProgressDialog() }
+    private val progressDialog by lazy { ProgressDialog(this) }
 
     override fun initWidget() {
 
@@ -59,14 +57,14 @@ class DownloadActivity : BaseActivity() {
                     }
 
                     override fun onError(id: Long, e: Exception?) {
-                        progressDialog.dismiss()
+                        progressDialog.safeDismiss()
                     }
                 }
             )
     }
 
     private fun downloadApk() {
-        progressDialog.changeTitle("下载中...").show()
+        progressDialog.changeTitle("下载中...").safeShow()
         lifecycleScope.launchSafety {
             val savePath = withIO {
                 val download = FileRetrofitFactory.instance.getService(ApiService::class.java)
@@ -85,7 +83,7 @@ class DownloadActivity : BaseActivity() {
 
                 path
             }
-            progressDialog.dismiss()
+            progressDialog.safeDismiss()
 
             AppManager.installApk(savePath, "${AppManager.application.packageName}.provider")
         }

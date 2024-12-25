@@ -51,6 +51,7 @@ abstract class BaseDialogFragment<T : BaseDialogFragment<T>>(
 
     private var contentView: View? = null
 
+
     /**
      * Dialog的配置类
      */
