@@ -40,9 +40,6 @@ class SplashActivity : AppCompatActivity() {
         const val TAG = "SplashActivity"
     }
 
-    /*是否执行了最终的方法*/
-    private val handleRouteInvoke = AtomicBoolean(false)
-
     /*是否blockui*/
     private val keepOnScreenCondition = AtomicBoolean(true)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +53,6 @@ class SplashActivity : AppCompatActivity() {
             }
         }
 
-        Logger.it(TAG, "onCreate handleRouteInvoke::${handleRouteInvoke.get()}")
         immersive(Color.WHITE, true)
 
         /*启动屏*/
@@ -69,12 +65,8 @@ class SplashActivity : AppCompatActivity() {
              * 自己处理动画 在这里面才能加一些自己要显示的ui
              */
             setOnExitAnimationListener {
-
-                //Android12的设备上 debug 时或者被其他应用拉起的打开方式会出现setOnExitAnimationListener回调不执行的情况
-                Logger.it(TAG, "setOnExitAnimationListener")
-                //路由
-                handleRoute()
-
+                //动画结束完毕，这里不要去处理后需流程相关的业务逻辑，值处理动画，因为在Android 12上可能会出现不回调的情况
+                Logger.it(TAG, "setOnExitAnimationListener callback")
             }
 
         }
@@ -83,10 +75,11 @@ class SplashActivity : AppCompatActivity() {
 
 
         MainScope().launch {
-//            delay(300)
+            Logger.it(TAG, "MainScope start")
+            //模拟闪屏页面的动画所需时间
+            delay(300)
             Logger.it(TAG, "可以做一些初始化的逻辑，初始化完成后继续走")
-            keepOnScreenCondition.set(false)
-            Logger.it(TAG, "可以执行 setOnExitAnimationListener 了")
+            keepOnScreenCondition.set(false)//无需keepOnScreenCondition了
 
             /*
             * 已知在Android 12 上会有setOnExitAnimationListener可能不会被调用的问题
@@ -96,13 +89,11 @@ class SplashActivity : AppCompatActivity() {
 
             delay(200)
 
-            val handleRouteInovke = handleRouteInvoke.get()
-            Logger.it(TAG, "handleRouteInovke:${handleRouteInovke}")
-            if (!handleRouteInovke) {
-                Logger.it(TAG, "handleRouteInvoke 未执行===")
-                handleRoute()
-            }
+            handleRoute()
+            Logger.it(TAG, "MainScope end")
         }
+
+        Logger.it(TAG, "onCreate end")
 
 
     }
@@ -111,11 +102,6 @@ class SplashActivity : AppCompatActivity() {
     @Synchronized
     private fun handleRoute() {
 
-        if (handleRouteInvoke.get()) {
-            Logger.it(TAG, "handleRoute 已经执行过了.....")
-            return
-        }
-        handleRouteInvoke.compareAndSet(false, true)
 
         Logger.it(TAG, "handleRoute开始执行")
 //        //由于splash的主题执行完毕了，所以会显示App主题色的状态栏（默认主主色调是蓝色）不沉浸式的话看起来很怪
