@@ -107,4 +107,8 @@ object RoutePath {
     }
 
 
+    object Emas {
+        const val CRASH = "/emas/crash"
+    }
+
 }

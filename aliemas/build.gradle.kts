@@ -1,10 +1,15 @@
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.xeonyu.library)
+    alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "com.yzq.aliemas"
+
+    buildFeatures {
+        viewBinding = true
+    }
 
 }
 
@@ -28,5 +33,8 @@ dependencies {
     api(libs.alicloud.android.ut)
     api(libs.alicloud.android.beacon)
     api(libs.alicloud.android.ha.adapter)
+
+    implementation(project(":common"))
     implementation(libs.xeonyu.logger)
+    ksp(libs.therouter.apt)
 }

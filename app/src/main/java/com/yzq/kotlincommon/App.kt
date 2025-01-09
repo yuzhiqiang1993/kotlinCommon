@@ -113,8 +113,6 @@ class App : Application(), AppStateListener {
     private fun initBugly() {
         val buglyBuilder = BuglyBuilder("appkey", "appId")
 
-
-
         buglyBuilder.setCrashHandleListener(object : CrashHandleListener {
             /**
              * Crash处理回调时，此接口返回的数据以附件的形式上报，附件名userExtraByteData

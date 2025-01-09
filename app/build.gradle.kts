@@ -229,6 +229,7 @@ dependencies {
     implementation(project(":react-native"))
     implementation(project(":login"))
     implementation(project(":player"))
+    implementation(project(":aliemas"))
 
 
 }

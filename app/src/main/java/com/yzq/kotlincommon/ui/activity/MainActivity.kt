@@ -175,6 +175,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("JavaActivity", RoutePath.Main.JAVA_ACTIVITY))
         items.add(NaviItem("Jetpack Compose", RoutePath.Main.COMPOSE))
         items.add(NaviItem("播放器", RoutePath.Player.PLAYER))
+        items.add(NaviItem("Crash", RoutePath.Emas.CRASH))
 
         setData()
 

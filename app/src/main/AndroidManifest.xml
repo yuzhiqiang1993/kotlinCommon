@@ -55,10 +55,14 @@
         tools:replace="android:allowBackup,android:label,android:theme">
         <activity
             android:name=".ui.activity.BuglyActivity"
-            android:exported="false" />
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activity.UserAuthActivity"
-            android:exported="false" />
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="META_CHANNEL"
