@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.task.work_thread_task
+package com.yzq.kotlincommon.task.workthread
 
 import com.hjq.toast.Toaster
 import com.yzq.application.AppManager

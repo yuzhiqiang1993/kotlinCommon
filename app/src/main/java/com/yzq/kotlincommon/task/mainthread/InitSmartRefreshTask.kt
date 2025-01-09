@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.task.main_thread_task
+package com.yzq.kotlincommon.task.mainthread
 
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader

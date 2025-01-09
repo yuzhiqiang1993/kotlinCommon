@@ -53,11 +53,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
-        <activity
-            android:name=".ui.activity.BuglyActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name=".ui.activity.UserAuthActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -324,7 +320,7 @@
         </provider>
 
         <receiver
-            android:name=".broadcast_receiver.MyBroadcastReceiver"
+            android:name=".receiver.MyBroadcastReceiver"
             android:exported="true">
             <intent-filter>
 

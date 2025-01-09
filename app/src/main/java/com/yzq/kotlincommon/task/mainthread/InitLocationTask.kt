@@ -1,11 +1,11 @@
-package com.yzq.kotlincommon.task.main_thread_task
+package com.yzq.kotlincommon.task.mainthread
 
 import com.yzq.base.startup.base.MainThreadTask
 import com.yzq.location_manager.LocationManager
 import com.yzq.location_protocol.constant.LocationPlatform
 
 /**
- * @description: 初始化阿里推送
+ * @description: 初始化定位
  * @author : yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
  * @date : 2022/1/9
  * @time : 2:57 下午

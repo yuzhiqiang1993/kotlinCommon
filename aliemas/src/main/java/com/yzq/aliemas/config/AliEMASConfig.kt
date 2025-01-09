@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.config
+package com.yzq.aliemas.config
 
 /**
  * @description: 阿里EMAS配置

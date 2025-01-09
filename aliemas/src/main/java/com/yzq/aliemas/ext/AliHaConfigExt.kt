@@ -1,10 +1,10 @@
-package com.yzq.kotlincommon.ext
+package com.yzq.aliemas.ext
 
 import com.alibaba.ha.adapter.AliHaConfig
+import com.yzq.aliemas.config.AliEMASConfig
 import com.yzq.application.AppContext
 import com.yzq.application.AppManager
 import com.yzq.base.extend.getAppVersionName
-import com.yzq.kotlincommon.config.AliEMASConfig
 
 /**
  * @description: AliConfig的默认配置

@@ -1,12 +1,12 @@
-package com.yzq.kotlincommon.task.main_thread_task
+package com.yzq.aliemas.inittask
 
 import com.alibaba.sdk.android.push.CloudPushService
 import com.alibaba.sdk.android.push.noonesdk.PushInitConfig
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
+import com.yzq.aliemas.BuildConfig
+import com.yzq.aliemas.config.AliEMASConfig
 import com.yzq.application.AppManager
 import com.yzq.base.startup.base.MainThreadTask
-import com.yzq.kotlincommon.BuildConfig
-import com.yzq.kotlincommon.config.AliEMASConfig
 
 /**
  * @description: 初始化阿里推送
@@ -17,14 +17,11 @@ import com.yzq.kotlincommon.config.AliEMASConfig
 
 class InitAliPushTask : MainThreadTask() {
 
-    private val TAG = javaClass.canonicalName
     override fun taskRun() {
-        /*https://help.aliyun.com/document_detail/195006.html*/
+        //https://help.aliyun.com/document_detail/195006.html
 
         val config = PushInitConfig.Builder().application(AppManager.application)
-            .appKey(AliEMASConfig.appKey)
-            .appSecret(AliEMASConfig.appSecret)
-            .build()
+            .appKey(AliEMASConfig.appKey).appSecret(AliEMASConfig.appSecret).build()
         PushServiceFactory.init(config)
         val pushService = PushServiceFactory.getCloudPushService()
         if (BuildConfig.DEBUG) {

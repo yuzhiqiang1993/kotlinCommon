@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.task.main_thread_task
+package com.yzq.kotlincommon.task.mainthread
 
 import com.tencent.mmkv.MMKV
 import com.yzq.application.AppContext

@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.task.main_thread_task
+package com.yzq.kotlincommon.task.mainthread
 
 import androidx.appcompat.widget.AppCompatTextView
 import com.drake.statelayout.StateConfig

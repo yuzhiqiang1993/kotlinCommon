@@ -8,27 +8,24 @@ import android.os.Build
 import android.os.Trace
 import com.aice.appstartfaster.dispatcher.AppStartTaskDispatcher
 import com.facebook.soloader.SoLoader
-import com.jakewharton.threetenabp.AndroidThreeTen
-import com.tencent.bugly.library.Bugly
-import com.tencent.bugly.library.BuglyBuilder
-import com.tencent.feedback.eup.CrashHandleListener
 import com.therouter.TheRouter
-import com.xeon.asr_demo.ASRManager
+import com.yzq.aliemas.inittask.InitAPMTask
+import com.yzq.aliemas.inittask.InitAliPushTask
+import com.yzq.aliemas.inittask.InitCrashReportTask
+import com.yzq.aliemas.inittask.InitTlogTask
 import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
 import com.yzq.application.getCurrentProcessName
 import com.yzq.application.isMainProcess
-import com.yzq.img.CoilManager
-import com.yzq.kotlincommon.task.main_thread_task.InitAPMTask
-import com.yzq.kotlincommon.task.main_thread_task.InitAliPushTask
-import com.yzq.kotlincommon.task.main_thread_task.InitCrashReportTask
-import com.yzq.kotlincommon.task.main_thread_task.InitLocationTask
-import com.yzq.kotlincommon.task.main_thread_task.InitMMKVTask
-import com.yzq.kotlincommon.task.main_thread_task.InitSmartRefreshTask
-import com.yzq.kotlincommon.task.main_thread_task.InitStateLayoutConfigTask
-import com.yzq.kotlincommon.task.main_thread_task.InitTlogTask
-import com.yzq.kotlincommon.task.work_thread_task.InitFileOperatorTask
-import com.yzq.kotlincommon.task.work_thread_task.InitToasterTask
+import com.yzq.kotlincommon.task.mainthread.InitAsrTask
+import com.yzq.kotlincommon.task.mainthread.InitCoilTask
+import com.yzq.kotlincommon.task.mainthread.InitLocationTask
+import com.yzq.kotlincommon.task.mainthread.InitMMKVTask
+import com.yzq.kotlincommon.task.mainthread.InitSmartRefreshTask
+import com.yzq.kotlincommon.task.mainthread.InitStateLayoutConfigTask
+import com.yzq.kotlincommon.task.mainthread.InitThreeTenTask
+import com.yzq.kotlincommon.task.workthread.InitFileOperatorTask
+import com.yzq.kotlincommon.task.workthread.InitToasterTask
 import com.yzq.logger.Logger
 import com.yzq.logger.console.ConsoleLogConfig
 import com.yzq.logger.console.ConsoleLogPrinter
@@ -78,126 +75,34 @@ class App : Application(), AppStateListener {
             /*监听App是否退出*/
             AppManager.addAppStateListener(this)
 
-            initBugly()
-
-
             //读清单配置文件里的数据
             readMetaData()
             Trace.beginSection("BaseApp_AppInit")
-            //日期库初始化
-            AndroidThreeTen.init(this)
-            CoilManager.init()
-            AppStartTaskDispatcher.create().setShowLog(true).addAppStartTask(InitCrashReportTask())
+
+
+            AppStartTaskDispatcher.create().setShowLog(true).addAppStartTask(InitCoilTask())
+                .addAppStartTask(InitThreeTenTask()).addAppStartTask(InitCrashReportTask())
                 .addAppStartTask(InitMMKVTask()).addAppStartTask(InitStateLayoutConfigTask())
                 .addAppStartTask(InitSmartRefreshTask()).addAppStartTask(InitAPMTask())
                 .addAppStartTask(InitTlogTask()).addAppStartTask(InitAliPushTask())
                 .addAppStartTask(InitLocationTask()).addAppStartTask(InitToasterTask())
-                .addAppStartTask(InitFileOperatorTask()).start().await()
+                .addAppStartTask(InitFileOperatorTask()).addAppStartTask(InitAsrTask()).start()
+                .await()
 
-            ASRManager.init(this)
+
 
             Trace.endSection()
         } else {
             Logger.i("非主进程")
 
             if (AppManager.getCurrentProcessName().equals("${packageName}:channel")) {
-
-                Logger.i("channel进程,初始化推送")/*channel进程也要对推送初始化 https://help.aliyun.com/document_detail/434662.html?spm=a2c4g.11186623.0.0.72aa5b78qNHbvx*/
+                Logger.i("channel进程,初始化推送")
+                //channel进程也要对推送初始化 https://help.aliyun.com/document_detail/434662.html?spm=a2c4g.11186623.0.0.72aa5b78qNHbvx
                 AppStartTaskDispatcher.create().setShowLog(true).addAppStartTask(InitAliPushTask())
                     .start().await()
             }
 
         }
-    }
-
-    private fun initBugly() {
-        val buglyBuilder = BuglyBuilder("appkey", "appId")
-
-        buglyBuilder.setCrashHandleListener(object : CrashHandleListener {
-            /**
-             * Crash处理回调时，此接口返回的数据以附件的形式上报，附件名userExtraByteData
-             * @param isNativeCrashed 是否Native异常
-             * @param crashType 异常的类型
-             * @param crashStack 异常堆栈
-             * @param nativeSiCode native异常时的SI_CODE，非Native异常此数据无效
-             * @param crashTime native异常的发生时间
-             * @return 上报的附件字节流
-             */
-            override fun getCrashExtraData(
-                isNativeCrashed: Boolean,
-                crashType: String?,
-                crashAddress: String?,
-                crashStack: String?,
-                nativeSiCode: Int,
-                crashTime: Long
-            ): ByteArray {
-                Logger.e(
-                    "getCrashExtraData:",
-                    "isNativeCrashed:$isNativeCrashed,crashType:$crashType,crashAddress:$crashAddress,crashStack:$crashStack,nativeSiCode:$nativeSiCode,crashTime:$crashTime"
-                )
-                return byteArrayOf()
-            }
-
-
-            /**
-             * Crash处理回调时，此接口返回的数据在附件extraMessage.txt中展示
-             * @param isNativeCrashed 是否Native异常
-             * @param crashType 异常的类型
-             * @param crashStack 异常堆栈
-             * @param nativeSiCode native异常时的SI_CODE，非Native异常此数据无效
-             * @param crashTime native异常的发生时间
-             * @return 上报的数据
-             */
-            override fun getCrashExtraMessage(
-                isNativeCrashed: Boolean,
-                crashType: String?,
-                crashAddress: String?,
-                crashStack: String?,
-                nativeSiCode: Int,
-                crashTime: Long
-            ): String {
-                Logger.e(
-                    "getCrashExtraMessage:",
-                    "isNativeCrashed:$isNativeCrashed,crashType:$crashType,crashAddress:$crashAddress,crashStack:$crashStack,nativeSiCode:$nativeSiCode,crashTime:$crashTime"
-                )
-
-                return ""
-            }
-
-            /**
-             * Crash处理回调前，执行此接口
-             * @param isNativeCrashed 是否Native异常
-             */
-            override fun onCrashHandleStart(isNativeCrashed: Boolean) {
-                Logger.e("onCrashHandleStart:isNativeCrashed:$isNativeCrashed")
-            }
-
-            override fun onCrashHandleEnd(p0: Boolean): Boolean {
-
-                return true
-            }
-
-
-            override fun onCrashSaving(
-                p0: Boolean,
-                p1: String?,
-                p2: String?,
-                p3: String?,
-                p4: String?,
-                p5: Int,
-                p6: Long,
-                p7: String?,
-                p8: String?,
-                p9: String?,
-                p10: String?
-            ): Boolean {
-                return true
-            }
-
-        })
-
-        Bugly.init(this, buglyBuilder)
-
     }
 
 

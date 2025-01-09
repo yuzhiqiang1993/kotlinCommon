@@ -138,7 +138,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun initData() {
 
         items.add(NaviItem("电影列表", RoutePath.Main.MOVIES))
-        items.add(NaviItem("Bugly Pro", RoutePath.Main.BUGLY))
         items.add(NaviItem("任务页面（悬浮吸顶、侧滑菜单）", RoutePath.Main.TASK))
         items.add(NaviItem("图片页面（选择压缩）", RoutePath.Main.IMG_COMPRESS))
         items.add(NaviItem("弹窗", RoutePath.Main.DIALOG))

@@ -1,4 +1,4 @@
-package com.yzq.kotlincommon.broadcast_receiver
+package com.yzq.kotlincommon.receiver
 
 import android.app.Activity
 import android.content.BroadcastReceiver
