@@ -1,4 +1,4 @@
-package com.yzq.gao_de_map.service
+package com.yzq.amap.service
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -8,11 +8,11 @@ import android.content.Intent
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
+import com.yzq.amap.GaoDeActivity
+import com.yzq.amap.R
 import com.yzq.application.AppContext
 import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
-import com.yzq.gao_de_map.GaoDeActivity
-import com.yzq.gao_de_map.R
 import com.yzq.location_manager.LocationManager
 import com.yzq.location_protocol.callback.LocationListener
 import com.yzq.location_protocol.core.LocationClient

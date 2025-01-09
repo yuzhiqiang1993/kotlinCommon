@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.yzq.gao_de_map"
+    namespace = "com.yzq.amap"
 
     buildFeatures {
         viewBinding = true

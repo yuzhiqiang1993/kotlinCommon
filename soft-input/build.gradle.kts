@@ -6,7 +6,7 @@ plugins {
 
 
 android {
-    namespace = "com.yzq.soft_input"
+    namespace = "com.yzq.softinput"
 
     buildFeatures {
         viewBinding = true

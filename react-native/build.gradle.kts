@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.yzq.react_native"
+    namespace = "com.yzq.reactnative"
     compileSdk = 34
 
     packaging {

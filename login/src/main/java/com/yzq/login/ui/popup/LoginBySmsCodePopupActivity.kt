@@ -15,7 +15,7 @@ import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
 import com.yzq.login.ui.dialog.AgreementDialog
 import com.yzq.login.view_model.LoginSmsCodeViewModel
-import com.yzq.soft_input.setWindowSoftInput
+import com.yzq.softinput.setWindowSoftInput
 
 
 /**

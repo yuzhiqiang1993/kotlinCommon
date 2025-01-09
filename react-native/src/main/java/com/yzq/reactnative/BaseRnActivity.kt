@@ -1,4 +1,4 @@
-package com.yzq.react_native
+package com.yzq.reactnative
 
 import android.os.Bundle
 import android.view.View

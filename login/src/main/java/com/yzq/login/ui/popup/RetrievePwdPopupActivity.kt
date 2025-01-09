@@ -12,7 +12,7 @@ import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivityRetrievePwdPopupBinding
 import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
-import com.yzq.soft_input.setWindowSoftInput
+import com.yzq.softinput.setWindowSoftInput
 
 
 /**

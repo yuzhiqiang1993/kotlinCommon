@@ -1,4 +1,4 @@
-package com.yzq.gao_de_map
+package com.yzq.amap
 
 import android.content.Intent
 import android.net.Uri
@@ -7,6 +7,12 @@ import android.provider.Settings
 import androidx.activity.viewModels
 import com.hjq.toast.Toaster
 import com.therouter.router.Route
+import com.yzq.amap.databinding.ActivityGaoDeBinding
+import com.yzq.amap.ext.gaoDeMapHasInstalled
+import com.yzq.amap.ext.openGaoDeMap
+import com.yzq.amap.ext.openGaoDeNavi
+import com.yzq.amap.service.LocationService
+import com.yzq.amap.utils.MapPermissionUtils
 import com.yzq.application.AppManager
 import com.yzq.application.getPackageName
 import com.yzq.base.extend.initToolbar
@@ -14,12 +20,6 @@ import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
-import com.yzq.gao_de_map.databinding.ActivityGaoDeBinding
-import com.yzq.gao_de_map.ext.gaoDeMapHasInstalled
-import com.yzq.gao_de_map.ext.openGaoDeMap
-import com.yzq.gao_de_map.ext.openGaoDeNavi
-import com.yzq.gao_de_map.service.LocationService
-import com.yzq.gao_de_map.utils.MapPermissionUtils
 import com.yzq.logger.Logger
 
 @Route(path = com.yzq.common.constants.RoutePath.GaoDe.GAO_DE)

@@ -59,7 +59,7 @@ kotlinxCoroutines = "1.8.1"
 kotlinxSerializationJson = "1.6.3"
 
 #三方库
-theRouter = "1.2.3-rc16"
+theRouter = "1.2.3"
 benManesVersion = "0.51.0"
 toaster = "12.6"
 vanniktechPublish = "0.29.0"

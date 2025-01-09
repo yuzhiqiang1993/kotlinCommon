@@ -1,4 +1,4 @@
-package com.yzq.soft_input
+package com.yzq.softinput
 
 import android.app.Activity
 import android.app.Dialog

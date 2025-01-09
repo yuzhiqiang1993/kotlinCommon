@@ -9,7 +9,7 @@ import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
 import com.yzq.player.databinding.ActivityVideoPlayerBinding
 
-@Route(path = RoutePath.Player.Player)
+@Route(path = RoutePath.Player.PLAYER)
 class VideoPlayerActivity : BaseActivity() {
 
     private val binding by viewbind(ActivityVideoPlayerBinding::inflate)

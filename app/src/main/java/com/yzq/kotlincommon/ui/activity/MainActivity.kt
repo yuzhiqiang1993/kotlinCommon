@@ -174,7 +174,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("ReactNative", RoutePath.Main.REACT_NATIVE))
         items.add(NaviItem("JavaActivity", RoutePath.Main.JAVA_ACTIVITY))
         items.add(NaviItem("Jetpack Compose", RoutePath.Main.COMPOSE))
-        items.add(NaviItem("播放器", RoutePath.Player.Player))
+        items.add(NaviItem("播放器", RoutePath.Player.PLAYER))
 
         setData()
 

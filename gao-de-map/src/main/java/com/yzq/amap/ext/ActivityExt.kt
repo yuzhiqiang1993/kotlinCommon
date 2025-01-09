@@ -1,4 +1,4 @@
-package com.yzq.gao_de_map.ext
+package com.yzq.amap.ext
 
 import android.content.Intent
 import android.net.Uri

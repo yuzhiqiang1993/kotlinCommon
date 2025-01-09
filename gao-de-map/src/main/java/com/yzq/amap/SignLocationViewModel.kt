@@ -1,4 +1,4 @@
-package com.yzq.gao_de_map
+package com.yzq.amap
 
 import androidx.lifecycle.MutableLiveData
 import com.yzq.base.view_model.BaseViewModel

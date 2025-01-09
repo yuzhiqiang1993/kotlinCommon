@@ -1,4 +1,4 @@
-package com.yzq.gao_de_map.utils
+package com.yzq.amap.utils
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -103,7 +103,7 @@ object RoutePath {
     }
 
     object Player {
-        const val Player = "/player/player"
+        const val PLAYER = "/player/player"
     }
 
 

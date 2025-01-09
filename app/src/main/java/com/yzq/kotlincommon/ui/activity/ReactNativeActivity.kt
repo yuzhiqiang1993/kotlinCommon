@@ -11,8 +11,8 @@ import com.yzq.binding.viewbind
 import com.yzq.common.BuildConfig
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityReactNativeBinding
-import com.yzq.react_native.BaseJsExecptionHandler
-import com.yzq.react_native.BaseRnActivity
+import com.yzq.reactnative.BaseJsExecptionHandler
+import com.yzq.reactnative.BaseRnActivity
 
 
 /**
