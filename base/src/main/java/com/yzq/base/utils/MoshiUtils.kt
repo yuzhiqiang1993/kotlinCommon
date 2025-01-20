@@ -17,28 +17,30 @@ object MoshiUtils {
 
     val moshi: Moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
-    inline fun <reified T> toJson(src: T, indent: String = ""): String {
+    inline fun <reified T> toJson(src: T, indent: String = ""): String? = kotlin.runCatching {
         val jsonAdapter = moshi.adapter<T>(getGenericType<T>())
-        return jsonAdapter.indent(indent).toJson(src)
-    }
+        jsonAdapter.indent(indent).toJson(src)
+    }.onFailure {
+        it.printStackTrace()
+    }.getOrNull()
 
-    inline fun <reified T> toMap(src: T): Map<String, Any>? {
+    inline fun <reified T> toMap(src: T): Map<String, Any>? = kotlin.runCatching {
         val jsonAdapter = moshi.adapter<T>(getGenericType<T>())
         val jsonStr = jsonAdapter.toJson(src)
-        return fromJson<Map<String, Any>>(jsonStr)
-    }
+        fromJson<Map<String, Any>>(jsonStr)
+    }.onFailure {
+        it.printStackTrace()
+    }.getOrNull()
 
-    inline fun <reified T> fromJson(jsonStr: String): T? {
+    inline fun <reified T> fromJson(jsonStr: String): T? = kotlin.runCatching {
         val jsonAdapter = moshi.adapter<T>(getGenericType<T>())
-        return jsonAdapter.fromJson(jsonStr)
-    }
+        jsonAdapter.fromJson(jsonStr)
+    }.onFailure {
+        it.printStackTrace()
+    }.getOrNull()
 
     inline fun <reified T> getGenericType(): Type {
         return object :
-            MoshiTypeReference<T>() {}::class.java
-            .genericSuperclass
-            .let { it as ParameterizedType }
-            .actualTypeArguments
-            .first()
+            MoshiTypeReference<T>() {}::class.java.genericSuperclass.let { it as ParameterizedType }.actualTypeArguments.first()
     }
 }

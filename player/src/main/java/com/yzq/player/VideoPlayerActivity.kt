@@ -18,8 +18,12 @@ class VideoPlayerActivity : BaseActivity() {
 
     override fun initWidget() {
         super.initWidget()
+//        val source1 =
+//            "http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear3/prog_index.m3u8"
         val source1 =
-            "http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear3/prog_index.m3u8"
+            "https://sares.kfc.com.cn/ycms/bigPlayerChannel/202501/202501091109163112.mp4"
+//        val source1 =
+//            "https://sares.kfc.com.cn/ycms/bigPlayerChannel/202501/202501091049249202.mp4"
         binding.videoPlayer.apply {
             setUp(source1, true, "测试视频")
             //增加封面
@@ -50,5 +54,12 @@ class VideoPlayerActivity : BaseActivity() {
         }
 
 
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.videoPlayer.onVideoPause()
+        binding.videoPlayer.release()
     }
 }

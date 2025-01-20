@@ -27,12 +27,11 @@ import java.util.concurrent.TimeUnit
 
 object OkHttpUtils {
 
-    val client = OkHttpClient.Builder()
-        .connectTimeout(5, TimeUnit.SECONDS)
-        .readTimeout(5, TimeUnit.SECONDS)
-        .addInterceptor(LoggingInterceptor())
-        .dispatcher(Dispatcher(ThreadPoolManager.instance.ioThreadPoolExecutor))//设置线程池,okhttp本身做了限制，默认同时最多支持64个请求
-        .build()
+    val client =
+        OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS).readTimeout(5, TimeUnit.SECONDS)
+            .addInterceptor(LoggingInterceptor())
+            .dispatcher(Dispatcher(ThreadPoolManager.instance.ioThreadPoolExecutor))//设置线程池,okhttp本身做了限制，默认同时最多支持64个请求
+            .build()
 
 
 //    private val downloadClient =
@@ -53,10 +52,42 @@ object OkHttpUtils {
     suspend inline fun <reified T> get(
         url: String,
         params: Map<String, String> = emptyMap(),
-    ): Result<T> {
+        headers: Map<String, String> = emptyMap()
+    ): Result<T> = runCatching {
         val httpUrl = url.toHttpUrlWithParams(params)
-        val request = Request.Builder().url(httpUrl).build()
-        return request<T>(request)
+        val requestBuilder = Request.Builder().url(httpUrl)
+
+        if (headers.isNotEmpty()) {
+            headers.forEach { requestBuilder.addHeader(it.key, it.value) }
+        }
+        return request<T>(requestBuilder.build())
+    }.getOrElse {
+        Result.Error(it.message ?: "")
+    }
+
+    /**
+     * form 表单的请求方式
+     */
+    suspend inline fun <reified T> postForm(
+        url: String,
+        formParams: Map<String, String> = emptyMap(),
+        headers: Map<String, String> = emptyMap()
+    ): Result<T> = runCatching {
+        val builder = url.toHttpUrl().newBuilder()
+        val formBodyBuilder = okhttp3.FormBody.Builder()
+        formParams.forEach { formBodyBuilder.add(it.key, it.value) }
+        val requestBody = formBodyBuilder.build()
+
+        val requestBuilder = Request.Builder().url(builder.build()).post(requestBody)
+
+        if (headers.isNotEmpty()) {
+            headers.forEach { requestBuilder.addHeader(it.key, it.value) }
+        }
+
+        val result = request<T>(requestBuilder.build())
+        return result
+    }.getOrElse {
+        Result.Error(it.message ?: "")
     }
 
 
@@ -71,10 +102,18 @@ object OkHttpUtils {
     suspend inline fun <reified T> post(
         url: String,
         params: Map<String, String> = emptyMap(),
-    ): Result<T> {
+        headers: Map<String, String> = emptyMap()
+    ): Result<T> = kotlin.runCatching {
         val requestBody = params.toJsonRequestBody()
-        val request = Request.Builder().url(url).post(requestBody).build()
-        return request<T>(request)
+
+        val requestBuilder = Request.Builder().url(url).post(requestBody)
+
+        if (headers.isNotEmpty()) {
+            headers.forEach { requestBuilder.addHeader(it.key, it.value) }
+        }
+        request<T>(requestBuilder.build())
+    }.getOrElse {
+        Result.Error(it.message ?: "")
     }
 
 
@@ -156,6 +195,11 @@ object OkHttpUtils {
 
     fun Map<String, String>.toJsonRequestBody(): RequestBody {
         val jsonStr = MoshiUtils.toJson(this)
+
+        if (jsonStr.isNullOrEmpty()) {
+            throw IllegalArgumentException("请求参数解析异常")
+        }
+
         return jsonStr.toRequestBody("application/json".toMediaType())
     }
 

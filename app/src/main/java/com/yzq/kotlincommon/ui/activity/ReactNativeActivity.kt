@@ -49,7 +49,6 @@ class ReactNativeActivity : BaseRnActivity() {
 
     override fun initWidget() {
 
-
         binding.run {
             initToolbar(includedToolbar.toolbar, "ReactNative")
             reactRootView.startReactApplication(reactInstanceManager, "RNProject0_73_1", null)

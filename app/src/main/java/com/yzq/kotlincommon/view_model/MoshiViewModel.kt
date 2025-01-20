@@ -35,8 +35,7 @@ class MoshiViewModel : BaseViewModel() {
             }
 
             val baseResp = BaseResp<List<User>>(ResponseCode.SUCCESS, userList, "ok")
-            jsonStr = MoshiUtils.toJson(baseResp)
-            Logger.i(jsonStr)
+            jsonStr = MoshiUtils.toJson(baseResp) ?: ""
         }
     }
 
