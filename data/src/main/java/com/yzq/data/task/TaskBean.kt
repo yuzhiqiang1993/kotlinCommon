@@ -1,6 +1,4 @@
-package com.yzq.common.data.task
-
-import com.drake.brv.item.ItemHover
+package com.yzq.data.task
 
 data class TaskBean(var name: String, var type: String, override var itemHover: Boolean = false) :
-    ItemHover
+    com.drake.brv.item.ItemHover

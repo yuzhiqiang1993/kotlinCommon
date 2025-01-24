@@ -7,7 +7,7 @@
 
         <variable
             name="login"
-            type="com.yzq.common.data.LoginBean" />
+            type="com.yzq.data.LoginBean" />
 
         <variable
             name="account"

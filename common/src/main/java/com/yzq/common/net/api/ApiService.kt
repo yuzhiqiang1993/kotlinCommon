@@ -1,11 +1,11 @@
 package com.yzq.common.net.api
 
 import com.yzq.common.api.BaseResp
-import com.yzq.common.data.gaode.Geocoder
-import com.yzq.common.data.github.GithubUserInfo
-import com.yzq.common.data.juhe.toutiao.TouTiao
-import com.yzq.common.data.moshi.LocalUser
 import com.yzq.common.net.constants.ApiConstants
+import com.yzq.data.gaode.Geocoder
+import com.yzq.data.github.GithubUserInfo
+import com.yzq.data.juhe.toutiao.TouTiao
+import com.yzq.data.moshi.LocalUser
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Response

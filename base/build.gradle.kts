@@ -79,6 +79,7 @@ dependencies {
     api(project(":dialog"))
     api(project(":permission"))
     api(project(":widget"))
+    api(project(":data"))
 
 
 }

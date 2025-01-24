@@ -1,4 +1,4 @@
-package com.yzq.common.data.bluetooth
+package com.yzq.data.bluetooth
 
 import android.bluetooth.BluetoothClass
 import java.util.Locale

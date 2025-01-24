@@ -4,12 +4,12 @@ import androidx.lifecycle.viewModelScope
 import com.yzq.base.utils.MoshiUtils
 import com.yzq.base.view_model.BaseViewModel
 import com.yzq.common.api.BaseResp
-import com.yzq.common.data.moshi.User
 import com.yzq.common.ext.dataConvert
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
 import com.yzq.common.net.constants.ResponseCode
 import com.yzq.coroutine.ext.launchSafety
+import com.yzq.data.moshi.User
 import com.yzq.logger.Logger
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

@@ -1,4 +1,4 @@
-package com.yzq.common.data.moshi
+package com.yzq.data.moshi
 
 data class User(
     var name: String = "",

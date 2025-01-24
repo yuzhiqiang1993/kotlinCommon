@@ -1,4 +1,4 @@
-package com.yzq.common.data.moshi
+package com.yzq.data.moshi
 
 /**
  * @description: 走网络请求的测试数据，启动 kotlin_spring_maven

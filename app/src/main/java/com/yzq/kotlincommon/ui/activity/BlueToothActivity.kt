@@ -17,8 +17,8 @@ import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.data.bluetooth.BlueToothItem
-import com.yzq.common.data.bluetooth.deviceDesc
+import com.yzq.data.bluetooth.BlueToothItem
+import com.yzq.data.bluetooth.deviceDesc
 import com.yzq.dialog.PromptDialog
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityBlueToothBinding

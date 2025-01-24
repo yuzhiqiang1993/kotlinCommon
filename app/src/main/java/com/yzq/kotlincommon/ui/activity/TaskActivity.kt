@@ -10,7 +10,7 @@ import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.binding.viewbind
 import com.yzq.common.constants.RoutePath
-import com.yzq.common.data.task.TaskBean
+import com.yzq.data.task.TaskBean
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityTaskBinding
 import com.yzq.kotlincommon.databinding.ItemTaskHoverBinding

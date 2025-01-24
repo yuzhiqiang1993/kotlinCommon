@@ -1,4 +1,4 @@
-package com.yzq.common.data.gaode
+package com.yzq.data.gaode
 
 data class Geocoder(
     val result: Result? = null,
