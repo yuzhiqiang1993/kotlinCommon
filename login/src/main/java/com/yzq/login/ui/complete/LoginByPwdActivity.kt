@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger.it
 import com.yzq.login.R
@@ -24,7 +24,7 @@ import com.yzq.login.view_model.LoginPwdViewModel
 @Route(path = RoutePath.Login.LOGIN_BY_PWD)
 class LoginByPwdActivity : BaseLoginActivity() {
 
-    private val binding: ActivityLoginByPwdBinding by viewbind(ActivityLoginByPwdBinding::inflate)
+    private val binding by viewBinding(ActivityLoginByPwdBinding::inflate)
 
     private val loginByPwdViewModel: LoginPwdViewModel by viewModels()
 

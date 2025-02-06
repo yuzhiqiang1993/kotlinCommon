@@ -10,6 +10,7 @@ android {
     namespace = "com.yzq.login"
 
     buildFeatures {
+        dataBinding = true
         viewBinding = true
     }
 }

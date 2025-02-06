@@ -5,7 +5,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.fragment.BaseFragment
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.flow.debounce
 import com.yzq.coroutine.flow.launchCollect
@@ -33,7 +33,7 @@ class SharedFlowFragment : BaseFragment(R.layout.fragment_shared_flow) {
 
     private val viewModel: SharedFlowViewModel by viewModels()
 
-    private val binding by viewbind(FragmentSharedFlowBinding::bind)
+    private val binding by viewBinding(FragmentSharedFlowBinding::bind)
 
 
     override fun initWidget() {

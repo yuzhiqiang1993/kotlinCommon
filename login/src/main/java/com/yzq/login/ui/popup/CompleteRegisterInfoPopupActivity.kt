@@ -3,7 +3,7 @@ package com.yzq.login.ui.popup
 import androidx.activity.viewModels
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.CompleteRegisterInfoViewModel
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivityCompleteRegisterInfoPopupBinding
 import com.yzq.login.manager.PageManager
@@ -18,7 +18,7 @@ import com.yzq.softinput.setWindowSoftInput
 @Route(path = RoutePath.Login.COMPLETE_REGISTER_INFO_POPUP)
 class CompleteRegisterInfoPopupActivity : BasePopupActivity() {
 
-    private val binding: ActivityCompleteRegisterInfoPopupBinding by viewbind(
+    private val binding by viewBinding(
         ActivityCompleteRegisterInfoPopupBinding::inflate
     )
 

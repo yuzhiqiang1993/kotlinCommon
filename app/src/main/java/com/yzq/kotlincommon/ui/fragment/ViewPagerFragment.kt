@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.ui.fragment
 
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yzq.base.ui.fragment.BaseFragment
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ViewPagerAdapter
 import com.yzq.kotlincommon.databinding.FragmentViewPagerBinding
@@ -16,7 +16,7 @@ import com.yzq.kotlincommon.databinding.FragmentViewPagerBinding
 
 class ViewPagerFragment : BaseFragment(R.layout.fragment_view_pager) {
 
-    private val binding by viewbind(FragmentViewPagerBinding::bind)
+    private val binding by viewBinding(FragmentViewPagerBinding::bind)
 
     private val viewPagerAdapter =
         ViewPagerAdapter(

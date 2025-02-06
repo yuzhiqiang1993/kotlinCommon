@@ -19,7 +19,7 @@ import com.yzq.application.AppStorage
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.ext.withIO
@@ -42,7 +42,7 @@ class StorageActivity : BaseActivity() {
 
     private var takePhotoActivityResult: ActivityResultLauncher<Void?>? = null
 
-    private val binding by viewbind(ActivityStorageBinding::inflate)
+    private val binding by viewBinding(ActivityStorageBinding::inflate)
 
 
     init {

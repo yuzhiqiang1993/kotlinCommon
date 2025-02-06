@@ -20,7 +20,7 @@ import com.yzq.application.AppContext
 import com.yzq.application.AppManager
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.ext.postDelayed
 import com.yzq.data.NaviItem
@@ -44,7 +44,7 @@ import com.yzq.logger.view.log_view.LogViewActivity
 
 @Route(path = RoutePath.Main.MAIN)
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
-    private val binding by viewbind(ActivityMainBinding::inflate)
+    private val binding by viewBinding(ActivityMainBinding::inflate)
     private var items = arrayListOf<NaviItem>()
     private var lastBackTimeMillis: Long = 0
 

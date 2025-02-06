@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.ui.fragment
 
 import com.hjq.toast.Toaster
 import com.yzq.base.ui.fragment.BaseFragment
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentPagerContentBinding
 import com.yzq.kotlincommon.widget.banner.BannerAdapter
@@ -15,10 +15,10 @@ import com.yzq.logger.Logger
  * @time : 14:38
  */
 
-class PagerContentFragment(var content: String) :
+class PagerContentFragment(val content: String) :
     BaseFragment(R.layout.fragment_pager_content) {
 
-    private val binding by viewbind(FragmentPagerContentBinding::bind)
+    private val binding by viewBinding(FragmentPagerContentBinding::bind)
 
     private val bannerImgs = arrayListOf(
         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575192984139&di=bb0fcbcf625b43c8f0ed625dee7a9a41&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg",
@@ -41,4 +41,6 @@ class PagerContentFragment(var content: String) :
             tvContent.text = content
         }
     }
+
+
 }

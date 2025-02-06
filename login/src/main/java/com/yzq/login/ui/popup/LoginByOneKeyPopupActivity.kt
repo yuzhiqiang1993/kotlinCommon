@@ -8,7 +8,7 @@ import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
 import com.yumc.android.userauth.login.view_model.OneKeyLoginViewModel
 import com.yzq.base.extend.navFinish
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginByOneKeyPopupBinding
@@ -26,7 +26,7 @@ import com.yzq.login.ui.dialog.AgreementDialog
 class LoginByOneKeyPopupActivity : BasePopupActivity() {
 
 
-    private val binding: ActivityLoginByOneKeyPopupBinding by viewbind(
+    private val binding by viewBinding(
         ActivityLoginByOneKeyPopupBinding::inflate
     )
 

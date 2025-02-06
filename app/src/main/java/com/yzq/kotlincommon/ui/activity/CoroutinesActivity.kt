@@ -10,7 +10,7 @@ import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.ext.withDefault
@@ -32,7 +32,7 @@ class CoroutinesActivity : BaseActivity() {
 
     private val vm: CoroutineViewModel by viewModels()
 
-    private val binding by viewbind(ActivityCoroutinesBinding::inflate)
+    private val binding by viewBinding(ActivityCoroutinesBinding::inflate)
 
     override fun initWidget() {
         super.initWidget()

@@ -5,14 +5,14 @@ import com.yzq.aliemas.databinding.ActivityCrashBinding
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 
 
 @Route(path = RoutePath.Emas.CRASH)
 class CrashActivity : BaseActivity() {
 
-    private val binding by viewbind(ActivityCrashBinding::inflate)
+    private val binding by viewBinding(ActivityCrashBinding::inflate)
 
 
     override fun initWidget() {

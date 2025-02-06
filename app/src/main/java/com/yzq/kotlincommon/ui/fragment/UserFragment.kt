@@ -4,7 +4,7 @@ import androidx.activity.OnBackPressedCallback
 import com.hjq.permissions.Permission
 import com.hjq.toast.Toaster
 import com.yzq.base.ui.fragment.BaseFragment
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.dialog.PromptDialog
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentUserBinding
@@ -15,8 +15,8 @@ import com.yzq.permission.getPermissions
 
 class UserFragment : BaseFragment(R.layout.fragment_user) {
 
-    private val binding by viewbind(FragmentUserBinding::bind)
 
+    private val binding by viewBinding(FragmentUserBinding::bind)
 
     private val backCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {

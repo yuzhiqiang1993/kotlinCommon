@@ -10,7 +10,7 @@ import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.base.ui.img_pre.ImgPreviewActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.net.RetrofitFactory
 import com.yzq.common.net.api.ApiService
@@ -37,7 +37,7 @@ class ImageListActivity : BaseActivity() {
     private var page = 1
     private val pageSize = 30
 
-    private val binding by viewbind(ActivityImageListBinding::inflate)
+    private val binding by viewBinding(ActivityImageListBinding::inflate)
 
     override fun initWidget() {
 

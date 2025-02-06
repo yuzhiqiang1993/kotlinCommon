@@ -7,7 +7,7 @@ import com.facebook.react.shell.MainReactPackage
 import com.therouter.router.Route
 import com.yzq.application.AppManager
 import com.yzq.base.extend.initToolbar
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.BuildConfig
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityReactNativeBinding
@@ -24,7 +24,7 @@ import com.yzq.reactnative.BaseRnActivity
 class ReactNativeActivity : BaseRnActivity() {
 
 
-    private val binding by viewbind(ActivityReactNativeBinding::inflate)
+    private val binding by viewBinding(ActivityReactNativeBinding::inflate)
     override fun getReactRootView() = binding.reactRootView
 
     override fun createReactInstanceManager(): ReactInstanceManager {

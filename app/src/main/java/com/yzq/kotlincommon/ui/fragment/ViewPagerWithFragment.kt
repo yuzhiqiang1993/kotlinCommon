@@ -8,13 +8,13 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.yzq.base.ui.fragment.BaseFragment
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentViewPagerWithBinding
 
 class ViewPagerWithFragment :
     BaseFragment(R.layout.fragment_view_pager_with) {
-    private val binding by viewbind(FragmentViewPagerWithBinding::bind)
+    private val binding by viewBinding(FragmentViewPagerWithBinding::bind)
 
     private val tabs = arrayListOf<TabLayout.Tab>()
 

@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.activity.viewModels
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.SetNewPwdViewModel
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivitySetNewPwdBinding
 import com.yzq.login.ui.BaseLoginActivity
@@ -21,7 +21,7 @@ import com.yzq.login.ui.BaseLoginActivity
 @Route(path = RoutePath.Login.SET_NEW_PWD)
 class SetNewPwdActivity : BaseLoginActivity() {
 
-    private val binding: ActivitySetNewPwdBinding by viewbind(ActivitySetNewPwdBinding::inflate)
+    private val binding by viewBinding(ActivitySetNewPwdBinding::inflate)
 
     private val viewModel: SetNewPwdViewModel by viewModels()
 

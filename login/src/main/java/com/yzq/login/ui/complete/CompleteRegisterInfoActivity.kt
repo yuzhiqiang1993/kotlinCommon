@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.activity.viewModels
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.CompleteRegisterInfoViewModel
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivityCompleteRegisterInfoBinding
 import com.yzq.login.ui.BaseLoginActivity
@@ -19,7 +19,7 @@ import com.yzq.login.ui.BaseLoginActivity
 @Route(path = RoutePath.Login.COMPLETE_REGISTER_INFO)
 class CompleteRegisterInfoActivity : BaseLoginActivity() {
 
-    private val binding: ActivityCompleteRegisterInfoBinding by viewbind(
+    private val binding by viewBinding(
         ActivityCompleteRegisterInfoBinding::inflate
     )
     private val viewModel: CompleteRegisterInfoViewModel by viewModels()

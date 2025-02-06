@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.ui.activity
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.data.TaskResult
 import com.yzq.coroutine.data.TaskStatus
@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit
 @Route(path = RoutePath.Main.THREAD_POOL)
 class ThreadPoolActivity : BaseActivity() {
 
-    private val binding by viewbind(ActivityThreadPoolBinding::inflate)
+    private val binding by viewBinding(ActivityThreadPoolBinding::inflate)
 
 
     private val taskList = listOf(

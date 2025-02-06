@@ -7,7 +7,7 @@ import com.yzq.application.AppStorage
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.writeFileFromIS
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.common.net.FileRetrofitFactory
 import com.yzq.common.net.api.ApiService
@@ -26,7 +26,7 @@ import me.jessyan.progressmanager.body.ProgressInfo
 @Route(path = RoutePath.Main.DOWNLOAD)
 class DownloadActivity : BaseActivity() {
 
-    private val binding by viewbind(ActivityDownloadBinding::inflate)
+    private val binding by viewBinding(ActivityDownloadBinding::inflate)
 
     private val progressDialog by lazy { ProgressDialog(this) }
 

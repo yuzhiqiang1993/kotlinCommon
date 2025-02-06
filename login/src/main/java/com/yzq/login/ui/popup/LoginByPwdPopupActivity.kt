@@ -5,7 +5,7 @@ import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
 import com.yzq.base.extend.navFinish
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginByPwdPopupBinding
@@ -23,7 +23,9 @@ import com.yzq.softinput.setWindowSoftInput
 @Route(path = RoutePath.Login.LOGIN_BY_PWD_POPUP)
 class LoginByPwdPopupActivity : BasePopupActivity() {
 
-    private val binding: ActivityLoginByPwdPopupBinding by viewbind(ActivityLoginByPwdPopupBinding::inflate)
+    private val binding: ActivityLoginByPwdPopupBinding by viewBinding(
+        ActivityLoginByPwdPopupBinding::inflate
+    )
 
     private val loginByPwdViewModel: LoginPwdViewModel by viewModels()
 

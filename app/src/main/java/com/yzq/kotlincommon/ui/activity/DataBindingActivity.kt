@@ -6,7 +6,7 @@ import com.hjq.toast.Toaster
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.databind
+import com.yzq.binding.dataBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDataBindingBinding
@@ -24,7 +24,7 @@ import com.yzq.logger.Logger
 @Route(path = RoutePath.Main.DATA_BINDING)
 class DataBindingActivity : BaseActivity() {
 
-    private val binding: ActivityDataBindingBinding by databind(R.layout.activity_data_binding)
+    private val binding: ActivityDataBindingBinding by dataBinding(R.layout.activity_data_binding)
 
     private val vm: DataBindingViewModel by viewModels()
 

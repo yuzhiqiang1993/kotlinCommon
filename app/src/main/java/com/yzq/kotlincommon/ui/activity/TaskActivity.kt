@@ -8,7 +8,7 @@ import com.hjq.toast.Toaster
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.data.task.TaskBean
 import com.yzq.kotlincommon.R
@@ -27,7 +27,7 @@ import com.yzq.logger.Logger
 @Route(path = RoutePath.Main.TASK)
 class TaskActivity : BaseActivity() {
 
-    private val binding by viewbind(ActivityTaskBinding::inflate)
+    private val binding by viewBinding(ActivityTaskBinding::inflate)
     private var tasks = arrayListOf<TaskBean>()
 
     override fun initWidget() {

@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.activity.viewModels
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.RetrievePwdViewModel
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivityRetrievePwdBinding
 import com.yzq.login.ui.BaseLoginActivity
@@ -19,7 +19,7 @@ import com.yzq.login.ui.BaseLoginActivity
  */
 @Route(path = RoutePath.Login.RETIREVE_PWD)
 class RetrievePwdActivity : BaseLoginActivity() {
-    private val binding: ActivityRetrievePwdBinding by viewbind(ActivityRetrievePwdBinding::inflate)
+    private val binding by viewBinding(ActivityRetrievePwdBinding::inflate)
 
     private val retrievePwdViewModel: RetrievePwdViewModel by viewModels()
 

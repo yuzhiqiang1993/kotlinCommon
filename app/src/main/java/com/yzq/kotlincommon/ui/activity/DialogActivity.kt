@@ -7,7 +7,7 @@ import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.dialog.LottieDialog
@@ -30,7 +30,7 @@ import kotlinx.coroutines.delay
 class DialogActivity : BaseActivity() {
 
 
-    private val binding by viewbind(ActivityDialogBinding::inflate)
+    private val binding by viewBinding(ActivityDialogBinding::inflate)
 
     override fun initWidget() {
 

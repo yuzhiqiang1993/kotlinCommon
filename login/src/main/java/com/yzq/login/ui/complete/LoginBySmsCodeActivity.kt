@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger.it
 import com.yzq.login.R
@@ -21,7 +21,7 @@ import com.yzq.login.view_model.LoginSmsCodeViewModel
  */
 @Route(path = RoutePath.Login.LOGIN_BY_SMS)
 class LoginBySmsCodeActivity : BaseLoginActivity() {
-    private val binding: ActivityLoginBySmsCodeBinding by viewbind(ActivityLoginBySmsCodeBinding::inflate)
+    private val binding by viewBinding(ActivityLoginBySmsCodeBinding::inflate)
 
     private val veiwModel: LoginSmsCodeViewModel by viewModels()
 

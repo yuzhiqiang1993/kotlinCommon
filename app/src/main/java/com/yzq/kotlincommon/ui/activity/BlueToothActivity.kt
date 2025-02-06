@@ -15,7 +15,7 @@ import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.data.bluetooth.BlueToothItem
 import com.yzq.data.bluetooth.deviceDesc
@@ -31,7 +31,7 @@ import com.yzq.permission.getPermissions
 @Route(path = RoutePath.Main.BLUETOOTH)
 class BlueToothActivity : BaseActivity(), BluetoothScanner.ScanerCallback {
 
-    private val binding by viewbind(ActivityBlueToothBinding::inflate)
+    private val binding by viewBinding(ActivityBlueToothBinding::inflate)
 
     //已配对列表
     private val pairDeviceList = mutableSetOf<BlueToothItem>()

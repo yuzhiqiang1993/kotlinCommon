@@ -6,7 +6,7 @@ import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
 import com.yzq.base.extend.navFinish
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger.it
 import com.yzq.login.R
@@ -26,7 +26,7 @@ import com.yzq.softinput.setWindowSoftInput
 @Route(path = RoutePath.Login.LOGIN_BY_SMS_POPUP)
 class LoginBySmsCodePopupActivity : BasePopupActivity() {
 
-    private val binding: ActivityLoginBySmsCodePopupBinding by viewbind(
+    private val binding by viewBinding(
         ActivityLoginBySmsCodePopupBinding::inflate
     )
     private val veiwModel: LoginSmsCodeViewModel by viewModels()

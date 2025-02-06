@@ -80,13 +80,22 @@ class App : Application(), AppStateListener {
             Trace.beginSection("BaseApp_AppInit")
 
 
-            AppStartTaskDispatcher.create().setShowLog(true).addAppStartTask(InitCoilTask())
-                .addAppStartTask(InitThreeTenTask()).addAppStartTask(InitCrashReportTask())
-                .addAppStartTask(InitMMKVTask()).addAppStartTask(InitStateLayoutConfigTask())
-                .addAppStartTask(InitSmartRefreshTask()).addAppStartTask(InitAPMTask())
-                .addAppStartTask(InitTlogTask()).addAppStartTask(InitAliPushTask())
-                .addAppStartTask(InitLocationTask()).addAppStartTask(InitToasterTask())
-                .addAppStartTask(InitFileOperatorTask()).addAppStartTask(InitAsrTask()).start()
+            AppStartTaskDispatcher
+                .create()
+                .setShowLog(true)
+                .addAppStartTask(InitCoilTask())
+                .addAppStartTask(InitThreeTenTask())
+                .addAppStartTask(InitCrashReportTask())
+                .addAppStartTask(InitMMKVTask())
+                .addAppStartTask(InitStateLayoutConfigTask())
+                .addAppStartTask(InitSmartRefreshTask())
+                .addAppStartTask(InitAPMTask())
+                .addAppStartTask(InitTlogTask())
+                .addAppStartTask(InitAliPushTask())
+                .addAppStartTask(InitLocationTask())
+                .addAppStartTask(InitToasterTask())
+                .addAppStartTask(InitFileOperatorTask())
+                .addAppStartTask(InitAsrTask()).start()
                 .await()
 
 

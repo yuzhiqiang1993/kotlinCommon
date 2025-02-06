@@ -9,7 +9,7 @@ import com.drake.brv.utils.setup
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDropDownMenuBinding
@@ -27,7 +27,7 @@ import com.yzq.kotlincommon.databinding.ItemDropDownMenuLayoutBinding
 @Route(path = RoutePath.Main.DROP_DOWN_MENU)
 class DropDownMenuActivity : BaseActivity() {
 
-    private val binding by viewbind(ActivityDropDownMenuBinding::inflate)
+    private val binding by viewBinding(ActivityDropDownMenuBinding::inflate)
 
     private lateinit var tvFilter: AppCompatTextView
 
@@ -36,6 +36,7 @@ class DropDownMenuActivity : BaseActivity() {
 
     private lateinit var foodTypeRecy: RecyclerView
     private lateinit var filtersRecy: RecyclerView
+
 
     override fun initWidget() {
 

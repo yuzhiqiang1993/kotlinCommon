@@ -9,7 +9,7 @@ import com.yzq.base.extend.navClear
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.databind
+import com.yzq.binding.dataBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.interval.interval
 import com.yzq.kotlincommon.R
@@ -30,7 +30,7 @@ import com.yzq.storage.mmkv.MMKVUser
 @Route(path = RoutePath.Main.LOGIN)
 class LoginActivity : BaseActivity() {
 
-    private val binding by databind<ActivityLoginBinding>(R.layout.activity_login)
+    private val binding by dataBinding<ActivityLoginBinding>(R.layout.activity_login)
 
     private val vm: LoginViewModel by viewModels()
 

@@ -19,13 +19,13 @@ import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.logger.Logger
 
 @Route(path = com.yzq.common.constants.RoutePath.GaoDe.GAO_DE)
 class GaoDeActivity : BaseActivity() {
 
-    private val binding by viewbind(ActivityGaoDeBinding::inflate)
+    private val binding by viewBinding(ActivityGaoDeBinding::inflate)
     private val signLocationViewModel: SignLocationViewModel by viewModels()
 
 

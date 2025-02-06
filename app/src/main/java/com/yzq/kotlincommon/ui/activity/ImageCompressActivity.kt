@@ -24,7 +24,7 @@ import com.yzq.base.R
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.base.ui.img_pre.ImgPreviewActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
 import com.yzq.kotlincommon.view_model.CompressImgViewModel
@@ -49,7 +49,7 @@ class ImageCompressActivity : BaseActivity() {
     private var takePhotoResult: ActivityResultLauncher<Uri>? = null
     private var takePhotoUri: Uri? = null
 
-    private val binding by viewbind(ActivityImageCompressBinding::inflate)
+    private val binding by viewBinding(ActivityImageCompressBinding::inflate)
     private val vm: CompressImgViewModel by viewModels()
 
     private lateinit var compressImgViewModel: CompressImgViewModel

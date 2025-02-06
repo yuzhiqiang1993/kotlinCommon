@@ -6,7 +6,7 @@ import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityBsDiffBinding
 import com.yzq.kotlincommon.view_model.BsDiffViewModel
@@ -22,7 +22,7 @@ import com.yzq.logger.Logger
 @Route(path = RoutePath.Main.BS_DIFF)
 class BsDiffActivity : BaseActivity() {
 
-    private val binding by viewbind(ActivityBsDiffBinding::inflate)
+    private val binding by viewBinding(ActivityBsDiffBinding::inflate)
     private val vm: BsDiffViewModel by viewModels()
     override fun initWidget() {
 

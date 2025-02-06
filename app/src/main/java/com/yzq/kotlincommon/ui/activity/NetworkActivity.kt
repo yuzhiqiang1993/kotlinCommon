@@ -4,7 +4,7 @@ import android.Manifest
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityNetworkBinding
 import com.yzq.network_status.NetworkStatus
@@ -15,7 +15,7 @@ import com.yzq.permission.getPermissions
 @Route(path = RoutePath.Main.NETWORK)
 class NetworkActivity : BaseActivity(), OnNetworkStatusChangedListener {
 
-    private val binding by viewbind(ActivityNetworkBinding::inflate)
+    private val binding by viewBinding(ActivityNetworkBinding::inflate)
 
     override fun initListener() {
         NetworkStatus.registerNetworkStatusChangedListener(this, this)

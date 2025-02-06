@@ -17,10 +17,8 @@ import com.yzq.dialog.LottieDialog
  *
  */
 
-abstract class BaseActivity : AppCompatActivity {
-
-    constructor() : super()
-    constructor(@LayoutRes contentLayoutId: Int) : super(contentLayoutId)
+abstract class BaseActivity(@LayoutRes private val contentLayoutId: Int = 0) :
+    AppCompatActivity(contentLayoutId) {
 
     protected val TAG = "${this.javaClass.simpleName}-${this.hashCode()}"
 
@@ -33,6 +31,11 @@ abstract class BaseActivity : AppCompatActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (contentLayoutId == 0) {
+            //contentLayoutId没有给值且没有其他设置contentView的方式时，需要自行设置contentView
+            bindContentView()
+        }
 
         //防止首次安装点击home键重新实例化
         if (!this.isTaskRoot) {
@@ -66,6 +69,9 @@ abstract class BaseActivity : AppCompatActivity {
 
         })
     }
+
+
+    protected open fun bindContentView() {}
 
     /**
      * 处理返回键

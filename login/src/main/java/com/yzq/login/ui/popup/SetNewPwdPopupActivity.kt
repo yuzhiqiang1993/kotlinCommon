@@ -7,7 +7,7 @@ import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.SetNewPwdViewModel
 import com.yzq.base.extend.navFinish
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivitySetNewPwdPopupBinding
 import com.yzq.login.manager.PageManager
@@ -22,7 +22,7 @@ import com.yzq.softinput.setWindowSoftInput
 @Route(path = RoutePath.Login.SET_NEW_PWD_POPUP)
 class SetNewPwdPopupActivity : BasePopupActivity() {
 
-    private val binding: ActivitySetNewPwdPopupBinding by viewbind(ActivitySetNewPwdPopupBinding::inflate)
+    private val binding by viewBinding(ActivitySetNewPwdPopupBinding::inflate)
 
     private val viewModel: SetNewPwdViewModel by viewModels()
 

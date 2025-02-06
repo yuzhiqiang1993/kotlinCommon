@@ -9,7 +9,7 @@ import com.yzq.base.extend.copyText
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityZxingBinding
 import com.yzq.permission.getPermissions
@@ -29,7 +29,7 @@ import com.yzq.zxinglibrary.common.Constant
 class ZxingActivity : BaseActivity() {
     private lateinit var qrCodeActivityResult: ActivityResultLauncher<Intent>
 
-    private val binding by viewbind(ActivityZxingBinding::inflate)
+    private val binding by viewBinding(ActivityZxingBinding::inflate)
 
     override fun initWidget() {
 

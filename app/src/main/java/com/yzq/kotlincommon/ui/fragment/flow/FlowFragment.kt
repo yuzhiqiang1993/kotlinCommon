@@ -6,7 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.fragment.BaseFragment
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.flow.launchCollect
 import com.yzq.kotlincommon.R
@@ -35,7 +35,7 @@ class FlowFragment : BaseFragment(R.layout.fragment_flow) {
 
     private val viewModel: FlowViewModel by viewModels()
 
-    private val binding by viewbind(FragmentFlowBinding::bind)
+    private val binding by viewBinding(FragmentFlowBinding::bind)
 
 
     override fun initVariable() {

@@ -5,14 +5,14 @@ import android.widget.ImageView
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import com.therouter.router.Route
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.player.databinding.ActivityVideoPlayerBinding
 
 @Route(path = RoutePath.Player.PLAYER)
 class VideoPlayerActivity : BaseActivity() {
 
-    private val binding by viewbind(ActivityVideoPlayerBinding::inflate)
+    private val binding by viewBinding(ActivityVideoPlayerBinding::inflate)
 
     var orientationUtils: OrientationUtils? = null
 

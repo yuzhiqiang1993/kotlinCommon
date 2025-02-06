@@ -13,7 +13,7 @@ import com.yzq.application.AppStateListener
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityServiceBinding
 import com.yzq.kotlincommon.service.BackendService
@@ -32,7 +32,7 @@ import kotlinx.coroutines.flow.filterNotNull
 
 @Route(path = RoutePath.Main.SERVICE)
 class ServiceActivity : BaseActivity(), AppStateListener {
-    private val binding by viewbind(ActivityServiceBinding::inflate)
+    private val binding by viewBinding(ActivityServiceBinding::inflate)
 
 
     /**

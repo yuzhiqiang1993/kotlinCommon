@@ -10,7 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.yzq.base.databinding.ActivityImgPreviewBinding
 import com.yzq.base.extend.statusBarColorRes
 import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 
 /**
  * @description: 图片查看界面（看大图）
@@ -22,7 +22,7 @@ import com.yzq.binding.viewbind
 
 class ImgPreviewActivity : BaseActivity() {
 
-    private val binding by viewbind(ActivityImgPreviewBinding::inflate)
+    private val binding by viewBinding(ActivityImgPreviewBinding::inflate)
     private var imagePaths: List<String> = emptyList<String>()
     private var initialPosition: Int = 0
 

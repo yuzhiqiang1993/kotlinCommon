@@ -4,7 +4,7 @@ import androidx.fragment.app.viewModels
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.ui.fragment.BaseFragment
 import com.yzq.base.utils.MoshiUtils
-import com.yzq.binding.viewbind
+import com.yzq.binding.viewBinding
 import com.yzq.coroutine.flow.launchCollect
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.filter
 
 class TaskFragment : BaseFragment(R.layout.task_fragment) {
 
-    private val binding by viewbind(TaskFragmentBinding::bind)
+    private val binding by viewBinding(TaskFragmentBinding::bind)
     private val vm: CoroutineViewModel by viewModels()
 
     companion object {
