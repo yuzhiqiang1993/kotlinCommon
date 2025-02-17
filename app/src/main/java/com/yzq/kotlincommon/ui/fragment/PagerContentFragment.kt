@@ -15,28 +15,24 @@ import com.yzq.logger.Logger
  * @time : 14:38
  */
 
-class PagerContentFragment(val content: String) :
-    BaseFragment(R.layout.fragment_pager_content) {
+class PagerContentFragment(val content: String) : BaseFragment(R.layout.fragment_pager_content) {
 
     private val binding by viewBinding(FragmentPagerContentBinding::bind)
 
     private val bannerImgs = arrayListOf(
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575192984139&di=bb0fcbcf625b43c8f0ed625dee7a9a41&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575192984139&di=445ac9db2dac3175e14b92d75013c8d0&imgtype=0&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F908fa0ec08fa513db777cf78376d55fbb3fbd9b3.jpg",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575192984139&di=7f7e63bb210c80702b7aa10031bf392d&imgtype=0&src=http%3A%2F%2Ff.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F0e2442a7d933c8956c0e8eeadb1373f08202002a.jpg"
+        "http://gips2.baidu.com/it/u=195724436,3554684702&fm=3028&app=3028&f=JPEG&fmt=auto?w=1280&h=960",
+        "http://gips0.baidu.com/it/u=3602773692,1512483864&fm=3028&app=3028&f=JPEG&fmt=auto?w=960&h=1280",
+        "http://gips3.baidu.com/it/u=3419425165,837936650&fm=3028&app=3028&f=JPEG&fmt=auto?w=1024&h=1024"
     )
 
     override fun initWidget() {
         super.initWidget()
         binding.run {
-            bannerViewPager
-                .setAutoPlay(true)
-                .setAdapter(BannerAdapter())
+            bannerViewPager.setAutoPlay(true).setAdapter(BannerAdapter())
                 .setOnPageClickListener { clickedView, position ->
                     Logger.i("setOnPageClickListener:$position")
                     Toaster.showShort("click:$position")
-                }
-                .create(bannerImgs)
+                }.create(bannerImgs)
 
             tvContent.text = content
         }
