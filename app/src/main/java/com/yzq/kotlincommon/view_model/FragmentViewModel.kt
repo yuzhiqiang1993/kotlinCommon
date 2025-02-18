@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.view_model
 
-import com.yzq.base.ui.fragment.BaseFragment
-import com.yzq.base.view_model.BaseViewModel
+import com.yzq.baseui.BaseFragment
+import com.yzq.baseui.BaseViewModel
 import com.yzq.kotlincommon.ui.fragment.TaskFragment
 import com.yzq.kotlincommon.ui.fragment.UserFragment
 

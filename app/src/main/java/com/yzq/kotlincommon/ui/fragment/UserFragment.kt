@@ -3,7 +3,7 @@ package com.yzq.kotlincommon.ui.fragment
 import androidx.activity.OnBackPressedCallback
 import com.hjq.permissions.Permission
 import com.hjq.toast.Toaster
-import com.yzq.base.ui.fragment.BaseFragment
+import com.yzq.baseui.BaseFragment
 import com.yzq.binding.viewBinding
 import com.yzq.dialog.PromptDialog
 import com.yzq.kotlincommon.R

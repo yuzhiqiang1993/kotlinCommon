@@ -2,10 +2,10 @@ package com.yzq.kotlincommon.task.mainthread
 
 import androidx.appcompat.widget.AppCompatTextView
 import com.drake.statelayout.StateConfig
-import com.yzq.base.startup.base.MainThreadTask
-import com.yzq.common.api.ApiResult
+import com.yzq.appstartup.MainThreadTask
 import com.yzq.kotlincommon.R
 import com.yzq.logger.Logger
+import com.yzq.net.core.ApiResult
 
 /**
  * @description 初始化状态布局

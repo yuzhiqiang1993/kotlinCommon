@@ -1,16 +1,16 @@
 package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.viewModelScope
-import com.yzq.base.utils.MoshiUtils
-import com.yzq.base.view_model.BaseViewModel
-import com.yzq.common.api.BaseResp
-import com.yzq.common.ext.dataConvert
-import com.yzq.common.net.RetrofitFactory
-import com.yzq.common.net.api.ApiService
-import com.yzq.common.net.constants.ResponseCode
+import com.yzq.baseui.BaseViewModel
 import com.yzq.coroutine.ext.launchSafety
+import com.yzq.data.base.BaseResp
 import com.yzq.data.moshi.User
+import com.yzq.kotlincommon.api.ApiService
 import com.yzq.logger.Logger
+import com.yzq.net.RetrofitFactory
+import com.yzq.net.constants.ResponseCode
+import com.yzq.net.ext.dataConvert
+import com.yzq.util.MoshiUtils
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
@@ -45,7 +45,7 @@ class MoshiViewModel : BaseViewModel() {
             if (jsonStr.isNotEmpty()) {
                 val genericType = MoshiUtils.getGenericType<BaseResp<List<User>>>()
                 Logger.i("genericType==========:$genericType")
-                val userList = MoshiUtils.fromJson<BaseResp<List<User>>>(jsonStr).dataConvert()
+                val userList = MoshiUtils.fromJson<BaseResp<List<User>>>(jsonStr)?.dataConvert()
                 userList?.forEach {
                     Logger.i(MoshiUtils.toJson(it, "  ") ?: "")
                 }

@@ -24,6 +24,7 @@ dependencies {
 
     ksp(libs.therouter.apt)
 
-    implementation(project(":common"))
+    implementation(project(":base-ui"))
+    implementation(project(":router"))
 
 }

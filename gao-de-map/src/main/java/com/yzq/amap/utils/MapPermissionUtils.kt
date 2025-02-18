@@ -7,7 +7,7 @@ import android.location.LocationManager
 import android.provider.Settings
 import com.hjq.permissions.Permission
 import com.yzq.application.AppContext
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.dialog.PromptDialog
 import com.yzq.permission.getPermissions
 

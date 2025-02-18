@@ -142,7 +142,6 @@ gradle.addBuildListener(object : BuildAdapter() {
 
 /*用来声明当前工程都包含哪些子工程*/
 include(":app")
-include(":common")
 include(":gao-de-map")
 include(":base")
 include(":img")
@@ -152,11 +151,14 @@ include(":permission")
 include(":aliemas")
 include(":baidu")
 include(":storage")
-
 include(":react-native")
 include(":login")
 include(":soft-input")
 include(":player")
 include(":resource")
 include(":data")
-
+include(":base-ui")
+include(":net")
+include(":util")
+include(":router")
+include(":appstartup")

@@ -8,19 +8,19 @@ import com.drake.brv.utils.staggered
 import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.ui.activity.BaseActivity
 import com.yzq.base.ui.img_pre.ImgPreviewActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
-import com.yzq.common.net.RetrofitFactory
-import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.ext.lifeScope
 import com.yzq.data.juhe.toutiao.TouTiao
 import com.yzq.kotlincommon.R
+import com.yzq.kotlincommon.api.ApiService
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding
 import com.yzq.kotlincommon.databinding.ItemImgListBinding
 import com.yzq.logger.Logger
+import com.yzq.net.RetrofitFactory
 import com.yzq.network_status.NetworkStatus
+import com.yzq.router.RoutePath
 import kotlin.random.Random
 
 /**

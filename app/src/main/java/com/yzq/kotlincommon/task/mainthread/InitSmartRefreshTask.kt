@@ -4,7 +4,7 @@ import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.yzq.application.AppContext
-import com.yzq.base.startup.base.MainThreadTask
+import com.yzq.appstartup.MainThreadTask
 
 /**
  * @description 下拉刷新，加载更多

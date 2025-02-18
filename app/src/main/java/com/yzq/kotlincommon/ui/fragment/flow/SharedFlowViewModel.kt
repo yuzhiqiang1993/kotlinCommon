@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.ui.fragment.flow
 
 import androidx.lifecycle.viewModelScope
-import com.yzq.base.view_model.BaseViewModel
+import com.yzq.baseui.BaseViewModel
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.logger.Logger
 import kotlinx.coroutines.delay

@@ -4,10 +4,10 @@ import android.view.View
 import android.widget.ImageView
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import com.therouter.router.Route
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.player.databinding.ActivityVideoPlayerBinding
+import com.yzq.router.RoutePath
 
 @Route(path = RoutePath.Player.PLAYER)
 class VideoPlayerActivity : BaseActivity() {

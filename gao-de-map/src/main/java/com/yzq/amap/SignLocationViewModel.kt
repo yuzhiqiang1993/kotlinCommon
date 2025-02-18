@@ -1,8 +1,8 @@
 package com.yzq.amap
 
 import androidx.lifecycle.MutableLiveData
-import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
+import com.yzq.base.view_model.UiStateViewModel
 import com.yzq.location_manager.LocationManager
 import com.yzq.location_protocol.callback.LocationListener
 import com.yzq.location_protocol.data.Location
@@ -15,7 +15,7 @@ import com.yzq.location_protocol.data.Location
  *
  */
 
-class SignLocationViewModel : BaseViewModel() {
+class SignLocationViewModel : UiStateViewModel() {
 
 
     val locationLiveData = MutableLiveData<Location>()
@@ -33,7 +33,6 @@ class SignLocationViewModel : BaseViewModel() {
 
             override fun onFailed(errorCode: Int, errorInfo: String, cacheLocation: Location?) {
                 _uiStateFlow.value = UIState.DismissLoadingDialog
-
             }
         })
     }

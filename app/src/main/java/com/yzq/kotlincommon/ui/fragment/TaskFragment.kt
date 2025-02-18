@@ -2,14 +2,14 @@ package com.yzq.kotlincommon.ui.fragment
 
 import androidx.fragment.app.viewModels
 import com.yzq.base.extend.observeUIState
-import com.yzq.base.ui.fragment.BaseFragment
-import com.yzq.base.utils.MoshiUtils
+import com.yzq.baseui.BaseFragment
 import com.yzq.binding.viewBinding
 import com.yzq.coroutine.flow.launchCollect
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel
 import com.yzq.logger.Logger
+import com.yzq.util.MoshiUtils
 import kotlinx.coroutines.flow.filter
 
 class TaskFragment : BaseFragment(R.layout.task_fragment) {

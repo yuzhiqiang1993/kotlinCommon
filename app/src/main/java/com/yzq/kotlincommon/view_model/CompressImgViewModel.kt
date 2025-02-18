@@ -10,11 +10,11 @@ import com.yzq.application.AppManager
 import com.yzq.application.AppStorage
 import com.yzq.application.getPackageName
 import com.yzq.base.extend.save
-import com.yzq.base.view_model.BaseViewModel
-import com.yzq.common.net.RetrofitFactory
-import com.yzq.common.net.api.ApiService
+import com.yzq.baseui.BaseViewModel
 import com.yzq.coroutine.ext.launchSafety
+import com.yzq.kotlincommon.api.ApiService
 import com.yzq.logger.Logger
+import com.yzq.net.RetrofitFactory
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody

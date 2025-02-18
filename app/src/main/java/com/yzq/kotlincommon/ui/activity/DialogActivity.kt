@@ -6,10 +6,10 @@ import com.loper7.date_time_picker.DateTimeConfig
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.ext.launchSafety
+import com.yzq.dialog.BubbleLoadingDialog
 import com.yzq.dialog.LottieDialog
 import com.yzq.dialog.PromptDialog
 import com.yzq.dialog.selectYear
@@ -17,6 +17,7 @@ import com.yzq.dialog.showDatePicker
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityDialogBinding
 import com.yzq.kotlincommon.dialog.CustomDialog
+import com.yzq.router.RoutePath
 import kotlinx.coroutines.delay
 
 /**
@@ -31,6 +32,7 @@ class DialogActivity : BaseActivity() {
 
 
     private val binding by viewBinding(ActivityDialogBinding::inflate)
+    private val loadingDialog by lazy { BubbleLoadingDialog(this) }
 
     override fun initWidget() {
 
@@ -87,11 +89,11 @@ class DialogActivity : BaseActivity() {
 
             layoutScrollContent.btnLoading.setOnThrottleTimeClick {
                 lifecycleScope.launchSafety {
-                    bubleLoadingDialog.content(resources.getString(R.string.loading)).safeShow()
+                    loadingDialog.content(resources.getString(R.string.loading)).safeShow()
                     delay(1000)
-                    bubleLoadingDialog.content("就要完成了...")
+                    loadingDialog.content("就要完成了...")
                     delay(2000)
-                    bubleLoadingDialog.safeDismiss()
+                    loadingDialog.safeDismiss()
                 }
             }
 

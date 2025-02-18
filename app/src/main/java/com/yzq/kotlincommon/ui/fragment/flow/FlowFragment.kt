@@ -5,10 +5,11 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
-import com.yzq.base.ui.fragment.BaseFragment
+import com.yzq.baseui.BaseFragment
 import com.yzq.binding.viewBinding
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.flow.launchCollect
+import com.yzq.dialog.BubbleLoadingDialog
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.FragmentFlowBinding
 import com.yzq.logger.Logger
@@ -36,6 +37,8 @@ class FlowFragment : BaseFragment(R.layout.fragment_flow) {
     private val viewModel: FlowViewModel by viewModels()
 
     private val binding by viewBinding(FragmentFlowBinding::bind)
+
+    private val loadingDialog by lazy { BubbleLoadingDialog(requireActivity()) }
 
 
     override fun initVariable() {

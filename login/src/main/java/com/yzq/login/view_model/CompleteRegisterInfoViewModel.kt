@@ -2,7 +2,7 @@ package com.yumc.android.userauth.login.view_model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.yzq.base.view_model.BaseViewModel
+import com.yzq.baseui.BaseViewModel
 import com.yzq.logger.Logger
 
 

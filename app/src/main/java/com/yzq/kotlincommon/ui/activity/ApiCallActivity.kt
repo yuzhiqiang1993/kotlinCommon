@@ -6,22 +6,23 @@ import androidx.lifecycle.lifecycleScope
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
-import com.yzq.common.api.ApiResult
-import com.yzq.common.api.onSuccess
-import com.yzq.common.constants.RoutePath
-import com.yzq.common.ext.apiCall
-import com.yzq.common.ext.baseRespApiCall
-import com.yzq.common.ext.dataConvert
-import com.yzq.common.net.RetrofitFactory
-import com.yzq.common.net.api.ApiService
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.ext.lifeScope
 import com.yzq.coroutine.safety_coroutine.scope.LifeSafetyScope
+import com.yzq.dialog.BubbleLoadingDialog
+import com.yzq.kotlincommon.api.ApiService
 import com.yzq.kotlincommon.databinding.ActivityApiCallBinding
 import com.yzq.kotlincommon.view_model.ApiCallViewModel
 import com.yzq.logger.Logger
+import com.yzq.net.RetrofitFactory
+import com.yzq.net.core.ApiResult
+import com.yzq.net.core.onSuccess
+import com.yzq.net.ext.apiCall
+import com.yzq.net.ext.baseRespApiCall
+import com.yzq.net.ext.dataConvert
+import com.yzq.router.RoutePath
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -38,7 +39,7 @@ import kotlinx.coroutines.supervisorScope
 class ApiCallActivity : BaseActivity() {
 
     private val binding by viewBinding(ActivityApiCallBinding::inflate)
-
+    private val loadingDialog by lazy { BubbleLoadingDialog(this) }
     private val vm: ApiCallViewModel by viewModels()
 
     override fun initWidget() {
@@ -92,14 +93,13 @@ class ApiCallActivity : BaseActivity() {
     private fun concurrentRequest() {
 
 
-        LifeSafetyScope(this, Lifecycle.Event.ON_DESTROY, Dispatchers.IO)
-            .launch {
+        LifeSafetyScope(this, Lifecycle.Event.ON_DESTROY, Dispatchers.IO).launch {
 
-            }.catch {
+        }.catch {
 
-            }.finally {
+        }.finally {
 
-            }
+        }
 
         /**
          *  并发请求
@@ -137,8 +137,7 @@ class ApiCallActivity : BaseActivity() {
 
         /*使用apicall时可以直接使用官方提供的 lifecycleScope，具备取消功能*/
         lifecycleScope.launch {
-            Logger.i("准备请求")
-            /*响应数据为BaseResp类型的请求*/
+            Logger.i("准备请求")/*响应数据为BaseResp类型的请求*/
             val baseRespApiCall = baseRespApiCall {
                 RetrofitFactory.instance.getService(ApiService::class.java).listLocalUser()
             }
@@ -209,7 +208,6 @@ class ApiCallActivity : BaseActivity() {
     }
 
     override fun observeViewModel() {
-        vm.run {
-        }
+        vm.run {}
     }
 }

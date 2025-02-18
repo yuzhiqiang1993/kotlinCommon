@@ -41,8 +41,6 @@ dependencies {
     api(libs.androidx.swiperefreshlayout)
 
     api(libs.moshiKotlin)
-
-
     /*retrofit*/
     api(libs.okhttp.core)
     api(libs.okhttp.logging.interceptor)
@@ -60,7 +58,7 @@ dependencies {
     api(libs.xeonyu.logger)
     api(libs.xeonyu.application)
     api(libs.xeonyu.binding)
-    api(libs.xeonyu.network.status)
+
     api(libs.toaster)
     //google 广告
     implementation(libs.play.services.ads.identifier)
@@ -80,6 +78,8 @@ dependencies {
     api(project(":permission"))
     api(project(":widget"))
     api(project(":data"))
+    api(project(":base-ui"))
+    api(project(":util"))
 
 
 }

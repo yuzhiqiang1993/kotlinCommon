@@ -196,12 +196,14 @@ dependencies {
 
     implementation(libs.xeonyu.bsdiff)
 
-    implementation(libs.coil)
+
     implementation(libs.xeonyu.cordova.webcontainer)
+    implementation(libs.xeonyu.binding)
 
     implementation(libs.androidx.appcompat)
     implementation(libs.google.material)
     implementation(libs.androidx.constraintlayout)
+
 
     implementation(libs.therouter)
     ksp(libs.therouter.apt)
@@ -220,13 +222,26 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
+    /*处理图片方向*/
+    implementation(libs.androidx.exifinterface)
+    /*flexbox*/
+    implementation(libs.flexbox.layout)
+    /*内存泄漏检测 leakcanary*/
+    debugImplementation(libs.leakcanary.android)
+
     implementation(project(":gao-de-map"))
-    implementation(project(":common"))
+//    implementation(project(":common"))
     implementation(project(":baidu"))
     implementation(project(":react-native"))
     implementation(project(":login"))
     implementation(project(":player"))
     implementation(project(":aliemas"))
+    implementation(project(":appstartup"))
+    implementation(project(":base-ui"))
+    implementation(project(":router"))
+    implementation(project(":base"))
+    implementation(project(":net"))
+    implementation(project(":storage"))
 
 
 }

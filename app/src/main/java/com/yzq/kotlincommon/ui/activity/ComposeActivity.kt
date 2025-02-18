@@ -23,9 +23,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.therouter.router.Route
 import com.yzq.base.theme.LightBlue300
-import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.logger.Logger
+import com.yzq.router.RoutePath
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 

@@ -6,9 +6,9 @@ import androidx.activity.viewModels
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.CompleteRegisterInfoViewModel
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivityCompleteRegisterInfoBinding
 import com.yzq.login.ui.BaseLoginActivity
+import com.yzq.router.RoutePath
 
 /**
  *

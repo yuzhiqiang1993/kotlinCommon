@@ -1,9 +1,9 @@
 package com.yzq.login.ui
 
 import android.os.Bundle
-import com.yzq.base.extend.immersiveRes
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.login.manager.PageManager
+import com.yzq.util.ext.immersiveRes
 
 
 /**

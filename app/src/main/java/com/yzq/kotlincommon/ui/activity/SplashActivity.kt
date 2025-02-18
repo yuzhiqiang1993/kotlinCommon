@@ -6,14 +6,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.hjq.permissions.Permission
-import com.yzq.base.extend.immersive
-import com.yzq.base.extend.navFinish
-import com.yzq.common.constants.RoutePath
 import com.yzq.dialog.PromptDialog
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
+import com.yzq.router.RoutePath
+import com.yzq.router.navFinish
 import com.yzq.storage.mmkv.MMKVDefault
 import com.yzq.storage.mmkv.MMKVUser
+import com.yzq.util.ext.immersive
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

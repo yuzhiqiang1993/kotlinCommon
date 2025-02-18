@@ -9,9 +9,8 @@ import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.ext.withDefault
 import com.yzq.coroutine.ext.withIO
@@ -20,6 +19,7 @@ import com.yzq.coroutine.safety_coroutine.scope.LifeSafetyScope
 import com.yzq.kotlincommon.databinding.ActivityCoroutinesBinding
 import com.yzq.kotlincommon.view_model.CoroutineViewModel
 import com.yzq.logger.Logger
+import com.yzq.router.RoutePath
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

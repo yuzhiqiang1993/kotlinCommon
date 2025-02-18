@@ -8,15 +8,13 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityOptionsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.yzq.base.databinding.ActivityImgPreviewBinding
-import com.yzq.base.extend.statusBarColorRes
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
+import com.yzq.util.ext.statusBarColorRes
 
 /**
  * @description: 图片查看界面（看大图）
  * @author : yzq
- * @date : 2018/7/19
- * @time : 15:01
  *
  */
 

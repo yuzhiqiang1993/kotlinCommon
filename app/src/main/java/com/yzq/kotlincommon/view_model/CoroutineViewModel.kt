@@ -3,23 +3,23 @@ package com.yzq.kotlincommon.view_model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
-import com.yzq.common.api.onError
-import com.yzq.common.api.onException
-import com.yzq.common.api.onSuccess
-import com.yzq.common.ext.apiCall
-import com.yzq.common.net.RetrofitFactory
-import com.yzq.common.net.api.ApiService
+import com.yzq.base.view_model.UiStateViewModel
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.data.gaode.Geocoder
+import com.yzq.kotlincommon.api.ApiService
 import com.yzq.logger.Logger
+import com.yzq.net.RetrofitFactory
+import com.yzq.net.core.onError
+import com.yzq.net.core.onException
+import com.yzq.net.core.onSuccess
+import com.yzq.net.ext.apiCall
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class CoroutineViewModel : BaseViewModel() {
+class CoroutineViewModel : UiStateViewModel() {
 
     private val _geocoder by lazy { MutableLiveData<Geocoder>() }
 

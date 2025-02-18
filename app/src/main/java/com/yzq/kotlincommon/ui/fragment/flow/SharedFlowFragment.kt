@@ -4,7 +4,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
 import com.yzq.base.extend.setOnThrottleTimeClick
-import com.yzq.base.ui.fragment.BaseFragment
+import com.yzq.baseui.BaseFragment
 import com.yzq.binding.viewBinding
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.flow.debounce

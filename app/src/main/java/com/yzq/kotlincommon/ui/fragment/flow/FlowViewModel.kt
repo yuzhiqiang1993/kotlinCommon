@@ -1,10 +1,10 @@
 package com.yzq.kotlincommon.ui.fragment.flow
 
-import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
-import com.yzq.common.net.RetrofitFactory
-import com.yzq.common.net.api.ApiService
+import com.yzq.base.view_model.UiStateViewModel
+import com.yzq.kotlincommon.api.ApiService
 import com.yzq.logger.Logger
+import com.yzq.net.RetrofitFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
@@ -25,7 +25,7 @@ import kotlinx.coroutines.flow.onStart
  * @time    17:35
  */
 
-class FlowViewModel : BaseViewModel() {
+class FlowViewModel : UiStateViewModel() {
 
     /**
      * 创建一个flow。冷流，在调collect的时候才会发送数据

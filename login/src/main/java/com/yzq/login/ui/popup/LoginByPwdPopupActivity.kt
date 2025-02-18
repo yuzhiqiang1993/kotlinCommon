@@ -4,15 +4,15 @@ import androidx.activity.viewModels
 import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
-import com.yzq.base.extend.navFinish
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginByPwdPopupBinding
 import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
 import com.yzq.login.ui.dialog.AgreementDialog
 import com.yzq.login.view_model.LoginPwdViewModel
+import com.yzq.router.RoutePath
+import com.yzq.router.navFinish
 import com.yzq.softinput.setWindowSoftInput
 
 

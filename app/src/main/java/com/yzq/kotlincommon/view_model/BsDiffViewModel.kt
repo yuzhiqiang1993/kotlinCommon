@@ -4,12 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.hjq.toast.Toaster
 import com.yzq.application.AppStorage
-import com.yzq.base.extend.md5
-import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
+import com.yzq.base.view_model.UiStateViewModel
 import com.yzq.bsdiff.BsDiffTool
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.ext.withDefault
+import com.yzq.util.ext.md5
 import java.io.File
 import kotlin.system.measureTimeMillis
 
@@ -20,7 +20,7 @@ import kotlin.system.measureTimeMillis
  * @time : 3:34 下午
  */
 
-class BsDiffViewModel : BaseViewModel() {
+class BsDiffViewModel : UiStateViewModel() {
 
     val newFileMD5LiveData by lazy { MutableLiveData<String>() }
     val combineFileMD5LiveData by lazy { MutableLiveData<String>() }

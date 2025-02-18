@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.ui.fragment
 
 import com.google.android.material.tabs.TabLayoutMediator
-import com.yzq.base.ui.fragment.BaseFragment
+import com.yzq.baseui.BaseFragment
 import com.yzq.binding.viewBinding
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.adapter.ViewPagerAdapter

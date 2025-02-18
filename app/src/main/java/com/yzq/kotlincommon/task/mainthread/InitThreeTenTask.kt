@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.task.mainthread
 
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.yzq.application.AppManager
-import com.yzq.base.startup.base.MainThreadTask
+import com.yzq.appstartup.MainThreadTask
 
 /**
  * @description: 日期库初始化

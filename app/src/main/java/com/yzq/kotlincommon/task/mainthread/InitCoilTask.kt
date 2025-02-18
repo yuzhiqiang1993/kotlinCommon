@@ -1,6 +1,6 @@
 package com.yzq.kotlincommon.task.mainthread
 
-import com.yzq.base.startup.base.MainThreadTask
+import com.yzq.appstartup.MainThreadTask
 import com.yzq.img.CoilManager
 
 /**

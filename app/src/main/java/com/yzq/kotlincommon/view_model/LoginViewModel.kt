@@ -2,15 +2,15 @@ package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
+import com.yzq.base.view_model.UiStateViewModel
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.data.LoginBean
 import com.yzq.logger.Logger
 import com.yzq.storage.mmkv.MMKVUser
 import kotlinx.coroutines.delay
 
-class LoginViewModel : BaseViewModel() {
+class LoginViewModel : UiStateViewModel() {
 
     val loginLiveData by lazy { MutableLiveData<LoginBean>() }
 

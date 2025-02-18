@@ -5,14 +5,14 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
-import com.yzq.base.extend.copyText
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.setOnThrottleTimeClick
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.databinding.ActivityZxingBinding
 import com.yzq.permission.getPermissions
+import com.yzq.router.RoutePath
+import com.yzq.util.ext.copyText
 import com.yzq.zxinglibrary.android.CaptureActivity
 import com.yzq.zxinglibrary.bean.ZxingConfig
 import com.yzq.zxinglibrary.common.Constant

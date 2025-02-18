@@ -19,9 +19,8 @@ import com.therouter.router.Route
 import com.yzq.application.AppContext
 import com.yzq.application.AppManager
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.ext.postDelayed
 import com.yzq.data.NaviItem
 import com.yzq.floating_view.FloatingViewListener
@@ -32,6 +31,7 @@ import com.yzq.kotlincommon.databinding.ItemMainLayoutBinding
 import com.yzq.kotlincommon.databinding.LayoutFloatViewBinding
 import com.yzq.logger.Logger
 import com.yzq.logger.view.log_view.LogViewActivity
+import com.yzq.router.RoutePath
 
 
 /**

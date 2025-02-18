@@ -12,7 +12,6 @@ import com.hjq.permissions.Permission
 import com.therouter.router.Route
 import com.yzq.application.AppStorage
 import com.yzq.base.extend.initToolbar
-import com.yzq.common.constants.RoutePath
 import com.yzq.cordova_webcontainer.CordovaWebContainer
 import com.yzq.cordova_webcontainer.CordovaWebContainerActivity
 import com.yzq.cordova_webcontainer.core.CordovaWebviewChormeClient
@@ -20,6 +19,7 @@ import com.yzq.cordova_webcontainer.observer.PageObserver
 import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
+import com.yzq.router.RoutePath
 import org.apache.cordova.LOG
 import java.io.File
 

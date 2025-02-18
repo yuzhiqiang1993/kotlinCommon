@@ -3,10 +3,10 @@ package com.yzq.base.extend
 import androidx.lifecycle.asLiveData
 import com.drake.statelayout.StateLayout
 import com.hjq.toast.Toaster
-import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.base.ui.fragment.BaseFragment
-import com.yzq.base.view_model.BaseViewModel
 import com.yzq.base.view_model.UIState
+import com.yzq.base.view_model.UiStateViewModel
+import com.yzq.baseui.BaseActivity
+import com.yzq.baseui.BaseFragment
 import com.yzq.coroutine.ext.runMain
 import com.yzq.dialog.PromptDialog
 import com.yzq.dialog.core.BaseDialogFragment
@@ -14,7 +14,7 @@ import com.yzq.logger.Logger
 
 @JvmOverloads
 fun BaseActivity.observeUIState(
-    vm: BaseViewModel,
+    vm: UiStateViewModel,
     loadingDialog: BaseDialogFragment<*>? = null,
     stateLayout: StateLayout? = null,
 ) {
@@ -32,22 +32,8 @@ fun BaseActivity.observeUIState(
 
             is UIState.ShowLoadingDialog -> {
                 loadingDialog?.safeShow()
-
-
             }
 
-            is UIState.ShowToast -> {
-                runMain { Toaster.showLong(it.msg) }
-            }
-
-            is UIState.ShowDialog -> {
-                runMain {
-                    PromptDialog(this).content(it.msg).singlePositiveBtn { v ->
-
-                    }.safeShow()
-
-                }
-            }
 
             is UIState.ShowContent -> {
                 stateLayout?.run { runMain { showContent() } }
@@ -65,13 +51,24 @@ fun BaseActivity.observeUIState(
                 stateLayout?.run { runMain { showEmpty() } }
             }
 
+            is UIState.ShowToast -> {
+                runMain { Toaster.showLong(it.content) }
+            }
+
+            is UIState.ShowDialog -> {
+                runMain {
+                    PromptDialog(this).content(it.content).singlePositiveBtn { v -> }.safeShow()
+
+                }
+            }
+
         }
     }
 }
 
 @JvmOverloads
 fun BaseFragment.observeUIState(
-    vm: BaseViewModel,
+    vm: UiStateViewModel,
     loadingDialog: BaseDialogFragment<*>? = null,
     stateLayout: StateLayout? = null,
 ) {
@@ -89,17 +86,6 @@ fun BaseFragment.observeUIState(
                 loadingDialog?.safeShow()
             }
 
-            is UIState.ShowToast -> {
-                runMain { Toaster.showLong(it.msg) }
-            }
-
-            is UIState.ShowDialog -> {
-                runMain {
-                    PromptDialog(requireActivity()).content(it.msg).singlePositiveBtn { v -> }
-                        .safeShow()
-                }
-            }
-
             is UIState.ShowContent -> {
                 stateLayout?.run { runMain { showContent() } }
             }
@@ -115,6 +101,18 @@ fun BaseFragment.observeUIState(
             is UIState.ShowEmpty -> {
                 stateLayout?.run { runMain { showEmpty() } }
             }
+
+            is UIState.ShowToast -> {
+                runMain { Toaster.showLong(it.content) }
+            }
+
+            is UIState.ShowDialog -> {
+                runMain {
+                    PromptDialog(requireActivity()).content(it.content).singlePositiveBtn { v -> }
+                        .safeShow()
+                }
+            }
+
         }
     }
 }

@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.view.View
 import android.view.animation.DecelerateInterpolator
 import androidx.core.animation.doOnEnd
-import com.yzq.base.extend.immersiveRes
 import com.yzq.login.R
 import com.yzq.login.manager.PageManager
+import com.yzq.util.ext.immersiveRes
 
 
 /**

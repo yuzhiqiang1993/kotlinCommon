@@ -32,10 +32,10 @@ dependencies {
 
 
     implementation(project(":base"))
-    implementation(project(":common"))
     implementation(project(":dialog"))
     implementation(project(":widget"))
     implementation(project(":soft-input"))
+    implementation(project(":router"))
 
 }
 

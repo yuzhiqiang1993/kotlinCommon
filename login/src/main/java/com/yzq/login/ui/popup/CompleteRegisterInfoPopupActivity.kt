@@ -4,10 +4,10 @@ import androidx.activity.viewModels
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.CompleteRegisterInfoViewModel
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.login.databinding.ActivityCompleteRegisterInfoPopupBinding
 import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity
+import com.yzq.router.RoutePath
 import com.yzq.softinput.setWindowSoftInput
 
 

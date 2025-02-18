@@ -8,13 +8,13 @@ import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger.it
 import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginByPwdBinding
 import com.yzq.login.ui.BaseLoginActivity
 import com.yzq.login.ui.dialog.AgreementDialog
 import com.yzq.login.view_model.LoginPwdViewModel
+import com.yzq.router.RoutePath
 
 /**
  * @author : yuzhiqiang

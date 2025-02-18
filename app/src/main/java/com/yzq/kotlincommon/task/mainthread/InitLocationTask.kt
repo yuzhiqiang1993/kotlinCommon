@@ -1,6 +1,6 @@
 package com.yzq.kotlincommon.task.mainthread
 
-import com.yzq.base.startup.base.MainThreadTask
+import com.yzq.appstartup.MainThreadTask
 import com.yzq.location_manager.LocationManager
 import com.yzq.location_protocol.constant.LocationPlatform
 

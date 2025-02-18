@@ -5,18 +5,18 @@ import com.therouter.router.Route
 import com.yzq.application.AppManager
 import com.yzq.application.AppStorage
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.extend.writeFileFromIS
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
-import com.yzq.common.net.FileRetrofitFactory
-import com.yzq.common.net.api.ApiService
-import com.yzq.common.net.constants.ApiConstants
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.ext.withIO
 import com.yzq.dialog.ProgressDialog
+import com.yzq.kotlincommon.api.ApiConstants
+import com.yzq.kotlincommon.api.ApiService
 import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
 import com.yzq.logger.Logger
+import com.yzq.net.RetrofitFactory
+import com.yzq.router.RoutePath
+import com.yzq.util.ext.writeFileFromIS
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import me.jessyan.progressmanager.ProgressListener
@@ -67,7 +67,7 @@ class DownloadActivity : BaseActivity() {
         progressDialog.changeTitle("下载中...").safeShow()
         lifecycleScope.launchSafety {
             val savePath = withIO {
-                val download = FileRetrofitFactory.instance.getService(ApiService::class.java)
+                val download = RetrofitFactory.instance.getService(ApiService::class.java)
                     .downloadApk()
                 Logger.i("""总长度：${download.contentLength()}""")
 

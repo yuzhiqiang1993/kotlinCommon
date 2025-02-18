@@ -34,8 +34,14 @@ dependencies {
     api(libs.alicloud.android.ut)
     api(libs.alicloud.android.beacon)
     api(libs.alicloud.android.ha.adapter)
+    implementation(libs.xeonyu.binding)
 
-    implementation(project(":common"))
+    implementation(project(":util"))
+    implementation(project(":router"))
+    implementation(project(":base"))
+    implementation(project(":appstartup"))
+
+
     implementation(libs.xeonyu.logger)
     ksp(libs.therouter.apt)
 }

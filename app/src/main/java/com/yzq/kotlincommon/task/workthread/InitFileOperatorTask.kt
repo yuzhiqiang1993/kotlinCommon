@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.task.workthread
 
 import ando.file.core.FileOperator
 import com.yzq.application.AppManager
-import com.yzq.base.startup.base.WorkThreadTask
+import com.yzq.appstartup.WorkThreadTask
 import com.yzq.kotlincommon.BuildConfig
 
 /**

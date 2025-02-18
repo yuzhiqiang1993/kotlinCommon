@@ -7,12 +7,12 @@ import com.google.android.flexbox.FlexboxLayoutManager
 import com.hjq.toast.Toaster
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFlexBoxBinding
 import com.yzq.kotlincommon.databinding.ItemTagLayoutBinding
+import com.yzq.router.RoutePath
 
 /**
  * @description: 弹性布局

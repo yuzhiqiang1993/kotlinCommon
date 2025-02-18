@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.view_model
 
 import androidx.lifecycle.MutableLiveData
 import com.hjq.toast.Toaster
-import com.yzq.base.view_model.BaseViewModel
+import com.yzq.baseui.BaseViewModel
 import com.yzq.data.DataBindingBean
 
 class DataBindingViewModel : BaseViewModel() {

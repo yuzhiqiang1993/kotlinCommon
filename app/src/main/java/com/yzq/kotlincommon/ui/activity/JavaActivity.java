@@ -3,12 +3,12 @@ package com.yzq.kotlincommon.ui.activity;
 import android.os.Bundle;
 
 import com.therouter.router.Route;
-import com.yzq.base.ui.activity.BaseActivity;
-import com.yzq.common.constants.RoutePath;
+import com.yzq.baseui.BaseActivity;
 import com.yzq.dialog.LottieDialog;
 import com.yzq.dialog.core.DialogConfig;
 import com.yzq.kotlincommon.databinding.ActivityJavaBinding;
 import com.yzq.kotlincommon.dialog.CustomDialog;
+import com.yzq.router.RoutePath;
 
 @Route(path = RoutePath.Main.JAVA_ACTIVITY)
 public class JavaActivity extends BaseActivity {

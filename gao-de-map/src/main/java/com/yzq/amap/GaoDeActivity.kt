@@ -18,15 +18,18 @@ import com.yzq.application.getPackageName
 import com.yzq.base.extend.initToolbar
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
+import com.yzq.dialog.BubbleLoadingDialog
 import com.yzq.logger.Logger
+import com.yzq.router.RoutePath
 
-@Route(path = com.yzq.common.constants.RoutePath.GaoDe.GAO_DE)
+@Route(path = RoutePath.GaoDe.GAO_DE)
 class GaoDeActivity : BaseActivity() {
 
     private val binding by viewBinding(ActivityGaoDeBinding::inflate)
     private val signLocationViewModel: SignLocationViewModel by viewModels()
+    protected val bubleLoadingDialog by lazy { BubbleLoadingDialog(this) }
 
 
     override fun initWidget() {
@@ -98,7 +101,7 @@ class GaoDeActivity : BaseActivity() {
     }
 
     override fun observeViewModel() {
-        observeUIState(signLocationViewModel, loadingDialog)
+        observeUIState(signLocationViewModel, bubleLoadingDialog)
         signLocationViewModel.locationLiveData.observe(this) { t ->
             binding.tvLocationResult.text = t.address
         }

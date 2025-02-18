@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.task.mainthread
 
 import com.tencent.mmkv.MMKV
 import com.yzq.application.AppContext
-import com.yzq.base.startup.base.MainThreadTask
+import com.yzq.appstartup.MainThreadTask
 
 
 /**

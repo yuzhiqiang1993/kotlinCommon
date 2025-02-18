@@ -2,7 +2,7 @@ package com.yzq.kotlincommon.task.workthread
 
 import com.hjq.toast.Toaster
 import com.yzq.application.AppManager
-import com.yzq.base.startup.base.WorkThreadTask
+import com.yzq.appstartup.WorkThreadTask
 
 /**
  * @description: 初始化 Utils

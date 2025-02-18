@@ -4,20 +4,21 @@ import android.graphics.Color
 import android.text.TextUtils
 import androidx.activity.viewModels
 import com.therouter.router.Route
-import com.yzq.base.extend.immersive
-import com.yzq.base.extend.navClear
 import com.yzq.base.extend.observeUIState
 import com.yzq.base.extend.setOnThrottleTimeClick
-import com.yzq.base.ui.activity.BaseActivity
+import com.yzq.baseui.BaseActivity
 import com.yzq.binding.dataBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.coroutine.interval.interval
+import com.yzq.dialog.BubbleLoadingDialog
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityLoginBinding
 import com.yzq.kotlincommon.view_model.LoginViewModel
 import com.yzq.logger.Logger
+import com.yzq.router.RoutePath
+import com.yzq.router.navClear
 import com.yzq.storage.mmkv.MMKVDefault
 import com.yzq.storage.mmkv.MMKVUser
+import com.yzq.util.ext.immersive
 
 /**
  * @description: SharedPreference相关
@@ -31,10 +32,9 @@ import com.yzq.storage.mmkv.MMKVUser
 class LoginActivity : BaseActivity() {
 
     private val binding by dataBinding<ActivityLoginBinding>(R.layout.activity_login)
-
     private val vm: LoginViewModel by viewModels()
-
     private val interval = interval()
+    private val loadingDialog by lazy { BubbleLoadingDialog(this) }
 
     override fun initWidget() {
         super.initWidget()

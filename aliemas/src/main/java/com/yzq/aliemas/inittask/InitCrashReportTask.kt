@@ -4,7 +4,7 @@ import com.alibaba.ha.adapter.AliHaAdapter
 import com.alibaba.ha.adapter.AliHaConfig
 import com.alibaba.ha.adapter.Plugin
 import com.yzq.aliemas.ext.defaultConfig
-import com.yzq.base.startup.base.MainThreadTask
+import com.yzq.appstartup.MainThreadTask
 
 /**
  * @description: 崩溃分析 https://emas.console.aliyun.com/?spm=5176.12818093.ProductAndService--ali--widget-home-product-recent.dre6.4c4b16d0ujeByd#/workspace/3712117/mca/28128416/2

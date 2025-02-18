@@ -6,7 +6,7 @@ import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory
 import com.yzq.aliemas.BuildConfig
 import com.yzq.aliemas.config.AliEMASConfig
 import com.yzq.application.AppManager
-import com.yzq.base.startup.base.MainThreadTask
+import com.yzq.appstartup.MainThreadTask
 
 /**
  * @description: 初始化阿里推送

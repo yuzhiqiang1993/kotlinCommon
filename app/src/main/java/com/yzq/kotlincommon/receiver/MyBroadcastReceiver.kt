@@ -7,8 +7,8 @@ import android.content.Intent
 import com.therouter.TheRouter
 import com.therouter.router.Navigator
 import com.therouter.router.interceptor.NavigationCallback
-import com.yzq.common.constants.RoutePath
 import com.yzq.logger.Logger
+import com.yzq.router.RoutePath
 
 
 /**

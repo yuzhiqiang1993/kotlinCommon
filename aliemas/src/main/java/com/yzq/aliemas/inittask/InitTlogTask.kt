@@ -7,7 +7,7 @@ import com.alibaba.ha.adapter.service.tlog.TLogLevel
 import com.alibaba.ha.adapter.service.tlog.TLogService
 import com.yzq.aliemas.config.AliEMASConfig
 import com.yzq.aliemas.ext.defaultConfig
-import com.yzq.base.startup.base.MainThreadTask
+import com.yzq.appstartup.MainThreadTask
 
 /**
  * @description: 远程日志   https://emas.console.aliyun.com/?spm=5176.12818093.ProductAndService--ali--widget-home-product-recent.dre0.5adc16d01g8kGt#/workspace/3712117/tlog/28128416/2

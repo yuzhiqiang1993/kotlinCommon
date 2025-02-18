@@ -6,15 +6,15 @@ import androidx.fragment.app.commit
 import com.google.android.material.navigation.NavigationBarView
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.ui.activity.BaseActivity
-import com.yzq.base.ui.fragment.BaseFragment
+import com.yzq.baseui.BaseActivity
+import com.yzq.baseui.BaseFragment
 import com.yzq.binding.viewBinding
-import com.yzq.common.constants.RoutePath
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFlowBinding
 import com.yzq.kotlincommon.ui.fragment.flow.FlowFragment
 import com.yzq.kotlincommon.ui.fragment.flow.SharedFlowFragment
 import com.yzq.logger.Logger
+import com.yzq.router.RoutePath
 
 
 /**
