@@ -8,11 +8,11 @@ import com.drake.brv.utils.staggered
 import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.therouter.router.Route
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.ui.img_pre.ImgPreviewActivity
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.coroutine.ext.lifeScope
 import com.yzq.data.juhe.toutiao.TouTiao
+import com.yzq.img.ImgPreviewActivity
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.api.ApiService
 import com.yzq.kotlincommon.databinding.ActivityImageListBinding

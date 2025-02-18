@@ -40,8 +40,7 @@ dependencies {
     api(libs.androidx.lifecycle.viewmodel.ktx)
     api(libs.androidx.swiperefreshlayout)
 
-    api(libs.moshiKotlin)
-    /*retrofit*/
+    api(libs.moshiKotlin)/*retrofit*/
     api(libs.okhttp.core)
     api(libs.okhttp.logging.interceptor)
     api(libs.retrofit.core)
@@ -63,17 +62,11 @@ dependencies {
     //google 广告
     implementation(libs.play.services.ads.identifier)
 
-//    api(libs.file.core)
-//
-//    api(libs.file.selector)
-//    api(libs.file.compressor)
-
     api("com.github.javakam:file.core:3.9.8@aar")
     api("com.github.javakam:file.selector:3.9.8@aar")
     api("com.github.javakam:file.compressor:3.9.8@aar")
 
     api(project(":resource"))
-    api(project(":img"))
     api(project(":dialog"))
     api(project(":permission"))
     api(project(":widget"))

@@ -20,12 +20,9 @@ abstract class UiStateViewModel : BaseViewModel() {
     protected val _uiStateFlow by lazy { MutableStateFlow<UIState>(UIState.Init) }
     val uiStateFlow: StateFlow<UIState> = _uiStateFlow
 
-
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
 
     }
-
-
 }
 
 

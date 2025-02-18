@@ -230,7 +230,7 @@ dependencies {
     debugImplementation(libs.leakcanary.android)
 
     implementation(project(":gao-de-map"))
-//    implementation(project(":common"))
+    implementation(project(":img"))
     implementation(project(":baidu"))
     implementation(project(":react-native"))
     implementation(project(":login"))

@@ -1,4 +1,4 @@
-package com.yzq.base.ui.img_pre
+package com.yzq.img
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -7,9 +7,9 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.core.app.ActivityOptionsCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.yzq.base.databinding.ActivityImgPreviewBinding
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
+import com.yzq.img.databinding.ActivityImgPreviewBinding
 import com.yzq.util.ext.statusBarColorRes
 
 /**
@@ -64,7 +64,7 @@ class ImgPreviewActivity : BaseActivity() {
         super.initWidget()
 
         onBackPressedDispatcher.addCallback(this, backPressedCallback)
-        statusBarColorRes(com.yzq.resource.R.color.black)
+        statusBarColorRes(android.R.color.black)
 
         // 设置 ViewPager2
         val adapter = ImagePagerAdapter(imagePaths)

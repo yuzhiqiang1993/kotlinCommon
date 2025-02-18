@@ -1,4 +1,4 @@
-package com.yzq.base.ui.img_pre
+package com.yzq.img
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

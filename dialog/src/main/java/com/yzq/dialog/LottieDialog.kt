@@ -34,11 +34,6 @@ class LottieDialog(activity: AppCompatActivity) : BaseDialogFragment<LottieDialo
 
 
     override fun initWidget(contentView: View) {
-//        val url = "https://assets7.lottiefiles.com/packages/lf20_5lTxAupekw.json"
-//        binding.lottieView.setBackgroundColor(Color.parseColor("#3490dc"))
-//        binding.lottieView.setAnimationFromUrl(url)
-
-        //如果是本地文件
         if (lottieUrl != null) {
             binding.lottieView.setAnimationFromUrl(lottieUrl)
         } else {

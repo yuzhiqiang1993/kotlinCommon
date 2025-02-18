@@ -22,9 +22,9 @@ import com.therouter.router.Route
 import com.yzq.application.AppStorage
 import com.yzq.base.R
 import com.yzq.base.extend.initToolbar
-import com.yzq.base.ui.img_pre.ImgPreviewActivity
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
+import com.yzq.img.ImgPreviewActivity
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
 import com.yzq.kotlincommon.view_model.CompressImgViewModel
 import com.yzq.logger.Logger
@@ -118,9 +118,7 @@ class ImageCompressActivity : BaseActivity() {
     }
 
     private fun selectImg() {
-        fileSelector = FileSelector
-            .with(this)
-            .setRequestCode(11)
+        fileSelector = FileSelector.with(this).setRequestCode(11)
             .setTypeMismatchTip("文件类型不匹配 !") //File type mismatch
             .setMinCount(1, "至少选择一个文件 !") //Choose at least one file
             .setOverLimitStrategy(OVER_LIMIT_EXCEPT_OVERFLOW)
