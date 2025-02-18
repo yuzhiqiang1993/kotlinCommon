@@ -2,16 +2,16 @@ package com.yzq.kotlincommon.ui.activity
 
 import androidx.activity.viewModels
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
-import com.yzq.base.extend.observeUIState
-import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
+import com.yzq.core.extend.setOnThrottleTimeClick
+import com.yzq.core.observeUIState
 import com.yzq.dialog.BubbleLoadingDialog
 import com.yzq.kotlincommon.databinding.ActivityBsDiffBinding
 import com.yzq.kotlincommon.view_model.BsDiffViewModel
 import com.yzq.logger.Logger
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 /**
  * @description: bsdiff 增量更新示例

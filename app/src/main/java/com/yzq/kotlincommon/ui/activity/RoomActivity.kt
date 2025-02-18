@@ -7,7 +7,6 @@ import com.drake.brv.utils.linear
 import com.drake.brv.utils.setDifferModels
 import com.drake.brv.utils.setup
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.coroutine.ext.launchSafety
@@ -18,6 +17,7 @@ import com.yzq.kotlincommon.view_model.RoomViewModel
 import com.yzq.router.RoutePath
 import com.yzq.storage.db.LocalDateTimeConverter
 import com.yzq.storage.db.User
+import com.yzq.util.ext.initToolbar
 import kotlinx.coroutines.delay
 
 @Route(path = RoutePath.Main.ROOM)

@@ -4,7 +4,6 @@ import androidx.lifecycle.lifecycleScope
 import com.therouter.router.Route
 import com.yzq.application.AppManager
 import com.yzq.application.AppStorage
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.coroutine.ext.launchSafety
@@ -16,6 +15,7 @@ import com.yzq.kotlincommon.databinding.ActivityDownloadBinding
 import com.yzq.logger.Logger
 import com.yzq.net.RetrofitFactory
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 import com.yzq.util.ext.writeFileFromIS
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

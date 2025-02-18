@@ -4,8 +4,8 @@ import androidx.activity.viewModels
 import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.ExemptLoginViewModel
-import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.binding.viewBinding
+import com.yzq.core.extend.setOnThrottleTimeClick
 import com.yzq.login.databinding.ActivityExemptLoginPopupBinding
 import com.yzq.login.manager.PageManager
 import com.yzq.login.ui.BasePopupActivity

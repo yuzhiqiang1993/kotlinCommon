@@ -26,15 +26,18 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.xeonyu.coroutine)
     implementation(libs.xeonyu.binding)
+    implementation(libs.xeonyu.logger)
     implementation(libs.androidx.activity)
 
     ksp(libs.therouter.apt)
 
 
-    implementation(project(":base"))
+    implementation(project(":base-ui"))
+    implementation(project(":resource"))
     implementation(project(":dialog"))
     implementation(project(":widget"))
     implementation(project(":soft-input"))
+    implementation(project(":util"))
     implementation(project(":router"))
 
 }

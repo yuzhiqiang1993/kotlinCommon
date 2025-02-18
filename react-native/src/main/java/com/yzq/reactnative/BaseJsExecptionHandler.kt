@@ -13,9 +13,16 @@ import com.yzq.logger.Logger
  */
 class BaseJsExecptionHandler : RedBoxHandler {
 
+    companion object {
+        const val TAG = "BaseJsExecptionHandler"
+    }
+
     override fun handleRedbox(title: String?, stack: Array<StackFrame>, errorType: ErrorType) {
 
-        Logger.i("handleRedbox: $title stack: ${stack.contentToString()} errorType: $errorType")
+        Logger.it(
+            TAG,
+            "handleRedbox: $title stack: ${stack.contentToString()} errorType: $errorType"
+        )
     }
 
     override fun isReportEnabled(): Boolean {

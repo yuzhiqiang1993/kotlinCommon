@@ -14,13 +14,20 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
-//    implementation(project(":common"))
 
     api(libs.xeonyu.location.manager)
     api(libs.xeonyu.location.gaode)
+    implementation(libs.xeonyu.binding)
+    implementation(libs.xeonyu.logger)
+    implementation(libs.toaster)
     ksp(libs.therouter.apt)
 
-    implementation(project(":base"))
+    implementation(project(":widget"))
     implementation(project(":router"))
-    implementation(project(":base-ui"))
+    implementation(project(":util"))
+//    implementation(project(":dialog"))
+//    implementation(project(":base-ui"))
+    implementation(project(":biz-core"))
+    implementation(project(":permission"))
+
 }

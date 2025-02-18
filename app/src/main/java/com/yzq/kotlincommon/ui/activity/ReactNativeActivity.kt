@@ -6,13 +6,13 @@ import com.facebook.react.common.LifecycleState
 import com.facebook.react.shell.MainReactPackage
 import com.therouter.router.Route
 import com.yzq.application.AppManager
-import com.yzq.base.extend.initToolbar
 import com.yzq.binding.viewBinding
 import com.yzq.kotlincommon.BuildConfig
 import com.yzq.kotlincommon.databinding.ActivityReactNativeBinding
 import com.yzq.reactnative.BaseJsExecptionHandler
 import com.yzq.reactnative.BaseRnActivity
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 
 /**

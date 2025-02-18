@@ -3,8 +3,8 @@ package com.yzq.kotlincommon.view_model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.yzq.base.view_model.UIState
-import com.yzq.base.view_model.UiStateViewModel
+import com.yzq.baseui.UIState
+import com.yzq.baseui.UiStateViewModel
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.data.gaode.Geocoder
 import com.yzq.kotlincommon.api.ApiService

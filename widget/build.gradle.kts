@@ -1,5 +1,4 @@
-@Suppress("DSL_SCOPE_VIOLATION")
-plugins {
+@Suppress("DSL_SCOPE_VIOLATION") plugins {
     alias(libs.plugins.xeonyu.library)
 }
 
@@ -15,8 +14,8 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("include" to listOf("*.jar"), "dir" to "libs")))
+    api(libs.google.material)
     implementation(libs.androidx.appcompat)
-    implementation(libs.google.material)
     implementation(libs.androidx.vectordrawable)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.annotation)
@@ -25,7 +24,7 @@ dependencies {
     implementation(libs.xeonyu.logger)
 
     implementation(project(":resource"))
-
+    implementation(project(":util"))
 
 
 }

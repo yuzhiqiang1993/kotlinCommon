@@ -1,7 +1,6 @@
 package com.yzq.kotlincommon.ui.activity
 
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.coroutine.data.TaskResult
@@ -16,6 +15,7 @@ import com.yzq.coroutine.thread_pool.supplyAsyncTimeoutTask
 import com.yzq.kotlincommon.databinding.ActivityThreadPoolBinding
 import com.yzq.logger.Logger
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 import java.util.concurrent.Callable
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.TimeUnit

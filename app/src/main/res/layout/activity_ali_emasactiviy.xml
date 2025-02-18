@@ -7,7 +7,7 @@
     tools:context=".ui.activity.AliEMASActivity">
 
     <include
-        android:id="@+id/toolbar"
+        android:id="@+id/included_toolbar"
         layout="@layout/toolbar" />
 
 

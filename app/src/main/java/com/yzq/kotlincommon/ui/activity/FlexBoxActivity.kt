@@ -6,13 +6,13 @@ import com.google.android.flexbox.FlexWrap
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.hjq.toast.Toaster
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFlexBoxBinding
 import com.yzq.kotlincommon.databinding.ItemTagLayoutBinding
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 /**
  * @description: 弹性布局

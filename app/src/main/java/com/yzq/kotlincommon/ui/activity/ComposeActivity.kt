@@ -22,8 +22,8 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.therouter.router.Route
-import com.yzq.base.theme.LightBlue300
 import com.yzq.coroutine.ext.launchSafety
+import com.yzq.kotlincommon.compose_theme.LightBlue300
 import com.yzq.logger.Logger
 import com.yzq.router.RoutePath
 import kotlinx.coroutines.delay

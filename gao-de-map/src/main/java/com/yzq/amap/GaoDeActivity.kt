@@ -15,14 +15,14 @@ import com.yzq.amap.service.LocationService
 import com.yzq.amap.utils.MapPermissionUtils
 import com.yzq.application.AppManager
 import com.yzq.application.getPackageName
-import com.yzq.base.extend.initToolbar
-import com.yzq.base.extend.observeUIState
-import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
+import com.yzq.core.extend.setOnThrottleTimeClick
+import com.yzq.core.observeUIState
 import com.yzq.dialog.BubbleLoadingDialog
 import com.yzq.logger.Logger
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 @Route(path = RoutePath.GaoDe.GAO_DE)
 class GaoDeActivity : BaseActivity() {

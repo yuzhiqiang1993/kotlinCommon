@@ -26,6 +26,8 @@ dependencies {
     api(libs.retrofit.core)
     api(libs.retrofit.converter.moshi)
 
+    api(libs.progressManager)
+
     implementation(project(":util"))
     implementation(project(":data"))
 

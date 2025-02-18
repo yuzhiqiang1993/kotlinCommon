@@ -4,11 +4,11 @@ import com.alibaba.ha.adapter.AliHaAdapter
 import com.alibaba.ha.adapter.service.tlog.TLogService
 import com.hjq.toast.Toaster
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.kotlincommon.databinding.ActivityAliEmasactiviyBinding
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 /**
  * @description: 阿里EMAS测试页面
@@ -26,7 +26,7 @@ class AliEMASActivity : BaseActivity() {
 
         binding.apply {
 
-            initToolbar(toolbar = toolbar.toolbar, "EMAS")
+            initToolbar(toolbar = includedToolbar.toolbar, "EMAS")
 
             btnCustomReport.setOnClickListener {
                 //自定义崩溃上报

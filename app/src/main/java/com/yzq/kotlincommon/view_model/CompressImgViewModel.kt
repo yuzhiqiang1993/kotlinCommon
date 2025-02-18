@@ -9,8 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.yzq.application.AppManager
 import com.yzq.application.AppStorage
 import com.yzq.application.getPackageName
-import com.yzq.base.extend.save
 import com.yzq.baseui.BaseViewModel
+import com.yzq.core.extend.save
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.kotlincommon.api.ApiService
 import com.yzq.logger.Logger

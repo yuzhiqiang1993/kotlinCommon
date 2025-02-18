@@ -4,7 +4,6 @@ import androidx.activity.viewModels
 import androidx.core.widget.doOnTextChanged
 import com.hjq.toast.Toaster
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.dataBinding
 import com.yzq.kotlincommon.R
@@ -13,6 +12,7 @@ import com.yzq.kotlincommon.view_model.DataBindingViewModel
 import com.yzq.kotlincommon.widget.edittext.EmojiExcludeFilter
 import com.yzq.logger.Logger
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 /**
  * @description: DataBinding

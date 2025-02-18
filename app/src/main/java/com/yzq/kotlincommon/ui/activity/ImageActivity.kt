@@ -3,12 +3,12 @@ package com.yzq.kotlincommon.ui.activity
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityImageBinding
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 
 /**

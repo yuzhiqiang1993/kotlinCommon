@@ -6,7 +6,6 @@ import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
 import com.hjq.toast.Toaster
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.data.task.TaskBean
@@ -16,6 +15,7 @@ import com.yzq.kotlincommon.databinding.ItemTaskHoverBinding
 import com.yzq.kotlincommon.databinding.ItemTaskSwipeLayoutBinding
 import com.yzq.logger.Logger
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 /**
  * @description 任务列表,主要展示粘性头部和侧滑删除

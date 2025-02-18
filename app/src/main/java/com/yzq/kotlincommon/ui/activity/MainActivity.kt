@@ -18,7 +18,6 @@ import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yzq.application.AppContext
 import com.yzq.application.AppManager
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.coroutine.ext.postDelayed
@@ -32,6 +31,7 @@ import com.yzq.kotlincommon.databinding.LayoutFloatViewBinding
 import com.yzq.logger.Logger
 import com.yzq.logger.view.log_view.LogViewActivity
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 
 /**

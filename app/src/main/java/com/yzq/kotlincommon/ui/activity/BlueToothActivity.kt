@@ -12,10 +12,9 @@ import com.drake.brv.utils.models
 import com.drake.brv.utils.setup
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
-import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
+import com.yzq.core.extend.setOnThrottleTimeClick
 import com.yzq.data.bluetooth.BlueToothItem
 import com.yzq.data.bluetooth.deviceDesc
 import com.yzq.dialog.PromptDialog
@@ -26,6 +25,7 @@ import com.yzq.kotlincommon.manager.BluetoothScanner
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 
 @Route(path = RoutePath.Main.BLUETOOTH)

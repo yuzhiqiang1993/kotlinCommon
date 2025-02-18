@@ -1,12 +1,12 @@
-package com.yzq.base.extend
+package com.yzq.core
 
 import androidx.lifecycle.asLiveData
 import com.drake.statelayout.StateLayout
 import com.hjq.toast.Toaster
-import com.yzq.base.view_model.UIState
-import com.yzq.base.view_model.UiStateViewModel
 import com.yzq.baseui.BaseActivity
 import com.yzq.baseui.BaseFragment
+import com.yzq.baseui.UIState
+import com.yzq.baseui.UiStateViewModel
 import com.yzq.coroutine.ext.runMain
 import com.yzq.dialog.PromptDialog
 import com.yzq.dialog.core.BaseDialogFragment

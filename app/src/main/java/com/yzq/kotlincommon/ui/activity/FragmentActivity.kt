@@ -5,7 +5,6 @@ import androidx.activity.viewModels
 import androidx.fragment.app.commit
 import com.google.android.material.navigation.NavigationBarView
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.baseui.BaseFragment
 import com.yzq.binding.viewBinding
@@ -13,6 +12,7 @@ import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityFragmentBinding
 import com.yzq.kotlincommon.view_model.FragmentViewModel
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 @Route(path = RoutePath.Main.FRAGMENT)
 class FragmentActivity : BaseActivity(), NavigationBarView.OnItemSelectedListener {

@@ -17,7 +17,6 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 
-
     //崩溃分析
     api(libs.alicloud.android.ha.crashreporter)
     //移动日志
@@ -34,13 +33,14 @@ dependencies {
     api(libs.alicloud.android.ut)
     api(libs.alicloud.android.beacon)
     api(libs.alicloud.android.ha.adapter)
+
     implementation(libs.xeonyu.binding)
 
     implementation(project(":util"))
     implementation(project(":router"))
-    implementation(project(":base"))
+    implementation(project(":widget"))
+    implementation(project(":base-ui"))
     implementation(project(":appstartup"))
-
 
     implementation(libs.xeonyu.logger)
     ksp(libs.therouter.apt)

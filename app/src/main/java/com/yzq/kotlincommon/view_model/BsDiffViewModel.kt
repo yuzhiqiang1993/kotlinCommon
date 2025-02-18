@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.hjq.toast.Toaster
 import com.yzq.application.AppStorage
-import com.yzq.base.view_model.UIState
-import com.yzq.base.view_model.UiStateViewModel
+import com.yzq.baseui.UIState
+import com.yzq.baseui.UiStateViewModel
 import com.yzq.bsdiff.BsDiffTool
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.ext.withDefault
@@ -52,9 +52,7 @@ class BsDiffViewModel : UiStateViewModel() {
             val measureTimeMillis = measureTimeMillis {
                 withDefault {
                     BsDiffTool.diff(
-                        newFile.absolutePath,
-                        oldFile.absolutePath,
-                        patchFile.absolutePath
+                        newFile.absolutePath, oldFile.absolutePath, patchFile.absolutePath
                     )
                 }
             }
@@ -83,9 +81,7 @@ class BsDiffViewModel : UiStateViewModel() {
                 /*合并差分包是一个cpu密集型的任务*/
                 withDefault {
                     BsDiffTool.patch(
-                        oldFile.absolutePath,
-                        patchFile.absolutePath,
-                        combineFile.absolutePath
+                        oldFile.absolutePath, patchFile.absolutePath, combineFile.absolutePath
                     )
                 }
 

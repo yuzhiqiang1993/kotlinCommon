@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
-import com.yzq.base.extend.setOnThrottleTimeClick
+import com.yzq.core.extend.setOnThrottleTimeClick
 import com.yzq.dialog.core.BaseDialogFragment
 import com.yzq.dialog.core.DialogConfig
 import com.yzq.kotlincommon.databinding.FragmentCustomDialogBinding

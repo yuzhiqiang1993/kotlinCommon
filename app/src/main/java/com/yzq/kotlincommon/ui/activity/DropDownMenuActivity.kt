@@ -7,7 +7,6 @@ import com.drake.brv.BindingAdapter
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.kotlincommon.R
@@ -15,6 +14,7 @@ import com.yzq.kotlincommon.databinding.ActivityDropDownMenuBinding
 import com.yzq.kotlincommon.databinding.DropDownMenuContentBinding
 import com.yzq.kotlincommon.databinding.ItemDropDownMenuLayoutBinding
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 /**
  * @description: 下拉菜单

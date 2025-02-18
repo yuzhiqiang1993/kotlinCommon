@@ -1,9 +1,9 @@
 package com.yzq.kotlincommon.ui.fragment
 
 import androidx.fragment.app.viewModels
-import com.yzq.base.extend.observeUIState
 import com.yzq.baseui.BaseFragment
 import com.yzq.binding.viewBinding
+import com.yzq.core.observeUIState
 import com.yzq.coroutine.flow.launchCollect
 import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.TaskFragmentBinding

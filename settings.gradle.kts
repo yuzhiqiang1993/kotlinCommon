@@ -143,7 +143,7 @@ gradle.addBuildListener(object : BuildAdapter() {
 /*用来声明当前工程都包含哪些子工程*/
 include(":app")
 include(":gao-de-map")
-include(":base")
+include(":biz-core")
 include(":img")
 include(":dialog")
 include(":widget")

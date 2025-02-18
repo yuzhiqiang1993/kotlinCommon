@@ -1,8 +1,8 @@
 package com.yzq.amap
 
 import androidx.lifecycle.MutableLiveData
-import com.yzq.base.view_model.UIState
-import com.yzq.base.view_model.UiStateViewModel
+import com.yzq.baseui.UIState
+import com.yzq.baseui.UiStateViewModel
 import com.yzq.location_manager.LocationManager
 import com.yzq.location_protocol.callback.LocationListener
 import com.yzq.location_protocol.data.Location
@@ -10,8 +10,6 @@ import com.yzq.location_protocol.data.Location
 /**
  * @description: 定位模块,签到模式
  * @author : yzq
- * @date : 2018/11/12
- * @time : 18:02
  *
  */
 
@@ -24,7 +22,8 @@ class SignLocationViewModel : UiStateViewModel() {
      * 开始定位
      */
     fun startLocation() {
-        _uiStateFlow.value = UIState.ShowLoadingDialog("正在定位...")
+        _uiStateFlow.value =
+            UIState.ShowLoadingDialog("正在定位...")
         LocationManager.startOnceLocation(object : LocationListener {
             override fun onReceiveLocation(location: Location) {
                 _uiStateFlow.value = UIState.DismissLoadingDialog

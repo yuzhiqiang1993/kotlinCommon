@@ -8,7 +8,6 @@ import com.drake.brv.utils.divider
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.coroutine.ext.launchSafety
@@ -21,6 +20,7 @@ import com.yzq.kotlincommon.databinding.ItemMovieLayoutBinding
 import com.yzq.logger.Logger
 import com.yzq.net.RetrofitFactory
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 /**
  * @description: 接口请求展示列表
@@ -55,7 +55,7 @@ class NewsActivity : BaseActivity() {
                         ActivityOptionsCompat.makeSceneTransitionAnimation(
                             this@NewsActivity,
                             itemMovieLayoutBinding.ivImg,
-                            getString(com.yzq.base.R.string.img_transition)
+                            getString(R.string.img_transition)
                         )
 
                     ImgPreviewActivity.start(

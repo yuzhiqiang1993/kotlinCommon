@@ -4,10 +4,10 @@ import android.graphics.Color
 import android.text.TextUtils
 import androidx.activity.viewModels
 import com.therouter.router.Route
-import com.yzq.base.extend.observeUIState
-import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.dataBinding
+import com.yzq.core.extend.setOnThrottleTimeClick
+import com.yzq.core.observeUIState
 import com.yzq.coroutine.interval.interval
 import com.yzq.dialog.BubbleLoadingDialog
 import com.yzq.kotlincommon.R

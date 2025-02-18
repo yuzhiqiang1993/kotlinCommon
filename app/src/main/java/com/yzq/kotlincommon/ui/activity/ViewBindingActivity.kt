@@ -2,11 +2,11 @@ package com.yzq.kotlincommon.ui.activity
 
 import com.hjq.toast.Toaster
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.kotlincommon.databinding.ActivityViewBindingBinding
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 /**
  * @description: ViewBinding 示例

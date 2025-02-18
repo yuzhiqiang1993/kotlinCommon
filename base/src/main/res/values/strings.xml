@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">base</string>
-    <string name="img_transition">img_transition</string>
-    <string name="no_net">网络无链接，请检查</string>
-    <string name="data_parse_error">数据解析错</string>
-    <string name="unknown_exception">未知异常</string>
-    <string name="timeout">请求超时，请稍后再试</string>
-    <string name="loading">加载中…</string>
-</resources>

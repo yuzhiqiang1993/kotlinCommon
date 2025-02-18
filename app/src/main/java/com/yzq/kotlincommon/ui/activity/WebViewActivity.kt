@@ -11,7 +11,6 @@ import androidx.core.content.FileProvider
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
 import com.yzq.application.AppStorage
-import com.yzq.base.extend.initToolbar
 import com.yzq.cordova_webcontainer.CordovaWebContainer
 import com.yzq.cordova_webcontainer.CordovaWebContainerActivity
 import com.yzq.cordova_webcontainer.core.CordovaWebviewChormeClient
@@ -20,6 +19,7 @@ import com.yzq.kotlincommon.databinding.ActivityWebViewBinding
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 import org.apache.cordova.LOG
 import java.io.File
 

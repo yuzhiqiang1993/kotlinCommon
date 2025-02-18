@@ -19,5 +19,6 @@ android {
 dependencies {
     api(libs.react.android)
     api(libs.react.hermes.android)
-    implementation(project(":base"))
+    implementation(project(":base-ui"))
+    implementation(libs.xeonyu.logger)
 }

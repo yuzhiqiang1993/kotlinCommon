@@ -7,7 +7,6 @@ import com.drake.brv.utils.setup
 import com.drake.brv.utils.staggered
 import com.scwang.smart.refresh.layout.constant.RefreshState
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.coroutine.ext.lifeScope
@@ -21,6 +20,7 @@ import com.yzq.logger.Logger
 import com.yzq.net.RetrofitFactory
 import com.yzq.network_status.NetworkStatus
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 import kotlin.random.Random
 
 /**

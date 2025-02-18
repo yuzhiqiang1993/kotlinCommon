@@ -2,7 +2,6 @@ package com.yzq.kotlincommon.ui.activity
 
 import android.Manifest
 import com.therouter.router.Route
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.kotlincommon.databinding.ActivityNetworkBinding
@@ -11,6 +10,7 @@ import com.yzq.network_status.NetworkType
 import com.yzq.network_status.OnNetworkStatusChangedListener
 import com.yzq.permission.getPermissions
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 
 @Route(path = RoutePath.Main.NETWORK)
 class NetworkActivity : BaseActivity(), OnNetworkStatusChangedListener {

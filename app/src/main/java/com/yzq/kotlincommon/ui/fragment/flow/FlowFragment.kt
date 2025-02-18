@@ -3,10 +3,10 @@ package com.yzq.kotlincommon.ui.fragment.flow
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.lifecycleScope
-import com.yzq.base.extend.observeUIState
-import com.yzq.base.extend.setOnThrottleTimeClick
 import com.yzq.baseui.BaseFragment
 import com.yzq.binding.viewBinding
+import com.yzq.core.extend.setOnThrottleTimeClick
+import com.yzq.core.observeUIState
 import com.yzq.coroutine.ext.launchSafety
 import com.yzq.coroutine.flow.launchCollect
 import com.yzq.dialog.BubbleLoadingDialog

@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.DisposableEffect
 import com.therouter.TheRouter
-import com.yzq.base.theme.AppTheme
+import com.yzq.kotlincommon.compose_theme.AppTheme
 
 /**
  * @Description: Activity基类

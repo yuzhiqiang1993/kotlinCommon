@@ -1,5 +1,4 @@
-@Suppress("DSL_SCOPE_VIOLATION")
-plugins {
+@Suppress("DSL_SCOPE_VIOLATION") plugins {
     alias(libs.plugins.xeonyu.application)
     alias(libs.plugins.ksp)
     alias(libs.plugins.xeonyu.dependencyManager)
@@ -204,6 +203,7 @@ dependencies {
     implementation(libs.google.material)
     implementation(libs.androidx.constraintlayout)
 
+    implementation(libs.toaster)
 
     implementation(libs.therouter)
     ksp(libs.therouter.apt)
@@ -223,11 +223,19 @@ dependencies {
     ksp(libs.androidx.room.compiler)
 
     /*处理图片方向*/
-    implementation(libs.androidx.exifinterface)
-    /*flexbox*/
-    implementation(libs.flexbox.layout)
-    /*内存泄漏检测 leakcanary*/
+    implementation(libs.androidx.exifinterface)/*flexbox*/
+    implementation(libs.flexbox.layout)/*内存泄漏检测 leakcanary*/
     debugImplementation(libs.leakcanary.android)
+
+    implementation(platform(libs.androidx.compose.compose.bom))
+    implementation(libs.bundles.compose)
+
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.tooling.preview)
+
+    implementation("com.github.javakam:file.core:3.9.8@aar")
+    implementation("com.github.javakam:file.selector:3.9.8@aar")
+    implementation("com.github.javakam:file.compressor:3.9.8@aar")
 
     implementation(project(":gao-de-map"))
     implementation(project(":img"))
@@ -237,11 +245,14 @@ dependencies {
     implementation(project(":player"))
     implementation(project(":aliemas"))
     implementation(project(":appstartup"))
-    implementation(project(":base-ui"))
+    implementation(project(":permission"))
     implementation(project(":router"))
-    implementation(project(":base"))
     implementation(project(":net"))
     implementation(project(":storage"))
+    implementation(project(":biz-core"))
+    implementation(project(":data"))
+    implementation(project(":util"))
+    implementation(project(":widget"))
 
 
 }

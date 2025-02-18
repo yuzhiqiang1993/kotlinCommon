@@ -8,7 +8,7 @@ import com.therouter.TheRouter
 import com.therouter.router.Route
 import com.yumc.android.userauth.login.view_model.AgreementViewModel
 import com.yzq.binding.viewBinding
-import com.yzq.logger.Logger.it
+import com.yzq.logger.Logger
 import com.yzq.login.R
 import com.yzq.login.databinding.ActivityLoginByPwdBinding
 import com.yzq.login.ui.BaseLoginActivity
@@ -60,7 +60,7 @@ class LoginByPwdActivity : BaseLoginActivity() {
 
             tvLoginBySms.setOnClickListener { v: View? ->
                 //验证码登录
-                it(TAG, "验证码登录")
+                Logger.it(TAG, "验证码登录")
                 TheRouter.build(RoutePath.Login.LOGIN_BY_SMS).navigation()
                 finish()
             }
@@ -73,7 +73,7 @@ class LoginByPwdActivity : BaseLoginActivity() {
             }
 
             agreementCheckbox.onAgreementChecked { isChecked ->
-                it(TAG, "协议选中:$isChecked")
+                Logger.it(TAG, "协议选中:$isChecked")
                 loginByPwdViewModel.changeAgreementChecked(isChecked)
             }
             agreementCheckbox.onAgreementClick { content ->
@@ -87,7 +87,7 @@ class LoginByPwdActivity : BaseLoginActivity() {
 
             tvForgetPwd.setOnClickListener { view: View? ->
                 //忘记密码
-                it(TAG, "忘记密码")
+                Logger.it(TAG, "忘记密码")
                 TheRouter.build(RoutePath.Login.RETIREVE_PWD).navigation()
             }
         }
@@ -109,7 +109,7 @@ class LoginByPwdActivity : BaseLoginActivity() {
             ) { show: Boolean ->
                 if (show) {
                     //显示协议弹窗
-                    it(TAG, "显示协议弹窗")
+                    Logger.it(TAG, "显示协议弹窗")
                     agreementDialog!!.safeShow()
                 }
             }

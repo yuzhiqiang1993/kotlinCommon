@@ -1,4 +1,4 @@
-package com.yzq.base.extend
+package com.yzq.core.extend
 
 import android.graphics.Bitmap
 import java.io.File

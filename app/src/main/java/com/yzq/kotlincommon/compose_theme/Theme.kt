@@ -1,4 +1,4 @@
-package com.yzq.base.theme
+package com.yzq.kotlincommon.compose_theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.lightColorScheme

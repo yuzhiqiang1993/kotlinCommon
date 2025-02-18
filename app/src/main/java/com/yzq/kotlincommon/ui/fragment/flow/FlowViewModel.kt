@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.ui.fragment.flow
 
-import com.yzq.base.view_model.UIState
-import com.yzq.base.view_model.UiStateViewModel
+import com.yzq.baseui.UIState
+import com.yzq.baseui.UiStateViewModel
 import com.yzq.kotlincommon.api.ApiService
 import com.yzq.logger.Logger
 import com.yzq.net.RetrofitFactory

@@ -20,16 +20,16 @@ import coil.load
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
 import com.yzq.application.AppStorage
-import com.yzq.base.R
-import com.yzq.base.extend.initToolbar
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.img.ImgPreviewActivity
+import com.yzq.kotlincommon.R
 import com.yzq.kotlincommon.databinding.ActivityImageCompressBinding
 import com.yzq.kotlincommon.view_model.CompressImgViewModel
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 import com.yzq.router.RoutePath
+import com.yzq.util.ext.initToolbar
 import java.io.File
 import java.util.Calendar
 
