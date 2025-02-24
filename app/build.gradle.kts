@@ -1,4 +1,5 @@
-@Suppress("DSL_SCOPE_VIOLATION") plugins {
+@Suppress("DSL_SCOPE_VIOLATION")
+plugins {
     alias(libs.plugins.xeonyu.application)
     alias(libs.plugins.ksp)
     alias(libs.plugins.xeonyu.dependencyManager)
@@ -9,6 +10,7 @@
 
 }
 println("getRootDir():${rootDir}")
+
 
 //apply from: file("${getRootDir()}/gradle_script/bytex.gradle")
 
@@ -232,6 +234,7 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.tooling.preview)
+
 
     implementation("com.github.javakam:file.core:3.9.8@aar")
     implementation("com.github.javakam:file.selector:3.9.8@aar")

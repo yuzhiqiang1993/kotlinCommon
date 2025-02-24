@@ -6,6 +6,7 @@ import com.yzq.coroutine.thread_pool.ThreadPoolManager
 import com.yzq.logger.Logger
 import com.yzq.net.core.ApiResult
 import com.yzq.net.interceptor.LoggingInterceptor
+import com.yzq.net.interceptor.TrafficInterceptor
 import com.yzq.util.MoshiUtils
 import okhttp3.Dispatcher
 import okhttp3.HttpUrl
@@ -31,6 +32,7 @@ object OkHttpUtils {
     val client =
         OkHttpClient.Builder().connectTimeout(5, TimeUnit.SECONDS).readTimeout(5, TimeUnit.SECONDS)
             .addInterceptor(LoggingInterceptor())
+            .addInterceptor(TrafficInterceptor())
             .dispatcher(Dispatcher(ThreadPoolManager.instance.ioThreadPoolExecutor))//设置线程池,okhttp本身做了限制，默认同时最多支持64个请求
             .build()
 

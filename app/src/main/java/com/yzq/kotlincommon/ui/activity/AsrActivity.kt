@@ -1,14 +1,10 @@
 package com.yzq.kotlincommon.ui.activity
 
-import android.os.Handler
-import android.os.Looper
-import android.os.Message
 import com.baidu.speech.EventListener
 import com.baidu.speech.asr.SpeechConstant
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
-import com.xeon.asr_demo.ASRManager
-import com.xeon.baidu.AutoCheck
+import com.xeon.baidu.ASRBaiduManager
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.core.extend.setOnThrottleTimeClick
@@ -17,20 +13,23 @@ import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 import com.yzq.router.RoutePath
 import com.yzq.util.ext.initToolbar
-import org.json.JSONObject
+import java.util.concurrent.atomic.AtomicBoolean
 
 
 /**
  * @description 百度语音识别
  * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
  */
-@Route(path = RoutePath.Main.ASR)
+@Route(path = RoutePath.Main.BAIDU_ASR)
 class AsrActivity : BaseActivity(), EventListener {
 
 
     private val stringBuilder = StringBuilder()
 
     private val binding by viewBinding(ActivityAsrBinding::inflate)
+
+    //是否检测到用户说话
+    private val hasSpeak = AtomicBoolean(false)
 
     override fun initWidget() {
         getPermissions(
@@ -39,63 +38,38 @@ class AsrActivity : BaseActivity(), EventListener {
 
         }
 
-        initToolbar(binding.includedToolbar.toolbar, "语音识别")
+        initToolbar(binding.includedToolbar.toolbar, "百度语音识别")
 
-        ASRManager.instance.registerListener(this)
         binding.btnStart.setOnThrottleTimeClick {
-            start()
+            ASRBaiduManager.startRecognition(this)
+        }
+
+        binding.btnStop.setOnThrottleTimeClick {
+            if (hasSpeak.get()) {
+                //如果没有说过话,直接stop会崩溃
+                ASRBaiduManager.stopRecognition()
+            } else {
+                ASRBaiduManager.cancelRecognition()
+            }
         }
     }
 
-    private fun start() {
-        Logger.i("start")
-        val param = ASRManager.getParam()
-//        param.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, true)
-//        param.put(SpeechConstant.ACCEPT_AUDIO_DATA, true)
-//        param.put(SpeechConstant.DISABLE_PUNCTUATION, false)
-//        param.put(SpeechConstant.VAD, SpeechConstant.VAD_DNN)
-
-
-        AutoCheck(applicationContext, object : Handler(Looper.getMainLooper()) {
-            override fun handleMessage(msg: Message) {
-                if (msg.what == 100) {
-                    val autoCheck = msg.obj as AutoCheck
-                    synchronized(autoCheck) {
-                        val message =
-                            autoCheck.obtainErrorMessage() // autoCheck.obtainAllMessage();
-                        // 可以用下面一行替代，在logcat中查看代码
-                        Logger.i("handleMessage: ${message}")
-                    }
-                }
-            }
-        }, false).checkAsr(param)
-
-        val jsonParam = JSONObject(param.toMap()).toString()
-        Logger.i("jsonParam:${jsonParam}")
-        val event = SpeechConstant.ASR_START
-        ASRManager.instance.send(event, jsonParam, null, 0, 0)
-    }
-
     override fun onEvent(
-        name: String?,
-        params: String?,
-        data: ByteArray?,
-        offset: Int,
-        length: Int
+        name: String?, params: String?, data: ByteArray?, offset: Int, length: Int
     ) {
 
-        Logger.i(
-
+        Logger.it(
+            TAG,
             "onEvent: name:${name}},params:${params},data:${data},offset:${offset},length:${length}"
         )
         if (name != null) {
             when (name) {
                 SpeechConstant.CALLBACK_EVENT_ASR_READY -> {
-                    stringBuilder.appendLine("准备完毕，可以开始说话了")
+                    stringBuilder.appendLine("准备完毕，可以开始说话了").appendLine()
                 }
 
                 SpeechConstant.CALLBACK_EVENT_ASR_BEGIN -> {
-                    stringBuilder.appendLine("检测语音识别的起点")
+                    stringBuilder.appendLine("检测语音识别的起点").appendLine()
                 }
 
                 SpeechConstant.CALLBACK_EVENT_ASR_VOLUME -> {
@@ -103,20 +77,22 @@ class AsrActivity : BaseActivity(), EventListener {
                 }
 
                 SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL -> {
-                    stringBuilder.appendLine("部分语音识别结果:${params}")
+
+                    stringBuilder.appendLine("部分语音识别结果:${params}").appendLine()
+                    hasSpeak.set(true)
                 }
 
                 SpeechConstant.CALLBACK_EVENT_ASR_END -> {
-                    stringBuilder.appendLine("检测语音的重点：${params}")
+                    stringBuilder.appendLine("检测语音的重点：${params}").appendLine()
                 }
 
                 SpeechConstant.CALLBACK_EVENT_ASR_FINISH -> {
-                    /*语音识别完成，表示一句话已经说完。*/
-                    stringBuilder.appendLine("语音识别完成：${params}")
+                    stringBuilder.appendLine("语音识别结束：${params}").appendLine()
                 }
 
                 SpeechConstant.CALLBACK_EVENT_ASR_EXIT -> {
-                    stringBuilder.appendLine("语音识别引擎退出")
+                    stringBuilder.appendLine("语音识别引擎退出").appendLine()
+                    hasSpeak.set(false)
                 }
 
                 else -> {}
@@ -130,8 +106,7 @@ class AsrActivity : BaseActivity(), EventListener {
 
     override fun onDestroy() {
         super.onDestroy()
-        ASRManager.instance.send(SpeechConstant.ASR_STOP, null, null, 0, 0)
-        ASRManager.instance.unregisterListener(this)
+        ASRBaiduManager.destroyRecognition()
     }
 
 }

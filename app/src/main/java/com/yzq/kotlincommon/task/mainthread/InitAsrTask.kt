@@ -1,7 +1,6 @@
 package com.yzq.kotlincommon.task.mainthread
 
-import com.xeon.asr_demo.ASRManager
-import com.yzq.application.AppManager
+import com.xeon.baidu.ASRBaiduManager
 import com.yzq.appstartup.MainThreadTask
 
 /**
@@ -11,6 +10,10 @@ import com.yzq.appstartup.MainThreadTask
 
 class InitAsrTask : MainThreadTask() {
     override fun taskRun() {
-        ASRManager.init(AppManager.application)
+        ASRBaiduManager.init(
+            "117651900",
+            "SZABhR417C2gGNY7qY3hscxo",
+            "ntDsBwGEdf5LT12Ru7LL8CWdled93j8a"
+        )
     }
 }

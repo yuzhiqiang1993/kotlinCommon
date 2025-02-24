@@ -28,7 +28,13 @@
         android:id="@+id/btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="开始" />
+        android:text="开始识别" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_stop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="结束识别" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -10,7 +10,6 @@ import android.util.Log;
 import androidx.core.content.ContextCompat;
 
 import com.baidu.speech.asr.SpeechConstant;
-import com.yzq.logger.Logger;
 
 import org.json.JSONObject;
 
@@ -32,13 +31,15 @@ import javax.net.ssl.HttpsURLConnection;
 public class AutoCheck {
     public static final boolean isOnlineLited = false; // 是否只需要是纯在线识别功能
     private static final String TAG = "AutoCheck";
-    private final LinkedHashMap<String, Check> checks;
-    private final Context context;
-    private final Handler handler;
-    private final boolean enableOffline;
+    private LinkedHashMap<String, Check> checks;
+    private Context context;
+
     private boolean hasError;
+    private Handler handler;
     private boolean isFinished = false;
+
     private String name;
+    private boolean enableOffline;
 
     public AutoCheck(Context context, final Handler handler, boolean enableOffline) {
         this.context = context;
@@ -155,9 +156,8 @@ public class AutoCheck {
         public boolean withLogOnSuccess = false;
     }
 
-
     private static class PermissionCheck extends Check {
-        private final Context context;
+        private Context context;
 
         public PermissionCheck(Context context) {
             this.context = context;
@@ -187,9 +187,9 @@ public class AutoCheck {
     }
 
     private static class JniCheck extends Check {
-        private final Context context;
+        private Context context;
 
-        private final String[] soNames;
+        private String[] soNames;
 
         public JniCheck(Context context) {
             this.context = context;
@@ -217,7 +217,7 @@ public class AutoCheck {
             // boolean isSuccess = true;
             for (String name : soNames) {
                 if (!set.contains(name)) {
-                    errorMessage = "Jni目录" + path + " 缺少so文件：" + name + "， 该目录文件列表: " + set;
+                    errorMessage = "Jni目录" + path + " 缺少so文件：" + name + "， 该目录文件列表: " + set.toString();
                     fixMessage = "如果您的app内没有其它so文件，请复制demo里的src/main/jniLibs至同名目录。"
                             + " 如果app内有so文件，请合并目录放一起(注意目录取交集，多余的目录删除)。";
                     break;
@@ -280,7 +280,7 @@ public class AutoCheck {
         public void checkOnline() throws Exception {
             String urlpath = "https://openapi.baidu.com/oauth/2.0/token?client_id="
                     + appKey + "&client_secret=" + secretKey + "&grant_type=client_credentials";
-            Logger.i("AutoCheck", "Url is " + urlpath);
+            Log.i("AutoCheck", "Url is " + urlpath);
             URL url = new URL(urlpath);
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -319,8 +319,8 @@ public class AutoCheck {
 
     private static class ApplicationIdCheck extends Check {
 
-        private final String appId;
-        private final Context context;
+        private String appId;
+        private Context context;
 
         public ApplicationIdCheck(Context context, String appId) {
             this.appId = appId;
@@ -340,9 +340,9 @@ public class AutoCheck {
     }
 
     private static class FileCheck extends Check {
-        private final Map<String, Object> params;
-        private final String key;
-        private final Context context;
+        private Map<String, Object> params;
+        private String key;
+        private Context context;
         private boolean allowRes = false;
         private boolean allowAssets = true;
 

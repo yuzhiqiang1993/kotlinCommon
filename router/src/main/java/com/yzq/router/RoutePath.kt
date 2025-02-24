@@ -38,7 +38,7 @@ object RoutePath {
         const val SERVICE: String = "/main/service"
         const val STORAGE: String = "/main/storage"
         const val LOTTIE: String = "/main/lottie"
-        const val ASR: String = "/main/asr"
+        const val BAIDU_ASR: String = "/main/baidu_asr"
         const val IMAGE_LOAD: String = "/main/imageLoad"
         const val BLUETOOTH: String = "/main/bluetooth"
         const val REACT_NATIVE: String = "/main/reactNative"

@@ -26,6 +26,7 @@ class VideoPlayerActivity : BaseActivity() {
 //            "https://sares.kfc.com.cn/ycms/bigPlayerChannel/202501/202501091049249202.mp4"
         binding.videoPlayer.apply {
             setUp(source1, true, "测试视频")
+
             //增加封面
             val imageView = ImageView(this@VideoPlayerActivity)
             imageView.scaleType = ImageView.ScaleType.CENTER_CROP

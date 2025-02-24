@@ -168,7 +168,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("Service", RoutePath.Main.SERVICE))
         items.add(NaviItem("存储", RoutePath.Main.STORAGE))
         items.add(NaviItem("Lottie", RoutePath.Main.LOTTIE))
-        items.add(NaviItem("语音识别ASR", RoutePath.Main.ASR))
+        items.add(NaviItem("语音识别ASR", RoutePath.Main.BAIDU_ASR))
         items.add(NaviItem("蓝牙", RoutePath.Main.BLUETOOTH))
         items.add(NaviItem("ReactNative", RoutePath.Main.REACT_NATIVE))
         items.add(NaviItem("JavaActivity", RoutePath.Main.JAVA_ACTIVITY))

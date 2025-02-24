@@ -9,10 +9,8 @@ import android.os.Trace
 import com.aice.appstartfaster.dispatcher.AppStartTaskDispatcher
 import com.facebook.soloader.SoLoader
 import com.therouter.TheRouter
-import com.yzq.aliemas.inittask.InitAPMTask
 import com.yzq.aliemas.inittask.InitAliPushTask
 import com.yzq.aliemas.inittask.InitCrashReportTask
-import com.yzq.aliemas.inittask.InitTlogTask
 import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
 import com.yzq.application.getCurrentProcessName
@@ -89,9 +87,9 @@ class App : Application(), AppStateListener {
                 .addAppStartTask(InitMMKVTask())
                 .addAppStartTask(InitStateLayoutConfigTask())
                 .addAppStartTask(InitSmartRefreshTask())
-                .addAppStartTask(InitAPMTask())
-                .addAppStartTask(InitTlogTask())
-                .addAppStartTask(InitAliPushTask())
+//                .addAppStartTask(InitAPMTask())
+//                .addAppStartTask(InitTlogTask())
+//                .addAppStartTask(InitAliPushTask())
                 .addAppStartTask(InitLocationTask())
                 .addAppStartTask(InitToasterTask())
                 .addAppStartTask(InitFileOperatorTask())
@@ -112,6 +110,7 @@ class App : Application(), AppStateListener {
             }
 
         }
+
     }
 
 
