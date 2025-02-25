@@ -73,11 +73,16 @@ class AsrActivity : BaseActivity(), EventListener {
                 }
 
                 SpeechConstant.CALLBACK_EVENT_ASR_VOLUME -> {
-                    stringBuilder.appendLine("接收到的语音音量:${params}")
+                    stringBuilder.appendLine("接收到的语音音量:${params}").appendLine()
+                }
+
+                SpeechConstant.CALLBACK_EVENT_ASR_AUDIO -> {
+//                    stringBuilder.appendLine("音频数据：${data?.contentToString()}").appendLine()
+                    //打印出 bytearray
+                    Logger.it(TAG, "音频数据：${data?.contentToString()}")
                 }
 
                 SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL -> {
-
                     stringBuilder.appendLine("部分语音识别结果:${params}").appendLine()
                     hasSpeak.set(true)
                 }
@@ -94,6 +99,7 @@ class AsrActivity : BaseActivity(), EventListener {
                     stringBuilder.appendLine("语音识别引擎退出").appendLine()
                     hasSpeak.set(false)
                 }
+
 
                 else -> {}
 

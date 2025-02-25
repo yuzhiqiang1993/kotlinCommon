@@ -66,15 +66,14 @@ object ASRBaiduManager {
 
         params.put(
             SpeechConstant.ACCEPT_AUDIO_DATA, true
-        )//是否需要语音音频数据回调，开启后有CALLBACK_EVENT_ASR_AUDIO事件
+        )//是否需要语音音频数据回调，开启后有 CALLBACK_EVENT_ASR_AUDIO 事件
         params.put(
             SpeechConstant.ACCEPT_AUDIO_VOLUME, true
-        )//是否需要语音音量数据回调，开启后有CALLBACK_EVENT_ASR_VOLUME事件
+        )//是否需要语音音量数据回调，开启后有 CALLBACK_EVENT_ASR_VOLUME 事件
 
         params.put(
             SpeechConstant.VAD, SpeechConstant.VAD_TOUCH
-        )//关闭语音活动检测，适合用户自行控制音频结束，如按住说话松手停止的场景。功能等同于60s限制的长语音。需要手动调用ASR_STOP停止录音
-        params.put(SpeechConstant.DECODER, 2)//设置识别引擎为在线识别引擎
+        )//关闭语音活动检测，适合用户自行控制音频结束，如按住说话松手停止的场景。功能等同于60s限制的长语音。需要手动调用 ASR_STOP 停止录音
         return params
 
     }
