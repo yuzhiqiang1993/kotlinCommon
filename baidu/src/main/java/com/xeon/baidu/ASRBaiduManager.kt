@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 object ASRBaiduManager {
 
-    const val TAG = "ASRManager"
+    const val TAG = "ASRBaiduManager"
 
     private var appId: String = ""
     private var ak: String = ""

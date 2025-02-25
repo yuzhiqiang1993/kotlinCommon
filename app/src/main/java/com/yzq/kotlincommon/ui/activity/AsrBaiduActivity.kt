@@ -20,8 +20,8 @@ import java.util.concurrent.atomic.AtomicBoolean
  * @description 百度语音识别
  * @author  yuzhiqiang (zhiqiang.yu.xeon@gmail.com)
  */
-@Route(path = RoutePath.Main.BAIDU_ASR)
-class AsrActivity : BaseActivity(), EventListener {
+@Route(path = RoutePath.Main.ASR_BAIDU)
+class AsrBaiduActivity : BaseActivity(), EventListener {
 
 
     private val stringBuilder = StringBuilder()
@@ -32,16 +32,17 @@ class AsrActivity : BaseActivity(), EventListener {
     private val hasSpeak = AtomicBoolean(false)
 
     override fun initWidget() {
-        getPermissions(
-            Permission.RECORD_AUDIO
-        ) {
 
-        }
 
         initToolbar(binding.includedToolbar.toolbar, "百度语音识别")
 
         binding.btnStart.setOnThrottleTimeClick {
-            ASRBaiduManager.startRecognition(this)
+            getPermissions(
+                Permission.RECORD_AUDIO
+            ) {
+                ASRBaiduManager.startRecognition(this)
+            }
+
         }
 
         binding.btnStop.setOnThrottleTimeClick {

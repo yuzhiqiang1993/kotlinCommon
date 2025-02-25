@@ -1,5 +1,4 @@
-@Suppress("DSL_SCOPE_VIOLATION")
-plugins {
+@Suppress("DSL_SCOPE_VIOLATION") plugins {
     alias(libs.plugins.xeonyu.application)
     alias(libs.plugins.ksp)
     alias(libs.plugins.xeonyu.dependencyManager)
@@ -243,6 +242,7 @@ dependencies {
     implementation(project(":gao-de-map"))
     implementation(project(":img"))
     implementation(project(":baidu"))
+    implementation(project(":ifly"))
     implementation(project(":react-native"))
     implementation(project(":login"))
     implementation(project(":player"))

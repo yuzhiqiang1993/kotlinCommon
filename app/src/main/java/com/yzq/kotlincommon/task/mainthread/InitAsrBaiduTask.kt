@@ -8,7 +8,7 @@ import com.yzq.appstartup.MainThreadTask
  * @author : yuzhiqiang
  */
 
-class InitAsrTask : MainThreadTask() {
+class InitAsrBaiduTask : MainThreadTask() {
     override fun taskRun() {
         ASRBaiduManager.init(
             "117651900",

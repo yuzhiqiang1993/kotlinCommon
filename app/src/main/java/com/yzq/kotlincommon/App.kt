@@ -15,7 +15,8 @@ import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
 import com.yzq.application.getCurrentProcessName
 import com.yzq.application.isMainProcess
-import com.yzq.kotlincommon.task.mainthread.InitAsrTask
+import com.yzq.kotlincommon.task.mainthread.InitAsrBaiduTask
+import com.yzq.kotlincommon.task.mainthread.InitAsrIflyTask
 import com.yzq.kotlincommon.task.mainthread.InitCoilTask
 import com.yzq.kotlincommon.task.mainthread.InitLocationTask
 import com.yzq.kotlincommon.task.mainthread.InitMMKVTask
@@ -93,7 +94,9 @@ class App : Application(), AppStateListener {
                 .addAppStartTask(InitLocationTask())
                 .addAppStartTask(InitToasterTask())
                 .addAppStartTask(InitFileOperatorTask())
-                .addAppStartTask(InitAsrTask()).start()
+                .addAppStartTask(InitAsrIflyTask())
+                .addAppStartTask(InitAsrBaiduTask())
+                .start()
                 .await()
 
 
