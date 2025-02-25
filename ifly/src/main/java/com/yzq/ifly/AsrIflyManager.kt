@@ -38,6 +38,7 @@ object AsrIflyManager {
         if (initialized.get()) {
             Logger.it(TAG, "开始识别")
             createSpeechRecognizer()
+            snTextMap.clear()
             speechRecognizer?.startListening(listener)
         } else {
             Logger.et(TAG, "未初始化")
@@ -103,26 +104,60 @@ object AsrIflyManager {
     }
 
 
+    // 用于存储识别结果，key：sn(类似于 id 每次识别都会有一个 sn 的值，唯一的) value：识别结果
+    private val snTextMap = mutableMapOf<String, String>()
+
+    /**
+     * 记录识别结果
+     * @param result RecognizerResult
+     * @return String
+     */
     fun handleSpeechResult(result: RecognizerResult): String = kotlin.runCatching {
         val jsonResult = JSONObject(result.resultString)
-        // 提取识别出的文本
+        val pgs = jsonResult.optString("pgs") // 获取修正状态
+        val sn = jsonResult.optString("sn") // 获取当前结果的sn,唯一标识
         val wsArray = jsonResult.optJSONArray("ws") // "ws" 是分词的数组
-        val recognizedWords = StringBuilder()
-        // 拼接识别出的每个词
+        val recognizedWordsSb = StringBuilder()//识别的文字
+
         if (wsArray != null) {
             for (i in 0 until wsArray.length()) {
                 val wordObj = wsArray.getJSONObject(i)
                 val cwArray = wordObj.optJSONArray("cw") // "cw" 是词语和得分
                 if (cwArray != null && cwArray.length() > 0) {
-                    val word = cwArray.getJSONObject(0).optString("w")//w 是词语
-                    recognizedWords.append(word)
+                    val word = cwArray.getJSONObject(0).optString("w") // w 是词语
+                    recognizedWordsSb.append(word)//拼接识别的文字
                 }
             }
         }
 
-        return recognizedWords.toString()
+        Logger.it(TAG, "拼接得到的文字: $recognizedWordsSb")
 
-    }.getOrDefault("")
+        // 处理动态修正
+        if (pgs == "rpl") {
+            val rg = jsonResult.optString("rg") // 获取修正范围
+            val rgParts = rg.replace("[", "").replace("]", "").split(",")
+            val begin = rgParts[0].toInt()
+            val end = rgParts[1].toInt()
+            // 删除被修正的记录
+            for (i in begin..end) {
+                snTextMap.remove(i.toString()) // 删除原有的sn结果
+            }
+        }
+
+        // 更新当前识别结果
+        snTextMap[sn] = recognizedWordsSb.toString()
+
+        return getSnMapResult()
+    }.getOrDefault(getSnMapResult())
+
+
+    private fun getSnMapResult(): String {
+        val resultText = StringBuilder()
+        for (key in snTextMap.keys) {
+            resultText.append(snTextMap[key])
+        }
+        return resultText.toString()
+    }
 
 
 }

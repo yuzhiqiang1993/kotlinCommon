@@ -32,7 +32,7 @@ class AsrIlfyActivity : BaseActivity() {
 
     private val recognizerListener = object : RecognizerListener {
         override fun onVolumeChanged(volume: Int, data: ByteArray?) {
-//            Logger.it(TAG, "音量发生变化:$volume,data:${data?.contentToString()}")
+            Logger.it(TAG, "音量发生变化:$volume, data:${data?.contentToString()}")
 //            stringBuilder.appendLine("音量发生变化:$volume}").appendLine()
 
         }
@@ -40,23 +40,28 @@ class AsrIlfyActivity : BaseActivity() {
         override fun onBeginOfSpeech() {
             Logger.it(TAG, "开始说话")
             stringBuilder.appendLine("开始说话").appendLine()
+            binding.tvResult.text = stringBuilder.toString()
         }
 
         override fun onEndOfSpeech() {
             Logger.it(TAG, "结束说话")
             stringBuilder.appendLine("结束说话").appendLine()
+            binding.tvResult.text = stringBuilder.toString()
         }
 
         override fun onResult(result: RecognizerResult?, isLast: Boolean) {
-
             result?.run {
-                AsrIflyManager.handleSpeechResult(result, isLast)
+                Logger.it(TAG, "识别结果:${result.resultString} , 是否最后一行:${isLast}")
+                val text = AsrIflyManager.handleSpeechResult(result)
+                stringBuilder.appendLine("识别结果:$text, 是否最后一行:${isLast}").appendLine()
+                binding.tvResult.text = stringBuilder.toString()
             }
         }
 
         override fun onError(speechError: SpeechError?) {
             Logger.it(TAG, "识别错误:${speechError?.errorDescription}")
             stringBuilder.appendLine("识别错误:${speechError?.errorDescription}").appendLine()
+            binding.tvResult.text = stringBuilder.toString()
         }
 
         override fun onEvent(eventType: Int, arg1: Int, arg2: Int, obj: Bundle?) {
