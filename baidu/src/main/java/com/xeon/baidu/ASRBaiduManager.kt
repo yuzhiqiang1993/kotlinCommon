@@ -94,7 +94,11 @@ object ASRBaiduManager {
 
     fun stopRecognition() {
         //停止识别
-        eventManager?.send(SpeechConstant.ASR_STOP, "{}", null, 0, 0)
+        kotlin.runCatching {
+            eventManager?.send(SpeechConstant.ASR_STOP, "{}", null, 0, 0)
+        }.onFailure {
+            Logger.et(TAG, "停止识别失败:${it.message}")
+        }
     }
 
     fun cancelRecognition() {

@@ -13,7 +13,6 @@ import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions
 import com.yzq.router.RoutePath
 import com.yzq.util.ext.initToolbar
-import java.util.concurrent.atomic.AtomicBoolean
 
 
 /**
@@ -28,8 +27,6 @@ class AsrBaiduActivity : BaseActivity(), EventListener {
 
     private val binding by viewBinding(ActivityAsrBinding::inflate)
 
-    //是否检测到用户说话
-    private val hasSpeak = AtomicBoolean(false)
 
     override fun initWidget() {
 
@@ -46,12 +43,7 @@ class AsrBaiduActivity : BaseActivity(), EventListener {
         }
 
         binding.btnStop.setOnThrottleTimeClick {
-            if (hasSpeak.get()) {
-                //如果没有说过话,直接stop会崩溃
-                ASRBaiduManager.stopRecognition()
-            } else {
-                ASRBaiduManager.cancelRecognition()
-            }
+            ASRBaiduManager.stopRecognition()
         }
     }
 
@@ -59,10 +51,10 @@ class AsrBaiduActivity : BaseActivity(), EventListener {
         name: String?, params: String?, data: ByteArray?, offset: Int, length: Int
     ) {
 
-        Logger.it(
-            TAG,
-            "onEvent: name:${name}},params:${params},data:${data},offset:${offset},length:${length}"
-        )
+//        Logger.it(
+//            TAG,
+//            "onEvent: name:${name}},params:${params},data:${data},offset:${offset},length:${length}"
+//        )
         if (name != null) {
             when (name) {
                 SpeechConstant.CALLBACK_EVENT_ASR_READY -> {
@@ -85,7 +77,6 @@ class AsrBaiduActivity : BaseActivity(), EventListener {
 
                 SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL -> {
                     stringBuilder.appendLine("部分语音识别结果:${params}").appendLine()
-                    hasSpeak.set(true)
                 }
 
                 SpeechConstant.CALLBACK_EVENT_ASR_END -> {
@@ -98,7 +89,6 @@ class AsrBaiduActivity : BaseActivity(), EventListener {
 
                 SpeechConstant.CALLBACK_EVENT_ASR_EXIT -> {
                     stringBuilder.appendLine("语音识别引擎退出").appendLine()
-                    hasSpeak.set(false)
                 }
 
 

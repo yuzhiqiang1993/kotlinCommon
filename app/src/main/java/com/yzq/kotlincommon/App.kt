@@ -32,6 +32,7 @@ import com.yzq.logger.file.FileLogConfig
 import com.yzq.logger.file.FileLogPrinter
 import com.yzq.logger.view.core.ViewLogConfig
 import com.yzq.logger.view.core.ViewLogPrinter
+import com.yzq.util.ext.getDeviceInfo
 
 
 /**
@@ -42,6 +43,10 @@ import com.yzq.logger.view.core.ViewLogPrinter
  *
  */
 class App : Application(), AppStateListener {
+
+    companion object {
+        const val TAG = "App"
+    }
 
     override fun onCreate() {
         super.onCreate()
@@ -65,6 +70,8 @@ class App : Application(), AppStateListener {
             ).debug(true)
         }
 
+        val deviceInfo = getDeviceInfo()
+        Logger.it(TAG, "$deviceInfo")
 
         if (AppManager.isMainProcess()) {
             Logger.i("主进程")
