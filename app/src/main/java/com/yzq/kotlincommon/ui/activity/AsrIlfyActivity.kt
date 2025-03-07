@@ -9,7 +9,7 @@ import com.therouter.router.Route
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.core.extend.setOnThrottleTimeClick
-import com.yzq.ifly.AsrIflyManager
+import com.yzq.ifly.asr.AsrIflyManager
 import com.yzq.kotlincommon.databinding.ActivityAsrBinding
 import com.yzq.logger.Logger
 import com.yzq.permission.getPermissions

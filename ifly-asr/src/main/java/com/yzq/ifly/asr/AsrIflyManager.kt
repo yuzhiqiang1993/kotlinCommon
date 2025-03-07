@@ -1,4 +1,4 @@
-package com.yzq.ifly
+package com.yzq.ifly.asr
 
 import com.iflytek.cloud.ErrorCode
 import com.iflytek.cloud.InitListener
@@ -61,7 +61,7 @@ object AsrIflyManager {
     private fun createSpeechRecognizer() {
 
         if (speechRecognizer == null) {
-            this.speechRecognizer = SpeechRecognizer.createRecognizer(
+            speechRecognizer = SpeechRecognizer.createRecognizer(
                 AppManager.application, initListener
             ).apply {
                 setParameter(SpeechConstant.PARAMS, null);

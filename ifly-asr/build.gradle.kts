@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.xeon.baidu"
+    namespace = "com.yzq.ifly.asr"
 }
 
 dependencies {

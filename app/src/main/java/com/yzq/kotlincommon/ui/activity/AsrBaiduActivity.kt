@@ -4,7 +4,7 @@ import com.baidu.speech.EventListener
 import com.baidu.speech.asr.SpeechConstant
 import com.hjq.permissions.Permission
 import com.therouter.router.Route
-import com.xeon.baidu.ASRBaiduManager
+import com.yzq.baidu.asr.ASRBaiduManager
 import com.yzq.baseui.BaseActivity
 import com.yzq.binding.viewBinding
 import com.yzq.core.extend.setOnThrottleTimeClick

@@ -241,8 +241,8 @@ dependencies {
 
     implementation(project(":gao-de-map"))
     implementation(project(":img"))
-    implementation(project(":baidu"))
-    implementation(project(":ifly"))
+    implementation(project(":baidu-asr"))
+    implementation(project(":ifly-asr"))
     implementation(project(":react-native"))
     implementation(project(":login"))
     implementation(project(":player"))

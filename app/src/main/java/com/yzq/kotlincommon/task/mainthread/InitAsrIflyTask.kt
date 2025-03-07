@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.task.mainthread
 
 import com.yzq.appstartup.MainThreadTask
-import com.yzq.ifly.AsrIflyManager
+import com.yzq.ifly.asr.AsrIflyManager
 
 /**
  * @description: 初始化语音识别

@@ -1,7 +1,7 @@
 package com.yzq.kotlincommon.task.mainthread
 
-import com.xeon.baidu.ASRBaiduManager
 import com.yzq.appstartup.MainThreadTask
+import com.yzq.baidu.asr.ASRBaiduManager
 
 /**
  * @description: 初始化语音识别

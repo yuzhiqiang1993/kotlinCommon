@@ -1,4 +1,4 @@
-package com.xeon.baidu
+package com.yzq.baidu.asr
 
 import com.baidu.speech.EventListener
 import com.baidu.speech.EventManager
@@ -34,9 +34,9 @@ object ASRBaiduManager {
 
         if (initialized.compareAndSet(false, true)) {
             Logger.it(TAG, "初始化ASR")
-            this.appId = appId
-            this.ak = ak
-            this.sk = sk
+            ASRBaiduManager.appId = appId
+            ASRBaiduManager.ak = ak
+            ASRBaiduManager.sk = sk
 //            AutoCheck(
 //                AppManager.application, object : Handler(Looper.getMainLooper()) {
 //                    override fun handleMessage(msg: android.os.Message) {
@@ -117,7 +117,7 @@ object ASRBaiduManager {
     @Synchronized
     private fun createEventManager() {
         if (eventManager == null) {
-            this.eventManager = EventManagerFactory.create(AppManager.application, "asr")
+            eventManager = EventManagerFactory.create(AppManager.application, "asr")
         } else {
             Logger.it(TAG, "已经创建过EventManager")
         }
