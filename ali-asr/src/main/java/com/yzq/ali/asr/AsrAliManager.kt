@@ -249,4 +249,9 @@ object AsrAliManager {
         nuiInstance.stopDialog()
     }
 
+    fun release() {
+        stop()
+        nuiInstance.release()
+    }
+
 }
