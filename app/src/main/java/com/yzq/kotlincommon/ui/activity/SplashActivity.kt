@@ -131,7 +131,7 @@ class SplashActivity : AppCompatActivity() {
                     route()
                 }.negativeBtn("退出") { v ->
                     finishAfterTransition()
-                }
+                }.safeShow()
 
             } else {
                 route()

@@ -243,6 +243,7 @@ dependencies {
     implementation(project(":img"))
     implementation(project(":baidu-asr"))
     implementation(project(":ifly-asr"))
+    implementation(project(":ali-asr"))
     implementation(project(":react-native"))
     implementation(project(":login"))
     implementation(project(":player"))

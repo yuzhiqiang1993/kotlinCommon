@@ -52,7 +52,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute,LockedOrientationActivity"
         tools:replace="android:allowBackup,android:label,android:theme">
-
+        <activity
+            android:name=".ui.activity.AsrAliActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.activity.UserAuthActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -110,7 +112,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".ui.activity.AsrIlfyActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

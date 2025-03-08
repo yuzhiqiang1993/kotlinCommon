@@ -40,6 +40,7 @@ object RoutePath {
         const val LOTTIE: String = "/main/lottie"
         const val ASR_BAIDU: String = "/main/asr_baidu"
         const val ASR_IFLY: String = "/main/asr_ifly"
+        const val ASR_ALI: String = "/main/asr_ali"
         const val IMAGE_LOAD: String = "/main/imageLoad"
         const val BLUETOOTH: String = "/main/bluetooth"
         const val REACT_NATIVE: String = "/main/reactNative"

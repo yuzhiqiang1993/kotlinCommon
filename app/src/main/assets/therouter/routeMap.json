@@ -1,0 +1,394 @@
+[
+  {
+    "path": "/player/player",
+    "className": "com.yzq.player.VideoPlayerActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/setNewPwdPopup",
+    "className": "com.yzq.login.ui.popup.SetNewPwdPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/retirevePwdPopup",
+    "className": "com.yzq.login.ui.popup.RetrievePwdPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/loginBySmsPopup",
+    "className": "com.yzq.login.ui.popup.LoginBySmsCodePopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/loginByPwdPopup",
+    "className": "com.yzq.login.ui.popup.LoginByPwdPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/onekeyLoginPopup",
+    "className": "com.yzq.login.ui.popup.LoginByOneKeyPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/exemptLoginPopup",
+    "className": "com.yzq.login.ui.popup.ExemptLoginPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/completeRegisterInfoPopup",
+    "className": "com.yzq.login.ui.popup.CompleteRegisterInfoPopupActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/setNewPwd",
+    "className": "com.yzq.login.ui.complete.SetNewPwdActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/retirevePwd",
+    "className": "com.yzq.login.ui.complete.RetrievePwdActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/loginBySms",
+    "className": "com.yzq.login.ui.complete.LoginBySmsCodeActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/loginByPwd",
+    "className": "com.yzq.login.ui.complete.LoginByPwdActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/onekeyLogin",
+    "className": "com.yzq.login.ui.complete.LoginByOneKeyActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/login/completeRegisterInfo",
+    "className": "com.yzq.login.ui.complete.CompleteRegisterInfoActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/zxing",
+    "className": "com.yzq.kotlincommon.ui.activity.ZxingActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/webView",
+    "className": "com.yzq.kotlincommon.ui.activity.WebViewActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/viewPager",
+    "className": "com.yzq.kotlincommon.ui.activity.ViewPager2Activity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/viewBinding",
+    "className": "com.yzq.kotlincommon.ui.activity.ViewBindingActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/userAuth",
+    "className": "com.yzq.kotlincommon.ui.activity.UserAuthActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/threadPool",
+    "className": "com.yzq.kotlincommon.ui.activity.ThreadPoolActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/task",
+    "className": "com.yzq.kotlincommon.ui.activity.TaskActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/storage",
+    "className": "com.yzq.kotlincommon.ui.activity.StorageActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/service",
+    "className": "com.yzq.kotlincommon.ui.activity.ServiceActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/room",
+    "className": "com.yzq.kotlincommon.ui.activity.RoomActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/reactNative",
+    "className": "com.yzq.kotlincommon.ui.activity.ReactNativeActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/movies",
+    "className": "com.yzq.kotlincommon.ui.activity.NewsActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/network",
+    "className": "com.yzq.kotlincommon.ui.activity.NetworkActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/moshi",
+    "className": "com.yzq.kotlincommon.ui.activity.MoshiActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/main",
+    "className": "com.yzq.kotlincommon.ui.activity.MainActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/lottie",
+    "className": "com.yzq.kotlincommon.ui.activity.LottieActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/login",
+    "className": "com.yzq.kotlincommon.ui.activity.LoginActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/javaActivity",
+    "className": "com.yzq.kotlincommon.ui.activity.JavaActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/imgList",
+    "className": "com.yzq.kotlincommon.ui.activity.ImageListActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/imgCompress",
+    "className": "com.yzq.kotlincommon.ui.activity.ImageCompressActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/imageLoad",
+    "className": "com.yzq.kotlincommon.ui.activity.ImageActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/fragment",
+    "className": "com.yzq.kotlincommon.ui.activity.FragmentActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/flow",
+    "className": "com.yzq.kotlincommon.ui.activity.FlowActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/flexBox",
+    "className": "com.yzq.kotlincommon.ui.activity.FlexBoxActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/dropDownMenu",
+    "className": "com.yzq.kotlincommon.ui.activity.DropDownMenuActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/download",
+    "className": "com.yzq.kotlincommon.ui.activity.DownloadActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/dialog",
+    "className": "com.yzq.kotlincommon.ui.activity.DialogActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/dataBinding",
+    "className": "com.yzq.kotlincommon.ui.activity.DataBindingActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/coroutine",
+    "className": "com.yzq.kotlincommon.ui.activity.CoroutinesActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/compose",
+    "className": "com.yzq.kotlincommon.ui.activity.ComposeActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/bsDiff",
+    "className": "com.yzq.kotlincommon.ui.activity.BsDiffActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/bluetooth",
+    "className": "com.yzq.kotlincommon.ui.activity.BlueToothActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/viewBindingDelegate",
+    "className": "com.yzq.kotlincommon.ui.activity.BindingDelegateActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/asr_ifly",
+    "className": "com.yzq.kotlincommon.ui.activity.AsrIlfyActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/asr_baidu",
+    "className": "com.yzq.kotlincommon.ui.activity.AsrBaiduActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/asr_ali",
+    "className": "com.yzq.kotlincommon.ui.activity.AsrAliActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/baidu_asr",
+    "className": "com.yzq.kotlincommon.ui.activity.AsrActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/asr",
+    "className": "com.yzq.kotlincommon.ui.activity.AsrActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/apiCall",
+    "className": "com.yzq.kotlincommon.ui.activity.ApiCallActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/main/emas",
+    "className": "com.yzq.kotlincommon.ui.activity.AliEMASActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/gaoDe/gaoDeMap",
+    "className": "com.yzq.amap.GaoDeActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "/emas/crash",
+    "className": "com.yzq.aliemas.crash.CrashActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  }
+]

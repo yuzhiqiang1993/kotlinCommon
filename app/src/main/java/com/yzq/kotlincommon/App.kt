@@ -15,6 +15,7 @@ import com.yzq.application.AppManager
 import com.yzq.application.AppStateListener
 import com.yzq.application.getCurrentProcessName
 import com.yzq.application.isMainProcess
+import com.yzq.kotlincommon.task.mainthread.InitAsrAliTask
 import com.yzq.kotlincommon.task.mainthread.InitAsrBaiduTask
 import com.yzq.kotlincommon.task.mainthread.InitAsrIflyTask
 import com.yzq.kotlincommon.task.mainthread.InitCoilTask
@@ -55,19 +56,23 @@ class App : Application(), AppStateListener {
         if (BuildConfig.DEBUG) {
             Logger.addPrinter(
                 ConsoleLogPrinter.getInstance(
-                    ConsoleLogConfig.Builder().enable(BuildConfig.DEBUG).build()
+                    ConsoleLogConfig.Builder().showBorder(false).enable(BuildConfig.DEBUG).build()
                 )
-            ).addPrinter(
-                FileLogPrinter.getInstance(
-                    FileLogConfig.Builder().enable(BuildConfig.DEBUG).writeLogInterval(60)
-                        .storageDuration(1 * 24).build()
+            )
+                .addPrinter(
+                    FileLogPrinter.getInstance(
+                        FileLogConfig.Builder().enable(BuildConfig.DEBUG).writeLogInterval(60)
+                            .storageDuration(1 * 24).build()
 
+                    )
                 )
-            ).addPrinter(
-                ViewLogPrinter.getInstance(
-                    ViewLogConfig.Builder().enable(BuildConfig.DEBUG).build()
-                )
-            ).debug(true)
+                .addPrinter(
+                    ViewLogPrinter.getInstance(
+                        ViewLogConfig.Builder().enable(BuildConfig.DEBUG)
+                            .build()
+                    )
+                ).debug(true)
+
         }
 
         val deviceInfo = getDeviceInfo()
@@ -103,6 +108,7 @@ class App : Application(), AppStateListener {
                 .addAppStartTask(InitFileOperatorTask())
                 .addAppStartTask(InitAsrIflyTask())
                 .addAppStartTask(InitAsrBaiduTask())
+                .addAppStartTask(InitAsrAliTask())
                 .start()
                 .await()
 

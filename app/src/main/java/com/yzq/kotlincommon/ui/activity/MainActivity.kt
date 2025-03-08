@@ -54,8 +54,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         /*该操作会获取用户信息  所以建议在获取相关权限后再初始化 同时还能提升一些启动速度*/
         PushServiceFactory.getCloudPushService().register(
-            AppContext,
-            object : CommonCallback {
+            AppContext, object : CommonCallback {
                 override fun onSuccess(response: String?) {
                     Logger.i("init cloudchannel success")
                 }
@@ -63,8 +62,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 override fun onFailed(errorCode: String, errorMessage: String) {
                     Logger.i("init cloudchannel failed -- errorcode:$errorCode -- errorMessage:$errorMessage")
                 }
-            }
-        )
+            })
 
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
@@ -101,9 +99,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             bottomMargin(100)
             marginEdge(20)
             edgeViewScale(0.5f)
-        }.globalShow(true)
-            .addBlackList(LogViewActivity::class.java)
-            .build()
+        }.globalShow(true).addBlackList(LogViewActivity::class.java).build()
 
         floatingViewManager?.setFloatingViewListener(object : FloatingViewListener {
             override fun onClick() {
@@ -170,6 +166,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         items.add(NaviItem("Lottie", RoutePath.Main.LOTTIE))
         items.add(NaviItem("百度语音识别ASR", RoutePath.Main.ASR_BAIDU))
         items.add(NaviItem("讯飞语音识别ASR", RoutePath.Main.ASR_IFLY))
+        items.add(NaviItem("阿里语音识别ASR", RoutePath.Main.ASR_ALI))
         items.add(NaviItem("蓝牙", RoutePath.Main.BLUETOOTH))
         items.add(NaviItem("ReactNative", RoutePath.Main.REACT_NATIVE))
         items.add(NaviItem("JavaActivity", RoutePath.Main.JAVA_ACTIVITY))
@@ -182,29 +179,23 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     private fun setData() {
-        binding
-            .includedAppbarMain
-            .recy
-            .linear()
-            .divider(R.drawable.item_divider)
-            .setup {
-                addType<NaviItem>(R.layout.item_main_layout)
-                onBind {
-                    val itemBinding = getBinding<ItemMainLayoutBinding>()
-                    itemBinding.mainItem.setTitle(getModel<NaviItem>().title)
-                }
-                R.id.mainItem.onClick {
-                    skip(getModel<NaviItem>().path)
-                }
-            }.models = items
+        binding.includedAppbarMain.recy.linear().divider(R.drawable.item_divider).setup {
+            addType<NaviItem>(R.layout.item_main_layout)
+            onBind {
+                val itemBinding = getBinding<ItemMainLayoutBinding>()
+                itemBinding.mainItem.setTitle(getModel<NaviItem>().title)
+            }
+            R.id.mainItem.onClick {
+                skip(getModel<NaviItem>().path)
+            }
+        }.models = items
 
 
         var isScrolling: Boolean
         binding.includedAppbarMain.recy.addOnScrollListener(object :
             RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(
-                recyclerView: RecyclerView,
-                newState: Int
+                recyclerView: RecyclerView, newState: Int
             ) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {

@@ -1,0 +1,1 @@
+-keep class com.alibaba.idst.nui.*{*;}
