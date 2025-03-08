@@ -193,7 +193,12 @@ object AsrAliManager {
             return
         }
         kotlin.runCatching {
-            this.asrAliProcessor = AsrAliProcessor(asrAliCallback)
+
+            reset()
+
+            this.asrAliProcessor = AsrAliProcessor(asrAliCallback).apply {
+                start()
+            }
 
             //先创建 audioRecorder
             audioRecorder = AudioRecord(
@@ -217,6 +222,13 @@ object AsrAliManager {
             asrAliCallback.onError(it.message ?: "未知错误")
         }
 
+    }
+
+    private fun reset() {
+        audioRecorder?.release()
+        audioRecorder = null
+        asrAliProcessor?.release()
+        asrAliProcessor = null
     }
 
 
@@ -247,11 +259,13 @@ object AsrAliManager {
             return
         }
         nuiInstance.stopDialog()
+
     }
 
     fun release() {
         stop()
         nuiInstance.release()
     }
+
 
 }

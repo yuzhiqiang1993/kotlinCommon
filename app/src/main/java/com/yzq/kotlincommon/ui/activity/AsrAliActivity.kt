@@ -49,8 +49,6 @@ class AsrAliActivity : BaseActivity() {
             getPermissions(Permission.RECORD_AUDIO) {
                 AsrAliManager.start(asrAliCallback)
             }
-
-
         }
 
 
@@ -58,5 +56,10 @@ class AsrAliActivity : BaseActivity() {
             AsrAliManager.stop()
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        AsrAliManager.release()
     }
 }
