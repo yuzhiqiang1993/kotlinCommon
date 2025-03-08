@@ -119,7 +119,6 @@ RecyclerView 相关：
 如果您在查看源码过程中有任何问题或建议：
 
 - [提交 Issue](https://github.com/yuzhiqiang1993/kotlinCommon/issues)
-- 邮件联系：[您的邮箱]
 
 ## 项目统计
 
