@@ -18,44 +18,53 @@ import org.json.JSONObject
 import java.io.File
 import java.util.concurrent.atomic.AtomicBoolean
 
-
 /**
- * @description: 阿里语音识别管理类
- * @author : yuzhiqiang
+ * 阿里云语音识别管理类
+ * 负责语音识别的初始化、启动、停止等生命周期管理
+ * @author yuzhiqiang
  */
-
 object AsrAliManager {
-
     private const val TAG = "AliAsrManager"
 
+    /**
+     * 音频配置
+     */
+    private object AudioConfig {
+        const val SAMPLE_RATE = 16000 // 采样率 16kHz
+        const val FRAME_DURATION_MS = 20 // 每帧音频时长（毫秒）
+        const val BYTES_PER_SAMPLE = 2 // 每个采样点字节数（16bit=2字节）
+        const val MONO_CHANNEL = 1 // 单声道配置
+
+        // 计算每帧字节数 = 时长 * 字节/样本 * 声道数 * (采样率/1000)
+        const val WAVE_FRAME_SIZE =
+            FRAME_DURATION_MS * BYTES_PER_SAMPLE * MONO_CHANNEL * SAMPLE_RATE / 1000
+    }
+
+    /**
+     * 识别状态
+     */
+    private enum class RecognitionState {
+        UNINITIALIZED,    // 未初始化
+        INITIALIZED,      // 已初始化
+        RECOGNIZING,      // 识别中
+        ERROR            // 错误状态
+    }
+
     private val nuiInstance by lazy { NativeNui() }
-    private var audioRecorder: AudioRecord? = null;
-
-    private const val SAMPLE_RATE = 16000 // 采样率 16kHz
-    private const val FRAME_DURATION_MS = 20 // 每帧音频时长（毫秒）
-    private const val BYTES_PER_SAMPLE = 2 // 每个采样点字节数（16bit=2字节）
-    private const val MONO_CHANNEL = 1 // 单声道配置
-
-    // 计算每帧字节数 = 时长 * 字节/样本 * 声道数 * (采样率/1000)  计算结果：640
-    private const val WAVE_FRAME_SIZE =
-        FRAME_DURATION_MS * BYTES_PER_SAMPLE * MONO_CHANNEL * SAMPLE_RATE / 1000
-
-    private val inited = AtomicBoolean(false)
-
-
-    // 识别结果处理器
+    private var audioRecorder: AudioRecord? = null
     private var asrAliProcessor: AsrAliProcessor? = null
 
+    private val inited = AtomicBoolean(false)
+    private var currentState = RecognitionState.UNINITIALIZED
+        private set(value) {
+            field = value
+            Logger.it(TAG, "状态变更: $field")
+        }
 
-    private val nuiCallback: INativeNuiCallback = object : INativeNuiCallback {
-        /**
-         * SDK主要事件回调
-         * @param event：回调事件，参见如下事件列表。
-         * @param resultCode：参见错误码，在出现EVENT_ASR_ERROR事件时有效。
-         * @param arg2：保留参数。
-         * @param kwsResult：语音唤醒功能（暂不支持）。
-         * @param asrResult：语音识别结果。
-         */
+    /**
+     * NUI 回调实现
+     */
+    private val nuiCallback = object : INativeNuiCallback {
         override fun onNuiEventCallback(
             event: Constants.NuiEvent?,
             resultCode: Int,
@@ -66,164 +75,213 @@ object AsrAliManager {
             asrAliProcessor?.processEvent(event, resultCode, asrResult)
         }
 
-
-        /**
-         * 开始识别时，此回调被连续调用，App需要在回调中进行语音数据填充。
-         * @param buffer：填充语音的存储区。
-         * @param len：需要填充语音的字节数。
-         * @return：实际填充的字节数。
-         */
         override fun onNuiNeedAudioData(buffer: ByteArray?, len: Int): Int {
-            if (audioRecorder == null) {
-                Logger.it(TAG, "audioRecorder is null")
-                return -1
-            }
-
-            if (audioRecorder!!.state != AudioRecord.STATE_INITIALIZED) {
-                Logger.it(TAG, "audioRecorder state:${audioRecorder!!.state}")
-                return -1
-            }
-
-            var readSize = -1
-
-            buffer?.run {
-                readSize = audioRecorder!!.read(this, 0, len)
-                asrAliProcessor?.processPcm(buffer)
-            }
-
-
-
-            return readSize
+            return handleAudioData(buffer, len)
         }
 
-        /**
-         * 当start/stop/cancel等接口调用时，SDK通过此回调通知App进行录音的开关操作。
-         * @param audioState：录音需要的状态（打开/关闭）
-         */
         override fun onNuiAudioStateChanged(audioState: Constants.AudioState?) {
-            Logger.it(TAG, "onNuiAudioStateChanged $audioState")
-            audioState?.let {
-                when (it) {
-                    com.alibaba.idst.nui.Constants.AudioState.STATE_OPEN -> {
-                        //开始录音
-                        audioRecorder?.startRecording()
-                    }
-
-                    com.alibaba.idst.nui.Constants.AudioState.STATE_PAUSE -> {
-                        //暂停录音
-                        audioRecorder?.stop()
-                    }
-
-                    com.alibaba.idst.nui.Constants.AudioState.STATE_CLOSE -> {
-                        //关闭录音
-                        audioRecorder?.release()
-                    }
-                }
-            }
+            handleAudioStateChange(audioState)
         }
 
-
-        /**
-         * 音频能量值回调
-         * @param volume: 音频数据能量值回调，范围-160至0，一般用于UI展示语音动效
-         */
         override fun onNuiAudioRMSChanged(volume: Float) {
-//            Logger.it(TAG, "onNuiAudioRMSChanged $volume")
+            // 可选：处理音量变化
         }
 
-        /**
-         * NUI VPR事件回调
-         * @param event：VPR事件类型
-         */
         override fun onNuiVprEventCallback(event: Constants.NuiVprEvent?) {
-
+            // VPR 事件处理（如需要）
         }
-
     }
 
-
-    fun init(appkey: String, token: String, deviceid: String) {
+    /**
+     * 初始化识别器
+     */
+    fun init(appkey: String, token: String, deviceId: String) {
         if (inited.get()) {
+            Logger.it(TAG, "已经初始化过")
             return
         }
 
-        Logger.it(TAG, "appkey:$appkey,token:$token,deviceid:$deviceid")
+        try {
+            val initParams = createInitParams(appkey, token, deviceId)
+            val resultCode = initializeNui(initParams)
+            handleInitResult(resultCode)
+        } catch (e: Exception) {
+            Logger.et(TAG, "初始化失败", e)
+            currentState = RecognitionState.ERROR
+        }
+    }
+
+    /**
+     * 创建初始化参数
+     */
+    private fun createInitParams(appkey: String, token: String, deviceId: String): String {
         val workspace = CommonUtils.getModelPath(AppContext)
-
-
         val debugPath =
             "${AppStorage.External.Private.cachePath}debug_${System.currentTimeMillis()}"
-        Logger.it(TAG, "workspace:$workspace")
-        Logger.it(TAG, "debugPath:$debugPath")
 
-        if (!File(debugPath).exists()) {
-            File(debugPath).mkdirs()
-        }
-
+        File(debugPath).mkdirs()
         CommonUtils.copyAssetsData(AppContext)
 
-        val initParams = JSONObject().apply {
-            put("workspace", workspace)//必填，且必须要有读写权限
-            put("debug_path", debugPath)//可选，用于保存调试日志
-            put("service_mode", Constants.ModeFullCloud)//必填
+        return JSONObject().apply {
+            put("workspace", workspace)
+            put("debug_path", debugPath)
+            put("service_mode", Constants.ModeFullCloud)
             put("app_key", appkey)
             put("token", token)
-            put("deviceid", deviceid)
-            put("url", "wss://nls-gateway.cn-shanghai.aliyuncs.com:443/ws/v1")//必填
+            put("deviceid", deviceId)
+            put("url", "wss://nls-gateway.cn-shanghai.aliyuncs.com:443/ws/v1")
         }.toString()
+    }
 
-        Logger.it(TAG, "initParams:$initParams")
-
-        val resultCode = nuiInstance.initialize(
-            nuiCallback, initParams, Constants.LogLevel.LOG_LEVEL_VERBOSE, false
+    /**
+     * 初始化 NUI
+     */
+    private fun initializeNui(params: String): Int {
+        return nuiInstance.initialize(
+            nuiCallback,
+            params,
+            Constants.LogLevel.LOG_LEVEL_VERBOSE,
+            false
         )
+    }
 
+    /**
+     * 处理初始化结果
+     */
+    private fun handleInitResult(resultCode: Int) {
         if (resultCode == Constants.NuiResultCode.SUCCESS) {
             Logger.it(TAG, "初始化成功")
             inited.set(true)
+            currentState = RecognitionState.INITIALIZED
         } else {
-            Logger.et(TAG, "初始化失败resultCode:${resultCode}")
+            Logger.et(TAG, "初始化失败 resultCode: $resultCode")
+            currentState = RecognitionState.ERROR
+            throw IllegalStateException("初始化失败: $resultCode")
         }
     }
 
-
+    /**
+     * 开始识别
+     */
     @RequiresPermission(Manifest.permission.RECORD_AUDIO)
     fun start(asrAliCallback: AsrAliCallback) {
         if (!inited.get()) {
+            Logger.et(TAG, "未初始化")
             return
         }
+
         kotlin.runCatching {
-
-            reset()
-
-            this.asrAliProcessor = AsrAliProcessor(asrAliCallback).apply {
-                start()
-            }
-
-            //先创建 audioRecorder
-            audioRecorder = AudioRecord(
-                MediaRecorder.AudioSource.DEFAULT, SAMPLE_RATE, //采样率
-                AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, WAVE_FRAME_SIZE * 4
-            )
-
-            nuiInstance.setParams(genParams())
-
-            //TYPE_P2T  push to talk:用户按下按钮说话，松开停止的场景
-            val resultCode = nuiInstance.startDialog(Constants.VadMode.TYPE_P2T, "{}")
-
-            if (resultCode == Constants.NuiResultCode.SUCCESS) {
-                // 录音成功
-                Logger.it(TAG, "录音成功")
-            } else {
-                asrAliCallback.onError("录音失败,resultCode:${resultCode}")
-            }
-
-        }.onFailure {
-            asrAliCallback.onError(it.message ?: "未知错误")
+            prepareRecognition(asrAliCallback)
+            startRecognition()
+        }.onFailure { e ->
+            handleStartError(e, asrAliCallback)
         }
-
     }
 
+    /**
+     * 准备识别
+     */
+    @RequiresPermission(Manifest.permission.RECORD_AUDIO)
+    private fun prepareRecognition(asrAliCallback: AsrAliCallback) {
+        reset()
+
+        asrAliProcessor = AsrAliProcessor(asrAliCallback).apply {
+            start()
+        }
+
+        audioRecorder = createAudioRecorder()
+        nuiInstance.setParams(createRecognitionParams())
+    }
+
+    /**
+     * 创建音频记录器
+     */
+    @RequiresPermission(Manifest.permission.RECORD_AUDIO)
+    private fun createAudioRecorder(): AudioRecord {
+        return AudioRecord(
+            MediaRecorder.AudioSource.DEFAULT,
+            AudioConfig.SAMPLE_RATE,
+            AudioFormat.CHANNEL_IN_MONO,
+            AudioFormat.ENCODING_PCM_16BIT,
+            AudioConfig.WAVE_FRAME_SIZE * 4
+        )
+    }
+
+    /**
+     * 创建识别参数
+     */
+    private fun createRecognitionParams(): String {
+        return JSONObject().apply {
+            put("nls_config", JSONObject().apply {
+                put("enable_intermediate_result", true)
+                put("enable_punctuation_prediction", true)
+                put("sample_rate", AudioConfig.SAMPLE_RATE)
+                put("sr_format", "pcm")
+            })
+            put("service_type", Constants.kServiceTypeSpeechTranscriber)
+        }.toString()
+    }
+
+    /**
+     * 开始识别
+     */
+    private fun startRecognition() {
+        val resultCode = nuiInstance.startDialog(Constants.VadMode.TYPE_P2T, "{}")
+        if (resultCode == Constants.NuiResultCode.SUCCESS) {
+            Logger.it(TAG, "开始识别成功")
+            currentState = RecognitionState.RECOGNIZING
+        } else {
+            throw IllegalStateException("开始识别失败: $resultCode")
+        }
+    }
+
+    /**
+     * 处理开始识别错误
+     */
+    private fun handleStartError(e: Throwable, asrAliCallback: AsrAliCallback) {
+        val errorMessage = e.message ?: "未知错误"
+        Logger.et(TAG, "开始识别失败", e)
+        currentState = RecognitionState.ERROR
+        asrAliCallback.onError(errorMessage)
+    }
+
+    /**
+     * 处理音频数据
+     */
+    private fun handleAudioData(buffer: ByteArray?, len: Int): Int {
+        val recorder = audioRecorder ?: return -1
+
+        if (recorder.state != AudioRecord.STATE_INITIALIZED) {
+            Logger.it(TAG, "audioRecorder state: ${recorder.state}")
+            return -1
+        }
+
+        return buffer?.let {
+            recorder.read(it, 0, len).also { readSize ->
+                if (readSize > 0) {
+                    asrAliProcessor?.processPcm(buffer)
+                }
+            }
+        } ?: -1
+    }
+
+    /**
+     * 处理音频状态变化
+     */
+    private fun handleAudioStateChange(audioState: Constants.AudioState?) {
+        Logger.it(TAG, "音频状态变化: $audioState")
+
+        when (audioState) {
+            Constants.AudioState.STATE_OPEN -> audioRecorder?.startRecording()
+            Constants.AudioState.STATE_PAUSE -> audioRecorder?.stop()
+            Constants.AudioState.STATE_CLOSE -> audioRecorder?.release()
+            else -> Logger.it(TAG, "未处理的音频状态: $audioState")
+        }
+    }
+
+    /**
+     * 重置状态
+     */
     private fun reset() {
         audioRecorder?.release()
         audioRecorder = null
@@ -231,41 +289,24 @@ object AsrAliManager {
         asrAliProcessor = null
     }
 
-
-    private fun genParams(): String {
-        var params = ""
-
-        val nlsConfig = JSONObject().apply {
-            put("enable_intermediate_result", true)//是否返回中间结果
-            put("enable_punctuation_prediction", true)//是否返回标点符号
-            put("sample_rate", SAMPLE_RATE)//采样率
-            put("sr_format", "pcm")//音频格式
-        }
-
-        val paramsJsonObject = JSONObject().apply {
-            put("nls_config", nlsConfig)
-            put("service_type", Constants.kServiceTypeSpeechTranscriber)// 语音听写
-        }
-
-        params = paramsJsonObject.toString()
-
-        return params
-
-    }
-
-
+    /**
+     * 停止识别
+     */
     fun stop() {
-        if (!inited.get()) {
-            return
-        }
-        nuiInstance.stopDialog()
+        if (!inited.get()) return
 
+        nuiInstance.stopDialog()
+        currentState = RecognitionState.INITIALIZED
     }
 
+    /**
+     * 释放资源
+     */
     fun release() {
         stop()
+        reset()
         nuiInstance.release()
+        inited.set(false)
+        currentState = RecognitionState.UNINITIALIZED
     }
-
-
 }
